@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Settings</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Units</string>
+			<key>Key</key>
+			<string>units_preference</string>
+			<key>DefaultValue</key>
+			<string>US</string>
+			<key>Values</key>
+			<array>
+				<string>US</string>
+				<string>metric</string>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>US</string>
+				<string>metric</string>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Key</key>
+			<string>days_preference</string>
+			<key>Title</key>
+			<string>Days calculated</string>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<integer>3</integer>
+				<integer>5</integer>
+				<integer>7</integer>
+				<integer>9</integer>
+				<integer>12</integer>
+				<integer>15</integer>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>1</string>
+				<string>3</string>
+				<string>5</string>
+				<string>7</string>
+				<string>9</string>
+				<string>12</string>
+				<string>15</string>
+			</array>
+			<key>DefaultValue</key>
+			<integer>5</integer>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Enable currents</string>
+			<key>Key</key>
+			<string>currents_preference</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+	</array>
+	<key>StringsTable</key>
+	<string>Root</string>
+</dict>
+</plist>

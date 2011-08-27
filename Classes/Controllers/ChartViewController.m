@@ -22,18 +22,27 @@
 */
 
 #import "ChartViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation ChartViewController
 
 @synthesize sdTide;
+@synthesize page;
+
 
 // Override initWithNibName:bundle: to load the view using a nib file then perform additional customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil tide:(SDTide *)aTide {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         // Custom initialization
 		self.sdTide = aTide;
     }
     return self;
+}
+
+-(void)viewDidLoad
+{
+    self.view.layer.backgroundColor = [UIColor blackColor].CGColor;
+    self.view.layer.cornerRadius = 20;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -41,35 +50,31 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
-    // Release anything that's not essential, such as cached data
-}
-
-
 -(void)showCurrentTime {
 	NSLog(@"ChartView showCurrentTime called.");
 	[(ChartView*)self.view animateCursorViewToCurrentTime];
 }
-
-//-(void)drawChart {
-//	NSLog(@"Drawing chart...");
-//	ChartView *chartView = (ChartView*)self.view;
-//	[chartView.activityIndicator stopAnimating];
-//	[chartView.activityIndicator removeFromSuperview];
-//	chartView.displayChart = YES;
-//	[chartView setNeedsDisplay];
-//}
 
 #pragma mark ChartViewDatasource
 -(SDTide *)tideDataToChart {
 	return self.sdTide;
 }
 
+-(NSDate*)day
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    [components setDay: page];
+    
+    NSDate* day = [calendar dateByAddingComponents:components toDate:[sdTide startTime] options:0];
+    
+    [components release];
+    return day;
+}
+
 - (void)dealloc {
-    [super dealloc];
 	[sdTide release];
+    [super dealloc];
 }
 
 

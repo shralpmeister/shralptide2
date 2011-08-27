@@ -30,6 +30,7 @@
 - (void)showTideForPoint:(CGPoint) point;
 - (void)hideTideDetails;
 - (NSDate*)midnight;
+- (NSDate*)midnight: (NSDate*)date;
 - (NSString*)timeInNativeFormatFromMinutes:(int)minutesSinceMidnight;
 - (NSString*)timeIn24HourFormatFromMinutes:(int)minutesSinceMidnight;
 @end
@@ -38,12 +39,14 @@
 
 @synthesize datasource;
 @synthesize cursorView;
-@synthesize navBarView;
-@synthesize activityIndicator;
+@synthesize headerView;
+@synthesize dateLabel;
+@synthesize valueLabel;
 @synthesize times;
+@synthesize sunriseIcon, sunsetIcon, moonriseIcon, moonsetIcon;
 
 - (id)initWithCoder:(NSCoder *)coder {
-	if (self = [super initWithCoder:coder]) {
+	if ((self = [super initWithCoder:coder])) {
 		times = [[NSMutableDictionary alloc] init];
     }
     return self;
@@ -57,10 +60,25 @@
 
 	CGContextRef context = UIGraphicsGetCurrentContext();
 					  
-	SDTide *tide = [datasource tideDataToChart];
-	
-	// Drawing with a white stroke color
-	CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);
+	SDTide *tide = [self.datasource tideDataToChart];
+    
+    NSDictionary *sunEvents = [tide sunriseSunsetEventsForDay:[self.datasource day]];
+    SDTideEvent *sunrise = [sunEvents objectForKey:@"sunrise"];
+    SDTideEvent *sunset = [sunEvents objectForKey:@"sunset"];
+    uint64_t sunBaseTime = [[self midnight:[sunrise eventTime]] timeIntervalSince1970];
+    NSLog(@"Sunrise = %@, sunset = %@", sunrise.eventTime, sunset.eventTime);
+    
+    int sunriseMinutes = ([sunrise.eventTime timeIntervalSince1970] - sunBaseTime) / SECONDS_PER_MINUTE;
+    int sunsetMinutes = ([sunset.eventTime timeIntervalSince1970] - sunBaseTime) / SECONDS_PER_MINUTE;
+    
+    NSDictionary *moonEvents = [tide moonriseMoonsetEventsForDay:[self.datasource day]];
+    SDTideEvent *moonrise = [moonEvents objectForKey:@"moonrise"];
+    SDTideEvent *moonset = [moonEvents objectForKey:@"moonset"];
+    uint64_t moonBaseTime = [[self midnight:(moonrise != nil ? [moonrise eventTime] : [moonset eventTime])] timeIntervalSince1970];
+        
+    
+    int moonriseMinutes = ([moonrise.eventTime timeIntervalSince1970] - moonBaseTime) / SECONDS_PER_MINUTE;
+    int moonsetMinutes = ([moonset.eventTime timeIntervalSince1970] - moonBaseTime) / SECONDS_PER_MINUTE;
 	
 	// 480 x 320 = 24hrs x amplitude + some margin
 	float min = [self findLowestTide:tide];
@@ -76,14 +94,47 @@
 	float xmax = MINUTES_FROM_MIDNIGHT;
 	float xratio = 0.3333;
 	NSLog(@"xratio = %0.4f",xratio);
-
-	CGContextSetLineWidth(context,2.0);
-	CGContextMoveToPoint(context, xmin, yoffset);
-	CGContextAddLineToPoint(context, xmax * xratio, yoffset);
-	CGContextStrokePath(context);
-					  
-	int basetime = 0;
-	for (SDTideInterval *tidePoint in [tide intervals]) {
+    
+    NSLog(@"Sunrise = %d (%f), sunset = (%d) %f", sunriseMinutes, sunriseMinutes * xratio, sunsetMinutes, sunsetMinutes * xratio);
+    NSLog(@"Moonrise = %@ (%f), moonset = %@ (%f) %d", moonrise.eventTime, moonriseMinutes * xratio, moonset.eventTime, moonsetMinutes * xratio, moonsetMinutes);
+    
+    // show daylight hours as light background
+    CGContextSetRGBFillColor(context, 0.04, 0.27, 0.61, 1.0);
+    CGContextFillRect(context, CGRectMake(sunriseMinutes * xratio, headerView.frame.size.height, sunsetMinutes * xratio - sunriseMinutes * xratio, HEIGHT));
+    
+    CGContextSetRGBFillColor(context, 1, 1, 1, 0.2);
+    if (moonriseMinutes < moonsetMinutes) {
+        CGContextFillRect(context, CGRectMake(moonriseMinutes * xratio, headerView.frame.size.height, moonsetMinutes * xratio - moonriseMinutes * xratio, HEIGHT));
+    } else {
+        CGContextFillRect(context, CGRectMake(0, headerView.frame.size.height, moonsetMinutes * xratio, HEIGHT));
+        CGContextFillRect(context, CGRectMake(moonriseMinutes * xratio, headerView.frame.size.height, WIDTH, HEIGHT));
+    }
+    
+    // draw indicators in the header for astronomical events
+    float sunriseX = sunriseMinutes * xratio - sunriseIcon.image.size.width / 2;
+    float sunsetX = sunsetMinutes * xratio - sunsetIcon.image.size.width / 2;
+    float moonriseX = moonriseMinutes * xratio - moonriseIcon.image.size.width / 2;
+    float moonsetX = moonsetMinutes * xratio - moonsetIcon.image.size.width / 2;
+    
+    if (moonsetX >= headerView.frame.size.width - moonsetIcon.image.size.width) {
+        moonsetX -= moonsetIcon.image.size.width;
+    } else if (moonsetX == 0) {
+        moonsetX += 1;
+    }
+    
+    sunriseIcon.frame = CGRectMake(sunriseX, headerView.frame.size.height - sunriseIcon.image.size.height * 1.1, sunriseIcon.image.size.width, sunriseIcon.image.size.height);
+    sunsetIcon.frame = CGRectMake(sunsetX, headerView.frame.size.height - sunsetIcon.image.size.height * 1.1, sunsetIcon.image.size.width, sunsetIcon.image.size.height);
+    moonriseIcon.frame = CGRectMake(moonriseX, headerView.frame.size.height - moonriseIcon.image.size.height * 1.1, moonriseIcon.image.size.width, moonriseIcon.image.size.height);
+    moonsetIcon.frame = CGRectMake(moonsetX, headerView.frame.size.height - moonriseIcon.image.size.height * 1.1, moonsetIcon.image.size.width, moonsetIcon.image.size.height);
+    
+    [headerView addSubview:moonriseIcon];
+    [headerView addSubview:moonsetIcon];
+    [headerView addSubview:sunriseIcon];
+    [headerView addSubview:sunsetIcon];
+    
+    // draws the tide level curve
+	uint64_t basetime = 0;
+	for (SDTideInterval *tidePoint in [tide intervalsForDay:[self.datasource day]]) {
 		int minutesSinceMidnight = 0;
 		if (basetime == 0) {
 			basetime = (int)[[tidePoint time] timeIntervalSince1970];
@@ -97,17 +148,28 @@
 		
 	}
 	
+    // closes the path so that it can be filled
 	CGContextAddLineToPoint(context, WIDTH, HEIGHT + 64);
 	CGContextAddLineToPoint(context, 0, HEIGHT + 64);
 	
+    // fill in the tide level curve
 	CGContextSetRGBFillColor(context, 0.0, 1.0, 1.0, 0.7);
 	CGContextFillPath(context);
+    
+    // Drawing with a white stroke color
+	CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);
+    
+    // draws the zero height line
+    CGContextSetLineWidth(context,2.0);
+	CGContextMoveToPoint(context, xmin, yoffset);
+	CGContextAddLineToPoint(context, xmax * xratio, yoffset);
+	CGContextStrokePath(context);
 			
-	cursorView.center = CGPointMake([self currentTimeInMinutes:tide] * xratio, (HEIGHT + 64) / 2);
+	cursorView.center = CGPointMake([self currentTimeInMinutes] * xratio, (HEIGHT + 64) / 2);
 	if (cursorView.center.x > 0) {
 		NSLog(@"min: %0.1f, max: %0.1f",min,max);
 		[self addSubview:cursorView];
-		[self insertSubview:cursorView belowSubview: navBarView];
+		[self insertSubview:cursorView belowSubview: headerView];
 		[self showTideForPoint:[tide nearestDataPointForTime:floor(cursorView.center.x / xratio)]];	
 	} else {
 		[self hideTideDetails];
@@ -116,35 +178,38 @@
 
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateStyle:NSDateFormatterFullStyle];
-	self.navBarView.topItem.prompt = [formatter stringFromDate:[tide startTime]];
+	self.dateLabel.text = [formatter stringFromDate:[self.datasource day]];
 	[formatter release];
 }
 
 -(void)showTideForPoint:(CGPoint) point {
-	[[[self.navBarView items] objectAtIndex:0] setTitle:[NSString stringWithFormat:@"%0.2f%@ @ %@",point.y, [[datasource tideDataToChart] unitShort], [self timeInNativeFormatFromMinutes: (int)point.x]]];
+	self.valueLabel.text = [NSString stringWithFormat:@"%0.2f%@ @ %@",point.y, [[self.datasource tideDataToChart] unitShort], [self timeInNativeFormatFromMinutes: (int)point.x]];
 }
 
 -(void)hideTideDetails
 {
-	[[[self.navBarView items] objectAtIndex:0] setTitle:@""];	
+	self.valueLabel.text = @"";
+}
+                                           
+- (NSDate*)midnight {
+    return [self midnight: [NSDate date]];
 }
 
-- (NSDate*)midnight {
+- (NSDate*)midnight: (NSDate*)date {
 	NSCalendar *gregorian = [NSCalendar currentCalendar];
 	unsigned unitflags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
-	NSDateComponents *components = [gregorian components: unitflags fromDate: [NSDate date]];
+	NSDateComponents *components = [gregorian components: unitflags fromDate: date];
 	
 	return [gregorian dateFromComponents:components];
-}
-	
+}	
 
-- (int)currentTimeInMinutes:(SDTide *)tide {
+- (int)currentTimeInMinutes {
 	// The following shows the current time on the tide chart.  Need to make sure that it only shows on 
 	// the current day!
 	NSDate *datestamp = [NSDate date];
 	NSDate *midnight = [self midnight];
-	
-	if ([midnight compare:[tide startTime]] == NSOrderedSame) {
+
+	if ([midnight compare:[self.datasource day]] == NSOrderedSame) {
 		return ([datestamp timeIntervalSince1970] - [midnight timeIntervalSince1970]) / SECONDS_PER_MINUTE;
 	} else {
 		return -1;
@@ -164,7 +229,7 @@
 		[components setHour:hours];
 		[components setMinute:minutes];
 		
-		NSDate *time = [gregorian dateByAddingComponents:components toDate:[self midnight] options:0];
+		NSDate *time = [gregorian dateByAddingComponents:components toDate:[self.datasource day] options:0];
 		[components release];
 		
 		NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -219,11 +284,11 @@
 	
 	if (cursorView.superview == nil) {
 		[self addSubview:cursorView];
-		[self insertSubview:cursorView belowSubview: navBarView];
+		[self insertSubview:cursorView belowSubview: headerView];
 	}
 	
     [self animateFirstTouchAtPoint:movePoint];
-	[self showTideForPoint: [[datasource tideDataToChart] nearestDataPointForTime: touchPoint.x / 0.3333]];
+	[self showTideForPoint: [[self.datasource tideDataToChart] nearestDataPointForTime: (touchPoint.x + (self.datasource.page * WIDTH)) / 0.3333]];
 }
 
 
@@ -233,7 +298,7 @@
 	
     CGPoint location = [touch locationInView:self];
     cursorView.center = CGPointMake(location.x, 150);
-	[self showTideForPoint: [[datasource tideDataToChart] nearestDataPointForTime:location.x / 0.3333]];
+	[self showTideForPoint: [[self.datasource tideDataToChart] nearestDataPointForTime:(location.x + (self.datasource.page * WIDTH)) / 0.3333]];
 }
 
 
@@ -286,7 +351,7 @@
     // Create the path for the bounces
     CGMutablePathRef thePath = CGPathCreateMutable();
     
-    CGFloat midX = [self currentTimeInMinutes:[self.datasource tideDataToChart]] * 0.3333;
+    CGFloat midX = [self currentTimeInMinutes] * 0.3333;
     CGFloat midY = 150.0;
     CGFloat originalOffsetX = cursorView.center.x - midX;
     CGFloat originalOffsetY = cursorView.center.y - midY;
@@ -341,7 +406,7 @@
     
     CGPathRelease(thePath);
 	
-	[self showTideForPoint: [[datasource tideDataToChart] nearestDataPointForTime:midX / 0.3333]];
+	[self showTideForPoint: [[self.datasource tideDataToChart] nearestDataPointForTime:(midX + self.datasource.page * WIDTH) / 0.3333]];
 }
 
 

@@ -28,6 +28,7 @@
 
 @interface MainViewController ()
 - (int)currentTimeInMinutes:(SDTide *)tide;
+-(NSDate*)today;
 @end
 
 @implementation MainViewController
@@ -37,7 +38,7 @@
 @synthesize rootViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
 		// Custom initialization
 	}
 	return self;
@@ -45,7 +46,7 @@
 
 // Load the view nib and initialize the pageNumber ivar.
 - (id)initWithPageNumber:(int)page {
-    if (self = [super initWithNibName:@"MainView" bundle:nil]) {
+    if ((self = [self initWithNibName:@"MainView" bundle:nil])) {
         pageNumber = page;
     }
     return self;
@@ -56,10 +57,10 @@
  */
 - (void)viewDidLoad {
 	NSMutableArray *tempTable = [[NSMutableArray alloc] init];
-	[tempTable addObject: [NSArray arrayWithObjects: time1, height1, state1, bullet1, nil]];
-	[tempTable addObject: [NSArray arrayWithObjects: time2, height2, state2, bullet2, nil]];
-	[tempTable addObject: [NSArray arrayWithObjects: time3, height3, state3, bullet3, nil]];
-	[tempTable addObject: [NSArray arrayWithObjects: time4, height4, state4, bullet4, nil]];
+	[tempTable addObject: [NSArray arrayWithObjects: time1, heightLabel1, state1, bullet1, nil]];
+	[tempTable addObject: [NSArray arrayWithObjects: time2, heightLabel2, state2, bullet2, nil]];
+	[tempTable addObject: [NSArray arrayWithObjects: time3, heightLabel3, state3, bullet3, nil]];
+	[tempTable addObject: [NSArray arrayWithObjects: time4, heightLabel4, state4, bullet4, nil]];
 	
 	table = [tempTable retain];
 	[tempTable release];
@@ -78,11 +79,18 @@
 
 -(void)refresh {
 	[self clearTable];
-	
-	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-	[formatter setDateStyle:NSDateFormatterFullStyle];
-	[date setText: [formatter stringFromDate:[sdTide startTime]]];
-	[formatter release];
+    
+	if (sdTide == nil) {
+        [presentHeightLabel setText:@""];
+        [date setText:@""];
+        [tideStateImage setHidden:YES];
+    } else {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateStyle:NSDateFormatterFullStyle];
+        [date setText: [formatter stringFromDate:[self today]]];
+        [formatter release];
+        [tideStateImage setHidden:NO];
+    }
 	
 	[locationLabel setText:[sdTide shortLocationName]];
 	
@@ -90,39 +98,43 @@
 	if (minutesSinceMidnight > 0) {
 		[self updatePresentTideInfo];
 	} else {
-		[presentHeight setText:@""];
+		[presentHeightLabel setText:@""];
 	}
-	
-	if ([[sdTide events] count] > 4) {
+    
+	if ([[sdTide eventsForDay:[self today]] count] > 4) {
 		// there shouldn't be more than 4 tide events in a day -- 2 high, 2 low
 		[correctionLabel setText:@"Too many events predicted"];
 		return;
 	}
 	 
 	int index = 0;
-	for (SDTideEvent *event in [sdTide events]) {
+	for (SDTideEvent *event in [sdTide eventsForDay: [self today]]) {
 		[[[table objectAtIndex:index] objectAtIndex:0] setText: [event eventTimeNativeFormat]];
 		[[[table objectAtIndex:index] objectAtIndex:1] setText: [NSString stringWithFormat:@"%0.2f %@",[event eventHeight], [sdTide unitShort]]];
 		[[[table objectAtIndex:index] objectAtIndex:2] setText: [event eventTypeDescription]];
+		NSLog(@"%@, %@, %@", [event eventTime], [NSString stringWithFormat:@"%0.2f %@",[event eventHeight], [sdTide unitShort]], [event eventTypeDescription]);
 		++index;
 	}
 }
 
 -(void)updatePresentTideInfo {
+    if (sdTide == nil) {
+        return;
+    }
 	int minutesSinceMidnight = [self currentTimeInMinutes:sdTide];
 	
-	[presentHeight setText:[NSString stringWithFormat:@"%0.2f %@",
+	[presentHeightLabel setText:[NSString stringWithFormat:@"%0.2f %@",
 							[sdTide nearestDataPointForTime: minutesSinceMidnight].y,
 							[sdTide unitShort]]];
-	int direction = [sdTide tideDirectionForTime:minutesSinceMidnight];
+	SDTideStateRiseFall direction = [sdTide tideDirectionForTime:minutesSinceMidnight];
 	NSString *imageName = nil;
 	switch (direction) {
 		case SDTideStateRising:
 			imageName = @"Increasing";
 			break;
 		case SDTideStateFalling:
-			imageName = @"Decreasing";
-			break;
+        default:
+            imageName = @"Decreasing";
 	}
 	if (imageName != nil) {
 		NSString *imagePath = [[NSBundle mainBundle] pathForResource:imageName 
@@ -135,12 +147,17 @@
 	
 	NSNumber *nextEventIndex = [sdTide nextEventIndex];
 	int index = 0;
-	for (SDTideEvent *event in [sdTide events]) {
-		if (nextEventIndex != nil && index == [nextEventIndex intValue]) {
-			[[[table objectAtIndex:index] objectAtIndex:3] setHidden:NO];
-		} else {
-			[[[table objectAtIndex:index] objectAtIndex:3] setHidden:YES];
-		}
+	for (SDTideEvent *event in [sdTide eventsForDay:[self today]]) {
+        if (index < 4) {
+            if (nextEventIndex != nil && index == [nextEventIndex intValue]) {
+                [[[table objectAtIndex:index] objectAtIndex:3] setHidden:NO];
+            } else {
+                [[[table objectAtIndex:index] objectAtIndex:3] setHidden:YES];
+            }
+        } else {
+            [self clearTable];
+            [correctionLabel setText:@"Too many events predicted"];
+        }
 		++index;
 	}
 }
@@ -155,23 +172,29 @@
 	}
 }
 
+-(NSDate*)today
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    [components setDay: pageNumber];
+    
+    NSDate* today = [calendar dateByAddingComponents:components toDate:[sdTide startTime] options:0];
+    
+    [components release];
+    return today;
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	// Return YES for supported orientations
 	return NO;
 }
 
-- (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
-	// Release anything that's not essential, such as cached data
+-(IBAction)chooseNearbyTideStation:(id)sender {
+    [self.rootViewController setLocationFromMap];
 }
-
 
 - (IBAction)chooseTideStation:(id)sender {
-	[self.rootViewController chooseFromAllTideStations];
-}
-
--(IBAction)chooseNearbyTideStation:(id)sender {
-	[self.rootViewController chooseFromNearbyTideStations];
+	[self.rootViewController setLocationFromList];
 }
 
 -(IBAction)followHyperlink:(id)sender {
@@ -192,7 +215,7 @@
 	
 	NSDate *midnight = [gregorian dateFromComponents:components];
 	
-	if ([midnight compare:[tide startTime]] == NSOrderedSame) {
+	if ([midnight compare:[self today]] == NSOrderedSame) {
 		return ([datestamp timeIntervalSince1970] - [midnight timeIntervalSince1970]) / 60;
 	} else {
 		return -1;

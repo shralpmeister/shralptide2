@@ -27,13 +27,14 @@
 
 @interface ChartViewController : UIViewController <ChartViewDatasource> {
 	SDTide *sdTide;
+    int page;
 }
 
 -(SDTide *)tideDataToChart;
 
 -(void)showCurrentTime;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil tide:(SDTide *)aTide;
-//-(void)drawChart;
 
 @property (nonatomic,retain) SDTide *sdTide;
+@property (assign) int page;
 @end

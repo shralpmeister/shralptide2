@@ -24,81 +24,61 @@
 #import <CoreLocation/CoreLocation.h>
 #import "SDTide.h"
 #import "WaitView.h"
-#import "SDTideStation.h"
+#import "SDTideStationData.h"
 #import "ChartScrollView.h"
+#import "SelectStationNavigationController.h"
 
 @class MainViewController;
-@class FlipsideViewController;
 
-@interface RootViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIScrollViewDelegate, CLLocationManagerDelegate>
+@interface RootViewController : UIViewController <UIScrollViewDelegate, StationDetailViewControllerDelegate>
 {
 
-	IBOutlet UIButton *infoButton;
+	UIButton *infoButton;
 	IBOutlet UIScrollView *scrollView;
     IBOutlet UIPageControl *pageControl;
 	IBOutlet WaitView *waitView;
 	IBOutlet UILabel *waitReason;
-	IBOutlet UIActivityIndicatorView *waitIndicator;
+	UIActivityIndicatorView *waitIndicator;
+	IBOutlet ChartScrollView *chartScrollView;
     NSMutableArray *viewControllers;
 	NSMutableArray *chartViewControllers;
-	FlipsideViewController *flipsideViewController;
-	IBOutlet ChartScrollView *chartScrollView;
 	UISearchBar *searchBar;
 	UIActivityIndicatorView *activityIndicator;
 	UITableView *tableView;
-	NSArray *locations;
-	NSArray *allLocations;
-	NSArray *nearbyLocations;
-	NSMutableArray *filteredLocations;
-	NSMutableArray *savedLocations;
 	SDTide *sdTide;
 	NSString *location;
 	NSCalendar *currentCalendar;
-    CLLocationManager *locationManager;
 	BOOL transitioning;
 	BOOL pageControlUsed;
 	BOOL acceptLocationUpdates;
-	SDTideStation *tideStation;
+	SDTideStationData *tideStation;
+    SelectStationNavigationController *stationNavController;
 }
 
 @property (nonatomic, retain) UIButton *infoButton;
 @property (nonatomic, retain) UIScrollView *scrollView;
-@property (nonatomic, retain) FlipsideViewController *flipsideViewController;
 @property (nonatomic, retain) ChartScrollView *chartScrollView;
 @property (nonatomic, retain) UISearchBar *searchBar;
 @property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
-@property (nonatomic, retain) NSArray *locations;
-@property (nonatomic, retain) NSMutableArray *filteredLocations;
 @property (nonatomic, retain) NSString *location;
-@property (nonatomic, retain) NSMutableArray *savedLocations;
 @property (nonatomic, retain) SDTide* sdTide;
 @property (nonatomic, retain) NSMutableArray *viewControllers;
 @property (nonatomic, retain) NSMutableArray *chartViewControllers;
 @property (nonatomic, retain) NSCalendar *currentCalendar;
-@property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic, retain) UILabel *waitReason;
-@property (nonatomic, retain) SDTideStation *tideStation;
-@property (nonatomic, retain) NSArray *nearbyLocations;
-@property (nonatomic, retain) NSArray *allLocations;
+@property (nonatomic, retain) SDTideStationData *tideStation;
+@property (nonatomic, retain) SelectStationNavigationController *stationNavController;
 
 @property (readonly, getter=isTransitioning) BOOL transitioning;
 
--(IBAction)chooseFromAllTideStations;
--(void)chooseFromNearbyTideStations;
--(void)toggleView;
+- (void)setLocationFromList;
+- (void)setLocationFromMap;
 - (IBAction)changePage:(id)sender;
-
-- (SDTide *)computeTidesForDate:(NSDate*)date;
--(NSDate *)add:(int)number daysToDate: (NSDate*) date;
-- (void)recalculateTides:(id)object;
--(void)updateWaitReason:(id)object;
+- (SDTide*)computeTidesForNumberOfDays:(int)numberOfDays;
+- (NSDate *)add:(int)number daysToDate: (NSDate*) date;
+- (void)recalculateTides;
+- (void)updateWaitReason:(id)object;
 - (void)refreshViews;
-
-- (void)locationManager:(CLLocationManager *)manager
-    didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation;
-
-- (void)locationManager:(CLLocationManager *)manager
-       didFailWithError:(NSError *)error;
+- (void)createMainViews;
 
 @end

@@ -25,10 +25,11 @@
 
 #import "RootViewController.h"
 #import "MainViewController.h"
-#import "FlipsideViewController.h"
+#import "CountryListController.h"
 #import "SDTideFactory.h"
 #import "ChartViewController.h"
 #import "ChartView.h"
+#import "StationMapController.h"
 
 // Shorthand for getting localized strings, used in formats below for readability
 #define LocStr(key) [[NSBundle mainBundle] localizedStringForKey:(key) value:@"" table:nil]
@@ -36,50 +37,74 @@
 //crazy core animation stuff
 #define kAnimationKey @"transitionViewAnimation"
 
+#define appDelegate ((ShralpTideAppDelegate*)[[UIApplication sharedApplication] delegate])
+
 @interface RootViewController ()
+-(NSArray*)queryCountries;
 - (void)loadScrollViewWithPage:(int)page;
 - (void)loadChartScrollViewWithPage:(int)page;
 - (void)scrollViewDidScroll:(UIScrollView *)sender;
-- (void)createMainViews;
 - (void)startWaitIndicator;
 - (void)stopWaitIndicator;
 - (void)saveState;
 - (NSString*)lastLocation;
 - (BOOL)writeApplicationPlist:(id)plist toFile:(NSString *)fileName;
 - (id)applicationPlistFromFile:(NSString *)fileName;
-- (BOOL)writeApplicationData:(NSData *)data toFile:(NSString *)fileName;
-- (NSData *)applicationDataFromFile:(NSString *)fileName;
 - (void)replaceSubview:(UIView *)oldView withSubview:(UIView *)newView transition:(NSString *)transition direction:(NSString *)direction duration:(NSTimeInterval)duration;
-- (void)refreshLocationTable;
 - (void)setDefaultLocation;
+
+
+@property (nonatomic, retain) NSString *cachedLocationFilePath;
+
 @end
 
-static NSUInteger kNumberOfPages = 5;
 
 @implementation RootViewController
 
+@synthesize stationNavController;
 @synthesize infoButton;
-@synthesize flipsideViewController;
 @synthesize chartScrollView;
 @synthesize searchBar;
 @synthesize activityIndicator;
 @synthesize location;
-@synthesize locations;
-@synthesize filteredLocations;
-@synthesize savedLocations;
 @synthesize sdTide;
 @synthesize currentCalendar;
 @synthesize viewControllers;
 @synthesize chartViewControllers;
 @synthesize scrollView;
-@synthesize locationManager;
 @synthesize waitReason;
 @synthesize transitioning;
 @synthesize tideStation;
-@synthesize nearbyLocations;
-@synthesize allLocations;
+@synthesize cachedLocationFilePath;
+
+
+- (void)dealloc {
+	[infoButton release];
+	[chartScrollView release];
+	[currentCalendar release];
+	[viewControllers release];
+	[chartViewControllers release];
+	[scrollView release];
+	[waitIndicator release];
+	[waitReason release];
+	[waitView release];
+	[tideStation release];
+	[super dealloc];
+}
 
 - (void)viewDidLoad {
+    NSLog(@"%@", [[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-free" ofType:@"tcd"]);
+	NSMutableString *pathBuilder = [[NSMutableString alloc] init];
+	[pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-free" ofType:@"tcd"]];
+	[pathBuilder appendString:@":"];
+	[pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-nonfree" ofType:@"tcd"]];
+	setenv("HFILE_PATH",[pathBuilder cStringUsingEncoding:NSUTF8StringEncoding],1);
+	[pathBuilder release];
+    
+    
+    NSString *cachesDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    self.cachedLocationFilePath = [cachesDir stringByAppendingPathComponent:@"tidestate.plist"];
+    
 	NSString *lastLocation = [[self lastLocation] retain];
 	
 	if (lastLocation) {
@@ -98,11 +123,11 @@ static NSUInteger kNumberOfPages = 5;
 	[lastLocation release];
 	self.currentCalendar = [NSCalendar currentCalendar];
 	
-	[self createMainViews];
+	//[self createMainViews];
 }
 
 - (void)setDefaultLocation {
-	NSString *defaultLocation = @"La Jolla, Scripps Pier, California";
+	NSString *defaultLocation = @"La Jolla (Scripps Institution Wharf), California";
 	[self setLocation:defaultLocation];
 	self.tideStation = [SDTideFactory tideStationWithName:defaultLocation];
 }
@@ -110,10 +135,11 @@ static NSUInteger kNumberOfPages = 5;
 - (void)createMainViews {
 	NSMutableArray *controllers = [[NSMutableArray alloc] init];
 	NSMutableArray *chartControllers = [[NSMutableArray alloc] init];
-    for (unsigned i = 0; i < kNumberOfPages; i++) {
+    for (unsigned i = 0; i < appDelegate.daysPref; i++) {
         [controllers addObject:[NSNull null]];
 		[chartControllers addObject:[NSNull null]];
     }
+    NSLog(@"%d viewControllers exist",[viewControllers count]);
     self.viewControllers = controllers;
 	self.chartViewControllers = chartControllers;
     [controllers release];
@@ -122,7 +148,7 @@ static NSUInteger kNumberOfPages = 5;
     // a page is the width of the scroll view
     scrollView.pagingEnabled = YES;
 	// subtract 20 from height to account for scroll bar at top of portrait
-    scrollView.contentSize = CGSizeMake(self.view.frame.size.width * kNumberOfPages, self.view.frame.size.height - 20);
+    scrollView.contentSize = CGSizeMake(self.view.frame.size.width * appDelegate.daysPref, self.view.frame.size.height - 20);
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.scrollsToTop = NO;
@@ -130,7 +156,7 @@ static NSUInteger kNumberOfPages = 5;
     scrollView.delegate = self;
 	scrollView.autoresizingMask = UIViewAutoresizingNone;
 	
-    pageControl.numberOfPages = kNumberOfPages;
+    pageControl.numberOfPages = appDelegate.daysPref;
     pageControl.currentPage = 0;
 	pageControl.hidden = NO;
 	pageControl.defersCurrentPageDisplay = YES;
@@ -140,7 +166,7 @@ static NSUInteger kNumberOfPages = 5;
 	
 	chartScrollView.pagingEnabled = YES;
 	// put 20 back on the height and subtract 20 from width to account for scroll bar at top of landscape 
-	chartScrollView.contentSize = CGSizeMake((self.view.frame.size.height + 20) * kNumberOfPages, self.view.frame.size.width - 20);
+	chartScrollView.contentSize = CGSizeMake((self.view.frame.size.height + 20) * appDelegate.daysPref, self.view.frame.size.width - 20);
 	chartScrollView.showsVerticalScrollIndicator = NO;
 	chartScrollView.showsVerticalScrollIndicator = NO;
 	chartScrollView.scrollsToTop = NO;
@@ -155,7 +181,7 @@ static NSUInteger kNumberOfPages = 5;
 	NSLog(@"Refresh views called at %@", [NSDate date]);
 	
 	MainViewController *pageOneController = [viewControllers objectAtIndex:0];
-	
+    
 	if ([[NSDate date] timeIntervalSinceDate: [[pageOneController sdTide] startTime]] > 86400) {
 		[self viewDidAppear:YES];
 	} else {
@@ -164,23 +190,24 @@ static NSUInteger kNumberOfPages = 5;
 }
 
 - (void)clearChartData {
-	for (unsigned i = 0; i < kNumberOfPages; i++) {
+	for (unsigned i = 0; i < appDelegate.daysPref; i++) {
 		[chartViewControllers replaceObjectAtIndex:i withObject:[NSNull null]];
     }
 }
 
-- (void)recalculateTides:(id)object {
-	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-	for (unsigned i = 0; i < kNumberOfPages; i++) {
-		
-		[self performSelectorOnMainThread:@selector(updateWaitReason:) 
-							   withObject:[NSString stringWithFormat:@"Calculating day %d", i + 1] 
-							waitUntilDone:NO];
-		
+- (void)recalculateTides {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
+    NSLog(@"Recalculating tides for %d days",appDelegate.daysPref);
+    self.sdTide = [self computeTidesForNumberOfDays:appDelegate.daysPref];
+
+    for (unsigned i = 0; i < appDelegate.daysPref; i++) {
 		[self loadScrollViewWithPage:i];
 	}
-	[self stopWaitIndicator];
-	[pool release];
+    
+    [self stopWaitIndicator];
+    
+    [pool release];
 }
 
 -(void)startWaitIndicator {
@@ -207,23 +234,19 @@ static NSUInteger kNumberOfPages = 5;
 
 - (void)loadScrollViewWithPage:(int)page {
     if (page < 0) return;
-    if (page >= kNumberOfPages) return;
-	
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    if (page >= appDelegate.daysPref) return;
 	
     // replace the placeholder if necessary
     MainViewController *controller = [viewControllers objectAtIndex:page];
     if ((NSNull *)controller == [NSNull null]) {
-        controller = [[[MainViewController alloc] initWithPageNumber:page] autorelease];
-		
-		[controller setSdTide:[self computeTidesForDate: [self add: page daysToDate: [NSDate date]]]];
+        controller = [[MainViewController alloc] initWithPageNumber:page];		
         controller.rootViewController = self;
         [viewControllers replaceObjectAtIndex:page withObject:controller];
-    } else {
-		[controller setSdTide:[self computeTidesForDate: [self add: page daysToDate: [NSDate date]]]];
-	}
-	
-	[pool release];
+        [controller release];
+    }
+    
+    NSLog(@"Calling setSdTide on %@",controller);
+    [controller setSdTide:sdTide];
 	
     // add the controller's view to the scroll view
     if (nil == controller.view.superview) {
@@ -233,7 +256,6 @@ static NSUInteger kNumberOfPages = 5;
         controller.view.frame = frame;
         [scrollView addSubview:controller.view];
     }
-
 }
 
 -(NSDate *)add:(int)number daysToDate: (NSDate*) date {
@@ -289,69 +311,23 @@ static NSUInteger kNumberOfPages = 5;
 
 #pragma mark ViewToggleControls
 
-- (void)loadFlipsideViewController {
-	FlipsideViewController *viewController = [[FlipsideViewController alloc] initWithNibName:@"FlipsideView" bundle:nil];
-	self.flipsideViewController = viewController;
-	[viewController release];
-	
-	[[flipsideViewController view] setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
-
-    self.filteredLocations = [NSMutableArray arrayWithCapacity:[self.locations count]];
-	[filteredLocations addObjectsFromArray:self.locations];
-	
-	self.savedLocations = [NSMutableArray arrayWithCapacity:[self.locations count]];
-	
-	UISearchBar *mySearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 44.0)];
-	mySearchBar.barStyle = UIBarStyleBlackOpaque;
-	// don't get in the way of use typing in any way!
-    mySearchBar.autocorrectionType = UITextAutocorrectionTypeNo;
-    mySearchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    mySearchBar.showsCancelButton = NO;
-	mySearchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-	
-	[mySearchBar setDelegate:self];
-	self.searchBar = mySearchBar;
-	[mySearchBar release];
-	
-	tableView = [[UITableView alloc] initWithFrame: CGRectMake(0.0, 45.0, 320.0, 420.0) style:UITableViewStylePlain];
-
-	[tableView setRowHeight:60.0];
-	[tableView setDelegate:self];
-	[tableView setDataSource:self];
-	
-	tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-}
-
--(void)refreshLocationTable {
-	self.filteredLocations = [NSMutableArray arrayWithCapacity:[self.locations count]];
-	[self.filteredLocations addObjectsFromArray:self.locations];
-	
-	self.savedLocations = [NSMutableArray arrayWithCapacity:[self.locations count]];
-	
-	[searchBar setText:@""];
-	
-	[tableView reloadData];
-	[tableView scrollToRowAtIndexPath:0 atScrollPosition:UITableViewScrollPositionTop animated:NO];
-}
-
 - (void)loadChartScrollViewWithPage:(int)page {
     if (page < 0) return;
-    if (page >= kNumberOfPages) return;
-	
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    if (page >= appDelegate.daysPref) return;
 	
     // replace the placeholder if necessary
     ChartViewController *controller = [chartViewControllers objectAtIndex:page];
     if ((NSNull *)controller == [NSNull null]) {
 		controller = [[ChartViewController alloc] initWithNibName:@"ChartView" bundle:nil tide:[[viewControllers objectAtIndex:page] sdTide]];
         [chartViewControllers replaceObjectAtIndex:page withObject:controller];
+        [controller release];
     } else {
 		if (controller.sdTide == nil) {
 			[controller setSdTide:[[viewControllers objectAtIndex:page] sdTide]];
 		}
 	}
-	
-	[pool release];
+    
+    controller.page = page;
 	
     // add the controller's view to the scroll view
     if (nil == controller.view.superview) {
@@ -364,129 +340,102 @@ static NSUInteger kNumberOfPages = 5;
 	
 }
 
--(void)chooseFromNearbyTideStations {
-	[self startWaitIndicator];
-	[waitReason setText:@"Determining current location."];
-
-	self.locationManager = [[CLLocationManager alloc] init];
-	self.locationManager.delegate = self; // Tells the location manager to send updates to this object
+-(void)setLocationFromMap
+{
+    [self dismissModalViewControllerAnimated:NO];
+	StationMapController *mapController = [[StationMapController alloc] initWithNibName:@"LocationView" 
+																		 forStationType:SDStationTypeTide];
+	mapController.title = NSLocalizedString(@"Choose a Station",nil);
+    mapController.modalViewDelegate = self;
 	
-	acceptLocationUpdates = YES;
+	// Create the navigation controller and present it modally.
+	SelectStationNavigationController *mapNavigationController = [[SelectStationNavigationController alloc]
+                                                       initWithRootViewController:mapController];
 	
-	[locationManager startUpdatingLocation];
+	UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(cancelAddLocation)];
+	
+	mapController.navController = mapNavigationController;
+	mapController.navigationItem.rightBarButtonItem = cancelButton;
+    mapNavigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    
+    [cancelButton release];	
+	[self presentModalViewController:mapNavigationController animated:YES];
+	
+	[mapNavigationController release];
+	[mapController release];
+	
 }
 
--(void)showNearbyLocations: (CLLocation*) newLocation {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	self.nearbyLocations = [SDTideFactory locationsNearLatitude:newLocation.coordinate.latitude 
-											  andLongitude:newLocation.coordinate.longitude];
-	[pool release];
+-(void)setLocationFromList
+{
+	CountryListController *listController = [[CountryListController alloc] initWithNibName:@"CountryListView" bundle:nil];
+	listController.title = @"Country";
+    listController.rows = [self queryCountries];
+	
+    stationNavController = [[SelectStationNavigationController alloc] initWithRootViewController:listController];
+    self.stationNavController.detailViewDelegate = self;
+    
+	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(cancelAddLocation)];
+    
+    self.stationNavController.doneButton = doneButton;
 
-	for (SDTideStation *station in self.nearbyLocations) {
-		CLLocation *stationLoc = [[CLLocation alloc] initWithLatitude:[station.latitude doubleValue]
-															longitude:[station.longitude doubleValue]];
-		station.distance = [NSNumber numberWithDouble:([newLocation getDistanceFrom:stationLoc] / 1000)];
-		[stationLoc release];
-	}
-	
-	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"distance" ascending: YES];
-	NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending: YES];
-	NSArray *descriptors = [NSArray arrayWithObjects:sortDescriptor,nameDescriptor,nil];
-	
-	[self.nearbyLocations sortUsingDescriptors:descriptors];
-	
-	self.locations = self.nearbyLocations;
-	
-	[sortDescriptor release];
-	[nameDescriptor release];
-	
-	[self stopWaitIndicator];
-	
-	if (flipsideViewController) {
-		[self refreshLocationTable];
-	} else {
-		[self loadFlipsideViewController];
-	}
-	
-	if ([self.locations count] > 0) {
-		[self toggleView];
-	} else {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"There are no tide stations in your area. You may select a location manually by pressing the globe icon." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[alert show];
-		[alert release];
-	}
+    [doneButton release];
+    
+    self.stationNavController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+	[self presentModalViewController:self.stationNavController animated:YES];
+	[listController release];
 }
 
--(IBAction)chooseFromAllTideStations {
-	if (!allLocations) {
-		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-		self.allLocations = [SDTideFactory locations];
-		[pool release];
-	}
-	if (self.locations != self.allLocations) {
-		self.locations = self.allLocations;
-		NSLog(@"Locations retain count=%d",[self.locations retainCount]);
-		if (flipsideViewController) {
-			[self refreshLocationTable];
-		} else {
-			[self loadFlipsideViewController];
-		}
-	}
-	[self toggleView];
+-(NSArray*)queryCountries {
+    NSManagedObjectContext *context = [(ShralpTideAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"SDCountry" 
+											  inManagedObjectContext:context];
+    NSFetchRequest *fr = [[NSFetchRequest alloc] init];
+	[fr setEntity: entityDescription];
+    
+	NSError *error;
+	NSArray *results = [context executeFetchRequest:fr error:&error];
+    [fr release];
+    
+    NSMutableArray *countries = [NSMutableArray array];
+    for (SDCountry *country in results) {
+        [countries addObject:country];
+    }
+    
+    NSSortDescriptor *sortByName = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortByName];
+    [sortByName release];
+    
+    return [countries sortedArrayUsingDescriptors:sortDescriptors];
 }
 
-- (void) toggleView {	
-	/*
-	 This method is called when the info or Done button is pressed.
-	 It flips the displayed view from the main view to the flipside view and vice-versa.
-	 */
-	UIView *mainView = scrollView;
-	UIView *flipsideView = flipsideViewController.view;
-	
-	[mainView setNeedsLayout];
-	[flipsideView setNeedsLayout];
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationDuration:1];
-	[UIView setAnimationTransition:([mainView superview] ? UIViewAnimationTransitionFlipFromRight : UIViewAnimationTransitionFlipFromLeft) forView:self.view cache:YES];
-	
-	if (flipsideView.superview == nil) {
-		[flipsideViewController viewWillAppear:YES];
-		[self viewWillDisappear:YES];
-		[pageControl removeFromSuperview];
-		[mainView removeFromSuperview];
-		[self.view addSubview:flipsideView];
-		[self.view insertSubview:searchBar aboveSubview:flipsideView];
-		[self.view insertSubview:tableView aboveSubview:flipsideView];
-		[self viewDidDisappear:YES];
-		[flipsideViewController viewDidAppear:YES];
-	} else {
-		[self viewWillAppear:YES];
-		[flipsideViewController viewWillDisappear:YES];
-		[flipsideView removeFromSuperview];
-		[searchBar removeFromSuperview];
-		[tableView removeFromSuperview];
-		[self.view addSubview:mainView];
-		[self.view addSubview:pageControl];
-		[flipsideViewController viewDidDisappear:YES];
-		[self viewDidAppear:YES];
-	}
-	[UIView commitAnimations];
+-(void)cancelAddLocation
+{
+	[self dismissModalViewControllerAnimated:YES];
+    self.stationNavController = nil;
 }
 
 -(void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear: animated];
 	[self clearChartData];
 	[self startWaitIndicator];
-	[NSThread detachNewThreadSelector:@selector(recalculateTides:) toTarget:self withObject:nil];
+	[NSThread detachNewThreadSelector:@selector(recalculateTides) toTarget:self withObject:nil];
 	[[(MainViewController*)[viewControllers objectAtIndex:0] currentTideView] becomeFirstResponder];
+    
+    /* make sure that we show the current time whenever the view is changed or reappears */
+    int page = pageControl.currentPage;
+    ChartViewController *chartController = (ChartViewController*)[chartViewControllers objectAtIndex:page];
+    if (![chartController isKindOfClass: [NSNull class]]) {
+        [chartController showCurrentTime];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	UIView *mainView = scrollView;
 	UIView *chartView = chartScrollView;
-	
-	NSArray *subviews = [self.view subviews];
-	if ([[subviews objectAtIndex:([subviews count] - 1)] isKindOfClass:[WaitView class]]) {
+
+    if (sdTide == nil) {
 		return NO;
 	} else if ([mainView superview] != nil || [chartView superview] != nil) {
 		if ([mainView superview] != nil && interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
@@ -498,44 +447,6 @@ static NSUInteger kNumberOfPages = 5;
 	}
 }
 
-
-- (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
-	// Releases the view if it doesn't have a superview
-	// Release anything that's not essential, such as cached data
-	NSLog(@"Low memory warning!");
-	
-	if (flipsideViewController && ![flipsideViewController.view superview]) {
-        self.locations = nil;
-        self.nearbyLocations = nil;
-        self.filteredLocations = nil;
-        self.savedLocations = nil;
-	}
-}
-
-
-- (void)dealloc {
-	[infoButton release];
-	[flipsideViewController release];
-	[chartScrollView release];
-	[searchBar release];
-	[locations release];
-	[filteredLocations release];
-	[savedLocations release];
-	[currentCalendar release];
-	[viewControllers release];
-	[chartViewControllers release];
-	[scrollView release];
-	[waitIndicator release];
-	[waitReason release];
-	[waitView release];
-	[allLocations release];
-	[nearbyLocations release];
-	[locationManager release];
-	[tideStation release];
-	[super dealloc];
-}
-
 #pragma mark UIViewController
 
 - (void)viewWillAppear:(BOOL)animated
@@ -544,33 +455,21 @@ static NSUInteger kNumberOfPages = 5;
     [tableView deselectRowAtIndexPath:tableSelection animated:NO];
 }
 
--(SDTide *)computeTidesForDate:(NSDate *)date {
-	unsigned int unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
-	NSDateComponents *nowComps = [currentCalendar components:unitFlags fromDate:date]; 
-	NSDateComponents *comps = [[NSDateComponents alloc] init];
-	[comps setYear: [nowComps year]];
-	[comps setMonth: [nowComps month]];
-	[comps setDay: [nowComps day]];
-	
-	[comps setHour: 0];
-	[comps setMinute: 0];
-	[comps setSecond:0];
-	NSDate *start = [currentCalendar dateFromComponents:comps];
-	
-	[comps setHour:24];
-	[comps setMinute:00];
-	[comps setSecond:00];
-	NSDate *end = [currentCalendar dateFromComponents:comps];
-	
-	[comps release];
-	
-	SDTide *result = [SDTideFactory tideWithStart:start 
-									   End:end 
-							   andInterval:900 
-								atStation:tideStation];
-	
-	return result;
+- (void)viewDidUnload
+{
+    NSLog(@"RootController view did unload called.... should this do anything?");
+    self.infoButton = nil;
+    self.scrollView = nil;
+    self.waitReason = nil;
+    self.chartScrollView = nil;
 }
+
+-(SDTide*)computeTidesForNumberOfDays:(int)numberOfDays
+{
+    NSLog(@"Computing tides for %d", numberOfDays);
+    return [SDTideFactory tideForStationName:tideStation.name withInterval:900 forDays:numberOfDays];
+}
+
 -(void)showMainView {
 	if (chartScrollView == nil) {
 		return;
@@ -591,7 +490,6 @@ static NSUInteger kNumberOfPages = 5;
 	frame.origin.y = 0;
 	[(MainViewController*)[viewControllers objectAtIndex:page] view].frame = frame;
 	[scrollView scrollRectToVisible:frame animated:NO];
-
 	
 	[(MainViewController*)[self.viewControllers objectAtIndex:0] updatePresentTideInfo];
 	[self replaceSubview:chartView withSubview:mainView transition:kCATransitionFade direction:@"" duration:0.75];
@@ -616,6 +514,7 @@ static NSUInteger kNumberOfPages = 5;
 	frame.origin.y = 0;
 	ChartViewController *viewController = (ChartViewController*)[chartViewControllers objectAtIndex:page];
 	viewController.view.frame = frame;
+    [viewController showCurrentTime];
 
 	[chartScrollView scrollRectToVisible:frame animated:NO];
 	[chartView setNeedsLayout];
@@ -647,249 +546,7 @@ static NSUInteger kNumberOfPages = 5;
 				break;
 		}
 	}
-		
 
-}
-
-#pragma mark UITableViewDataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [filteredLocations count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:@"TideStationCell"];
-
-	UILabel *name, *distance;
-	
-    if (cell == nil)
-    {
-		CGRect frame = CGRectMake(0, 0, 300, 60);
-        cell = [[[UITableViewCell alloc] initWithFrame:frame reuseIdentifier:@"TideStationCell"] autorelease];
-
-		name = [[[UILabel alloc] initWithFrame:CGRectMake(10.0, 0.0, 300.0, 23.0)] autorelease];
-		name.tag = 1;
-		name.font = [UIFont boldSystemFontOfSize:20.0];
-		name.adjustsFontSizeToFitWidth = YES;
-		name.textAlignment = UITextAlignmentLeft;
-		name.textColor = [UIColor blackColor];
-		name.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
-		
-		distance = [[[UILabel alloc] initWithFrame:CGRectMake(10.0, 28.0, 200.0, 16.0)] autorelease];
-		distance.tag = 2;
-		distance.font = [UIFont systemFontOfSize:14.0];
-		distance.textColor = [UIColor blackColor];
-		distance.lineBreakMode = UILineBreakModeWordWrap;
-		distance.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		[cell.contentView addSubview:distance];
-		
-		[cell.contentView addSubview:name];
-		
-    } else {
-		name = (UILabel *)[cell.contentView viewWithTag:1];
-		distance = (UILabel *)[cell.contentView viewWithTag:2];
-	}
-    SDTideStation *station = [filteredLocations objectAtIndex:indexPath.row];
-    name.text = station.displayName;
-	
-	NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-	[formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-	[formatter setMaximumFractionDigits:1];
-	
-	if (station.distance != nil) {
-		if (![station.units isEqualToString:@"meters"]) {
-			float distanceMiles = [station.distance floatValue] * 0.62137119;
-			NSNumber *milesNumber = [NSNumber numberWithFloat:distanceMiles];
-			distance.text = [NSString stringWithFormat: @"%@ (%@ mi)", station.displayState, [formatter stringFromNumber:milesNumber]];	
-		} else {
-			distance.text = [NSString stringWithFormat: @"%@ (%@ km)", station.displayState, [formatter stringFromNumber:station.distance]];		
-		}
-	} else {
-		distance.text = [NSString stringWithFormat: @"%@", station.displayState];
-	}
-	
-	[formatter release];
-    
-    return cell;
-}
-
-
-#pragma mark UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // in case the searchbar's keyboard is up, dismiss it on table selection
-    if ([searchBar isFirstResponder])
-        [searchBar resignFirstResponder];
-	
-	self.tideStation = [filteredLocations objectAtIndex:indexPath.row];
-	
-	[self setLocation: [tideStation name]];
-	[self saveState];
-	[self toggleView];
-}
-
-
-#pragma mark UISearchBarDelegate
-
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)aSearchBar
-{
-    // only show the status bar's cancel button while in edit mode
-    aSearchBar.showsCancelButton = YES;
-    
-    // flush and save the current list content in case the user cancels the search later
-    [savedLocations removeAllObjects];
-    [savedLocations addObjectsFromArray: filteredLocations];
-}
-
-- (void)searchBarTextDidEndEditing:(UISearchBar *)aSearchBar
-{
-    aSearchBar.showsCancelButton = NO;
-}
-
-- (void)searchBar:(UISearchBar *)aSearchBar textDidChange:(NSString *)searchText
-{
-    [filteredLocations removeAllObjects];    // clear the filtered array first
-    
-    // search the table content for cell titles that match "searchText"
-    // if found add to the mutable array and force the table to reload
-    //
-    SDTideStation *station;
-    for (station in locations)
-    {
-        NSComparisonResult result = [station.name compare:searchText options:NSCaseInsensitiveSearch
-												 range:NSMakeRange(0, [searchText length])];
-        if (result == NSOrderedSame)
-        {
-            [filteredLocations addObject:station];
-        }
-    }
-    
-    [tableView reloadData];
-}
-
-// called when cancel button pressed
-- (void)searchBarCancelButtonClicked:(UISearchBar *)aSearchBar
-{
-    // if a valid search was entered but the user wanted to cancel, bring back the saved list content
-    if (aSearchBar.text.length > 0)
-    {
-        [filteredLocations removeAllObjects];
-        [filteredLocations addObjectsFromArray: savedLocations];
-    }
-    
-    [tableView reloadData];
-    
-    [aSearchBar resignFirstResponder];
-    aSearchBar.text = @"";
-}
-
-// called when Search (in our case "Done") button pressed
-- (void)searchBarSearchButtonClicked:(UISearchBar *)aSearchBar
-{
-    [aSearchBar resignFirstResponder];
-}
-
-#pragma mark CLLocationManagerDelegate
-
-- (void)locationManager:(CLLocationManager *)manager
-    didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation
-{
-	if (!acceptLocationUpdates) {
-		return;
-	}
-	NSLog(@"Location determined: %0.4f,%0.4f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
-	NSLog(@"at time: %@, current time is: %@", newLocation.timestamp, [NSDate date]);
-	
-	if ([[newLocation.timestamp addTimeInterval:60] compare:[NSDate date]] == NSOrderedAscending) {
-		// if the location timestamp is more than a minute old, do nothing and wait for another update
-		return;
-	} else {
-		// now that we have a fresh location we can stop updating and get on with the show
-		acceptLocationUpdates = NO;
-		[self stopWaitIndicator];
-		[manager stopUpdatingLocation];
-	}
-	
-//#if TARGET_IPHONE_SIMULATOR
-	// broken under 3.1 and 10.6 - Looks like simulator might use CoreLocation on Mac
-//	[newLocation release];
-//	//newLocation = [[CLLocation alloc] initWithLatitude:48.4500 longitude:-123.3000]; // victoria, bc
-//	//newLocation = [[CLLocation alloc] initWithLatitude:-33.867707 longitude: 151.225777]; sydney, aus
-//	//newLocation = [[CLLocation alloc] initWithLatitude:-36.846581 longitude: 174.77809]; // aukland, nz
-//	//newLocation = [[CLLocation alloc] initWithLatitude:35.570922 longitude:140.331673]; // chiba, jp
-//	newLocation = [[CLLocation alloc] initWithLatitude:41.855242 longitude:-87.618713]; // chicago, il
-//#endif
-	
-    if (signbit(newLocation.horizontalAccuracy)) {
-        // Negative accuracy means an invalid or unavailable measurement
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Unable to determine your location at this time." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[alert show];
-		[alert release];
-    } else {
-		[self showNearbyLocations: newLocation];
-    }
-	
-}
-
-
-// Called when there is an error getting the location
-- (void)locationManager:(CLLocationManager *)manager
-       didFailWithError:(NSError *)error
-{
-	[self stopWaitIndicator];
-	[locationManager stopUpdatingLocation];
-    NSMutableString *errorString = [[[NSMutableString alloc] init] autorelease];
-	
-    if ([error domain] == kCLErrorDomain) {
-		
-        // We handle CoreLocation-related errors here
-		
-        switch ([error code]) {
-				// This error code is usually returned whenever user taps "Don't Allow" in response to
-				// being told your app wants to access the current location. Once this happens, you cannot
-				// attempt to get the location again until the app has quit and relaunched.
-				//
-				// "Don't Allow" on two successive app launches is the same as saying "never allow". The user
-				// can reset this for all apps by going to Settings > General > Reset > Reset Location Warnings.
-				//
-            case kCLErrorDenied:
-                [errorString appendFormat:@"%@\n", NSLocalizedString(@"LocationDenied", nil)];
-                break;
-				
-				// This error code is usually returned whenever the device has no data or WiFi connectivity,
-				// or when the location cannot be determined for some other reason.
-				//
-				// CoreLocation will keep trying, so you can keep waiting, or prompt the user.
-				//
-            case kCLErrorLocationUnknown:
-                [errorString appendFormat:@"%@\n", NSLocalizedString(@"LocationUnknown", nil)];
-                break;
-				
-				// We shouldn't ever get an unknown error code, but just in case...
-				//
-            default:
-                [errorString appendFormat:@"%@ %d\n", NSLocalizedString(@"GenericLocationError", nil), [error code]];
-                break;
-        }
-    } else {
-        // We handle all non-CoreLocation errors here
-        // (we depend on localizedDescription for localization)
-        [errorString appendFormat:@"Error domain: \"%@\"  Error code: %d\n", [error domain], [error code]];
-        [errorString appendFormat:@"Description: \"%@\"\n", [error localizedDescription]];
-    }
-	
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Unable to determine your location at this time." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-	[alert show];
-	[alert release];
 }
 
 #pragma mark CrazyCoreAnimationStuff
@@ -930,12 +587,14 @@ static NSUInteger kNumberOfPages = 5;
 - (void)saveState {
 	NSMutableDictionary *plist = [[NSMutableDictionary alloc] initWithCapacity:1];
 	[plist setObject:location forKey:@"location"];
-	[self writeApplicationPlist:plist toFile:@"tidestate.plist"];
+    
+	[self writeApplicationPlist:plist toFile:self.cachedLocationFilePath];
+    
 	[plist release];
 }
 
 -(NSString*)lastLocation {
-	NSDictionary *plist = [self applicationPlistFromFile:@"tidestate.plist"];
+	NSDictionary *plist = [self applicationPlistFromFile:self.cachedLocationFilePath];
 	return (NSString *)[plist objectForKey:@"location"];
 }
 
@@ -946,7 +605,7 @@ static NSUInteger kNumberOfPages = 5;
         NSLog(@"%@", error);
         return NO;
     }
-    return ([self writeApplicationData:pData toFile:(NSString *)fileName]);
+    return ([pData writeToFile:self.cachedLocationFilePath atomically:YES]);
 }
 
 - (id)applicationPlistFromFile:(NSString *)fileName {
@@ -955,7 +614,7 @@ static NSUInteger kNumberOfPages = 5;
     id retPlist;
     NSPropertyListFormat format;
 	
-    retData = [self applicationDataFromFile:fileName];
+    retData = [[NSData alloc] initWithContentsOfFile:self.cachedLocationFilePath];
     if (!retData) {
         NSLog(@"Data file not returned.");
         return nil;
@@ -964,26 +623,23 @@ static NSUInteger kNumberOfPages = 5;
     if (!retPlist){
         NSLog(@"Plist not returned, error: %@", error);
     }
+    [retData release];
+    
     return retPlist;
 }
 
-- (BOOL)writeApplicationData:(NSData *)data toFile:(NSString *)fileName {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    if (!documentsDirectory) {
-        NSLog(@"Documents directory not found!");
-        return NO;
-    }
-    NSString *appFile = [documentsDirectory stringByAppendingPathComponent:fileName];
-    return ([data writeToFile:appFile atomically:YES]);
+#pragma mark StationDetailViewController Delegate Methods
+-(void)stationDetailViewController:(StationDetailViewController*)detailViewController 
+					addTideStation:(NSString*)stationName
+{
+	NSLog(@"Delegate addTideStation method called with name; %@",stationName);
+	// set the tide station and recalculate tides
+    self.location = stationName;
+    self.tideStation = [SDTideFactory tideStationWithName:stationName];
+    [self saveState];
+    
+	[self dismissModalViewControllerAnimated:YES];
 }
 
-- (NSData *)applicationDataFromFile:(NSString *)fileName {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *appFile = [documentsDirectory stringByAppendingPathComponent:fileName];
-    NSData *myData = [[[NSData alloc] initWithContentsOfFile:appFile] autorelease];
-    return myData;
-}
 	
 @end

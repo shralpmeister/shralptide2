@@ -28,17 +28,17 @@
 {
 	SDTide *sdTide;
 	IBOutlet UILabel *locationLabel;
-	IBOutlet UILabel *presentHeight;
+	IBOutlet UILabel *presentHeightLabel;
 	IBOutlet UIImageView *tideStateImage;
 	IBOutlet UILabel *date;
 	IBOutlet UILabel *time1;
 	IBOutlet UILabel *time2;
 	IBOutlet UILabel *time3;
 	IBOutlet UILabel *time4;
-	IBOutlet UILabel *height1;
-	IBOutlet UILabel *height2;
-	IBOutlet UILabel *height3;
-	IBOutlet UILabel *height4;
+	IBOutlet UILabel *heightLabel1;
+	IBOutlet UILabel *heightLabel2;
+	IBOutlet UILabel *heightLabel3;
+	IBOutlet UILabel *heightLabel4;
 	IBOutlet UILabel *state1;
 	IBOutlet UILabel *state2;
 	IBOutlet UILabel *state3;
@@ -64,7 +64,6 @@
 
 - (id)initWithPageNumber:(int)page;
 -(IBAction)chooseTideStation:(id)sender;
--(IBAction)chooseNearbyTideStation:(id)sender;
 -(IBAction)followHyperlink:(id)sender;
 
 @property (readonly) SDTide *sdTide;

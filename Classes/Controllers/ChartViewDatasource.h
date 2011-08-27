@@ -25,4 +25,6 @@
 
 @protocol ChartViewDatasource
 -(SDTide *)tideDataToChart;
+-(NSDate*)day;
+-(int)page;
 @end

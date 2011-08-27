@@ -28,21 +28,20 @@
 #import "CursorView.h"
 
 @interface ChartView : UIView {
-	@private
-		id datasource;
-		NSMutableDictionary *times;
-	@public
-		IBOutlet UIView *cursorView;
-		IBOutlet UINavigationBar *navBarView;
-		IBOutlet UIActivityIndicatorView *activityIndicator;
 }
 
--(int)currentTimeInMinutes:(SDTide*)tide;
+-(int)currentTimeInMinutes;
 -(void)animateCursorViewToCurrentTime;
+-(void)animateFirstTouchAtPoint:(CGPoint)touchPoint;
 
-@property (readwrite, assign) id datasource;
-@property (nonatomic, retain) UIView *cursorView;
-@property (nonatomic, retain) UINavigationBar *navBarView;
-@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, retain) IBOutlet id<ChartViewDatasource> datasource;
+@property (nonatomic, retain) IBOutlet UIView *cursorView;
+@property (nonatomic, retain) IBOutlet UIView *headerView;
+@property (nonatomic, retain) IBOutlet UILabel *dateLabel;
+@property (nonatomic, retain) IBOutlet UILabel *valueLabel;
+@property (nonatomic, retain) IBOutlet UIImageView *sunriseIcon;
+@property (nonatomic, retain) IBOutlet UIImageView *sunsetIcon;
+@property (nonatomic, retain) IBOutlet UIImageView *moonriseIcon;
+@property (nonatomic, retain) IBOutlet UIImageView *moonsetIcon;
 @property (nonatomic, retain) NSMutableDictionary *times;
 @end

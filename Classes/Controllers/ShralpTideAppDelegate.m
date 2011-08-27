@@ -24,14 +24,41 @@
 #import "ShralpTideAppDelegate.h"
 #import "RootViewController.h"
 
-@implementation ShralpTideAppDelegate
+NSString *kUnitsKey = @"units_preference";
+NSString *kDaysKey = @"days_preference";
+NSString *kCurrentsKey = @"currents_preference";
 
+@interface ShralpTideAppDelegate ()
+- (void)setupByPreferences;
+- (void)defaultsChanged:(NSNotification *)notif;
+@end
+
+@implementation ShralpTideAppDelegate
 
 @synthesize window;
 @synthesize rootViewController;
+@synthesize unitsPref, daysPref, showsCurrentsPref;
+@synthesize managedObjectModel, managedObjectContext, persistentStoreCoordinator;
 
+- (void)dealloc {
+	[rootViewController release];
+	[window release];
+	[super dealloc];
+}
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
+    
+    // listen for changes to our preferences when the Settings app does so,
+    // when we are resumed from the backround, this will give us a chance to update our UI
+    //
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(defaultsChanged:)
+                                                 name:NSUserDefaultsDidChangeNotification
+                                               object:nil];
+    
+    [self setupByPreferences];
+    [rootViewController createMainViews];
+    
 	[window addSubview:[rootViewController view]];
 	[window makeKeyAndVisible];
 }
@@ -40,11 +67,159 @@
 	[rootViewController refreshViews];
 }
 
+#pragma mark -
+#pragma mark Read Preferences
 
-- (void)dealloc {
-	[rootViewController release];
-	[window release];
-	[super dealloc];
+- (void)defaultsChanged:(NSNotification *)notif
+{
+    NSLog(@"Reading preferences and recreating views and tide calculations");
+    [self setupByPreferences];
+    [rootViewController createMainViews];
+    [rootViewController recalculateTides];
+}
+
+- (void)setupByPreferences
+{
+    NSString *testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kUnitsKey];
+    if (testValue == nil)
+    {
+        // no default values have been set, create them here based on what's in our Settings bundle info
+        //
+        NSString *pathStr = [[NSBundle mainBundle] bundlePath];
+        NSString *settingsBundlePath = [pathStr stringByAppendingPathComponent:@"Settings.bundle"];
+        NSString *finalPath = [settingsBundlePath stringByAppendingPathComponent:@"Root.plist"];
+        
+        NSDictionary *settingsDict = [NSDictionary dictionaryWithContentsOfFile:finalPath];
+        NSArray *prefSpecifierArray = [settingsDict objectForKey:@"PreferenceSpecifiers"];
+        
+        NSString *unitsDefault = nil;
+        NSNumber *daysDefault = nil;
+        NSNumber *currentsDefault = nil;
+        
+        NSDictionary *prefItem;
+        for (prefItem in prefSpecifierArray)
+        {
+            NSString *keyValueStr = [prefItem objectForKey:@"Key"];
+            id defaultValue = [prefItem objectForKey:@"DefaultValue"];
+            
+            if ([keyValueStr isEqualToString:kUnitsKey])
+            {
+                unitsDefault = defaultValue;
+            }
+            else if ([keyValueStr isEqualToString:kDaysKey])
+            {
+                daysDefault = defaultValue;
+            }
+            else if ([keyValueStr isEqualToString:kCurrentsKey])
+            {
+                currentsDefault = defaultValue;
+            }
+        }
+        
+        // since no default values have been set (i.e. no preferences file created), create it here     
+        NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     unitsDefault, kUnitsKey,
+                                     daysDefault, kDaysKey,
+                                     currentsDefault, kCurrentsKey,
+                                     nil];
+        
+        [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
+    // we're ready to go, so lastly set the key preference values
+    unitsPref = [[NSUserDefaults standardUserDefaults] stringForKey:kUnitsKey];
+    daysPref = [[NSUserDefaults standardUserDefaults] integerForKey:kDaysKey];
+    showsCurrentsPref = [[NSUserDefaults standardUserDefaults] boolForKey:kCurrentsKey];
+}
+
+#pragma mark -
+#pragma mark Core Data stack
+
+/**
+ Returns the managed object context for the application.
+ If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
+ */
+- (NSManagedObjectContext *) managedObjectContext {
+    
+    if (managedObjectContext != nil) {
+        return managedObjectContext;
+    }
+    
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    if (coordinator != nil) {
+        managedObjectContext = [[NSManagedObjectContext alloc] init];
+        [managedObjectContext setPersistentStoreCoordinator: coordinator];
+        [managedObjectContext setUndoManager:nil];
+    }
+    return managedObjectContext;
+}
+
+
+/**
+ Returns the managed object model for the application.
+ If the model doesn't already exist, it is created by merging all of the models found in the application bundle.
+ */
+- (NSManagedObjectModel *)managedObjectModel {
+    
+    if (managedObjectModel != nil) {
+        return managedObjectModel;
+    }
+    managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles:nil] retain];    
+    return managedObjectModel;
+}
+
+
+/**
+ Returns the persistent store coordinator for the application.
+ If the coordinator doesn't already exist, it is created and the application's store added to it.
+ */
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+    
+    if (persistentStoreCoordinator != nil) {
+        return persistentStoreCoordinator;
+    }
+    
+    
+    NSFileManager *fm = [NSFileManager defaultManager];
+    
+    NSString *cachesDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    
+    NSString *datastorePath = [[NSBundle mainBundle] pathForResource:@"datastore" ofType:@"sqlite"];
+    
+    NSString *cachedDatastorePath = [cachesDir stringByAppendingPathComponent:@"datastore.sqlite"];
+    
+    if (![fm fileExistsAtPath:cachedDatastorePath]) {
+        NSError *error;
+        if (![fm copyItemAtPath:datastorePath toPath:cachedDatastorePath error:&error]) {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            exit(-1);
+        };
+    }
+    
+    NSError *error;
+    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
+    if (![persistentStoreCoordinator addPersistentStoreWithType: NSSQLiteStoreType configuration:nil URL:[NSURL fileURLWithPath:cachedDatastorePath] options:nil error:&error]) {
+        // Handle the error.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        exit(-1);  // Fail
+    }    
+    
+    return persistentStoreCoordinator;
+}
+
+
+#pragma mark -
+#pragma mark Application's documents directory
+
+/**
+ Returns the path to the application's documents directory.
+ */
+- (NSString *)applicationDocumentsDirectory {
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    return basePath;
 }
 
 @end
