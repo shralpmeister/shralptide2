@@ -22,16 +22,14 @@ typedef enum {
 } SDStationType;
 
 @interface StationMapController : UIViewController <CLLocationManagerDelegate,MKMapViewDelegate> {
-	IBOutlet ShralpTideAppDelegate *appDelegate;
 	IBOutlet MKMapView *mapView;
-	IBOutlet SelectStationNavigationController *navController;
+	SelectStationNavigationController *navController;
 	id modalViewDelegate;
 	SDStationType stationType;
 }
 
 -(id)initWithNibName:(NSString *)nibNameOrNil forStationType:(SDStationType)aStationType;
 
-@property (nonatomic,retain) ShralpTideAppDelegate *appDelegate;
 @property (nonatomic,retain) MKMapView *mapView;
 @property (assign,readwrite) SDStationType stationType;
 @property (nonatomic,retain) UINavigationController *navController;

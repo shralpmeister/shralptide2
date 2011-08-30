@@ -197,10 +197,6 @@
 	[self.rootViewController setLocationFromList];
 }
 
--(IBAction)followHyperlink:(id)sender {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://devocean.com.au"]];
-}
-
 #pragma mark UtilMethods
 // This should be moved for better re-use... my obj-c/cocoa is lacking though... now in ChartView as well.
 

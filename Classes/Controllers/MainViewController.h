@@ -64,7 +64,6 @@
 
 - (id)initWithPageNumber:(int)page;
 -(IBAction)chooseTideStation:(id)sender;
--(IBAction)followHyperlink:(id)sender;
 
 @property (readonly) SDTide *sdTide;
 @property (nonatomic,retain) UIView *currentTideView;

@@ -42,7 +42,7 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
 
 +(SDTide*)tideForStationName:(NSString *)name
 {
-    return [SDTideFactory tideForStationName:name withInterval:900 forDays:5];
+    return [SDTideFactory tideForStationName:name withInterval:900 forDays:appDelegate.daysPref];
 }
 
 +(SDTide*)tideForStationName:(NSString*)name withInterval:(int)interval forDays:(int)days
@@ -60,14 +60,17 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
     Dstr location ([name UTF8String]);
 	NSArray *events = tideEventsForLocation(location, Interval (interval), startTime, endTime, units);
     NSArray *intervals = rawEventsForLocation(location, Interval (interval), startTime, endTime, units);
+    
+    SDTideEvent *eventZero = [events objectAtIndex:0];
+    
     SDTide *tidy = [[[SDTide alloc] init] autorelease];
     tidy.stationName = name;
     tidy.startTime = [NSDate dateWithTimeIntervalSince1970:startTime.timet()];
     tidy.stopTime = [NSDate dateWithTimeIntervalSince1970:endTime.timet()];
     tidy.intervals = intervals;
     tidy.allEvents = events;
-    tidy.unitLong = [NSString stringWithCString:Units::longName(units) encoding:NSUTF8StringEncoding];
-    tidy.unitShort = [NSString stringWithCString:Units::shortName(units) encoding:NSUTF8StringEncoding];
+    tidy.unitLong = nil;
+    tidy.unitShort = eventZero.units;
     
     return tidy;
 }
@@ -187,7 +190,7 @@ static NSArray* rawEventsForLocation(const Dstr &name, Interval step, Timestamp 
             SDTideInterval *interval = [[SDTideInterval alloc] init];
             interval.time = [NSDate dateWithTimeIntervalSince1970:event.eventTime.timet()];
             interval.height = (float)event.eventLevel.val();
-            constString unitsCString = Units::shortName(units);
+            constString unitsCString = Units::shortName(station->predictUnits());
             interval.units = [NSString stringWithCString:unitsCString encoding:NSUTF8StringEncoding];
             
             [intervals addObject:interval];

@@ -28,9 +28,11 @@ NSString *kUnitsKey = @"units_preference";
 NSString *kDaysKey = @"days_preference";
 NSString *kCurrentsKey = @"currents_preference";
 
+
 @interface ShralpTideAppDelegate ()
 - (void)setupByPreferences;
 - (void)defaultsChanged:(NSNotification *)notif;
+- (NSDictionary*)readSettingsDictionary;
 @end
 
 @implementation ShralpTideAppDelegate
@@ -48,9 +50,7 @@ NSString *kCurrentsKey = @"currents_preference";
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     
-    // listen for changes to our preferences when the Settings app does so,
-    // when we are resumed from the backround, this will give us a chance to update our UI
-    //
+    // listen for changes to our preferences
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(defaultsChanged:)
                                                  name:NSUserDefaultsDidChangeNotification
@@ -78,6 +78,15 @@ NSString *kCurrentsKey = @"currents_preference";
     [rootViewController recalculateTides];
 }
 
+-(NSDictionary*)readSettingsDictionary
+{
+    NSString *pathStr = [[NSBundle mainBundle] bundlePath];
+    NSString *settingsBundlePath = [pathStr stringByAppendingPathComponent:@"Settings.bundle"];
+    NSString *finalPath = [settingsBundlePath stringByAppendingPathComponent:@"Root.plist"];
+    
+    return [NSDictionary dictionaryWithContentsOfFile:finalPath];
+}
+
 - (void)setupByPreferences
 {
     NSString *testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kUnitsKey];
@@ -85,19 +94,14 @@ NSString *kCurrentsKey = @"currents_preference";
     {
         // no default values have been set, create them here based on what's in our Settings bundle info
         //
-        NSString *pathStr = [[NSBundle mainBundle] bundlePath];
-        NSString *settingsBundlePath = [pathStr stringByAppendingPathComponent:@"Settings.bundle"];
-        NSString *finalPath = [settingsBundlePath stringByAppendingPathComponent:@"Root.plist"];
-        
-        NSDictionary *settingsDict = [NSDictionary dictionaryWithContentsOfFile:finalPath];
+        NSDictionary *settingsDict = [self readSettingsDictionary];
         NSArray *prefSpecifierArray = [settingsDict objectForKey:@"PreferenceSpecifiers"];
         
         NSString *unitsDefault = nil;
         NSNumber *daysDefault = nil;
         NSNumber *currentsDefault = nil;
         
-        NSDictionary *prefItem;
-        for (prefItem in prefSpecifierArray)
+        for (NSDictionary *prefItem in prefSpecifierArray)
         {
             NSString *keyValueStr = [prefItem objectForKey:@"Key"];
             id defaultValue = [prefItem objectForKey:@"DefaultValue"];
@@ -112,7 +116,7 @@ NSString *kCurrentsKey = @"currents_preference";
             }
             else if ([keyValueStr isEqualToString:kCurrentsKey])
             {
-                currentsDefault = defaultValue;
+                currentsDefault = defaultValue == nil ? [NSNumber numberWithBool:NO] : [NSNumber numberWithBool:YES];
             }
         }
         
@@ -128,9 +132,11 @@ NSString *kCurrentsKey = @"currents_preference";
     }
     
     // we're ready to go, so lastly set the key preference values
-    unitsPref = [[NSUserDefaults standardUserDefaults] stringForKey:kUnitsKey];
-    daysPref = [[NSUserDefaults standardUserDefaults] integerForKey:kDaysKey];
-    showsCurrentsPref = [[NSUserDefaults standardUserDefaults] boolForKey:kCurrentsKey];
+    self.unitsPref = [[NSUserDefaults standardUserDefaults] stringForKey:kUnitsKey];
+    self.daysPref = [[NSUserDefaults standardUserDefaults] integerForKey:kDaysKey];
+    self.showsCurrentsPref = [[NSUserDefaults standardUserDefaults] boolForKey:kCurrentsKey];
+    
+    NSLog(@"Setting currentsPref to %@", showsCurrentsPref ? @"YES" : @"NO");
 }
 
 #pragma mark -

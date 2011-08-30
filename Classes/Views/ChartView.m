@@ -183,7 +183,7 @@
 }
 
 -(void)showTideForPoint:(CGPoint) point {
-	self.valueLabel.text = [NSString stringWithFormat:@"%0.2f%@ @ %@",point.y, [[self.datasource tideDataToChart] unitShort], [self timeInNativeFormatFromMinutes: (int)point.x]];
+	self.valueLabel.text = [NSString stringWithFormat:@"%0.2f %@ @ %@",point.y, [[self.datasource tideDataToChart] unitShort], [self timeInNativeFormatFromMinutes: (int)point.x]];
 }
 
 -(void)hideTideDetails

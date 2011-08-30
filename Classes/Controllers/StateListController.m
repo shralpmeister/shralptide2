@@ -11,6 +11,8 @@
 #import "PickerTableCell.h"
 #import "SelectStationNavigationController.h"
 
+#define appDelegate ((ShralpTideAppDelegate*)[[UIApplication sharedApplication] delegate])
+
 @implementation StateListController
 
 @synthesize rows;
@@ -85,7 +87,7 @@
             
         NSArray *orderedStations = [[state.tideStations objectsPassingTest:
                                      ^(id obj, BOOL *stop) {
-                                         BOOL result = ![((SDTideStation*)obj).current boolValue];
+                                         BOOL result = appDelegate.showsCurrentsPref ? YES : ![((SDTideStation*)obj).current boolValue];
                                          return result;
                                      }] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortByName]];
         

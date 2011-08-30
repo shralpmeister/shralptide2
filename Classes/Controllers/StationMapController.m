@@ -8,6 +8,8 @@
 
 #import "StationMapController.h"
 
+#define appDelegate ((ShralpTideAppDelegate*)[[UIApplication sharedApplication] delegate])
+
 BOOL zoomedToLocal;
 
 @interface StationMapController()
@@ -17,7 +19,6 @@ BOOL zoomedToLocal;
 
 @implementation StationMapController
 
-@synthesize appDelegate;
 @synthesize mapView;
 @synthesize stationType;
 @synthesize navController;
@@ -77,8 +78,15 @@ BOOL zoomedToLocal;
 											  inManagedObjectContext:context];
     
     NSNumber *currentBoolean = [NSNumber numberWithBool:(self.stationType == SDStationTypeTide ? NO : YES)];
-    NSString *filter = @"latitude BETWEEN %@ and longitude BETWEEN %@ and current == %@";
-	NSPredicate *predicate =  [NSPredicate predicateWithFormat: filter, [NSArray arrayWithObjects:minLatitude, maxLatitude, nil], [NSArray arrayWithObjects:minLongitude, maxLongitude,nil],currentBoolean];
+    NSString *locationFilter = @"latitude BETWEEN %@ and longitude BETWEEN %@";
+    NSString *currentFilter = @" and current == %@";
+    NSString *filter = appDelegate.showsCurrentsPref ? locationFilter : [locationFilter stringByAppendingString:currentFilter];
+
+    NSLog(@"applying search filter: %@", filter);
+	
+    NSPredicate *predicate =  appDelegate.showsCurrentsPref ? 
+        [NSPredicate predicateWithFormat: filter, [NSArray arrayWithObjects:minLatitude, maxLatitude, nil], [NSArray arrayWithObjects:minLongitude, maxLongitude,nil]]:
+        [NSPredicate predicateWithFormat: filter, [NSArray arrayWithObjects:minLatitude, maxLatitude, nil], [NSArray arrayWithObjects:minLongitude, maxLongitude,nil],currentBoolean];
     
 	NSFetchRequest *fr = [[NSFetchRequest alloc] init];
 	[fr setEntity: entityDescription];
