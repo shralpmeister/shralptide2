@@ -32,19 +32,16 @@
 
 @interface RootViewController : UIViewController <UIScrollViewDelegate, StationDetailViewControllerDelegate>
 {
-
 	UIButton *infoButton;
 	IBOutlet UIScrollView *scrollView;
     IBOutlet UIPageControl *pageControl;
 	IBOutlet WaitView *waitView;
 	IBOutlet UILabel *waitReason;
-	UIActivityIndicatorView *waitIndicator;
 	IBOutlet ChartScrollView *chartScrollView;
+	UIActivityIndicatorView *waitIndicator;
     NSMutableArray *viewControllers;
 	NSMutableArray *chartViewControllers;
 	UISearchBar *searchBar;
-	UIActivityIndicatorView *activityIndicator;
-	UITableView *tableView;
 	SDTide *sdTide;
 	NSString *location;
 	NSCalendar *currentCalendar;
@@ -59,7 +56,6 @@
 @property (nonatomic, retain) UIScrollView *scrollView;
 @property (nonatomic, retain) ChartScrollView *chartScrollView;
 @property (nonatomic, retain) UISearchBar *searchBar;
-@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) NSString *location;
 @property (nonatomic, retain) SDTide* sdTide;
 @property (nonatomic, retain) NSMutableArray *viewControllers;
@@ -71,12 +67,12 @@
 
 @property (readonly, getter=isTransitioning) BOOL transitioning;
 
+- (IBAction)changePage:(id)sender;
 - (void)setLocationFromList;
 - (void)setLocationFromMap;
-- (IBAction)changePage:(id)sender;
 - (SDTide*)computeTidesForNumberOfDays:(int)numberOfDays;
 - (NSDate *)add:(int)number daysToDate: (NSDate*) date;
-- (void)recalculateTides;
+- (void)doBackgroundTideCalculation;
 - (void)updateWaitReason:(id)object;
 - (void)refreshViews;
 - (void)createMainViews;

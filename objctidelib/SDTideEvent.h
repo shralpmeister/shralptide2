@@ -40,5 +40,5 @@ typedef enum eventTypeEnum {max, min, slackrise, slackfall, markrise, markfall,
 @property (nonatomic,retain) NSDate *eventTime;
 @property (assign) SDTideState eventType;
 @property (assign) float eventHeight;
-@property (nonatomic,retain) NSString *units;
+@property (nonatomic,copy) NSString *units;
 @end

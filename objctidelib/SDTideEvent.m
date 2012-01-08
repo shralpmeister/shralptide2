@@ -88,24 +88,31 @@
 }
 
 -(NSString *)eventTimeNativeFormat {
-	NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setTimeStyle:NSDateFormatterShortStyle];
-	return [formatter stringFromDate:eventTime];
+	NSString *fTime = [formatter stringFromDate:eventTime];
+    [formatter release];
+    return fTime;
 }
 
 -(NSString *)eventTimeString24HR {
-	NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateFormat:@"HH:mm"];
-	return [formatter stringFromDate:eventTime];
+    NSString *fTime = [formatter stringFromDate:eventTime];
+    [formatter release];
+    return fTime;
 }
 -(NSString *)eventTimeString12HR {
-	NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateFormat:@"HH:mm pm"];
-	return [formatter stringFromDate:eventTime];	
+    NSString *fTime = [formatter stringFromDate:eventTime];
+    [formatter release];
+	return fTime;	
 }
 
 -(void)dealloc {
 	[eventTime release];
+    [units release];
 	[super dealloc];
 }
 

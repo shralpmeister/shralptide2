@@ -44,6 +44,7 @@
 @property (nonatomic,retain) NSString *unitsPref;
 @property (assign) NSInteger daysPref;
 @property (assign) BOOL showsCurrentsPref;
+@property (nonatomic,retain) NSString *backgroundPref;
 
 @end
 

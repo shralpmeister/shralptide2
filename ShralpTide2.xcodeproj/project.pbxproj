@@ -18,8 +18,8 @@
 		DC01606A133EB8950065CBAA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC016069133EB8950065CBAA /* CoreData.framework */; };
 		DC0C0DD6105C1D8F0080297E /* ChartScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0C0DD5105C1D8F0080297E /* ChartScrollView.m */; };
 		DC1EBBEB0EDBAEFA0093FA18 /* WaitView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1EBBEA0EDBAEFA0093FA18 /* WaitView.m */; };
-		DC2A60A314018AFD00B428A6 /* HomescreenIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DC2A60A114018AFD00B428A6 /* HomescreenIcon.png */; };
-		DC2A60A414018AFD00B428A6 /* HomescreenIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC2A60A214018AFD00B428A6 /* HomescreenIcon@2x.png */; };
+		DC1F47CC1438D2A8003EC4FB /* woody.png in Resources */ = {isa = PBXBuildFile; fileRef = DC1F47C71438D2A8003EC4FB /* woody.png */; };
+		DC1F47CD1438D2A8003EC4FB /* woody@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC1F47C81438D2A8003EC4FB /* woody@2x.png */; };
 		DC2A60A714018E0500B428A6 /* moonrise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC2A60A514018E0500B428A6 /* moonrise@2x.png */; };
 		DC2A60A814018E0500B428A6 /* moonset@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC2A60A614018E0500B428A6 /* moonset@2x.png */; };
 		DC2A60AB14018E6000B428A6 /* sunrise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC2A60A914018E6000B428A6 /* sunrise@2x.png */; };
@@ -49,9 +49,10 @@
 		DC65264F1350C2F600B67AE7 /* TideStationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC65264D1350C2F600B67AE7 /* TideStationTableViewCell.m */; };
 		DC6526691350DD4700B67AE7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6526681350DD4600B67AE7 /* MapKit.framework */; };
 		DC65266B1350DDBE00B67AE7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65266A1350DDBD00B67AE7 /* CoreLocation.framework */; };
+		DC872F70143EB156005C5759 /* HomescreenIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DC872F6E143EB156005C5759 /* HomescreenIcon.png */; };
+		DC872F71143EB156005C5759 /* HomescreenIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC872F6F143EB156005C5759 /* HomescreenIcon@2x.png */; };
 		DC8ED80C0F0D8C3B009EAF2F /* Decreasing.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8ED8080F0D8C3B009EAF2F /* Decreasing.png */; };
 		DC8ED80D0F0D8C3B009EAF2F /* Increasing.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8ED8090F0D8C3B009EAF2F /* Increasing.png */; };
-		DC8EDBB20F107814009EAF2F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8EDBB10F107814009EAF2F /* Default.png */; };
 		DC9D775C135A0E7200981199 /* channel-islands.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9D7734135A0E7200981199 /* channel-islands.png */; };
 		DC9D775D135A0E7200981199 /* england.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9D7735135A0E7200981199 /* england.png */; };
 		DC9D775E135A0E7200981199 /* isle-of-man.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9D7736135A0E7200981199 /* isle-of-man.png */; };
@@ -166,6 +167,14 @@
 		DCB04D1311D1DAEB000E7DF4 /* location_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB04D1211D1DAEB000E7DF4 /* location_icon.png */; };
 		DCCA6F4A1065440F00322BC6 /* CurrentTideView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCA6F491065440F00322BC6 /* CurrentTideView.m */; };
 		DCCA701D10672D9E00322BC6 /* TideRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCA701C10672D9E00322BC6 /* TideRowView.m */; };
+		DCD17E4A147837A900BE60C8 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD17E48147837A900BE60C8 /* Default.png */; };
+		DCD17E4B147837A900BE60C8 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD17E49147837A900BE60C8 /* Default@2x.png */; };
+		DCD6D6F81465CA66006D71A0 /* fall_gold.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD6D6F21465CA66006D71A0 /* fall_gold.png */; };
+		DCD6D6F91465CA66006D71A0 /* fall_gold@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD6D6F31465CA66006D71A0 /* fall_gold@2x.png */; };
+		DCD6D6FA1465CA66006D71A0 /* june_gloom.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD6D6F41465CA66006D71A0 /* june_gloom.png */; };
+		DCD6D6FB1465CA66006D71A0 /* june_gloom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD6D6F51465CA66006D71A0 /* june_gloom@2x.png */; };
+		DCD6D6FC1465CA66006D71A0 /* morning_glass.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD6D6F61465CA66006D71A0 /* morning_glass.png */; };
+		DCD6D6FD1465CA66006D71A0 /* morning_glass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD6D6F71465CA66006D71A0 /* morning_glass@2x.png */; };
 		DCE897DB0EEE3CAE00BF2357 /* CursorView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE897DA0EEE3CAE00BF2357 /* CursorView.m */; };
 		DCE898A20EEE514900BF2357 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCE898A10EEE514900BF2357 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
@@ -190,10 +199,10 @@
 		DC0C0DD5105C1D8F0080297E /* ChartScrollView.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; name = ChartScrollView.m; path = Classes/Views/ChartScrollView.m; sourceTree = "<group>"; };
 		DC1EBBE90EDBAEFA0093FA18 /* WaitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaitView.h; path = Classes/Views/WaitView.h; sourceTree = "<group>"; };
 		DC1EBBEA0EDBAEFA0093FA18 /* WaitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaitView.m; path = Classes/Views/WaitView.m; sourceTree = "<group>"; };
+		DC1F47C71438D2A8003EC4FB /* woody.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = woody.png; sourceTree = "<group>"; };
+		DC1F47C81438D2A8003EC4FB /* woody@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "woody@2x.png"; sourceTree = "<group>"; };
 		DC25A1FA0EEA575D0038078B /* ChartViewDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChartViewDatasource.h; path = Classes/Controllers/ChartViewDatasource.h; sourceTree = "<group>"; };
 		DC29826F102A784B009259BA /* ChartScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChartScrollView.h; path = Classes/Views/ChartScrollView.h; sourceTree = "<group>"; };
-		DC2A60A114018AFD00B428A6 /* HomescreenIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HomescreenIcon.png; path = Resources/HomescreenIcon.png; sourceTree = "<group>"; };
-		DC2A60A214018AFD00B428A6 /* HomescreenIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HomescreenIcon@2x.png"; path = "Resources/HomescreenIcon@2x.png"; sourceTree = "<group>"; };
 		DC2A60A514018E0500B428A6 /* moonrise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "moonrise@2x.png"; path = "Resources/moonrise@2x.png"; sourceTree = "<group>"; };
 		DC2A60A614018E0500B428A6 /* moonset@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "moonset@2x.png"; path = "Resources/moonset@2x.png"; sourceTree = "<group>"; };
 		DC2A60A914018E6000B428A6 /* sunrise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sunrise@2x.png"; path = "Resources/sunrise@2x.png"; sourceTree = "<group>"; };
@@ -235,9 +244,10 @@
 		DC65264D1350C2F600B67AE7 /* TideStationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TideStationTableViewCell.m; path = Classes/Views/TideStationTableViewCell.m; sourceTree = "<group>"; };
 		DC6526681350DD4600B67AE7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DC65266A1350DDBD00B67AE7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		DC872F6E143EB156005C5759 /* HomescreenIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomescreenIcon.png; sourceTree = "<group>"; };
+		DC872F6F143EB156005C5759 /* HomescreenIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HomescreenIcon@2x.png"; sourceTree = "<group>"; };
 		DC8ED8080F0D8C3B009EAF2F /* Decreasing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Decreasing.png; path = Resources/Decreasing.png; sourceTree = "<group>"; };
 		DC8ED8090F0D8C3B009EAF2F /* Increasing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Increasing.png; path = Resources/Increasing.png; sourceTree = "<group>"; };
-		DC8EDBB10F107814009EAF2F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
 		DC9D7734135A0E7200981199 /* channel-islands.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "channel-islands.png"; path = "state-flags/channel-islands.png"; sourceTree = "<group>"; };
 		DC9D7735135A0E7200981199 /* england.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = england.png; path = "state-flags/england.png"; sourceTree = "<group>"; };
 		DC9D7736135A0E7200981199 /* isle-of-man.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "isle-of-man.png"; path = "state-flags/isle-of-man.png"; sourceTree = "<group>"; };
@@ -408,6 +418,14 @@
 		DCCA701B10672D9E00322BC6 /* TideRowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TideRowView.h; path = Classes/Views/TideRowView.h; sourceTree = "<group>"; };
 		DCCA701C10672D9E00322BC6 /* TideRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TideRowView.m; path = Classes/Views/TideRowView.m; sourceTree = "<group>"; };
 		DCCAD9310F1DD25E00141002 /* DeveloperSettings.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DeveloperSettings.xcconfig; sourceTree = "<group>"; };
+		DCD17E48147837A900BE60C8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		DCD17E49147837A900BE60C8 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		DCD6D6F21465CA66006D71A0 /* fall_gold.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fall_gold.png; sourceTree = "<group>"; };
+		DCD6D6F31465CA66006D71A0 /* fall_gold@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fall_gold@2x.png"; sourceTree = "<group>"; };
+		DCD6D6F41465CA66006D71A0 /* june_gloom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = june_gloom.png; sourceTree = "<group>"; };
+		DCD6D6F51465CA66006D71A0 /* june_gloom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "june_gloom@2x.png"; sourceTree = "<group>"; };
+		DCD6D6F61465CA66006D71A0 /* morning_glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = morning_glass.png; sourceTree = "<group>"; };
+		DCD6D6F71465CA66006D71A0 /* morning_glass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "morning_glass@2x.png"; sourceTree = "<group>"; };
 		DCE897D90EEE3CAE00BF2357 /* CursorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CursorView.h; path = Classes/Views/CursorView.h; sourceTree = "<group>"; };
 		DCE897DA0EEE3CAE00BF2357 /* CursorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CursorView.m; path = Classes/Views/CursorView.m; sourceTree = "<group>"; };
 		DCE898A10EEE514900BF2357 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -522,6 +540,16 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DCD17E48147837A900BE60C8 /* Default.png */,
+				DCD17E49147837A900BE60C8 /* Default@2x.png */,
+				DCD6D6F21465CA66006D71A0 /* fall_gold.png */,
+				DCD6D6F31465CA66006D71A0 /* fall_gold@2x.png */,
+				DCD6D6F41465CA66006D71A0 /* june_gloom.png */,
+				DCD6D6F51465CA66006D71A0 /* june_gloom@2x.png */,
+				DCD6D6F61465CA66006D71A0 /* morning_glass.png */,
+				DCD6D6F71465CA66006D71A0 /* morning_glass@2x.png */,
+				DC1F47C71438D2A8003EC4FB /* woody.png */,
+				DC1F47C81438D2A8003EC4FB /* woody@2x.png */,
 				DCA3BF74133E500D00EA966A /* datastore.sqlite */,
 				DCA3BF70133E4FFA00EA966A /* harmonics-dwf-20081228-free.tcd */,
 				DCA3BF71133E4FFA00EA966A /* harmonics-dwf-20081228-nonfree.tcd */,
@@ -534,13 +562,13 @@
 				DCA3BF7A133E503900EA966A /* PickerTableCell.xib */,
 				DCA3BF7B133E503900EA966A /* StationListView.xib */,
 				DCA3BF7C133E503900EA966A /* TideStationTableCellView.xib */,
+				DC872F6E143EB156005C5759 /* HomescreenIcon.png */,
+				DC872F6F143EB156005C5759 /* HomescreenIcon@2x.png */,
 				DCA3BF6E133E4FEC00EA966A /* shralptide.xcdatamodel */,
 				DC2A60AF1401FA2400B428A6 /* moonrise.png */,
 				DC2A60B01401FA2400B428A6 /* moonset.png */,
 				DC2A60B11401FA2400B428A6 /* sunrise.png */,
 				DC2A60B21401FA2400B428A6 /* sunset.png */,
-				DC2A60A114018AFD00B428A6 /* HomescreenIcon.png */,
-				DC2A60A214018AFD00B428A6 /* HomescreenIcon@2x.png */,
 				DC2A60AD14018EBD00B428A6 /* header_background.png */,
 				DC9D7794135A0EB000981199 /* nav_arrow.png */,
 				DCB04D1211D1DAEB000E7DF4 /* location_icon.png */,
@@ -553,7 +581,6 @@
 				DCB04CED11D1D6F6000E7DF4 /* world_icon@2x.png */,
 				DC5B86D80F55192C00231523 /* bullet_yellow.png */,
 				DC2E8CDC0F188C2100DCA0A7 /* link_arrow.png */,
-				DC8EDBB10F107814009EAF2F /* Default.png */,
 				DC8ED8080F0D8C3B009EAF2F /* Decreasing.png */,
 				DC8ED8090F0D8C3B009EAF2F /* Increasing.png */,
 				280E754B0DD40C5E005A515E /* MainView.xib */,
@@ -870,7 +897,6 @@
 				DC32FFAB0E88B08A00AB78F2 /* ChartView.xib in Resources */,
 				DC8ED80C0F0D8C3B009EAF2F /* Decreasing.png in Resources */,
 				DC8ED80D0F0D8C3B009EAF2F /* Increasing.png in Resources */,
-				DC8EDBB20F107814009EAF2F /* Default.png in Resources */,
 				DC2E8CDD0F188C2100DCA0A7 /* link_arrow.png in Resources */,
 				DC493E5D0F206C8B0087B341 /* COPYING in Resources */,
 				DC5B86D90F55192C00231523 /* bullet_yellow.png in Resources */,
@@ -938,8 +964,6 @@
 				DC9D7795135A0EB000981199 /* nav_arrow.png in Resources */,
 				DC9D77C5135A6A0C00981199 /* world_icon.png in Resources */,
 				DC9D77C7135A6C7000981199 /* LocationView.xib in Resources */,
-				DC2A60A314018AFD00B428A6 /* HomescreenIcon.png in Resources */,
-				DC2A60A414018AFD00B428A6 /* HomescreenIcon@2x.png in Resources */,
 				DC2A60A714018E0500B428A6 /* moonrise@2x.png in Resources */,
 				DC2A60A814018E0500B428A6 /* moonset@2x.png in Resources */,
 				DC2A60AB14018E6000B428A6 /* sunrise@2x.png in Resources */,
@@ -950,6 +974,18 @@
 				DC2A60B51401FA2400B428A6 /* sunrise.png in Resources */,
 				DC2A60B61401FA2400B428A6 /* sunset.png in Resources */,
 				DC59FDF3140752A7008FD0D2 /* Settings.bundle in Resources */,
+				DC1F47CC1438D2A8003EC4FB /* woody.png in Resources */,
+				DC1F47CD1438D2A8003EC4FB /* woody@2x.png in Resources */,
+				DC872F70143EB156005C5759 /* HomescreenIcon.png in Resources */,
+				DC872F71143EB156005C5759 /* HomescreenIcon@2x.png in Resources */,
+				DCD6D6F81465CA66006D71A0 /* fall_gold.png in Resources */,
+				DCD6D6F91465CA66006D71A0 /* fall_gold@2x.png in Resources */,
+				DCD6D6FA1465CA66006D71A0 /* june_gloom.png in Resources */,
+				DCD6D6FB1465CA66006D71A0 /* june_gloom@2x.png in Resources */,
+				DCD6D6FC1465CA66006D71A0 /* morning_glass.png in Resources */,
+				DCD6D6FD1465CA66006D71A0 /* morning_glass@2x.png in Resources */,
+				DCD17E4A147837A900BE60C8 /* Default.png in Resources */,
+				DCD17E4B147837A900BE60C8 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -967,7 +1003,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"$CONFIGURATION\" = \"Release\" ] ; then \necho \"Replacing $CODESIGNING_FOLDER_PATH/Settings.bundle for 'Release' build\"\n\nBUILDVERSION=\"`/usr/libexec/PlistBuddy -c \\\"Print :CFBundleVersion\\\" \\\"$CODESIGNING_FOLDER_PATH/Info.plist\\\"`\"\nMKTVERSION=\"`/usr/libexec/PlistBuddy -c \\\"Print :CFBundleShortVersionString\\\" \\\"$CODESIGNING_FOLDER_PATH/Info.plist\\\"`\"\nSETTINGSBUNDLEPATH=\"$CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist\"\n\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:Title 'Version $MKTVERSION ($BUILDVERSION)'\" \"$SETTINGSBUNDLEPATH\"\nfi";
+			shellScript = "if [ \"$CONFIGURATION\" = \"Release\" ] ; then \necho \"Updating $CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist with version and build number for 'Release' build\"\n\nBUILDVERSION=\"`/usr/libexec/PlistBuddy -c \\\"Print :CFBundleVersion\\\" \\\"$CODESIGNING_FOLDER_PATH/Info.plist\\\"`\"\nMKTVERSION=\"`/usr/libexec/PlistBuddy -c \\\"Print :CFBundleShortVersionString\\\" \\\"$CODESIGNING_FOLDER_PATH/Info.plist\\\"`\"\nSETTINGSBUNDLEPATH=\"$CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist\"\n\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:Title 'Version $MKTVERSION ($BUILDVERSION)'\" \"$SETTINGSBUNDLEPATH\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1066,14 +1102,14 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ShralpTide2_Prefix.pch;
-				GCC_VERSION = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = NO;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_LABEL = NO;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VALUE = YES;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1103,11 +1139,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ShralpTide2_Prefix.pch;
-				GCC_VERSION = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = NO;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1140,58 +1176,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michael Parlee";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "27058F47-7E6D-4F68-986D-BF6E31355729";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
-		};
-		DC4DCF3A10916D580038CECA /* Distribution */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
-				SDKROOT = iphoneos;
-			};
-			name = Distribution;
-		};
-		DC4DCF3B10916D580038CECA /* Distribution */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michael Parlee";
-				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ShralpTide2_Prefix.pch;
-				GCC_VERSION = "";
-				GCC_WARN_ABOUT_RETURN_TYPE = NO;
-				GCC_WARN_UNUSED_FUNCTION = NO;
-				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)\"",
-				);
-				OTHER_LDFLAGS = "-lsqlite3";
-				PRODUCT_NAME = ShralpTide2;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3135CB72-1CB1-4C43-8C50-0A1D61BF5088";
-				SDKROOT = iphoneos;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_SUFFIX = b;
-			};
-			name = Distribution;
 		};
 /* End XCBuildConfiguration section */
 
@@ -1201,7 +1194,6 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
-				DC4DCF3B10916D580038CECA /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1211,7 +1203,6 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
-				DC4DCF3A10916D580038CECA /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

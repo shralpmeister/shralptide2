@@ -34,7 +34,7 @@
 -(void)animateCursorViewToCurrentTime;
 -(void)animateFirstTouchAtPoint:(CGPoint)touchPoint;
 
-@property (nonatomic, retain) IBOutlet id<ChartViewDatasource> datasource;
+@property (nonatomic, assign) IBOutlet id<ChartViewDatasource> datasource;
 @property (nonatomic, retain) IBOutlet UIView *cursorView;
 @property (nonatomic, retain) IBOutlet UIView *headerView;
 @property (nonatomic, retain) IBOutlet UILabel *dateLabel;

@@ -55,13 +55,20 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
     Units::PredictionUnits units = [appDelegate.unitsPref isEqualToString:@"metric"] ? Units::meters : Units::feet;
     
     Timestamp startTime = (time_t)[[[NSDate date] startOfDay] timeIntervalSince1970];
-    Timestamp endTime = startTime + Interval(1440 * 60 * days);
+    Timestamp endOfStartDay = (time_t)[[[NSDate date] endOfDay] timeIntervalSince1970];
+    Timestamp endTime = endOfStartDay + Interval(1440 * 60 * days);
     
     Dstr location ([name UTF8String]);
 	NSArray *events = tideEventsForLocation(location, Interval (interval), startTime, endTime, units);
     NSArray *intervals = rawEventsForLocation(location, Interval (interval), startTime, endTime, units);
-    
-    SDTideEvent *eventZero = [events objectAtIndex:0];
+
+    SDTideEvent *eventZero = nil;
+    for (SDTideEvent *event in events) {
+        if ([event eventType] == max || [event eventType] == min) {
+            eventZero = event;
+            break;
+        }
+    }
     
     SDTide *tidy = [[[SDTide alloc] init] autorelease];
     tidy.stationName = name;

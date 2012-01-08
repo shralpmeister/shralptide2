@@ -27,6 +27,7 @@
 NSString *kUnitsKey = @"units_preference";
 NSString *kDaysKey = @"days_preference";
 NSString *kCurrentsKey = @"currents_preference";
+NSString *kBackgroundKey = @"background_preference";
 
 
 @interface ShralpTideAppDelegate ()
@@ -39,7 +40,7 @@ NSString *kCurrentsKey = @"currents_preference";
 
 @synthesize window;
 @synthesize rootViewController;
-@synthesize unitsPref, daysPref, showsCurrentsPref;
+@synthesize unitsPref, daysPref, showsCurrentsPref, backgroundPref;
 @synthesize managedObjectModel, managedObjectContext, persistentStoreCoordinator;
 
 - (void)dealloc {
@@ -48,15 +49,16 @@ NSString *kCurrentsKey = @"currents_preference";
 	[super dealloc];
 }
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary*)options {
+    NSLog(@"applicationDidFinishLaunching");
+    
+    [self setupByPreferences];
     
     // listen for changes to our preferences
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(defaultsChanged:)
                                                  name:NSUserDefaultsDidChangeNotification
                                                object:nil];
-    
-    [self setupByPreferences];
     [rootViewController createMainViews];
     
 	[window addSubview:[rootViewController view]];
@@ -75,7 +77,7 @@ NSString *kCurrentsKey = @"currents_preference";
     NSLog(@"Reading preferences and recreating views and tide calculations");
     [self setupByPreferences];
     [rootViewController createMainViews];
-    [rootViewController recalculateTides];
+    [rootViewController doBackgroundTideCalculation];
 }
 
 -(NSDictionary*)readSettingsDictionary
@@ -100,6 +102,7 @@ NSString *kCurrentsKey = @"currents_preference";
         NSString *unitsDefault = nil;
         NSNumber *daysDefault = nil;
         NSNumber *currentsDefault = nil;
+        NSString *backgroundDefault = nil;
         
         for (NSDictionary *prefItem in prefSpecifierArray)
         {
@@ -116,7 +119,10 @@ NSString *kCurrentsKey = @"currents_preference";
             }
             else if ([keyValueStr isEqualToString:kCurrentsKey])
             {
-                currentsDefault = defaultValue == nil ? [NSNumber numberWithBool:NO] : [NSNumber numberWithBool:YES];
+                currentsDefault = defaultValue;
+            }
+            else if ([keyValueStr isEqualToString:kBackgroundKey]) {
+                backgroundDefault = defaultValue;
             }
         }
         
@@ -125,6 +131,7 @@ NSString *kCurrentsKey = @"currents_preference";
                                      unitsDefault, kUnitsKey,
                                      daysDefault, kDaysKey,
                                      currentsDefault, kCurrentsKey,
+                                     backgroundDefault, kBackgroundKey,
                                      nil];
         
         [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
@@ -135,7 +142,9 @@ NSString *kCurrentsKey = @"currents_preference";
     self.unitsPref = [[NSUserDefaults standardUserDefaults] stringForKey:kUnitsKey];
     self.daysPref = [[NSUserDefaults standardUserDefaults] integerForKey:kDaysKey];
     self.showsCurrentsPref = [[NSUserDefaults standardUserDefaults] boolForKey:kCurrentsKey];
+    self.backgroundPref = [[NSUserDefaults standardUserDefaults] stringForKey:kBackgroundKey];
     
+    NSLog(@"setting daysPref to %d", daysPref);
     NSLog(@"Setting currentsPref to %@", showsCurrentsPref ? @"YES" : @"NO");
 }
 

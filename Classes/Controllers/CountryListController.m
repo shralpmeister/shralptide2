@@ -33,17 +33,6 @@
     self.navigationItem.rightBarButtonItem = ((SelectStationNavigationController*)self.navigationController).doneButton;
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    NSLog(@"CountryList appeared. %d rows will display",[rows count]);
-}
-
-- (void)viewDidUnload
-{
-    NSLog(@"Country list controller was unloaded");
-}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }

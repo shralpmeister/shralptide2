@@ -25,6 +25,8 @@
 #import "SDTideFactory.h"
 #import "SDTide.h"
 #import "SDTideEvent.h"
+#import "ShralpTideAppDelegate.h"
+
 
 @interface MainViewController ()
 - (int)currentTimeInMinutes:(SDTide *)tide;
@@ -36,6 +38,7 @@
 @synthesize sdTide;
 @synthesize currentTideView;
 @synthesize rootViewController;
+@synthesize backgroundImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
@@ -56,6 +59,11 @@
  If you need to do additional setup after loading the view, override viewDidLoad.
  */
 - (void)viewDidLoad {
+    
+    if (backgroundImage != nil) {
+        bgImageView.image = backgroundImage;
+    }
+    
 	NSMutableArray *tempTable = [[NSMutableArray alloc] init];
 	[tempTable addObject: [NSArray arrayWithObjects: time1, heightLabel1, state1, bullet1, nil]];
 	[tempTable addObject: [NSArray arrayWithObjects: time2, heightLabel2, state2, bullet2, nil]];

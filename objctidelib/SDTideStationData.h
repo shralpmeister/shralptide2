@@ -30,6 +30,6 @@
 	NSString *state;
 }
 
-@property (retain, readwrite) NSString *name, *units, *state;
+@property (copy, readwrite) NSString *name, *units, *state;
 @property (retain, readwrite) NSNumber *distance, *latitude, *longitude;
 @end

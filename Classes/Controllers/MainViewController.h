@@ -27,6 +27,7 @@
 @interface MainViewController : UIViewController 
 {
 	SDTide *sdTide;
+    IBOutlet UIImageView *bgImageView;
 	IBOutlet UILabel *locationLabel;
 	IBOutlet UILabel *presentHeightLabel;
 	IBOutlet UIImageView *tideStateImage;
@@ -68,4 +69,5 @@
 @property (readonly) SDTide *sdTide;
 @property (nonatomic,retain) UIView *currentTideView;
 @property (nonatomic,retain) RootViewController *rootViewController;
+@property (nonatomic,retain) UIImage *backgroundImage;
 @end

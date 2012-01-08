@@ -57,7 +57,7 @@ typedef enum {
 @property (nonatomic,retain) NSDate *stopTime;
 @property (nonatomic,retain) NSArray *allEvents;
 @property (nonatomic,retain) NSArray *intervals;
-@property (nonatomic,retain) NSString *stationName;
-@property (nonatomic,retain) NSString *unitLong;
-@property (nonatomic,retain) NSString *unitShort;
+@property (nonatomic,copy) NSString *stationName;
+@property (nonatomic,copy) NSString *unitLong;
+@property (nonatomic,copy) NSString *unitShort;
 @end

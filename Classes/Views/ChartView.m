@@ -45,6 +45,20 @@
 @synthesize times;
 @synthesize sunriseIcon, sunsetIcon, moonriseIcon, moonsetIcon;
 
+
+- (void)dealloc {
+	[cursorView release];
+	[times release];
+    [headerView release];
+    [dateLabel release];
+    [valueLabel release];
+    [sunriseIcon release];
+    [sunsetIcon release];
+    [moonriseIcon release];
+    [moonsetIcon release];
+    [super dealloc];
+}
+
 - (id)initWithCoder:(NSCoder *)coder {
 	if ((self = [super initWithCoder:coder])) {
 		times = [[NSMutableDictionary alloc] init];
@@ -53,7 +67,7 @@
 }
 
 -(void)drawRect:(CGRect)rect {
-#define HEIGHT 256
+#define HEIGHT 234
 #define WIDTH 480
 #define MINUTES_FROM_MIDNIGHT 1440
 #define SECONDS_PER_MINUTE 60
@@ -87,7 +101,7 @@
 	float ymin = min - 1;
 	float ymax = max + 1;
 	float yratio =  HEIGHT / (ymax - ymin);
-	float yoffset = (HEIGHT + ymin * yratio) + 64;
+	float yoffset = (HEIGHT + ymin * yratio) + 86;
 	NSLog(@"yoffset = %0.4f", yoffset);
 	
 	float xmin = 0;
@@ -100,14 +114,14 @@
     
     // show daylight hours as light background
     CGContextSetRGBFillColor(context, 0.04, 0.27, 0.61, 1.0);
-    CGContextFillRect(context, CGRectMake(sunriseMinutes * xratio, headerView.frame.size.height, sunsetMinutes * xratio - sunriseMinutes * xratio, HEIGHT));
+    CGContextFillRect(context, CGRectMake(sunriseMinutes * xratio, headerView.frame.size.height + 20, sunsetMinutes * xratio - sunriseMinutes * xratio, HEIGHT));
     
     CGContextSetRGBFillColor(context, 1, 1, 1, 0.2);
     if (moonriseMinutes < moonsetMinutes) {
-        CGContextFillRect(context, CGRectMake(moonriseMinutes * xratio, headerView.frame.size.height, moonsetMinutes * xratio - moonriseMinutes * xratio, HEIGHT));
+        CGContextFillRect(context, CGRectMake(moonriseMinutes * xratio, headerView.frame.size.height + 20, moonsetMinutes * xratio - moonriseMinutes * xratio, HEIGHT));
     } else {
-        CGContextFillRect(context, CGRectMake(0, headerView.frame.size.height, moonsetMinutes * xratio, HEIGHT));
-        CGContextFillRect(context, CGRectMake(moonriseMinutes * xratio, headerView.frame.size.height, WIDTH, HEIGHT));
+        CGContextFillRect(context, CGRectMake(0, headerView.frame.size.height + 20, moonsetMinutes * xratio, HEIGHT));
+        CGContextFillRect(context, CGRectMake(moonriseMinutes * xratio, headerView.frame.size.height + 20, WIDTH, HEIGHT));
     }
     
     // draw indicators in the header for astronomical events
@@ -140,6 +154,7 @@
 			basetime = (int)[[tidePoint time] timeIntervalSince1970];
 		}
 		minutesSinceMidnight = (int)([[tidePoint time] timeIntervalSince1970] - basetime) / SECONDS_PER_MINUTE;
+        NSLog(@"Plotting interval: %@, min since midnight: %d",tidePoint.time, minutesSinceMidnight);
 		if (minutesSinceMidnight == 0) {
 			CGContextMoveToPoint(context, minutesSinceMidnight * xratio, yoffset - [tidePoint height] * yratio);
 		} else {
@@ -149,8 +164,8 @@
 	}
 	
     // closes the path so that it can be filled
-	CGContextAddLineToPoint(context, WIDTH, HEIGHT + 64);
-	CGContextAddLineToPoint(context, 0, HEIGHT + 64);
+	CGContextAddLineToPoint(context, WIDTH, HEIGHT + 86);
+	CGContextAddLineToPoint(context, 0, HEIGHT + 86);
 	
     // fill in the tide level curve
 	CGContextSetRGBFillColor(context, 0.0, 1.0, 1.0, 0.7);
@@ -165,7 +180,7 @@
 	CGContextAddLineToPoint(context, xmax * xratio, yoffset);
 	CGContextStrokePath(context);
 			
-	cursorView.center = CGPointMake([self currentTimeInMinutes] * xratio, (HEIGHT + 64) / 2);
+	cursorView.center = CGPointMake([self currentTimeInMinutes] * xratio, (HEIGHT + 86) / 2);
 	if (cursorView.center.x > 0) {
 		NSLog(@"min: %0.1f, max: %0.1f",min,max);
 		[self addSubview:cursorView];
@@ -265,13 +280,6 @@
 	return [(SDTideInterval*)[descResult objectAtIndex:0] height];
 }
 
-
-- (void)dealloc {
-	[cursorView release];
-	[times release];
-    [super dealloc];
-}
-
 #pragma mark HandleTouch
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
@@ -352,7 +360,7 @@
     CGMutablePathRef thePath = CGPathCreateMutable();
     
     CGFloat midX = [self currentTimeInMinutes] * 0.3333;
-    CGFloat midY = 150.0;
+    CGFloat midY = 160.0;
     CGFloat originalOffsetX = cursorView.center.x - midX;
     CGFloat originalOffsetY = cursorView.center.y - midY;
     CGFloat offsetDivider = 10.0;

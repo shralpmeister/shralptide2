@@ -44,6 +44,7 @@
 - (void)loadScrollViewWithPage:(int)page;
 - (void)loadChartScrollViewWithPage:(int)page;
 - (void)scrollViewDidScroll:(UIScrollView *)sender;
+- (void)recalculateTides;
 - (void)startWaitIndicator;
 - (void)stopWaitIndicator;
 - (void)saveState;
@@ -65,7 +66,6 @@
 @synthesize infoButton;
 @synthesize chartScrollView;
 @synthesize searchBar;
-@synthesize activityIndicator;
 @synthesize location;
 @synthesize sdTide;
 @synthesize currentCalendar;
@@ -122,8 +122,6 @@
 	}
 	[lastLocation release];
 	self.currentCalendar = [NSCalendar currentCalendar];
-	
-	//[self createMainViews];
 }
 
 - (void)setDefaultLocation {
@@ -135,38 +133,33 @@
 - (void)createMainViews {
 	NSMutableArray *controllers = [[NSMutableArray alloc] init];
 	NSMutableArray *chartControllers = [[NSMutableArray alloc] init];
+    NSLog(@"Creating views for %d days",appDelegate.daysPref);
     for (unsigned i = 0; i < appDelegate.daysPref; i++) {
         [controllers addObject:[NSNull null]];
 		[chartControllers addObject:[NSNull null]];
     }
-    NSLog(@"%d viewControllers exist",[viewControllers count]);
     self.viewControllers = controllers;
+    
+    NSLog(@"%d viewControllers exist",[viewControllers count]);
 	self.chartViewControllers = chartControllers;
     [controllers release];
 	[chartControllers release];
 	
     // a page is the width of the scroll view
     scrollView.pagingEnabled = YES;
-	// subtract 20 from height to account for scroll bar at top of portrait
-    scrollView.contentSize = CGSizeMake(self.view.frame.size.width * appDelegate.daysPref, self.view.frame.size.height - 20);
+    scrollView.contentSize = CGSizeMake(self.view.frame.size.width * appDelegate.daysPref, self.view.frame.size.height);
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.scrollsToTop = NO;
 	scrollView.directionalLockEnabled = YES;
-    scrollView.delegate = self;
-	scrollView.autoresizingMask = UIViewAutoresizingNone;
-	
+    scrollView.delegate = self;	
     pageControl.numberOfPages = appDelegate.daysPref;
-    pageControl.currentPage = 0;
 	pageControl.hidden = NO;
 	pageControl.defersCurrentPageDisplay = YES;
 	
-	[pageControl removeFromSuperview];
-	[self.view addSubview:pageControl];
-	
 	chartScrollView.pagingEnabled = YES;
 	// put 20 back on the height and subtract 20 from width to account for scroll bar at top of landscape 
-	chartScrollView.contentSize = CGSizeMake((self.view.frame.size.height + 20) * appDelegate.daysPref, self.view.frame.size.width - 20);
+	chartScrollView.contentSize = CGSizeMake((self.view.frame.size.height) * appDelegate.daysPref, self.view.frame.size.width - 20);
 	chartScrollView.showsVerticalScrollIndicator = NO;
 	chartScrollView.showsVerticalScrollIndicator = NO;
 	chartScrollView.scrollsToTop = NO;
@@ -190,12 +183,20 @@
 }
 
 - (void)clearChartData {
+    for (UIView *view in chartScrollView.subviews) {
+        [view removeFromSuperview];
+    }
 	for (unsigned i = 0; i < appDelegate.daysPref; i++) {
 		[chartViewControllers replaceObjectAtIndex:i withObject:[NSNull null]];
     }
 }
 
-- (void)recalculateTides {
+-(void)doBackgroundTideCalculation {
+    [self startWaitIndicator];
+	[NSThread detachNewThreadSelector:@selector(recalculateTides) toTarget:self withObject:nil];
+}
+
+- (void)recalculateTides { 
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
     NSLog(@"Recalculating tides for %d days",appDelegate.daysPref);
@@ -239,8 +240,9 @@
     // replace the placeholder if necessary
     MainViewController *controller = [viewControllers objectAtIndex:page];
     if ((NSNull *)controller == [NSNull null]) {
-        controller = [[MainViewController alloc] initWithPageNumber:page];		
+        controller = [[MainViewController alloc] initWithPageNumber:page];
         controller.rootViewController = self;
+        controller.backgroundImage = [UIImage imageNamed:appDelegate.backgroundPref];
         [viewControllers replaceObjectAtIndex:page withObject:controller];
         [controller release];
     }
@@ -318,6 +320,7 @@
     // replace the placeholder if necessary
     ChartViewController *controller = [chartViewControllers objectAtIndex:page];
     if ((NSNull *)controller == [NSNull null]) {
+        NSLog(@"Initializing new ChartViewController");
 		controller = [[ChartViewController alloc] initWithNibName:@"ChartView" bundle:nil tide:[[viewControllers objectAtIndex:page] sdTide]];
         [chartViewControllers replaceObjectAtIndex:page withObject:controller];
         [controller release];
@@ -353,11 +356,24 @@
                                                        initWithRootViewController:mapController];
 	
 	UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(cancelAddLocation)];
-	
+    
+    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Tides",@"Currents", nil]];
+    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    [segmentedControl addTarget:mapController action:@selector(updateDisplayedStations) forControlEvents:UIControlEventValueChanged];
+    
+    mapController.tideCurrentSelector = segmentedControl;
+    
+    UIBarButtonItem *segmentedButtonItem = [[UIBarButtonItem alloc] initWithCustomView:segmentedControl];
+    UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+
+	mapController.toolbarItems = [NSArray arrayWithObjects:flex,segmentedButtonItem,flex,nil];
 	mapController.navController = mapNavigationController;
 	mapController.navigationItem.rightBarButtonItem = cancelButton;
     mapNavigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     
+    [segmentedControl release];
+    [segmentedButtonItem release];
+    [flex release];
     [cancelButton release];	
 	[self presentModalViewController:mapNavigationController animated:YES];
 	
@@ -416,19 +432,24 @@
     self.stationNavController = nil;
 }
 
--(void)viewDidAppear:(BOOL)animated {
+-(void)viewWillAppear:(BOOL)animated
+{
+    NSLog(@"View will appear. Attempting rotation");
+    [super viewWillAppear:animated];
+    [RootViewController attemptRotationToDeviceOrientation];
+}
+
+-(void)viewDidAppear:(BOOL)animated 
+{
 	[super viewDidAppear: animated];
 	[self clearChartData];
-	[self startWaitIndicator];
-	[NSThread detachNewThreadSelector:@selector(recalculateTides) toTarget:self withObject:nil];
-	[[(MainViewController*)[viewControllers objectAtIndex:0] currentTideView] becomeFirstResponder];
+    [self doBackgroundTideCalculation];
+    MainViewController* mainVC = (MainViewController*)[viewControllers objectAtIndex:0];
+	[[mainVC currentTideView] becomeFirstResponder];
     
     /* make sure that we show the current time whenever the view is changed or reappears */
     int page = pageControl.currentPage;
     ChartViewController *chartController = (ChartViewController*)[chartViewControllers objectAtIndex:page];
-    if (![chartController isKindOfClass: [NSNull class]]) {
-        [chartController showCurrentTime];
-    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -448,12 +469,6 @@
 }
 
 #pragma mark UIViewController
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    NSIndexPath *tableSelection = [tableView indexPathForSelectedRow];
-    [tableView deselectRowAtIndexPath:tableSelection animated:NO];
-}
 
 - (void)viewDidUnload
 {
@@ -481,18 +496,18 @@
 	if ([chartView superview] == nil) {
 		return;
 	}
-	
-	[mainView setNeedsLayout];
-	
+    
 	int page = pageControl.currentPage;
 	CGRect frame = scrollView.frame;
 	frame.origin.x = frame.size.width * page;
 	frame.origin.y = 0;
+    
 	[(MainViewController*)[viewControllers objectAtIndex:page] view].frame = frame;
 	[scrollView scrollRectToVisible:frame animated:NO];
 	
 	[(MainViewController*)[self.viewControllers objectAtIndex:0] updatePresentTideInfo];
 	[self replaceSubview:chartView withSubview:mainView transition:kCATransitionFade direction:@"" duration:0.75];
+    
 	[self.view addSubview:pageControl];
 }
 
@@ -518,6 +533,7 @@
 
 	[chartScrollView scrollRectToVisible:frame animated:NO];
 	[chartView setNeedsLayout];
+    
 	[self replaceSubview:mainView withSubview:chartView transition:kCATransitionFade direction:@"" duration:0.75];
 }
 
@@ -553,35 +569,34 @@
 
 	// Method to replace a given subview with another using a specified transition type, direction, and duration
 - (void)replaceSubview:(UIView *)oldView withSubview:(UIView *)newView transition:(NSString *)transition direction:(NSString *)direction duration:(NSTimeInterval)duration {
-		
-		// If a transition is in progress, do nothing
-		if(transitioning) {
-			return;
-		}
-		
-		[oldView removeFromSuperview];
-	
-		[self.view addSubview:newView];
-		
-		
-		// Set up the animation
-		CATransition *animation = [CATransition animation];
-		[animation setDelegate:self];
-		
-		// Set the type and if appropriate direction of the transition, 
-		if (transition == kCATransitionFade) {
-			[animation setType:kCATransitionFade];
-		} else {
-			[animation setType:transition];
-			[animation setSubtype:direction];
-		}
-		
-		// Set the duration and timing function of the transtion -- duration is passed in as a parameter, use ease in/ease out as the timing function
-		[animation setDuration:duration];
-		[animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-		
-		[[self.view layer] addAnimation:animation forKey:kAnimationKey];
-	}
+    
+    // If a transition is in progress, do nothing
+    if(transitioning) {
+        return;
+    }
+    
+    [oldView removeFromSuperview];
+
+    [self.view addSubview:newView];
+    
+    // Set up the animation
+    CATransition *animation = [CATransition animation];
+    [animation setDelegate:self];
+    
+    // Set the type and if appropriate direction of the transition, 
+    if (transition == kCATransitionFade) {
+        [animation setType:kCATransitionFade];
+    } else {
+        [animation setType:transition];
+        [animation setSubtype:direction];
+    }
+    
+    // Set the duration and timing function of the transtion -- duration is passed in as a parameter, use ease in/ease out as the timing function
+    [animation setDuration:duration];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    
+    [[self.view layer] addAnimation:animation forKey:kAnimationKey];
+}
 
 #pragma mark savestate
 - (void)saveState {

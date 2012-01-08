@@ -23,6 +23,7 @@ BOOL zoomedToLocal;
 @synthesize stationType;
 @synthesize navController;
 @synthesize modalViewDelegate;
+@synthesize tideCurrentSelector;
 
 -(id)initWithNibName:(NSString *)nibNameOrNil forStationType:(SDStationType)aStationType
 {
@@ -30,6 +31,18 @@ BOOL zoomedToLocal;
 		self.stationType = aStationType;
 	}
 	return self;
+}
+
+-(void)updateDisplayedStations
+{
+    if (tideCurrentSelector.selectedSegmentIndex == 0) {
+        self.stationType = SDStationTypeTide;
+    } else {
+        self.stationType = SDStationTypeCurrent;
+    }
+    NSLog(@"updateDisplayedStations called. Switching to %@", self.stationType == SDStationTypeTide ? @"tides." : @"currents.");
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    [self addTideStationsForRegion: self.mapView.region];
 }
 
 -(void)loadView {
@@ -48,6 +61,16 @@ BOOL zoomedToLocal;
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    if (appDelegate.showsCurrentsPref) {
+        [navController setToolbarHidden:NO];
+        if (self.stationType == SDStationTypeTide) {
+            tideCurrentSelector.selectedSegmentIndex = 0;
+        } else {
+            tideCurrentSelector.selectedSegmentIndex = 1;
+        }
+    } else {
+        [navController setToolbarHidden:YES];
+    }
     mapView.showsUserLocation = YES;
 }
 
@@ -80,13 +103,15 @@ BOOL zoomedToLocal;
     NSNumber *currentBoolean = [NSNumber numberWithBool:(self.stationType == SDStationTypeTide ? NO : YES)];
     NSString *locationFilter = @"latitude BETWEEN %@ and longitude BETWEEN %@";
     NSString *currentFilter = @" and current == %@";
-    NSString *filter = appDelegate.showsCurrentsPref ? locationFilter : [locationFilter stringByAppendingString:currentFilter];
+    //NSString *filter = appDelegate.showsCurrentsPref ? locationFilter : [locationFilter stringByAppendingString:currentFilter];
+    NSString *filter = [locationFilter stringByAppendingString:currentFilter];
 
     NSLog(@"applying search filter: %@", filter);
 	
-    NSPredicate *predicate =  appDelegate.showsCurrentsPref ? 
-        [NSPredicate predicateWithFormat: filter, [NSArray arrayWithObjects:minLatitude, maxLatitude, nil], [NSArray arrayWithObjects:minLongitude, maxLongitude,nil]]:
-        [NSPredicate predicateWithFormat: filter, [NSArray arrayWithObjects:minLatitude, maxLatitude, nil], [NSArray arrayWithObjects:minLongitude, maxLongitude,nil],currentBoolean];
+//    NSPredicate *predicate =  appDelegate.showsCurrentsPref ? 
+//        [NSPredicate predicateWithFormat: filter, [NSArray arrayWithObjects:minLatitude, maxLatitude, nil], [NSArray arrayWithObjects:minLongitude, maxLongitude,nil]]:
+//        [NSPredicate predicateWithFormat: filter, [NSArray arrayWithObjects:minLatitude, maxLatitude, nil], [NSArray arrayWithObjects:minLongitude, maxLongitude,nil],currentBoolean];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: filter, [NSArray arrayWithObjects:minLatitude, maxLatitude, nil], [NSArray arrayWithObjects:minLongitude, maxLongitude,nil],currentBoolean];
     
 	NSFetchRequest *fr = [[NSFetchRequest alloc] init];
 	[fr setEntity: entityDescription];

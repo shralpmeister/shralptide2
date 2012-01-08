@@ -26,6 +26,7 @@ typedef enum {
 	SelectStationNavigationController *navController;
 	id modalViewDelegate;
 	SDStationType stationType;
+    UISegmentedControl *tideCurrentSelector;
 }
 
 -(id)initWithNibName:(NSString *)nibNameOrNil forStationType:(SDStationType)aStationType;
@@ -34,5 +35,6 @@ typedef enum {
 @property (assign,readwrite) SDStationType stationType;
 @property (nonatomic,retain) UINavigationController *navController;
 @property (assign) id modalViewDelegate;
+@property (nonatomic,retain) UISegmentedControl *tideCurrentSelector;
 
 @end
