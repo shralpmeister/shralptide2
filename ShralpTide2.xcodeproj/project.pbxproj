@@ -244,8 +244,8 @@
 		DC65264D1350C2F600B67AE7 /* TideStationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TideStationTableViewCell.m; path = Classes/Views/TideStationTableViewCell.m; sourceTree = "<group>"; };
 		DC6526681350DD4600B67AE7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DC65266A1350DDBD00B67AE7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		DC872F6E143EB156005C5759 /* HomescreenIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomescreenIcon.png; sourceTree = "<group>"; };
-		DC872F6F143EB156005C5759 /* HomescreenIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HomescreenIcon@2x.png"; sourceTree = "<group>"; };
+		DC872F6E143EB156005C5759 /* HomescreenIcon.png */ = {isa = PBXFileReference; explicitFileType = image.icns; path = HomescreenIcon.png; sourceTree = "<group>"; };
+		DC872F6F143EB156005C5759 /* HomescreenIcon@2x.png */ = {isa = PBXFileReference; explicitFileType = image.icns; path = "HomescreenIcon@2x.png"; sourceTree = "<group>"; };
 		DC8ED8080F0D8C3B009EAF2F /* Decreasing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Decreasing.png; path = Resources/Decreasing.png; sourceTree = "<group>"; };
 		DC8ED8090F0D8C3B009EAF2F /* Increasing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Increasing.png; path = Resources/Increasing.png; sourceTree = "<group>"; };
 		DC9D7734135A0E7200981199 /* channel-islands.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "channel-islands.png"; path = "state-flags/channel-islands.png"; sourceTree = "<group>"; };
@@ -540,6 +540,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DC872F6E143EB156005C5759 /* HomescreenIcon.png */,
+				DC872F6F143EB156005C5759 /* HomescreenIcon@2x.png */,
 				DCD17E48147837A900BE60C8 /* Default.png */,
 				DCD17E49147837A900BE60C8 /* Default@2x.png */,
 				DCD6D6F21465CA66006D71A0 /* fall_gold.png */,
@@ -562,8 +564,6 @@
 				DCA3BF7A133E503900EA966A /* PickerTableCell.xib */,
 				DCA3BF7B133E503900EA966A /* StationListView.xib */,
 				DCA3BF7C133E503900EA966A /* TideStationTableCellView.xib */,
-				DC872F6E143EB156005C5759 /* HomescreenIcon.png */,
-				DC872F6F143EB156005C5759 /* HomescreenIcon@2x.png */,
 				DCA3BF6E133E4FEC00EA966A /* shralptide.xcdatamodel */,
 				DC2A60AF1401FA2400B428A6 /* moonrise.png */,
 				DC2A60B01401FA2400B428A6 /* moonset.png */,
@@ -1091,6 +1091,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv7,
+					armv6,
+				);
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1130,6 +1134,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv7,
+					armv6,
+				);
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Michael Parlee";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michael Parlee";
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1150,6 +1159,8 @@
 				);
 				OTHER_LDFLAGS = "-lsqlite3";
 				PRODUCT_NAME = ShralpTide2;
+				PROVISIONING_PROFILE = "34C0F4E7-F3F8-478F-BF65-FBD4591994A4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "34C0F4E7-F3F8-478F-BF65-FBD4591994A4";
 				SDKROOT = iphoneos;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1162,7 +1173,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Parlee (25H7G2523Q)";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = 4.2;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
@@ -1176,11 +1187,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Michael Parlee";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michael Parlee";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				PROVISIONING_PROFILE = "34C0F4E7-F3F8-478F-BF65-FBD4591994A4";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "27058F47-7E6D-4F68-986D-BF6E31355729";
 				SDKROOT = iphoneos;
 			};
