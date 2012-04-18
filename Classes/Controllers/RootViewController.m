@@ -436,7 +436,9 @@
 {
     NSLog(@"View will appear. Attempting rotation");
     [super viewWillAppear:animated];
-    [RootViewController attemptRotationToDeviceOrientation];
+    if ([[RootViewController class] respondsToSelector:@selector(attemptRotationToDeviceOrientation)]) {
+        [RootViewController attemptRotationToDeviceOrientation];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated 
