@@ -14,7 +14,7 @@
     UILabel *nameLabel;
 }
 
-@property (nonatomic,retain) IBOutlet UIImageView *flagView;
-@property (nonatomic,retain) IBOutlet UILabel *nameLabel;
+@property (nonatomic,strong) IBOutlet UIImageView *flagView;
+@property (nonatomic,strong) IBOutlet UILabel *nameLabel;
 
 @end

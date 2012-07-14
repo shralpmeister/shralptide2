@@ -34,14 +34,14 @@
 -(void)animateCursorViewToCurrentTime;
 -(void)animateFirstTouchAtPoint:(CGPoint)touchPoint;
 
-@property (nonatomic, assign) IBOutlet id<ChartViewDatasource> datasource;
-@property (nonatomic, retain) IBOutlet UIView *cursorView;
-@property (nonatomic, retain) IBOutlet UIView *headerView;
-@property (nonatomic, retain) IBOutlet UILabel *dateLabel;
-@property (nonatomic, retain) IBOutlet UILabel *valueLabel;
-@property (nonatomic, retain) IBOutlet UIImageView *sunriseIcon;
-@property (nonatomic, retain) IBOutlet UIImageView *sunsetIcon;
-@property (nonatomic, retain) IBOutlet UIImageView *moonriseIcon;
-@property (nonatomic, retain) IBOutlet UIImageView *moonsetIcon;
-@property (nonatomic, retain) NSMutableDictionary *times;
+@property (nonatomic, unsafe_unretained) IBOutlet id<ChartViewDatasource> datasource;
+@property (nonatomic, strong) IBOutlet UIView *cursorView;
+@property (nonatomic, strong) IBOutlet UIView *headerView;
+@property (nonatomic, strong) IBOutlet UILabel *dateLabel;
+@property (nonatomic, strong) IBOutlet UILabel *valueLabel;
+@property (nonatomic, strong) IBOutlet UIImageView *sunriseIcon;
+@property (nonatomic, strong) IBOutlet UIImageView *sunsetIcon;
+@property (nonatomic, strong) IBOutlet UIImageView *moonriseIcon;
+@property (nonatomic, strong) IBOutlet UIImageView *moonsetIcon;
+@property (nonatomic, strong) NSMutableDictionary *times;
 @end

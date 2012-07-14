@@ -29,10 +29,5 @@
 @synthesize height;
 @synthesize units;
 
--(void)dealloc {
-	[time release];
-    [units release];
-	[super dealloc];
-}
 
 @end

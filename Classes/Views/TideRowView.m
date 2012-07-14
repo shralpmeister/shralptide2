@@ -39,12 +39,5 @@
 	return @"Daily tide event time and height";
 }
 
-- (void)dealloc
-{
-	[timeLabel release];
-	[heightLabel release];
-	[stateLabel release];
-	[super dealloc];
-}
 
 @end

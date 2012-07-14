@@ -33,8 +33,6 @@
         return;
     }
     
-    [newStations retain];
-    [stations release];
     stations = newStations;
 
     sections = [[NSMutableDictionary alloc] init];
@@ -46,20 +44,18 @@
             NSString *groupKey = [station.name substringToIndex:1];
             [sectionKeySet addObject:groupKey];
             
-            if ([sections objectForKey:groupKey] == nil) {
+            if (sections[groupKey] == nil) {
                 NSMutableArray *group = [[NSMutableArray alloc] init];
                 [group addObject:station];
                 sections[groupKey] = group;
-                [group release];
             } else {
-                NSMutableArray *group = [sections objectForKey:groupKey];
+                NSMutableArray *group = sections[groupKey];
                 [group addObject:station];
             }
         }
     }
 
     self.sectionKeys = [[sectionKeySet allObjects] sortedArrayUsingSelector:@selector(compare:)];
-    [sectionKeySet release];
     
     self.navigationItem.rightBarButtonItem = ((SelectStationNavigationController*)self.navigationController).doneButton;
 }
@@ -89,7 +85,7 @@
 	
     if (cell == nil)
     {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseLabel] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseLabel];
 	}
 
     SDTideStation *station = nil;
@@ -115,7 +111,6 @@
         [detailText appendString:nameParts[i]];
     }
     cell.detailTextLabel.text = detailText;
-    [detailText release];
 	
 	return cell;
 }
@@ -158,16 +153,8 @@
     
 	[detailViewController setTideStation: station];
 	[self.navigationController pushViewController: detailViewController animated:YES];
-    [detailViewController release];
 }
 
 
--(void)dealloc
-{
-	[super dealloc];
-	[stations release];
-    [sections release];
-    [sectionKeys release];
-}
 
 @end

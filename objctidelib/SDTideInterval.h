@@ -26,7 +26,7 @@
     float height;
     NSString *units;
 }
-@property (nonatomic,retain) NSDate *time;
+@property (nonatomic,strong) NSDate *time;
 @property (nonatomic,assign) float height;
-@property (nonatomic,retain) NSString *units;
+@property (nonatomic,strong) NSString *units;
 @end

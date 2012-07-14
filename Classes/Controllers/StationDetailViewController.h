@@ -14,7 +14,7 @@
 
 @interface StationDetailViewController : UIViewController <MKMapViewDelegate>
 {
-	id<StationDetailViewControllerDelegate> modalViewDelegate;
+	id<StationDetailViewControllerDelegate> __unsafe_unretained modalViewDelegate;
 	TideStationAnnotation *tideStationData;
     UIImage *mapImage;
     
@@ -28,15 +28,15 @@
     UITableViewCell *primaryCell;
 }
 
-@property (nonatomic,retain) TideStationAnnotation *tideStationData;
-@property (assign) id<StationDetailViewControllerDelegate> modalViewDelegate;
-@property (nonatomic,retain) IBOutlet UIView *titleView;
-@property (nonatomic,retain) IBOutlet MKMapView *mapView;
-@property (nonatomic,retain) IBOutlet UILabel *titleLabel;
-@property (nonatomic,retain) IBOutlet UIView *buttonView;
-@property (nonatomic,retain) IBOutlet UIButton *selectButton;
-@property (nonatomic, retain) UITableViewCell *locationCell;
-@property (nonatomic, retain) UITableViewCell *primaryCell;
+@property (nonatomic,strong) TideStationAnnotation *tideStationData;
+@property (unsafe_unretained) id<StationDetailViewControllerDelegate> modalViewDelegate;
+@property (nonatomic,strong) IBOutlet UIView *titleView;
+@property (nonatomic,strong) IBOutlet MKMapView *mapView;
+@property (nonatomic,strong) IBOutlet UILabel *titleLabel;
+@property (nonatomic,strong) IBOutlet UIView *buttonView;
+@property (nonatomic,strong) IBOutlet UIButton *selectButton;
+@property (nonatomic, strong) UITableViewCell *locationCell;
+@property (nonatomic, strong) UITableViewCell *primaryCell;
 
 -(void)setTideStation:(SDTideStation*)station;
 

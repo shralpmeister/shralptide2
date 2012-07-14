@@ -46,18 +46,6 @@
 @synthesize sunriseIcon, sunsetIcon, moonriseIcon, moonsetIcon;
 
 
-- (void)dealloc {
-	[cursorView release];
-	[times release];
-    [headerView release];
-    [dateLabel release];
-    [valueLabel release];
-    [sunriseIcon release];
-    [sunsetIcon release];
-    [moonriseIcon release];
-    [moonsetIcon release];
-    [super dealloc];
-}
 
 - (id)initWithCoder:(NSCoder *)coder {
 	if ((self = [super initWithCoder:coder])) {
@@ -77,8 +65,8 @@
 	SDTide *tide = [self.datasource tideDataToChart];
     
     NSDictionary *sunEvents = [tide sunriseSunsetEventsForDay:[self.datasource day]];
-    SDTideEvent *sunrise = [sunEvents objectForKey:@"sunrise"];
-    SDTideEvent *sunset = [sunEvents objectForKey:@"sunset"];
+    SDTideEvent *sunrise = sunEvents[@"sunrise"];
+    SDTideEvent *sunset = sunEvents[@"sunset"];
     uint64_t sunBaseTime = [[self midnight:[sunrise eventTime]] timeIntervalSince1970];
     NSLog(@"Sunrise = %@, sunset = %@", sunrise.eventTime, sunset.eventTime);
     
@@ -86,8 +74,8 @@
     int sunsetMinutes = ([sunset.eventTime timeIntervalSince1970] - sunBaseTime) / SECONDS_PER_MINUTE;
     
     NSDictionary *moonEvents = [tide moonriseMoonsetEventsForDay:[self.datasource day]];
-    SDTideEvent *moonrise = [moonEvents objectForKey:@"moonrise"];
-    SDTideEvent *moonset = [moonEvents objectForKey:@"moonset"];
+    SDTideEvent *moonrise = moonEvents[@"moonrise"];
+    SDTideEvent *moonset = moonEvents[@"moonset"];
     uint64_t moonBaseTime = [[self midnight:(moonrise != nil ? [moonrise eventTime] : [moonset eventTime])] timeIntervalSince1970];
         
     
@@ -194,7 +182,6 @@
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateStyle:NSDateFormatterFullStyle];
 	self.dateLabel.text = [formatter stringFromDate:[self.datasource day]];
-	[formatter release];
 }
 
 -(void)showTideForPoint:(CGPoint) point {
@@ -233,8 +220,8 @@
 
 - (NSString*)timeInNativeFormatFromMinutes:(int)minutesSinceMidnight {
 	NSString* key = [NSString stringWithFormat:@"%d",minutesSinceMidnight];
-	if ([self.times objectForKey:key] != nil) {
-		return [self.times objectForKey:key];
+	if ((self.times)[key] != nil) {
+		return (self.times)[key];
 	} else {
 		int hours = minutesSinceMidnight / 60;
 		int minutes = minutesSinceMidnight % 60;
@@ -245,14 +232,12 @@
 		[components setMinute:minutes];
 		
 		NSDate *time = [gregorian dateByAddingComponents:components toDate:[self.datasource day] options:0];
-		[components release];
 		
 		NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 		[formatter setTimeStyle:NSDateFormatterShortStyle];
 		NSString *timeString = [formatter stringFromDate:time];
-		[formatter release];
 		
-		[self.times setObject:timeString forKey:key];
+		(self.times)[key] = timeString;
 		return timeString;
 	}
 }
@@ -266,18 +251,16 @@
 
 - (float)findLowestTide:(SDTide *)tide {	
 	NSSortDescriptor *ascDescriptor = [[NSSortDescriptor alloc] initWithKey:@"height" ascending:YES];
-	NSArray *descriptors = [NSArray arrayWithObject:ascDescriptor];
+	NSArray *descriptors = @[ascDescriptor];
 	NSArray *ascResult = [[tide intervals] sortedArrayUsingDescriptors:descriptors];
-	[ascDescriptor release];
-	return [(SDTideInterval*)[ascResult objectAtIndex:0] height];
+	return [(SDTideInterval*)ascResult[0] height];
 }
 
 - (float)findHighestTide:(SDTide *)tide {
 	NSSortDescriptor *descDescriptor = [[NSSortDescriptor alloc] initWithKey:@"height" ascending:NO];
-	NSArray *descriptors = [NSArray arrayWithObject:descDescriptor];
+	NSArray *descriptors = @[descDescriptor];
 	NSArray *descResult = [[tide intervals] sortedArrayUsingDescriptors:descriptors];
-	[descDescriptor release];
-	return [(SDTideInterval*)[descResult objectAtIndex:0] height];
+	return [(SDTideInterval*)descResult[0] height];
 }
 
 #pragma mark HandleTouch
@@ -336,7 +319,7 @@
 #define MOVE_ANIMATION_DURATION_SECONDS 0.15
     
     NSValue *touchPointValue = [NSValue valueWithCGPoint:touchPoint];
-    [UIView beginAnimations:nil context:touchPointValue];
+    [UIView beginAnimations:nil context:(__bridge void *)(touchPointValue)];
     [UIView setAnimationDuration:MOVE_ANIMATION_DURATION_SECONDS];
     cursorView.transform = CGAffineTransformMakeScale(1.5, 1.5);
     cursorView.center = [touchPointValue CGPointValue];
@@ -402,7 +385,7 @@
     theGroup.duration = animationDuration;
     theGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
     
-    theGroup.animations = [NSArray arrayWithObjects:bounceAnimation, transformAnimation, nil];
+    theGroup.animations = @[bounceAnimation, transformAnimation];
     
     
     // Add the animation group to the layer

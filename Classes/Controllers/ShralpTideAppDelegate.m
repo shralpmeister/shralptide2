@@ -43,11 +43,6 @@ NSString *kBackgroundKey = @"background_preference";
 @synthesize unitsPref, daysPref, showsCurrentsPref, backgroundPref;
 @synthesize managedObjectModel, managedObjectContext, persistentStoreCoordinator;
 
-- (void)dealloc {
-	[rootViewController release];
-	[window release];
-	[super dealloc];
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary*)options {
     NSLog(@"applicationDidFinishLaunching");
@@ -97,7 +92,7 @@ NSString *kBackgroundKey = @"background_preference";
         // no default values have been set, create them here based on what's in our Settings bundle info
         //
         NSDictionary *settingsDict = [self readSettingsDictionary];
-        NSArray *prefSpecifierArray = [settingsDict objectForKey:@"PreferenceSpecifiers"];
+        NSArray *prefSpecifierArray = settingsDict[@"PreferenceSpecifiers"];
         
         NSString *unitsDefault = nil;
         NSNumber *daysDefault = nil;
@@ -106,8 +101,8 @@ NSString *kBackgroundKey = @"background_preference";
         
         for (NSDictionary *prefItem in prefSpecifierArray)
         {
-            NSString *keyValueStr = [prefItem objectForKey:@"Key"];
-            id defaultValue = [prefItem objectForKey:@"DefaultValue"];
+            NSString *keyValueStr = prefItem[@"Key"];
+            id defaultValue = prefItem[@"DefaultValue"];
             
             if ([keyValueStr isEqualToString:kUnitsKey])
             {
@@ -127,12 +122,10 @@ NSString *kBackgroundKey = @"background_preference";
         }
         
         // since no default values have been set (i.e. no preferences file created), create it here     
-        NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     unitsDefault, kUnitsKey,
-                                     daysDefault, kDaysKey,
-                                     currentsDefault, kCurrentsKey,
-                                     backgroundDefault, kBackgroundKey,
-                                     nil];
+        NSDictionary *appDefaults = @{kUnitsKey: unitsDefault,
+                                     kDaysKey: daysDefault,
+                                     kCurrentsKey: currentsDefault,
+                                     kBackgroundKey: backgroundDefault};
         
         [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
         [[NSUserDefaults standardUserDefaults] synchronize];
@@ -180,7 +173,7 @@ NSString *kBackgroundKey = @"background_preference";
     if (managedObjectModel != nil) {
         return managedObjectModel;
     }
-    managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles:nil] retain];    
+    managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];    
     return managedObjectModel;
 }
 
@@ -198,7 +191,7 @@ NSString *kBackgroundKey = @"background_preference";
     
     NSFileManager *fm = [NSFileManager defaultManager];
     
-    NSString *cachesDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *cachesDir = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
     
     NSString *datastorePath = [[NSBundle mainBundle] pathForResource:@"datastore" ofType:@"sqlite"];
     
@@ -233,7 +226,7 @@ NSString *kBackgroundKey = @"background_preference";
 - (NSString *)applicationDocumentsDirectory {
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    NSString *basePath = ([paths count] > 0) ? paths[0] : nil;
     return basePath;
 }
 

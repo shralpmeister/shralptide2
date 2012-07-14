@@ -40,10 +40,10 @@
         NSAssert(start != nil, @"Start date must not be nil");
         NSAssert(end != nil, @"End date must not be nil");
         
-        startTime = [start retain];
-        stopTime = [end retain];
-        intervals = [tideIntervals retain];
-        allEvents = [events retain];
+        startTime = start;
+        stopTime = end;
+        intervals = tideIntervals;
+        allEvents = events;
         self.stationName = station;
     }
     return self;
@@ -51,7 +51,7 @@
 
 -(NSString*)shortLocationName {
 	NSArray *parts = [stationName componentsSeparatedByString:@","];
-	return [parts objectAtIndex:0];
+	return parts[0];
 }
 
 - (CGPoint)nearestDataPointForTime:(int) minutesFromMidnight {
@@ -94,7 +94,7 @@
 	for (SDTideEvent *event in [self events]) {
 		if ([[NSDate date] timeIntervalSince1970] < [[event eventTime] timeIntervalSince1970]) {
             self.unitShort = event.units;
-			return [NSNumber numberWithInt:count];
+			return @(count);
 		}
 		++count;
 	}
@@ -110,13 +110,13 @@
 -(NSDictionary*)sunriseSunsetEventsForDay:(NSDate*)date
 {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    NSPredicate *sunEvents = [NSPredicate predicateWithFormat:@"(eventType == %d OR eventType == %d) AND eventTime BETWEEN %@", sunrise, sunset, [NSArray arrayWithObjects:[date startOfDay], [date endOfDay], nil]];
+    NSPredicate *sunEvents = [NSPredicate predicateWithFormat:@"(eventType == %d OR eventType == %d) AND eventTime BETWEEN %@", sunrise, sunset, @[[date startOfDay], [date endOfDay]]];
     NSArray* events = [allEvents filteredArrayUsingPredicate:sunEvents];
     for (SDTideEvent* event in events) {
         if (event.eventType == sunrise) {
-            [result setObject: event forKey:@"sunrise"];
+            result[@"sunrise"] = event;
         } else {
-            [result setObject:event forKey:@"sunset"];
+            result[@"sunset"] = event;
         }
     }
     return [NSDictionary dictionaryWithDictionary:result];
@@ -125,13 +125,13 @@
 -(NSDictionary*)moonriseMoonsetEventsForDay:(NSDate*)date
 {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    NSPredicate *sunEvents = [NSPredicate predicateWithFormat:@"(eventType == %d OR eventType == %d) AND eventTime BETWEEN %@", moonrise, moonset, [NSArray arrayWithObjects:[date startOfDay], [date endOfDay], nil]];
+    NSPredicate *sunEvents = [NSPredicate predicateWithFormat:@"(eventType == %d OR eventType == %d) AND eventTime BETWEEN %@", moonrise, moonset, @[[date startOfDay], [date endOfDay]]];
     NSArray* events = [allEvents filteredArrayUsingPredicate:sunEvents];
     for (SDTideEvent* event in events) {
         if (event.eventType == moonrise) {
-            [result setObject: event forKey:@"moonrise"];
+            result[@"moonrise"] = event;
         } else {
-            [result setObject:event forKey:@"moonset"];
+            result[@"moonset"] = event;
         }
     }
     return [NSDictionary dictionaryWithDictionary:result];
@@ -139,13 +139,13 @@
 
 -(NSArray*)eventsForDay:(NSDate*)date
 {
-    NSPredicate *daysEventsOnly = [NSPredicate predicateWithFormat:@"eventTime BETWEEN %@",[NSArray arrayWithObjects:[date startOfDay], [date endOfDay], nil]];
+    NSPredicate *daysEventsOnly = [NSPredicate predicateWithFormat:@"eventTime BETWEEN %@",@[[date startOfDay], [date endOfDay]]];
     return [[self events] filteredArrayUsingPredicate:daysEventsOnly];
 }
 
 -(NSArray*)intervalsForDay:(NSDate*)date
 {
-    NSPredicate *daysIntervalsOnly = [NSPredicate predicateWithFormat:@"time BETWEEN %@",[NSArray arrayWithObjects:[date startOfDay], [date endOfDay], nil]];
+    NSPredicate *daysIntervalsOnly = [NSPredicate predicateWithFormat:@"time BETWEEN %@",@[[date startOfDay], [date endOfDay]]];
     return [self.intervals filteredArrayUsingPredicate:daysIntervalsOnly];
 }
 
@@ -167,14 +167,6 @@
 -(void)dealloc
 {
 	NSLog(@"Deallocating SDTide %@",self);
-    [startTime release];
-    [stopTime release];
-    [allEvents release];
-    [intervals release];
-	[stationName release];
-	[unitLong release];
-	[unitShort release];
-    [super dealloc];
 }
 
 @synthesize startTime;

@@ -10,13 +10,13 @@
 
 
 @interface TideStationTableViewCell : UITableViewCell {
-    UILabel *nameLabel;
-    UILabel *levelLabel;
-    UILabel *directionLabel;
+    UILabel *__unsafe_unretained nameLabel;
+    UILabel *__unsafe_unretained levelLabel;
+    UILabel *__unsafe_unretained directionLabel;
 }
 
-@property (nonatomic,assign) IBOutlet UILabel *nameLabel;
-@property (nonatomic,assign) IBOutlet UILabel *levelLabel;
-@property (nonatomic,assign) IBOutlet UILabel *directionLabel;
+@property (nonatomic,unsafe_unretained) IBOutlet UILabel *nameLabel;
+@property (nonatomic,unsafe_unretained) IBOutlet UILabel *levelLabel;
+@property (nonatomic,unsafe_unretained) IBOutlet UILabel *directionLabel;
 
 @end

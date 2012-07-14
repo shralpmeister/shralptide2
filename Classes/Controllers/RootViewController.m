@@ -55,7 +55,7 @@
 - (void)setDefaultLocation;
 
 
-@property (nonatomic, retain) NSString *cachedLocationFilePath;
+@property (nonatomic, strong) NSString *cachedLocationFilePath;
 
 @end
 
@@ -78,19 +78,6 @@
 @synthesize cachedLocationFilePath;
 
 
-- (void)dealloc {
-	[infoButton release];
-	[chartScrollView release];
-	[currentCalendar release];
-	[viewControllers release];
-	[chartViewControllers release];
-	[scrollView release];
-	[waitIndicator release];
-	[waitReason release];
-	[waitView release];
-	[tideStation release];
-	[super dealloc];
-}
 
 - (void)viewDidLoad {
     NSLog(@"%@", [[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-free" ofType:@"tcd"]);
@@ -99,13 +86,12 @@
 	[pathBuilder appendString:@":"];
 	[pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-nonfree" ofType:@"tcd"]];
 	setenv("HFILE_PATH",[pathBuilder cStringUsingEncoding:NSUTF8StringEncoding],1);
-	[pathBuilder release];
     
     
-    NSString *cachesDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *cachesDir = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
     self.cachedLocationFilePath = [cachesDir stringByAppendingPathComponent:@"tidestate.plist"];
     
-	NSString *lastLocation = [[self lastLocation] retain];
+	NSString *lastLocation = [self lastLocation];
 	
 	if (lastLocation) {
 		[self setLocation:lastLocation];
@@ -114,13 +100,11 @@
 			NSString *message = [NSString stringWithFormat:@"%@ is no longer a supported location. Please choose another location.",lastLocation];
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 			[alert show];
-			[alert release];
 			[self setDefaultLocation];
 		}
 	} else {
 		[self setDefaultLocation];
 	}
-	[lastLocation release];
 	self.currentCalendar = [NSCalendar currentCalendar];
 }
 
@@ -142,8 +126,6 @@
     
     NSLog(@"%d viewControllers exist",[viewControllers count]);
 	self.chartViewControllers = chartControllers;
-    [controllers release];
-	[chartControllers release];
 	
     // a page is the width of the scroll view
     scrollView.pagingEnabled = YES;
@@ -173,7 +155,7 @@
 - (void)refreshViews {
 	NSLog(@"Refresh views called at %@", [NSDate date]);
 	
-	MainViewController *pageOneController = [viewControllers objectAtIndex:0];
+	MainViewController *pageOneController = viewControllers[0];
     
 	if ([[NSDate date] timeIntervalSinceDate: [[pageOneController sdTide] startTime]] > 86400) {
 		[self viewDidAppear:YES];
@@ -187,7 +169,7 @@
         [view removeFromSuperview];
     }
 	for (unsigned i = 0; i < appDelegate.daysPref; i++) {
-		[chartViewControllers replaceObjectAtIndex:i withObject:[NSNull null]];
+		chartViewControllers[i] = [NSNull null];
     }
 }
 
@@ -197,22 +179,22 @@
 }
 
 - (void)recalculateTides { 
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    @autoreleasepool {
     
-    NSLog(@"Recalculating tides for %d days",appDelegate.daysPref);
-    self.sdTide = [self computeTidesForNumberOfDays:appDelegate.daysPref];
+        NSLog(@"Recalculating tides for %d days",appDelegate.daysPref);
+        self.sdTide = [self computeTidesForNumberOfDays:appDelegate.daysPref];
 
-    for (unsigned i = 0; i < appDelegate.daysPref; i++) {
+        for (unsigned i = 0; i < appDelegate.daysPref; i++) {
 		[self loadScrollViewWithPage:i];
 	}
+        
+        [self stopWaitIndicator];
     
-    [self stopWaitIndicator];
-    
-    [pool release];
+    }
 }
 
 -(void)startWaitIndicator {
-	UIViewController* currentPageController = [viewControllers objectAtIndex:pageControl.currentPage];
+	UIViewController* currentPageController = viewControllers[pageControl.currentPage];
 	if ((NSNull*)currentPageController == [NSNull null]) {
 		return;
 	}
@@ -238,13 +220,12 @@
     if (page >= appDelegate.daysPref) return;
 	
     // replace the placeholder if necessary
-    MainViewController *controller = [viewControllers objectAtIndex:page];
+    MainViewController *controller = viewControllers[page];
     if ((NSNull *)controller == [NSNull null]) {
         controller = [[MainViewController alloc] initWithPageNumber:page];
         controller.rootViewController = self;
         controller.backgroundImage = [UIImage imageNamed:appDelegate.backgroundPref];
-        [viewControllers replaceObjectAtIndex:page withObject:controller];
-        [controller release];
+        viewControllers[page] = controller;
     }
     
     NSLog(@"Calling setSdTide on %@",controller);
@@ -265,7 +246,6 @@
 	NSDateComponents *comps = [[NSDateComponents alloc] init];
 	[comps setDay: number];
 	NSDate *result = [currentCalendar dateByAddingComponents:comps toDate:date options:unitFlags];
-	[comps release];
 	return result;
 }
 
@@ -318,15 +298,14 @@
     if (page >= appDelegate.daysPref) return;
 	
     // replace the placeholder if necessary
-    ChartViewController *controller = [chartViewControllers objectAtIndex:page];
+    ChartViewController *controller = chartViewControllers[page];
     if ((NSNull *)controller == [NSNull null]) {
         NSLog(@"Initializing new ChartViewController");
-		controller = [[ChartViewController alloc] initWithNibName:@"ChartView" bundle:nil tide:[[viewControllers objectAtIndex:page] sdTide]];
-        [chartViewControllers replaceObjectAtIndex:page withObject:controller];
-        [controller release];
+		controller = [[ChartViewController alloc] initWithNibName:@"ChartView" bundle:nil tide:[viewControllers[page] sdTide]];
+        chartViewControllers[page] = controller;
     } else {
 		if (controller.sdTide == nil) {
-			[controller setSdTide:[[viewControllers objectAtIndex:page] sdTide]];
+			[controller setSdTide:[viewControllers[page] sdTide]];
 		}
 	}
     
@@ -357,7 +336,7 @@
 	
 	UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(cancelAddLocation)];
     
-    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Tides",@"Currents", nil]];
+    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Tides",@"Currents"]];
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     [segmentedControl addTarget:mapController action:@selector(updateDisplayedStations) forControlEvents:UIControlEventValueChanged];
     
@@ -366,19 +345,13 @@
     UIBarButtonItem *segmentedButtonItem = [[UIBarButtonItem alloc] initWithCustomView:segmentedControl];
     UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 
-	mapController.toolbarItems = [NSArray arrayWithObjects:flex,segmentedButtonItem,flex,nil];
+	mapController.toolbarItems = @[flex,segmentedButtonItem,flex];
 	mapController.navController = mapNavigationController;
 	mapController.navigationItem.rightBarButtonItem = cancelButton;
     mapNavigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     
-    [segmentedControl release];
-    [segmentedButtonItem release];
-    [flex release];
-    [cancelButton release];	
 	[self presentModalViewController:mapNavigationController animated:YES];
 	
-	[mapNavigationController release];
-	[mapController release];
 	
 }
 
@@ -395,11 +368,9 @@
     
     self.stationNavController.doneButton = doneButton;
 
-    [doneButton release];
     
     self.stationNavController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 	[self presentModalViewController:self.stationNavController animated:YES];
-	[listController release];
 }
 
 -(NSArray*)queryCountries {
@@ -412,7 +383,6 @@
     
 	NSError *error;
 	NSArray *results = [context executeFetchRequest:fr error:&error];
-    [fr release];
     
     NSMutableArray *countries = [NSMutableArray array];
     for (SDCountry *country in results) {
@@ -420,8 +390,7 @@
     }
     
     NSSortDescriptor *sortByName = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:sortByName];
-    [sortByName release];
+    NSArray *sortDescriptors = @[sortByName];
     
     return [countries sortedArrayUsingDescriptors:sortDescriptors];
 }
@@ -446,12 +415,12 @@
 	[super viewDidAppear: animated];
 	[self clearChartData];
     [self doBackgroundTideCalculation];
-    MainViewController* mainVC = (MainViewController*)[viewControllers objectAtIndex:0];
+    MainViewController* mainVC = (MainViewController*)viewControllers[0];
 	[[mainVC currentTideView] becomeFirstResponder];
     
     /* make sure that we show the current time whenever the view is changed or reappears */
     int page = pageControl.currentPage;
-    ChartViewController *chartController = (ChartViewController*)[chartViewControllers objectAtIndex:page];
+    ChartViewController *chartController = (ChartViewController*)chartViewControllers[page];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -504,10 +473,10 @@
 	frame.origin.x = frame.size.width * page;
 	frame.origin.y = 0;
     
-	[(MainViewController*)[viewControllers objectAtIndex:page] view].frame = frame;
+	[(MainViewController*)viewControllers[page] view].frame = frame;
 	[scrollView scrollRectToVisible:frame animated:NO];
 	
-	[(MainViewController*)[self.viewControllers objectAtIndex:0] updatePresentTideInfo];
+	[(MainViewController*)(self.viewControllers)[0] updatePresentTideInfo];
 	[self replaceSubview:chartView withSubview:mainView transition:kCATransitionFade direction:@"" duration:0.75];
     
 	[self.view addSubview:pageControl];
@@ -529,7 +498,7 @@
 	CGRect frame = chartScrollView.frame;
 	frame.origin.x = frame.size.width * page;
 	frame.origin.y = 0;
-	ChartViewController *viewController = (ChartViewController*)[chartViewControllers objectAtIndex:page];
+	ChartViewController *viewController = (ChartViewController*)chartViewControllers[page];
 	viewController.view.frame = frame;
     [viewController showCurrentTime];
 
@@ -603,16 +572,15 @@
 #pragma mark savestate
 - (void)saveState {
 	NSMutableDictionary *plist = [[NSMutableDictionary alloc] initWithCapacity:1];
-	[plist setObject:location forKey:@"location"];
+	plist[@"location"] = location;
     
 	[self writeApplicationPlist:plist toFile:self.cachedLocationFilePath];
     
-	[plist release];
 }
 
 -(NSString*)lastLocation {
 	NSDictionary *plist = [self applicationPlistFromFile:self.cachedLocationFilePath];
-	return (NSString *)[plist objectForKey:@"location"];
+	return (NSString *)plist[@"location"];
 }
 
 - (BOOL)writeApplicationPlist:(id)plist toFile:(NSString *)fileName {
@@ -640,7 +608,6 @@
     if (!retPlist){
         NSLog(@"Plist not returned, error: %@", error);
     }
-    [retData release];
     
     return retPlist;
 }

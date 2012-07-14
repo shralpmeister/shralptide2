@@ -18,17 +18,6 @@
 @synthesize modalViewDelegate;
 
 
-- (void)dealloc {
-	[tideStationData release];
-    [locationCell release];
-    [titleView release];
-    [titleLabel release];
-    [buttonView release];
-    [selectButton release];
-    [primaryCell release];
-    [mapView release];
-    [super dealloc];
-}
 
 -(IBAction)addTideStation
 {
@@ -42,7 +31,6 @@
     self.tideStationData = tideAnnotation;
     self.tideStationData.title = station.name;
     self.tideStationData.primary = [station.primary boolValue];
-    [tideAnnotation release];
 }
 
 -(void)loadView 
@@ -135,7 +123,6 @@
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
     
-    [mapImage release];
     
     self.titleView = nil;
     self.buttonView = nil;

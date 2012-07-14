@@ -52,18 +52,18 @@
     SelectStationNavigationController *stationNavController;
 }
 
-@property (nonatomic, retain) UIButton *infoButton;
-@property (nonatomic, retain) UIScrollView *scrollView;
-@property (nonatomic, retain) ChartScrollView *chartScrollView;
-@property (nonatomic, retain) UISearchBar *searchBar;
-@property (nonatomic, retain) NSString *location;
-@property (nonatomic, retain) SDTide* sdTide;
-@property (nonatomic, retain) NSMutableArray *viewControllers;
-@property (nonatomic, retain) NSMutableArray *chartViewControllers;
-@property (nonatomic, retain) NSCalendar *currentCalendar;
-@property (nonatomic, retain) UILabel *waitReason;
-@property (nonatomic, retain) SDTideStationData *tideStation;
-@property (nonatomic, retain) SelectStationNavigationController *stationNavController;
+@property (nonatomic, strong) UIButton *infoButton;
+@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) ChartScrollView *chartScrollView;
+@property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, strong) NSString *location;
+@property (nonatomic, strong) SDTide* sdTide;
+@property (nonatomic, strong) NSMutableArray *viewControllers;
+@property (nonatomic, strong) NSMutableArray *chartViewControllers;
+@property (nonatomic, strong) NSCalendar *currentCalendar;
+@property (nonatomic, strong) UILabel *waitReason;
+@property (nonatomic, strong) SDTideStationData *tideStation;
+@property (nonatomic, strong) SelectStationNavigationController *stationNavController;
 
 @property (readonly, getter=isTransitioning) BOOL transitioning;
 

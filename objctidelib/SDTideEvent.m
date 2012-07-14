@@ -27,7 +27,7 @@
 -(id)initWithTime:(NSDate *)time Event:(SDTideState)state andHeight:(float)height;
 {
     if (self = [super init]) {
-        eventTime = [time retain];
+        eventTime = time;
         eventType = state;
         eventHeight = height;
     }
@@ -91,7 +91,6 @@
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setTimeStyle:NSDateFormatterShortStyle];
 	NSString *fTime = [formatter stringFromDate:eventTime];
-    [formatter release];
     return fTime;
 }
 
@@ -99,22 +98,15 @@
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateFormat:@"HH:mm"];
     NSString *fTime = [formatter stringFromDate:eventTime];
-    [formatter release];
     return fTime;
 }
 -(NSString *)eventTimeString12HR {
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateFormat:@"HH:mm pm"];
     NSString *fTime = [formatter stringFromDate:eventTime];
-    [formatter release];
 	return fTime;	
 }
 
--(void)dealloc {
-	[eventTime release];
-    [units release];
-	[super dealloc];
-}
 
 @synthesize eventTime;
 @synthesize eventType;

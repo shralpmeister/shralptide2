@@ -13,10 +13,4 @@
 
 @synthesize flagView, nameLabel;
 
--(void)dealloc
-{
-    [flagView release];
-    [nameLabel release];
-    [super dealloc];
-}
 @end

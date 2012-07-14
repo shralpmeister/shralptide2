@@ -13,6 +13,6 @@
 	NSArray *rows;
 }
 
-@property (nonatomic,retain) NSArray *rows;
+@property (nonatomic,strong) NSArray *rows;
 
 @end

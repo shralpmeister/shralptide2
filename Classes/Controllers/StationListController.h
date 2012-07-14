@@ -10,14 +10,14 @@
 #import "SDTideStation.h"
 
 @interface StationListController : UITableViewController {
-	NSArray *stations;
+	NSArray *__unsafe_unretained stations;
     NSMutableDictionary *sections;
     NSArray *sectionKeys;
 }
 
-@property (readonly) NSArray *stations;
-@property (nonatomic,retain) NSMutableDictionary *sections;
-@property (nonatomic,retain) NSArray *sectionKeys;
+@property (unsafe_unretained, readonly) NSArray *stations;
+@property (nonatomic,strong) NSMutableDictionary *sections;
+@property (nonatomic,strong) NSArray *sectionKeys;
 
 -(void)setStations:(NSArray*)newStations;
 -(void)chooseStation:(SDTideStation*) station;

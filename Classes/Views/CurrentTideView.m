@@ -47,11 +47,6 @@
 - (void)dealloc
 {
     NSLog(@"Whoa, %@, was dealloc'd",self);
-	[locationLabel release];
-	[date release];
-	[heightLabel release];
-	[date release];
-	[super dealloc];
 }
 
 @end

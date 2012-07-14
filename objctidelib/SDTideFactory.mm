@@ -70,7 +70,7 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
         }
     }
     
-    SDTide *tidy = [[[SDTide alloc] init] autorelease];
+    SDTide *tidy = [[SDTide alloc] init];
     tidy.stationName = name;
     tidy.startTime = [NSDate dateWithTimeIntervalSince1970:startTime.timet()];
     tidy.stopTime = [NSDate dateWithTimeIntervalSince1970:endTime.timet()];
@@ -100,12 +100,11 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
 	NSError *error = nil;
 	NSArray *results = [context executeFetchRequest:fr error:&error];
 	if ([results count] == 1) {
-        SDTideStation *entityObj = [results objectAtIndex:0];
-        station = [[[SDTideStationData alloc] init] autorelease];
+        SDTideStation *entityObj = results[0];
+        station = [[SDTideStationData alloc] init];
         station.name = entityObj.name;
         station.units = entityObj.units;
     }    
-    [fr release];
     return station;
 }
 
@@ -135,11 +134,10 @@ static NSArray* tideEventsForLocation(const Dstr &name, Interval step, Timestamp
             if (!event.isSunMoonEvent()) {
                 objcEvent.eventHeight = (float)event.eventLevel.val();
                 constString unitsCString = Units::shortName(station->predictUnits());
-                objcEvent.units = [NSString stringWithCString:unitsCString encoding:NSUTF8StringEncoding];
+                objcEvent.units = @(unitsCString);
             }
             
             [tideEvents addObject:objcEvent];
-            [objcEvent release];
             ++it;
         }
     }
@@ -198,10 +196,9 @@ static NSArray* rawEventsForLocation(const Dstr &name, Interval step, Timestamp 
             interval.time = [NSDate dateWithTimeIntervalSince1970:event.eventTime.timet()];
             interval.height = (float)event.eventLevel.val();
             constString unitsCString = Units::shortName(station->predictUnits());
-            interval.units = [NSString stringWithCString:unitsCString encoding:NSUTF8StringEncoding];
+            interval.units = @(unitsCString);
             
             [intervals addObject:interval];
-            [interval release];
             
             ++it;
         }

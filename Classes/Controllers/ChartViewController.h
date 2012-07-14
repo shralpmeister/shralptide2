@@ -35,6 +35,6 @@
 -(void)showCurrentTime;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil tide:(SDTide *)aTide;
 
-@property (nonatomic,retain) SDTide *sdTide;
+@property (nonatomic,strong) SDTide *sdTide;
 @property (assign) int page;
 @end

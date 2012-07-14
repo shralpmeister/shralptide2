@@ -46,10 +46,10 @@
     if (cell == nil)
     {
         NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:@"PickerTableCell" owner:self options:nil];
-        cell = [nibViews objectAtIndex: 0];
+        cell = nibViews[0];
 	}
 	
-	SDStateProvince* state = (SDStateProvince*)[rows objectAtIndex:row];
+	SDStateProvince* state = (SDStateProvince*)rows[row];
     
     cell.nameLabel.text = state.name;
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -65,7 +65,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSString *stateName = ((SDStateProvince*)[self.rows objectAtIndex:indexPath.row]).name;
+	NSString *stateName = ((SDStateProvince*)(self.rows)[indexPath.row]).name;
     
     NSManagedObjectContext *context = [(ShralpTideAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
     NSEntityDescription *entityDescription = [NSEntityDescription
@@ -82,29 +82,22 @@
 	NSError *error;
 	NSArray *results = [context executeFetchRequest:fr error:&error];
 	if ([results count] > 0) {
-		SDStateProvince *state = [results objectAtIndex:0];
+		SDStateProvince *state = results[0];
         StationListController *stationController = [[StationListController alloc] initWithNibName:@"StationListView" bundle:nil];
             
         NSArray *orderedStations = [[state.tideStations objectsPassingTest:
                                      ^(id obj, BOOL *stop) {
                                          BOOL result = appDelegate.showsCurrentsPref ? YES : ![((SDTideStation*)obj).current boolValue];
                                          return result;
-                                     }] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortByName]];
+                                     }] sortedArrayUsingDescriptors:@[sortByName]];
         
         [stationController setStations: orderedStations];
         stationController.navigationItem.title = @"Tide Stations";
         
         [self.navigationController pushViewController:stationController animated:YES];
-        [stationController release];
     }
     
-    [fr release];
 }
 
--(void)dealloc
-{
-	[super dealloc];
-	[rows release];
-}
 
 @end

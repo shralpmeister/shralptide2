@@ -13,11 +13,5 @@
 
 @synthesize doneButton,selectedStation, detailViewDelegate;
 
--(void)dealloc
-{
-    [super dealloc];
-    [doneButton release];
-    [selectedStation release];
-}
 
 @end

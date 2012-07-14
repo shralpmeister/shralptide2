@@ -70,17 +70,12 @@
 	[tempTable addObject: @[time3, heightLabel3, state3, bullet3]];
 	[tempTable addObject: @[time4, heightLabel4, state4, bullet4]];
 	
-	table = [tempTable retain];
-	[tempTable release];
+	table = tempTable;
 	
 	[self refresh];
  }
 
 - (void)setSdTide: (SDTide*)newTide {
-	[newTide retain];
-	if (sdTide != nil) {
-		[sdTide release];
-	}
 	sdTide = newTide;
 	[self refresh];
 }
@@ -96,7 +91,6 @@
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateStyle:NSDateFormatterFullStyle];
         [date setText: [formatter stringFromDate:[self today]]];
-        [formatter release];
         [tideStateImage setHidden:NO];
     }
 	
@@ -188,7 +182,6 @@
     
     NSDate* today = [calendar dateByAddingComponents:components toDate:[sdTide startTime] options:0];
     
-    [components release];
     return today;
 }
 
@@ -226,10 +219,5 @@
 	}
 }
 
-- (void)dealloc {
-	[table release];
-	[sdTide release];
-	[super dealloc];
-}
 
 @end

@@ -68,14 +68,9 @@
     
     NSDate* day = [calendar dateByAddingComponents:components toDate:[sdTide startTime] options:0];
     
-    [components release];
     return day;
 }
 
-- (void)dealloc {
-	[sdTide release];
-    [super dealloc];
-}
 
 
 @end

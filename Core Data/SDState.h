@@ -13,7 +13,7 @@
 @interface SDState : NSManagedObject {
 }
 
-@property (nonatomic,retain) NSString *name;
-@property (nonatomic,retain) NSString *flag;
+@property (nonatomic,strong) NSString *name;
+@property (nonatomic,strong) NSString *flag;
 
 @end

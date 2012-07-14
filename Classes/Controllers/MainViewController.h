@@ -26,7 +26,7 @@
 
 @interface MainViewController : UIViewController 
 {
-	SDTide *sdTide;
+	SDTide *__unsafe_unretained sdTide;
     IBOutlet UIImageView *bgImageView;
 	IBOutlet UILabel *locationLabel;
 	IBOutlet UILabel *presentHeightLabel;
@@ -66,8 +66,8 @@
 - (id)initWithPageNumber:(int)page;
 -(IBAction)chooseTideStation:(id)sender;
 
-@property (readonly) SDTide *sdTide;
-@property (nonatomic,retain) UIView *currentTideView;
-@property (nonatomic,retain) RootViewController *rootViewController;
-@property (nonatomic,retain) UIImage *backgroundImage;
+@property (unsafe_unretained, readonly) SDTide *sdTide;
+@property (nonatomic,strong) UIView *currentTideView;
+@property (nonatomic,strong) RootViewController *rootViewController;
+@property (nonatomic,strong) UIImage *backgroundImage;
 @end

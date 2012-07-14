@@ -53,10 +53,10 @@ typedef enum {
 -(NSDictionary*)sunriseSunsetEventsForDay:(NSDate*)date;
 -(NSDictionary*)moonriseMoonsetEventsForDay:(NSDate*)date;
 
-@property (nonatomic,retain) NSDate *startTime;
-@property (nonatomic,retain) NSDate *stopTime;
-@property (nonatomic,retain) NSArray *allEvents;
-@property (nonatomic,retain) NSArray *intervals;
+@property (nonatomic,strong) NSDate *startTime;
+@property (nonatomic,strong) NSDate *stopTime;
+@property (nonatomic,strong) NSArray *allEvents;
+@property (nonatomic,strong) NSArray *intervals;
 @property (nonatomic,copy) NSString *stationName;
 @property (nonatomic,copy) NSString *unitLong;
 @property (nonatomic,copy) NSString *unitShort;

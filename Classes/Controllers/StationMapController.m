@@ -91,10 +91,10 @@ BOOL zoomedToLocal;
         return;
     }
     
-    NSExpression *minLongitude = [NSExpression expressionForConstantValue:[NSNumber numberWithDouble:(region.center.longitude - region.span.longitudeDelta)]];
-	NSExpression *maxLongitude = [NSExpression expressionForConstantValue:[NSNumber numberWithDouble:(region.center.longitude + region.span.longitudeDelta)]];
-	NSExpression *minLatitude = [NSExpression expressionForConstantValue:[NSNumber numberWithDouble:(region.center.latitude - region.span.latitudeDelta)]];
-	NSExpression *maxLatitude = [NSExpression expressionForConstantValue:[NSNumber numberWithDouble:(region.center.latitude + region.span.latitudeDelta)]];
+    NSExpression *minLongitude = [NSExpression expressionForConstantValue:@(region.center.longitude - region.span.longitudeDelta)];
+	NSExpression *maxLongitude = [NSExpression expressionForConstantValue:@(region.center.longitude + region.span.longitudeDelta)];
+	NSExpression *minLatitude = [NSExpression expressionForConstantValue:@(region.center.latitude - region.span.latitudeDelta)];
+	NSExpression *maxLatitude = [NSExpression expressionForConstantValue:@(region.center.latitude + region.span.latitudeDelta)];
     
 	NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:@"SDTideStation" 
@@ -108,7 +108,7 @@ BOOL zoomedToLocal;
 
     NSLog(@"applying search filter: %@", filter);
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat: filter, [NSArray arrayWithObjects:minLatitude, maxLatitude, nil], [NSArray arrayWithObjects:minLongitude, maxLongitude,nil],currentBoolean];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: filter, @[minLatitude, maxLatitude], @[minLongitude, maxLongitude],currentBoolean];
     
 	NSFetchRequest *fr = [[NSFetchRequest alloc] init];
 	[fr setEntity: entityDescription];
@@ -136,10 +136,8 @@ BOOL zoomedToLocal;
                 [mapView addAnnotation: annotation];
             }
             
-            [annotation release];
 		}
 	}
-	[fr release];
 }
 
 -(void)showNearbyLocations:(CLLocation *)location {
@@ -160,7 +158,7 @@ BOOL zoomedToLocal;
 	
 	MKAnnotationView *view = [aMapView dequeueReusableAnnotationViewWithIdentifier:@"TideStationPinView"];
 	if (view == nil) {
-		MKPinAnnotationView *pin = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"TideStationPinView"] autorelease];
+		MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"TideStationPinView"];
         TideStationAnnotation *tsAnnotation = (TideStationAnnotation*)annotation;
         pin.pinColor = tsAnnotation.isPrimary ? MKPinAnnotationColorGreen : MKPinAnnotationColorRed;
 		[pin setCanShowCallout:YES];
@@ -228,15 +226,9 @@ BOOL zoomedToLocal;
 
     StationDetailViewController *detailViewController = [[StationDetailViewController alloc] initWithNibName:@"StationInfoView" bundle:nil];
     detailViewController.modalViewDelegate = self.modalViewDelegate;
-	detailViewController.tideStationData = [[mapView selectedAnnotations] objectAtIndex:0];
+	detailViewController.tideStationData = [mapView selectedAnnotations][0];
 	[navController pushViewController: detailViewController animated:YES];
-    [detailViewController release];
 }
 
--(void)dealloc
-{
-	[mapView release];
-	[super dealloc];
-}
 
 @end

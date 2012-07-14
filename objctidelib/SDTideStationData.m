@@ -32,14 +32,5 @@
 @synthesize longitude;
 @synthesize state;
 
--(void)dealloc {
-	[name release];
-	[units release];
-	[distance release];
-	[latitude release];
-	[longitude release];
-	[state release];
-	[super dealloc];
-}
 
 @end

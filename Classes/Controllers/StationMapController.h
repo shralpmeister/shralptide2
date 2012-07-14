@@ -24,17 +24,17 @@ typedef enum {
 @interface StationMapController : UIViewController <CLLocationManagerDelegate,MKMapViewDelegate> {
 	IBOutlet MKMapView *mapView;
 	SelectStationNavigationController *navController;
-	id modalViewDelegate;
+	id __unsafe_unretained modalViewDelegate;
 	SDStationType stationType;
     UISegmentedControl *tideCurrentSelector;
 }
 
 -(id)initWithNibName:(NSString *)nibNameOrNil forStationType:(SDStationType)aStationType;
 
-@property (nonatomic,retain) MKMapView *mapView;
+@property (nonatomic,strong) MKMapView *mapView;
 @property (assign,readwrite) SDStationType stationType;
-@property (nonatomic,retain) UINavigationController *navController;
-@property (assign) id modalViewDelegate;
-@property (nonatomic,retain) UISegmentedControl *tideCurrentSelector;
+@property (nonatomic,strong) UINavigationController *navController;
+@property (unsafe_unretained) id modalViewDelegate;
+@property (nonatomic,strong) UISegmentedControl *tideCurrentSelector;
 
 @end

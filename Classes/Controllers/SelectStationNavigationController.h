@@ -13,11 +13,11 @@
 @interface SelectStationNavigationController : UINavigationController {
     UIBarButtonItem *doneButton;
     TideStationAnnotation *selectedStation;
-    id<StationDetailViewControllerDelegate> detailViewDelegate;
+    id<StationDetailViewControllerDelegate> __unsafe_unretained detailViewDelegate;
 }
 
-@property (nonatomic,retain) UIBarButtonItem *doneButton;
-@property (nonatomic,retain) TideStationAnnotation *selectedStation;
-@property (assign) id<StationDetailViewControllerDelegate> detailViewDelegate;
+@property (nonatomic,strong) UIBarButtonItem *doneButton;
+@property (nonatomic,strong) TideStationAnnotation *selectedStation;
+@property (unsafe_unretained) id<StationDetailViewControllerDelegate> detailViewDelegate;
 
 @end

@@ -15,11 +15,6 @@
 
 @synthesize rows;
 
--(void)dealloc
-{
-    self.rows = nil;
-    [super dealloc];
-}
 
 -(void)loadView {
     [super loadView];
@@ -48,10 +43,10 @@
     if (cell == nil)
     {
         NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:@"PickerTableCell" owner:self options:nil];
-        cell = [nibViews objectAtIndex: 0];
+        cell = nibViews[0];
 	}
 	
-    SDCountry *country = ((SDCountry*)[rows objectAtIndex:row]);
+    SDCountry *country = ((SDCountry*)rows[row]);
 	cell.nameLabel.text = country.name;
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
@@ -67,7 +62,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSString *countryName = ((SDCountry*)[self.rows objectAtIndex:indexPath.row]).name;
+	NSString *countryName = ((SDCountry*)(self.rows)[indexPath.row]).name;
     
     NSManagedObjectContext *context = [(ShralpTideAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
     NSEntityDescription *entityDescription = [NSEntityDescription
@@ -84,7 +79,7 @@
 	NSError *error;
 	NSArray *results = [context executeFetchRequest:fr error:&error];
 	if ([results count] > 0) {
-		SDCountry *country = [results objectAtIndex:0];
+		SDCountry *country = results[0];
         if ([country.states count] == 0) {
             StationListController *stationController = [[StationListController alloc] initWithNibName:@"StationListView" bundle:nil];
             
@@ -93,16 +88,15 @@
                                                       BOOL result = ![((SDTideStation*)obj).current boolValue];
                                                       return result;
                                                   }] 
-                                    sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortByName]];
+                                    sortedArrayUsingDescriptors:@[sortByName]];
             //stationController.stations = orderedStations;
             [stationController setStations: orderedStations];
             
             [self.navigationController pushViewController:stationController animated:YES];
-            [stationController release];
         } else {
             StateListController *stateController = [[StateListController alloc] initWithNibName:@"StateListView" bundle:nil];
 
-            NSArray *orderedStates = [[country.states allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortByName]];
+            NSArray *orderedStates = [[country.states allObjects] sortedArrayUsingDescriptors:@[sortByName]];
             stateController.rows = orderedStates;
             
             if ([country.name isEqualToString:@"Canada"]) {
@@ -113,12 +107,10 @@
                 stateController.navigationItem.title = NSLocalizedString(@"State",nil);
             }
             [self.navigationController pushViewController: stateController animated:YES];
-            [stateController release];
         }
 
 	}
 	
-	[fr release];
 }
 
 @end
