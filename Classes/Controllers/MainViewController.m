@@ -65,10 +65,10 @@
     }
     
 	NSMutableArray *tempTable = [[NSMutableArray alloc] init];
-	[tempTable addObject: [NSArray arrayWithObjects: time1, heightLabel1, state1, bullet1, nil]];
-	[tempTable addObject: [NSArray arrayWithObjects: time2, heightLabel2, state2, bullet2, nil]];
-	[tempTable addObject: [NSArray arrayWithObjects: time3, heightLabel3, state3, bullet3, nil]];
-	[tempTable addObject: [NSArray arrayWithObjects: time4, heightLabel4, state4, bullet4, nil]];
+	[tempTable addObject: @[time1, heightLabel1, state1, bullet1]];
+	[tempTable addObject: @[time2, heightLabel2, state2, bullet2]];
+	[tempTable addObject: @[time3, heightLabel3, state3, bullet3]];
+	[tempTable addObject: @[time4, heightLabel4, state4, bullet4]];
 	
 	table = [tempTable retain];
 	[tempTable release];
@@ -117,9 +117,9 @@
 	 
 	int index = 0;
 	for (SDTideEvent *event in [sdTide eventsForDay: [self today]]) {
-		[[[table objectAtIndex:index] objectAtIndex:0] setText: [event eventTimeNativeFormat]];
-		[[[table objectAtIndex:index] objectAtIndex:1] setText: [NSString stringWithFormat:@"%0.2f %@",[event eventHeight], [sdTide unitShort]]];
-		[[[table objectAtIndex:index] objectAtIndex:2] setText: [event eventTypeDescription]];
+		[table [index][0] setText: [event eventTimeNativeFormat]];
+		[table [index][1] setText: [NSString stringWithFormat:@"%0.2f %@",[event eventHeight], [sdTide unitShort]]];
+		[table [index][2] setText: [event eventTypeDescription]];
 		NSLog(@"%@, %@, %@", [event eventTime], [NSString stringWithFormat:@"%0.2f %@",[event eventHeight], [sdTide unitShort]], [event eventTypeDescription]);
 		++index;
 	}
@@ -158,9 +158,9 @@
 	for (SDTideEvent *event in [sdTide eventsForDay:[self today]]) {
         if (index < 4) {
             if (nextEventIndex != nil && index == [nextEventIndex intValue]) {
-                [[[table objectAtIndex:index] objectAtIndex:3] setHidden:NO];
+                [table[index][3] setHidden:NO];
             } else {
-                [[[table objectAtIndex:index] objectAtIndex:3] setHidden:YES];
+                [table[index][3] setHidden:YES];
             }
         } else {
             [self clearTable];
@@ -173,10 +173,10 @@
 -(void)clearTable {
 	[correctionLabel setText:@""];
 	for (NSArray *row in table) {
-		[[row objectAtIndex:0] setText: @""];
-		[[row objectAtIndex:1] setText: @""];
-		[[row objectAtIndex:2] setText: @""];
-		[[row objectAtIndex:3] setHidden:YES];
+		[row[0] setText: @""];
+		[row[1] setText: @""];
+		[row[2] setText: @""];
+		[row[3] setHidden:YES];
 	}
 }
 

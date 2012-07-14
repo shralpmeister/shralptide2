@@ -100,17 +100,14 @@ BOOL zoomedToLocal;
 											  entityForName:@"SDTideStation" 
 											  inManagedObjectContext:context];
     
-    NSNumber *currentBoolean = [NSNumber numberWithBool:(self.stationType == SDStationTypeTide ? NO : YES)];
+    NSNumber *currentBoolean = (self.stationType == SDStationTypeTide ? @NO : @YES);
     NSString *locationFilter = @"latitude BETWEEN %@ and longitude BETWEEN %@";
     NSString *currentFilter = @" and current == %@";
-    //NSString *filter = appDelegate.showsCurrentsPref ? locationFilter : [locationFilter stringByAppendingString:currentFilter];
+    
     NSString *filter = [locationFilter stringByAppendingString:currentFilter];
 
     NSLog(@"applying search filter: %@", filter);
-	
-//    NSPredicate *predicate =  appDelegate.showsCurrentsPref ? 
-//        [NSPredicate predicateWithFormat: filter, [NSArray arrayWithObjects:minLatitude, maxLatitude, nil], [NSArray arrayWithObjects:minLongitude, maxLongitude,nil]]:
-//        [NSPredicate predicateWithFormat: filter, [NSArray arrayWithObjects:minLatitude, maxLatitude, nil], [NSArray arrayWithObjects:minLongitude, maxLongitude,nil],currentBoolean];
+    
     NSPredicate *predicate = [NSPredicate predicateWithFormat: filter, [NSArray arrayWithObjects:minLatitude, maxLatitude, nil], [NSArray arrayWithObjects:minLongitude, maxLongitude,nil],currentBoolean];
     
 	NSFetchRequest *fr = [[NSFetchRequest alloc] init];

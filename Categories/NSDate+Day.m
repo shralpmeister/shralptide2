@@ -32,12 +32,7 @@
 -(NSDateComponents*)dayComponents
 {
 	unsigned int unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
-	NSDateComponents *comps = [[NSCalendar currentCalendar] components:unitFlags fromDate:self]; 
-//	NSDateComponents *dayComps = [[[NSDateComponents alloc] init] autorelease];
-//	[dayComps setYear: [comps year]];
-//	[dayComps setMonth: [comps month]];
-//	[dayComps setDay: [comps day]];
-    
+	NSDateComponents *comps = [[NSCalendar currentCalendar] components:unitFlags fromDate:self];
     return comps;
 }
 

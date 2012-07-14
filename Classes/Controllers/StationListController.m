@@ -49,7 +49,7 @@
             if ([sections objectForKey:groupKey] == nil) {
                 NSMutableArray *group = [[NSMutableArray alloc] init];
                 [group addObject:station];
-                [sections setObject:group forKey:groupKey];
+                sections[groupKey] = group;
                 [group release];
             } else {
                 NSMutableArray *group = [sections objectForKey:groupKey];
@@ -94,9 +94,9 @@
 
     SDTideStation *station = nil;
     if ([sections count] > 0) {
-        station = (SDTideStation*)[[sections objectForKey:[sectionKeys objectAtIndex:indexPath.section]] objectAtIndex: row];
+        station = (SDTideStation*)sections[sectionKeys[indexPath.section]][row];
     } else {
-        station = (SDTideStation*)[stations objectAtIndex:row];
+        station = (SDTideStation*)stations[row];
     }
     
     if ([station.current boolValue]) {
@@ -105,14 +105,14 @@
         cell.textLabel.textColor = [UIColor blackColor];
     }
     NSArray *nameParts = [station.name componentsSeparatedByString:@", "];
-	cell.textLabel.text = [nameParts objectAtIndex:0];
+	cell.textLabel.text = nameParts[0];
     
     NSMutableString *detailText = [[NSMutableString alloc] init];
     for (int i=1; i < [nameParts count]; i++) {
         if (i > 1) {
             [detailText appendString:@", "];
         }
-        [detailText appendString:[nameParts objectAtIndex:i]];
+        [detailText appendString:nameParts[i]];
     }
     cell.detailTextLabel.text = detailText;
     [detailText release];
@@ -123,7 +123,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	if ([sections count] > 0) {
-        return [[self.sections objectForKey:[sectionKeys objectAtIndex:section]] count];
+        return [self.sections[sectionKeys[section]] count];
     }
     return [stations count];
 }
@@ -131,7 +131,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if ([sections count] > 0) {
-        return [self.sectionKeys objectAtIndex:section];
+        return self.sectionKeys[section];
     } else {
         return nil;
     }
@@ -142,9 +142,9 @@
     NSLog(@"Selected row %d",indexPath.row);
 
     if ([sections count] > 0) {
-        [self chooseStation:[[sections objectForKey:[sectionKeys objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row]];
+        [self chooseStation:sections[sectionKeys[indexPath.section]][indexPath.row]];
     } else {
-        [self chooseStation:[stations objectAtIndex:indexPath.row]];
+        [self chooseStation:stations[indexPath.row]];
     }
 }
 
