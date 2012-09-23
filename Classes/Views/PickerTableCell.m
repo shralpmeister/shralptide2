@@ -11,6 +11,4 @@
 
 @implementation PickerTableCell
 
-@synthesize flagView, nameLabel;
-
 @end

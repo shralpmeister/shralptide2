@@ -10,9 +10,10 @@
 
 
 @interface TideRowView : UIView {
-	IBOutlet UILabel *timeLabel;
-	IBOutlet UILabel *heightLabel;
-	IBOutlet UILabel *stateLabel;
 }
+
+@property (nonatomic, strong) IBOutlet UILabel *timeLabel;
+@property (nonatomic, strong) IBOutlet UILabel *heightLabel;
+@property (nonatomic, strong) IBOutlet UILabel *stateLabel;
 
 @end

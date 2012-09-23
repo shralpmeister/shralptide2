@@ -19,12 +19,6 @@ BOOL zoomedToLocal;
 
 @implementation StationMapController
 
-@synthesize mapView;
-@synthesize stationType;
-@synthesize navController;
-@synthesize modalViewDelegate;
-@synthesize tideCurrentSelector;
-
 -(id)initWithNibName:(NSString *)nibNameOrNil forStationType:(SDStationType)aStationType
 {
 	if ((self = [super initWithNibName:nibNameOrNil bundle:nil])) {
@@ -35,7 +29,7 @@ BOOL zoomedToLocal;
 
 -(void)updateDisplayedStations
 {
-    if (tideCurrentSelector.selectedSegmentIndex == 0) {
+    if (self.tideCurrentSelector.selectedSegmentIndex == 0) {
         self.stationType = SDStationTypeTide;
     } else {
         self.stationType = SDStationTypeCurrent;
@@ -62,21 +56,21 @@ BOOL zoomedToLocal;
 -(void)viewWillAppear:(BOOL)animated
 {
     if (appDelegate.showsCurrentsPref) {
-        [navController setToolbarHidden:NO];
+        [self.navController setToolbarHidden:NO];
         if (self.stationType == SDStationTypeTide) {
-            tideCurrentSelector.selectedSegmentIndex = 0;
+            self.tideCurrentSelector.selectedSegmentIndex = 0;
         } else {
-            tideCurrentSelector.selectedSegmentIndex = 1;
+            self.tideCurrentSelector.selectedSegmentIndex = 1;
         }
     } else {
-        [navController setToolbarHidden:YES];
+        [self.navController setToolbarHidden:YES];
     }
-    mapView.showsUserLocation = YES;
+    self.mapView.showsUserLocation = YES;
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    mapView.showsUserLocation = NO;
+    self.mapView.showsUserLocation = NO;
 }
 
 -(void)addTideStationsForRegion:(MKCoordinateRegion)region
@@ -132,8 +126,8 @@ BOOL zoomedToLocal;
 			annotation.title = result.name;
             annotation.primary = [result.primary boolValue];
 			
-            if (![[mapView annotations] containsObject:annotation]) {
-                [mapView addAnnotation: annotation];
+            if (![[self.mapView annotations] containsObject:annotation]) {
+                [self.mapView addAnnotation: annotation];
             }
             
 		}
@@ -181,20 +175,20 @@ BOOL zoomedToLocal;
 	double longitudeDelta = aMapView.region.span.longitudeDelta;
     
     if (latitudeDelta > 4 || longitudeDelta > 4) {
-        [mapView removeAnnotations:[mapView annotations]];
+        [self.mapView removeAnnotations:[self.mapView annotations]];
         return;
     }
     
-    if ([[mapView annotations] count] > 0) {
-        for (id<MKAnnotation> annotation in [NSArray arrayWithArray:[mapView annotations]]) {
+    if ([[self.mapView annotations] count] > 0) {
+        for (id<MKAnnotation> annotation in [NSArray arrayWithArray:[self.mapView annotations]]) {
             if ([annotation isKindOfClass:[TideStationAnnotation class]]) {
                 // if annotation is no longer within our cache radius we'll remove it
-                if (annotation.coordinate.latitude > mapView.centerCoordinate.latitude + 4.0 ||
-                    annotation.coordinate.latitude < mapView.centerCoordinate.latitude - 4.0 ||
-                    annotation.coordinate.longitude > mapView.centerCoordinate.longitude + 4.0 ||
-                    annotation.coordinate.longitude < mapView.centerCoordinate.longitude - 4.0) {
+                if (annotation.coordinate.latitude > self.mapView.centerCoordinate.latitude + 4.0 ||
+                    annotation.coordinate.latitude < self.mapView.centerCoordinate.latitude - 4.0 ||
+                    annotation.coordinate.longitude > self.mapView.centerCoordinate.longitude + 4.0 ||
+                    annotation.coordinate.longitude < self.mapView.centerCoordinate.longitude - 4.0) {
                     
-                    [mapView removeAnnotation:annotation];
+                    [self.mapView removeAnnotation:annotation];
                     NSLog(@"Removed %@", annotation);
                 }
             }
@@ -205,7 +199,7 @@ BOOL zoomedToLocal;
         [self addTideStationsForRegion:aMapView.region];
 	}
     
-    NSLog(@"Number of cached annotations: %d",[[mapView annotations] count]);
+    NSLog(@"Number of cached annotations: %d",[[self.mapView annotations] count]);
     
 }
 
@@ -219,15 +213,15 @@ BOOL zoomedToLocal;
 -(void)chooseStation
 {
 	NSLog(@"Yeah, you clicked me alright...");
-	NSArray *selectedAnnotations = [mapView selectedAnnotations];
+	NSArray *selectedAnnotations = [self.mapView selectedAnnotations];
 	for (id<MKAnnotation> annotation in selectedAnnotations) {
 		NSLog(@"  - %@", annotation.title);
 	}
 
     StationDetailViewController *detailViewController = [[StationDetailViewController alloc] initWithNibName:@"StationInfoView" bundle:nil];
     detailViewController.modalViewDelegate = self.modalViewDelegate;
-	detailViewController.tideStationData = [mapView selectedAnnotations][0];
-	[navController pushViewController: detailViewController animated:YES];
+	detailViewController.tideStationData = [self.mapView selectedAnnotations][0];
+	[self.navController pushViewController: detailViewController animated:YES];
 }
 
 

@@ -26,8 +26,6 @@
 #import "ChartView.h"
 
 @interface ChartViewController : UIViewController <ChartViewDatasource> {
-	SDTide *sdTide;
-    int page;
 }
 
 -(SDTide *)tideDataToChart;

@@ -34,7 +34,7 @@
 -(void)animateCursorViewToCurrentTime;
 -(void)animateFirstTouchAtPoint:(CGPoint)touchPoint;
 
-@property (nonatomic, unsafe_unretained) IBOutlet id<ChartViewDatasource> datasource;
+@property (nonatomic, unsafe_unretained) id<ChartViewDatasource> datasource;
 @property (nonatomic, strong) IBOutlet UIView *cursorView;
 @property (nonatomic, strong) IBOutlet UIView *headerView;
 @property (nonatomic, strong) IBOutlet UILabel *dateLabel;
@@ -43,5 +43,4 @@
 @property (nonatomic, strong) IBOutlet UIImageView *sunsetIcon;
 @property (nonatomic, strong) IBOutlet UIImageView *moonriseIcon;
 @property (nonatomic, strong) IBOutlet UIImageView *moonsetIcon;
-@property (nonatomic, strong) NSMutableDictionary *times;
 @end

@@ -60,7 +60,13 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
     
     Dstr location ([name UTF8String]);
 	NSArray *events = tideEventsForLocation(location, Interval (interval), startTime, endTime, units);
-    NSArray *intervals = rawEventsForLocation(location, Interval (interval), startTime, endTime, units);
+    
+    NSArray *intervals = nil;
+    if (interval > 0) {
+        intervals = rawEventsForLocation(location, Interval (interval), startTime, endTime, units);
+    } else {
+        intervals = @[];
+    }
 
     SDTideEvent *eventZero = nil;
     for (SDTideEvent *event in events) {

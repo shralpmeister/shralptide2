@@ -11,7 +11,4 @@
 
 @implementation SelectStationNavigationController
 
-@synthesize doneButton,selectedStation, detailViewDelegate;
-
-
 @end

@@ -13,16 +13,10 @@
 
 @implementation StationDetailViewController
 
-@synthesize tideStationData,locationCell,titleView,mapView;
-@synthesize titleLabel, buttonView, selectButton, primaryCell;
-@synthesize modalViewDelegate;
-
-
-
 -(IBAction)addTideStation
 {
 	NSLog(@"AddTideStation called");
-    [modalViewDelegate stationDetailViewController:self addTideStation: self.tideStationData.title];
+    [self.modalViewDelegate stationDetailViewController:self addTideStation: self.tideStationData.title];
 }
 
 -(void)setTideStation:(SDTideStation*) station {
@@ -65,7 +59,7 @@
     // TODO: I don't like munging the titles everyplace they're going to be used.
     self.titleLabel.text = [self.tideStationData.title stringByReplacingOccurrencesOfString:@", " withString:@"\n" options:0 range:NSMakeRange([self.tideStationData.title rangeOfString:@", "].location - 1,3)];
         
-    locationCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:nil];
+    self.locationCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:nil];
     double lat = self.tideStationData.coordinate.latitude;
     double lon = self.tideStationData.coordinate.longitude;
     NSString *latDir = lat > 0 ? @"N" : @"S";
@@ -74,7 +68,7 @@
     self.locationCell.textLabel.text = NSLocalizedString(@"Position",nil);
     self.locationCell.userInteractionEnabled = NO;
     
-    primaryCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:nil];
+    self.primaryCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:nil];
     self.primaryCell.textLabel.text = NSLocalizedString(@"Type",nil);
     if (self.tideStationData.primary) {
         self.primaryCell.detailTextLabel.text = NSLocalizedString(@"Reference Location",nil);

@@ -23,7 +23,22 @@
 
 #import "SDTideEvent.h"
 
+@interface SDTideEvent ()
++(NSArray*)eventTypeDescriptions;
+@end
+
 @implementation SDTideEvent
+
+@synthesize eventTime;
+@synthesize eventType;
+@synthesize eventHeight;
+@synthesize units;
+
++(NSArray*)eventTypeDescriptions
+{
+    return @[@"max", @"min", @"slackrise", @"slackfall", @"markrise", @"markfall",@"sunrise", @"sunset", @"moonrise", @"moonset", @"newmoon", @"firstquarter", @"fullmoon",@"lastquarter", @"rawreading"];
+}
+
 -(id)initWithTime:(NSDate *)time Event:(SDTideState)state andHeight:(float)height;
 {
     if (self = [super init]) {
@@ -107,9 +122,12 @@
 	return fTime;	
 }
 
+-(NSString*)description {
+    if (self.units != nil) {
+        return [NSString stringWithFormat:@"%@ %@: %0.1f%@",[self eventTimeString24HR],[SDTideEvent eventTypeDescriptions][self.eventType],self.eventHeight,self.units];
+    } else {
+        return [NSString stringWithFormat:@"%@ %@",[self eventTimeString24HR],[SDTideEvent eventTypeDescriptions][self.eventType]];
+    }
+}
 
-@synthesize eventTime;
-@synthesize eventType;
-@synthesize eventHeight;
-@synthesize units;
 @end

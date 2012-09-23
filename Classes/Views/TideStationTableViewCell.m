@@ -11,6 +11,4 @@
 
 @implementation TideStationTableViewCell
 
-@synthesize nameLabel, levelLabel, directionLabel;
-
 @end

@@ -15,8 +15,6 @@
 
 @implementation StateListController
 
-@synthesize rows;
-
 -(void)loadView {
     [super loadView];
     self.navigationItem.prompt = NSLocalizedString(@"Select a Tide Station",nil);
@@ -26,7 +24,7 @@
 {
 	[super viewWillAppear:animated];
 	if (!self.rows) {
-		rows = [[NSMutableArray alloc] init];
+		self.rows = [[NSMutableArray alloc] init];
 	}
     self.navigationItem.rightBarButtonItem = ((SelectStationNavigationController*)self.navigationController).doneButton;
 }
@@ -49,7 +47,7 @@
         cell = nibViews[0];
 	}
 	
-	SDStateProvince* state = (SDStateProvince*)rows[row];
+	SDStateProvince* state = (SDStateProvince*)self.rows[row];
     
     cell.nameLabel.text = state.name;
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

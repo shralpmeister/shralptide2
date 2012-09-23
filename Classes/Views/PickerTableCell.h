@@ -10,8 +10,6 @@
 
 
 @interface PickerTableCell : UITableViewCell {
-    UIImageView *flagView;
-    UILabel *nameLabel;
 }
 
 @property (nonatomic,strong) IBOutlet UIImageView *flagView;

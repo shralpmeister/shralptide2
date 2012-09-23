@@ -13,8 +13,6 @@
 @implementation StationListController
 
 @synthesize stations;
-@synthesize sections;
-@synthesize sectionKeys;
 
 -(void)loadView {
     [super loadView];
@@ -29,27 +27,27 @@
     if (newStations == self.stations) {
         return;
     } else if (newStations == nil) {
-        self.stations = nil;
+        stations = nil;
         return;
     }
     
     stations = newStations;
 
-    sections = [[NSMutableDictionary alloc] init];
+    self.sections = [[NSMutableDictionary alloc] init];
     NSMutableSet *sectionKeySet = [[NSMutableSet alloc] init];
     
-    if ([stations count] > 20) {
-        for (SDTideStation *station in stations) {
+    if ([self.stations count] > 20) {
+        for (SDTideStation *station in self.stations) {
             
             NSString *groupKey = [station.name substringToIndex:1];
             [sectionKeySet addObject:groupKey];
             
-            if (sections[groupKey] == nil) {
+            if (self.sections[groupKey] == nil) {
                 NSMutableArray *group = [[NSMutableArray alloc] init];
                 [group addObject:station];
-                sections[groupKey] = group;
+                self.sections[groupKey] = group;
             } else {
-                NSMutableArray *group = sections[groupKey];
+                NSMutableArray *group = self.sections[groupKey];
                 [group addObject:station];
             }
         }
@@ -69,8 +67,8 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if ([sections count] > 0) {
-        return [sections count];
+    if ([self.sections count] > 0) {
+        return [self.sections count];
     }
     return 1;
 }
@@ -89,10 +87,10 @@
 	}
 
     SDTideStation *station = nil;
-    if ([sections count] > 0) {
-        station = (SDTideStation*)sections[sectionKeys[indexPath.section]][row];
+    if ([self.sections count] > 0) {
+        station = (SDTideStation*)self.sections[self.sectionKeys[indexPath.section]][row];
     } else {
-        station = (SDTideStation*)stations[row];
+        station = (SDTideStation*)self.stations[row];
     }
     
     if ([station.current boolValue]) {
@@ -117,15 +115,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	if ([sections count] > 0) {
-        return [self.sections[sectionKeys[section]] count];
+	if ([self.sections count] > 0) {
+        return [self.sections[self.sectionKeys[section]] count];
     }
-    return [stations count];
+    return [self.stations count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if ([sections count] > 0) {
+    if ([self.sections count] > 0) {
         return self.sectionKeys[section];
     } else {
         return nil;
@@ -136,10 +134,10 @@
 {
     NSLog(@"Selected row %d",indexPath.row);
 
-    if ([sections count] > 0) {
-        [self chooseStation:sections[sectionKeys[indexPath.section]][indexPath.row]];
+    if ([self.sections count] > 0) {
+        [self chooseStation:self.sections[self.sectionKeys[indexPath.section]][indexPath.row]];
     } else {
-        [self chooseStation:stations[indexPath.row]];
+        [self chooseStation:self.stations[indexPath.row]];
     }
 }
 

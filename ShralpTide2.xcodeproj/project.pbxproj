@@ -17,6 +17,7 @@
 		DC016068133EB6990065CBAA /* SDTide.m in Sources */ = {isa = PBXBuildFile; fileRef = DC016067133EB6990065CBAA /* SDTide.m */; };
 		DC01606A133EB8950065CBAA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC016069133EB8950065CBAA /* CoreData.framework */; };
 		DC0C0DD6105C1D8F0080297E /* ChartScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0C0DD5105C1D8F0080297E /* ChartScrollView.m */; };
+		DC0CD7C3160E4F6B000C3865 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0CD7C2160E4F6B000C3865 /* Default-568h@2x.png */; };
 		DC1EBBEB0EDBAEFA0093FA18 /* WaitView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1EBBEA0EDBAEFA0093FA18 /* WaitView.m */; };
 		DC1F47CC1438D2A8003EC4FB /* woody.png in Resources */ = {isa = PBXBuildFile; fileRef = DC1F47C71438D2A8003EC4FB /* woody.png */; };
 		DC1F47CD1438D2A8003EC4FB /* woody@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC1F47C81438D2A8003EC4FB /* woody@2x.png */; };
@@ -177,6 +178,7 @@
 		DCD6D6FD1465CA66006D71A0 /* morning_glass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD6D6F71465CA66006D71A0 /* morning_glass@2x.png */; };
 		DCE897DB0EEE3CAE00BF2357 /* CursorView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE897DA0EEE3CAE00BF2357 /* CursorView.m */; };
 		DCE898A20EEE514900BF2357 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCE898A10EEE514900BF2357 /* QuartzCore.framework */; };
+		DCFD521D16055C60006E17D2 /* MainViewTall.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCFD521C16055C60006E17D2 /* MainViewTall.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -197,6 +199,7 @@
 		DC016067133EB6990065CBAA /* SDTide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDTide.m; path = objctidelib/SDTide.m; sourceTree = "<group>"; };
 		DC016069133EB8950065CBAA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		DC0C0DD5105C1D8F0080297E /* ChartScrollView.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; name = ChartScrollView.m; path = Classes/Views/ChartScrollView.m; sourceTree = "<group>"; };
+		DC0CD7C2160E4F6B000C3865 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DC1EBBE90EDBAEFA0093FA18 /* WaitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaitView.h; path = Classes/Views/WaitView.h; sourceTree = "<group>"; };
 		DC1EBBEA0EDBAEFA0093FA18 /* WaitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaitView.m; path = Classes/Views/WaitView.m; sourceTree = "<group>"; };
 		DC1F47C71438D2A8003EC4FB /* woody.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = woody.png; path = Resources/skins/woody.png; sourceTree = "<group>"; };
@@ -429,6 +432,7 @@
 		DCE897D90EEE3CAE00BF2357 /* CursorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CursorView.h; path = Classes/Views/CursorView.h; sourceTree = "<group>"; };
 		DCE897DA0EEE3CAE00BF2357 /* CursorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CursorView.m; path = Classes/Views/CursorView.m; sourceTree = "<group>"; };
 		DCE898A10EEE514900BF2357 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DCFD521C16055C60006E17D2 /* MainViewTall.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainViewTall.xib; path = Resources/MainViewTall.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -544,6 +548,7 @@
 				DC872F6F143EB156005C5759 /* HomescreenIcon@2x.png */,
 				DCD17E48147837A900BE60C8 /* Default.png */,
 				DCD17E49147837A900BE60C8 /* Default@2x.png */,
+				DC0CD7C2160E4F6B000C3865 /* Default-568h@2x.png */,
 				DCA3BF74133E500D00EA966A /* datastore.sqlite */,
 				DCA3BF70133E4FFA00EA966A /* harmonics-dwf-20081228-free.tcd */,
 				DCA3BF71133E4FFA00EA966A /* harmonics-dwf-20081228-nonfree.tcd */,
@@ -577,6 +582,7 @@
 				DC8ED8080F0D8C3B009EAF2F /* Decreasing.png */,
 				DC8ED8090F0D8C3B009EAF2F /* Increasing.png */,
 				280E754B0DD40C5E005A515E /* MainView.xib */,
+				DCFD521C16055C60006E17D2 /* MainViewTall.xib */,
 				280E754C0DD40C5E005A515E /* MainWindow.xib */,
 				DC32FFAA0E88B08A00AB78F2 /* ChartView.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -873,7 +879,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0450;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ShralpTide2" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -994,6 +1000,8 @@
 				DCD6D6FD1465CA66006D71A0 /* morning_glass@2x.png in Resources */,
 				DCD17E4A147837A900BE60C8 /* Default.png in Resources */,
 				DCD17E4B147837A900BE60C8 /* Default@2x.png in Resources */,
+				DCFD521D16055C60006E17D2 /* MainViewTall.xib in Resources */,
+				DC0CD7C3160E4F6B000C3865 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1115,6 +1123,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ShralpTide2_Prefix.pch;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = NO;
 				GCC_WARN_UNUSED_FUNCTION = NO;
@@ -1122,7 +1131,7 @@
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VALUE = YES;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1158,11 +1167,12 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ShralpTide2_Prefix.pch;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = NO;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1186,7 +1196,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "04EC56F3-F532-4CAF-95A8-7563B9435321";
 				SDKROOT = iphoneos;
@@ -1203,7 +1213,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PROVISIONING_PROFILE = "34C0F4E7-F3F8-478F-BF65-FBD4591994A4";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "27058F47-7E6D-4F68-986D-BF6E31355729";
 				SDKROOT = iphoneos;

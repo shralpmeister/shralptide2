@@ -33,30 +33,22 @@
 - (NSDate*)midnight: (NSDate*)date;
 - (NSString*)timeInNativeFormatFromMinutes:(int)minutesSinceMidnight;
 - (NSString*)timeIn24HourFormatFromMinutes:(int)minutesSinceMidnight;
+
+@property (nonatomic, strong) NSMutableDictionary *times;
+@property (assign) float xratio;
 @end
 
 @implementation ChartView
 
-@synthesize datasource;
-@synthesize cursorView;
-@synthesize headerView;
-@synthesize dateLabel;
-@synthesize valueLabel;
-@synthesize times;
-@synthesize sunriseIcon, sunsetIcon, moonriseIcon, moonsetIcon;
-
-
-
 - (id)initWithCoder:(NSCoder *)coder {
 	if ((self = [super initWithCoder:coder])) {
-		times = [[NSMutableDictionary alloc] init];
+		self.times = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
 
 -(void)drawRect:(CGRect)rect {
 #define HEIGHT 234
-#define WIDTH 480
 #define MINUTES_FROM_MIDNIGHT 1440
 #define SECONDS_PER_MINUTE 60
 
@@ -94,45 +86,46 @@
 	
 	float xmin = 0;
 	float xmax = MINUTES_FROM_MIDNIGHT;
-	float xratio = 0.3333;
-	NSLog(@"xratio = %0.4f",xratio);
+	NSLog(@"Frame size is: %0.1f x %0.1f", self.frame.size.width, self.frame.size.height);
+    self.xratio = self.frame.size.width / MINUTES_FROM_MIDNIGHT;
+	NSLog(@"xratio = %0.4f",self.xratio);
     
-    NSLog(@"Sunrise = %d (%f), sunset = (%d) %f", sunriseMinutes, sunriseMinutes * xratio, sunsetMinutes, sunsetMinutes * xratio);
-    NSLog(@"Moonrise = %@ (%f), moonset = %@ (%f) %d", moonrise.eventTime, moonriseMinutes * xratio, moonset.eventTime, moonsetMinutes * xratio, moonsetMinutes);
+    NSLog(@"Sunrise = %d (%f), sunset = (%d) %f", sunriseMinutes, sunriseMinutes * self.xratio, sunsetMinutes, sunsetMinutes * self.xratio);
+    NSLog(@"Moonrise = %@ (%f), moonset = %@ (%f) %d", moonrise.eventTime, moonriseMinutes * self.xratio, moonset.eventTime, moonsetMinutes * self.xratio, moonsetMinutes);
     
     // show daylight hours as light background
     CGContextSetRGBFillColor(context, 0.04, 0.27, 0.61, 1.0);
-    CGContextFillRect(context, CGRectMake(sunriseMinutes * xratio, headerView.frame.size.height + 20, sunsetMinutes * xratio - sunriseMinutes * xratio, HEIGHT));
+    CGContextFillRect(context, CGRectMake(sunriseMinutes * self.xratio, self.headerView.frame.size.height + 20, sunsetMinutes * self.xratio - sunriseMinutes * self.xratio, HEIGHT));
     
     CGContextSetRGBFillColor(context, 1, 1, 1, 0.2);
     if (moonriseMinutes < moonsetMinutes) {
-        CGContextFillRect(context, CGRectMake(moonriseMinutes * xratio, headerView.frame.size.height + 20, moonsetMinutes * xratio - moonriseMinutes * xratio, HEIGHT));
+        CGContextFillRect(context, CGRectMake(moonriseMinutes * self.xratio, self.headerView.frame.size.height + 20, moonsetMinutes * self.xratio - moonriseMinutes * self.xratio, HEIGHT));
     } else {
-        CGContextFillRect(context, CGRectMake(0, headerView.frame.size.height + 20, moonsetMinutes * xratio, HEIGHT));
-        CGContextFillRect(context, CGRectMake(moonriseMinutes * xratio, headerView.frame.size.height + 20, WIDTH, HEIGHT));
+        CGContextFillRect(context, CGRectMake(0, self.headerView.frame.size.height + 20, moonsetMinutes * self.xratio, HEIGHT));
+        CGContextFillRect(context, CGRectMake(moonriseMinutes * self.xratio, self.headerView.frame.size.height + 20, self.frame.size.width, HEIGHT));
     }
     
     // draw indicators in the header for astronomical events
-    float sunriseX = sunriseMinutes * xratio - sunriseIcon.image.size.width / 2;
-    float sunsetX = sunsetMinutes * xratio - sunsetIcon.image.size.width / 2;
-    float moonriseX = moonriseMinutes * xratio - moonriseIcon.image.size.width / 2;
-    float moonsetX = moonsetMinutes * xratio - moonsetIcon.image.size.width / 2;
+    float sunriseX = sunriseMinutes * self.xratio - self.sunriseIcon.image.size.width / 2;
+    float sunsetX = sunsetMinutes * self.xratio - self.sunsetIcon.image.size.width / 2;
+    float moonriseX = moonriseMinutes * self.xratio - self.moonriseIcon.image.size.width / 2;
+    float moonsetX = moonsetMinutes * self.xratio - self.moonsetIcon.image.size.width / 2;
     
-    if (moonsetX >= headerView.frame.size.width - moonsetIcon.image.size.width) {
-        moonsetX -= moonsetIcon.image.size.width;
+    if (moonsetX >= self.headerView.frame.size.width - self.moonsetIcon.image.size.width) {
+        moonsetX -= self.moonsetIcon.image.size.width;
     } else if (moonsetX == 0) {
         moonsetX += 1;
     }
     
-    sunriseIcon.frame = CGRectMake(sunriseX, headerView.frame.size.height - sunriseIcon.image.size.height * 1.1, sunriseIcon.image.size.width, sunriseIcon.image.size.height);
-    sunsetIcon.frame = CGRectMake(sunsetX, headerView.frame.size.height - sunsetIcon.image.size.height * 1.1, sunsetIcon.image.size.width, sunsetIcon.image.size.height);
-    moonriseIcon.frame = CGRectMake(moonriseX, headerView.frame.size.height - moonriseIcon.image.size.height * 1.1, moonriseIcon.image.size.width, moonriseIcon.image.size.height);
-    moonsetIcon.frame = CGRectMake(moonsetX, headerView.frame.size.height - moonriseIcon.image.size.height * 1.1, moonsetIcon.image.size.width, moonsetIcon.image.size.height);
+    self.sunriseIcon.frame = CGRectMake(sunriseX, self.headerView.frame.size.height - self.sunriseIcon.image.size.height * 1.1, self.sunriseIcon.image.size.width, self.sunriseIcon.image.size.height);
+    self.sunsetIcon.frame = CGRectMake(sunsetX, self.headerView.frame.size.height - self.sunsetIcon.image.size.height * 1.1, self.sunsetIcon.image.size.width, self.sunsetIcon.image.size.height);
+    self.moonriseIcon.frame = CGRectMake(moonriseX, self.headerView.frame.size.height - self.moonriseIcon.image.size.height * 1.1, self.moonriseIcon.image.size.width, self.moonriseIcon.image.size.height);
+    self.moonsetIcon.frame = CGRectMake(moonsetX, self.headerView.frame.size.height - self.moonriseIcon.image.size.height * 1.1, self.moonsetIcon.image.size.width, self.moonsetIcon.image.size.height);
     
-    [headerView addSubview:moonriseIcon];
-    [headerView addSubview:moonsetIcon];
-    [headerView addSubview:sunriseIcon];
-    [headerView addSubview:sunsetIcon];
+    [self.headerView addSubview:self.moonriseIcon];
+    [self.headerView addSubview:self.moonsetIcon];
+    [self.headerView addSubview:self.sunriseIcon];
+    [self.headerView addSubview:self.sunsetIcon];
     
     // draws the tide level curve
 	uint64_t basetime = 0;
@@ -144,15 +137,15 @@
 		minutesSinceMidnight = (int)([[tidePoint time] timeIntervalSince1970] - basetime) / SECONDS_PER_MINUTE;
         NSLog(@"Plotting interval: %@, min since midnight: %d",tidePoint.time, minutesSinceMidnight);
 		if (minutesSinceMidnight == 0) {
-			CGContextMoveToPoint(context, minutesSinceMidnight * xratio, yoffset - [tidePoint height] * yratio);
+			CGContextMoveToPoint(context, minutesSinceMidnight * self.xratio, yoffset - [tidePoint height] * yratio);
 		} else {
-			CGContextAddLineToPoint(context, (minutesSinceMidnight * xratio), yoffset - ([tidePoint height] * yratio));
+			CGContextAddLineToPoint(context, (minutesSinceMidnight * self.xratio), yoffset - ([tidePoint height] * yratio));
 		}
 		
 	}
 	
     // closes the path so that it can be filled
-	CGContextAddLineToPoint(context, WIDTH, HEIGHT + 86);
+	CGContextAddLineToPoint(context, self.frame.size.width, HEIGHT + 86);
 	CGContextAddLineToPoint(context, 0, HEIGHT + 86);
 	
     // fill in the tide level curve
@@ -165,15 +158,15 @@
     // draws the zero height line
     CGContextSetLineWidth(context,2.0);
 	CGContextMoveToPoint(context, xmin, yoffset);
-	CGContextAddLineToPoint(context, xmax * xratio, yoffset);
+	CGContextAddLineToPoint(context, xmax * self.xratio, yoffset);
 	CGContextStrokePath(context);
 			
-	cursorView.center = CGPointMake([self currentTimeInMinutes] * xratio, (HEIGHT + 86) / 2);
-	if (cursorView.center.x > 0) {
+	self.cursorView.center = CGPointMake([self currentTimeInMinutes] * self.xratio, (HEIGHT + 86) / 2);
+	if (self.cursorView.center.x > 0) {
 		NSLog(@"min: %0.1f, max: %0.1f",min,max);
-		[self addSubview:cursorView];
-		[self insertSubview:cursorView belowSubview: headerView];
-		[self showTideForPoint:[tide nearestDataPointForTime:floor(cursorView.center.x / xratio)]];	
+		[self addSubview:self.cursorView];
+		[self insertSubview:self.cursorView belowSubview: self.headerView];
+		[self showTideForPoint:[tide nearestDataPointForTime:floor(self.cursorView.center.x / self.xratio)]];	
 	} else {
 		[self hideTideDetails];
 	}
@@ -273,13 +266,13 @@
     CGPoint touchPoint = [touch locationInView:self];
 	CGPoint movePoint = CGPointMake(touchPoint.x, 150);
 	
-	if (cursorView.superview == nil) {
-		[self addSubview:cursorView];
-		[self insertSubview:cursorView belowSubview: headerView];
+	if (self.cursorView.superview == nil) {
+		[self addSubview:self.cursorView];
+		[self insertSubview:self.cursorView belowSubview: self.headerView];
 	}
 	
     [self animateFirstTouchAtPoint:movePoint];
-	[self showTideForPoint: [[self.datasource tideDataToChart] nearestDataPointForTime: (touchPoint.x + (self.datasource.page * WIDTH)) / 0.3333]];
+	[self showTideForPoint: [[self.datasource tideDataToChart] nearestDataPointForTime: (touchPoint.x + (self.datasource.page * self.frame.size.width)) / self.xratio]];
 }
 
 
@@ -288,8 +281,8 @@
     UITouch *touch = [touches anyObject];
 	
     CGPoint location = [touch locationInView:self];
-    cursorView.center = CGPointMake(location.x, 150);
-	[self showTideForPoint: [[self.datasource tideDataToChart] nearestDataPointForTime:(location.x + (self.datasource.page * WIDTH)) / 0.3333]];
+    self.cursorView.center = CGPointMake(location.x, 150);
+	[self showTideForPoint: [[self.datasource tideDataToChart] nearestDataPointForTime:(location.x + (self.datasource.page * self.frame.size.width)) / self.xratio]];
 }
 
 
@@ -298,8 +291,8 @@
     [self animateCursorViewToCurrentTime];
 	
 	// if not the current day hide the cursor and tide details
-	if (cursorView.center.x <= 0.0) {
-		[cursorView removeFromSuperview];
+	if (self.cursorView.center.x <= 0.0) {
+		[self.cursorView removeFromSuperview];
 		[self hideTideDetails];
 	}
 }
@@ -310,8 +303,8 @@
     /*
      To impose as little impact on the device as possible, simply set the cursor view's center and transformation to the original values.
      */
-    cursorView.center = self.center;
-    cursorView.transform = CGAffineTransformIdentity;
+    self.cursorView.center = self.center;
+    self.cursorView.transform = CGAffineTransformIdentity;
 }
 
 - (void)animateFirstTouchAtPoint:(CGPoint)touchPoint {
@@ -321,8 +314,8 @@
     NSValue *touchPointValue = [NSValue valueWithCGPoint:touchPoint];
     [UIView beginAnimations:nil context:(__bridge void *)(touchPointValue)];
     [UIView setAnimationDuration:MOVE_ANIMATION_DURATION_SECONDS];
-    cursorView.transform = CGAffineTransformMakeScale(1.5, 1.5);
-    cursorView.center = [touchPointValue CGPointValue];
+    self.cursorView.transform = CGAffineTransformMakeScale(1.5, 1.5);
+    self.cursorView.center = [touchPointValue CGPointValue];
     [UIView commitAnimations];
 }
 
@@ -330,7 +323,7 @@
     
     // Bounces the placard back to the center
 	
-    CALayer *welcomeLayer = cursorView.layer;
+    CALayer *welcomeLayer = self.cursorView.layer;
     
     // Create a keyframe animation to follow a path back to the center
     CAKeyframeAnimation *bounceAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
@@ -342,16 +335,16 @@
     // Create the path for the bounces
     CGMutablePathRef thePath = CGPathCreateMutable();
     
-    CGFloat midX = [self currentTimeInMinutes] * 0.3333;
+    CGFloat midX = [self currentTimeInMinutes] * self.xratio;
     CGFloat midY = 160.0;
-    CGFloat originalOffsetX = cursorView.center.x - midX;
-    CGFloat originalOffsetY = cursorView.center.y - midY;
+    CGFloat originalOffsetX = self.cursorView.center.x - midX;
+    CGFloat originalOffsetY = self.cursorView.center.y - midY;
     CGFloat offsetDivider = 10.0;
     
     BOOL stopBouncing = NO;
     
     // Start the path at the cursors's current location
-    CGPathMoveToPoint(thePath, NULL, cursorView.center.x, cursorView.center.y);
+    CGPathMoveToPoint(thePath, NULL, self.cursorView.center.x, self.cursorView.center.y);
     CGPathAddLineToPoint(thePath, NULL, midX, midY);
     
     // Add to the bounce path in decreasing excursions from the center
@@ -392,19 +385,19 @@
     [welcomeLayer addAnimation:theGroup forKey:@"animatePlacardViewToCenter"];
     
     // Set the placard view's center and transformation to the original values in preparation for the end of the animation
-    cursorView.center = CGPointMake(midX, midY);
-    cursorView.transform = CGAffineTransformIdentity;
+    self.cursorView.center = CGPointMake(midX, midY);
+    self.cursorView.transform = CGAffineTransformIdentity;
     
     CGPathRelease(thePath);
 	
-	[self showTideForPoint: [[self.datasource tideDataToChart] nearestDataPointForTime:(midX + self.datasource.page * WIDTH) / 0.3333]];
+	[self showTideForPoint: [self.datasource.tideDataToChart nearestDataPointForTime:(midX + self.datasource.page * self.frame.size.width) / self.xratio]];
 }
 
 
 - (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag {
     //Animation delegate method called when the animation's finished:
     // restore the transform and reenable user interaction
-    cursorView.transform = CGAffineTransformIdentity;
+    self.cursorView.transform = CGAffineTransformIdentity;
     self.userInteractionEnabled = YES;
 }
 

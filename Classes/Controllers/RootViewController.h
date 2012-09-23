@@ -32,48 +32,18 @@
 
 @interface RootViewController : UIViewController <UIScrollViewDelegate, StationDetailViewControllerDelegate>
 {
-	UIButton *infoButton;
-	IBOutlet UIScrollView *scrollView;
-    IBOutlet UIPageControl *pageControl;
-	IBOutlet WaitView *waitView;
-	IBOutlet UILabel *waitReason;
-	IBOutlet ChartScrollView *chartScrollView;
-	UIActivityIndicatorView *waitIndicator;
-    NSMutableArray *viewControllers;
-	NSMutableArray *chartViewControllers;
-	UISearchBar *searchBar;
-	SDTide *sdTide;
-	NSString *location;
-	NSCalendar *currentCalendar;
-	BOOL transitioning;
-	BOOL pageControlUsed;
-	BOOL acceptLocationUpdates;
-	SDTideStationData *tideStation;
-    SelectStationNavigationController *stationNavController;
 }
 
-@property (nonatomic, strong) UIButton *infoButton;
-@property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong) ChartScrollView *chartScrollView;
-@property (nonatomic, strong) UISearchBar *searchBar;
-@property (nonatomic, strong) NSString *location;
-@property (nonatomic, strong) SDTide* sdTide;
-@property (nonatomic, strong) NSMutableArray *viewControllers;
-@property (nonatomic, strong) NSMutableArray *chartViewControllers;
-@property (nonatomic, strong) NSCalendar *currentCalendar;
-@property (nonatomic, strong) UILabel *waitReason;
-@property (nonatomic, strong) SDTideStationData *tideStation;
-@property (nonatomic, strong) SelectStationNavigationController *stationNavController;
-
-@property (readonly, getter=isTransitioning) BOOL transitioning;
+@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) IBOutlet ChartScrollView *chartScrollView;
+@property (nonatomic, strong) IBOutlet UILabel *waitReason;
+@property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
+@property (nonatomic, strong) IBOutlet WaitView *waitView;
 
 - (IBAction)changePage:(id)sender;
 - (void)setLocationFromList;
 - (void)setLocationFromMap;
-- (SDTide*)computeTidesForNumberOfDays:(int)numberOfDays;
-- (NSDate *)add:(int)number daysToDate: (NSDate*) date;
 - (void)doBackgroundTideCalculation;
-- (void)updateWaitReason:(id)object;
 - (void)refreshViews;
 - (void)createMainViews;
 

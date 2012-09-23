@@ -18,9 +18,9 @@
 
 - (NSString *)accessibilityLabel
 {
-	NSString *timeText = timeLabel.text;
-	NSString *heightText = heightLabel.text;
-	NSString *stateText = stateLabel.text;
+	NSString *timeText = self.timeLabel.text;
+	NSString *heightText = self.heightLabel.text;
+	NSString *stateText = self.stateLabel.text;
 	
 	if ([timeText isEqualToString:@""]) {
 		return @"";

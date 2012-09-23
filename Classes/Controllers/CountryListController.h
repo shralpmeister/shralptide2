@@ -10,7 +10,6 @@
 #import "StateListController.h"
 
 @interface CountryListController : UITableViewController {
-	NSArray *rows;
 }
 
 @property (nonatomic,strong) NSArray *rows;

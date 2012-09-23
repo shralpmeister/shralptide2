@@ -26,11 +26,6 @@
 
 @implementation ChartViewController
 
-@synthesize sdTide;
-@synthesize page;
-
-
-// Override initWithNibName:bundle: to load the view using a nib file then perform additional customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil tide:(SDTide *)aTide {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         // Custom initialization
@@ -46,7 +41,6 @@
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
@@ -64,9 +58,9 @@
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [[NSDateComponents alloc] init];
-    [components setDay: page];
+    [components setDay: self.page];
     
-    NSDate* day = [calendar dateByAddingComponents:components toDate:[sdTide startTime] options:0];
+    NSDate* day = [calendar dateByAddingComponents:components toDate:self.sdTide.startTime options:0];
     
     return day;
 }

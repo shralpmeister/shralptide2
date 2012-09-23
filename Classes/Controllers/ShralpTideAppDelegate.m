@@ -34,15 +34,15 @@ NSString *kBackgroundKey = @"background_preference";
 - (void)setupByPreferences;
 - (void)defaultsChanged:(NSNotification *)notif;
 - (NSDictionary*)readSettingsDictionary;
+
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
 @end
 
 @implementation ShralpTideAppDelegate
 
-@synthesize window;
-@synthesize rootViewController;
-@synthesize unitsPref, daysPref, showsCurrentsPref, backgroundPref;
-@synthesize managedObjectModel, managedObjectContext, persistentStoreCoordinator;
-
+@synthesize managedObjectContext, persistentStoreCoordinator, managedObjectModel;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary*)options {
     NSLog(@"applicationDidFinishLaunching");
@@ -54,14 +54,14 @@ NSString *kBackgroundKey = @"background_preference";
                                              selector:@selector(defaultsChanged:)
                                                  name:NSUserDefaultsDidChangeNotification
                                                object:nil];
-    [rootViewController createMainViews];
+    [self.rootViewController createMainViews];
     
-	[window addSubview:[rootViewController view]];
-	[window makeKeyAndVisible];
+	[self.window addSubview:[self.rootViewController view]];
+	[self.window makeKeyAndVisible];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-	[rootViewController refreshViews];
+	[self.rootViewController refreshViews];
 }
 
 #pragma mark -
@@ -71,8 +71,8 @@ NSString *kBackgroundKey = @"background_preference";
 {
     NSLog(@"Reading preferences and recreating views and tide calculations");
     [self setupByPreferences];
-    [rootViewController createMainViews];
-    [rootViewController doBackgroundTideCalculation];
+    [self.rootViewController createMainViews];
+    [self.rootViewController doBackgroundTideCalculation];
 }
 
 -(NSDictionary*)readSettingsDictionary
@@ -137,8 +137,8 @@ NSString *kBackgroundKey = @"background_preference";
     self.showsCurrentsPref = [[NSUserDefaults standardUserDefaults] boolForKey:kCurrentsKey];
     self.backgroundPref = [[NSUserDefaults standardUserDefaults] stringForKey:kBackgroundKey];
     
-    NSLog(@"setting daysPref to %d", daysPref);
-    NSLog(@"Setting currentsPref to %@", showsCurrentsPref ? @"YES" : @"NO");
+    NSLog(@"setting daysPref to %d", self.daysPref);
+    NSLog(@"Setting currentsPref to %@", self.showsCurrentsPref ? @"YES" : @"NO");
 }
 
 #pragma mark -
@@ -173,7 +173,7 @@ NSString *kBackgroundKey = @"background_preference";
     if (managedObjectModel != nil) {
         return managedObjectModel;
     }
-    managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];    
+    managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     return managedObjectModel;
 }
 

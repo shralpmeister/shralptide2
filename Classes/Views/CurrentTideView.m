@@ -18,14 +18,14 @@
 
 - (NSString *)accessibilityLabel
 {
-	NSString *locationText = locationLabel.text;
-	NSString *heightText = heightLabel.text;
-	NSString *directionText = directionImgView.accessibilityLabel;
+	NSString *locationText = self.locationLabel.text;
+	NSString *heightText = self.heightLabel.text;
+	NSString *directionText = self.directionImgView.accessibilityLabel;
 	
-	if (nil == directionImgView.image) {
-		return [NSString stringWithFormat:@"%@, %@", locationText, date.text];
+	if (nil == self.directionImgView.image) {
+		return [NSString stringWithFormat:@"%@, %@", locationText, self.date.text];
 	} else {
-		return [NSString stringWithFormat:@"%@, %@, tide level is currently %@ and %@", locationText, date.text, heightText, directionText];
+		return [NSString stringWithFormat:@"%@, %@, tide level is currently %@ and %@", locationText, self.date.text, heightText, directionText];
 	}
 }
 

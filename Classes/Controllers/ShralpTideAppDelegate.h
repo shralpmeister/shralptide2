@@ -26,17 +26,10 @@
 @class RootViewController;
 
 @interface ShralpTideAppDelegate : NSObject <UIApplicationDelegate> {
-	IBOutlet UIWindow *window;
-	IBOutlet RootViewController *rootViewController;
-    
-    @private
-    NSManagedObjectModel *managedObjectModel;
-    NSManagedObjectContext *managedObjectContext;
-    NSPersistentStoreCoordinator *persistentStoreCoordinator;
 }
 
-@property (nonatomic, strong) UIWindow *window;
-@property (nonatomic, strong) RootViewController *rootViewController;
+@property (nonatomic, strong) IBOutlet UIWindow *window;
+@property (nonatomic, strong) IBOutlet RootViewController *rootViewController;
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic, strong, readonly) NSManagedObjectModel *managedObjectModel;

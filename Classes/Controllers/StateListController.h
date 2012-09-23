@@ -13,7 +13,6 @@
 
 
 @interface StateListController : UITableViewController {
-	NSArray *rows;
 }
 
 @property (nonatomic,strong) NSArray *rows;

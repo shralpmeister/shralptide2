@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface CurrentTideView : UIView {
-	IBOutlet UIImageView *directionImgView;
-	IBOutlet UILabel *heightLabel;
-	IBOutlet UILabel *locationLabel;
-	IBOutlet UILabel *date;
 }
+
+@property (nonatomic, strong) IBOutlet UIImageView *directionImgView;
+@property (nonatomic, strong) IBOutlet UILabel *heightLabel;
+@property (nonatomic, strong) IBOutlet UILabel *locationLabel;
+@property (nonatomic, strong) IBOutlet UILabel *date;
 
 @end

@@ -26,36 +26,6 @@
 
 @interface MainViewController : UIViewController 
 {
-	SDTide *__unsafe_unretained sdTide;
-    IBOutlet UIImageView *bgImageView;
-	IBOutlet UILabel *locationLabel;
-	IBOutlet UILabel *presentHeightLabel;
-	IBOutlet UIImageView *tideStateImage;
-	IBOutlet UILabel *date;
-	IBOutlet UILabel *time1;
-	IBOutlet UILabel *time2;
-	IBOutlet UILabel *time3;
-	IBOutlet UILabel *time4;
-	IBOutlet UILabel *heightLabel1;
-	IBOutlet UILabel *heightLabel2;
-	IBOutlet UILabel *heightLabel3;
-	IBOutlet UILabel *heightLabel4;
-	IBOutlet UILabel *state1;
-	IBOutlet UILabel *state2;
-	IBOutlet UILabel *state3;
-	IBOutlet UILabel *state4;
-	IBOutlet UIImageView *bullet1;
-	IBOutlet UIImageView *bullet2;
-	IBOutlet UIImageView *bullet3;
-	IBOutlet UIImageView *bullet4;
-
-	IBOutlet UILabel *correctionLabel;
-	
-	IBOutlet UIView *currentTideView;
-	
-	NSArray *table;
-	int pageNumber;
-    RootViewController *rootViewController;
 }
 
 -(void)refresh;
@@ -65,9 +35,41 @@
 
 - (id)initWithPageNumber:(int)page;
 -(IBAction)chooseTideStation:(id)sender;
+-(IBAction)calculateOneYear:(id)sender;
 
 @property (unsafe_unretained, readonly) SDTide *sdTide;
-@property (nonatomic,strong) UIView *currentTideView;
 @property (nonatomic,strong) RootViewController *rootViewController;
-@property (nonatomic,strong) UIImage *backgroundImage;
+
+@property (nonatomic,strong) IBOutlet UIImageView *bgImageView;
+@property (nonatomic,strong) IBOutlet UILabel *locationLabel;
+@property (nonatomic,strong) IBOutlet UILabel *presentHeightLabel;
+@property (nonatomic,strong) IBOutlet UIImageView *tideStateImage;
+@property (nonatomic,strong) IBOutlet UIImageView *sunriseImage;
+@property (nonatomic,strong) IBOutlet UIImageView *sunsetImage;
+@property (nonatomic,strong) IBOutlet UIImageView *moonriseImage;
+@property (nonatomic,strong) IBOutlet UIImageView *moonsetImage;
+@property (nonatomic,strong) IBOutlet UILabel *sunriseLabel;
+@property (nonatomic,strong) IBOutlet UILabel *sunsetLabel;
+@property (nonatomic,strong) IBOutlet UILabel *moonriseLabel;
+@property (nonatomic,strong) IBOutlet UILabel *moonsetLabel;
+@property (nonatomic,strong) IBOutlet UILabel *date;
+@property (nonatomic,strong) IBOutlet UILabel *time1;
+@property (nonatomic,strong) IBOutlet UILabel *time2;
+@property (nonatomic,strong) IBOutlet UILabel *time3;
+@property (nonatomic,strong) IBOutlet UILabel *time4;
+@property (nonatomic,strong) IBOutlet UILabel *heightLabel1;
+@property (nonatomic,strong) IBOutlet UILabel *heightLabel2;
+@property (nonatomic,strong) IBOutlet UILabel *heightLabel3;
+@property (nonatomic,strong) IBOutlet UILabel *heightLabel4;
+@property (nonatomic,strong) IBOutlet UILabel *state1;
+@property (nonatomic,strong) IBOutlet UILabel *state2;
+@property (nonatomic,strong) IBOutlet UILabel *state3;
+@property (nonatomic,strong) IBOutlet UILabel *state4;
+@property (nonatomic,strong) IBOutlet UIImageView *bullet1;
+@property (nonatomic,strong) IBOutlet UIImageView *bullet2;
+@property (nonatomic,strong) IBOutlet UIImageView *bullet3;
+@property (nonatomic,strong) IBOutlet UIImageView *bullet4;
+@property (nonatomic,strong) IBOutlet UILabel *correctionLabel;
+@property (nonatomic,strong) IBOutlet UIView *currentTideView;
+
 @end

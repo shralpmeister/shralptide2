@@ -11,9 +11,6 @@
 #import "StationDetailViewController.h"
 
 @interface SelectStationNavigationController : UINavigationController {
-    UIBarButtonItem *doneButton;
-    TideStationAnnotation *selectedStation;
-    id<StationDetailViewControllerDelegate> __unsafe_unretained detailViewDelegate;
 }
 
 @property (nonatomic,strong) UIBarButtonItem *doneButton;

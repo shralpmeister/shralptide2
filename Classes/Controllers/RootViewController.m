@@ -53,31 +53,26 @@
 - (id)applicationPlistFromFile:(NSString *)fileName;
 - (void)replaceSubview:(UIView *)oldView withSubview:(UIView *)newView transition:(NSString *)transition direction:(NSString *)direction duration:(NSTimeInterval)duration;
 - (void)setDefaultLocation;
-
+- (SDTide*)computeTidesForNumberOfDays:(int)numberOfDays;
 
 @property (nonatomic, strong) NSString *cachedLocationFilePath;
+@property (nonatomic, strong) UIActivityIndicatorView *waitIndicator;
+@property (nonatomic, strong) UIButton *infoButton;
+@property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, strong) NSString *location;
+@property (nonatomic, strong) SDTide* sdTide;
+@property (nonatomic, strong) NSMutableArray *viewControllers;
+@property (nonatomic, strong) NSMutableArray *chartViewControllers;
+@property (nonatomic, strong) NSCalendar *currentCalendar;
+@property (nonatomic, strong) SDTideStationData *tideStation;
+@property (nonatomic, strong) SelectStationNavigationController *stationNavController;
+@property (assign) BOOL pageControlUsed;
+@property (readonly, getter=isTransitioning) BOOL transitioning;
 
 @end
 
 
 @implementation RootViewController
-
-@synthesize stationNavController;
-@synthesize infoButton;
-@synthesize chartScrollView;
-@synthesize searchBar;
-@synthesize location;
-@synthesize sdTide;
-@synthesize currentCalendar;
-@synthesize viewControllers;
-@synthesize chartViewControllers;
-@synthesize scrollView;
-@synthesize waitReason;
-@synthesize transitioning;
-@synthesize tideStation;
-@synthesize cachedLocationFilePath;
-
-
 
 - (void)viewDidLoad {
     NSLog(@"%@", [[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-free" ofType:@"tcd"]);
@@ -124,30 +119,33 @@
     }
     self.viewControllers = controllers;
     
-    NSLog(@"%d viewControllers exist",[viewControllers count]);
+    NSLog(@"%d viewControllers exist",[self.viewControllers count]);
 	self.chartViewControllers = chartControllers;
 	
     // a page is the width of the scroll view
-    scrollView.pagingEnabled = YES;
-    scrollView.contentSize = CGSizeMake(self.view.frame.size.width * appDelegate.daysPref, self.view.frame.size.height);
-    scrollView.showsHorizontalScrollIndicator = NO;
-    scrollView.showsVerticalScrollIndicator = NO;
-    scrollView.scrollsToTop = NO;
-	scrollView.directionalLockEnabled = YES;
-    scrollView.delegate = self;	
-    pageControl.numberOfPages = appDelegate.daysPref;
-	pageControl.hidden = NO;
-	pageControl.defersCurrentPageDisplay = YES;
+    self.scrollView.pagingEnabled = YES;
+    self.scrollView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width * appDelegate.daysPref, self.view.frame.size.height);
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    self.scrollView.scrollsToTop = NO;
+	self.scrollView.directionalLockEnabled = YES;
+    self.scrollView.delegate = self;
+    self.pageControl.numberOfPages = appDelegate.daysPref;
+	self.pageControl.hidden = NO;
+	self.pageControl.defersCurrentPageDisplay = YES;
 	
-	chartScrollView.pagingEnabled = YES;
-	// put 20 back on the height and subtract 20 from width to account for scroll bar at top of landscape 
-	chartScrollView.contentSize = CGSizeMake((self.view.frame.size.height) * appDelegate.daysPref, self.view.frame.size.width - 20);
-	chartScrollView.showsVerticalScrollIndicator = NO;
-	chartScrollView.showsVerticalScrollIndicator = NO;
-	chartScrollView.scrollsToTop = NO;
-	chartScrollView.directionalLockEnabled = YES;
-	chartScrollView.delegate = self;
-	chartScrollView.autoresizingMask = UIViewAutoresizingNone;
+	self.chartScrollView.pagingEnabled = YES;
+	// put 20 back on the height and subtract 20 from width to account for scroll bar at top of landscape
+    NSLog(@"Frame = %0.1f x %0.1f", self.view.frame.size.width, self.view.frame.size.height);
+    self.chartScrollView.frame = CGRectMake(0, 0, self.view.frame.size.height, self.view.frame.size.width);
+	self.chartScrollView.contentSize = CGSizeMake((self.view.frame.size.height) * appDelegate.daysPref, self.view.frame.size.width - 20);
+	self.chartScrollView.showsVerticalScrollIndicator = NO;
+	self.chartScrollView.showsVerticalScrollIndicator = NO;
+	self.chartScrollView.scrollsToTop = NO;
+	self.chartScrollView.directionalLockEnabled = YES;
+	self.chartScrollView.delegate = self;
+	self.chartScrollView.autoresizingMask = UIViewAutoresizingNone;
 	
 	[self loadScrollViewWithPage:0];
 }
@@ -155,7 +153,7 @@
 - (void)refreshViews {
 	NSLog(@"Refresh views called at %@", [NSDate date]);
 	
-	MainViewController *pageOneController = viewControllers[0];
+	MainViewController *pageOneController = self.viewControllers[0];
     
 	if ([[NSDate date] timeIntervalSinceDate: [[pageOneController sdTide] startTime]] > 86400) {
 		[self viewDidAppear:YES];
@@ -165,11 +163,11 @@
 }
 
 - (void)clearChartData {
-    for (UIView *view in chartScrollView.subviews) {
+    for (UIView *view in self.chartScrollView.subviews) {
         [view removeFromSuperview];
     }
 	for (unsigned i = 0; i < appDelegate.daysPref; i++) {
-		chartViewControllers[i] = [NSNull null];
+		self.chartViewControllers[i] = [NSNull null];
     }
 }
 
@@ -194,25 +192,20 @@
 }
 
 -(void)startWaitIndicator {
-	UIViewController* currentPageController = viewControllers[pageControl.currentPage];
+	UIViewController* currentPageController = self.viewControllers[self.pageControl.currentPage];
 	if ((NSNull*)currentPageController == [NSNull null]) {
 		return;
 	}
-	[self.view insertSubview:waitView aboveSubview:scrollView];
-	[waitIndicator startAnimating];
+	[self.view insertSubview:self.waitView aboveSubview:self.scrollView];
+	[self.waitIndicator startAnimating];
 }
 
 -(void)stopWaitIndicator {
-	[waitIndicator stopAnimating];
-	[waitReason setText:@""];
-	if ([waitView superview] != nil) {
-		[waitView removeFromSuperview];
+	[self.waitIndicator stopAnimating];
+	[self.waitReason setText:@""];
+	if ([self.waitView superview] != nil) {
+		[self.waitView removeFromSuperview];
 	}
-}
-
--(void)updateWaitReason:(id)object
-{
-	[waitReason setText:(NSString*)object];
 }
 
 - (void)loadScrollViewWithPage:(int)page {
@@ -220,51 +213,41 @@
     if (page >= appDelegate.daysPref) return;
 	
     // replace the placeholder if necessary
-    MainViewController *controller = viewControllers[page];
+    MainViewController *controller = self.viewControllers[page];
     if ((NSNull *)controller == [NSNull null]) {
         controller = [[MainViewController alloc] initWithPageNumber:page];
         controller.rootViewController = self;
-        controller.backgroundImage = [UIImage imageNamed:appDelegate.backgroundPref];
-        viewControllers[page] = controller;
+        self.viewControllers[page] = controller;
     }
     
     NSLog(@"Calling setSdTide on %@",controller);
-    [controller setSdTide:sdTide];
+    [controller setSdTide:self.sdTide];
 	
     // add the controller's view to the scroll view
     if (nil == controller.view.superview) {
-        CGRect frame = scrollView.frame;
+        CGRect frame = self.scrollView.frame;
         frame.origin.x = frame.size.width * page;
         frame.origin.y = 0;
         controller.view.frame = frame;
-        [scrollView addSubview:controller.view];
+        [self.scrollView addSubview:controller.view];
     }
 }
-
--(NSDate *)add:(int)number daysToDate: (NSDate*) date {
-	unsigned int unitFlags = NSDayCalendarUnit;
-	NSDateComponents *comps = [[NSDateComponents alloc] init];
-	[comps setDay: number];
-	NSDate *result = [currentCalendar dateByAddingComponents:comps toDate:date options:unitFlags];
-	return result;
-}
-
 
 #pragma mark UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
     // We don't want a "feedback loop" between the UIPageControl and the scroll delegate in
     // which a scroll event generated from the user hitting the page control triggers updates from
     // the delegate method. We use a boolean to disable the delegate logic when the page control is used.
-    if (pageControlUsed) {
+    if (self.pageControlUsed) {
         // do nothing - the scroll was initiated from the page control, not the user dragging
         return;
     }
     // Switch the indicator when more than 50% of the previous/next page is visible
     CGFloat pageWidth = sender.frame.size.width;
     int page = floor((sender.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    pageControl.currentPage = page;
+    self.pageControl.currentPage = page;
 
-	if (chartScrollView.superview != nil) {
+	if (self.chartScrollView.superview != nil) {
 		[self loadChartScrollViewWithPage:page - 1];
 		[self loadChartScrollViewWithPage:page];
 		[self loadChartScrollViewWithPage:page + 1];
@@ -274,21 +257,21 @@
 
 // At the end of scroll animation, reset the boolean used when scrolls originate from the UIPageControl
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)aScrollView {
-    pageControlUsed = NO;
-	[pageControl updateCurrentPageDisplay];
+    self.pageControlUsed = NO;
+	[self.pageControl updateCurrentPageDisplay];
 }
 
 - (IBAction)changePage:(id)sender {
-    int page = pageControl.currentPage;
+    int page = self.pageControl.currentPage;
 
     // update the scroll view to the appropriate page
-    CGRect frame = scrollView.frame;
+    CGRect frame = self.scrollView.frame;
     frame.origin.x = frame.size.width * page;
     frame.origin.y = 0;
 
-    [scrollView scrollRectToVisible:frame animated:YES];
+    [self.scrollView scrollRectToVisible:frame animated:YES];
     // Set the boolean used when scrolls originate from the UIPageControl. See scrollViewDidScroll: above.
-    pageControlUsed = YES;
+    self.pageControlUsed = YES;
 }
 
 #pragma mark ViewToggleControls
@@ -298,14 +281,14 @@
     if (page >= appDelegate.daysPref) return;
 	
     // replace the placeholder if necessary
-    ChartViewController *controller = chartViewControllers[page];
+    ChartViewController *controller = self.chartViewControllers[page];
     if ((NSNull *)controller == [NSNull null]) {
         NSLog(@"Initializing new ChartViewController");
-		controller = [[ChartViewController alloc] initWithNibName:@"ChartView" bundle:nil tide:[viewControllers[page] sdTide]];
-        chartViewControllers[page] = controller;
+		controller = [[ChartViewController alloc] initWithNibName:@"ChartView" bundle:nil tide:[self.viewControllers[page] sdTide]];
+        self.chartViewControllers[page] = controller;
     } else {
 		if (controller.sdTide == nil) {
-			[controller setSdTide:[viewControllers[page] sdTide]];
+			[controller setSdTide:[self.viewControllers[page] sdTide]];
 		}
 	}
     
@@ -313,11 +296,11 @@
 	
     // add the controller's view to the scroll view
     if (nil == controller.view.superview) {
-        CGRect frame = chartScrollView.frame;
+        CGRect frame = self.chartScrollView.frame;
         frame.origin.x = frame.size.width * page;
         frame.origin.y = 0;
         controller.view.frame = frame;
-        [chartScrollView addSubview:controller.view];
+        [self.chartScrollView addSubview:controller.view];
     }
 	
 }
@@ -361,7 +344,7 @@
 	listController.title = @"Country";
     listController.rows = [self queryCountries];
 	
-    stationNavController = [[SelectStationNavigationController alloc] initWithRootViewController:listController];
+    self.stationNavController = [[SelectStationNavigationController alloc] initWithRootViewController:listController];
     self.stationNavController.detailViewDelegate = self;
     
 	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(cancelAddLocation)];
@@ -415,19 +398,20 @@
 	[super viewDidAppear: animated];
 	[self clearChartData];
     [self doBackgroundTideCalculation];
-    MainViewController* mainVC = (MainViewController*)viewControllers[0];
+    MainViewController* mainVC = (MainViewController*)self.viewControllers[0];
 	[[mainVC currentTideView] becomeFirstResponder];
     
     /* make sure that we show the current time whenever the view is changed or reappears */
-    int page = pageControl.currentPage;
-    ChartViewController *chartController = (ChartViewController*)chartViewControllers[page];
+    int page = self.pageControl.currentPage;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	UIView *mainView = scrollView;
-	UIView *chartView = chartScrollView;
+	UIView *mainView = self.scrollView;
+	UIView *chartView = self.chartScrollView;
+    
+    NSLog(@"Should auto rotate called..");
 
-    if (sdTide == nil) {
+    if (self.sdTide == nil) {
 		return NO;
 	} else if ([mainView superview] != nil || [chartView superview] != nil) {
 		if ([mainView superview] != nil && interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
@@ -453,56 +437,56 @@
 -(SDTide*)computeTidesForNumberOfDays:(int)numberOfDays
 {
     NSLog(@"Computing tides for %d", numberOfDays);
-    return [SDTideFactory tideForStationName:tideStation.name withInterval:900 forDays:numberOfDays];
+    return [SDTideFactory tideForStationName:self.tideStation.name withInterval:900 forDays:numberOfDays];
 }
 
 -(void)showMainView {
-	if (chartScrollView == nil) {
+	if (self.chartScrollView == nil) {
 		return;
 	}
 	
-	UIView *mainView = scrollView;
-	UIView *chartView = chartScrollView;
+	UIView *mainView = self.scrollView;
+	UIView *chartView = self.chartScrollView;
 	
 	if ([chartView superview] == nil) {
 		return;
 	}
     
-	int page = pageControl.currentPage;
-	CGRect frame = scrollView.frame;
+	int page = self.pageControl.currentPage;
+	CGRect frame = self.scrollView.frame;
 	frame.origin.x = frame.size.width * page;
 	frame.origin.y = 0;
     
-	[(MainViewController*)viewControllers[page] view].frame = frame;
-	[scrollView scrollRectToVisible:frame animated:NO];
+	[(MainViewController*)self.viewControllers[page] view].frame = frame;
+	[self.scrollView scrollRectToVisible:frame animated:NO];
 	
 	[(MainViewController*)(self.viewControllers)[0] updatePresentTideInfo];
 	[self replaceSubview:chartView withSubview:mainView transition:kCATransitionFade direction:@"" duration:0.75];
     
-	[self.view addSubview:pageControl];
+	[self.view addSubview:self.pageControl];
 }
 
 -(void)showChartView
 {	
-	NSLog(@"Setting chart view to use tide from page %d",pageControl.currentPage);
-	[self loadChartScrollViewWithPage:pageControl.currentPage];
+	NSLog(@"Setting chart view to use tide from page %d",self.pageControl.currentPage);
+	[self loadChartScrollViewWithPage:self.pageControl.currentPage];
 	
-	UIView *mainView = scrollView;
-	UIView *chartView = chartScrollView;
+	UIView *mainView = self.scrollView;
+	UIView *chartView = self.chartScrollView;
 	
 	if ([mainView superview] == nil) {
 		return;
 	}
 	
-	int page = pageControl.currentPage;
-	CGRect frame = chartScrollView.frame;
+	int page = self.pageControl.currentPage;
+	CGRect frame = self.chartScrollView.frame;
 	frame.origin.x = frame.size.width * page;
 	frame.origin.y = 0;
-	ChartViewController *viewController = (ChartViewController*)chartViewControllers[page];
+	ChartViewController *viewController = (ChartViewController*)self.chartViewControllers[page];
 	viewController.view.frame = frame;
     [viewController showCurrentTime];
 
-	[chartScrollView scrollRectToVisible:frame animated:NO];
+	[self.chartScrollView scrollRectToVisible:frame animated:NO];
 	[chartView setNeedsLayout];
     
 	[self replaceSubview:mainView withSubview:chartView transition:kCATransitionFade direction:@"" duration:0.75];
@@ -510,8 +494,8 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-	UIView *mainView = scrollView; 
-	UIView *chartView = chartScrollView;
+	UIView *mainView = self.scrollView; 
+	UIView *chartView = self.chartScrollView;
 	
 	if ([mainView superview] != nil || [chartView superview] != nil) {
 		switch (toInterfaceOrientation) {
@@ -542,7 +526,7 @@
 - (void)replaceSubview:(UIView *)oldView withSubview:(UIView *)newView transition:(NSString *)transition direction:(NSString *)direction duration:(NSTimeInterval)duration {
     
     // If a transition is in progress, do nothing
-    if(transitioning) {
+    if(self.transitioning) {
         return;
     }
     
@@ -572,7 +556,7 @@
 #pragma mark savestate
 - (void)saveState {
 	NSMutableDictionary *plist = [[NSMutableDictionary alloc] initWithCapacity:1];
-	plist[@"location"] = location;
+	plist[@"location"] = self.location;
     
 	[self writeApplicationPlist:plist toFile:self.cachedLocationFilePath];
     

@@ -26,19 +26,26 @@
 #import "SDTide.h"
 #import "SDTideEvent.h"
 #import "ShralpTideAppDelegate.h"
+#include <mach/mach_time.h>
 
+#define appDelegate ((ShralpTideAppDelegate*)[[UIApplication sharedApplication] delegate])
+
+bool isTall();
+
+double MachTimeToSecs(uint64_t time);
 
 @interface MainViewController ()
 - (int)currentTimeInMinutes:(SDTide *)tide;
--(NSDate*)today;
+- (NSDate*)today;
+
+@property (nonatomic,strong) NSArray *table;
+@property (assign) int pageNumber;
+@property (nonatomic,strong) UIImage *backgroundImage;
 @end
 
 @implementation MainViewController
 
 @synthesize sdTide;
-@synthesize currentTideView;
-@synthesize rootViewController;
-@synthesize backgroundImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
@@ -49,8 +56,8 @@
 
 // Load the view nib and initialize the pageNumber ivar.
 - (id)initWithPageNumber:(int)page {
-    if ((self = [self initWithNibName:@"MainView" bundle:nil])) {
-        pageNumber = page;
+    if ((self = [self initWithNibName:(isTall() ? @"MainViewTall" :  @"MainView") bundle:nil])) {
+        self.pageNumber = page;
     }
     return self;
 }
@@ -59,18 +66,17 @@
  If you need to do additional setup after loading the view, override viewDidLoad.
  */
 - (void)viewDidLoad {
-    
-    if (backgroundImage != nil) {
-        bgImageView.image = backgroundImage;
-    }
+    NSString *imagePref = appDelegate.backgroundPref;
+    self.bgImageView.image = [UIImage imageNamed: isTall() ? [NSString stringWithFormat:@"%@-568h", imagePref] : imagePref];
     
 	NSMutableArray *tempTable = [[NSMutableArray alloc] init];
-	[tempTable addObject: @[time1, heightLabel1, state1, bullet1]];
-	[tempTable addObject: @[time2, heightLabel2, state2, bullet2]];
-	[tempTable addObject: @[time3, heightLabel3, state3, bullet3]];
-	[tempTable addObject: @[time4, heightLabel4, state4, bullet4]];
+
+	[tempTable addObject: @[self.time1, self.heightLabel1, self.state1, self.bullet1]];
+	[tempTable addObject: @[self.time2, self.heightLabel2, self.state2, self.bullet2]];
+	[tempTable addObject: @[self.time3, self.heightLabel3, self.state3, self.bullet3]];
+	[tempTable addObject: @[self.time4, self.heightLabel4, self.state4, self.bullet4]];
 	
-	table = tempTable;
+	self.table = tempTable;
 	
 	[self refresh];
  }
@@ -83,37 +89,65 @@
 -(void)refresh {
 	[self clearTable];
     
-	if (sdTide == nil) {
-        [presentHeightLabel setText:@""];
-        [date setText:@""];
-        [tideStateImage setHidden:YES];
+	if (self.sdTide == nil) {
+        [self.presentHeightLabel setText:@""];
+        [self.date setText:@""];
+        [self.tideStateImage setHidden:YES];
     } else {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateStyle:NSDateFormatterFullStyle];
-        [date setText: [formatter stringFromDate:[self today]]];
-        [tideStateImage setHidden:NO];
+        [self.date setText: [formatter stringFromDate:[self today]]];
+        [self.tideStateImage setHidden:NO];
     }
 	
-	[locationLabel setText:[sdTide shortLocationName]];
+	[self.locationLabel setText:[sdTide shortLocationName]];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateStyle = NSDateFormatterNoStyle;
+    formatter.timeStyle = NSDateFormatterShortStyle;
+    SDTideEvent *sunriseEvent = (SDTideEvent*)[sdTide sunriseSunsetEventsForDay:self.today][@"sunrise"];
+    SDTideEvent *sunsetEvent = (SDTideEvent*)[sdTide sunriseSunsetEventsForDay:self.today][@"sunset"];    self.sunriseLabel.text = [formatter stringFromDate:sunriseEvent.eventTime];
+    self.sunsetLabel.text = [formatter stringFromDate:sunsetEvent.eventTime];
+    
+    
+    SDTideEvent *moonriseEvent = (SDTideEvent*)[sdTide moonriseMoonsetEventsForDay:self.today][@"moonrise"];
+    if (moonriseEvent != nil) {
+        self.moonriseLabel.text = [formatter stringFromDate:moonriseEvent.eventTime];
+        self.moonriseImage.hidden = NO;
+        self.moonriseLabel.hidden = NO;
+    } else {
+        self.moonriseImage.hidden = YES;
+        self.moonriseLabel.hidden = YES;
+    }
+    SDTideEvent *moonsetEvent = (SDTideEvent*)[sdTide moonriseMoonsetEventsForDay:self.today][@"moonset"];
+    if (moonsetEvent != nil) {
+        self.moonsetLabel.text = [formatter stringFromDate:moonriseEvent.eventTime];
+        self.moonsetImage.hidden = NO;
+        self.moonsetLabel.hidden = NO;
+    } else {
+        self.moonsetImage.hidden = YES;
+        self.moonsetLabel.hidden = YES;
+    }
+    self.moonsetLabel.text = [formatter stringFromDate:moonsetEvent.eventTime];
 	
 	int minutesSinceMidnight = [self currentTimeInMinutes:sdTide];
 	if (minutesSinceMidnight > 0) {
 		[self updatePresentTideInfo];
 	} else {
-		[presentHeightLabel setText:@""];
+		[self.presentHeightLabel setText:@""];
 	}
     
 	if ([[sdTide eventsForDay:[self today]] count] > 4) {
 		// there shouldn't be more than 4 tide events in a day -- 2 high, 2 low
-		[correctionLabel setText:@"Too many events predicted"];
+		[self.correctionLabel setText:@"Too many events predicted"];
 		return;
 	}
 	 
 	int index = 0;
 	for (SDTideEvent *event in [sdTide eventsForDay: [self today]]) {
-		[table [index][0] setText: [event eventTimeNativeFormat]];
-		[table [index][1] setText: [NSString stringWithFormat:@"%0.2f %@",[event eventHeight], [sdTide unitShort]]];
-		[table [index][2] setText: [event eventTypeDescription]];
+		[self.table [index][0] setText: [event eventTimeNativeFormat]];
+		[self.table [index][1] setText: [NSString stringWithFormat:@"%0.2f %@",[event eventHeight], [sdTide unitShort]]];
+		[self.table [index][2] setText: [event eventTypeDescription]];
 		NSLog(@"%@, %@, %@", [event eventTime], [NSString stringWithFormat:@"%0.2f %@",[event eventHeight], [sdTide unitShort]], [event eventTypeDescription]);
 		++index;
 	}
@@ -125,7 +159,7 @@
     }
 	int minutesSinceMidnight = [self currentTimeInMinutes:sdTide];
 	
-	[presentHeightLabel setText:[NSString stringWithFormat:@"%0.2f %@",
+	[self.presentHeightLabel setText:[NSString stringWithFormat:@"%0.2f %@",
 							[sdTide nearestDataPointForTime: minutesSinceMidnight].y,
 							[sdTide unitShort]]];
 	SDTideStateRiseFall direction = [sdTide tideDirectionForTime:minutesSinceMidnight];
@@ -141,10 +175,10 @@
 	if (imageName != nil) {
 		NSString *imagePath = [[NSBundle mainBundle] pathForResource:imageName 
 															  ofType:@"png"];
-		[tideStateImage setImage:[UIImage imageWithContentsOfFile:imagePath]];
-		[tideStateImage setAccessibilityLabel:[imageName isEqualToString:@"Increasing"] ? @"rising" : @"falling"];
+		[self.tideStateImage setImage:[UIImage imageWithContentsOfFile:imagePath]];
+		[self.tideStateImage setAccessibilityLabel:[imageName isEqualToString:@"Increasing"] ? @"rising" : @"falling"];
 	} else {
-		[tideStateImage setImage:nil];
+		[self.tideStateImage setImage:nil];
 	}
 	
 	NSNumber *nextEventIndex = [sdTide nextEventIndex];
@@ -152,21 +186,21 @@
 	for (SDTideEvent *event in [sdTide eventsForDay:[self today]]) {
         if (index < 4) {
             if (nextEventIndex != nil && index == [nextEventIndex intValue]) {
-                [table[index][3] setHidden:NO];
+                [self.table[index][3] setHidden:NO];
             } else {
-                [table[index][3] setHidden:YES];
+                [self.table[index][3] setHidden:YES];
             }
         } else {
             [self clearTable];
-            [correctionLabel setText:@"Too many events predicted"];
+            [self.correctionLabel setText:@"Too many events predicted"];
         }
 		++index;
 	}
 }
 
 -(void)clearTable {
-	[correctionLabel setText:@""];
-	for (NSArray *row in table) {
+	[self.correctionLabel setText:@""];
+	for (NSArray *row in self.table) {
 		[row[0] setText: @""];
 		[row[1] setText: @""];
 		[row[2] setText: @""];
@@ -178,7 +212,7 @@
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [[NSDateComponents alloc] init];
-    [components setDay: pageNumber];
+    [components setDay: self.pageNumber];
     
     NSDate* today = [calendar dateByAddingComponents:components toDate:[sdTide startTime] options:0];
     
@@ -186,7 +220,6 @@
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	// Return YES for supported orientations
 	return NO;
 }
 
@@ -196,6 +229,17 @@
 
 - (IBAction)chooseTideStation:(id)sender {
 	[self.rootViewController setLocationFromList];
+}
+
+-(IBAction)calculateOneYear:(id)sender
+{
+    uint64_t startTime = mach_absolute_time();
+    SDTide *yearsWorth = [SDTideFactory tideForStationName:self.sdTide.stationName withInterval:0 forDays:365];
+    uint64_t endTime = mach_absolute_time();
+    NSLog(@"One years worth of events took %0.5f seconds",MachTimeToSecs(endTime - startTime));
+//    for (SDTideEvent *event in yearsWorth.allEvents) {
+//        NSLog(@"Event: %@", event);
+//    }
 }
 
 #pragma mark UtilMethods
@@ -218,6 +262,21 @@
 		return -1;
 	}
 }
-
-
 @end
+
+double MachTimeToSecs(uint64_t time) {
+    mach_timebase_info_data_t timebase;
+    mach_timebase_info(&timebase);
+    return (double)time * (double)timebase.numer /
+    (double)timebase.denom / 1e9;
+}
+
+bool isTall() {
+    CGSize result = [[UIScreen mainScreen] bounds].size;
+       
+    if (result.height == 568) {
+        return true;
+    } else {
+        return false;
+    }
+}

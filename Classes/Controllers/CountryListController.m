@@ -13,9 +13,6 @@
 
 @implementation CountryListController
 
-@synthesize rows;
-
-
 -(void)loadView {
     [super loadView];
     self.navigationItem.title = NSLocalizedString(@"Country",nil);
@@ -46,7 +43,7 @@
         cell = nibViews[0];
 	}
 	
-    SDCountry *country = ((SDCountry*)rows[row]);
+    SDCountry *country = ((SDCountry*)self.rows[row]);
 	cell.nameLabel.text = country.name;
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     

@@ -14,18 +14,6 @@
 
 @interface StationDetailViewController : UIViewController <MKMapViewDelegate>
 {
-	id<StationDetailViewControllerDelegate> __unsafe_unretained modalViewDelegate;
-	TideStationAnnotation *tideStationData;
-    UIImage *mapImage;
-    
-    UIView *titleView;
-    UIView *buttonView;
-    UILabel *titleLabel;
-    UIButton *selectButton;
-    MKMapView *mapView;
-    
-    UITableViewCell *locationCell;
-    UITableViewCell *primaryCell;
 }
 
 @property (nonatomic,strong) TideStationAnnotation *tideStationData;
