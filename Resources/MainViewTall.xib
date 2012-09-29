@@ -60,7 +60,6 @@
 						<string key="NSFrame">{{266, 454}, {36, 36}}</string>
 						<reference key="NSSuperview" ref="169245649"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<object class="IBUIAccessibilityConfiguration" key="IBUIAccessibilityConfiguration">
@@ -313,7 +312,7 @@
 								<string key="NSFrame">{{20, 107}, {255, 26}}</string>
 								<reference key="NSSuperview" ref="362639208"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="493622231"/>
+								<reference key="NSNextKeyView" ref="881289400"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -807,7 +806,7 @@
 						<string key="NSFrame">{{75, 186}, {74, 21}}</string>
 						<reference key="NSSuperview" ref="169245649"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="841616271"/>
+						<reference key="NSNextKeyView" ref="1056601776"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -821,17 +820,17 @@
 							<reference key="NSCustomColorSpace" ref="653697660"/>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
-						<object class="NSColor" key="IBUIShadowColor" id="905694823">
+						<object class="NSColor" key="IBUIShadowColor" id="551548415">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4wMTA4Njk1NjMgMC4wMTA4Njk1NjMgMC4wMTA4Njk1NjMAA</bytes>
 						</object>
 						<string key="IBUIShadowOffset">{1, 1}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="212722637">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="367475392">
 							<int key="type">2</int>
 							<double key="pointSize">16</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="305227854">
+						<object class="NSFont" key="IBUIFont" id="333403366">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">16</double>
 							<int key="NSfFlags">16</int>
@@ -858,11 +857,11 @@
 							<reference key="NSCustomColorSpace" ref="653697660"/>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
-						<reference key="IBUIShadowColor" ref="905694823"/>
+						<reference key="IBUIShadowColor" ref="551548415"/>
 						<string key="IBUIShadowOffset">{1, 1}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<reference key="IBUIFontDescription" ref="212722637"/>
-						<reference key="IBUIFont" ref="305227854"/>
+						<reference key="IBUIFontDescription" ref="367475392"/>
+						<reference key="IBUIFont" ref="333403366"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUILabel" id="486317254">
@@ -871,7 +870,7 @@
 						<string key="NSFrame">{{193, 186}, {81, 21}}</string>
 						<reference key="NSSuperview" ref="169245649"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="951430862"/>
+						<reference key="NSNextKeyView" ref="663336063"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -885,11 +884,11 @@
 							<reference key="NSCustomColorSpace" ref="653697660"/>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
-						<reference key="IBUIShadowColor" ref="905694823"/>
+						<reference key="IBUIShadowColor" ref="551548415"/>
 						<string key="IBUIShadowOffset">{1, 1}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<reference key="IBUIFontDescription" ref="212722637"/>
-						<reference key="IBUIFont" ref="305227854"/>
+						<reference key="IBUIFontDescription" ref="367475392"/>
+						<reference key="IBUIFont" ref="333403366"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUILabel" id="52725718">
@@ -898,7 +897,7 @@
 						<string key="NSFrame">{{75, 213}, {74, 21}}</string>
 						<reference key="NSSuperview" ref="169245649"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="767106847"/>
+						<reference key="NSNextKeyView" ref="403773049"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -912,14 +911,14 @@
 							<reference key="NSCustomColorSpace" ref="653697660"/>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
-						<reference key="IBUIShadowColor" ref="905694823"/>
+						<reference key="IBUIShadowColor" ref="551548415"/>
 						<string key="IBUIShadowOffset">{1, 1}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<reference key="IBUIFontDescription" ref="212722637"/>
-						<reference key="IBUIFont" ref="305227854"/>
+						<reference key="IBUIFontDescription" ref="367475392"/>
+						<reference key="IBUIFont" ref="333403366"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
-					<object class="IBUIImageView" id="493622231">
+					<object class="IBUIImageView" id="881289400">
 						<reference key="NSNextResponder" ref="169245649"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{46, 186}, {26, 22}}</string>
@@ -932,10 +931,10 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">sunrise.png</string>
+							<string key="NSResourceName">sunrise_trnspt</string>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="841616271">
+					<object class="IBUIImageView" id="1056601776">
 						<reference key="NSNextResponder" ref="169245649"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{166, 186}, {26, 22}}</string>
@@ -948,10 +947,10 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">moonrise.png</string>
+							<string key="NSResourceName">moonrise_trnspt</string>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="951430862">
+					<object class="IBUIImageView" id="663336063">
 						<reference key="NSNextResponder" ref="169245649"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{46, 213}, {26, 22}}</string>
@@ -964,10 +963,10 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">sunset.png</string>
+							<string key="NSResourceName">sunset_trnspt</string>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="767106847">
+					<object class="IBUIImageView" id="403773049">
 						<reference key="NSNextResponder" ref="169245649"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{166, 213}, {26, 22}}</string>
@@ -980,7 +979,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">moonset.png</string>
+							<string key="NSResourceName">moonset_trnspt</string>
 						</object>
 					</object>
 				</array>
@@ -1243,7 +1242,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">sunriseImage</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="493622231"/>
+						<reference key="destination" ref="881289400"/>
 					</object>
 					<int key="connectionID">313</int>
 				</object>
@@ -1251,7 +1250,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">moonriseImage</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="841616271"/>
+						<reference key="destination" ref="1056601776"/>
 					</object>
 					<int key="connectionID">314</int>
 				</object>
@@ -1259,7 +1258,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">sunsetImage</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="951430862"/>
+						<reference key="destination" ref="663336063"/>
 					</object>
 					<int key="connectionID">315</int>
 				</object>
@@ -1267,7 +1266,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">moonsetImage</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="767106847"/>
+						<reference key="destination" ref="403773049"/>
 					</object>
 					<int key="connectionID">316</int>
 				</object>
@@ -1450,10 +1449,10 @@
 							<reference ref="910126607"/>
 							<reference ref="486317254"/>
 							<reference ref="52725718"/>
-							<reference ref="493622231"/>
-							<reference ref="841616271"/>
-							<reference ref="951430862"/>
-							<reference ref="767106847"/>
+							<reference ref="881289400"/>
+							<reference ref="1056601776"/>
+							<reference ref="663336063"/>
+							<reference ref="403773049"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1695,22 +1694,22 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">309</int>
-						<reference key="object" ref="493622231"/>
+						<reference key="object" ref="881289400"/>
 						<reference key="parent" ref="169245649"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">310</int>
-						<reference key="object" ref="951430862"/>
+						<reference key="object" ref="663336063"/>
 						<reference key="parent" ref="169245649"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">311</int>
-						<reference key="object" ref="841616271"/>
+						<reference key="object" ref="1056601776"/>
 						<reference key="parent" ref="169245649"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">312</int>
-						<reference key="object" ref="767106847"/>
+						<reference key="object" ref="403773049"/>
 						<reference key="parent" ref="169245649"/>
 					</object>
 				</array>
@@ -1810,16 +1809,11 @@
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="calculateOneYear:">id</string>
-						<string key="chooseNearbyTideStation:">id</string>
 						<string key="chooseTideStation:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="calculateOneYear:">
 							<string key="name">calculateOneYear:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="chooseNearbyTideStation:">
-							<string key="name">chooseNearbyTideStation:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="chooseTideStation:">
@@ -2035,10 +2029,10 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="bullet_yellow.png">{20, 20}</string>
 			<string key="location_icon.png">{22, 20}</string>
-			<string key="moonrise.png">{20, 20}</string>
-			<string key="moonset.png">{20, 20}</string>
-			<string key="sunrise.png">{20, 20}</string>
-			<string key="sunset.png">{20, 20}</string>
+			<string key="moonrise_trnspt">{16, 16}</string>
+			<string key="moonset_trnspt">{16, 16}</string>
+			<string key="sunrise_trnspt">{16, 16}</string>
+			<string key="sunset_trnspt">{16, 16}</string>
 			<string key="woody-568h@2x.png">{640, 1136}</string>
 			<string key="world_icon.png">{22, 20}</string>
 		</dictionary>
