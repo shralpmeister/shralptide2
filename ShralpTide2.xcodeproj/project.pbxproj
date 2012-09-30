@@ -30,7 +30,6 @@
 		DC0CD7D91617A9D7000C3865 /* moonset@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0CD7D51617A9D6000C3865 /* moonset@2x.png */; };
 		DC0CD7DA1617A9D7000C3865 /* sunrise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0CD7D61617A9D7000C3865 /* sunrise@2x.png */; };
 		DC0CD7DB1617A9D7000C3865 /* sunset@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0CD7D71617A9D7000C3865 /* sunset@2x.png */; };
-		DC1EBBEB0EDBAEFA0093FA18 /* WaitView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1EBBEA0EDBAEFA0093FA18 /* WaitView.m */; };
 		DC1F47CC1438D2A8003EC4FB /* woody.png in Resources */ = {isa = PBXBuildFile; fileRef = DC1F47C71438D2A8003EC4FB /* woody.png */; };
 		DC1F47CD1438D2A8003EC4FB /* woody@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC1F47C81438D2A8003EC4FB /* woody@2x.png */; };
 		DC2A60AE14018EBD00B428A6 /* header_background.png in Resources */ = {isa = PBXBuildFile; fileRef = DC2A60AD14018EBD00B428A6 /* header_background.png */; };
@@ -220,8 +219,6 @@
 		DC0CD7D51617A9D6000C3865 /* moonset@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "moonset@2x.png"; path = "Resources/moonset@2x.png"; sourceTree = "<group>"; };
 		DC0CD7D61617A9D7000C3865 /* sunrise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sunrise@2x.png"; path = "Resources/sunrise@2x.png"; sourceTree = "<group>"; };
 		DC0CD7D71617A9D7000C3865 /* sunset@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sunset@2x.png"; path = "Resources/sunset@2x.png"; sourceTree = "<group>"; };
-		DC1EBBE90EDBAEFA0093FA18 /* WaitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaitView.h; path = Classes/Views/WaitView.h; sourceTree = "<group>"; };
-		DC1EBBEA0EDBAEFA0093FA18 /* WaitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaitView.m; path = Classes/Views/WaitView.m; sourceTree = "<group>"; };
 		DC1F47C71438D2A8003EC4FB /* woody.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = woody.png; path = Resources/skins/woody.png; sourceTree = "<group>"; };
 		DC1F47C81438D2A8003EC4FB /* woody@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "woody@2x.png"; path = "Resources/skins/woody@2x.png"; sourceTree = "<group>"; };
 		DC25A1FA0EEA575D0038078B /* ChartViewDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChartViewDatasource.h; path = Classes/Controllers/ChartViewDatasource.h; sourceTree = "<group>"; };
@@ -532,7 +529,6 @@
 				DCA3BF8A133E9DCF00EA966A /* libtcd */,
 				DCA3BEF9133E4F7200EA966A /* XTide2 */,
 				DCA3BEEC133E4EB200EA966A /* CoreData */,
-				DC1EBBE80EDBAEE50093FA18 /* WaitView */,
 				DCFD59320E39A90A00B7B1B8 /* objctidelib */,
 				DC32FFA90E88B04800AB78F2 /* ChartView */,
 				289233A00DB2D0730083E9F9 /* Main View */,
@@ -623,15 +619,6 @@
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		DC1EBBE80EDBAEE50093FA18 /* WaitView */ = {
-			isa = PBXGroup;
-			children = (
-				DC1EBBE90EDBAEFA0093FA18 /* WaitView.h */,
-				DC1EBBEA0EDBAEFA0093FA18 /* WaitView.m */,
-			);
-			name = WaitView;
 			sourceTree = "<group>";
 		};
 		DC32FFA90E88B04800AB78F2 /* ChartView */ = {
@@ -1066,7 +1053,6 @@
 				DC2F284A0E5A758800577E55 /* MainViewController.m in Sources */,
 				DC32FFB40E88B3FD00AB78F2 /* ChartView.m in Sources */,
 				DC32FFB70E88B40F00AB78F2 /* ChartViewController.m in Sources */,
-				DC1EBBEB0EDBAEFA0093FA18 /* WaitView.m in Sources */,
 				DCE897DB0EEE3CAE00BF2357 /* CursorView.m in Sources */,
 				DC0C0DD6105C1D8F0080297E /* ChartScrollView.m in Sources */,
 				DCCA6F4A1065440F00322BC6 /* CurrentTideView.m in Sources */,

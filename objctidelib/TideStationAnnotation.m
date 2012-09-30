@@ -15,8 +15,6 @@
 
 @implementation TideStationAnnotation
 
-@synthesize title,subtitle,coordinate,primary;
-
 -(id)init
 {
     if ((self = [super init])) {
@@ -70,11 +68,11 @@
     int prime = 31;
     uint64_t result = 1;
     
-    result = prime + [title hash];
-    result = prime * result + [subtitle hash];
-    result = prime * result + coordinate.longitude * 1000;
-    result = prime * result + coordinate.latitude * 1000;
-    result = prime * result + (primary?1231:1237);
+    result = prime + [self.title hash];
+    result = prime * result + [self.subtitle hash];
+    result = prime * result + self.coordinate.longitude * 1000;
+    result = prime * result + self.coordinate.latitude * 1000;
+    result = prime * result + (self.primary?1231:1237);
     
     return result;
 }

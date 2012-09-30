@@ -40,17 +40,17 @@
         NSAssert(start != nil, @"Start date must not be nil");
         NSAssert(end != nil, @"End date must not be nil");
         
-        startTime = start;
-        stopTime = end;
-        intervals = tideIntervals;
-        allEvents = events;
+        self.startTime = start;
+        self.stopTime = end;
+        self.intervals = tideIntervals;
+        self.allEvents = events;
         self.stationName = station;
     }
     return self;
 }
 
 -(NSString*)shortLocationName {
-	NSArray *parts = [stationName componentsSeparatedByString:@","];
+	NSArray *parts = [self.stationName componentsSeparatedByString:@","];
 	return parts[0];
 }
 
@@ -104,14 +104,14 @@
 -(NSArray*)events 
 {
     NSPredicate *tideEventsOnly = [NSPredicate predicateWithFormat:@"(eventType == %d OR eventType == %d)", max, min];
-    return [allEvents filteredArrayUsingPredicate:tideEventsOnly];
+    return [self.allEvents filteredArrayUsingPredicate:tideEventsOnly];
 }
 
 -(NSDictionary*)sunriseSunsetEventsForDay:(NSDate*)date
 {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     NSPredicate *sunEvents = [NSPredicate predicateWithFormat:@"(eventType == %d OR eventType == %d) AND eventTime BETWEEN %@", sunrise, sunset, @[[date startOfDay], [date endOfDay]]];
-    NSArray* events = [allEvents filteredArrayUsingPredicate:sunEvents];
+    NSArray* events = [self.allEvents filteredArrayUsingPredicate:sunEvents];
     for (SDTideEvent* event in events) {
         if (event.eventType == sunrise) {
             result[@"sunrise"] = event;
@@ -126,7 +126,7 @@
 {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     NSPredicate *sunEvents = [NSPredicate predicateWithFormat:@"(eventType == %d OR eventType == %d) AND eventTime BETWEEN %@", moonrise, moonset, @[[date startOfDay], [date endOfDay]]];
-    NSArray* events = [allEvents filteredArrayUsingPredicate:sunEvents];
+    NSArray* events = [self.allEvents filteredArrayUsingPredicate:sunEvents];
     for (SDTideEvent* event in events) {
         if (event.eventType == moonrise) {
             result[@"moonrise"] = event;
@@ -169,11 +169,4 @@
 	NSLog(@"Deallocating SDTide %@",self);
 }
 
-@synthesize startTime;
-@synthesize stopTime;
-@synthesize allEvents;
-@synthesize intervals;
-@synthesize stationName;
-@synthesize unitLong;
-@synthesize unitShort;
 @end

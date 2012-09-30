@@ -26,11 +26,8 @@ typedef enum eventTypeEnum {max, min, slackrise, slackfall, markrise, markfall,
     lastquarter, rawreading} SDTideState;
 
 @interface SDTideEvent : NSObject {
-    NSDate *eventTime;
-    SDTideState eventType;
-    float eventHeight;
-    NSString *units;
 }
+
 -(id)initWithTime:(NSDate *)t Event:(SDTideState)e andHeight:(float)f;
 -(NSString *)eventTypeDescription;
 -(NSString *)eventTimeNativeFormat;

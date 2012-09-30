@@ -101,6 +101,7 @@
 		[self setDefaultLocation];
 	}
 	self.currentCalendar = [NSCalendar currentCalendar];
+    self.waitView.frame = self.view.window.frame;
 }
 
 - (void)setDefaultLocation {
@@ -178,16 +179,13 @@
 
 - (void)recalculateTides { 
     @autoreleasepool {
-    
         NSLog(@"Recalculating tides for %d days",appDelegate.daysPref);
         self.sdTide = [self computeTidesForNumberOfDays:appDelegate.daysPref];
 
         for (unsigned i = 0; i < appDelegate.daysPref; i++) {
-		[self loadScrollViewWithPage:i];
-	}
-        
+            [self loadScrollViewWithPage:i];
+        }
         [self stopWaitIndicator];
-    
     }
 }
 

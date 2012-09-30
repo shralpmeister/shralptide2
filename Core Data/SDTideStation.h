@@ -25,14 +25,6 @@
 #import <CoreData/CoreData.h>
 
 @interface SDTideStation : NSManagedObject {
-	NSString *name;
-    NSString *state;
-	NSNumber *latitude;
-	NSNumber *longitude;
-	NSNumber *distance;
-	NSString *units;
-    NSNumber *current;
-    NSNumber *primary;
 }
 
 @property (strong, readwrite) NSString *name, *state, *units;

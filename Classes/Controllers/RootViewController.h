@@ -23,7 +23,6 @@
 
 #import <CoreLocation/CoreLocation.h>
 #import "SDTide.h"
-#import "WaitView.h"
 #import "SDTideStationData.h"
 #import "ChartScrollView.h"
 #import "SelectStationNavigationController.h"
@@ -38,7 +37,7 @@
 @property (nonatomic, strong) IBOutlet ChartScrollView *chartScrollView;
 @property (nonatomic, strong) IBOutlet UILabel *waitReason;
 @property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
-@property (nonatomic, strong) IBOutlet WaitView *waitView;
+@property (nonatomic, strong) IBOutlet UIView *waitView;
 
 - (IBAction)changePage:(id)sender;
 - (void)setLocationFromList;

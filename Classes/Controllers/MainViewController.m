@@ -93,16 +93,16 @@ double MachTimeToSecs(uint64_t time);
         [self.presentHeightLabel setText:@""];
         [self.date setText:@""];
         [self.tideStateImage setHidden:YES];
-    } else {
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateStyle:NSDateFormatterFullStyle];
-        [self.date setText: [formatter stringFromDate:[self today]]];
-        [self.tideStateImage setHidden:NO];
+        return;
     }
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterFullStyle];
+    [self.date setText: [formatter stringFromDate:[self today]]];
+    [self.tideStateImage setHidden:NO];
 	
 	[self.locationLabel setText:[sdTide shortLocationName]];
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateStyle = NSDateFormatterNoStyle;
     formatter.timeStyle = NSDateFormatterShortStyle;
     SDTideEvent *sunriseEvent = (SDTideEvent*)[sdTide sunriseSunsetEventsForDay:self.today][@"sunrise"];

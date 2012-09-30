@@ -25,9 +25,4 @@
 
 @implementation SDTideInterval
 
-@synthesize time;
-@synthesize height;
-@synthesize units;
-
-
 @end

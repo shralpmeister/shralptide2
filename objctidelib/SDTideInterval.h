@@ -22,9 +22,6 @@
 */
 
 @interface SDTideInterval : NSObject {
-    NSDate *time;
-    float height;
-    NSString *units;
 }
 @property (nonatomic,strong) NSDate *time;
 @property (nonatomic,assign) float height;

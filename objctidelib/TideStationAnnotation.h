@@ -10,10 +10,6 @@
 #import <MapKit/MapKit.h>
 
 @interface TideStationAnnotation : NSObject <MKAnnotation> {
-	NSString *title;
-	NSString *subtitle;
-	CLLocationCoordinate2D coordinate;
-    BOOL primary;
 }
 
 -(id)initWithCoordinate:(CLLocationCoordinate2D)aCoordinate;

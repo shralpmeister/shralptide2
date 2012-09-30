@@ -25,12 +25,4 @@
 
 @implementation SDTideStationData
 
-@synthesize name;
-@synthesize units;
-@synthesize distance;
-@synthesize latitude;
-@synthesize longitude;
-@synthesize state;
-
-
 @end

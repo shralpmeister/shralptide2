@@ -22,14 +22,9 @@
 */
 
 @interface SDTideStationData : NSObject {
-	NSString *name;
-	NSNumber *latitude;
-	NSNumber *longitude;
-	NSNumber *distance;
-	NSString *units;
-	NSString *state;
 }
 
 @property (copy, readwrite) NSString *name, *units, *state;
 @property (strong, readwrite) NSNumber *distance, *latitude, *longitude;
+
 @end

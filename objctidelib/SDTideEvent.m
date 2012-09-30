@@ -29,11 +29,6 @@
 
 @implementation SDTideEvent
 
-@synthesize eventTime;
-@synthesize eventType;
-@synthesize eventHeight;
-@synthesize units;
-
 +(NSArray*)eventTypeDescriptions
 {
     return @[@"max", @"min", @"slackrise", @"slackfall", @"markrise", @"markfall",@"sunrise", @"sunset", @"moonrise", @"moonset", @"newmoon", @"firstquarter", @"fullmoon",@"lastquarter", @"rawreading"];
@@ -42,9 +37,9 @@
 -(id)initWithTime:(NSDate *)time Event:(SDTideState)state andHeight:(float)height;
 {
     if (self = [super init]) {
-        eventTime = time;
-        eventType = state;
-        eventHeight = height;
+        self.eventTime = time;
+        self.eventType = state;
+        self.eventHeight = height;
     }
     return self;    
 }
@@ -105,20 +100,20 @@
 -(NSString *)eventTimeNativeFormat {
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setTimeStyle:NSDateFormatterShortStyle];
-	NSString *fTime = [formatter stringFromDate:eventTime];
+	NSString *fTime = [formatter stringFromDate:self.eventTime];
     return fTime;
 }
 
 -(NSString *)eventTimeString24HR {
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateFormat:@"HH:mm"];
-    NSString *fTime = [formatter stringFromDate:eventTime];
+    NSString *fTime = [formatter stringFromDate:self.eventTime];
     return fTime;
 }
 -(NSString *)eventTimeString12HR {
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateFormat:@"HH:mm pm"];
-    NSString *fTime = [formatter stringFromDate:eventTime];
+    NSString *fTime = [formatter stringFromDate:self.eventTime];
 	return fTime;	
 }
 
