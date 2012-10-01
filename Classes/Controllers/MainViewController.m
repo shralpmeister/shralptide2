@@ -90,18 +90,19 @@ double MachTimeToSecs(uint64_t time);
 	[self clearTable];
     
 	if (self.sdTide == nil) {
-        [self.presentHeightLabel setText:@""];
-        [self.date setText:@""];
-        [self.tideStateImage setHidden:YES];
+        self.presentHeightLabel.text = @"";
+        self.date.text = @"";
+        self.tideStateImage.hidden = YES;
+        self.locationLabel.text = @"";
         return;
     }
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateStyle:NSDateFormatterFullStyle];
-    [self.date setText: [formatter stringFromDate:[self today]]];
-    [self.tideStateImage setHidden:NO];
+    formatter.dateStyle = NSDateFormatterFullStyle;
+    self.date.text = [formatter stringFromDate:self.today];
+    self.tideStateImage.hidden = NO;
 	
-	[self.locationLabel setText:[sdTide shortLocationName]];
+	self.locationLabel.text = [sdTide shortLocationName];
     
     formatter.dateStyle = NSDateFormatterNoStyle;
     formatter.timeStyle = NSDateFormatterShortStyle;
@@ -139,7 +140,7 @@ double MachTimeToSecs(uint64_t time);
     
 	if ([[sdTide eventsForDay:[self today]] count] > 4) {
 		// there shouldn't be more than 4 tide events in a day -- 2 high, 2 low
-		[self.correctionLabel setText:@"Too many events predicted"];
+		self.correctionLabel.text = @"Too many events predicted";
 		return;
 	}
 	 

@@ -306,7 +306,7 @@
 -(void)setLocationFromMap
 {
     [self dismissModalViewControllerAnimated:NO];
-	StationMapController *mapController = [[StationMapController alloc] initWithNibName:@"LocationView" 
+	StationMapController *mapController = [[StationMapController alloc] initWithNibName:@"LocationView"
 																		 forStationType:SDStationTypeTide];
 	mapController.title = NSLocalizedString(@"Choose a Station",nil);
     mapController.modalViewDelegate = self;
@@ -332,8 +332,6 @@
     mapNavigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     
 	[self presentModalViewController:mapNavigationController animated:YES];
-	
-	
 }
 
 -(void)setLocationFromList
@@ -348,7 +346,6 @@
 	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(cancelAddLocation)];
     
     self.stationNavController.doneButton = doneButton;
-
     
     self.stationNavController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 	[self presentModalViewController:self.stationNavController animated:YES];
