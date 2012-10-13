@@ -37,6 +37,7 @@ double MachTimeToSecs(uint64_t time);
 @interface MainViewController ()
 - (int)currentTimeInMinutes:(SDTide *)tide;
 - (NSDate*)today;
+- (UIImage*)createImageFromMaskImageNamed:(NSString*)imageName withColor:(UIColor*)color;
 
 @property (nonatomic,strong) NSArray *table;
 @property (assign) int pageNumber;
@@ -69,6 +70,19 @@ double MachTimeToSecs(uint64_t time);
     NSString *imagePref = appDelegate.backgroundPref;
     self.bgImageView.image = [UIImage imageNamed: isTall() ? [NSString stringWithFormat:@"%@-568h", imagePref] : imagePref];
     
+    if (isTall()) {
+        NSDictionary *sunsetColorMap = @{
+        @"woody" : [UIColor colorWithRed:0.431 green:0.318 blue:0.090 alpha:1.0],
+        @"morning_glass" : [UIColor colorWithRed:0.059 green:0.122 blue:0.098 alpha:1.0],
+        @"june_gloom" : [UIColor colorWithRed:0.263 green:0.263 blue:0.263 alpha:1.0],
+        @"fall_gold" : [UIColor colorWithRed:0.549 green:0.384 blue:0.149 alpha:1.0]
+        };
+        self.sunriseImage.image = [self createImageFromMaskImageNamed:@"sunset_trnspt" withColor: [UIColor whiteColor]];
+        self.sunsetImage.image = [self createImageFromMaskImageNamed:@"sunset_trnspt" withColor:sunsetColorMap[imagePref]];
+        self.moonriseImage.image = [self createImageFromMaskImageNamed:@"moonset_trnspt" withColor:[UIColor whiteColor]];
+        self.moonsetImage.image = [self createImageFromMaskImageNamed:@"moonset_trnspt" withColor:sunsetColorMap[imagePref]];
+    }
+    
 	NSMutableArray *tempTable = [[NSMutableArray alloc] init];
 
 	[tempTable addObject: @[self.time1, self.heightLabel1, self.state1, self.bullet1]];
@@ -80,6 +94,31 @@ double MachTimeToSecs(uint64_t time);
 	
 	[self refresh];
  }
+
+- (UIImage*)createImageFromMaskImageNamed:(NSString*)imageName withColor:(UIColor*)color
+{
+    UIImage *image = [UIImage imageNamed:imageName];
+    UIGraphicsBeginImageContextWithOptions(image.size, NO, 0);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGRect imageRect = CGRectMake(0,0, image.size.width, image.size.height);
+    
+    // Flip image orientation
+    CGContextTranslateCTM(context, 0.0, image.size.height);
+    CGContextScaleCTM(context, 1.0, -1.0);
+    
+    // Drawing code
+    CGContextSetBlendMode(context, kCGBlendModeCopy);
+	CGContextClipToMask(context, imageRect, [image CGImage]);
+	CGContextSetFillColorWithColor(context, [color CGColor]);
+	CGContextFillRect(context, imageRect);
+    
+    UIImage *maskedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return maskedImage;
+}
 
 - (void)setSdTide: (SDTide*)newTide {
 	sdTide = newTide;
