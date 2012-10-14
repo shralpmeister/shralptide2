@@ -24,8 +24,7 @@
 #import "SDTideInterval.h"
 #import "SDTideEvent.h"
 
-@interface SDTideFactory : NSObject {
-}
+@interface SDTideFactory : NSObject
 
 +(SDTide*)tideForStationName:(NSString*)name;
 +(SDTide*)tideForStationName:(NSString*)name withInterval:(int)interval forDays:(int)days;

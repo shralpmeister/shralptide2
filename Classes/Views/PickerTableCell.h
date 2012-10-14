@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface PickerTableCell : UITableViewCell {
-}
+@interface PickerTableCell : UITableViewCell
 
 @property (nonatomic,strong) IBOutlet UIImageView *flagView;
 @property (nonatomic,strong) IBOutlet UILabel *nameLabel;

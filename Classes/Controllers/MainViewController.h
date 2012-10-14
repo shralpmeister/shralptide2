@@ -24,9 +24,7 @@
 #import "SDTide.h"
 #import "RootViewController.h"
 
-@interface MainViewController : UIViewController 
-{
-}
+@interface MainViewController : UIViewController
 
 -(void)refresh;
 -(void)setSdTide:(SDTide*)newTide;

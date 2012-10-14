@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "StateListController.h"
 
-@interface CountryListController : UITableViewController {
-}
+@interface CountryListController : UITableViewController
 
 @property (nonatomic,strong) NSArray *rows;
 

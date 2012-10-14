@@ -30,8 +30,6 @@
 @class MainViewController;
 
 @interface RootViewController : UIViewController <UIScrollViewDelegate, StationDetailViewControllerDelegate>
-{
-}
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet ChartScrollView *chartScrollView;

@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CurrentTideView : UIView {
-}
+@interface CurrentTideView : UIView
 
 @property (nonatomic, strong) IBOutlet UIImageView *directionImgView;
 @property (nonatomic, strong) IBOutlet UILabel *heightLabel;

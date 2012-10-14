@@ -10,8 +10,7 @@
 #import <CoreData/CoreData.h>
 
 
-@interface SDState : NSManagedObject {
-}
+@interface SDState : NSManagedObject
 
 @property (nonatomic,strong) NSString *name;
 @property (nonatomic,strong) NSString *flag;

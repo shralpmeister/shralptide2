@@ -30,8 +30,7 @@ typedef enum {
     SDTideStateUnknown,
 } SDTideStateRiseFall;
 
-@interface SDTide : NSObject {
-}
+@interface SDTide : NSObject
 
 -(id)initWithTideStation:(NSString *)station StartDate: (NSDate*)start EndDate:(NSDate*)end Events:(NSArray*)tideEvents andIntervals:(NSArray*)tideIntervals;
 -(NSString*)shortLocationName;

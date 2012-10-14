@@ -21,8 +21,6 @@
    along with ShralpTide.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-@interface CursorView : UIView {
-
-}
+@interface CursorView : UIView
 
 @end

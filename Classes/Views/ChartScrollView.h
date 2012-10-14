@@ -29,8 +29,6 @@
  * to change between pages.
  */
 
-@interface ChartScrollView : UIScrollView {
-
-}
+@interface ChartScrollView : UIScrollView
 
 @end

@@ -24,9 +24,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@interface SDTideStation : NSManagedObject {
-}
+@interface SDTideStation : NSManagedObject
 
 @property (strong, readwrite) NSString *name, *state, *units;
 @property (strong, readwrite) NSNumber *distance, *latitude, *longitude, *current, *primary;
+
 @end

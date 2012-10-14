@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-@interface TideStationAnnotation : NSObject <MKAnnotation> {
-}
+@interface TideStationAnnotation : NSObject <MKAnnotation>
 
 -(id)initWithCoordinate:(CLLocationCoordinate2D)aCoordinate;
 -(BOOL)isEqualToTideStationAnnotation:(TideStationAnnotation*)other;

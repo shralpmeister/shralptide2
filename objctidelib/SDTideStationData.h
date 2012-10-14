@@ -21,8 +21,7 @@
    along with ShralpTide.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-@interface SDTideStationData : NSObject {
-}
+@interface SDTideStationData : NSObject
 
 @property (copy, readwrite) NSString *name, *units, *state;
 @property (strong, readwrite) NSNumber *distance, *latitude, *longitude;

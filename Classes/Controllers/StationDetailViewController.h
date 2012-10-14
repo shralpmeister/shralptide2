@@ -13,8 +13,6 @@
 @protocol StationDetailViewControllerDelegate;
 
 @interface StationDetailViewController : UIViewController <MKMapViewDelegate>
-{
-}
 
 @property (nonatomic,strong) TideStationAnnotation *tideStationData;
 @property (unsafe_unretained) id<StationDetailViewControllerDelegate> modalViewDelegate;

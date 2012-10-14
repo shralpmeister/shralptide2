@@ -12,8 +12,7 @@
 #import "ShralpTideAppDelegate.h"
 
 
-@interface StateListController : UITableViewController {
-}
+@interface StateListController : UITableViewController
 
 @property (nonatomic,strong) NSArray *rows;
 

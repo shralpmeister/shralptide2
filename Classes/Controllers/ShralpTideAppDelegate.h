@@ -25,8 +25,7 @@
 
 @class RootViewController;
 
-@interface ShralpTideAppDelegate : NSObject <UIApplicationDelegate> {
-}
+@interface ShralpTideAppDelegate : NSObject <UIApplicationDelegate>
 
 @property (nonatomic, strong) IBOutlet UIWindow *window;
 @property (nonatomic, strong) IBOutlet RootViewController *rootViewController;

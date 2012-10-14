@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SDTideStation.h"
 
-@interface StationListController : UITableViewController {
-}
+@interface StationListController : UITableViewController
 
 @property (nonatomic,strong) NSArray *stations;
 @property (nonatomic,strong) NSMutableDictionary *sections;

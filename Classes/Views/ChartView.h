@@ -27,8 +27,7 @@
 #import "SDTideEvent.h"
 #import "CursorView.h"
 
-@interface ChartView : UIView {
-}
+@interface ChartView : UIView
 
 -(int)currentTimeInMinutes;
 -(void)animateCursorViewToCurrentTime;

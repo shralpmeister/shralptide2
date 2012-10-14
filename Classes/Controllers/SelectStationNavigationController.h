@@ -10,8 +10,7 @@
 #import "TideStationAnnotation.h"
 #import "StationDetailViewController.h"
 
-@interface SelectStationNavigationController : UINavigationController {
-}
+@interface SelectStationNavigationController : UINavigationController
 
 @property (nonatomic,strong) UIBarButtonItem *doneButton;
 @property (nonatomic,strong) TideStationAnnotation *selectedStation;

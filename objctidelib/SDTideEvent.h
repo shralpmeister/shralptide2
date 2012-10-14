@@ -25,8 +25,7 @@ typedef enum eventTypeEnum {max, min, slackrise, slackfall, markrise, markfall,
     sunrise, sunset, moonrise, moonset, newmoon, firstquarter, fullmoon,
     lastquarter, rawreading} SDTideState;
 
-@interface SDTideEvent : NSObject {
-}
+@interface SDTideEvent : NSObject
 
 -(id)initWithTime:(NSDate *)t Event:(SDTideState)e andHeight:(float)f;
 -(NSString *)eventTypeDescription;

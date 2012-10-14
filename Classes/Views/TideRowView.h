@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface TideRowView : UIView {
-}
+@interface TideRowView : UIView
 
 @property (nonatomic, strong) IBOutlet UILabel *timeLabel;
 @property (nonatomic, strong) IBOutlet UILabel *heightLabel;

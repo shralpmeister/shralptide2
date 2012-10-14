@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface TideStationTableViewCell : UITableViewCell {
-}
+@interface TideStationTableViewCell : UITableViewCell
 
 @property (nonatomic,unsafe_unretained) IBOutlet UILabel *nameLabel;
 @property (nonatomic,unsafe_unretained) IBOutlet UILabel *levelLabel;

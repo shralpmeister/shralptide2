@@ -21,9 +21,10 @@
    along with ShralpTide.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-@interface SDTideInterval : NSObject {
-}
+@interface SDTideInterval : NSObject
+
 @property (nonatomic,strong) NSDate *time;
 @property (nonatomic,assign) float height;
 @property (nonatomic,strong) NSString *units;
+
 @end
