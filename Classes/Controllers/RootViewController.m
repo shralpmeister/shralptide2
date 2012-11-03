@@ -75,14 +75,14 @@
 @implementation RootViewController
 
 - (void)viewDidLoad {
+    NSLog(@"View did load");
     NSLog(@"%@", [[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-free" ofType:@"tcd"]);
 	NSMutableString *pathBuilder = [[NSMutableString alloc] init];
 	[pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-free" ofType:@"tcd"]];
 	[pathBuilder appendString:@":"];
 	[pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-nonfree" ofType:@"tcd"]];
 	setenv("HFILE_PATH",[pathBuilder cStringUsingEncoding:NSUTF8StringEncoding],1);
-    
-    
+   
     NSString *cachesDir = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
     self.cachedLocationFilePath = [cachesDir stringByAppendingPathComponent:@"tidestate.plist"];
     
@@ -390,6 +390,10 @@
 
 -(void)viewDidAppear:(BOOL)animated 
 {
+    if (self.currentCalendar == nil) {
+        return;
+    }
+    NSLog(@"View did appear");
 	[super viewDidAppear: animated];
 	[self clearChartData];
     [self doBackgroundTideCalculation];

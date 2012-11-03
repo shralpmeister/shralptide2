@@ -56,8 +56,15 @@ NSString *kBackgroundKey = @"background_preference";
                                                object:nil];
     [self.rootViewController createMainViews];
     
-	[self.window addSubview:[self.rootViewController view]];
-	[self.window makeKeyAndVisible];
+    // A nasty hack to restore iOS 4 compatibility. Root view controller
+    // must also return out of viewDidAppear if viewDidLoad has not yet been
+    // called.
+    NSString *iosVersion = [[UIDevice currentDevice] systemVersion];
+    int majorVersion = [[iosVersion substringWithRange:NSMakeRange(0, [iosVersion rangeOfString:@"."].location)] intValue];
+    NSLog(@"ios majorversion = %d",majorVersion);
+    if (majorVersion < 5) {
+        [self.rootViewController viewDidAppear:NO];
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
