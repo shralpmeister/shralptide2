@@ -7,3 +7,5 @@ build/*
 # osx noise
 .DS_Store
 profile
+Core Data/.data506.90e
+~~datastore.sqlite
