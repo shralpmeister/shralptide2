@@ -404,9 +404,6 @@
     [self doBackgroundTideCalculation];
     MainViewController* mainVC = (MainViewController*)self.viewControllers[0];
 	[[mainVC currentTideView] becomeFirstResponder];
-    
-    /* make sure that we show the current time whenever the view is changed or reappears */
-    int page = self.pageControl.currentPage;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
