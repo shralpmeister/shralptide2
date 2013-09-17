@@ -40,7 +40,7 @@ static char tolower (char c) {
   // See:
   //   man ascii
   //   man iso_8859-1
-  if ((c >= 'A' && c <= 'Z') || (c >= 'À' && c < 'ß' && c != '×'))
+  if ((c >= 'A' && c <= 'Z') || (c >= (char)0xC0 && c < (char)0xDF && c != (char)0xD7))
     return c + 0x20;
   return c;
 }
@@ -66,12 +66,12 @@ static bool isspace (int c) {
 
 static bool isligature (char c) {
   switch (c) {
-  case '¼':
-  case '½':
-  case '¾':
-  case 'Æ':
-  case 'æ':
-  case 'ß':
+  case  (char)0xBC:
+  case (char)0xBD:
+  case (char)0xBE:
+  case (char)0xC6:
+  case (char)0xE6:
+  case (char)0xDF:
     return true;
   default:
     return false;
@@ -1051,22 +1051,22 @@ Dstr &Dstr::expand_ligatures() {
   unsigned i, l = length();
   for (i=0; i<l; ++i) {
     switch (theBuffer[i]) {
-    case '¼':
+    case (char)0xBC:
       temp += "1/4";
       break;
-    case '½':
+    case (char)0xBD:
       temp += "1/2";
       break;
-    case '¾':
+    case (char)0xBE:
       temp += "3/4";
       break;
-    case 'Æ':
+    case (char)0xC6:
       temp += "AE";
       break;
-    case 'æ':
+    case (char)0xE6:
       temp += "ae";
       break;
-    case 'ß':
+    case (char)0xDF:
       temp += "ss";
       break;
     default:

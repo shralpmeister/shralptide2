@@ -24,6 +24,7 @@ typedef enum {
 @interface StationMapController : UIViewController <CLLocationManagerDelegate,MKMapViewDelegate>
 
 -(id)initWithNibName:(NSString *)nibNameOrNil forStationType:(SDStationType)aStationType;
+-(void)updateDisplayedStations;
 
 @property (nonatomic,strong) IBOutlet MKMapView *mapView;
 @property (assign,readwrite) SDStationType stationType;

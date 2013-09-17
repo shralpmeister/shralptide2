@@ -72,9 +72,9 @@ void Coordinates::print (Dstr &text_out, Pad pad) const {
       lngc = 'E';
     char temp[80];
     if (pad == fixedWidth)
-      sprintf (temp, "%7.4f° %c, %8.4f° %c", latn, latc, lngn, lngc);
+      sprintf (temp, "%7.4f\370 %c, %8.4f\370 %c", latn, latc, lngn, lngc);
     else
-      sprintf (temp, "%6.4f° %c, %6.4f° %c", latn, latc, lngn, lngc);
+      sprintf (temp, "%6.4f\370 %c, %6.4f\370 %c", latn, latc, lngn, lngc);
     text_out = temp;
   }
 }
@@ -92,7 +92,7 @@ void Coordinates::printLat (Dstr &text_out) const {
     } else
       latc = 'N';
     char temp[80];
-    sprintf (temp, "%3.1f° %c", latn, latc);
+    sprintf (temp, "%3.1f\370 %c", latn, latc);
     text_out = temp;
   }
 }
@@ -110,7 +110,7 @@ void Coordinates::printLng (Dstr &text_out) const {
     } else
       lngc = 'E';
     char temp[80];
-    sprintf (temp, "%3.1f° %c", lngn, lngc);
+    sprintf (temp, "%3.1f\370 %c", lngn, lngc);
     text_out = temp;
   }
 }

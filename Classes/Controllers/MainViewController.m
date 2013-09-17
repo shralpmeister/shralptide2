@@ -35,7 +35,7 @@ bool isTall();
 double MachTimeToSecs(uint64_t time);
 
 @interface MainViewController ()
-- (int)currentTimeInMinutes:(SDTide *)tide;
+- (int)currentTimeInMinutes:(NSDate *)time;
 - (NSDate*)today;
 - (UIImage*)createImageFromMaskImageNamed:(NSString*)imageName withColor:(UIColor*)color;
 
@@ -170,7 +170,7 @@ double MachTimeToSecs(uint64_t time);
     }
     self.moonsetLabel.text = [formatter stringFromDate:moonsetEvent.eventTime];
 	
-	int minutesSinceMidnight = [self currentTimeInMinutes:sdTide];
+	int minutesSinceMidnight = [self currentTimeInMinutes:self.today];
 	if (minutesSinceMidnight > 0) {
 		[self updatePresentTideInfo];
 	} else {
@@ -197,7 +197,7 @@ double MachTimeToSecs(uint64_t time);
     if (sdTide == nil) {
         return;
     }
-	int minutesSinceMidnight = [self currentTimeInMinutes:sdTide];
+	int minutesSinceMidnight = [self currentTimeInMinutes:self.today];
 	
 	[self.presentHeightLabel setText:[NSString stringWithFormat:@"%0.2f %@",
 							[sdTide nearestDataPointForTime: minutesSinceMidnight].y,
@@ -264,11 +264,11 @@ double MachTimeToSecs(uint64_t time);
 }
 
 -(IBAction)chooseNearbyTideStation:(id)sender {
-    [self.rootViewController setLocationFromMap];
+//    [self.rootViewController setLocationFromMap];
 }
 
 - (IBAction)chooseTideStation:(id)sender {
-	[self.rootViewController setLocationFromList];
+//	[self.rootViewController setLocationFromList];
 }
 
 -(IBAction)calculateOneYear:(id)sender
@@ -285,7 +285,7 @@ double MachTimeToSecs(uint64_t time);
 #pragma mark UtilMethods
 // This should be moved for better re-use... my obj-c/cocoa is lacking though... now in ChartView as well.
 
-- (int)currentTimeInMinutes:(SDTide *)tide {
+- (int)currentTimeInMinutes:(NSDate*)time {
 	// The following shows the current time on the tide chart.  Need to make sure that it only shows on 
 	// the current day!
 	NSDate *datestamp = [NSDate date];
@@ -296,7 +296,7 @@ double MachTimeToSecs(uint64_t time);
 	
 	NSDate *midnight = [gregorian dateFromComponents:components];
 	
-	if ([midnight compare:[self today]] == NSOrderedSame) {
+	if ([midnight compare:time] == NSOrderedSame) {
 		return ([datestamp timeIntervalSince1970] - [midnight timeIntervalSince1970]) / 60;
 	} else {
 		return -1;

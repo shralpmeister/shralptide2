@@ -32,16 +32,17 @@ typedef enum {
 
 @interface SDTide : NSObject
 
--(id)initWithTideStation:(NSString *)station StartDate: (NSDate*)start EndDate:(NSDate*)end Events:(NSArray*)tideEvents andIntervals:(NSArray*)tideIntervals;
--(NSString*)shortLocationName;
+- (id)initWithTideStation:(NSString *)station StartDate: (NSDate*)start EndDate:(NSDate*)end Events:(NSArray*)tideEvents andIntervals:(NSArray*)tideIntervals;
+- (NSString*)shortLocationName;
 - (float)findTideForTime:(int) time;
 - (SDTideStateRiseFall)tideDirectionForTime:(int) time;
 - (CGPoint)nearestDataPointForTime:(int) minutesFromMidnight;
--(NSNumber*)nextEventIndex;
--(NSArray*)eventsForDay:(NSDate*)date;
--(NSArray*)intervalsForDay:(NSDate*)date;
--(NSDictionary*)sunriseSunsetEventsForDay:(NSDate*)date;
--(NSDictionary*)moonriseMoonsetEventsForDay:(NSDate*)date;
+- (CGPoint)nearestDataPointForDate:(NSDate*)date;
+- (NSNumber*)nextEventIndex;
+- (NSArray*)eventsForDay:(NSDate*)date;
+- (NSArray*)intervalsForDay:(NSDate*)date;
+- (NSDictionary*)sunriseSunsetEventsForDay:(NSDate*)date;
+- (NSDictionary*)moonriseMoonsetEventsForDay:(NSDate*)date;
 
 @property (nonatomic,strong) NSDate *startTime;
 @property (nonatomic,strong) NSDate *stopTime;

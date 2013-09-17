@@ -40,6 +40,11 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
 
 @implementation SDTideFactory
 
++(SDTide*)todaysTidesForStationName:(NSString*)name;
+{
+    return [SDTideFactory tideForStationName:name withInterval:900 forDays:1];
+}
+
 +(SDTide*)tideForStationName:(NSString *)name
 {
     return [SDTideFactory tideForStationName:name withInterval:900 forDays:appDelegate.daysPref];

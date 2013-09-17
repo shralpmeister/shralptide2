@@ -26,6 +26,7 @@
 
 @interface SDTideFactory : NSObject
 
++(SDTide*)todaysTidesForStationName:(NSString*)name;
 +(SDTide*)tideForStationName:(NSString*)name;
 +(SDTide*)tideForStationName:(NSString*)name withInterval:(int)interval forDays:(int)days;
 +(SDTideStationData*)tideStationWithName:(NSString*)name;

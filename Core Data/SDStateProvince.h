@@ -1,28 +1,27 @@
 //
 //  SDStateProvince.h
-//  ShralpTidePro
+//  ShralpTide2
 //
-//  Created by Michael Parlee on 1/30/10.
-//  Copyright 2010 Apple Inc. All rights reserved.
+//  Created by Michael Parlee on 9/8/13.
 //
-#import "SDState.h"
-#import "SDTideStation.h"
+//
+
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+#import "SDState.h"
+
+@class SDTideStation;
 
 @interface SDStateProvince : SDState
 
-@property (copy) NSSet *tideStations;
-@property (copy,readonly) NSMutableSet *mutableTideStations;
-
+@property (nonatomic, retain) NSSet *tideStations;
 @end
 
 @interface SDStateProvince (CoreDataGeneratedAccessors)
 
-- (void)addTideStationsObject:(SDTideStation *)tideStation;
-- (void)removeTideStationsObject:(SDTideStation *)tideStation;
-
-- (void)addTideStations:(NSSet *)tideStations;
-- (void)removeTideStations:(NSSet *)tideStations;
-
+- (void)addTideStationsObject:(SDTideStation *)value;
+- (void)removeTideStationsObject:(SDTideStation *)value;
+- (void)addTideStations:(NSSet *)values;
+- (void)removeTideStations:(NSSet *)values;
 
 @end

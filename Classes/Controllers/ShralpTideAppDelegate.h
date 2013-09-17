@@ -22,16 +22,17 @@
 */
 
 #import <CoreData/CoreData.h>
+#import "SDTideStationData.h"
 
 @class RootViewController;
 
 @interface ShralpTideAppDelegate : NSObject <UIApplicationDelegate>
 
 @property (nonatomic, strong) IBOutlet UIWindow *window;
-@property (nonatomic, strong) IBOutlet RootViewController *rootViewController;
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic, strong, readonly) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, strong, readonly) NSDictionary *tidesByLocation;
 
 @property (nonatomic,strong) NSString *unitsPref;
 @property (assign) NSInteger daysPref;

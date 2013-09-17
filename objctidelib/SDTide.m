@@ -27,9 +27,10 @@
 #import "NSDate+Day.h"
 
 @interface SDTide(PrivateMethods)
--(int)findPreviousInterval:(int) minutesFromMidnight;
--(int)findNearestInterval:(int) minutesFromMidnight;
--(NSArray*)events;
+- (int)findPreviousInterval:(int) minutesFromMidnight;
+- (int)findNearestInterval:(int) minutesFromMidnight;
+- (int)currentTimeInMinutes:(NSDate*)time;
+- (NSArray*)events;
 @end
 
 @implementation SDTide
@@ -52,6 +53,11 @@
 -(NSString*)shortLocationName {
 	NSArray *parts = [self.stationName componentsSeparatedByString:@","];
 	return parts[0];
+}
+
+-(CGPoint)nearestDataPointForDate:(NSDate*)date
+{
+    return [self nearestDataPointForTime:[self currentTimeInMinutes:date]];
 }
 
 - (CGPoint)nearestDataPointForTime:(int) minutesFromMidnight {
@@ -162,6 +168,25 @@
 		++numIntervals;
 	}
 	return numIntervals * 15;
+}
+
+- (int)currentTimeInMinutes:(NSDate*)time
+{
+	// The following shows the current time on the tide chart.  Need to make sure that it only shows on
+	// the current day!
+	NSDate *datestamp = [NSDate date];
+	
+	NSCalendar *gregorian = [NSCalendar currentCalendar];
+	unsigned unitflags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+	NSDateComponents *components = [gregorian components: unitflags fromDate: datestamp];
+	
+	NSDate *midnight = [gregorian dateFromComponents:components];
+	
+	if ([midnight compare:time] == NSOrderedSame) {
+		return ([datestamp timeIntervalSince1970] - [midnight timeIntervalSince1970]) / 60;
+	} else {
+		return -1;
+	}
 }
 
 -(void)dealloc

@@ -5,4 +5,7 @@
 #ifdef __OBJC__
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+
+#define appDelegate ((ShralpTideAppDelegate*)[[UIApplication sharedApplication] delegate])
+
 #endif

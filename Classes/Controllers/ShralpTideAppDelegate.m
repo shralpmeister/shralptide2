@@ -22,7 +22,9 @@
 */
 
 #import "ShralpTideAppDelegate.h"
-#import "RootViewController.h"
+#import "SDApplicationState.h"
+#import "SDFavoriteLocation.h"
+#import "SDTideFactory.h"
 
 NSString *kUnitsKey = @"units_preference";
 NSString *kDaysKey = @"days_preference";
@@ -38,6 +40,12 @@ NSString *kBackgroundKey = @"background_preference";
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, strong) SDApplicationState *persistentState;
+
+@property (nonatomic, strong) NSMutableDictionary *tidesByLoc;
+
+@property (nonatomic, strong) NSString *cachedLocationFilePath;
+
 @end
 
 @implementation ShralpTideAppDelegate
@@ -54,21 +62,47 @@ NSString *kBackgroundKey = @"background_preference";
                                              selector:@selector(defaultsChanged:)
                                                  name:NSUserDefaultsDidChangeNotification
                                                object:nil];
-    [self.rootViewController createMainViews];
+    //[self.rootViewController createMainViews];
     
-    // A nasty hack to restore iOS 4 compatibility. Root view controller
-    // must also return out of viewDidAppear if viewDidLoad has not yet been
-    // called.
-    NSString *iosVersion = [[UIDevice currentDevice] systemVersion];
-    int majorVersion = [[iosVersion substringWithRange:NSMakeRange(0, [iosVersion rangeOfString:@"."].location)] intValue];
-    NSLog(@"ios majorversion = %d",majorVersion);
-    if (majorVersion < 5) {
-        [self.rootViewController viewDidAppear:NO];
+    // Load the tide station data
+    NSLog(@"%@", [[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-free" ofType:@"tcd"]);
+	NSMutableString *pathBuilder = [[NSMutableString alloc] init];
+	[pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-free" ofType:@"tcd"]];
+	[pathBuilder appendString:@":"];
+	[pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-nonfree" ofType:@"tcd"]];
+	setenv("HFILE_PATH",[pathBuilder cStringUsingEncoding:NSUTF8StringEncoding],1);
+    
+    NSManagedObjectContext *context = self.managedObjectContext;
+    NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"SDApplicationState"
+											  inManagedObjectContext:context];
+    
+	NSFetchRequest *fr = [[NSFetchRequest alloc] init];
+	fr.entity = entityDescription;
+    NSError *error;
+	NSArray *results = [context executeFetchRequest:fr error:&error];
+	if ([results count] == 0) {
+        // create a new entity
+        [self setDefaultLocation];
+    } else {
+        // set a reference to the one we already have
+        self.persistentState = results[0];
+    }
+    
+    _tidesByLoc = [NSMutableDictionary new];
+    for (SDFavoriteLocation* location in self.persistentState.favoriteLocations) {
+        SDTide *todaysTide = [SDTideFactory todaysTidesForStationName:location.locationName];
+        _tidesByLoc[location.locationName] = todaysTide;
     }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-	[self.rootViewController refreshViews];
+//	[self.rootViewController refreshViews];
+}
+
+-(NSDictionary*)tidesByLocation
+{
+    return [NSDictionary dictionaryWithDictionary:_tidesByLoc];
 }
 
 #pragma mark -
@@ -78,8 +112,8 @@ NSString *kBackgroundKey = @"background_preference";
 {
     NSLog(@"Reading preferences and recreating views and tide calculations");
     [self setupByPreferences];
-    [self.rootViewController createMainViews];
-    [self.rootViewController doBackgroundTideCalculation];
+//    [self.rootViewController createMainViews];
+//    [self.rootViewController doBackgroundTideCalculation];
 }
 
 -(NSDictionary*)readSettingsDictionary
@@ -179,8 +213,11 @@ NSString *kBackgroundKey = @"background_preference";
     
     if (managedObjectModel != nil) {
         return managedObjectModel;
-    }
-    managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    };
+    
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"shralptide" withExtension:@"momd"];
+    managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    
     return managedObjectModel;
 }
 
@@ -199,14 +236,16 @@ NSString *kBackgroundKey = @"background_preference";
     NSFileManager *fm = [NSFileManager defaultManager];
     
     NSString *cachesDir = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
+    NSString *tideDatastorePath = [[NSBundle mainBundle] pathForResource:@"datastore" ofType:@"sqlite"];
+    NSString *cachedTideDatastorePath = [cachesDir stringByAppendingPathComponent:@"datastore.sqlite"];
     
-    NSString *datastorePath = [[NSBundle mainBundle] pathForResource:@"datastore" ofType:@"sqlite"];
+    NSString *libDir = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
+    NSString *stateDataStorePath = [libDir stringByAppendingPathComponent:@"appstate.sqlite"];
     
-    NSString *cachedDatastorePath = [cachesDir stringByAppendingPathComponent:@"datastore.sqlite"];
     
-    if (![fm fileExistsAtPath:cachedDatastorePath]) {
+    if (![fm fileExistsAtPath:cachedTideDatastorePath]) {
         NSError *error;
-        if (![fm copyItemAtPath:datastorePath toPath:cachedDatastorePath error:&error]) {
+        if (![fm copyItemAtPath:tideDatastorePath toPath:cachedTideDatastorePath error:&error]) {
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             exit(-1);
         };
@@ -214,15 +253,51 @@ NSString *kBackgroundKey = @"background_preference";
     
     NSError *error;
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
-    if (![persistentStoreCoordinator addPersistentStoreWithType: NSSQLiteStoreType configuration:nil URL:[NSURL fileURLWithPath:cachedDatastorePath] options:nil error:&error]) {
+    if (![persistentStoreCoordinator addPersistentStoreWithType: NSSQLiteStoreType configuration:@"TideDatastore" URL:[NSURL fileURLWithPath:cachedTideDatastorePath] options:nil error:&error]) {
         // Handle the error.
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         exit(-1);  // Fail
-    }    
+    }
+    if (![persistentStoreCoordinator addPersistentStoreWithType: NSSQLiteStoreType configuration:@"StateDatastore" URL:[NSURL fileURLWithPath:stateDataStorePath] options:nil error:&error]) {
+        // Handle the error.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        exit(-1);  // Fail
+    }
     
     return persistentStoreCoordinator;
 }
 
+- (void)setDefaultLocation {
+    // This is what we do when there's no location set.
+	NSString *defaultLocation = @"La Jolla (Scripps Institution Wharf), California";
+    NSManagedObjectContext *context = self.managedObjectContext;
+    
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"SDApplicationState" inManagedObjectContext:context];
+    NSFetchRequest *fr = [[NSFetchRequest alloc] init];
+    fr.entity = entityDesc;
+    
+    NSError *error;
+    NSArray *fetchResults = [context executeFetchRequest:fr error:&error];
+    if (fetchResults) {
+        SDApplicationState *appState = nil;
+        if ([fetchResults count] == 0) {
+            appState = [NSEntityDescription insertNewObjectForEntityForName:entityDesc.name inManagedObjectContext:context];
+            appState.selectedLocationIndex = @0;
+            SDFavoriteLocation *location = [NSEntityDescription insertNewObjectForEntityForName:@"SDFavoriteLocation" inManagedObjectContext:context];
+            location.locationName = defaultLocation;
+            [appState setValue:[NSOrderedSet orderedSetWithObject:location] forKey:@"favoriteLocations"];
+            
+            if (![context save:&error]) {
+                NSLog(@"Unable to save change to default location. %@", error);
+                return;
+            }
+            self.persistentState = appState;
+        }
+    } else {
+        NSLog(@"Unable to execute fetch for default location due to error: %@", error);
+        return;
+    }
+}
 
 #pragma mark -
 #pragma mark Application's documents directory
@@ -235,6 +310,37 @@ NSString *kBackgroundKey = @"background_preference";
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *basePath = ([paths count] > 0) ? paths[0] : nil;
     return basePath;
+}
+
+#pragma mark savestate
+
+- (BOOL)writeApplicationPlist:(id)plist toFile:(NSString *)fileName {
+    NSString *error;
+    NSData *pData = [NSPropertyListSerialization dataFromPropertyList:plist format:NSPropertyListBinaryFormat_v1_0 errorDescription:&error];
+    if (!pData) {
+        NSLog(@"%@", error);
+        return NO;
+    }
+    return ([pData writeToFile:self.cachedLocationFilePath atomically:YES]);
+}
+
+- (id)applicationPlistFromFile:(NSString *)fileName {
+    NSData *retData;
+    NSString *error;
+    id retPlist;
+    NSPropertyListFormat format;
+	
+    retData = [[NSData alloc] initWithContentsOfFile:self.cachedLocationFilePath];
+    if (!retData) {
+        NSLog(@"Data file not returned.");
+        return nil;
+    }
+    retPlist = [NSPropertyListSerialization propertyListFromData:retData  mutabilityOption:NSPropertyListImmutable format:&format errorDescription:&error];
+    if (!retPlist){
+        NSLog(@"Plist not returned, error: %@", error);
+    }
+    
+    return retPlist;
 }
 
 @end

@@ -1,9 +1,9 @@
 //
 //  SDState.h
-//  ShralpTidePro
+//  ShralpTide2
 //
-//  Created by Michael Parlee on 1/30/10.
-//  Copyright 2010 Apple Inc. All rights reserved.
+//  Created by Michael Parlee on 9/8/13.
+//
 //
 
 #import <Foundation/Foundation.h>
@@ -12,7 +12,7 @@
 
 @interface SDState : NSManagedObject
 
-@property (nonatomic,strong) NSString *name;
-@property (nonatomic,strong) NSString *flag;
+@property (nonatomic, retain) NSString * flag;
+@property (nonatomic, retain) NSString * name;
 
 @end

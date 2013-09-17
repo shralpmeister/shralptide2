@@ -1,38 +1,33 @@
 //
 //  SDCountry.h
-//  ShralpTidePro
+//  ShralpTide2
 //
-//  Created by Michael Parlee on 1/30/10.
-//  Copyright 2010 Apple Inc. All rights reserved.
+//  Created by Michael Parlee on 9/8/13.
 //
-#import "SDState.h"
-#import "SDTideStation.h"
-#import "SDStateProvince.h"
-#import <Foundation/Foundation.h>
+//
 
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+#import "SDState.h"
+
+@class SDStateProvince, SDTideStation;
 
 @interface SDCountry : SDState
 
-@property (copy) NSSet *tideStations;
-@property (copy,readonly) NSMutableSet *mutableTideStations;
-
-@property (copy) NSSet *states;
-@property (copy,readonly) NSMutableSet *mutableStates;
-
+@property (nonatomic, retain) NSSet *states;
+@property (nonatomic, retain) NSSet *tideStations;
 @end
 
 @interface SDCountry (CoreDataGeneratedAccessors)
 
-- (void)addTideStationsObject:(SDTideStation *)tideStation;
-- (void)removeTideStationsObject:(SDTideStation *)tideStation;
+- (void)addStatesObject:(SDStateProvince *)value;
+- (void)removeStatesObject:(SDStateProvince *)value;
+- (void)addStates:(NSSet *)values;
+- (void)removeStates:(NSSet *)values;
 
-- (void)addTideStations:(NSSet *)tideStations;
-- (void)removeTideStations:(NSSet *)tideStations;
-
-- (void)addStatesObject:(SDStateProvince *)stateProvince;
-- (void)removeStatesObject:(SDStateProvince *)stateProvince;
-
-- (void)addStates:(NSSet *)states;
-- (void)removeStates:(NSSet *)states;
+- (void)addTideStationsObject:(SDTideStation *)value;
+- (void)removeTideStationsObject:(SDTideStation *)value;
+- (void)addTideStations:(NSSet *)values;
+- (void)removeTideStations:(NSSet *)values;
 
 @end

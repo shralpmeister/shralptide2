@@ -22,7 +22,6 @@
 */
 
 #import "SDTide.h"
-#import "RootViewController.h"
 
 @interface MainViewController : UIViewController
 
@@ -36,7 +35,6 @@
 -(IBAction)calculateOneYear:(id)sender;
 
 @property (unsafe_unretained, readonly) SDTide *sdTide;
-@property (nonatomic,strong) RootViewController *rootViewController;
 
 @property (nonatomic,strong) IBOutlet UIImageView *bgImageView;
 @property (nonatomic,strong) IBOutlet UILabel *locationLabel;

@@ -66,7 +66,7 @@
 -(NSUInteger)hash
 {
     int prime = 31;
-    uint64_t result = 1;
+    NSUInteger result = 1;
     
     result = prime + [self.title hash];
     result = prime * result + [self.subtitle hash];

@@ -36,7 +36,7 @@ CurrentBearing::CurrentBearing (uint16_t degrees, bool isTrue):
 void CurrentBearing::print (Dstr &text_out) const {
   assert (!_isNull);
   text_out = _degrees;
-  text_out += '°';
+  text_out += '\370';
   if (isDegreesTrue)
     text_out += " true";
 }
