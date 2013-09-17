@@ -373,6 +373,11 @@
     return [countries sortedArrayUsingDescriptors:sortDescriptors];
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 -(void)cancelAddLocation
 {
 	[self dismissModalViewControllerAnimated:YES];
