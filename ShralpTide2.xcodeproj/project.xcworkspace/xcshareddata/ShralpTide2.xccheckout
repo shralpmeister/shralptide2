@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>2C54AC81-FFE6-4950-8057-E47195C8533C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ShralpTide2</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C051A3EE-7642-4853-8235-FD93696D508A</key>
+		<string>https://github.com/shralpmeister/shralptide2.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ShralpTide2.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C051A3EE-7642-4853-8235-FD93696D508A</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/shralpmeister/shralptide2.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C051A3EE-7642-4853-8235-FD93696D508A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C051A3EE-7642-4853-8235-FD93696D508A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ShralpTide2</string>
+		</dict>
+	</array>
+</dict>
+</plist>
