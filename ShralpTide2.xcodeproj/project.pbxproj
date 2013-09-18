@@ -62,6 +62,7 @@
 		DC872F71143EB156005C5759 /* HomescreenIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC872F6F143EB156005C5759 /* HomescreenIcon@2x.png */; };
 		DC8ED80C0F0D8C3B009EAF2F /* Decreasing.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8ED8080F0D8C3B009EAF2F /* Decreasing.png */; };
 		DC8ED80D0F0D8C3B009EAF2F /* Increasing.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8ED8090F0D8C3B009EAF2F /* Increasing.png */; };
+		DC91540217E8360C00A6FC46 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC91540117E8360C00A6FC46 /* Images.xcassets */; };
 		DC9D775C135A0E7200981199 /* channel-islands.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9D7734135A0E7200981199 /* channel-islands.png */; };
 		DC9D775D135A0E7200981199 /* england.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9D7735135A0E7200981199 /* england.png */; };
 		DC9D775E135A0E7200981199 /* isle-of-man.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9D7736135A0E7200981199 /* isle-of-man.png */; };
@@ -265,6 +266,7 @@
 		DC872F6F143EB156005C5759 /* HomescreenIcon@2x.png */ = {isa = PBXFileReference; explicitFileType = image.icns; path = "HomescreenIcon@2x.png"; sourceTree = "<group>"; };
 		DC8ED8080F0D8C3B009EAF2F /* Decreasing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Decreasing.png; path = Resources/Decreasing.png; sourceTree = "<group>"; };
 		DC8ED8090F0D8C3B009EAF2F /* Increasing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Increasing.png; path = Resources/Increasing.png; sourceTree = "<group>"; };
+		DC91540117E8360C00A6FC46 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ShralpTide2/Images.xcassets; sourceTree = "<group>"; };
 		DC9D7734135A0E7200981199 /* channel-islands.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "channel-islands.png"; path = "state-flags/channel-islands.png"; sourceTree = "<group>"; };
 		DC9D7735135A0E7200981199 /* england.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = england.png; path = "state-flags/england.png"; sourceTree = "<group>"; };
 		DC9D7736135A0E7200981199 /* isle-of-man.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "isle-of-man.png"; path = "state-flags/isle-of-man.png"; sourceTree = "<group>"; };
@@ -556,6 +558,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DC91540117E8360C00A6FC46 /* Images.xcassets */,
 				DC0CD7D41617A9D6000C3865 /* moonrise@2x.png */,
 				DC0CD7D51617A9D6000C3865 /* moonset@2x.png */,
 				DC0CD7D61617A9D7000C3865 /* sunrise@2x.png */,
@@ -973,6 +976,7 @@
 				DC9D7778135A0E7200981199 /* mississippi.png in Resources */,
 				DC9D7779135A0E7200981199 /* new-hampshire.png in Resources */,
 				DC9D777A135A0E7200981199 /* new-jersey.png in Resources */,
+				DC91540217E8360C00A6FC46 /* Images.xcassets in Resources */,
 				DC9D777B135A0E7200981199 /* new-york.png in Resources */,
 				DC9D777C135A0E7200981199 /* north-carolina.png in Resources */,
 				DC9D777D135A0E7200981199 /* oregon.png in Resources */,
@@ -1134,6 +1138,8 @@
 					armv7,
 					armv6,
 				);
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1183,10 +1189,12 @@
 					armv7,
 					armv6,
 				);
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1208,7 +1216,7 @@
 				OTHER_LDFLAGS = "-fobjc-arc";
 				PRODUCT_NAME = ShralpTide2;
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21F776D9-2C3F-49D7-9F7F-9830D714A162";
 				SDKROOT = iphoneos;
 				VERSIONING_SYSTEM = "apple-generic";
 				WARNING_LDFLAGS = "-fobjc-arc";
@@ -1238,15 +1246,15 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Michael Parlee (H29T9V7X78)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michael Parlee (H29T9V7X78)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21F776D9-2C3F-49D7-9F7F-9830D714A162";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
