@@ -29,8 +29,7 @@
 @interface SDTide(PrivateMethods)
 - (int)findPreviousInterval:(int) minutesFromMidnight;
 - (int)findNearestInterval:(int) minutesFromMidnight;
-- (int)currentTimeInMinutes:(NSDate*)time;
-- (NSArray*)events;
+- (int)currentTimeInMinutes;
 @end
 
 @implementation SDTide
@@ -55,9 +54,9 @@
 	return parts[0];
 }
 
--(CGPoint)nearestDataPointForDate:(NSDate*)date
+-(CGPoint)nearestDataPointToCurrentTime
 {
-    return [self nearestDataPointForTime:[self currentTimeInMinutes:date]];
+    return [self nearestDataPointForTime:[self currentTimeInMinutes]];
 }
 
 - (CGPoint)nearestDataPointForTime:(int) minutesFromMidnight {
@@ -170,7 +169,7 @@
 	return numIntervals * 15;
 }
 
-- (int)currentTimeInMinutes:(NSDate*)time
+- (int)currentTimeInMinutes
 {
 	// The following shows the current time on the tide chart.  Need to make sure that it only shows on
 	// the current day!
@@ -182,11 +181,7 @@
 	
 	NSDate *midnight = [gregorian dateFromComponents:components];
 	
-	if ([midnight compare:time] == NSOrderedSame) {
-		return ([datestamp timeIntervalSince1970] - [midnight timeIntervalSince1970]) / 60;
-	} else {
-		return -1;
-	}
+    return ([datestamp timeIntervalSince1970] - [midnight timeIntervalSince1970]) / 60;
 }
 
 -(void)dealloc

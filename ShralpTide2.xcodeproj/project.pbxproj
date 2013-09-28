@@ -32,7 +32,7 @@
 		DC3630B7179B27870027EB21 /* PortraitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3630B6179B27870027EB21 /* PortraitViewController.m */; };
 		DC39945117E56DFD00BC61D8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC39945017E56DFD00BC61D8 /* Images.xcassets */; };
 		DC39945417E63B8200BC61D8 /* SDHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC39945317E63B8200BC61D8 /* SDHeaderViewController.m */; };
-		DC39945717E63B9800BC61D8 /* SDEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC39945617E63B9800BC61D8 /* SDEventsViewController.m */; };
+		DC39945717E63B9800BC61D8 /* SDLocationMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC39945617E63B9800BC61D8 /* SDLocationMainViewController.m */; };
 		DC39945D17E63C5C00BC61D8 /* SDTideEventsLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DC39945A17E63C5C00BC61D8 /* SDTideEventsLayout.m */; };
 		DC39945E17E63C5C00BC61D8 /* SDHeaderViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DC39945C17E63C5C00BC61D8 /* SDHeaderViewLayout.m */; };
 		DC39946117E6C7E900BC61D8 /* SDHeaderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC39946017E6C7E900BC61D8 /* SDHeaderViewCell.m */; };
@@ -52,6 +52,9 @@
 		DC65264F1350C2F600B67AE7 /* TideStationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC65264D1350C2F600B67AE7 /* TideStationTableViewCell.m */; };
 		DC6526691350DD4700B67AE7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6526681350DD4600B67AE7 /* MapKit.framework */; };
 		DC65266B1350DDBE00B67AE7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65266A1350DDBD00B67AE7 /* CoreLocation.framework */; };
+		DC9065F317F13AD8000F23D8 /* SDEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9065F217F13AD8000F23D8 /* SDEventsViewController.m */; };
+		DC91540517EE350300A6FC46 /* SDBottomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC91540417EE350300A6FC46 /* SDBottomViewCell.m */; };
+		DC91540817EE4E7400A6FC46 /* SDTideEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC91540717EE4E7400A6FC46 /* SDTideEventCell.m */; };
 		DC9D77C7135A6C7000981199 /* LocationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9D77C6135A6C7000981199 /* LocationView.xib */; };
 		DCA3BEE8133E4DB500EA966A /* SDTideFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BEE6133E4DB500EA966A /* SDTideFactory.mm */; };
 		DCA3BEF8133E4F1F00EA966A /* TideStationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BEF7133E4F1F00EA966A /* TideStationAnnotation.m */; };
@@ -152,13 +155,13 @@
 		DC32FFB30E88B3FD00AB78F2 /* ChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChartView.m; path = Classes/Views/ChartView.m; sourceTree = "<group>"; };
 		DC32FFB50E88B40F00AB78F2 /* ChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChartViewController.h; path = Classes/Controllers/ChartViewController.h; sourceTree = "<group>"; };
 		DC32FFB60E88B40F00AB78F2 /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChartViewController.m; path = Classes/Controllers/ChartViewController.m; sourceTree = "<group>"; };
-		DC3630B5179B27870027EB21 /* PortraitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PortraitViewController.h; path = Controllers/PortraitViewController.h; sourceTree = "<group>"; };
-		DC3630B6179B27870027EB21 /* PortraitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PortraitViewController.m; path = Controllers/PortraitViewController.m; sourceTree = "<group>"; };
+		DC3630B5179B27870027EB21 /* PortraitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PortraitViewController.h; path = Classes/Controllers/PortraitViewController.h; sourceTree = "<group>"; };
+		DC3630B6179B27870027EB21 /* PortraitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PortraitViewController.m; path = Classes/Controllers/PortraitViewController.m; sourceTree = "<group>"; };
 		DC39945017E56DFD00BC61D8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ShralpTide2/Images.xcassets; sourceTree = "<group>"; };
-		DC39945217E63B8200BC61D8 /* SDHeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDHeaderViewController.h; sourceTree = "<group>"; };
-		DC39945317E63B8200BC61D8 /* SDHeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDHeaderViewController.m; sourceTree = "<group>"; };
-		DC39945517E63B9800BC61D8 /* SDEventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDEventsViewController.h; sourceTree = "<group>"; };
-		DC39945617E63B9800BC61D8 /* SDEventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDEventsViewController.m; sourceTree = "<group>"; };
+		DC39945217E63B8200BC61D8 /* SDHeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDHeaderViewController.h; path = Classes/SDHeaderViewController.h; sourceTree = "<group>"; };
+		DC39945317E63B8200BC61D8 /* SDHeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDHeaderViewController.m; path = Classes/SDHeaderViewController.m; sourceTree = "<group>"; };
+		DC39945517E63B9800BC61D8 /* SDLocationMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDLocationMainViewController.h; path = Classes/SDLocationMainViewController.h; sourceTree = "<group>"; };
+		DC39945617E63B9800BC61D8 /* SDLocationMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDLocationMainViewController.m; path = Classes/SDLocationMainViewController.m; sourceTree = "<group>"; };
 		DC39945917E63C5C00BC61D8 /* SDTideEventsLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTideEventsLayout.h; sourceTree = "<group>"; };
 		DC39945A17E63C5C00BC61D8 /* SDTideEventsLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTideEventsLayout.m; sourceTree = "<group>"; };
 		DC39945B17E63C5C00BC61D8 /* SDHeaderViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDHeaderViewLayout.h; sourceTree = "<group>"; };
@@ -167,8 +170,8 @@
 		DC39946017E6C7E900BC61D8 /* SDHeaderViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDHeaderViewCell.m; sourceTree = "<group>"; };
 		DC493E5C0F206C8B0087B341 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
 		DC4FBBE7178BCF3200C0CFEE /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
-		DC4FBBE9178C62EC00C0CFEE /* LandscapeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LandscapeViewController.h; path = Controllers/LandscapeViewController.h; sourceTree = "<group>"; };
-		DC4FBBEA178C62EC00C0CFEE /* LandscapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LandscapeViewController.m; path = Controllers/LandscapeViewController.m; sourceTree = "<group>"; };
+		DC4FBBE9178C62EC00C0CFEE /* LandscapeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LandscapeViewController.h; path = Classes/Controllers/LandscapeViewController.h; sourceTree = "<group>"; };
+		DC4FBBEA178C62EC00C0CFEE /* LandscapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LandscapeViewController.m; path = Classes/Controllers/LandscapeViewController.m; sourceTree = "<group>"; };
 		DC59FDF2140752A7008FD0D2 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		DC65261B134071EE00B67AE7 /* SDTideStationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDTideStationData.h; path = objctidelib/SDTideStationData.h; sourceTree = "<group>"; };
 		DC65261C134071EE00B67AE7 /* SDTideStationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDTideStationData.m; path = objctidelib/SDTideStationData.m; sourceTree = "<group>"; };
@@ -192,6 +195,12 @@
 		DC65264D1350C2F600B67AE7 /* TideStationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TideStationTableViewCell.m; path = Classes/Views/TideStationTableViewCell.m; sourceTree = "<group>"; };
 		DC6526681350DD4600B67AE7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DC65266A1350DDBD00B67AE7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		DC9065F117F13AD8000F23D8 /* SDEventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDEventsViewController.h; sourceTree = "<group>"; };
+		DC9065F217F13AD8000F23D8 /* SDEventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDEventsViewController.m; sourceTree = "<group>"; };
+		DC91540317EE350300A6FC46 /* SDBottomViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBottomViewCell.h; sourceTree = "<group>"; };
+		DC91540417EE350300A6FC46 /* SDBottomViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBottomViewCell.m; sourceTree = "<group>"; };
+		DC91540617EE4E7400A6FC46 /* SDTideEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTideEventCell.h; sourceTree = "<group>"; };
+		DC91540717EE4E7400A6FC46 /* SDTideEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTideEventCell.m; sourceTree = "<group>"; };
 		DC9D77C6135A6C7000981199 /* LocationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocationView.xib; path = Resources/LocationView.xib; sourceTree = "<group>"; };
 		DCA3BEE6133E4DB500EA966A /* SDTideFactory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SDTideFactory.mm; path = objctidelib/SDTideFactory.mm; sourceTree = "<group>"; };
 		DCA3BEE7133E4DB500EA966A /* SDTideFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDTideFactory.h; path = objctidelib/SDTideFactory.h; sourceTree = "<group>"; };
@@ -326,16 +335,8 @@
 		080E96DDFE201D6D7F000001 /* Application Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DC39945517E63B9800BC61D8 /* SDEventsViewController.h */,
-				DC39945617E63B9800BC61D8 /* SDEventsViewController.m */,
-				DC39945217E63B8200BC61D8 /* SDHeaderViewController.h */,
-				DC39945317E63B8200BC61D8 /* SDHeaderViewController.m */,
 				1D3623240D0F684500981E51 /* ShralpTideAppDelegate.h */,
 				1D3623250D0F684500981E51 /* ShralpTideAppDelegate.m */,
-				DC4FBBE9178C62EC00C0CFEE /* LandscapeViewController.h */,
-				DC4FBBEA178C62EC00C0CFEE /* LandscapeViewController.m */,
-				DC3630B5179B27870027EB21 /* PortraitViewController.h */,
-				DC3630B6179B27870027EB21 /* PortraitViewController.m */,
 				DC06A25917DBC6870095E217 /* FavoritesControllerViewController.h */,
 				DC06A25A17DBC6870095E217 /* FavoritesControllerViewController.m */,
 			);
@@ -377,6 +378,12 @@
 		289233A00DB2D0730083E9F9 /* Main View */ = {
 			isa = PBXGroup;
 			children = (
+				DC39945517E63B9800BC61D8 /* SDLocationMainViewController.h */,
+				DC39945617E63B9800BC61D8 /* SDLocationMainViewController.m */,
+				DC39945217E63B8200BC61D8 /* SDHeaderViewController.h */,
+				DC39945317E63B8200BC61D8 /* SDHeaderViewController.m */,
+				DC3630B5179B27870027EB21 /* PortraitViewController.h */,
+				DC3630B6179B27870027EB21 /* PortraitViewController.m */,
 				289233A80DB2D0DB0083E9F9 /* MainViewController.h */,
 				DC2F28490E5A758800577E55 /* MainViewController.m */,
 				DCCA6F481065440F00322BC6 /* CurrentTideView.h */,
@@ -385,6 +392,12 @@
 				DCCA701C10672D9E00322BC6 /* TideRowView.m */,
 				DC39945F17E6C7E900BC61D8 /* SDHeaderViewCell.h */,
 				DC39946017E6C7E900BC61D8 /* SDHeaderViewCell.m */,
+				DC91540317EE350300A6FC46 /* SDBottomViewCell.h */,
+				DC91540417EE350300A6FC46 /* SDBottomViewCell.m */,
+				DC91540617EE4E7400A6FC46 /* SDTideEventCell.h */,
+				DC91540717EE4E7400A6FC46 /* SDTideEventCell.m */,
+				DC9065F117F13AD8000F23D8 /* SDEventsViewController.h */,
+				DC9065F217F13AD8000F23D8 /* SDEventsViewController.m */,
 			);
 			name = "Main View";
 			sourceTree = "<group>";
@@ -464,6 +477,8 @@
 		DC32FFA90E88B04800AB78F2 /* ChartView */ = {
 			isa = PBXGroup;
 			children = (
+				DC4FBBE9178C62EC00C0CFEE /* LandscapeViewController.h */,
+				DC4FBBEA178C62EC00C0CFEE /* LandscapeViewController.m */,
 				DC32FFB20E88B3FD00AB78F2 /* ChartView.h */,
 				DC32FFB30E88B3FD00AB78F2 /* ChartView.m */,
 				DC32FFB50E88B40F00AB78F2 /* ChartViewController.h */,
@@ -760,7 +775,8 @@
 				DCA3BF4A133E4F8F00EA966A /* Interval.cc in Sources */,
 				DCA3BF4B133E4F8F00EA966A /* Amplitude.cc in Sources */,
 				DCA3BF4C133E4F8F00EA966A /* Angle.cc in Sources */,
-				DC39945717E63B9800BC61D8 /* SDEventsViewController.m in Sources */,
+				DC91540817EE4E7400A6FC46 /* SDTideEventCell.m in Sources */,
+				DC39945717E63B9800BC61D8 /* SDLocationMainViewController.m in Sources */,
 				DCA3BF4D133E4F8F00EA966A /* Constituent.cc in Sources */,
 				DCA3BF4E133E4F8F00EA966A /* ConstituentSet.cc in Sources */,
 				DCA3BF4F133E4F8F00EA966A /* Coordinates.cc in Sources */,
@@ -775,6 +791,7 @@
 				DCA3BF58133E4F8F00EA966A /* NullableInterval.cc in Sources */,
 				DCA3BF59133E4F8F00EA966A /* NullablePredictionValue.cc in Sources */,
 				DCA3BF5A133E4F8F00EA966A /* Offsets.cc in Sources */,
+				DC9065F317F13AD8000F23D8 /* SDEventsViewController.m in Sources */,
 				DC39945417E63B8200BC61D8 /* SDHeaderViewController.m in Sources */,
 				DCA3BF5B133E4F8F00EA966A /* PredictionValue.cc in Sources */,
 				DCA3BF5C133E4F8F00EA966A /* Settings.cc in Sources */,
@@ -790,6 +807,7 @@
 				DCA3BF65133E4F8F00EA966A /* TideEventsOrganizer.cc in Sources */,
 				DCA3BF66133E4F8F00EA966A /* Timestamp.cc in Sources */,
 				DC06A2A917DD87150095E217 /* SDFavoriteLocation.m in Sources */,
+				DC91540517EE350300A6FC46 /* SDBottomViewCell.m in Sources */,
 				DC06A26517DC44F60095E217 /* shralptide.xcdatamodeld in Sources */,
 				DCA3BF67133E4F8F00EA966A /* Units.cc in Sources */,
 				DCA3BF68133E4F8F00EA966A /* Year.cc in Sources */,

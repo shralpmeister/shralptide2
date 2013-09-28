@@ -42,7 +42,7 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
 
 +(SDTide*)todaysTidesForStationName:(NSString*)name;
 {
-    return [SDTideFactory tideForStationName:name withInterval:900 forDays:1];
+    return [SDTideFactory tideForStationName:name withInterval:900 forDays:0];
 }
 
 +(SDTide*)tideForStationName:(NSString *)name
@@ -52,45 +52,47 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
 
 +(SDTide*)tideForStationName:(NSString*)name withInterval:(int)interval forDays:(int)days
 {
-    srand (time (NULL));
-    Global::initCodeset();
-    Global::settings.applyUserDefaults();
-    Global::settings.fixUpDeprecatedSettings();
-    
-    Units::PredictionUnits units = [appDelegate.unitsPref isEqualToString:@"metric"] ? Units::meters : Units::feet;
-    
-    Timestamp startTime = (time_t)[[[NSDate date] startOfDay] timeIntervalSince1970];
-    Timestamp endOfStartDay = (time_t)[[[NSDate date] endOfDay] timeIntervalSince1970];
-    Timestamp endTime = endOfStartDay + Interval(1440 * 60 * days);
-    
-    Dstr location ([name UTF8String]);
-	NSArray *events = tideEventsForLocation(location, Interval (interval), startTime, endTime, units);
-    
-    NSArray *intervals = nil;
-    if (interval > 0) {
-        intervals = rawEventsForLocation(location, Interval (interval), startTime, endTime, units);
-    } else {
-        intervals = @[];
-    }
-
-    SDTideEvent *eventZero = nil;
-    for (SDTideEvent *event in events) {
-        if ([event eventType] == max || [event eventType] == min) {
-            eventZero = event;
-            break;
+    @synchronized ([SDTideFactory class]) {
+        srand (time (NULL));
+        Global::initCodeset();
+        Global::settings.applyUserDefaults();
+        Global::settings.fixUpDeprecatedSettings();
+        
+        Units::PredictionUnits units = [appDelegate.unitsPref isEqualToString:@"metric"] ? Units::meters : Units::feet;
+        
+        Timestamp startTime = (time_t)[[[NSDate date] startOfDay] timeIntervalSince1970];
+        Timestamp endOfStartDay = (time_t)[[[NSDate date] endOfDay] timeIntervalSince1970];
+        Timestamp endTime = endOfStartDay + Interval(1440 * 60 * days);
+        
+        Dstr location ([name UTF8String]);
+        NSArray *events = tideEventsForLocation(location, Interval (interval), startTime, endTime, units);
+        
+        NSArray *intervals = nil;
+        if (interval > 0) {
+            intervals = rawEventsForLocation(location, Interval (interval), startTime, endTime, units);
+        } else {
+            intervals = @[];
         }
+        
+        SDTideEvent *eventZero = nil;
+        for (SDTideEvent *event in events) {
+            if ([event eventType] == max || [event eventType] == min) {
+                eventZero = event;
+                break;
+            }
+        }
+        
+        SDTide *tidy = [[SDTide alloc] init];
+        tidy.stationName = name;
+        tidy.startTime = [NSDate dateWithTimeIntervalSince1970:startTime.timet()];
+        tidy.stopTime = [NSDate dateWithTimeIntervalSince1970:endTime.timet()];
+        tidy.intervals = intervals;
+        tidy.allEvents = events;
+        tidy.unitLong = nil;
+        tidy.unitShort = eventZero.units;
+        
+        return tidy;
     }
-    
-    SDTide *tidy = [[SDTide alloc] init];
-    tidy.stationName = name;
-    tidy.startTime = [NSDate dateWithTimeIntervalSince1970:startTime.timet()];
-    tidy.stopTime = [NSDate dateWithTimeIntervalSince1970:endTime.timet()];
-    tidy.intervals = intervals;
-    tidy.allEvents = events;
-    tidy.unitLong = nil;
-    tidy.unitShort = eventZero.units;
-    
-    return tidy;
 }
 
 +(SDTideStationData*)tideStationWithName:(NSString*)name

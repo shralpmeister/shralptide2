@@ -8,7 +8,7 @@
 
 #import "SDTideEventsLayout.h"
 
-#define ROWS_PER_PAGE 2
+#define ROWS_PER_PAGE 1
 
 @interface SDTideEventsLayout ()
 
@@ -29,7 +29,6 @@
         for (int page=0; page < _pages; page++) {
             for (int row=0; row < ROWS_PER_PAGE; row++) {
                 UICollectionViewLayoutAttributes* item = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:[NSIndexPath indexPathForRow:row inSection:page]];
-
                 item.frame = [self frameForRow:row onPage:page];
                 item.size = item.frame.size;
                 int index = page*ROWS_PER_PAGE+row;
@@ -53,17 +52,9 @@
     float yOrigin = 0.0;
     float height = 0.0;
     switch (row) {
-//        case 0:
-//            yOrigin = 0;
-//            height = 200;
-//            break;
         case 0:
-            yOrigin = 200;
-            height = 50;
-            break;
-        case 1:
-            yOrigin = 250;
-            height = 300;
+            yOrigin = 160;
+            height = 400;
             break;
             
         default:

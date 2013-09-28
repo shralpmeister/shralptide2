@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class SDEventsViewController;
+@class SDLocationMainViewController;
 
 @interface SDHeaderViewController : UICollectionViewController
 

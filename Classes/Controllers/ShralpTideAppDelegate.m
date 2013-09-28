@@ -97,7 +97,9 @@ NSString *kBackgroundKey = @"background_preference";
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-//	[self.rootViewController refreshViews];
+    // when the app comes out of suspended state, we need to refresh the tide (it could have been minutes, hours, days in suspended mode).
+    // Now in iOS 7 we can make periodic calls to refresh... may not be great for battery though... or for phone performance
+    //	[self.rootViewController refreshViews];
 }
 
 -(NSDictionary*)tidesByLocation

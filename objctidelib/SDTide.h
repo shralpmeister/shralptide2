@@ -37,8 +37,9 @@ typedef enum {
 - (float)findTideForTime:(int) time;
 - (SDTideStateRiseFall)tideDirectionForTime:(int) time;
 - (CGPoint)nearestDataPointForTime:(int) minutesFromMidnight;
-- (CGPoint)nearestDataPointForDate:(NSDate*)date;
+- (CGPoint)nearestDataPointToCurrentTime;
 - (NSNumber*)nextEventIndex;
+- (NSArray*)events; // all tide events (only tide events)
 - (NSArray*)eventsForDay:(NSDate*)date;
 - (NSArray*)intervalsForDay:(NSDate*)date;
 - (NSDictionary*)sunriseSunsetEventsForDay:(NSDate*)date;

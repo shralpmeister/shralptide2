@@ -16,6 +16,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    NSLog(@"Header view controller View will appear called");
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section;
@@ -33,8 +34,9 @@
 {
     SDHeaderViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"headerCell" forIndexPath:indexPath];
     SDTide *tide = appDelegate.tidesByLocation.allValues[indexPath.row];
+    NSLog(@"Refreshing tide for current time");
     cell.tideLevelLabel.text = [NSString stringWithFormat:@"%0.2f %@",
-                               [tide nearestDataPointForDate:[NSDate date]].y,
+                               [tide nearestDataPointToCurrentTime].y,
                                [tide unitShort]];
     cell.locationLabel.text = tide.shortLocationName;
     return cell;
