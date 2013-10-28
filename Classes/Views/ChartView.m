@@ -23,6 +23,7 @@
 
 #import "ChartView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "NSDate+Day.h"
 
 @interface ChartView ()
 - (float)findLowestTide:(SDTide *)tide;
@@ -30,7 +31,7 @@
 - (void)showTideForPoint:(CGPoint) point;
 - (void)hideTideDetails;
 - (NSDate*)midnight;
-- (NSDate*)midnight: (NSDate*)date;
+- (NSDate*)midnight:(NSDate*)date;
 - (NSString*)timeInNativeFormatFromMinutes:(int)minutesSinceMidnight;
 - (NSString*)timeIn24HourFormatFromMinutes:(int)minutesSinceMidnight;
 
@@ -43,36 +44,61 @@
 - (id)initWithCoder:(NSCoder *)coder {
 	if ((self = [super initWithCoder:coder])) {
 		self.times = [[NSMutableDictionary alloc] init];
+        self.height = 234; // legacy default
+        self.hoursToPlot = 24;
     }
     return self;
 }
 
--(void)drawRect:(CGRect)rect {
-#define HEIGHT 234
-#define MINUTES_FROM_MIDNIGHT 1440
-#define SECONDS_PER_MINUTE 60
+- (NSDate*)endTime
+{
+    return [NSDate dateWithTimeIntervalSince1970:[[self.datasource day] timeIntervalSince1970] + (self.hoursToPlot * 60 * 60)];
+}
 
+- (NSArray*)pairRiseAndSetEvents:(NSArray*)events riseEventType:(SDTideState)riseType setEventType:(SDTideState)setType
+{
+    NSMutableArray *pairs = [[NSMutableArray alloc] init];
+    NSDate *riseTime = nil;
+    NSDate *setTime = nil;
+    for (SDTideEvent *event in events) {
+        if (event.eventType == riseType) {
+            riseTime = event.eventTime;
+            if ([event isEqual:[events lastObject]]) {
+                setTime = self.endTime;
+            }
+        }
+        if (event.eventType == setType) {
+            if ([events indexOfObject:event] == 0) {
+                riseTime = [self.datasource day];
+            }
+            setTime = event.eventTime;
+        }
+        if (riseTime && setTime) {
+            [pairs addObject:@[riseTime,setTime]];
+            riseTime = nil;
+            setTime = nil;
+        }
+    }
+    return [NSArray arrayWithArray:pairs];
+}
+
+-(void)drawRect:(CGRect)rect {
+
+    CGFloat chartBottom = self.frame.size.height;
+    
 	CGContextRef context = UIGraphicsGetCurrentContext();
 					  
 	SDTide *tide = [self.datasource tideDataToChart];
     
-    NSDictionary *sunEvents = [tide sunriseSunsetEventsForDay:[self.datasource day]];
-    SDTideEvent *sunrise = sunEvents[@"sunrise"];
-    SDTideEvent *sunset = sunEvents[@"sunset"];
-    uint64_t sunBaseTime = [[self midnight:[sunrise eventTime]] timeIntervalSince1970];
-    NSLog(@"Sunrise = %@, sunset = %@", sunrise.eventTime, sunset.eventTime);
+    NSArray *intervalsForDay = [tide intervalsFromDate:[self.datasource day] forHours:self.hoursToPlot];
     
-    int sunriseMinutes = ([sunrise.eventTime timeIntervalSince1970] - sunBaseTime) / SECONDS_PER_MINUTE;
-    int sunsetMinutes = ([sunset.eventTime timeIntervalSince1970] - sunBaseTime) / SECONDS_PER_MINUTE;
+    NSTimeInterval baseSeconds = [((SDTideInterval*)intervalsForDay[0]).time timeIntervalSince1970];
     
-    NSDictionary *moonEvents = [tide moonriseMoonsetEventsForDay:[self.datasource day]];
-    SDTideEvent *moonrise = moonEvents[@"moonrise"];
-    SDTideEvent *moonset = moonEvents[@"moonset"];
-    uint64_t moonBaseTime = [[self midnight:(moonrise != nil ? [moonrise eventTime] : [moonset eventTime])] timeIntervalSince1970];
-        
-    
-    int moonriseMinutes = ([moonrise.eventTime timeIntervalSince1970] - moonBaseTime) / SECONDS_PER_MINUTE;
-    int moonsetMinutes = ([moonset.eventTime timeIntervalSince1970] - moonBaseTime) / SECONDS_PER_MINUTE;
+    NSArray *sunEvents = [tide sunriseSunsetEvents];
+    NSArray *sunPairs = [self pairRiseAndSetEvents:sunEvents riseEventType:sunrise setEventType:sunset];
+
+    NSArray *moonEvents = [tide moonriseMoonsetEvents];
+    NSArray *moonPairs = [self pairRiseAndSetEvents:moonEvents riseEventType:moonrise setEventType:moonset];
 	
 	// 480 x 320 = 24hrs x amplitude + some margin
 	float min = [self findLowestTide:tide];
@@ -80,73 +106,75 @@
 	
 	float ymin = min - 1;
 	float ymax = max + 1;
-	float yratio =  HEIGHT / (ymax - ymin);
-	float yoffset = (HEIGHT + ymin * yratio) + 86;
+	float yratio =  _height / (ymax - ymin);
+	float yoffset = (_height + ymin * yratio) + (chartBottom - _height);
 	NSLog(@"yoffset = %0.4f", yoffset);
 	
 	float xmin = 0;
-	float xmax = MINUTES_FROM_MIDNIGHT;
+	float xmax = MINUTES_PER_HOUR * _hoursToPlot;
 	NSLog(@"Frame size is: %0.1f x %0.1f", self.frame.size.width, self.frame.size.height);
-    self.xratio = self.frame.size.width / MINUTES_FROM_MIDNIGHT;
+    self.xratio = self.frame.size.width / xmax;
 	NSLog(@"xratio = %0.4f",self.xratio);
-    
-    NSLog(@"Sunrise = %d (%f), sunset = (%d) %f", sunriseMinutes, sunriseMinutes * self.xratio, sunsetMinutes, sunsetMinutes * self.xratio);
-    NSLog(@"Moonrise = %@ (%f), moonset = %@ (%f) %d", moonrise.eventTime, moonriseMinutes * self.xratio, moonset.eventTime, moonsetMinutes * self.xratio, moonsetMinutes);
     
     // show daylight hours as light background
     CGContextSetRGBFillColor(context, 0.04, 0.27, 0.61, 1.0);
-    CGContextFillRect(context, CGRectMake(sunriseMinutes * self.xratio, self.headerView.frame.size.height + 20, sunsetMinutes * self.xratio - sunriseMinutes * self.xratio, HEIGHT));
+    
+    for (NSArray *riseSet in sunPairs) {
+        int sunriseMinutes = ([riseSet[0] timeIntervalSince1970] - baseSeconds) / SECONDS_PER_MINUTE;
+        int sunsetMinutes = ([riseSet[1] timeIntervalSince1970] - baseSeconds) / SECONDS_PER_MINUTE;
+        CGContextFillRect(context, CGRectMake(sunriseMinutes * self.xratio, 0, sunsetMinutes * self.xratio - sunriseMinutes * self.xratio, chartBottom));
+    }
     
     CGContextSetRGBFillColor(context, 1, 1, 1, 0.2);
-    if (moonriseMinutes < moonsetMinutes) {
-        CGContextFillRect(context, CGRectMake(moonriseMinutes * self.xratio, self.headerView.frame.size.height + 20, moonsetMinutes * self.xratio - moonriseMinutes * self.xratio, HEIGHT));
-    } else {
-        CGContextFillRect(context, CGRectMake(0, self.headerView.frame.size.height + 20, moonsetMinutes * self.xratio, HEIGHT));
-        CGContextFillRect(context, CGRectMake(moonriseMinutes * self.xratio, self.headerView.frame.size.height + 20, self.frame.size.width, HEIGHT));
+    for (NSArray *riseSet in moonPairs) {
+        int moonriseMinutes = ([riseSet[0] timeIntervalSince1970] - baseSeconds) / SECONDS_PER_MINUTE;
+        int moonsetMinutes = ([riseSet[1] timeIntervalSince1970] - baseSeconds) / SECONDS_PER_MINUTE;
+        CGContextFillRect(context, CGRectMake(moonriseMinutes * self.xratio, 0, moonsetMinutes * self.xratio - moonriseMinutes * self.xratio, chartBottom));
     }
+//    if (moonriseMinutes < moonsetMinutes) {
+//        CGContextFillRect(context, CGRectMake(moonriseMinutes * self.xratio, 0, moonsetMinutes * self.xratio - moonriseMinutes * self.xratio, chartBottom));
+//    } else {
+//        CGContextFillRect(context, CGRectMake(0, 0, moonsetMinutes * self.xratio, chartBottom));
+//        CGContextFillRect(context, CGRectMake(moonriseMinutes * self.xratio, 0, self.frame.size.width, chartBottom));
+//    }
     
     // draw indicators in the header for astronomical events
-    float sunriseX = sunriseMinutes * self.xratio - self.sunriseIcon.image.size.width / 2;
-    float sunsetX = sunsetMinutes * self.xratio - self.sunsetIcon.image.size.width / 2;
-    float moonriseX = moonriseMinutes * self.xratio - self.moonriseIcon.image.size.width / 2;
-    float moonsetX = moonsetMinutes * self.xratio - self.moonsetIcon.image.size.width / 2;
-    
-    if (moonsetX >= self.headerView.frame.size.width - self.moonsetIcon.image.size.width) {
-        moonsetX -= self.moonsetIcon.image.size.width;
-    } else if (moonsetX == 0) {
-        moonsetX += 1;
-    }
-    
-    self.sunriseIcon.frame = CGRectMake(sunriseX, self.headerView.frame.size.height - self.sunriseIcon.image.size.height * 1.1, self.sunriseIcon.image.size.width, self.sunriseIcon.image.size.height);
-    self.sunsetIcon.frame = CGRectMake(sunsetX, self.headerView.frame.size.height - self.sunsetIcon.image.size.height * 1.1, self.sunsetIcon.image.size.width, self.sunsetIcon.image.size.height);
-    self.moonriseIcon.frame = CGRectMake(moonriseX, self.headerView.frame.size.height - self.moonriseIcon.image.size.height * 1.1, self.moonriseIcon.image.size.width, self.moonriseIcon.image.size.height);
-    self.moonsetIcon.frame = CGRectMake(moonsetX, self.headerView.frame.size.height - self.moonriseIcon.image.size.height * 1.1, self.moonsetIcon.image.size.width, self.moonsetIcon.image.size.height);
-    
-    [self.headerView addSubview:self.moonriseIcon];
-    [self.headerView addSubview:self.moonsetIcon];
-    [self.headerView addSubview:self.sunriseIcon];
-    [self.headerView addSubview:self.sunsetIcon];
+//    float sunriseX = sunriseMinutes * self.xratio - self.sunriseIcon.image.size.width / 2;
+//    float sunsetX = sunsetMinutes * self.xratio - self.sunsetIcon.image.size.width / 2;
+//    float moonriseX = moonriseMinutes * self.xratio - self.moonriseIcon.image.size.width / 2;
+//    float moonsetX = moonsetMinutes * self.xratio - self.moonsetIcon.image.size.width / 2;
+//    
+//    if (moonsetX >= self.headerView.frame.size.width - self.moonsetIcon.image.size.width) {
+//        moonsetX -= self.moonsetIcon.image.size.width;
+//    } else if (moonsetX == 0) {
+//        moonsetX += 1;
+//    }
+//    
+//    self.sunriseIcon.frame = CGRectMake(sunriseX, self.headerView.frame.size.height - self.sunriseIcon.image.size.height * 1.1, self.sunriseIcon.image.size.width, self.sunriseIcon.image.size.height);
+//    self.sunsetIcon.frame = CGRectMake(sunsetX, self.headerView.frame.size.height - self.sunsetIcon.image.size.height * 1.1, self.sunsetIcon.image.size.width, self.sunsetIcon.image.size.height);
+//    self.moonriseIcon.frame = CGRectMake(moonriseX, self.headerView.frame.size.height - self.moonriseIcon.image.size.height * 1.1, self.moonriseIcon.image.size.width, self.moonriseIcon.image.size.height);
+//    self.moonsetIcon.frame = CGRectMake(moonsetX, self.headerView.frame.size.height - self.moonriseIcon.image.size.height * 1.1, self.moonsetIcon.image.size.width, self.moonsetIcon.image.size.height);
+//    
+//    [self.headerView addSubview:self.moonriseIcon];
+//    [self.headerView addSubview:self.moonsetIcon];
+//    [self.headerView addSubview:self.sunriseIcon];
+//    [self.headerView addSubview:self.sunsetIcon];
     
     // draws the tide level curve
-	uint64_t basetime = 0;
-	for (SDTideInterval *tidePoint in [tide intervalsForDay:[self.datasource day]]) {
-		int minutesSinceMidnight = 0;
-		if (basetime == 0) {
-			basetime = (int)[[tidePoint time] timeIntervalSince1970];
-		}
-		minutesSinceMidnight = (int)([[tidePoint time] timeIntervalSince1970] - basetime) / SECONDS_PER_MINUTE;
-        NSLog(@"Plotting interval: %@, min since midnight: %d",tidePoint.time, minutesSinceMidnight);
-		if (minutesSinceMidnight == 0) {
-			CGContextMoveToPoint(context, minutesSinceMidnight * self.xratio, yoffset - [tidePoint height] * yratio);
+    for (SDTideInterval *tidePoint in intervalsForDay) {
+		int minute = ([[tidePoint time] timeIntervalSince1970] - baseSeconds) / SECONDS_PER_MINUTE;
+        NSLog(@"Plotting interval: %@, min since midnight: %d",tidePoint.time, minute);
+		if (minute == 0) {
+			CGContextMoveToPoint(context, minute * self.xratio, yoffset - [tidePoint height] * yratio);
 		} else {
-			CGContextAddLineToPoint(context, (minutesSinceMidnight * self.xratio), yoffset - ([tidePoint height] * yratio));
+			CGContextAddLineToPoint(context, (minute * self.xratio), yoffset - ([tidePoint height] * yratio));
 		}
-		
 	}
 	
-    // closes the path so that it can be filled
-	CGContextAddLineToPoint(context, self.frame.size.width, HEIGHT + 86);
-	CGContextAddLineToPoint(context, 0, HEIGHT + 86);
+    // closes the path so that it can be filled.
+    int lastMinute = ([((SDTideInterval*)[intervalsForDay lastObject]).time timeIntervalSince1970] - baseSeconds) / SECONDS_PER_MINUTE;
+	CGContextAddLineToPoint(context, lastMinute*self.xratio, chartBottom);
+	CGContextAddLineToPoint(context, 0, chartBottom);
 	
     // fill in the tide level curve
 	CGContextSetRGBFillColor(context, 0.0, 1.0, 1.0, 0.7);
@@ -161,7 +189,7 @@
 	CGContextAddLineToPoint(context, xmax * self.xratio, yoffset);
 	CGContextStrokePath(context);
 			
-	self.cursorView.center = CGPointMake([self currentTimeInMinutes] * self.xratio, (HEIGHT + 86) / 2);
+	self.cursorView.center = CGPointMake([self currentTimeInMinutes] * self.xratio, chartBottom / 2);
 	if (self.cursorView.center.x > 0) {
 		NSLog(@"min: %0.1f, max: %0.1f",min,max);
 		[self addSubview:self.cursorView];
@@ -209,6 +237,11 @@
 	} else {
 		return -1;
 	}
+}
+
+- (int)currentTimeOnChart
+{
+    return [self currentTimeInMinutes] * self.frame.size.width / MINUTES_PER_HOUR * _hoursToPlot;
 }
 
 - (NSString*)timeInNativeFormatFromMinutes:(int)minutesSinceMidnight {

@@ -42,8 +42,16 @@ typedef enum {
 - (NSArray*)events; // all tide events (only tide events)
 - (NSArray*)eventsForDay:(NSDate*)date;
 - (NSArray*)intervalsForDay:(NSDate*)date;
+
 - (NSDictionary*)sunriseSunsetEventsForDay:(NSDate*)date;
 - (NSDictionary*)moonriseMoonsetEventsForDay:(NSDate*)date;
+- (NSArray*)sunriseSunsetEvents;
+- (NSArray*)moonriseMoonsetEvents;
+- (NSArray*)sunAndMoonEvents;
+
+- (SDTideStateRiseFall)tideDirection;
+- (int)currentTimeInMinutes;
+- (NSArray*)intervalsFromDate:(NSDate*)fromDate forHours:(int)hours;
 
 @property (nonatomic,strong) NSDate *startTime;
 @property (nonatomic,strong) NSDate *stopTime;

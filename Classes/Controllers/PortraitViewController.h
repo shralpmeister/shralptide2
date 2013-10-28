@@ -10,6 +10,7 @@
 #import "ChartScrollView.h"
 #import "SelectStationNavigationController.h"
 #import "LandscapeViewController.h"
+#import "SDTide.h"
 
 /**
  * This is now our root view controller it contains two subcontrollers and a view to display the page controller
@@ -17,7 +18,7 @@
  */
 @interface PortraitViewController : UIViewController
 
-@property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
+@property (nonatomic, weak) IBOutlet UIPageControl *pageControl;
 
 - (IBAction)changePage:(id)sender;
 

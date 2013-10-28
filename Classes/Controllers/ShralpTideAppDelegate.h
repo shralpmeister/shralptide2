@@ -35,8 +35,8 @@
 @property (nonatomic, strong, readonly) NSDictionary *tidesByLocation;
 
 @property (nonatomic,strong) NSString *unitsPref;
-@property (assign) NSInteger daysPref;
-@property (assign) BOOL showsCurrentsPref;
+@property (nonatomic,assign) NSInteger daysPref;
+@property (nonatomic,assign) BOOL showsCurrentsPref;
 @property (nonatomic,strong) NSString *backgroundPref;
 
 @end

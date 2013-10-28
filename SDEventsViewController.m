@@ -9,6 +9,7 @@
 #import "SDEventsViewController.h"
 #import "SDTideEvent.h"
 #import "SDTideEventCell.h"
+#import "SDTideFactory.h"
 
 @interface SDEventsViewController ()
 
@@ -33,6 +34,25 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.formatterBehavior = NSDateFormatterBehaviorDefault;
+    formatter.dateStyle = NSDateFormatterFullStyle;
+    self.dateLabel.text = [formatter stringFromDate:[self.tide startTime]];
+    
+    NSLog(@"Scroll view frame width = %f", _chartScrollView.frame.size.width);
+    _chartView.height = 40;
+    _chartView.datasource = self;
+    if ([_tide.startTime timeIntervalSince1970] > [[NSDate date] timeIntervalSince1970]) {
+        _chartView.hoursToPlot = 24;
+        _chartView.frame = CGRectMake(0, 0, _chartView.frame.size.width*2, _chartView.frame.size.height);
+    } else {
+        _chartView.hoursToPlot = 12;
+    }
+    
+    NSLog(@"Setting content width to %f",_chartView.frame.size.width);
+    _chartScrollView.contentSize = _chartView.frame.size;
+    [_chartScrollView addSubview:_chartView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,4 +83,29 @@
     return cell;
 }
 
+#pragma mark ChartViewDatasource Methods
+-(SDTide *)tideDataToChart
+{
+    NSDate *now = [NSDate date];
+    if ([_tide.startTime timeIntervalSince1970] > [now timeIntervalSince1970]) {
+        return _tide;
+    } else {
+        return [SDTideFactory tidesForStationName:_tide.stationName fromDate:now toDate:[now dateByAddingTimeInterval:_chartView.hoursToPlot * 60 * 60]];
+    }
+}
+
+-(NSDate*)day
+{
+    NSDate *now = [NSDate date];
+    if ([_tide.startTime timeIntervalSince1970] > [now timeIntervalSince1970]) {
+        return _tide.startTime;
+    } else {
+        return now;
+    }
+}
+
+-(int)page
+{
+    return 0;
+}
 @end

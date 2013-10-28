@@ -27,19 +27,26 @@
 #import "SDTideEvent.h"
 #import "CursorView.h"
 
+#define MINUTES_PER_HOUR 60
+#define SECONDS_PER_MINUTE 60
+
 @interface ChartView : UIView
 
--(int)currentTimeInMinutes;
--(void)animateCursorViewToCurrentTime;
--(void)animateFirstTouchAtPoint:(CGPoint)touchPoint;
+- (int)currentTimeInMinutes;
+- (int)currentTimeOnChart;
+- (void)animateCursorViewToCurrentTime;
+- (void)animateFirstTouchAtPoint:(CGPoint)touchPoint;
 
 @property (nonatomic, unsafe_unretained) id<ChartViewDatasource> datasource;
 @property (nonatomic, strong) IBOutlet UIView *cursorView;
 @property (nonatomic, strong) IBOutlet UIView *headerView;
 @property (nonatomic, strong) IBOutlet UILabel *dateLabel;
 @property (nonatomic, strong) IBOutlet UILabel *valueLabel;
-@property (nonatomic, strong) IBOutlet UIImageView *sunriseIcon;
-@property (nonatomic, strong) IBOutlet UIImageView *sunsetIcon;
-@property (nonatomic, strong) IBOutlet UIImageView *moonriseIcon;
-@property (nonatomic, strong) IBOutlet UIImageView *moonsetIcon;
+@property (nonatomic, strong) UIImage *sunriseIcon;
+@property (nonatomic, strong) UIImage *sunsetIcon;
+@property (nonatomic, strong) UIImage *moonriseIcon;
+@property (nonatomic, strong) UIImage *moonsetIcon;
+@property (nonatomic, assign) int height;
+@property (nonatomic, assign) int hoursToPlot;
+@property (readonly) float xratio;
 @end

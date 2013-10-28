@@ -39,6 +39,23 @@
                                [tide nearestDataPointToCurrentTime].y,
                                [tide unitShort]];
     cell.locationLabel.text = tide.shortLocationName;
+    
+    SDTideStateRiseFall direction = [tide tideDirection];
+	NSString *imageName = nil;
+	switch (direction) {
+		case SDTideStateRising:
+			imageName = @"increasing";
+			break;
+		case SDTideStateFalling:
+        default:
+            imageName = @"decreasing";
+	}
+	if (imageName != nil) {
+		cell.directionArrowView.image = [UIImage imageNamed:imageName];
+		cell.directionArrowView.accessibilityLabel = [imageName isEqualToString:@"increasing"] ? @"rising" : @"falling";
+	} else {
+		cell.directionArrowView.image = nil;
+	}
     return cell;
 }
 

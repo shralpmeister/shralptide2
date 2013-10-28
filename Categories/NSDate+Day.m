@@ -36,4 +36,34 @@
     return comps;
 }
 
+-(BOOL)isOnTheHour
+{
+	NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSMinuteCalendarUnit fromDate:self];
+    return comps.minute == 0;
+}
+
+- (int)timeInMinutesSinceMidnight
+{
+	NSCalendar *gregorian = [NSCalendar currentCalendar];
+	unsigned unitflags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+	NSDateComponents *components = [gregorian components: unitflags fromDate: self];
+	
+	NSDate *midnight = [gregorian dateFromComponents:components];
+	
+    return ([self timeIntervalSince1970] - [midnight timeIntervalSince1970]) / 60;
+}
+
++(int)findPreviousInterval:(int) minutesFromMidnight {
+	return [self findNearestInterval:minutesFromMidnight] - 15;
+}
+
++(int)findNearestInterval:(int) minutesFromMidnight {
+	int numIntervals = floor(minutesFromMidnight / 15);
+	int remainder = minutesFromMidnight % 15;
+	if (remainder >= 8) {
+		++numIntervals;
+	}
+	return numIntervals * 15;
+}
+
 @end

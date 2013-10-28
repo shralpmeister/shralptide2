@@ -12,6 +12,8 @@
 
 @interface SDLocationMainViewController ()
 
+@property (nonatomic,strong) SDTide *tide;
+
 @end
 
 @implementation SDLocationMainViewController
@@ -62,6 +64,7 @@
     SDBottomViewCell* bottomViewCell = (SDBottomViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:bottomCellId forIndexPath:indexPath];
     NSArray *tideLocations = appDelegate.tidesByLocation.allValues;
     bottomViewCell.tide = tideLocations[indexPath.section];
+    self.tide = bottomViewCell.tide;
     [bottomViewCell createPages];
     return bottomViewCell;
 }
@@ -78,7 +81,7 @@
     float newOffset = scrollView.contentOffset.x;
     float pushOffset = newOffset * 1.5;
     if (scrollView.isDecelerating) {
-        // we know we're past halfway... switch backgrounds
+        // we know we're past halfway... take whatever action might be good here.
     }
 
     self.headerViewController.collectionView.contentOffset = CGPointMake(pushOffset, 0);

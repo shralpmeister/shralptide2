@@ -14,11 +14,13 @@
 #import "ChartViewController.h"
 #import "ChartView.h"
 #import "StationMapController.h"
+#import "SDLocationMainViewController.h"
 
 
 @interface PortraitViewController ()
 
 @property (nonatomic, assign) BOOL pageControlUsed;
+@property (nonatomic, strong) SDLocationMainViewController *locationMainViewController;
 
 @end
 
@@ -61,6 +63,27 @@
 -(UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
+}
+
+#pragma mark Handle Screen Rotation
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    switch (toInterfaceOrientation) {
+        case UIDeviceOrientationLandscapeLeft:
+            NSLog(@"Device rotated to Landscape Left");
+            [self performSegueWithIdentifier:@"landscapeSegue" sender:self];
+            break;
+        case UIDeviceOrientationLandscapeRight:
+            NSLog(@"Device rotated to Landscape Right");
+            [self performSegueWithIdentifier:@"landscapeSegue" sender:self];
+            break;
+        case UIDeviceOrientationPortrait:
+            NSLog(@"Device rotated to Portrait");
+            break;
+        case UIDeviceOrientationPortraitUpsideDown:
+            NSLog(@"Device rotated to Portrait upsidedown");
+            break;
+    }
 }
 
 - (void)createMainViews {
@@ -115,5 +138,15 @@
 //    [self.collectionView scrollRectToVisible:frame animated:YES];
 //    // Set the boolean used when scrolls originate from the UIPageControl. See scrollViewDidScroll: above.
 //    self.pageControlUsed = YES;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"locationMainViewSegue"]) {
+        _locationMainViewController = (SDLocationMainViewController*)segue.destinationViewController;
+    } else if ([segue.identifier isEqualToString:@"landscapeSegue"]) {
+        LandscapeViewController *landscapeController = (LandscapeViewController*)segue.destinationViewController;
+        landscapeController.locationMainViewController = _locationMainViewController;
+    }
 }
 @end

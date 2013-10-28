@@ -7,14 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ChartScrollView.h"
+#import "FlatChartView.h"
+#import "SDLocationMainViewController.h"
 
-@interface LandscapeViewController : UIViewController <UIScrollViewDelegate>
+@interface LandscapeViewController : UIViewController <UIScrollViewDelegate, ChartViewDatasource>
 
-@property (nonatomic, strong) IBOutlet ChartScrollView *chartScrollView;
-@property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
+@property (nonatomic, weak) IBOutlet UIScrollView *chartScrollView;
+@property (nonatomic, strong) SDLocationMainViewController *locationMainViewController;
+@property (nonatomic, weak) IBOutlet FlatChartView *chartView;
+@property (nonatomic, weak) IBOutlet UILabel *locationLabel;
+@property (nonatomic, weak) IBOutlet UILabel *dateLabel;
+@property (nonatomic, weak) IBOutlet UILabel *heightLabel;
 
-- (void)createChartViews;
-- (void)clearChartData;
+//@property (nonatomic, weak) IBOutlet ChartScrollView *chartScrollView;
+//@property (nonatomic, weak) IBOutlet UIPageControl *pageControl;
+
+//- (void)createChartViews;
+//- (void)clearChartData;
 
 @end

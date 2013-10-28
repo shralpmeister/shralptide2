@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "SDTide.h"
+#import "ChartView.h"
 
-@interface SDEventsViewController : UIViewController <UITableViewDataSource>
+@interface SDEventsViewController : UIViewController <UITableViewDataSource,ChartViewDatasource>
 
 @property (nonatomic,weak) IBOutlet UILabel *dateLabel;
+@property (nonatomic,strong) IBOutlet ChartView *chartView;
+@property (nonatomic,weak) IBOutlet UIScrollView *chartScrollView;
 @property (nonatomic,strong) SDTide *tide;
 
 @end

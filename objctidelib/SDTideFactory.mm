@@ -32,6 +32,8 @@
 #import "SDTideStation.h"
 #import "NSDate+Day.h"
 
+
+#define SECONDS_PER_DAY 86400
 #define appDelegate ((ShralpTideAppDelegate*)[[UIApplication sharedApplication] delegate])
 
 static NSArray* tideEventsForLocation(const Dstr &name, Interval step, Timestamp start, Timestamp end, Units::PredictionUnits units);
@@ -40,19 +42,41 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
 
 @implementation SDTideFactory
 
+
 +(SDTide*)todaysTidesForStationName:(NSString*)name;
 {
-    return [SDTideFactory tideForStationName:name withInterval:900 forDays:0];
+    return [SDTideFactory tidesForStationName:name withInterval:900 forDays:1][0];
 }
 
-+(SDTide*)tideForStationName:(NSString *)name
++(NSArray*)tidesForStationName:(NSString *)name
 {
-    return [SDTideFactory tideForStationName:name withInterval:900 forDays:appDelegate.daysPref];
+    return [SDTideFactory tidesForStationName:name withInterval:900 forDays:appDelegate.daysPref];
 }
 
-+(SDTide*)tideForStationName:(NSString*)name withInterval:(int)interval forDays:(int)days
++(NSArray*)tidesForStationName:(NSString*)name withInterval:(int)interval forDays:(int)days
 {
-    @synchronized ([SDTideFactory class]) {
+    NSMutableArray *tideCollection = [[NSMutableArray alloc] init];
+    
+    NSDate *now = [NSDate date];
+    
+    for (int i=0; i < days; i++) {
+        NSDate *day = [now dateByAddingTimeInterval:i * SECONDS_PER_DAY];
+        SDTide* tidy = [self tideForStationName:name withInterval:interval fromDate:[day startOfDay] toDate:[day endOfDay]];
+        [tideCollection addObject:tidy];
+    }
+    
+    NSArray *result = [NSArray arrayWithArray:tideCollection];
+    return result;
+}
+
++ (SDTide*)tidesForStationName:(NSString*)name fromDate:(NSDate*)fromDate toDate:(NSDate*)toDate
+{
+    return [SDTideFactory tideForStationName:name withInterval:900 fromDate:fromDate toDate:toDate];
+}
+
++ (SDTide*)tideForStationName:(NSString*)name withInterval:(int)interval fromDate:(NSDate*)fromDate toDate:(NSDate*)toDate
+{
+    @synchronized([SDTideFactory class]) {
         srand (time (NULL));
         Global::initCodeset();
         Global::settings.applyUserDefaults();
@@ -60,11 +84,15 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
         
         Units::PredictionUnits units = [appDelegate.unitsPref isEqualToString:@"metric"] ? Units::meters : Units::feet;
         
-        Timestamp startTime = (time_t)[[[NSDate date] startOfDay] timeIntervalSince1970];
-        Timestamp endOfStartDay = (time_t)[[[NSDate date] endOfDay] timeIntervalSince1970];
-        Timestamp endTime = endOfStartDay + Interval(1440 * 60 * days);
-        
         Dstr location ([name UTF8String]);
+        
+        if (![fromDate isEqualToDate:[fromDate startOfDay]]) {
+            fromDate = [[fromDate startOfDay] dateByAddingTimeInterval: [NSDate findNearestInterval:[fromDate timeInMinutesSinceMidnight]] * 60];
+        }
+        
+        Timestamp startTime = (time_t)[fromDate timeIntervalSince1970];
+        Timestamp endTime = (time_t)[toDate timeIntervalSince1970] + 1;
+        
         NSArray *events = tideEventsForLocation(location, Interval (interval), startTime, endTime, units);
         
         NSArray *intervals = nil;
@@ -82,16 +110,16 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
             }
         }
         
-        SDTide *tidy = [[SDTide alloc] init];
-        tidy.stationName = name;
-        tidy.startTime = [NSDate dateWithTimeIntervalSince1970:startTime.timet()];
-        tidy.stopTime = [NSDate dateWithTimeIntervalSince1970:endTime.timet()];
-        tidy.intervals = intervals;
-        tidy.allEvents = events;
-        tidy.unitLong = nil;
-        tidy.unitShort = eventZero.units;
+        SDTide *tide = [[SDTide alloc] init];
+        tide.stationName = name;
+        tide.startTime = [NSDate dateWithTimeIntervalSince1970:startTime.timet()];
+        tide.stopTime = [NSDate dateWithTimeIntervalSince1970:endTime.timet()];
+        tide.intervals = intervals;
+        tide.allEvents = events;
+        tide.unitLong = nil;
+        tide.unitShort = eventZero.units;
         
-        return tidy;
+        return tide;
     }
 }
 

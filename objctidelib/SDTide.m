@@ -60,15 +60,21 @@
 }
 
 - (CGPoint)nearestDataPointForTime:(int) minutesFromMidnight {
-	int nearestX = [self findNearestInterval:minutesFromMidnight];
+	int nearestX = [NSDate findNearestInterval:minutesFromMidnight];
 	float nearestY = [self findTideForTime:nearestX];
 	return CGPointMake((float)nearestX, nearestY);
 }
 
+- (SDTideStateRiseFall)tideDirection
+{
+    int time = [self currentTimeInMinutes];
+	return [self tideDirectionForTime:time];
+}
+
 - (SDTideStateRiseFall)tideDirectionForTime:(int) time {
-	if ([self findTideForTime:[self findNearestInterval:time]] > [self findTideForTime:[self findPreviousInterval: time]]) {
+	if ([self findTideForTime:[NSDate findNearestInterval:time]] > [self findTideForTime:[NSDate findPreviousInterval: time]]) {
 		return SDTideStateRising;
-	} else if ([self findTideForTime:[self findNearestInterval:time]] < [self findTideForTime:[self findPreviousInterval: time]]) {
+	} else if ([self findTideForTime:[NSDate findNearestInterval:time]] < [self findTideForTime:[NSDate findPreviousInterval: time]]) {
 		return SDTideStateFalling;
 	} else {
 		return SDTideStateUnknown;
@@ -142,6 +148,24 @@
     return [NSDictionary dictionaryWithDictionary:result];
 }
 
+-(NSArray*)sunriseSunsetEvents
+{
+    NSPredicate *sunEvents = [NSPredicate predicateWithFormat:@"eventType == %d OR eventType == %d", sunrise, sunset];
+    return [self.allEvents filteredArrayUsingPredicate:sunEvents];
+}
+
+-(NSArray*)moonriseMoonsetEvents
+{
+    NSPredicate *sunEvents = [NSPredicate predicateWithFormat:@"eventType == %d OR eventType == %d", moonrise, moonset];
+    return [self.allEvents filteredArrayUsingPredicate:sunEvents];
+}
+
+-(NSArray*)sunAndMoonEvents
+{
+    NSPredicate *events = [NSPredicate predicateWithFormat:@"eventType in %@", @[@(moonrise), @(moonset), @(sunrise), @(sunset)]];
+    return [self.allEvents filteredArrayUsingPredicate:events];
+}
+
 -(NSArray*)eventsForDay:(NSDate*)date
 {
     NSPredicate *daysEventsOnly = [NSPredicate predicateWithFormat:@"eventTime BETWEEN %@",@[[date startOfDay], [date endOfDay]]];
@@ -154,34 +178,18 @@
     return [self.intervals filteredArrayUsingPredicate:daysIntervalsOnly];
 }
 
+- (NSArray*)intervalsFromDate:(NSDate*)fromDate forHours:(int)hours
+{
+    NSDate *toDate = [fromDate dateByAddingTimeInterval:hours * 60 * 60];
+    NSPredicate *timeRange = [NSPredicate predicateWithFormat:@"time BETWEEN %@",@[ fromDate, toDate]];
+    return [self.intervals filteredArrayUsingPredicate:timeRange];
+}
+
 #pragma mark PrivateMethods
-
--(int)findPreviousInterval:(int) minutesFromMidnight {
-	return [self findNearestInterval:minutesFromMidnight] - 15;
-}
-
--(int)findNearestInterval:(int) minutesFromMidnight {
-	int numIntervals = floor(minutesFromMidnight / 15);
-	int remainder = minutesFromMidnight % 15;
-	if (remainder >= 8) {
-		++numIntervals;
-	}
-	return numIntervals * 15;
-}
 
 - (int)currentTimeInMinutes
 {
-	// The following shows the current time on the tide chart.  Need to make sure that it only shows on
-	// the current day!
-	NSDate *datestamp = [NSDate date];
-	
-	NSCalendar *gregorian = [NSCalendar currentCalendar];
-	unsigned unitflags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
-	NSDateComponents *components = [gregorian components: unitflags fromDate: datestamp];
-	
-	NSDate *midnight = [gregorian dateFromComponents:components];
-	
-    return ([datestamp timeIntervalSince1970] - [midnight timeIntervalSince1970]) / 60;
+    return [[NSDate date] timeInMinutesSinceMidnight];
 }
 
 -(void)dealloc

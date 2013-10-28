@@ -48,13 +48,15 @@
 
 - (CGRect)frameForRow:(int)row onPage:(int)page
 {
-    float width = 320.0;
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    float width = screenBounds.size.width;
+    float screenHeight = screenBounds.size.height;
     float yOrigin = 0.0;
     float height = 0.0;
     switch (row) {
         case 0:
             yOrigin = 160;
-            height = 400;
+            height = screenHeight * 9/16;
             break;
             
         default:

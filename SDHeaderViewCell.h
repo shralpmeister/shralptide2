@@ -12,5 +12,6 @@
 
 @property (nonatomic,weak) IBOutlet UILabel *locationLabel;
 @property (nonatomic,weak) IBOutlet UILabel *tideLevelLabel;
+@property (nonatomic,weak) IBOutlet UIImageView *directionArrowView;
 
 @end

@@ -11,6 +11,7 @@
 #import "SDTideEvent.h"
 #import "SDEventsViewController.h"
 #import "ShralpTideAppDelegate.h"
+#import "SDTideFactory.h"
 
 @interface SDBottomViewCell ()
 
@@ -42,7 +43,9 @@
 {
     // a page is the width of the scroll view and the height of the content.
     /* self.tide is today's tides... need to calculate yesterday's and tomorrows and make them page 0 and page 2 respectively. */
-    int numPages = ((ShralpTideAppDelegate*)appDelegate).daysPref;
+    
+    NSArray* tidesForDays = [SDTideFactory tidesForStationName:self.tide.stationName];
+    int numPages = [tidesForDays count];
     NSLog(@"Creating %d days of tide events",numPages);
     self.scrollView.contentSize = CGSizeMake(self.frame.size.width * numPages, self.frame.size.height);
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
@@ -50,7 +53,7 @@
     int xOrigin = 0;
     for (int i=0; i < numPages; i++) {
         SDEventsViewController* pageController = [storyboard instantiateViewControllerWithIdentifier:@"eventsViewController"];
-        pageController.tide = self.tide;
+        pageController.tide = tidesForDays[i];
         pageController.view.frame = CGRectMake(xOrigin,0,self.frame.size.width,self.frame.size.height);
         [self.scrollView addSubview:pageController.view];
         controllers[i] = pageController;

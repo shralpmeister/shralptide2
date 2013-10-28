@@ -26,10 +26,12 @@
 
 @interface SDTideFactory : NSObject
 
-+(SDTide*)todaysTidesForStationName:(NSString*)name;
-+(SDTide*)tideForStationName:(NSString*)name;
-+(SDTide*)tideForStationName:(NSString*)name withInterval:(int)interval forDays:(int)days;
-+(SDTideStationData*)tideStationWithName:(NSString*)name;
++ (SDTide*)todaysTidesForStationName:(NSString*)name;
++ (NSArray*)tidesForStationName:(NSString*)name;
++ (NSArray*)tidesForStationName:(NSString*)name withInterval:(int)interval forDays:(int)days;
++ (SDTide*)tidesForStationName:(NSString*)name fromDate:(NSDate*)fromDate toDate:(NSDate*)toDate;
++ (SDTide*)tideForStationName:(NSString*)name withInterval:(int)interval fromDate:(NSDate*)fromDate toDate:(NSDate*)toDate;
++ (SDTideStationData*)tideStationWithName:(NSString*)name;
 
 @end
 

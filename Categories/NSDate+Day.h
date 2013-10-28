@@ -26,4 +26,18 @@
  */
 -(NSDateComponents*)dayComponents;
 
+/*
+ * Returns true if the minute is zero. ie. 0800, 0900, 1200, 0000.
+ */
+-(BOOL)isOnTheHour;
+
+/*
+ * The time in minutes since midnight.
+ */
+- (int)timeInMinutesSinceMidnight;
+
++(int)findPreviousInterval:(int) minutesFromMidnight;
+
++(int)findNearestInterval:(int) minutesFromMidnight;
+
 @end

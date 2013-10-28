@@ -146,7 +146,8 @@ double MachTimeToSecs(uint64_t time);
     formatter.dateStyle = NSDateFormatterNoStyle;
     formatter.timeStyle = NSDateFormatterShortStyle;
     SDTideEvent *sunriseEvent = (SDTideEvent*)[sdTide sunriseSunsetEventsForDay:self.today][@"sunrise"];
-    SDTideEvent *sunsetEvent = (SDTideEvent*)[sdTide sunriseSunsetEventsForDay:self.today][@"sunset"];    self.sunriseLabel.text = [formatter stringFromDate:sunriseEvent.eventTime];
+    SDTideEvent *sunsetEvent = (SDTideEvent*)[sdTide sunriseSunsetEventsForDay:self.today][@"sunset"];
+    self.sunriseLabel.text = [formatter stringFromDate:sunriseEvent.eventTime];
     self.sunsetLabel.text = [formatter stringFromDate:sunsetEvent.eventTime];
     
     
@@ -274,7 +275,7 @@ double MachTimeToSecs(uint64_t time);
 -(IBAction)calculateOneYear:(id)sender
 {
     uint64_t startTime = mach_absolute_time();
-    SDTide *yearsWorth = [SDTideFactory tideForStationName:self.sdTide.stationName withInterval:0 forDays:365];
+    NSArray *yearsWorth = [SDTideFactory tidesForStationName:self.sdTide.stationName withInterval:0 forDays:365];
     uint64_t endTime = mach_absolute_time();
     NSLog(@"One years worth of events took %0.5f seconds",MachTimeToSecs(endTime - startTime));
 //    for (SDTideEvent *event in yearsWorth.allEvents) {
