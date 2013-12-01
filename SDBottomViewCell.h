@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "SDTide.h"
+#import "SDTideCalculationDelegate.h"
 
 @interface SDBottomViewCell : UICollectionViewCell <UIScrollViewDelegate>
 
-@property (nonatomic,weak) SDTide* tide;
+@property (nonatomic,readonly) NSArray* tidesForDays;
 @property (nonatomic,strong) IBOutlet UIScrollView* scrollView;
+@property (nonatomic,weak) id<SDTideCalculationDelegate> tideCalculationDelegate;
 
-- (void)createPages;
+- (void)createPages:(SDTide*)tide;
 
 @end

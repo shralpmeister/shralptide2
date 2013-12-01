@@ -11,33 +11,56 @@
 #import "SDHeaderViewCell.h"
 #import "SDTide.h"
 
+@interface SDHeaderViewController ()
+
+@end
+
 @implementation SDHeaderViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTideData) name:kSDAppDelegateRecalculatedTidesNotification object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    NSLog(@"Header view controller View will appear called");
+    NSLog(@"Header view controller view will appear called. Page = %d, offset=%f", appDelegate.locationPage, self.collectionView.contentOffset.x);
+    [self refreshTideData];
+    float headerOffset = appDelegate.locationPage * self.collectionView.frame.size.width * 1.5;
+    self.collectionView.contentOffset = CGPointMake(headerOffset,0);
+}
+
+- (void)refreshTideData
+{
+    NSLog(@"SDHeaderViewController got recalc notification. Reloading data");
+    [self.collectionView reloadData];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section;
 {
-    return 1;
+    return appDelegate.tides[section] ? 1 : 0;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return [appDelegate.tidesByLocation count];
+    NSLog(@"SDHeaderViewController contains:%d sections", [appDelegate.tides count]);
+    return [appDelegate.tides count];
 }
 
-// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath;
+- (void)refreshCurrentTideStatus:(SDTide*)tide forCell:(SDHeaderViewCell*)cell
 {
-    SDHeaderViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"headerCell" forIndexPath:indexPath];
-    SDTide *tide = appDelegate.tidesByLocation.allValues[indexPath.row];
-    NSLog(@"Refreshing tide for current time");
+    NSLog(@"SDHeaderViewController refreshing tide for current time, location:%@",[tide shortLocationName]);
     cell.tideLevelLabel.text = [NSString stringWithFormat:@"%0.2f %@",
-                               [tide nearestDataPointToCurrentTime].y,
-                               [tide unitShort]];
+                                           [tide nearestDataPointToCurrentTime].y,
+                                           [tide unitShort]];
     cell.locationLabel.text = tide.shortLocationName;
     
     SDTideStateRiseFall direction = [tide tideDirection];
@@ -56,6 +79,15 @@
 	} else {
 		cell.directionArrowView.image = nil;
 	}
+}
+
+// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath;
+{
+    SDHeaderViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"headerCell" forIndexPath:indexPath];
+    SDTide *tide = appDelegate.tides[indexPath.section];
+    NSLog(@"Returning cell for location: %@",tide.stationName);
+    [self refreshCurrentTideStatus:tide forCell:cell];
     return cell;
 }
 

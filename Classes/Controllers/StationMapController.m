@@ -8,8 +8,6 @@
 
 #import "StationMapController.h"
 
-#define appDelegate ((ShralpTideAppDelegate*)[[UIApplication sharedApplication] delegate])
-
 BOOL zoomedToLocal;
 
 @interface StationMapController()
@@ -56,14 +54,14 @@ BOOL zoomedToLocal;
 -(void)viewWillAppear:(BOOL)animated
 {
     if (appDelegate.showsCurrentsPref) {
-        [self.navController setToolbarHidden:NO];
+        [self.navigationController setToolbarHidden:NO];
         if (self.stationType == SDStationTypeTide) {
             self.tideCurrentSelector.selectedSegmentIndex = 0;
         } else {
             self.tideCurrentSelector.selectedSegmentIndex = 1;
         }
     } else {
-        [self.navController setToolbarHidden:YES];
+        [self.navigationController setToolbarHidden:YES];
     }
     self.mapView.showsUserLocation = YES;
 }
@@ -118,6 +116,7 @@ BOOL zoomedToLocal;
         NSLog(@"That's too many results... won't plot until lower zoom level.");
 	} else {
 		for (SDTideStation *result in results) {
+            NSLog(@"Fetched %@",result.name);
 			CLLocationCoordinate2D coordinate;
 			coordinate.latitude = [result.latitude doubleValue];
 			coordinate.longitude = [result.longitude doubleValue];
@@ -212,7 +211,6 @@ BOOL zoomedToLocal;
 
 -(void)chooseStation
 {
-	NSLog(@"Yeah, you clicked me alright...");
 	NSArray *selectedAnnotations = [self.mapView selectedAnnotations];
 	for (id<MKAnnotation> annotation in selectedAnnotations) {
 		NSLog(@"  - %@", annotation.title);
@@ -221,7 +219,7 @@ BOOL zoomedToLocal;
     StationDetailViewController *detailViewController = [[StationDetailViewController alloc] initWithNibName:@"StationInfoView" bundle:nil];
     detailViewController.modalViewDelegate = self.modalViewDelegate;
 	detailViewController.tideStationData = [self.mapView selectedAnnotations][0];
-	[self.navController pushViewController: detailViewController animated:YES];
+	[self.navigationController pushViewController: detailViewController animated:YES];
 }
 
 

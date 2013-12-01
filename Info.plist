@@ -25,13 +25,13 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>10</string>
+	<string>0175</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIApplicationIsOpaque</key>
+	<false/>
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard</string>
-	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleDefault</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

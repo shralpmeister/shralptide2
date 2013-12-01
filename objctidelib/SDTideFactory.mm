@@ -125,7 +125,7 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
 
 +(SDTideStationData*)tideStationWithName:(NSString*)name
 {
-    NSManagedObjectContext *context = [(ShralpTideAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:@"SDTideStation" 
 											  inManagedObjectContext:context];

@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "SDTide.h"
 
 @interface TideStationTableViewCell : UITableViewCell
 
-@property (nonatomic,unsafe_unretained) IBOutlet UILabel *nameLabel;
-@property (nonatomic,unsafe_unretained) IBOutlet UILabel *levelLabel;
-@property (nonatomic,unsafe_unretained) IBOutlet UILabel *directionLabel;
+@property (nonatomic,weak) SDTide *tide;
+@property (nonatomic,weak) IBOutlet UILabel *nameLabel;
+@property (nonatomic,weak) IBOutlet UILabel *levelLabel;
+@property (nonatomic,weak) IBOutlet UIImageView *directionArrowView;
 
 @end

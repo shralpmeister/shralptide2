@@ -15,7 +15,7 @@
 		280E754F0DD40C5E005A515E /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 280E754C0DD40C5E005A515E /* MainWindow.xib */; };
 		DC016068133EB6990065CBAA /* SDTide.m in Sources */ = {isa = PBXBuildFile; fileRef = DC016067133EB6990065CBAA /* SDTide.m */; };
 		DC01606A133EB8950065CBAA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC016069133EB8950065CBAA /* CoreData.framework */; };
-		DC06A25B17DBC6870095E217 /* FavoritesControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC06A25A17DBC6870095E217 /* FavoritesControllerViewController.m */; };
+		DC06A25B17DBC6870095E217 /* FavoritesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC06A25A17DBC6870095E217 /* FavoritesListViewController.m */; };
 		DC06A26517DC44F60095E217 /* shralptide.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC06A26217DC44F60095E217 /* shralptide.xcdatamodeld */; };
 		DC06A29D17DD83640095E217 /* datastore.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DC06A29C17DD83640095E217 /* datastore.sqlite */; };
 		DC06A2A017DD87130095E217 /* SDStateProvince.m in Sources */ = {isa = PBXBuildFile; fileRef = DC06A29F17DD87130095E217 /* SDStateProvince.m */; };
@@ -32,8 +32,6 @@
 		DC3630B7179B27870027EB21 /* PortraitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3630B6179B27870027EB21 /* PortraitViewController.m */; };
 		DC39945417E63B8200BC61D8 /* SDHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC39945317E63B8200BC61D8 /* SDHeaderViewController.m */; };
 		DC39945717E63B9800BC61D8 /* SDLocationMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC39945617E63B9800BC61D8 /* SDLocationMainViewController.m */; };
-		DC39945D17E63C5C00BC61D8 /* SDTideEventsLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DC39945A17E63C5C00BC61D8 /* SDTideEventsLayout.m */; };
-		DC39945E17E63C5C00BC61D8 /* SDHeaderViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DC39945C17E63C5C00BC61D8 /* SDHeaderViewLayout.m */; };
 		DC39946117E6C7E900BC61D8 /* SDHeaderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC39946017E6C7E900BC61D8 /* SDHeaderViewCell.m */; };
 		DC493E5D0F206C8B0087B341 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = DC493E5C0F206C8B0087B341 /* COPYING */; };
 		DC4FBBE8178BCF3200C0CFEE /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC4FBBE7178BCF3200C0CFEE /* MainStoryboard.storyboard */; };
@@ -53,10 +51,12 @@
 		DC6526691350DD4700B67AE7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6526681350DD4600B67AE7 /* MapKit.framework */; };
 		DC65266B1350DDBE00B67AE7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65266A1350DDBD00B67AE7 /* CoreLocation.framework */; };
 		DC70BD0517F8B5ED00D5FF3A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC70BD0417F8B5ED00D5FF3A /* Images.xcassets */; };
-		DC8EAAC81812EA7C00C4BCFF /* FlatChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC8EAAC71812EA7C00C4BCFF /* FlatChartView.m */; };
+		DC8EAAC81812EA7C00C4BCFF /* LabelledChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC8EAAC71812EA7C00C4BCFF /* LabelledChartView.m */; };
 		DC9065F317F13AD8000F23D8 /* SDEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9065F217F13AD8000F23D8 /* SDEventsViewController.m */; };
 		DC91540517EE350300A6FC46 /* SDBottomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC91540417EE350300A6FC46 /* SDBottomViewCell.m */; };
 		DC91540817EE4E7400A6FC46 /* SDTideEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC91540717EE4E7400A6FC46 /* SDTideEventCell.m */; };
+		DC9D39A218256BE200BC86AD /* InteractiveChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9D39A118256BE200BC86AD /* InteractiveChartView.m */; };
+		DC9D39A61828B66900BC86AD /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9D39A51828B66900BC86AD /* Constants.m */; };
 		DC9D77C7135A6C7000981199 /* LocationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9D77C6135A6C7000981199 /* LocationView.xib */; };
 		DCA3BEE8133E4DB500EA966A /* SDTideFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BEE6133E4DB500EA966A /* SDTideFactory.mm */; };
 		DCA3BEF8133E4F1F00EA966A /* TideStationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BEF7133E4F1F00EA966A /* TideStationAnnotation.m */; };
@@ -103,11 +103,12 @@
 		DCA3BF80133E503900EA966A /* StateListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCA3BF79133E503900EA966A /* StateListView.xib */; };
 		DCA3BF81133E503900EA966A /* PickerTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCA3BF7A133E503900EA966A /* PickerTableCell.xib */; };
 		DCA3BF82133E503900EA966A /* StationListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCA3BF7B133E503900EA966A /* StationListView.xib */; };
-		DCA3BF83133E503900EA966A /* TideStationTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCA3BF7C133E503900EA966A /* TideStationTableCellView.xib */; };
 		DCA3BF86133E9D6600EA966A /* SDTideEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BF85133E9D6600EA966A /* SDTideEvent.m */; };
 		DCA3BF89133E9DB200EA966A /* SDTideInterval.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BF88133E9DB200EA966A /* SDTideInterval.m */; };
 		DCA3BF90133E9DE800EA966A /* bit_pack.c in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BF8B133E9DE800EA966A /* bit_pack.c */; };
 		DCA3BF91133E9DE800EA966A /* tide_db.c in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BF8F133E9DE800EA966A /* tide_db.c */; };
+		DCA7707F182EFB1E00439850 /* FavoritesHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCA7707E182EFB1E00439850 /* FavoritesHeaderView.xib */; };
+		DCA7708418305F0A00439850 /* FavoritesFooterVIew.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCA7708318305F0A00439850 /* FavoritesFooterVIew.xib */; };
 		DCA9379B0EE1B3910050113B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA9379A0EE1B3910050113B /* CoreGraphics.framework */; };
 		DCCA6F4A1065440F00322BC6 /* CurrentTideView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCA6F491065440F00322BC6 /* CurrentTideView.m */; };
 		DCCA701D10672D9E00322BC6 /* TideRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCA701C10672D9E00322BC6 /* TideRowView.m */; };
@@ -131,8 +132,8 @@
 		DC016066133EB6990065CBAA /* SDTide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDTide.h; path = objctidelib/SDTide.h; sourceTree = "<group>"; };
 		DC016067133EB6990065CBAA /* SDTide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDTide.m; path = objctidelib/SDTide.m; sourceTree = "<group>"; };
 		DC016069133EB8950065CBAA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		DC06A25917DBC6870095E217 /* FavoritesControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoritesControllerViewController.h; path = Controllers/FavoritesControllerViewController.h; sourceTree = "<group>"; };
-		DC06A25A17DBC6870095E217 /* FavoritesControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoritesControllerViewController.m; path = Controllers/FavoritesControllerViewController.m; sourceTree = "<group>"; };
+		DC06A25917DBC6870095E217 /* FavoritesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoritesListViewController.h; path = Controllers/FavoritesListViewController.h; sourceTree = "<group>"; };
+		DC06A25A17DBC6870095E217 /* FavoritesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoritesListViewController.m; path = Controllers/FavoritesListViewController.m; sourceTree = "<group>"; };
 		DC06A26317DC44F60095E217 /* shralptide.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = shralptide.xcdatamodel; sourceTree = "<group>"; };
 		DC06A26417DC44F60095E217 /* shralptide2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = shralptide2.xcdatamodel; sourceTree = "<group>"; };
 		DC06A29C17DD83640095E217 /* datastore.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = datastore.sqlite; sourceTree = "<group>"; };
@@ -149,6 +150,7 @@
 		DC06A2AD17DD87150095E217 /* SDTideStation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTideStation.h; sourceTree = "<group>"; };
 		DC06A2AE17DD87150095E217 /* SDTideStation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTideStation.m; sourceTree = "<group>"; };
 		DC0C0DD5105C1D8F0080297E /* ChartScrollView.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; name = ChartScrollView.m; path = Classes/Views/ChartScrollView.m; sourceTree = "<group>"; };
+		DC12E841184BCA3D00B7AD86 /* SDTideCalculationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTideCalculationDelegate.h; sourceTree = "<group>"; };
 		DC25A1FA0EEA575D0038078B /* ChartViewDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChartViewDatasource.h; path = Classes/Controllers/ChartViewDatasource.h; sourceTree = "<group>"; };
 		DC29826F102A784B009259BA /* ChartScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChartScrollView.h; path = Classes/Views/ChartScrollView.h; sourceTree = "<group>"; };
 		DC2F28490E5A758800577E55 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Classes/Controllers/MainViewController.m; sourceTree = "<group>"; };
@@ -163,10 +165,6 @@
 		DC39945317E63B8200BC61D8 /* SDHeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDHeaderViewController.m; path = Classes/SDHeaderViewController.m; sourceTree = "<group>"; };
 		DC39945517E63B9800BC61D8 /* SDLocationMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDLocationMainViewController.h; path = Classes/SDLocationMainViewController.h; sourceTree = "<group>"; };
 		DC39945617E63B9800BC61D8 /* SDLocationMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDLocationMainViewController.m; path = Classes/SDLocationMainViewController.m; sourceTree = "<group>"; };
-		DC39945917E63C5C00BC61D8 /* SDTideEventsLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTideEventsLayout.h; sourceTree = "<group>"; };
-		DC39945A17E63C5C00BC61D8 /* SDTideEventsLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTideEventsLayout.m; sourceTree = "<group>"; };
-		DC39945B17E63C5C00BC61D8 /* SDHeaderViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDHeaderViewLayout.h; sourceTree = "<group>"; };
-		DC39945C17E63C5C00BC61D8 /* SDHeaderViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDHeaderViewLayout.m; sourceTree = "<group>"; };
 		DC39945F17E6C7E900BC61D8 /* SDHeaderViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDHeaderViewCell.h; sourceTree = "<group>"; };
 		DC39946017E6C7E900BC61D8 /* SDHeaderViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDHeaderViewCell.m; sourceTree = "<group>"; };
 		DC493E5C0F206C8B0087B341 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
@@ -194,19 +192,23 @@
 		DC6526431350C2DA00B67AE7 /* PickerTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PickerTableCell.m; path = Classes/Views/PickerTableCell.m; sourceTree = "<group>"; };
 		DC65264A1350C2F600B67AE7 /* SelectStationNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectStationNavigationController.h; path = Classes/Controllers/SelectStationNavigationController.h; sourceTree = "<group>"; };
 		DC65264B1350C2F600B67AE7 /* SelectStationNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectStationNavigationController.m; path = Classes/Controllers/SelectStationNavigationController.m; sourceTree = "<group>"; };
-		DC65264C1350C2F600B67AE7 /* TideStationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TideStationTableViewCell.h; path = Classes/Views/TideStationTableViewCell.h; sourceTree = "<group>"; };
-		DC65264D1350C2F600B67AE7 /* TideStationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TideStationTableViewCell.m; path = Classes/Views/TideStationTableViewCell.m; sourceTree = "<group>"; };
+		DC65264C1350C2F600B67AE7 /* TideStationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TideStationTableViewCell.h; path = Views/TideStationTableViewCell.h; sourceTree = "<group>"; };
+		DC65264D1350C2F600B67AE7 /* TideStationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TideStationTableViewCell.m; path = Views/TideStationTableViewCell.m; sourceTree = "<group>"; };
 		DC6526681350DD4600B67AE7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DC65266A1350DDBD00B67AE7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		DC70BD0417F8B5ED00D5FF3A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		DC8EAAC61812EA7C00C4BCFF /* FlatChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlatChartView.h; sourceTree = "<group>"; };
-		DC8EAAC71812EA7C00C4BCFF /* FlatChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlatChartView.m; sourceTree = "<group>"; };
+		DC8EAAC61812EA7C00C4BCFF /* LabelledChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelledChartView.h; sourceTree = "<group>"; };
+		DC8EAAC71812EA7C00C4BCFF /* LabelledChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelledChartView.m; sourceTree = "<group>"; };
 		DC9065F117F13AD8000F23D8 /* SDEventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDEventsViewController.h; sourceTree = "<group>"; };
 		DC9065F217F13AD8000F23D8 /* SDEventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDEventsViewController.m; sourceTree = "<group>"; };
 		DC91540317EE350300A6FC46 /* SDBottomViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBottomViewCell.h; sourceTree = "<group>"; };
 		DC91540417EE350300A6FC46 /* SDBottomViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBottomViewCell.m; sourceTree = "<group>"; };
 		DC91540617EE4E7400A6FC46 /* SDTideEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTideEventCell.h; sourceTree = "<group>"; };
 		DC91540717EE4E7400A6FC46 /* SDTideEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTideEventCell.m; sourceTree = "<group>"; };
+		DC9D39A018256BE200BC86AD /* InteractiveChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractiveChartView.h; sourceTree = "<group>"; };
+		DC9D39A118256BE200BC86AD /* InteractiveChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractiveChartView.m; sourceTree = "<group>"; };
+		DC9D39A41828B66900BC86AD /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		DC9D39A51828B66900BC86AD /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		DC9D77C6135A6C7000981199 /* LocationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocationView.xib; path = Resources/LocationView.xib; sourceTree = "<group>"; };
 		DCA3BEE6133E4DB500EA966A /* SDTideFactory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SDTideFactory.mm; path = objctidelib/SDTideFactory.mm; sourceTree = "<group>"; };
 		DCA3BEE7133E4DB500EA966A /* SDTideFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDTideFactory.h; path = objctidelib/SDTideFactory.h; sourceTree = "<group>"; };
@@ -298,7 +300,6 @@
 		DCA3BF79133E503900EA966A /* StateListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StateListView.xib; path = Resources/StateListView.xib; sourceTree = "<group>"; };
 		DCA3BF7A133E503900EA966A /* PickerTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PickerTableCell.xib; path = Resources/PickerTableCell.xib; sourceTree = "<group>"; };
 		DCA3BF7B133E503900EA966A /* StationListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StationListView.xib; path = Resources/StationListView.xib; sourceTree = "<group>"; };
-		DCA3BF7C133E503900EA966A /* TideStationTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TideStationTableCellView.xib; path = Resources/TideStationTableCellView.xib; sourceTree = "<group>"; };
 		DCA3BF84133E9D6600EA966A /* SDTideEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDTideEvent.h; path = objctidelib/SDTideEvent.h; sourceTree = "<group>"; };
 		DCA3BF85133E9D6600EA966A /* SDTideEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDTideEvent.m; path = objctidelib/SDTideEvent.m; sourceTree = "<group>"; };
 		DCA3BF87133E9DB200EA966A /* SDTideInterval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDTideInterval.h; path = objctidelib/SDTideInterval.h; sourceTree = "<group>"; };
@@ -308,6 +309,8 @@
 		DCA3BF8D133E9DE800EA966A /* tide_db_default.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tide_db_default.h; sourceTree = "<group>"; };
 		DCA3BF8E133E9DE800EA966A /* tide_db_header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tide_db_header.h; sourceTree = "<group>"; };
 		DCA3BF8F133E9DE800EA966A /* tide_db.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tide_db.c; sourceTree = "<group>"; };
+		DCA7707E182EFB1E00439850 /* FavoritesHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesHeaderView.xib; sourceTree = "<group>"; };
+		DCA7708318305F0A00439850 /* FavoritesFooterVIew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesFooterVIew.xib; sourceTree = "<group>"; };
 		DCA9379A0EE1B3910050113B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DCCA6F481065440F00322BC6 /* CurrentTideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CurrentTideView.h; path = Classes/Views/CurrentTideView.h; sourceTree = "<group>"; };
 		DCCA6F491065440F00322BC6 /* CurrentTideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CurrentTideView.m; path = Classes/Views/CurrentTideView.m; sourceTree = "<group>"; };
@@ -341,10 +344,12 @@
 		080E96DDFE201D6D7F000001 /* Application Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DC65264C1350C2F600B67AE7 /* TideStationTableViewCell.h */,
+				DC65264D1350C2F600B67AE7 /* TideStationTableViewCell.m */,
 				1D3623240D0F684500981E51 /* ShralpTideAppDelegate.h */,
 				1D3623250D0F684500981E51 /* ShralpTideAppDelegate.m */,
-				DC06A25917DBC6870095E217 /* FavoritesControllerViewController.h */,
-				DC06A25A17DBC6870095E217 /* FavoritesControllerViewController.m */,
+				DC06A25917DBC6870095E217 /* FavoritesListViewController.h */,
+				DC06A25A17DBC6870095E217 /* FavoritesListViewController.m */,
 			);
 			name = "Application Controllers";
 			path = Classes;
@@ -375,8 +380,6 @@
 				DC6526431350C2DA00B67AE7 /* PickerTableCell.m */,
 				DC65264A1350C2F600B67AE7 /* SelectStationNavigationController.h */,
 				DC65264B1350C2F600B67AE7 /* SelectStationNavigationController.m */,
-				DC65264C1350C2F600B67AE7 /* TideStationTableViewCell.h */,
-				DC65264D1350C2F600B67AE7 /* TideStationTableViewCell.m */,
 			);
 			name = "Flipside View";
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 				DC91540717EE4E7400A6FC46 /* SDTideEventCell.m */,
 				DC9065F117F13AD8000F23D8 /* SDEventsViewController.h */,
 				DC9065F217F13AD8000F23D8 /* SDEventsViewController.m */,
+				DC12E841184BCA3D00B7AD86 /* SDTideCalculationDelegate.h */,
 			);
 			name = "Main View";
 			sourceTree = "<group>";
@@ -411,7 +415,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				DC39945817E63C3900BC61D8 /* CollectionView Layouts */,
 				DC65261E134797E100B67AE7 /* Categories */,
 				DCA3BF8A133E9DCF00EA966A /* libtcd */,
 				DCA3BEF9133E4F7200EA966A /* XTide2 */,
@@ -436,6 +439,8 @@
 			children = (
 				32CA4F630368D1EE00C91783 /* ShralpTide2_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				DC9D39A41828B66900BC86AD /* Constants.h */,
+				DC9D39A51828B66900BC86AD /* Constants.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -453,7 +458,6 @@
 				DCA3BF79133E503900EA966A /* StateListView.xib */,
 				DCA3BF7A133E503900EA966A /* PickerTableCell.xib */,
 				DCA3BF7B133E503900EA966A /* StationListView.xib */,
-				DCA3BF7C133E503900EA966A /* TideStationTableCellView.xib */,
 				DC06A26217DC44F60095E217 /* shralptide.xcdatamodeld */,
 				280E754B0DD40C5E005A515E /* MainView.xib */,
 				DCFD521C16055C60006E17D2 /* MainViewTall.xib */,
@@ -462,6 +466,8 @@
 				8D1107310486CEB800E47090 /* Info.plist */,
 				DC59FDF2140752A7008FD0D2 /* Settings.bundle */,
 				DC4FBBE7178BCF3200C0CFEE /* MainStoryboard.storyboard */,
+				DCA7707E182EFB1E00439850 /* FavoritesHeaderView.xib */,
+				DCA7708318305F0A00439850 /* FavoritesFooterVIew.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -494,21 +500,12 @@
 				DCE897DA0EEE3CAE00BF2357 /* CursorView.m */,
 				DC29826F102A784B009259BA /* ChartScrollView.h */,
 				DC0C0DD5105C1D8F0080297E /* ChartScrollView.m */,
-				DC8EAAC61812EA7C00C4BCFF /* FlatChartView.h */,
-				DC8EAAC71812EA7C00C4BCFF /* FlatChartView.m */,
+				DC8EAAC61812EA7C00C4BCFF /* LabelledChartView.h */,
+				DC8EAAC71812EA7C00C4BCFF /* LabelledChartView.m */,
+				DC9D39A018256BE200BC86AD /* InteractiveChartView.h */,
+				DC9D39A118256BE200BC86AD /* InteractiveChartView.m */,
 			);
 			name = ChartView;
-			sourceTree = "<group>";
-		};
-		DC39945817E63C3900BC61D8 /* CollectionView Layouts */ = {
-			isa = PBXGroup;
-			children = (
-				DC39945917E63C5C00BC61D8 /* SDTideEventsLayout.h */,
-				DC39945A17E63C5C00BC61D8 /* SDTideEventsLayout.m */,
-				DC39945B17E63C5C00BC61D8 /* SDHeaderViewLayout.h */,
-				DC39945C17E63C5C00BC61D8 /* SDHeaderViewLayout.m */,
-			);
-			name = "CollectionView Layouts";
 			sourceTree = "<group>";
 		};
 		DC65261E134797E100B67AE7 /* Categories */ = {
@@ -720,6 +717,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				280E754E0DD40C5E005A515E /* MainView.xib in Resources */,
+				DCA7708418305F0A00439850 /* FavoritesFooterVIew.xib in Resources */,
 				280E754F0DD40C5E005A515E /* MainWindow.xib in Resources */,
 				DC32FFAB0E88B08A00AB78F2 /* ChartView.xib in Resources */,
 				DC493E5D0F206C8B0087B341 /* COPYING in Resources */,
@@ -731,9 +729,9 @@
 				DCA3BF80133E503900EA966A /* StateListView.xib in Resources */,
 				DCA3BF81133E503900EA966A /* PickerTableCell.xib in Resources */,
 				DCA3BF82133E503900EA966A /* StationListView.xib in Resources */,
-				DCA3BF83133E503900EA966A /* TideStationTableCellView.xib in Resources */,
 				DC06A29D17DD83640095E217 /* datastore.sqlite in Resources */,
 				DC4FBBE8178BCF3200C0CFEE /* MainStoryboard.storyboard in Resources */,
+				DCA7707F182EFB1E00439850 /* FavoritesHeaderView.xib in Resources */,
 				DC70BD0517F8B5ED00D5FF3A /* Images.xcassets in Resources */,
 				DC9D77C7135A6C7000981199 /* LocationView.xib in Resources */,
 				DC59FDF3140752A7008FD0D2 /* Settings.bundle in Resources */,
@@ -755,7 +753,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"$CONFIGURATION\" = \"Release\" ] ; then \necho \"Updating $CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist with version and build number for 'Release' build\"\n\nBUILDVERSION=\"`/usr/libexec/PlistBuddy -c \\\"Print :CFBundleVersion\\\" \\\"$CODESIGNING_FOLDER_PATH/Info.plist\\\"`\"\nMKTVERSION=\"`/usr/libexec/PlistBuddy -c \\\"Print :CFBundleShortVersionString\\\" \\\"$CODESIGNING_FOLDER_PATH/Info.plist\\\"`\"\nSETTINGSBUNDLEPATH=\"$CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist\"\n\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:Title 'Version $MKTVERSION ($BUILDVERSION)'\" \"$SETTINGSBUNDLEPATH\"\nfi";
+			shellScript = "BUILDVERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nMKTVERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$INFOPLIST_FILE\")\nBUILDVERSION=$((0x$BUILDVERSION))\nBUILDVERSION=$(($BUILDVERSION + 1))\nBUILDVERSION=$(printf \"%04X\" $BUILDVERSION)\nif [ \"$CONFIGURATION\" = \"Debug\" ] ; then\n    MKTVERSION=\"${MKTVERSION}-SNAPSHOT\"\n    echo \"Updating $CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist with version and build number for 'Debug' build.\"\nelse\n    echo \"Updating $CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist with version and build number for 'Release' build\"\nfi\necho \"$MKTVERSION ($BUILDVERSION)\"\n\nSETTINGSBUNDLEPATH=\"$CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist\"\n\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:Title 'Version $MKTVERSION ($BUILDVERSION)'\" \"$SETTINGSBUNDLEPATH\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $BUILDVERSION\" \"$INFOPLIST_FILE\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -775,8 +773,7 @@
 				DC0C0DD6105C1D8F0080297E /* ChartScrollView.m in Sources */,
 				DC06A2AF17DD87150095E217 /* SDTideStation.m in Sources */,
 				DCCA6F4A1065440F00322BC6 /* CurrentTideView.m in Sources */,
-				DC39945D17E63C5C00BC61D8 /* SDTideEventsLayout.m in Sources */,
-				DC06A25B17DBC6870095E217 /* FavoritesControllerViewController.m in Sources */,
+				DC06A25B17DBC6870095E217 /* FavoritesListViewController.m in Sources */,
 				DCCA701D10672D9E00322BC6 /* TideRowView.m in Sources */,
 				DCA3BEE8133E4DB500EA966A /* SDTideFactory.mm in Sources */,
 				DCA3BEF8133E4F1F00EA966A /* TideStationAnnotation.m in Sources */,
@@ -790,6 +787,7 @@
 				DCA3BF4D133E4F8F00EA966A /* Constituent.cc in Sources */,
 				DCA3BF4E133E4F8F00EA966A /* ConstituentSet.cc in Sources */,
 				DCA3BF4F133E4F8F00EA966A /* Coordinates.cc in Sources */,
+				DC9D39A61828B66900BC86AD /* Constants.m in Sources */,
 				DCA3BF50133E4F8F00EA966A /* CurrentBearing.cc in Sources */,
 				DCA3BF51133E4F8F00EA966A /* Date.cc in Sources */,
 				DCA3BF52133E4F8F00EA966A /* Dstr.cc in Sources */,
@@ -810,7 +808,7 @@
 				DCA3BF5E133E4F8F00EA966A /* Speed.cc in Sources */,
 				DCA3BF5F133E4F8F00EA966A /* Station.cc in Sources */,
 				DCA3BF60133E4F8F00EA966A /* StationIndex.cc in Sources */,
-				DC8EAAC81812EA7C00C4BCFF /* FlatChartView.m in Sources */,
+				DC8EAAC81812EA7C00C4BCFF /* LabelledChartView.m in Sources */,
 				DCA3BF61133E4F8F00EA966A /* StationRef.cc in Sources */,
 				DCA3BF62133E4F8F00EA966A /* SubordinateStation.cc in Sources */,
 				DCA3BF63133E4F8F00EA966A /* tide.cc in Sources */,
@@ -826,6 +824,7 @@
 				DCA3BF69133E4F8F00EA966A /* ZoneIndex.cc in Sources */,
 				DCA3BF6B133E4F8F00EA966A /* xml_y.cc in Sources */,
 				DCA3BF6C133E4F8F00EA966A /* xml_l.cc in Sources */,
+				DC9D39A218256BE200BC86AD /* InteractiveChartView.m in Sources */,
 				DCA3BF86133E9D6600EA966A /* SDTideEvent.m in Sources */,
 				DCA3BF89133E9DB200EA966A /* SDTideInterval.m in Sources */,
 				DCA3BF90133E9DE800EA966A /* bit_pack.c in Sources */,
@@ -837,7 +836,6 @@
 				DC6526441350C2DA00B67AE7 /* StationMapController.m in Sources */,
 				DC4FBBEB178C62EC00C0CFEE /* LandscapeViewController.m in Sources */,
 				DC6526451350C2DA00B67AE7 /* StationDetailViewController.m in Sources */,
-				DC39945E17E63C5C00BC61D8 /* SDHeaderViewLayout.m in Sources */,
 				DC6526461350C2DA00B67AE7 /* CountryListController.m in Sources */,
 				DC6526471350C2DA00B67AE7 /* StateListController.m in Sources */,
 				DC3630B7179B27870027EB21 /* PortraitViewController.m in Sources */,

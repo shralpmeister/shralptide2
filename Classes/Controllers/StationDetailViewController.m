@@ -15,7 +15,7 @@
 
 -(IBAction)addTideStation
 {
-	NSLog(@"AddTideStation called");
+	NSLog(@"StationDetailViewController addTideStation called");
     [self.modalViewDelegate stationDetailViewController:self addTideStation: self.tideStationData.title];
 }
 

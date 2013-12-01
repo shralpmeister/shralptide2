@@ -32,14 +32,10 @@
 
 @interface ChartView : UIView
 
-- (int)currentTimeInMinutes;
-- (int)currentTimeOnChart;
-- (void)animateCursorViewToCurrentTime;
-- (void)animateFirstTouchAtPoint:(CGPoint)touchPoint;
+- (NSDate*)midnight;
 
 @property (nonatomic, unsafe_unretained) id<ChartViewDatasource> datasource;
 @property (nonatomic, strong) IBOutlet UIView *cursorView;
-@property (nonatomic, strong) IBOutlet UIView *headerView;
 @property (nonatomic, strong) IBOutlet UILabel *dateLabel;
 @property (nonatomic, strong) IBOutlet UILabel *valueLabel;
 @property (nonatomic, strong) UIImage *sunriseIcon;
@@ -49,4 +45,8 @@
 @property (nonatomic, assign) int height;
 @property (nonatomic, assign) int hoursToPlot;
 @property (readonly) float xratio;
+@property (readonly) float yratio;
+@property (readonly) float yoffset;
+@property (nonatomic, strong) SDTide *tide;
+
 @end

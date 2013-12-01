@@ -8,11 +8,8 @@
 
 #import "SDLocationMainViewController.h"
 #import "ShralpTideAppDelegate.h"
-#import "SDBottomViewCell.h"
 
 @interface SDLocationMainViewController ()
-
-@property (nonatomic,strong) SDTide *tide;
 
 @end
 
@@ -37,36 +34,57 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    NSLog(@"Portrait View loaded... yay. Layout = %@",self.collectionViewLayout);
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshDisplayedTides) name:kSDAppDelegateRecalculatedTidesNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    NSLog(@"View will appear... yay!");
+    [self refreshDisplayedTides];
+    int pageOffset = appDelegate.page * self.view.frame.size.width;
+    _bottomViewCell.scrollView.contentOffset = CGPointMake(pageOffset, 0);
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)refreshDisplayedTides
+{
+    NSLog(@"SDLocationManViewController refresh displayed tides called.");
+    [self.collectionView reloadData];
+}
+
+/**
+ * Yikes! This accessor iterates each day's tides and combines them into a single tide object. Could be
+ * expensive if it's called often.
+ */
+- (SDTide*)tide
+{
+    return [SDTide tideByCombiningTides:_bottomViewCell.tidesForDays];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section;
 {
-    return 1;
+    return appDelegate.tides[section] ? 1 : 0;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return [appDelegate.tidesByLocation count];
+    NSLog(@"SDLocationMainViewController displaying %d locations", [appDelegate.tides count]);
+    return [appDelegate.tides count];
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath;
 {
     static NSString* bottomCellId = @"bottomCell";
-    SDBottomViewCell* bottomViewCell = (SDBottomViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:bottomCellId forIndexPath:indexPath];
-    NSArray *tideLocations = appDelegate.tidesByLocation.allValues;
-    bottomViewCell.tide = tideLocations[indexPath.section];
-    self.tide = bottomViewCell.tide;
-    [bottomViewCell createPages];
-    return bottomViewCell;
+    _bottomViewCell = (SDBottomViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:bottomCellId forIndexPath:indexPath];
+    SDTide *tide = appDelegate.tides[indexPath.section];
+    [_bottomViewCell createPages:tide];
+    appDelegate.location = tide.stationName;
+    return _bottomViewCell;
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,10 +98,11 @@
 {
     float newOffset = scrollView.contentOffset.x;
     float pushOffset = newOffset * 1.5;
+    int page = self.collectionView.contentOffset.x / self.view.frame.size.width;
     if (scrollView.isDecelerating) {
         // we know we're past halfway... take whatever action might be good here.
+        appDelegate.locationPage = page;
     }
-
     self.headerViewController.collectionView.contentOffset = CGPointMake(pushOffset, 0);
 }
 

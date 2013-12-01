@@ -12,31 +12,30 @@
 
 @implementation StationListController
 
-@synthesize stations;
-
 -(void)loadView {
     [super loadView];
     self.navigationItem.title = NSLocalizedString(@"Tide Stations", nil);
     self.navigationItem.prompt = NSLocalizedString(@"Select a Tide Station",nil);
+    self.navigationController.navigationBarHidden = NO;
     
     self.navigationItem.rightBarButtonItem = ((SelectStationNavigationController*)self.navigationController).doneButton;
 }
 
 -(void)setStations:(NSArray*)newStations
 {
-    if (newStations == self.stations) {
+    if (newStations == _stations) {
         return;
     } else if (newStations == nil) {
-        stations = nil;
+        _stations = nil;
         return;
     }
     
-    stations = newStations;
+    _stations = newStations;
 
     self.sections = [[NSMutableDictionary alloc] init];
     NSMutableSet *sectionKeySet = [[NSMutableSet alloc] init];
     
-    if ([self.stations count] > 20) {
+    if ([_stations count] > 20) {
         for (SDTideStation *station in self.stations) {
             
             NSString *groupKey = [station.name substringToIndex:1];

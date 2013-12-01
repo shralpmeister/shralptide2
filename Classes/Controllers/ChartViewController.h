@@ -29,7 +29,6 @@
 
 -(SDTide *)tideDataToChart;
 
--(void)showCurrentTime;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil tide:(SDTide *)aTide;
 
 @property (nonatomic,strong) SDTide *sdTide;

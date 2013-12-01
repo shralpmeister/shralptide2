@@ -26,11 +26,11 @@
 #import "SDFavoriteLocation.h"
 #import "SDTideFactory.h"
 
+/* Preference Keys */
 NSString *kUnitsKey = @"units_preference";
 NSString *kDaysKey = @"days_preference";
 NSString *kCurrentsKey = @"currents_preference";
 NSString *kBackgroundKey = @"background_preference";
-
 
 @interface ShralpTideAppDelegate ()
 - (void)setupByPreferences;
@@ -42,7 +42,8 @@ NSString *kBackgroundKey = @"background_preference";
 @property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, strong) SDApplicationState *persistentState;
 
-@property (nonatomic, strong) NSMutableDictionary *tidesByLoc;
+@property (nonatomic, strong) NSMutableArray *mutableTides;
+@property (nonatomic, strong) NSDate *startDate;
 
 @property (nonatomic, strong) NSString *cachedLocationFilePath;
 
@@ -88,23 +89,48 @@ NSString *kBackgroundKey = @"background_preference";
         // set a reference to the one we already have
         self.persistentState = results[0];
     }
-    
-    _tidesByLoc = [NSMutableDictionary new];
-    for (SDFavoriteLocation* location in self.persistentState.favoriteLocations) {
-        SDTide *todaysTide = [SDTideFactory todaysTidesForStationName:location.locationName];
-        _tidesByLoc[location.locationName] = todaysTide;
-    }
+    [self calculateTides];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // when the app comes out of suspended state, we need to refresh the tide (it could have been minutes, hours, days in suspended mode).
     // Now in iOS 7 we can make periodic calls to refresh... may not be great for battery though... or for phone performance
     //	[self.rootViewController refreshViews];
+    
+    // TODO: Okay, this is important. I was attaching the SDTide models to each view, then refreshing them when
+    // the data got to be more than 24 hrs old. I think I want to hold the model objects in the app delegate instead.... maybe.
+    //- (void)refreshViews {
+    //	NSLog(@"Refresh views called at %@", [NSDate date]);
+    //
+    //	MainViewController *pageOneController = self.viewControllers[0];
+    //
+    //	if ([[NSDate date] timeIntervalSinceDate: [[pageOneController sdTide] startTime]] > 86400) {
+    //		[self viewDidAppear:YES];
+    //	} else {
+    //		[pageOneController updatePresentTideInfo];
+    //	}
+    //}
+    if ([[NSDate date] timeIntervalSinceDate: _startDate] > 86400) {
+        [self calculateTides];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSDApplicationActivatedNotification object:self];
 }
 
--(NSDictionary*)tidesByLocation
+- (void)calculateTides
 {
-    return [NSDictionary dictionaryWithDictionary:_tidesByLoc];
+    _startDate = [NSDate date];
+    _mutableTides = [NSMutableArray new];
+    for (SDFavoriteLocation* location in self.persistentState.favoriteLocations) {
+        SDTide *todaysTide = [SDTideFactory todaysTidesForStationName:location.locationName];
+        [_mutableTides addObject:todaysTide];
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSDAppDelegateRecalculatedTidesNotification object:self];
+}
+
+- (NSArray*)tides
+{
+    return [NSArray arrayWithArray:_mutableTides];
 }
 
 #pragma mark -
@@ -114,6 +140,7 @@ NSString *kBackgroundKey = @"background_preference";
 {
     NSLog(@"Reading preferences and recreating views and tide calculations");
     [self setupByPreferences];
+    [self calculateTides];
 //    [self.rootViewController createMainViews];
 //    [self.rootViewController doBackgroundTideCalculation];
 }
@@ -234,7 +261,6 @@ NSString *kBackgroundKey = @"background_preference";
         return persistentStoreCoordinator;
     }
     
-    
     NSFileManager *fm = [NSFileManager defaultManager];
     
     NSString *cachesDir = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
@@ -287,7 +313,7 @@ NSString *kBackgroundKey = @"background_preference";
             appState.selectedLocationIndex = @0;
             SDFavoriteLocation *location = [NSEntityDescription insertNewObjectForEntityForName:@"SDFavoriteLocation" inManagedObjectContext:context];
             location.locationName = defaultLocation;
-            [appState setValue:[NSOrderedSet orderedSetWithObject:location] forKey:@"favoriteLocations"];
+            appState.favoriteLocations = [NSOrderedSet orderedSetWithObject:location];
             
             if (![context save:&error]) {
                 NSLog(@"Unable to save change to default location. %@", error);
@@ -298,6 +324,98 @@ NSString *kBackgroundKey = @"background_preference";
     } else {
         NSLog(@"Unable to execute fetch for default location due to error: %@", error);
         return;
+    }
+}
+
+- (void)addFavoriteLocation:(NSString*)locationName
+{
+    NSManagedObjectContext *context = self.managedObjectContext;
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"SDApplicationState" inManagedObjectContext:context];
+    NSFetchRequest *fr = [[NSFetchRequest alloc] init];
+    fr.entity = entityDesc;
+    
+    NSError *error;
+    NSArray *fetchResults = [context executeFetchRequest:fr error:&error];
+    if (fetchResults && [fetchResults count] == 1) {
+        SDApplicationState *appState = [fetchResults objectAtIndex:0];
+        NSPredicate *namePredicate = [NSPredicate predicateWithFormat:@"locationName = %@",locationName];
+        NSOrderedSet *results = [appState.favoriteLocations filteredOrderedSetUsingPredicate:namePredicate];
+        if ([results count] == 0) {
+            SDFavoriteLocation *location = [NSEntityDescription insertNewObjectForEntityForName:@"SDFavoriteLocation" inManagedObjectContext:context];
+            location.locationName = locationName;
+            NSMutableOrderedSet *locations = [[NSMutableOrderedSet alloc] initWithOrderedSet:appState.favoriteLocations];
+            [locations addObject:location];
+            appState.favoriteLocations = locations;
+        } else {
+            NSLog(@"Location already present. Skipping.");
+            return;
+        }
+        if (![context save:&error]) {
+            NSLog(@"Unable to save new favorite location. %@", error);
+            return;
+        }
+        [self calculateTides];
+    } else {
+        NSLog(@"Unable to retrieve applications state. Fetch result = %@",fetchResults);
+    }
+}
+
+- (void)setSelectedLocation:(NSString*)locationName
+{
+    NSManagedObjectContext *context = self.managedObjectContext;
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"SDApplicationState" inManagedObjectContext:context];
+    NSFetchRequest *fr = [[NSFetchRequest alloc] init];
+    fr.entity = entityDesc;
+    
+    NSError *error;
+    NSArray *fetchResults = [context executeFetchRequest:fr error:&error];
+    if (fetchResults && [fetchResults count] == 1) {
+        SDApplicationState *appState = [fetchResults objectAtIndex:0];
+        NSPredicate *namePredicate = [NSPredicate predicateWithFormat:@"locationName = %@", locationName];
+        NSOrderedSet* locationsWithName = [appState.favoriteLocations filteredOrderedSetUsingPredicate:namePredicate];
+        if ([locationsWithName count] == 1) {
+            SDFavoriteLocation *location = locationsWithName[0];
+            appState.selectedLocationIndex = @([appState.favoriteLocations indexOfObject:location]);
+            if (![context save:&error]) {
+                NSLog(@"Unable to save change to selected location. %@",error);
+                return;
+            }
+        }
+    } else {
+        NSLog(@"Unable to retrieve applications state. Fetch result = %@",fetchResults);
+    }
+}
+
+- (void)removeFavoriteLocation:(NSString *)locationName
+{
+    NSManagedObjectContext *context = self.managedObjectContext;
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"SDApplicationState" inManagedObjectContext:context];
+    NSFetchRequest *fr = [[NSFetchRequest alloc] init];
+    fr.entity = entityDesc;
+    
+    NSError *error;
+    NSArray *fetchResults = [context executeFetchRequest:fr error:&error];
+    if (fetchResults && [fetchResults count] == 1) {
+        SDApplicationState *appState = [fetchResults objectAtIndex:0];
+        NSPredicate *namePredicate = [NSPredicate predicateWithFormat:@"locationName = %@", locationName];
+        NSOrderedSet* locationsWithName = [appState.favoriteLocations filteredOrderedSetUsingPredicate:namePredicate];
+        if ([locationsWithName count] == 1) {
+            SDFavoriteLocation *location = locationsWithName[0];
+            SDFavoriteLocation *currentSelection = [appState.favoriteLocations objectAtIndex:[appState.selectedLocationIndex intValue]];
+            if ([location isEqual:currentSelection]) {
+                appState.selectedLocationIndex = 0;
+            }
+            [context deleteObject:location];
+            appState.selectedLocationIndex = @([appState.favoriteLocations indexOfObject:currentSelection]);
+            if (![context save:&error]) {
+                NSLog(@"Unable to save change to selected location. %@",error);
+                return;
+            }
+        }
+        [self calculateTides];
+    } else {
+        NSLog(@"Unable to retrieve applications state. Fetch result = %@",fetchResults);
+        return nil;
     }
 }
 

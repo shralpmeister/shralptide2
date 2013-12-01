@@ -28,8 +28,7 @@ typedef enum {
 
 @property (nonatomic,strong) IBOutlet MKMapView *mapView;
 @property (assign,readwrite) SDStationType stationType;
-@property (nonatomic,strong) UINavigationController *navController;
-@property (unsafe_unretained) id modalViewDelegate;
+@property (weak) id modalViewDelegate;
 @property (nonatomic,strong) UISegmentedControl *tideCurrentSelector;
 
 @end

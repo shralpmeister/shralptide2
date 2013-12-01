@@ -44,11 +44,6 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
--(void)showCurrentTime {
-	NSLog(@"ChartView showCurrentTime called.");
-	[(ChartView*)self.view animateCursorViewToCurrentTime];
-}
-
 #pragma mark ChartViewDatasource
 -(SDTide *)tideDataToChart {
 	return self.sdTide;

@@ -52,6 +52,7 @@ typedef enum {
 - (SDTideStateRiseFall)tideDirection;
 - (int)currentTimeInMinutes;
 - (NSArray*)intervalsFromDate:(NSDate*)fromDate forHours:(int)hours;
++ (SDTide*)tideByCombiningTides:(NSArray*)tides;
 
 @property (nonatomic,strong) NSDate *startTime;
 @property (nonatomic,strong) NSDate *stopTime;

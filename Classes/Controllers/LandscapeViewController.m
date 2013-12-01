@@ -19,8 +19,8 @@
 
 @property (nonatomic,assign) BOOL pageControlUsed;
 @property (nonatomic,strong) SDTide *tide;
-@property (nonatomic,strong) NSDate *startDate;
 @property (nonatomic,strong) NSDateFormatter *dateFormatter;
+@property (nonatomic,strong) NSDateFormatter *timeFormatter;
 
 @end
 
@@ -48,6 +48,9 @@
 {
     self.dateFormatter = [[NSDateFormatter alloc] init];
     self.dateFormatter.dateStyle = NSDateFormatterFullStyle;
+    
+    self.timeFormatter = [[NSDateFormatter alloc] init];
+    self.timeFormatter.timeStyle = NSDateFormatterShortStyle;
 }
 
 /**
@@ -75,9 +78,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    _startDate = [[NSDate date] startOfDay];
-    NSDate *then = [_startDate dateByAddingTimeInterval:appDelegate.daysPref * 24 * 60 * 60];
-    _tide = [SDTideFactory tidesForStationName:self.locationMainViewController.tide.stationName fromDate:_startDate toDate:then];
+    _tide = self.locationMainViewController.tide;
     [self createChartViews];
 }
 
@@ -99,7 +100,7 @@
             break;
         case UIDeviceOrientationPortrait:
             NSLog(@"Device rotated to Portrait");
-            [self performSegueWithIdentifier:@"portraitSegue" sender:self];
+            [self.navigationController popToRootViewControllerAnimated:YES];
             break;
         case UIDeviceOrientationPortraitUpsideDown:
             NSLog(@"Device rotated to Portrait upsidedown");
@@ -109,12 +110,13 @@
 
 - (void)createChartViews
 {
+    [self clearChartViews];
     self.locationLabel.text = [self.tide shortLocationName];
-    self.dateLabel.text = [self.dateFormatter stringFromDate:self.startDate];
+    self.dateLabel.text = [self.dateFormatter stringFromDate:[_tide.startTime dateByAddingTimeInterval:30 * 60 * 60 * appDelegate.page]];
     
     self.chartScrollView.pagingEnabled = YES;
 	// put 20 back on the height and subtract 20 from width to account for scroll bar at top of landscape
-    NSLog(@"Frame = %0.1f x %0.1f", self.view.frame.size.width, self.view.frame.size.height);
+ //   NSLog(@"Frame = %0.1f x %0.1f", self.view.frame.size.width, self.view.frame.size.height);
 	self.chartScrollView.contentSize = CGSizeMake((self.view.frame.size.width) * appDelegate.daysPref, self.view.frame.size.height);
 	self.chartScrollView.showsVerticalScrollIndicator = NO;
 	self.chartScrollView.showsVerticalScrollIndicator = NO;
@@ -127,19 +129,23 @@
     self.chartView.datasource = self;
     self.chartView.hoursToPlot = appDelegate.daysPref * 24;
     self.chartView.labelInset = 20;
+    self.chartView.delegate = self;
     [self.chartScrollView addSubview:self.chartView];
+    self.chartScrollView.contentOffset = CGPointMake(appDelegate.page * self.view.frame.size.width, 0);
 }
 
+- (void)clearChartViews
+{
+    for (UIView* view in [self.chartScrollView subviews]) {
+        [view removeFromSuperview];
+    }
+}
 
-//- (void)clearChartData
-//{
-//    for (UIView *view in self.chartScrollView.subviews) {
-//        [view removeFromSuperview];
-//    }
-//	for (unsigned i = 0; i < appDelegate.daysPref; i++) {
-//		self.chartViewControllers[i] = [NSNull null];
-//    }
-//}
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.chartView animateCursorViewToCurrentTime];
+}
 
 - (void)loadChartScrollViewWithPage:(int)page {
     //    if (page < 0) return;
@@ -179,25 +185,57 @@
     CGFloat pageWidth = sender.frame.size.width;
     int pageNumber = floor((sender.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     if (pageNumber != lastPageIndex) {
-        self.dateLabel.text = [self.dateFormatter stringFromDate:[self.startDate dateByAddingTimeInterval:24 * 60 * 60 * pageNumber]];
+        // ** IMPORTANT! I base the date string on 0600 time to avoid funny business with the time DST/ST changes. They occur at 0200.
+        self.dateLabel.text = [self.dateFormatter stringFromDate:[_tide.startTime dateByAddingTimeInterval:30 * 60 * 60 * pageNumber]];
         lastPageIndex = pageNumber;
+        appDelegate.page = pageNumber;
+    }
+    // when we scroll to a future tide, hide the current tide level.
+    if (self.page == 0) {
+        self.heightLabel.hidden = NO;
+    } else {
+        self.heightLabel.hidden = YES;
+    }
+}
+
+#pragma mark Interactive Chart View Delegate
+- (void)displayHeight:(CGFloat)height atTime:(NSDate*)time withUnitString:(NSString*)units
+{
+    self.heightLabel.hidden = NO;
+    self.heightLabel.text = [NSString stringWithFormat:@"%0.2f %@ @ %@", height, units, [self.timeFormatter stringFromDate:time]];
+}
+
+- (void)interactionsEnded
+{
+    // if we're not on today's graph, hide the current tide level.
+    if (self.page != 0) {
+        self.heightLabel.hidden = YES;
     }
 }
 
 #pragma mark Tide Chart Data source
--(SDTide *)tideDataToChart
+- (SDTide *)tideDataToChart
 {
     return _tide;
 }
 
--(NSDate*)day
+- (NSDate*)day
 {
-    return _startDate;
+    return _tide.startTime;
 }
 
--(int)page
+- (int)page
 {
-    
+    CGFloat pageWidth = self.chartScrollView.frame.size.width;
+    int page = floor((self.chartScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    return page;
+}
+
+#pragma mark Tide Calculation Delegate
+- (void)tideCalculationsCompleted:(NSArray*)tides
+{
+    self.tide = [SDTide tideByCombiningTides:tides];
+    [self createChartViews];
 }
 
 @end

@@ -28,20 +28,16 @@
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         // Initialization code
+        self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
 
-
 - (void)drawRect:(CGRect)rect {
     // Drawing code
 	CGContextRef context = UIGraphicsGetCurrentContext();
-	CGContextSetRGBStrokeColor(context, 0, 0, 0, 0);
-	CGContextSetLineWidth(context, 2.0);
-	CGContextStrokeRect(context, rect);
+    CGContextSetFillColorWithColor(context, [[UIColor redColor] CGColor]);
+	CGContextFillRect(context, CGRectMake(rect.size.width / 2 - 1, 0, 2, rect.size.height));
 }
-
-
-
 
 @end

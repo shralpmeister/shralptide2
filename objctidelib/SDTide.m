@@ -185,6 +185,59 @@
     return [self.intervals filteredArrayUsingPredicate:timeRange];
 }
 
++ (SDTide*)tideByCombiningTides:(NSArray*)tides
+{
+    if (tides == nil) {
+        NSException* myException = [NSException
+                                    exceptionWithName:@"InvalidArgumentException"
+                                    reason:@"Tides array cannot be nil."
+                                    userInfo:nil];
+        @throw myException;
+    }
+    
+    SDTide *combinedTide = [[SDTide alloc] init];
+    SDTide *firstTide = (SDTide*)[tides firstObject];
+    SDTide *lastTide = (SDTide*)[tides lastObject];
+    combinedTide.stationName = firstTide.stationName;
+    combinedTide.startTime = firstTide.startTime;
+    combinedTide.stopTime = lastTide.stopTime;
+    combinedTide.unitLong = firstTide.unitLong;
+    combinedTide.unitShort = firstTide.unitShort;
+    NSSet *allEventsSet = [NSSet set];
+    NSSet *intervalsSet = [NSSet set];
+    NSTimeInterval lastIntervalTime = 0;
+    for (SDTide* tide in tides) {
+        SDTideInterval *nextInterval = (SDTideInterval*)[tide.intervals firstObject];
+        NSTimeInterval nextIntervalTime = [nextInterval.time timeIntervalSince1970];
+        if (![tide.stationName isEqualToString:combinedTide.stationName] || (lastIntervalTime > 0 && !(nextIntervalTime - lastIntervalTime == 0))) {
+            NSException* myException = [NSException
+                                        exceptionWithName:@"InvalidArgumentException"
+                                        reason:@"Tides must be consecutive and for the same location."
+                                        userInfo:nil];
+            @throw myException;
+        }
+        allEventsSet = [allEventsSet setByAddingObjectsFromArray:tide.allEvents];
+        intervalsSet = [intervalsSet setByAddingObjectsFromArray:tide.intervals];
+        lastIntervalTime = [((SDTideInterval*)[tide.intervals lastObject]).time timeIntervalSince1970];
+    }
+    
+    NSSortDescriptor *eventTimeDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"eventTime" ascending:YES];
+    combinedTide.allEvents = [[allEventsSet allObjects] sortedArrayUsingDescriptors:@[eventTimeDescriptor]];
+    
+    NSSortDescriptor *intervalTimeDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"time" ascending:YES];
+    combinedTide.intervals = [[intervalsSet allObjects] sortedArrayUsingDescriptors:@[intervalTimeDescriptor]];
+
+    return combinedTide;
+}
+
+- (NSString*)description
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateStyle = NSDateFormatterShortStyle;
+    return [NSString stringWithFormat:@"Location: %@, startDate: %@, no.events: %d, no.intervals:%d", _stationName,
+            [formatter stringFromDate:_startTime], [self.events count], [self.intervals count]];
+}
+
 #pragma mark PrivateMethods
 
 - (int)currentTimeInMinutes
