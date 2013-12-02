@@ -74,6 +74,9 @@
         xOrigin += self.frame.size.width;
     }
     _viewControllers = [NSArray arrayWithArray:controllers];
+    
+    // Scroll to the last page index. Intended to ensure that the portrait view page is in sync with the landscape view page. It kind of messes up scrolling between locations though in that each location's visible day always matches the last location's.
+    [self.scrollView scrollRectToVisible:CGRectMake(appDelegate.page * self.frame.size.width,0,self.frame.size.width,self.frame.size.height) animated:NO];
 }
 
 - (void)clearScrollView

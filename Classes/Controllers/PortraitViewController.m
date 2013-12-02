@@ -107,8 +107,6 @@
 {
     if ([segue.identifier isEqualToString:@"locationMainViewSegue"]) {
         _locationMainViewController = (SDLocationMainViewController*)segue.destinationViewController;
-        CGRect mainViewFrame = _locationMainViewController.view.frame;
-        [_locationMainViewController.bottomViewCell.scrollView scrollRectToVisible:CGRectMake(appDelegate.page * mainViewFrame.size.width,0, mainViewFrame.size.width, mainViewFrame.size.height) animated:NO];
     } else if ([segue.identifier isEqualToString:@"landscapeSegue"]) {
         LandscapeViewController *landscapeController = (LandscapeViewController*)segue.destinationViewController;
         landscapeController.locationMainViewController = _locationMainViewController;
