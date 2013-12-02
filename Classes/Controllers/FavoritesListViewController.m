@@ -137,12 +137,6 @@
 
 #pragma mark ViewToggleControls
 
--(void)setLocationFromMap
-{
-
-}
-
-
 - (IBAction)selectTideStationFromList:(id)sender
 {
     [self performSegueWithIdentifier:@"StationListSegue" sender:self];

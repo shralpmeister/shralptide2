@@ -43,6 +43,8 @@
     [self refreshDisplayedTides];
     int pageOffset = appDelegate.page * self.view.frame.size.width;
     _bottomViewCell.scrollView.contentOffset = CGPointMake(pageOffset, 0);
+    float locationOffset = appDelegate.locationPage * self.view.frame.size.width;
+    self.collectionView.contentOffset = CGPointMake(locationOffset,0);
 }
 
 - (void)dealloc
