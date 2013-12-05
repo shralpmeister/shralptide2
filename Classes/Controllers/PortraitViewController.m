@@ -50,6 +50,19 @@
         }
         self.locationMainViewController.headerViewController = self.headerViewController;
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTideData) name:kSDApplicationActivatedNotification object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)refreshTideData
+{
+    NSLog(@"Portrait View Controller got recalc notification. Reloading data");
+    [self.headerViewController.collectionView reloadData];
+    [self.locationMainViewController.collectionView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,10 +71,10 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
-    NSLog(@"Portrait view appeared");
+    [super viewWillAppear:animated];
+    [self refreshTideData];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle

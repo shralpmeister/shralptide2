@@ -110,7 +110,9 @@ NSString *kBackgroundKey = @"background_preference";
     //		[pageOneController updatePresentTideInfo];
     //	}
     //}
+    NSLog(@"Application became active");
     if ([[NSDate date] timeIntervalSinceDate: _startDate] > 86400) {
+        NSLog(@"It's a new day. Recalculating tides.");
         [self calculateTides];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:kSDApplicationActivatedNotification object:self];
@@ -124,8 +126,6 @@ NSString *kBackgroundKey = @"background_preference";
         SDTide *todaysTide = [SDTideFactory todaysTidesForStationName:location.locationName];
         [_mutableTides addObject:todaysTide];
     }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kSDAppDelegateRecalculatedTidesNotification object:self];
 }
 
 - (NSArray*)tides

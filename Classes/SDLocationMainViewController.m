@@ -34,28 +34,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshDisplayedTides) name:kSDAppDelegateRecalculatedTidesNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self refreshDisplayedTides];
     int pageOffset = appDelegate.page * self.view.frame.size.width;
     _bottomViewCell.scrollView.contentOffset = CGPointMake(pageOffset, 0);
     float locationOffset = appDelegate.locationPage * self.view.frame.size.width;
     self.collectionView.contentOffset = CGPointMake(locationOffset,0);
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)refreshDisplayedTides
-{
-    NSLog(@"SDLocationManViewController refresh displayed tides called.");
-    [self.collectionView reloadData];
 }
 
 /**

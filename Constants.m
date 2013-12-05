@@ -10,4 +10,3 @@
 
 /* Notifcation Types */
 NSString *const kSDApplicationActivatedNotification = @"ApplicationActivated";
-NSString *const kSDAppDelegateRecalculatedTidesNotification = @"TidesRecalculated";

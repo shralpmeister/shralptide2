@@ -21,27 +21,14 @@
 {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTideData) name:kSDAppDelegateRecalculatedTidesNotification object:nil];
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     NSLog(@"Header view controller view will appear called. Page = %d, offset=%f", appDelegate.locationPage, self.collectionView.contentOffset.x);
-    [self refreshTideData];
     float headerOffset = appDelegate.locationPage * self.collectionView.frame.size.width * 1.5;
     self.collectionView.contentOffset = CGPointMake(headerOffset,0);
-}
-
-- (void)refreshTideData
-{
-    NSLog(@"SDHeaderViewController got recalc notification. Reloading data");
-    [self.collectionView reloadData];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section;
