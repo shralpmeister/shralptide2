@@ -186,7 +186,7 @@
     int pageNumber = floor((sender.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     if (pageNumber != lastPageIndex) {
         // ** IMPORTANT! I base the date string on 0600 time to avoid funny business with the time DST/ST changes. They occur at 0200.
-        self.dateLabel.text = [self.dateFormatter stringFromDate:[_tide.startTime dateByAddingTimeInterval:30 * 60 * 60 * pageNumber]];
+        self.dateLabel.text = [self.dateFormatter stringFromDate:[_tide.startTime dateByAddingTimeInterval:(6 + (24 * pageNumber)) * 60 * 60]];
         lastPageIndex = pageNumber;
         appDelegate.page = pageNumber;
     }
