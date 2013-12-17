@@ -11,6 +11,7 @@
 #import "ChartViewController.h"
 #import "SDTideFactory.h"
 #import "NSDate+Day.h"
+#import <QuartzCore/QuartzCore.h>
 
 #define appDelegate ((ShralpTideAppDelegate*)[[UIApplication sharedApplication] delegate])
 
@@ -68,7 +69,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    self.heightView.layer.cornerRadius = 5;
+    self.heightView.layer.masksToBounds = YES;
+    
+    _activityView.layer.cornerRadius = 10;
+    _activityView.layer.masksToBounds = YES;
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle
@@ -79,6 +85,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     _tide = self.locationMainViewController.tide;
+    
+    _activityView.hidden = NO;
+    _activityIndicator.hidden = NO;
+    [_activityIndicator startAnimating];
+    
     [self createChartViews];
 }
 
@@ -191,25 +202,38 @@
         appDelegate.page = pageNumber;
     }
     // when we scroll to a future tide, hide the current tide level.
+    
+    [UIView beginAnimations:kCATransition context:nil];
+    
     if (self.page == 0) {
-        self.heightLabel.hidden = NO;
+        //self.heightLabel.hidden = NO;
+        self.heightView.alpha = 1.0;
     } else {
-        self.heightLabel.hidden = YES;
+        //self.heightLabel.hidden = YES;
+        self.heightView.alpha = 0.0;
     }
+    
+    [UIView commitAnimations];
 }
 
 #pragma mark Interactive Chart View Delegate
 - (void)displayHeight:(CGFloat)height atTime:(NSDate*)time withUnitString:(NSString*)units
 {
-    self.heightLabel.hidden = NO;
+    [UIView beginAnimations:kCATransition context:nil];
+    //self.heightLabel.hidden = NO;
+    self.heightView.alpha = 1.0;
     self.heightLabel.text = [NSString stringWithFormat:@"%0.2f %@ @ %@", height, units, [self.timeFormatter stringFromDate:time]];
+    [UIView commitAnimations];
 }
 
 - (void)interactionsEnded
 {
     // if we're not on today's graph, hide the current tide level.
     if (self.page != 0) {
-        self.heightLabel.hidden = YES;
+        [UIView beginAnimations:kCATransition context:nil];
+        //self.heightLabel.hidden = YES;
+        self.heightView.alpha = 0.0;
+        [UIView commitAnimations];
     }
 }
 
@@ -235,7 +259,12 @@
 - (void)tideCalculationsCompleted:(NSArray*)tides
 {
     self.tide = [SDTide tideByCombiningTides:tides];
+    NSLog(@"Tide calc completed for: %@, %d days",self.tide.stationName, [tides count]);
+    [self.chartView setNeedsDisplay];
     [self createChartViews];
+    
+    self.activityView.hidden = YES;
+    [self.activityIndicator stopAnimating];
 }
 
 @end

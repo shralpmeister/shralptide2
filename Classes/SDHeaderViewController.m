@@ -49,6 +49,9 @@
                                            [tide nearestDataPointToCurrentTime].y,
                                            [tide unitShort]];
     cell.locationLabel.text = tide.shortLocationName;
+//    if ([UIScreen mainScreen].bounds.size.height == 568) {
+//        cell.bounds = CGRectMake(cell.bounds.origin.x, cell.bounds.origin.y, cell.bounds.size.width, 180);
+//    }
     
     SDTideStateRiseFall direction = [tide tideDirection];
 	NSString *imageName = nil;

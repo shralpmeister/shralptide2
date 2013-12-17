@@ -10,11 +10,12 @@
 #import "SDHeaderViewController.h"
 #import "SDTide.h"
 #import "SDBottomViewCell.h"
+#import "SDTideCalculationDelegate.h"
 
 @interface SDLocationMainViewController : UICollectionViewController <UIScrollViewDelegate>
 
 @property (nonatomic,weak) SDHeaderViewController* headerViewController;
-@property (nonatomic,weak) SDBottomViewCell *bottomViewCell;
+@property (nonatomic,weak) id<SDTideCalculationDelegate> tideCalculationDelegate;
 @property (readonly) SDTide *tide;
 
 @end

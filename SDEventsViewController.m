@@ -72,7 +72,15 @@
 
 - (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self.tide events] count];
+    NSDate *date = [self.tide startTime];
+    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
+    NSUInteger preservedComponents = (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit);
+    date = [calendar dateFromComponents:[calendar components:preservedComponents fromDate:date]];
+    date = [date dateByAddingTimeInterval:1440 * 60]; // add one day to get midnight tonight
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"eventTime < %@", date];
+    NSArray *todaysEvents = [self.tide.events filteredArrayUsingPredicate:predicate];
+    return [todaysEvents count];
 }
 
 - (int)numberOfSectionsInTableView:(UITableView *)tableView
@@ -94,13 +102,7 @@
 #pragma mark ChartViewDatasource Methods
 -(SDTide *)tideDataToChart
 {
-    NSDate *now = [NSDate date];
-    if ([_tide.startTime timeIntervalSince1970] > [now timeIntervalSince1970]) {
-        return _tide;
-    } else {
-        //NSLog(@"Chart view requested new tide data. Calculating from %@",now);
-        return [SDTideFactory tidesForStationName:_tide.stationName fromDate:now toDate:[now dateByAddingTimeInterval:_chartView.hoursToPlot * 60 * 60]];
-    }
+    return _tide;
 }
 
 -(NSDate*)day

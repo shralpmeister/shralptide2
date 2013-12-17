@@ -39,8 +39,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    int pageOffset = appDelegate.page * self.view.frame.size.width;
-    _bottomViewCell.scrollView.contentOffset = CGPointMake(pageOffset, 0);
     float locationOffset = appDelegate.locationPage * self.view.frame.size.width;
     self.collectionView.contentOffset = CGPointMake(locationOffset,0);
 }
@@ -51,7 +49,14 @@
  */
 - (SDTide*)tide
 {
-    return [SDTide tideByCombiningTides:_bottomViewCell.tidesForDays];
+    SDBottomViewCell *visibleCell = (SDBottomViewCell*)[self collectionView:self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:appDelegate.locationPage]];
+    return [SDTide tideByCombiningTides:visibleCell.tidesForDays];
+}
+
+- (void)setTideCalculationDelegate:(id<SDTideCalculationDelegate>)tideCalculationDelegate
+{
+    SDBottomViewCell *visibleCell = (SDBottomViewCell*)[self collectionView:self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:appDelegate.locationPage]];
+    visibleCell.tideCalculationDelegate = tideCalculationDelegate;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section;
@@ -69,11 +74,19 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath;
 {
     static NSString* bottomCellId = @"bottomCell";
-    _bottomViewCell = (SDBottomViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:bottomCellId forIndexPath:indexPath];
+    
+    SDBottomViewCell *bottomViewCell = (SDBottomViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:bottomCellId forIndexPath:indexPath];
+    
+    if ([UIScreen mainScreen].bounds.size.height != 568) {
+        CGRect bounds = bottomViewCell.bounds;
+        CGRect frame = bottomViewCell.frame;
+        bottomViewCell.bounds = CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.width, 250);
+        bottomViewCell.frame = CGRectMake(frame.origin.x, 200, frame.size.width, 250);
+    }
+    
     SDTide *tide = appDelegate.tides[indexPath.section];
-    [_bottomViewCell createPages:tide];
-    appDelegate.location = tide.stationName;
-    return _bottomViewCell;
+    [bottomViewCell createPages:tide];
+    return bottomViewCell;
 }
 
 - (void)didReceiveMemoryWarning
@@ -91,6 +104,7 @@
     if (scrollView.isDecelerating) {
         // we know we're past halfway... take whatever action might be good here.
         appDelegate.locationPage = page;
+        appDelegate.location = [appDelegate.tides[page] valueForKey:@"stationName"];
     }
     self.headerViewController.collectionView.contentOffset = CGPointMake(pushOffset, 0);
 }

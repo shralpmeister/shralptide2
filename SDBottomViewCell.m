@@ -28,7 +28,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-       calculationQueue  = dispatch_queue_create("TideCalcQueue", NULL);
+        calculationQueue  = dispatch_queue_create("TideCalcQueue", NULL);
     }
     return self;
 }
@@ -40,11 +40,20 @@
         self.tidesForDays = @[tide];
     }
     [self displayTides:_tidesForDays];
+    
+    _activityView.layer.cornerRadius = 10;
+    _activityView.layer.masksToBounds = YES;
+    _activityView.hidden = NO;
+    
+    _activityIndicator.hidden = NO;
+    [_activityIndicator startAnimating];
     dispatch_async(calculationQueue, ^(void) {
         NSArray *tides = [SDTideFactory tidesForStationName:tide.stationName];
         dispatch_async(dispatch_get_main_queue(), ^(void) {
             [_tideCalculationDelegate tideCalculationsCompleted:tides];
             [self displayTides:tides];
+            [_activityIndicator stopAnimating];
+            _activityView.hidden = YES;
         });
     });
     
@@ -67,7 +76,11 @@
     int xOrigin = 0;
     for (int i=0; i < numPages; i++) {
         SDEventsViewController* pageController = [storyboard instantiateViewControllerWithIdentifier:@"eventsViewController"];
-        pageController.tide = _tidesForDays[i];
+        if (numPages > 1 && i == 0) {
+            pageController.tide = [SDTide tideByCombiningTides:@[_tidesForDays[0], _tidesForDays[1]]];
+        } else {
+            pageController.tide = _tidesForDays[i];
+        }
         pageController.view.frame = CGRectMake(xOrigin,0,self.frame.size.width,self.frame.size.height);
         [self.scrollView addSubview:pageController.view];
         controllers[i] = pageController;

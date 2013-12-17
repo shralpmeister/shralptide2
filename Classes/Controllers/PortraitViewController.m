@@ -123,7 +123,7 @@
     } else if ([segue.identifier isEqualToString:@"landscapeSegue"]) {
         LandscapeViewController *landscapeController = (LandscapeViewController*)segue.destinationViewController;
         landscapeController.locationMainViewController = _locationMainViewController;
-        _locationMainViewController.bottomViewCell.tideCalculationDelegate = landscapeController;
+        _locationMainViewController.tideCalculationDelegate = landscapeController;
     } else if ([segue.identifier isEqualToString:@"FavoritesListSegue"]) {
         FavoritesListViewController *favoritesController = (FavoritesListViewController*)segue.destinationViewController;
         favoritesController.portraitViewController = self;
