@@ -15,6 +15,7 @@
 @property (nonatomic,weak) IBOutlet UILabel *dateLabel;
 @property (nonatomic,strong) IBOutlet ChartView *chartView;
 @property (nonatomic,weak) IBOutlet UIScrollView *chartScrollView;
+@property (nonatomic,weak) IBOutlet NSLayoutConstraint *bottomVerticalConstraint;
 @property (nonatomic,strong) SDTide *tide;
 
 @end

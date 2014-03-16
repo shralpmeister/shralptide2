@@ -104,17 +104,17 @@
 {
     switch (toInterfaceOrientation) {
         case UIDeviceOrientationLandscapeLeft:
-            NSLog(@"Device rotated to Landscape Left");
+            DLog(@"Device rotated to Landscape Left");
             break;
         case UIDeviceOrientationLandscapeRight:
-            NSLog(@"Device rotated to Landscape Right");
+            DLog(@"Device rotated to Landscape Right");
             break;
         case UIDeviceOrientationPortrait:
-            NSLog(@"Device rotated to Portrait");
+            DLog(@"Device rotated to Portrait");
             [self.navigationController popToRootViewControllerAnimated:YES];
             break;
         case UIDeviceOrientationPortraitUpsideDown:
-            NSLog(@"Device rotated to Portrait upsidedown");
+            DLog(@"Device rotated to Portrait upsidedown");
             break;
     }
 }
@@ -127,7 +127,7 @@
     
     self.chartScrollView.pagingEnabled = YES;
 	// put 20 back on the height and subtract 20 from width to account for scroll bar at top of landscape
- //   NSLog(@"Frame = %0.1f x %0.1f", self.view.frame.size.width, self.view.frame.size.height);
+ //   DLog(@"Frame = %0.1f x %0.1f", self.view.frame.size.width, self.view.frame.size.height);
 	self.chartScrollView.contentSize = CGSizeMake((self.view.frame.size.width) * appDelegate.daysPref, self.view.frame.size.height);
 	self.chartScrollView.showsVerticalScrollIndicator = NO;
 	self.chartScrollView.showsVerticalScrollIndicator = NO;
@@ -167,7 +167,7 @@
     // replace the placeholder if necessary
     //    ChartViewController *controller = self.chartViewControllers[page];
     //    if ((NSNull *)controller == [NSNull null]) {
-    //        NSLog(@"Initializing new ChartViewController");
+    //        DLog(@"Initializing new ChartViewController");
     //		controller = [[ChartViewController alloc] initWithNibName:@"ChartView" bundle:nil tide:[self.viewControllers[page] sdTide]];
     //        self.chartViewControllers[page] = controller;
     //    } else {
@@ -259,7 +259,7 @@
 - (void)tideCalculationsCompleted:(NSArray*)tides
 {
     self.tide = [SDTide tideByCombiningTides:tides];
-    NSLog(@"Tide calc completed for: %@, %d days",self.tide.stationName, [tides count]);
+    DLog(@"Tide calc completed for: %@, %lu days",self.tide.stationName, (unsigned long)[tides count]);
     [self.chartView setNeedsDisplay];
     [self createChartViews];
     

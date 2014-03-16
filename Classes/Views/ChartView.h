@@ -42,8 +42,8 @@
 @property (nonatomic, strong) UIImage *sunsetIcon;
 @property (nonatomic, strong) UIImage *moonriseIcon;
 @property (nonatomic, strong) UIImage *moonsetIcon;
-@property (nonatomic, assign) int height;
-@property (nonatomic, assign) int hoursToPlot;
+@property (nonatomic, assign) NSInteger height;
+@property (nonatomic, assign) NSInteger hoursToPlot;
 @property (readonly) float xratio;
 @property (readonly) float yratio;
 @property (readonly) float yoffset;

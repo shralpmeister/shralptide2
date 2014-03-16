@@ -131,7 +131,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Selected row %d",indexPath.row);
+    DLog(@"Selected row %d",indexPath.row);
 
     if ([self.sections count] > 0) {
         [self chooseStation:self.sections[self.sectionKeys[indexPath.section]][indexPath.row]];

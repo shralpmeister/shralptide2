@@ -54,6 +54,9 @@
 	CGContextRef context = UIGraphicsGetCurrentContext();
     
     NSArray *intervalsForDay = [super.tide intervalsFromDate:[self.datasource day] forHours:self.hoursToPlot];
+    if ([intervalsForDay count] == 0) {
+        return;
+    }
     NSTimeInterval baseSeconds = [((SDTideInterval*)intervalsForDay[0]).time timeIntervalSince1970];
     
     // draws the sun/moon events
@@ -79,7 +82,7 @@
     float lastX = 0;
     for (SDTideInterval *tidePoint in intervalsForDay) {
 		int minute = ([[tidePoint time] timeIntervalSince1970] - baseSeconds) / SECONDS_PER_MINUTE;
-        //NSLog(@"Plotting interval: %@, min since midnight: %d",tidePoint.time, minute);
+        //DLog(@"Plotting interval: %@, min since midnight: %d",tidePoint.time, minute);
         if ([tidePoint.time isOnTheHour]) {
             float x = minute * self.xratio;
             if (x == 0 || x - lastX > 40) {

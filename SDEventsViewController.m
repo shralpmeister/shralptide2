@@ -42,7 +42,7 @@
     formatter.dateStyle = NSDateFormatterFullStyle;
     self.dateLabel.text = [formatter stringFromDate:[self.tide startTime]];
     
-    //NSLog(@"Scroll view frame width = %f", _chartScrollView.frame.size.width);
+    //DLog(@"Scroll view frame width = %f", _chartScrollView.frame.size.width);
     _chartView.height = 40;
     _chartView.datasource = self;
     if ([_tide.startTime timeIntervalSince1970] > [[NSDate date] timeIntervalSince1970]) {
@@ -53,7 +53,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(redrawChart) name:kSDApplicationActivatedNotification object:nil];
     }
     
-    //NSLog(@"Setting content width to %f",_chartView.frame.size.width);
+    //DLog(@"Setting content width to %f",_chartView.frame.size.width);
     _chartScrollView.contentSize = _chartView.frame.size;
     [_chartScrollView addSubview:_chartView];
 }
@@ -70,7 +70,7 @@
 }
 #pragma mark Table View Data Source methods
 
-- (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSDate *date = [self.tide startTime];
     NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
@@ -83,7 +83,7 @@
     return [todaysEvents count];
 }
 
-- (int)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }

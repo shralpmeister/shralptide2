@@ -59,19 +59,19 @@
     return [self nearestDataPointForTime:[self currentTimeInMinutes]];
 }
 
-- (CGPoint)nearestDataPointForTime:(int) minutesFromMidnight {
-	int nearestX = [NSDate findNearestInterval:minutesFromMidnight];
+- (CGPoint)nearestDataPointForTime:(NSInteger) minutesFromMidnight {
+	NSInteger nearestX = [NSDate findNearestInterval:minutesFromMidnight];
 	float nearestY = [self findTideForTime:nearestX];
 	return CGPointMake((float)nearestX, nearestY);
 }
 
 - (SDTideStateRiseFall)tideDirection
 {
-    int time = [self currentTimeInMinutes];
+    NSInteger time = [self currentTimeInMinutes];
 	return [self tideDirectionForTime:time];
 }
 
-- (SDTideStateRiseFall)tideDirectionForTime:(int) time {
+- (SDTideStateRiseFall)tideDirectionForTime:(NSInteger) time {
 	if ([self findTideForTime:[NSDate findNearestInterval:time]] > [self findTideForTime:[NSDate findPreviousInterval: time]]) {
 		return SDTideStateRising;
 	} else if ([self findTideForTime:[NSDate findNearestInterval:time]] < [self findTideForTime:[NSDate findPreviousInterval: time]]) {
@@ -81,7 +81,7 @@
 	}
 }
 
--(float)findTideForTime:(int) time {
+-(float)findTideForTime:(NSInteger) time {
 	float height = 0.0;
 	int basetime = 0;
 	for (SDTideInterval *tidePoint in [self intervals]) {
@@ -178,7 +178,7 @@
     return [self.intervals filteredArrayUsingPredicate:daysIntervalsOnly];
 }
 
-- (NSArray*)intervalsFromDate:(NSDate*)fromDate forHours:(int)hours
+- (NSArray*)intervalsFromDate:(NSDate*)fromDate forHours:(NSInteger)hours
 {
     NSDate *toDate = [fromDate dateByAddingTimeInterval:hours * 60 * 60];
     NSPredicate *timeRange = [NSPredicate predicateWithFormat:@"time BETWEEN %@",@[ fromDate, toDate]];
@@ -234,20 +234,21 @@
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateStyle = NSDateFormatterShortStyle;
-    return [NSString stringWithFormat:@"Location: %@, startDate: %@, no.events: %d, no.intervals:%d", _stationName,
-            [formatter stringFromDate:_startTime], [self.events count], [self.intervals count]];
+    return [NSString stringWithFormat:@"Location: %@, startDate: %@, no.events: %lu, no.intervals:%lu", _stationName,
+            [formatter stringFromDate:_startTime], (unsigned long)[self.events count], (unsigned long
+)[self.intervals count]];
 }
 
 #pragma mark PrivateMethods
 
-- (int)currentTimeInMinutes
+- (NSInteger)currentTimeInMinutes
 {
     return [[NSDate date] timeInMinutesSinceMidnight];
 }
 
 -(void)dealloc
 {
-	NSLog(@"Deallocating SDTide %@",self);
+	DLog(@"Deallocating SDTide %@",self);
 }
 
 @end

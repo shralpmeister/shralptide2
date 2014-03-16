@@ -17,8 +17,4 @@
  */
 @interface PortraitViewController : UIViewController
 
-@property (nonatomic, weak) IBOutlet UIPageControl *pageControl;
-
-- (IBAction)changePage:(id)sender;
-
 @end

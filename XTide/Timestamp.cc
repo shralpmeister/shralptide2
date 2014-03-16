@@ -811,7 +811,7 @@ static struct tm *vc_localtime (const time_t *timep) {
 // Overflow trap.
 static const time_t overflowCheckedSum (time_t before,
 					interval_rep_t interval) {
-  time_t after (before + interval);
+  time_t after (before + (long)interval);
   if ((interval > 0 && after <= before) ||
       (interval < 0 && after >= before))
     Global::barf (Error::TIMESTAMP_OVERFLOW);

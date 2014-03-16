@@ -31,9 +31,9 @@
 #include <ctype.h>
 #include <assert.h>
 
-#ifdef HAVE_UNISTD_H
+//#ifdef HAVE_UNISTD_H
 #include <unistd.h>
-#endif
+//#endif
 
 #ifdef HAVE_IO_H
 #include <io.h>
@@ -2327,7 +2327,7 @@ static NV_U_INT32 header_checksum ()
     exit (-1);
   }
 
-    save_pos = ftell (fp);
+    save_pos = (NV_U_INT32)ftell (fp);
 
     fseek (fp, 0, SEEK_SET);
 
@@ -2549,7 +2549,7 @@ static void write_tide_db_header ()
 
     /*  Fill the remainder of the [HEADER SIZE] ASCII header with zeroes.  */
 
-    start = ftell (fp);
+    start = (NV_INT32)ftell (fp);
     assert (start >= 0);
     for (i = start ; i < hd.header_size ; ++i) chk_fwrite (&zero, 1, 1, fp);
     fflush (fp);
@@ -3245,7 +3245,7 @@ defined.\n");
 
     /*  Read restrictions.  */
 
-    utemp = ftell (fp);
+    utemp = (NV_U_INT32)ftell (fp);
     hd.restriction = (NV_CHAR **) calloc (hd.max_restriction_types,
         sizeof (NV_CHAR *));
 
@@ -3284,7 +3284,7 @@ defined.\n");
 
     /*  Read tzfiles.  */
 
-    utemp = ftell (fp);
+    utemp = (NV_U_INT32)ftell (fp);
     hd.tzfile = (NV_CHAR **) calloc (hd.max_tzfiles, sizeof (NV_CHAR *));
 
     if ((buf = (NV_U_BYTE *) calloc (hd.tzfile_size, sizeof (NV_U_BYTE))) ==
@@ -3312,7 +3312,7 @@ defined.\n");
 
     /*  Read countries.  */
 
-    utemp = ftell (fp);
+    utemp = (NV_U_INT32)ftell (fp);
     hd.country = (NV_CHAR **) calloc (hd.max_countries, sizeof (NV_CHAR *));
 
     if ((buf = (NV_U_BYTE *) calloc (hd.country_size, sizeof (NV_U_BYTE))) ==
@@ -3341,7 +3341,7 @@ defined.\n");
 
     /*  Read datums.  */
 
-    utemp = ftell (fp);
+    utemp = (NV_U_INT32)ftell (fp);
     hd.datum = (NV_CHAR **) calloc (hd.max_datum_types, sizeof (NV_CHAR *));
 
     if ((buf = (NV_U_BYTE *) calloc (hd.datum_size, sizeof (NV_U_BYTE))) ==
@@ -3378,7 +3378,7 @@ defined.\n");
       strcpy (hd.legalese[0], "NULL");
       hd.pub.legaleses = 1;
     } else {
-      utemp = ftell (fp);
+      utemp = (NV_U_INT32)ftell (fp);
       hd.legalese = (NV_CHAR **) calloc (hd.max_legaleses, sizeof (NV_CHAR *));
 
       if ((buf = (NV_U_BYTE *) calloc (hd.legalese_size, sizeof (NV_U_BYTE))) ==
@@ -3573,7 +3573,7 @@ database should be rebuilt from the original data if possible.\n");
           exit (-1);
       }
       /*  Set the first address to be immediately after the header  */
-      tindex[0].address = ftell (fp);
+      tindex[0].address = (NV_INT32)ftell (fp);
     } else tindex = NULL; /* May as well be explicit... */
 
     for (i = 0 ; i < hd.pub.number_of_records ; ++i)
@@ -4142,7 +4142,7 @@ NV_U_INT32 num_years, NV_FLOAT32 *equilibrium[], NV_FLOAT32 *node_factor[])
 
     /*  Set the correct end of file position since the one in the header is
         set to 0.  */
-    hd.end_of_file = ftell(fp);
+    hd.end_of_file = (NV_INT32)ftell(fp);
     /* DWF 2004-08-15: if the original program exits without adding any
        records, that doesn't help!  Rewrite the header with correct
        end_of_file. */
@@ -4397,14 +4397,14 @@ static NV_U_INT32 figure_size (TIDE_RECORD *rec) {
 
   /*  Figure out how many bits we'll need for this record. */
 
-  name_size = strlen(clip_string(rec->header.name))+1;
-  source_size = strlen(clip_string(rec->source))+1;
-  comments_size = strlen(clip_string(rec->comments))+1;
-  notes_size = strlen(clip_string(rec->notes))+1;
-  station_id_context_size = strlen(clip_string(rec->station_id_context))+1;
-  station_id_size = strlen(clip_string(rec->station_id))+1;
+  name_size = (NV_U_INT32)strlen(clip_string(rec->header.name))+1;
+  source_size = (NV_U_INT32)strlen(clip_string(rec->source))+1;
+  comments_size = (NV_U_INT32)strlen(clip_string(rec->comments))+1;
+  notes_size = (NV_U_INT32)strlen(clip_string(rec->notes))+1;
+  station_id_context_size = (NV_U_INT32)strlen(clip_string(rec->station_id_context))+1;
+  station_id_size = (NV_U_INT32)strlen(clip_string(rec->station_id))+1;
   /* No clipping on xfields -- trailing \n required by syntax */
-  xfields_size = strlen(rec->xfields)+1;
+  xfields_size = (NV_U_INT32)strlen(rec->xfields)+1;
 
   rec->header.record_size =
       hd.record_size_bits +
@@ -4484,7 +4484,7 @@ static void pack_string (NV_U_BYTE *buf, NV_U_INT32 *pos, NV_CHAR *s) {
   assert (buf);
   assert (pos);
   assert (s);
-  temp_size = strlen(s)+1;
+  temp_size = (NV_U_INT32)strlen(s)+1;
   for (i=0; i<temp_size; ++i) {
     bit_pack (buf, *pos, 8, s[i]);
     *pos += 8;
@@ -5160,7 +5160,7 @@ NV_BOOL add_tide_record (TIDE_RECORD *rec, DB_HEADER_PUBLIC *db)
       return NVFalse;
 
     fseek (fp, hd.end_of_file, SEEK_SET);
-    pos = ftell (fp);
+    pos = (NV_INT32)ftell (fp);
     assert (pos > 0);
 
     rec->header.record_number = hd.pub.number_of_records++;
@@ -5197,7 +5197,7 @@ NV_BOOL add_tide_record (TIDE_RECORD *rec, DB_HEADER_PUBLIC *db)
 
 
         strcpy (tindex[rec->header.record_number].name, rec->header.name);
-        pos = ftell (fp);
+        pos = (NV_INT32)ftell (fp);
         assert (pos > 0);
         hd.end_of_file = pos;
         modified = NVTrue;
@@ -5311,7 +5311,7 @@ NV_BOOL delete_tide_record (NV_INT32 num, DB_HEADER_PUBLIC *db)
   /* Flush, reopen, renew.  The index is now garbage; close and reopen
      to reindex. */
 
-  hd.end_of_file = ftell(fp);
+  hd.end_of_file = (NV_U_INT32)ftell(fp);
   hd.pub.number_of_records = newrecnum;
   modified = NVTrue;
   close_tide_db ();
@@ -5370,7 +5370,7 @@ NV_BOOL update_tide_record (NV_INT32 num, TIDE_RECORD *rec, DB_HEADER_PUBLIC *db
         /*  Aaaaaaarrrrrgggggghhhh!!!!  We have to move stuff!  */
 
         /*  Save where we are - end of record being modified.  */
-        pos = ftell (fp);
+        pos = (NV_INT32)ftell (fp);
         assert (pos > 0);
 
         /*  Figure out how big a block we need to move.  */
@@ -5399,7 +5399,7 @@ NV_BOOL update_tide_record (NV_INT32 num, TIDE_RECORD *rec, DB_HEADER_PUBLIC *db
             free (block);
         }
 
-        hd.end_of_file = ftell (fp);
+        hd.end_of_file = (NV_U_INT32)ftell (fp);
 
         /*  Close the file and reopen it to index the records again.  */
         close_tide_db ();

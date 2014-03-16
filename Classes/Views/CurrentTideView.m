@@ -46,7 +46,7 @@
 
 - (void)dealloc
 {
-    NSLog(@"Whoa, %@, was dealloc'd",self);
+    DLog(@"Whoa, %@, was dealloc'd",self);
 }
 
 @end

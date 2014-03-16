@@ -15,7 +15,7 @@
 
 -(IBAction)addTideStation
 {
-	NSLog(@"StationDetailViewController addTideStation called");
+	DLog(@"StationDetailViewController addTideStation called");
     [self.modalViewDelegate stationDetailViewController:self addTideStation: self.tideStationData.title];
 }
 
@@ -47,14 +47,13 @@
                                                  MKCoordinateSpanMake(0.1, 0.1));
     self.mapView.layer.cornerRadius = 5;
     self.mapView.layer.borderWidth = 1.0f;
-    
     [super viewWillAppear:animated];
 }
 
 -(void)viewDidLoad
 {
 	[super viewDidLoad];
-	NSLog(@"Detail view loaded with station, %@", self.tideStationData.title);
+	DLog(@"Detail view loaded with station, %@", self.tideStationData.title);
     
     // TODO: I don't like munging the titles everyplace they're going to be used.
     self.titleLabel.text = [self.tideStationData.title stringByReplacingOccurrencesOfString:@", " withString:@"\n" options:0 range:NSMakeRange([self.tideStationData.title rangeOfString:@", "].location - 1,3)];
@@ -75,7 +74,6 @@
     } else {
         self.primaryCell.detailTextLabel.text = NSLocalizedString(@"Subordinate Location",nil);
     }
-    
     [self.selectButton setTitle:NSLocalizedString(@"Select Station",nil) forState:UIControlStateNormal];
 }
 

@@ -93,6 +93,10 @@
 	_tide = [self.datasource tideDataToChart];
     
     NSArray *intervalsForDay = [_tide intervalsFromDate:[self.datasource day] forHours:self.hoursToPlot];
+    if ([intervalsForDay count] == 0) {
+        // we're in a bad state. maybe activated on a new day before model has been updated?
+        return;
+    }
     
     NSTimeInterval baseSeconds = [((SDTideInterval*)intervalsForDay[0]).time timeIntervalSince1970];
     
@@ -110,13 +114,13 @@
 	float ymax = max + 1;
 	self.yratio =  _height / (ymax - ymin);
 	self.yoffset = (_height + ymin * self.yratio) + (chartBottom - _height);
-	//NSLog(@"yoffset = %0.4f", self.yoffset);
+	//DLog(@"yoffset = %0.4f", self.yoffset);
 	
 	float xmin = 0;
 	float xmax = MINUTES_PER_HOUR * _hoursToPlot;
-	//NSLog(@"Frame size is: %0.1f x %0.1f", self.frame.size.width, self.frame.size.height);
+	//DLog(@"Frame size is: %0.1f x %0.1f", self.frame.size.width, self.frame.size.height);
     self.xratio = self.frame.size.width / xmax;
-	//NSLog(@"xratio = %0.4f",self.xratio);
+	//DLog(@"xratio = %0.4f",self.xratio);
     
     // show daylight hours as light background
     CGContextSetRGBFillColor(context, 0.04, 0.27, 0.61, 1.0);
@@ -137,7 +141,7 @@
     // draws the tide level curve
     for (SDTideInterval *tidePoint in intervalsForDay) {
 		int minute = ([[tidePoint time] timeIntervalSince1970] - baseSeconds) / SECONDS_PER_MINUTE;
-        //NSLog(@"Plotting interval: %@, min since midnight: %d",tidePoint.time, minute);
+        //DLog(@"Plotting interval: %@, min since midnight: %d",tidePoint.time, minute);
 		if (minute == 0) {
 			CGContextMoveToPoint(context, minute * self.xratio, self.yoffset - [tidePoint height] * self.yratio);
 		} else {

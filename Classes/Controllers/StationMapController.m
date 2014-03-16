@@ -32,7 +32,7 @@ BOOL zoomedToLocal;
     } else {
         self.stationType = SDStationTypeCurrent;
     }
-    NSLog(@"updateDisplayedStations called. Switching to %@", self.stationType == SDStationTypeTide ? @"tides." : @"currents.");
+    DLog(@"updateDisplayedStations called. Switching to %@", self.stationType == SDStationTypeTide ? @"tides." : @"currents.");
     [self.mapView removeAnnotations:self.mapView.annotations];
     [self addTideStationsForRegion: self.mapView.region];
 }
@@ -75,7 +75,7 @@ BOOL zoomedToLocal;
 {
 	NSManagedObjectContext *context = [appDelegate managedObjectContext];
     if (!context) {
-        NSLog(@"Error occurred starting CoreData managed object context, %@",context);
+        DLog(@"Error occurred starting CoreData managed object context, %@",context);
         return;
     }
 
@@ -98,7 +98,7 @@ BOOL zoomedToLocal;
     
     NSString *filter = [locationFilter stringByAppendingString:currentFilter];
 
-    NSLog(@"applying search filter: %@", filter);
+    DLog(@"applying search filter: %@", filter);
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat: filter, @[minLatitude, maxLatitude], @[minLongitude, maxLongitude],currentBoolean];
     
@@ -108,15 +108,15 @@ BOOL zoomedToLocal;
     
 	NSError *error;
 	NSArray *results = [context executeFetchRequest:fr error:&error];
-	NSLog(@"%d results returned",[results count]);
+	DLog(@"%lu results returned",(unsigned long)[results count]);
     
 	if (results == nil) {
-		NSLog(@"Error fetching stations! %@, %@",error, [error userInfo]);
+		DLog(@"Error fetching stations! %@, %@",error, [error userInfo]);
     } else if ([results count] > 100) {
-        NSLog(@"That's too many results... won't plot until lower zoom level.");
+        DLog(@"That's too many results... won't plot until lower zoom level.");
 	} else {
 		for (SDTideStation *result in results) {
-            NSLog(@"Fetched %@",result.name);
+            DLog(@"Fetched %@",result.name);
 			CLLocationCoordinate2D coordinate;
 			coordinate.latitude = [result.latitude doubleValue];
 			coordinate.longitude = [result.longitude doubleValue];
@@ -188,7 +188,7 @@ BOOL zoomedToLocal;
                     annotation.coordinate.longitude < self.mapView.centerCoordinate.longitude - 4.0) {
                     
                     [self.mapView removeAnnotation:annotation];
-                    NSLog(@"Removed %@", annotation);
+                    DLog(@"Removed %@", annotation);
                 }
             }
         }
@@ -198,7 +198,7 @@ BOOL zoomedToLocal;
         [self addTideStationsForRegion:aMapView.region];
 	}
     
-    NSLog(@"Number of cached annotations: %d",[[self.mapView annotations] count]);
+    DLog(@"Number of cached annotations: %lu",(unsigned long)[[self.mapView annotations] count]);
     
 }
 
@@ -213,7 +213,7 @@ BOOL zoomedToLocal;
 {
 	NSArray *selectedAnnotations = [self.mapView selectedAnnotations];
 	for (id<MKAnnotation> annotation in selectedAnnotations) {
-		NSLog(@"  - %@", annotation.title);
+		DLog(@"  - %@", annotation.title);
 	}
 
     StationDetailViewController *detailViewController = [[StationDetailViewController alloc] initWithNibName:@"StationInfoView" bundle:nil];

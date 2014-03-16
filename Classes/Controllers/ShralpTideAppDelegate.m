@@ -43,7 +43,6 @@ NSString *kBackgroundKey = @"background_preference";
 @property (nonatomic, strong) SDApplicationState *persistentState;
 
 @property (nonatomic, strong) NSMutableArray *mutableTides;
-@property (nonatomic, strong) NSDate *startDate;
 
 @property (nonatomic, strong) NSString *cachedLocationFilePath;
 
@@ -54,7 +53,7 @@ NSString *kBackgroundKey = @"background_preference";
 @synthesize managedObjectContext, persistentStoreCoordinator, managedObjectModel;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary*)options {
-    NSLog(@"applicationDidFinishLaunching");
+    DLog(@"applicationDidFinishLaunchingWithOptions");
     
     [self setupByPreferences];
     
@@ -63,10 +62,9 @@ NSString *kBackgroundKey = @"background_preference";
                                              selector:@selector(defaultsChanged:)
                                                  name:NSUserDefaultsDidChangeNotification
                                                object:nil];
-    //[self.rootViewController createMainViews];
     
     // Load the tide station data
-    NSLog(@"%@", [[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-free" ofType:@"tcd"]);
+    DLog(@"%@", [[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-free" ofType:@"tcd"]);
 	NSMutableString *pathBuilder = [[NSMutableString alloc] init];
 	[pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-free" ofType:@"tcd"]];
 	[pathBuilder appendString:@":"];
@@ -92,35 +90,33 @@ NSString *kBackgroundKey = @"background_preference";
     [self calculateTides];
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // when the app comes out of suspended state, we need to refresh the tide (it could have been minutes, hours, days in suspended mode).
-    // Now in iOS 7 we can make periodic calls to refresh... may not be great for battery though... or for phone performance
-    //	[self.rootViewController refreshViews];
-    
-    // TODO: Okay, this is important. I was attaching the SDTide models to each view, then refreshing them when
-    // the data got to be more than 24 hrs old. I think I want to hold the model objects in the app delegate instead.... maybe.
-    //- (void)refreshViews {
-    //	NSLog(@"Refresh views called at %@", [NSDate date]);
-    //
-    //	MainViewController *pageOneController = self.viewControllers[0];
-    //
-    //	if ([[NSDate date] timeIntervalSinceDate: [[pageOneController sdTide] startTime]] > 86400) {
-    //		[self viewDidAppear:YES];
-    //	} else {
-    //		[pageOneController updatePresentTideInfo];
-    //	}
-    //}
-    NSLog(@"Application became active");
-    if ([[NSDate date] timeIntervalSinceDate: _startDate] > 86400) {
-        NSLog(@"It's a new day. Recalculating tides.");
+- (void)applicationDidFinishLaunching:(UIApplication *)application
+{
+    DLog(@"Application finished launching...");
+    [self recalculateTidesForNewDay];
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    DLog(@"Application entered foreground...");
+    [self recalculateTidesForNewDay];
+}
+
+- (void)recalculateTidesForNewDay
+{
+    // when the app comes to foreground we need to refresh the tide (it could have been minutes, hours, days in suspended mode).
+    DLog(@"Checking tide freshness...");
+    NSDate *startDate = ((SDTide*)self.tides[0]).startTime;
+    if ([[NSDate date] timeIntervalSinceDate: startDate] > 86400) {
+        DLog(@"It's a new day. Recalculating tides.");
         [self calculateTides];
+    } else {
+        DLog(@"Tides are fresh as of %@", [NSDateFormatter localizedStringFromDate:startDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterLongStyle]);
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:kSDApplicationActivatedNotification object:self];
 }
 
 - (void)calculateTides
 {
-    _startDate = [NSDate date];
     _mutableTides = [NSMutableArray new];
     for (SDFavoriteLocation* location in self.persistentState.favoriteLocations) {
         SDTide *todaysTide = [SDTideFactory todaysTidesForStationName:location.locationName];
@@ -138,11 +134,9 @@ NSString *kBackgroundKey = @"background_preference";
 
 - (void)defaultsChanged:(NSNotification *)notif
 {
-    NSLog(@"Reading preferences and recreating views and tide calculations");
+    DLog(@"Reading preferences and recreating views and tide calculations");
     [self setupByPreferences];
     [self calculateTides];
-//    [self.rootViewController createMainViews];
-//    [self.rootViewController doBackgroundTideCalculation];
 }
 
 -(NSDictionary*)readSettingsDictionary
@@ -207,8 +201,8 @@ NSString *kBackgroundKey = @"background_preference";
     self.showsCurrentsPref = [[NSUserDefaults standardUserDefaults] boolForKey:kCurrentsKey];
     self.backgroundPref = [[NSUserDefaults standardUserDefaults] stringForKey:kBackgroundKey];
     
-    NSLog(@"setting daysPref to %d", self.daysPref);
-    NSLog(@"Setting currentsPref to %@", self.showsCurrentsPref ? @"YES" : @"NO");
+    DLog(@"setting daysPref to %ld", (long)self.daysPref);
+    DLog(@"Setting currentsPref to %@", self.showsCurrentsPref ? @"YES" : @"NO");
 }
 
 #pragma mark -
@@ -274,7 +268,7 @@ NSString *kBackgroundKey = @"background_preference";
     if (![fm fileExistsAtPath:cachedTideDatastorePath]) {
         NSError *error;
         if (![fm copyItemAtPath:tideDatastorePath toPath:cachedTideDatastorePath error:&error]) {
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            DLog(@"Unresolved error %@, %@", error, [error userInfo]);
             exit(-1);
         };
     }
@@ -283,12 +277,12 @@ NSString *kBackgroundKey = @"background_preference";
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
     if (![persistentStoreCoordinator addPersistentStoreWithType: NSSQLiteStoreType configuration:@"TideDatastore" URL:[NSURL fileURLWithPath:cachedTideDatastorePath] options:nil error:&error]) {
         // Handle the error.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        DLog(@"Unresolved error %@, %@", error, [error userInfo]);
         exit(-1);  // Fail
     }
     if (![persistentStoreCoordinator addPersistentStoreWithType: NSSQLiteStoreType configuration:@"StateDatastore" URL:[NSURL fileURLWithPath:stateDataStorePath] options:nil error:&error]) {
         // Handle the error.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        DLog(@"Unresolved error %@, %@", error, [error userInfo]);
         exit(-1);  // Fail
     }
     
@@ -316,13 +310,13 @@ NSString *kBackgroundKey = @"background_preference";
             appState.favoriteLocations = [NSOrderedSet orderedSetWithObject:location];
             
             if (![context save:&error]) {
-                NSLog(@"Unable to save change to default location. %@", error);
+                DLog(@"Unable to save change to default location. %@", error);
                 return;
             }
             self.persistentState = appState;
         }
     } else {
-        NSLog(@"Unable to execute fetch for default location due to error: %@", error);
+        DLog(@"Unable to execute fetch for default location due to error: %@", error);
         return;
     }
 }
@@ -347,16 +341,16 @@ NSString *kBackgroundKey = @"background_preference";
             [locations addObject:location];
             appState.favoriteLocations = locations;
         } else {
-            NSLog(@"Location already present. Skipping.");
+            DLog(@"Location already present. Skipping.");
             return;
         }
         if (![context save:&error]) {
-            NSLog(@"Unable to save new favorite location. %@", error);
+            DLog(@"Unable to save new favorite location. %@", error);
             return;
         }
         [self calculateTides];
     } else {
-        NSLog(@"Unable to retrieve applications state. Fetch result = %@",fetchResults);
+        DLog(@"Unable to retrieve applications state. Fetch result = %@",fetchResults);
     }
 }
 
@@ -377,12 +371,12 @@ NSString *kBackgroundKey = @"background_preference";
             SDFavoriteLocation *location = locationsWithName[0];
             appState.selectedLocationIndex = @([appState.favoriteLocations indexOfObject:location]);
             if (![context save:&error]) {
-                NSLog(@"Unable to save change to selected location. %@",error);
+                DLog(@"Unable to save change to selected location. %@",error);
                 return;
             }
         }
     } else {
-        NSLog(@"Unable to retrieve applications state. Fetch result = %@",fetchResults);
+        DLog(@"Unable to retrieve applications state. Fetch result = %@",fetchResults);
     }
 }
 
@@ -408,13 +402,13 @@ NSString *kBackgroundKey = @"background_preference";
             [context deleteObject:location];
             appState.selectedLocationIndex = @([appState.favoriteLocations indexOfObject:currentSelection]);
             if (![context save:&error]) {
-                NSLog(@"Unable to save change to selected location. %@",error);
+                DLog(@"Unable to save change to selected location. %@",error);
                 return;
             }
         }
         [self calculateTides];
     } else {
-        NSLog(@"Unable to retrieve applications state. Fetch result = %@",fetchResults);
+        DLog(@"Unable to retrieve applications state. Fetch result = %@",fetchResults);
         return nil;
     }
 }
@@ -438,7 +432,7 @@ NSString *kBackgroundKey = @"background_preference";
     NSString *error;
     NSData *pData = [NSPropertyListSerialization dataFromPropertyList:plist format:NSPropertyListBinaryFormat_v1_0 errorDescription:&error];
     if (!pData) {
-        NSLog(@"%@", error);
+        DLog(@"%@", error);
         return NO;
     }
     return ([pData writeToFile:self.cachedLocationFilePath atomically:YES]);
@@ -452,12 +446,12 @@ NSString *kBackgroundKey = @"background_preference";
 	
     retData = [[NSData alloc] initWithContentsOfFile:self.cachedLocationFilePath];
     if (!retData) {
-        NSLog(@"Data file not returned.");
+        DLog(@"Data file not returned.");
         return nil;
     }
     retPlist = [NSPropertyListSerialization propertyListFromData:retData  mutabilityOption:NSPropertyListImmutable format:&format errorDescription:&error];
     if (!retPlist){
-        NSLog(@"Plist not returned, error: %@", error);
+        DLog(@"Plist not returned, error: %@", error);
     }
     
     return retPlist;

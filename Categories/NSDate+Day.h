@@ -34,10 +34,10 @@
 /*
  * The time in minutes since midnight.
  */
-- (int)timeInMinutesSinceMidnight;
+- (NSInteger)timeInMinutesSinceMidnight;
 
-+(int)findPreviousInterval:(int) minutesFromMidnight;
++(NSInteger)findPreviousInterval:(NSInteger) minutesFromMidnight;
 
-+(int)findNearestInterval:(int) minutesFromMidnight;
++(NSInteger)findNearestInterval:(NSInteger) minutesFromMidnight;
 
 @end

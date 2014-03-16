@@ -37,7 +37,7 @@
 {
 	static NSString *reuseLabel = @"PickerViewCell";
 	
-	int row = indexPath.row;
+	NSInteger row = indexPath.row;
 	
 	PickerTableCell *cell = (PickerTableCell*)[tableView dequeueReusableCellWithIdentifier:reuseLabel];
 	
@@ -51,7 +51,10 @@
     
     cell.nameLabel.text = state.name;
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	cell.flagView.image = [UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:state.flag ofType:@"png"]];
+    cell.flagView.image = [UIImage imageNamed:state.flag];
+    if (cell.flagView.image == nil) {
+        DLog(@"Oops, couldn't find image for %@",state.flag);
+    }
 	
 	return cell;
 }

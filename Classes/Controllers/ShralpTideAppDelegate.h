@@ -35,7 +35,7 @@
 @property (nonatomic, strong, readonly) NSArray *tides;
 @property (nonatomic, strong) NSString *location;
 @property (nonatomic, assign) int page;
-@property (nonatomic, assign) int locationPage;
+@property (nonatomic, assign) long locationPage;
 
 @property (nonatomic,strong) NSString *unitsPref;
 @property (nonatomic,assign) NSInteger daysPref;

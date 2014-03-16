@@ -12,6 +12,7 @@
 #import "TideStationTableViewCell.h"
 #import "SDTide.h"
 #import "StationMapController.h"
+#import "BackgroundScene.h"
 
 @interface FavoritesListViewController ()
 
@@ -19,6 +20,8 @@
 @property (nonatomic, strong) UIView *sectionHeaderView;
 @property (nonatomic, strong) UIView *sectionFooterView;
 @property (nonatomic, strong) NSMutableArray *favorites;
+
+@property (nonatomic, strong) BackgroundScene *backgroundScene;
 
 @end
 
@@ -33,10 +36,21 @@
     return self;
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
+-(BOOL)shouldAutorotate
+{
+    return NO;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background-gradient"]];
     self.sectionHeaderView = [[NSBundle mainBundle] loadNibNamed:@"FavoritesHeaderView" owner:self options:nil][0];
     self.tableView.tableFooterView = [[NSBundle mainBundle] loadNibNamed:@"FavoritesFooterVIew" owner:self options:nil][0];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:kSDApplicationActivatedNotification object:nil];
@@ -44,13 +58,14 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"Favorites list view will appear.");
+    DLog(@"Favorites list view will appear.");
+    
     self.favorites = [NSMutableArray arrayWithArray:appDelegate.tides];
 }
 
 - (void)refreshData
 {
-    NSLog(@"Refreshing favorites list");
+    DLog(@"Refreshing favorites list");
     [self.tableView reloadData];
 }
 
@@ -85,7 +100,7 @@
 {
 	static NSString *reuseLabel = @"CurrentTideCell";
 	
-	int row = indexPath.row;
+	long row = indexPath.row;
 	
 	TideStationTableViewCell *cell = (TideStationTableViewCell*)[tableView dequeueReusableCellWithIdentifier:reuseLabel];
 	
@@ -149,7 +164,7 @@
 
 - (void)reloadData
 {
-    NSLog(@"Favorites list reloading data...");
+    DLog(@"Favorites list reloading data...");
     self.favorites = [NSMutableArray arrayWithArray:appDelegate.tides];
     [self.tableView reloadData];
 }
@@ -198,7 +213,7 @@
 - (void)stationDetailViewController:(StationDetailViewController *)detailViewController
                       addTideStation:(NSString *)stationName
 {
-    NSLog(@"Adding tide station: %@",stationName);
+    DLog(@"Adding tide station: %@",stationName);
     [appDelegate addFavoriteLocation:stationName];
     [self reloadData];
     [self dismissViewControllerAnimated:YES completion:NULL];

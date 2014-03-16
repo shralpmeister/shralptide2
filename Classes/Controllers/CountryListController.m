@@ -33,7 +33,7 @@
 {
 	static NSString *reuseLabel = @"PickerViewCell";
 	
-	int row = indexPath.row;
+	NSInteger row = indexPath.row;
 	
 	PickerTableCell *cell = (PickerTableCell*)[tableView dequeueReusableCellWithIdentifier:reuseLabel];
 	
@@ -47,7 +47,7 @@
 	cell.nameLabel.text = country.name;
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-	cell.flagView.image = [UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:country.flag ofType: @"png"]];
+	cell.flagView.image = [UIImage imageNamed:country.flag];
 	
 	return cell;
 }

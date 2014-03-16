@@ -54,7 +54,7 @@ ConstituentSet::ConstituentSet (const SafeVector<Constituent> &constituents,
                                 PredictionValue datum,
                                 const SimpleOffsets &adjustments):
   _constituents(constituents),
-  length(constituents.size()),
+  length((unsigned)constituents.size()),
   _datum(datum),
   currentYear(2000),
   preferredLengthUnits(Units::meters) {

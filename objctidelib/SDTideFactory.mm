@@ -53,7 +53,7 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
     return [SDTideFactory tidesForStationName:name withInterval:900 forDays:appDelegate.daysPref];
 }
 
-+(NSArray*)tidesForStationName:(NSString*)name withInterval:(int)interval forDays:(int)days
++(NSArray*)tidesForStationName:(NSString*)name withInterval:(long)interval forDays:(long)days
 {
     NSMutableArray *tideCollection = [[NSMutableArray alloc] init];
     
@@ -74,10 +74,10 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
     return [SDTideFactory tideForStationName:name withInterval:900 fromDate:fromDate toDate:toDate];
 }
 
-+ (SDTide*)tideForStationName:(NSString*)name withInterval:(int)interval fromDate:(NSDate*)fromDate toDate:(NSDate*)toDate
++ (SDTide*)tideForStationName:(NSString*)name withInterval:(long)interval fromDate:(NSDate*)fromDate toDate:(NSDate*)toDate
 {
     @synchronized([SDTideFactory class]) {
-        srand (time (NULL));
+        srand ((unsigned)time (NULL));
         Global::initCodeset();
         Global::settings.applyUserDefaults();
         Global::settings.fixUpDeprecatedSettings();

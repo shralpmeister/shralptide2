@@ -421,7 +421,7 @@ Dstr::Dstr () {
 Dstr::Dstr (const char *val) {
   if (val) {
     require (theBuffer = strdup (val));
-    used = strlen (val);
+    used = (unsigned)strlen (val);
     max = used + 1;
   } else
     theBuffer = NULL;
@@ -449,7 +449,7 @@ Dstr::Dstr (int val) {
   char t[80];
   sprintf (t, "%d", val);
   require (theBuffer = strdup (t));
-  used = strlen (theBuffer);
+  used = (unsigned)strlen (theBuffer);
   max = used + 1;
 }
 
@@ -457,7 +457,7 @@ Dstr::Dstr (unsigned int val) {
   char t[80];
   sprintf (t, "%u", val);
   require (theBuffer = strdup (t));
-  used = strlen (theBuffer);
+  used = (unsigned)strlen (theBuffer);
   max = used + 1;
 }
 
@@ -465,7 +465,7 @@ Dstr::Dstr (long int val) {
   char t[80];
   sprintf (t, "%ld", val);
   require (theBuffer = strdup (t));
-  used = strlen (theBuffer);
+  used = (unsigned)strlen (theBuffer);
   max = used + 1;
 }
 
@@ -473,7 +473,7 @@ Dstr::Dstr (long unsigned int val) {
   char t[80];
   sprintf (t, "%lu", val);
   require (theBuffer = strdup (t));
-  used = strlen (theBuffer);
+  used = (unsigned)strlen (theBuffer);
   max = used + 1;
 }
 
@@ -481,7 +481,7 @@ Dstr::Dstr (long long int val) {
   char t[80];
   sprintf (t, "%lld", val);
   require (theBuffer = strdup (t));
-  used = strlen (theBuffer);
+  used = (unsigned)strlen (theBuffer);
   max = used + 1;
 }
 
@@ -489,7 +489,7 @@ Dstr::Dstr (long long unsigned int val) {
   char t[80];
   sprintf (t, "%llu", val);
   require (theBuffer = strdup (t));
-  used = strlen (theBuffer);
+  used = (unsigned)strlen (theBuffer);
   max = used + 1;
 }
 
@@ -497,7 +497,7 @@ Dstr::Dstr (double val) {
   char t[80];
   sprintf (t, "%f", val);
   require (theBuffer = strdup (t));
-  used = strlen (theBuffer);
+  used = (unsigned)strlen (theBuffer);
   max = used + 1;
 }
 

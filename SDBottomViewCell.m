@@ -68,8 +68,8 @@
     [self clearScrollView];
     
     _tidesForDays = tides;
-    int numPages = [_tidesForDays count];
-    NSLog(@"SDBottomViewCell creating %d days of tide events",numPages);
+    long numPages = [_tidesForDays count];
+    DLog(@"SDBottomViewCell creating %ld days of tide events",numPages);
     self.scrollView.contentSize = CGSizeMake(self.frame.size.width * numPages, self.frame.size.height);
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
     NSMutableArray *controllers = [[NSMutableArray alloc] init];
@@ -82,6 +82,11 @@
             pageController.tide = _tidesForDays[i];
         }
         pageController.view.frame = CGRectMake(xOrigin,0,self.frame.size.width,self.frame.size.height);
+        if ([UIScreen mainScreen].bounds.size.height == 568) {
+            pageController.bottomVerticalConstraint.constant = 70;
+        } else {
+            pageController.bottomVerticalConstraint.constant = 30;
+        }
         [self.scrollView addSubview:pageController.view];
         controllers[i] = pageController;
         xOrigin += self.frame.size.width;
@@ -90,6 +95,9 @@
     
     // Scroll to the last page index. Intended to ensure that the portrait view page is in sync with the landscape view page. It kind of messes up scrolling between locations though in that each location's visible day always matches the last location's.
     [self.scrollView scrollRectToVisible:CGRectMake(appDelegate.page * self.frame.size.width,0,self.frame.size.width,self.frame.size.height) animated:NO];
+    self.pageIndicator.frame = CGRectMake((self.frame.size.width - self.pageIndicator.frame.size.width) / 2, self.frame.size.height - self.pageIndicator.frame.size.height, self.pageIndicator.frame.size.width, self.pageIndicator.frame.size.height);
+    self.pageIndicator.numberOfPages = numPages;
+    self.pageIndicator.currentPage = appDelegate.page;
 }
 
 - (void)clearScrollView
@@ -105,6 +113,7 @@
     int page = scrollView.contentOffset.x / self.frame.size.width;
     if (scrollView.isDecelerating) {
         appDelegate.page = page;
+        self.pageIndicator.currentPage = page;
     }
 }
 

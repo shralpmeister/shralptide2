@@ -189,7 +189,7 @@ double MachTimeToSecs(uint64_t time);
 		[self.table [index][0] setText: [event eventTimeNativeFormat]];
 		[self.table [index][1] setText: [NSString stringWithFormat:@"%0.2f %@",[event eventHeight], [sdTide unitShort]]];
 		[self.table [index][2] setText: [event eventTypeDescription]];
-		NSLog(@"%@, %@, %@", [event eventTime], [NSString stringWithFormat:@"%0.2f %@",[event eventHeight], [sdTide unitShort]], [event eventTypeDescription]);
+		DLog(@"%@, %@, %@", [event eventTime], [NSString stringWithFormat:@"%0.2f %@",[event eventHeight], [sdTide unitShort]], [event eventTypeDescription]);
 		++index;
 	}
 }
@@ -277,9 +277,9 @@ double MachTimeToSecs(uint64_t time);
     uint64_t startTime = mach_absolute_time();
     NSArray *yearsWorth = [SDTideFactory tidesForStationName:self.sdTide.stationName withInterval:0 forDays:365];
     uint64_t endTime = mach_absolute_time();
-    NSLog(@"One years worth of events took %0.5f seconds",MachTimeToSecs(endTime - startTime));
+    DLog(@"One years worth of events took %0.5f seconds",MachTimeToSecs(endTime - startTime));
 //    for (SDTideEvent *event in yearsWorth.allEvents) {
-//        NSLog(@"Event: %@", event);
+//        DLog(@"Event: %@", event);
 //    }
 }
 

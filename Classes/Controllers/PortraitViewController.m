@@ -10,7 +10,6 @@
 
 #import "MainViewController.h"
 #import "CountryListController.h"
-#import "SDTideFactory.h"
 #import "ChartViewController.h"
 #import "ChartView.h"
 #import "StationMapController.h"
@@ -18,12 +17,17 @@
 #import "CountryListController.h"
 #import "FavoritesListViewController.h"
 
+#import "BackgroundScene.h"
+
+#import <SpriteKit/SpriteKit.h>
+
 
 @interface PortraitViewController ()
 
 @property (nonatomic, assign) BOOL pageControlUsed;
 @property (nonatomic,strong) SDHeaderViewController *headerViewController;
 @property (nonatomic, strong) SDLocationMainViewController *locationMainViewController;
+@property (nonatomic, strong) BackgroundScene *backgroundScene;
 
 @end
 
@@ -41,6 +45,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    SKView *view = (SKView*)self.view;
+    
+    _backgroundScene = [BackgroundScene sceneWithSize:view.frame.size];
+    _backgroundScene.name = @"Background Scene";
+    _backgroundScene.scaleMode = SKSceneScaleModeAspectFill;
+        
     self.automaticallyAdjustsScrollViewInsets = NO;
     for (UIViewController *controller in [self childViewControllers]) {
         if ([controller.restorationIdentifier isEqualToString:@"HeaderViewController"]) {
@@ -60,7 +71,7 @@
 
 - (void)refreshTideData
 {
-    NSLog(@"Portrait View Controller got recalc notification. Reloading data");
+    DLog(@"Portrait View Controller got recalc notification. Reloading data");
     [self.headerViewController.collectionView reloadData];
     [self.locationMainViewController.collectionView reloadData];
 }
@@ -74,6 +85,24 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    SKView *backgroundView = (SKView*)self.view;
+    if (backgroundView.isPaused) {
+        backgroundView.paused = NO;
+    } else {
+        [backgroundView presentScene:_backgroundScene];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    SKView *backgroundView = (SKView*)self.view;
+    backgroundView.paused = YES;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     [self refreshTideData];
 }
 
@@ -87,18 +116,18 @@
 {
     switch (toInterfaceOrientation) {
         case UIDeviceOrientationLandscapeLeft:
-            NSLog(@"Device rotated to Landscape Left");
+            DLog(@"Device rotated to Landscape Left");
             [self performSegueWithIdentifier:@"landscapeSegue" sender:self];
             break;
         case UIDeviceOrientationLandscapeRight:
-            NSLog(@"Device rotated to Landscape Right");
+            DLog(@"Device rotated to Landscape Right");
             [self performSegueWithIdentifier:@"landscapeSegue" sender:self];
             break;
         case UIDeviceOrientationPortrait:
-            NSLog(@"Device rotated to Portrait");
+            DLog(@"Device rotated to Portrait");
             break;
         case UIDeviceOrientationPortraitUpsideDown:
-            NSLog(@"Device rotated to Portrait upsidedown");
+            DLog(@"Device rotated to Portrait upsidedown");
             break;
     }
 }

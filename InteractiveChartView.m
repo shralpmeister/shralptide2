@@ -75,7 +75,7 @@
 
 #pragma mark HandleTouch
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    NSLog(@"Touches began on chartview!");
+//    DLog(@"Touches began on chartview!");
     // We only support single touches, so anyObject retrieves just that touch from touches
     UITouch *touch = [touches anyObject];
     
@@ -109,7 +109,7 @@
 
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-//    NSLog(@"Touches ended.");
+//    DLog(@"Touches ended.");
     self.userInteractionEnabled = NO;
     [self animateCursorViewToCurrentTime];
 
@@ -121,7 +121,7 @@
 
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-//    NSLog(@"Touches cancelled");
+//    DLog(@"Touches cancelled");
     /*
      To impose as little impact on the device as possible, simply set the cursor view's center and transformation to the original values.
      */

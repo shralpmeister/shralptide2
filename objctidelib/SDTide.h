@@ -34,9 +34,9 @@ typedef enum {
 
 - (id)initWithTideStation:(NSString *)station StartDate: (NSDate*)start EndDate:(NSDate*)end Events:(NSArray*)tideEvents andIntervals:(NSArray*)tideIntervals;
 - (NSString*)shortLocationName;
-- (float)findTideForTime:(int) time;
-- (SDTideStateRiseFall)tideDirectionForTime:(int) time;
-- (CGPoint)nearestDataPointForTime:(int) minutesFromMidnight;
+- (float)findTideForTime:(NSInteger) time;
+- (SDTideStateRiseFall)tideDirectionForTime:(NSInteger) time;
+- (CGPoint)nearestDataPointForTime:(NSInteger) minutesFromMidnight;
 - (CGPoint)nearestDataPointToCurrentTime;
 - (NSNumber*)nextEventIndex;
 - (NSArray*)events; // all tide events (only tide events)
@@ -50,8 +50,8 @@ typedef enum {
 - (NSArray*)sunAndMoonEvents;
 
 - (SDTideStateRiseFall)tideDirection;
-- (int)currentTimeInMinutes;
-- (NSArray*)intervalsFromDate:(NSDate*)fromDate forHours:(int)hours;
+- (NSInteger)currentTimeInMinutes;
+- (NSArray*)intervalsFromDate:(NSDate*)fromDate forHours:(NSInteger)hours;
 + (SDTide*)tideByCombiningTides:(NSArray*)tides;
 
 @property (nonatomic,strong) NSDate *startTime;

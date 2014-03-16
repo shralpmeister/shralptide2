@@ -66,7 +66,7 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    NSLog(@"SDLocationMainViewController displaying %d locations", [appDelegate.tides count]);
+    DLog(@"SDLocationMainViewController displaying %lu locations", (unsigned long)[appDelegate.tides count]);
     return [appDelegate.tides count];
 }
 
@@ -77,11 +77,14 @@
     
     SDBottomViewCell *bottomViewCell = (SDBottomViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:bottomCellId forIndexPath:indexPath];
     
+    CGRect bounds = bottomViewCell.bounds;
+    CGRect frame = bottomViewCell.frame;
     if ([UIScreen mainScreen].bounds.size.height != 568) {
-        CGRect bounds = bottomViewCell.bounds;
-        CGRect frame = bottomViewCell.frame;
-        bottomViewCell.bounds = CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.width, 250);
-        bottomViewCell.frame = CGRectMake(frame.origin.x, 200, frame.size.width, 250);
+        bottomViewCell.bounds = CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.width, 275);
+        bottomViewCell.frame = CGRectMake(frame.origin.x, 200, frame.size.width, 275);
+    } else {
+        bottomViewCell.bounds = CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.width, 360);
+        bottomViewCell.frame = CGRectMake(frame.origin.x, 200, frame.size.width, 360);
     }
     
     SDTide *tide = appDelegate.tides[indexPath.section];
