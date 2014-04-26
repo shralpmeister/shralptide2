@@ -33,14 +33,12 @@
 @property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic, strong, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, strong, readonly) NSArray *tides;
-@property (nonatomic, strong) NSString *location;
 @property (nonatomic, assign) int page;
 @property (nonatomic, assign) long locationPage;
 
 @property (nonatomic,strong) NSString *unitsPref;
 @property (nonatomic,assign) NSInteger daysPref;
 @property (nonatomic,assign) BOOL showsCurrentsPref;
-@property (nonatomic,strong) NSString *backgroundPref;
 
 - (void)setSelectedLocation:(NSString*)locationName;
 - (void)addFavoriteLocation:(NSString*)locationName;

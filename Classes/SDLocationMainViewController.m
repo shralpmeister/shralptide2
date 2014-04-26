@@ -107,7 +107,7 @@
     if (scrollView.isDecelerating) {
         // we know we're past halfway... take whatever action might be good here.
         appDelegate.locationPage = page;
-        appDelegate.location = [appDelegate.tides[page] valueForKey:@"stationName"];
+        appDelegate.selectedLocation = [appDelegate.tides[page] valueForKey:@"stationName"];
     }
     self.headerViewController.collectionView.contentOffset = CGPointMake(pushOffset, 0);
 }

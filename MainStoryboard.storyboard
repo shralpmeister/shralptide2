@@ -73,10 +73,10 @@
                                     <segue destination="l4U-5r-z2g" kind="embed" identifier="locationMainViewSegue" id="6dG-Ek-R9v"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEj-zO-Rhg">
-                                <rect key="frame" x="270" y="528" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEj-zO-Rhg">
+                                <rect key="frame" x="284" y="531" width="16" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="List">
+                                <state key="normal" image="UIButtonBarListIcon">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -90,7 +90,7 @@
                             <constraint firstItem="SSk-jE-u6u" firstAttribute="leading" secondItem="Mt1-oB-Adv" secondAttribute="leading" id="1Yd-wr-nVD"/>
                             <constraint firstItem="SSk-jE-u6u" firstAttribute="top" secondItem="maS-vZ-z6A" secondAttribute="top" id="KEg-sY-TbP"/>
                             <constraint firstItem="SSk-jE-u6u" firstAttribute="leading" secondItem="maS-vZ-z6A" secondAttribute="leading" id="MR3-vQ-2Xn"/>
-                            <constraint firstItem="1Iy-Wi-R3J" firstAttribute="top" secondItem="hEj-zO-Rhg" secondAttribute="bottom" constant="10" id="Mfb-ch-Agj"/>
+                            <constraint firstItem="1Iy-Wi-R3J" firstAttribute="top" secondItem="hEj-zO-Rhg" secondAttribute="bottom" constant="15" id="Mfb-ch-Agj"/>
                             <constraint firstAttribute="bottom" secondItem="maS-vZ-z6A" secondAttribute="bottom" id="Rwb-AS-2Er"/>
                             <constraint firstItem="maS-vZ-z6A" firstAttribute="trailing" secondItem="SSk-jE-u6u" secondAttribute="trailing" id="chV-cq-LJt"/>
                             <constraint firstItem="maS-vZ-z6A" firstAttribute="top" secondItem="Mt1-oB-Adv" secondAttribute="top" id="fBl-pu-KBN"/>
@@ -101,6 +101,7 @@
                     <navigationItem key="navigationItem" id="QTP-Ra-l8e"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
+                        <outlet property="listViewButton" destination="hEj-zO-Rhg" id="W9j-1f-lSE"/>
                         <segue destination="PVf-dN-3WU" kind="push" identifier="landscapeSegue" id="ACT-wc-Byc"/>
                     </connections>
                 </viewController>
@@ -429,7 +430,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0tR-Nr-Smz">
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0tR-Nr-Smz">
                                 <rect key="frame" x="0.0" y="0.0" width="568" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -447,7 +448,7 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JoX-iT-5ao" userLabel="Height View">
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JoX-iT-5ao" userLabel="Height View">
                                         <rect key="frame" x="134" y="56" width="300" height="44"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
@@ -619,6 +620,9 @@
             <point key="canvasLocation" x="376" y="-1523"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="UIButtonBarListIcon" width="16" height="16"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

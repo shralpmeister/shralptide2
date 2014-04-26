@@ -8,7 +8,6 @@
 
 #import "PortraitViewController.h"
 
-#import "MainViewController.h"
 #import "CountryListController.h"
 #import "ChartViewController.h"
 #import "ChartView.h"

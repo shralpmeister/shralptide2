@@ -24,7 +24,7 @@
 		DC06A2AC17DD87150095E217 /* SDState.m in Sources */ = {isa = PBXBuildFile; fileRef = DC06A2AB17DD87150095E217 /* SDState.m */; };
 		DC06A2AF17DD87150095E217 /* SDTideStation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC06A2AE17DD87150095E217 /* SDTideStation.m */; };
 		DC0C0DD6105C1D8F0080297E /* ChartScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0C0DD5105C1D8F0080297E /* ChartScrollView.m */; };
-		DC2F284A0E5A758800577E55 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC2F28490E5A758800577E55 /* MainViewController.m */; };
+		DC2563FF18D63588007C41E6 /* UIButtonBarListIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC2563FE18D63588007C41E6 /* UIButtonBarListIcon@2x.png */; };
 		DC32FFAB0E88B08A00AB78F2 /* ChartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC32FFAA0E88B08A00AB78F2 /* ChartView.xib */; };
 		DC32FFB40E88B3FD00AB78F2 /* ChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC32FFB30E88B3FD00AB78F2 /* ChartView.m */; };
 		DC32FFB70E88B40F00AB78F2 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC32FFB60E88B40F00AB78F2 /* ChartViewController.m */; };
@@ -132,7 +132,6 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		280E754B0DD40C5E005A515E /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainView.xib; path = Resources/MainView.xib; sourceTree = "<group>"; };
 		280E754C0DD40C5E005A515E /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
-		289233A80DB2D0DB0083E9F9 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Classes/Controllers/MainViewController.h; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* ShralpTide2_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShralpTide2_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -157,9 +156,10 @@
 		DC06A2AE17DD87150095E217 /* SDTideStation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTideStation.m; sourceTree = "<group>"; };
 		DC0C0DD5105C1D8F0080297E /* ChartScrollView.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; name = ChartScrollView.m; path = Classes/Views/ChartScrollView.m; sourceTree = "<group>"; };
 		DC12E841184BCA3D00B7AD86 /* SDTideCalculationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTideCalculationDelegate.h; sourceTree = "<group>"; };
+		DC2563FE18D63588007C41E6 /* UIButtonBarListIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIButtonBarListIcon@2x.png"; sourceTree = "<group>"; };
+		DC25640418F1DFF7007C41E6 /* shralptide 2.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "shralptide 2.1.xcdatamodel"; sourceTree = "<group>"; };
 		DC25A1FA0EEA575D0038078B /* ChartViewDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChartViewDatasource.h; path = Classes/Controllers/ChartViewDatasource.h; sourceTree = "<group>"; };
 		DC29826F102A784B009259BA /* ChartScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChartScrollView.h; path = Classes/Views/ChartScrollView.h; sourceTree = "<group>"; };
-		DC2F28490E5A758800577E55 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Classes/Controllers/MainViewController.m; sourceTree = "<group>"; };
 		DC32FFAA0E88B08A00AB78F2 /* ChartView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChartView.xib; path = Resources/ChartView.xib; sourceTree = "<group>"; };
 		DC32FFB20E88B3FD00AB78F2 /* ChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChartView.h; path = Classes/Views/ChartView.h; sourceTree = "<group>"; };
 		DC32FFB30E88B3FD00AB78F2 /* ChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChartView.m; path = Classes/Views/ChartView.m; sourceTree = "<group>"; };
@@ -409,8 +409,6 @@
 				DC39945317E63B8200BC61D8 /* SDHeaderViewController.m */,
 				DC3630B5179B27870027EB21 /* PortraitViewController.h */,
 				DC3630B6179B27870027EB21 /* PortraitViewController.m */,
-				289233A80DB2D0DB0083E9F9 /* MainViewController.h */,
-				DC2F28490E5A758800577E55 /* MainViewController.m */,
 				DCCA6F481065440F00322BC6 /* CurrentTideView.h */,
 				DCCA6F491065440F00322BC6 /* CurrentTideView.m */,
 				DCCA701B10672D9E00322BC6 /* TideRowView.h */,
@@ -465,6 +463,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DC2563FE18D63588007C41E6 /* UIButtonBarListIcon@2x.png */,
 				DC8A827D189DB42F00792149 /* lightray@2x.png */,
 				DCA9D301188328340037DBAB /* background-gradient@2x.png */,
 				DCA9D2FD18820ABB0037DBAB /* datastore.sqlite */,
@@ -753,6 +752,7 @@
 				DC907A92186F7674007AF5E4 /* spark.png in Resources */,
 				280E754F0DD40C5E005A515E /* MainWindow.xib in Resources */,
 				DC32FFAB0E88B08A00AB78F2 /* ChartView.xib in Resources */,
+				DC2563FF18D63588007C41E6 /* UIButtonBarListIcon@2x.png in Resources */,
 				DC493E5D0F206C8B0087B341 /* COPYING in Resources */,
 				DCA3BF6A133E4F8F00EA966A /* xml_y.yy in Resources */,
 				DC8A827E189DB42F00792149 /* lightray@2x.png in Resources */,
@@ -802,7 +802,6 @@
 				DC06A2AC17DD87150095E217 /* SDState.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* ShralpTideAppDelegate.m in Sources */,
-				DC2F284A0E5A758800577E55 /* MainViewController.m in Sources */,
 				DC32FFB40E88B3FD00AB78F2 /* ChartView.m in Sources */,
 				DC32FFB70E88B40F00AB78F2 /* ChartViewController.m in Sources */,
 				DC06A2A617DD87150095E217 /* SDApplicationState.m in Sources */,
@@ -1055,10 +1054,11 @@
 		DC06A26217DC44F60095E217 /* shralptide.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				DC25640418F1DFF7007C41E6 /* shralptide 2.1.xcdatamodel */,
 				DC06A26317DC44F60095E217 /* shralptide.xcdatamodel */,
 				DC06A26417DC44F60095E217 /* shralptide2.xcdatamodel */,
 			);
-			currentVersion = DC06A26417DC44F60095E217 /* shralptide2.xcdatamodel */;
+			currentVersion = DC25640418F1DFF7007C41E6 /* shralptide 2.1.xcdatamodel */;
 			path = shralptide.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

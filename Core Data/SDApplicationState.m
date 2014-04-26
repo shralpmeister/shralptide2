@@ -2,7 +2,7 @@
 //  SDApplicationState.m
 //  ShralpTide2
 //
-//  Created by Michael Parlee on 9/8/13.
+//  Created by Michael Parlee on 3/30/14.
 //
 //
 
@@ -12,7 +12,7 @@
 
 @implementation SDApplicationState
 
-@dynamic selectedLocationIndex;
 @dynamic favoriteLocations;
+@dynamic selectedLocation;
 
 @end

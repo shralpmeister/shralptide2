@@ -2,7 +2,7 @@
 //  SDApplicationState.h
 //  ShralpTide2
 //
-//  Created by Michael Parlee on 9/8/13.
+//  Created by Michael Parlee on 3/30/14.
 //
 //
 
@@ -13,8 +13,8 @@
 
 @interface SDApplicationState : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * selectedLocationIndex;
 @property (nonatomic, retain) NSOrderedSet *favoriteLocations;
+@property (nonatomic, retain) SDFavoriteLocation *selectedLocation;
 @end
 
 @interface SDApplicationState (CoreDataGeneratedAccessors)

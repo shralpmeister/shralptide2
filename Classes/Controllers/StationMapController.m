@@ -111,9 +111,9 @@ BOOL zoomedToLocal;
 	DLog(@"%lu results returned",(unsigned long)[results count]);
     
 	if (results == nil) {
-		DLog(@"Error fetching stations! %@, %@",error, [error userInfo]);
+		NSLog(@"Error fetching stations! %@, %@",error, [error userInfo]);
     } else if ([results count] > 100) {
-        DLog(@"That's too many results... won't plot until lower zoom level.");
+        NSLog(@"That's too many results... won't plot until lower zoom level.");
 	} else {
 		for (SDTideStation *result in results) {
             DLog(@"Fetched %@",result.name);

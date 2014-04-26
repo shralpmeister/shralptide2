@@ -84,6 +84,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     appDelegate.locationPage = indexPath.row;
+    appDelegate.selectedLocation = ((SDTide*)self.favorites[indexPath.row]).stationName;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

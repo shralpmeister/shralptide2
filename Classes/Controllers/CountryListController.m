@@ -86,8 +86,7 @@
                                                       return result;
                                                   }] 
                                     sortedArrayUsingDescriptors:@[sortByName]];
-            //stationController.stations = orderedStations;
-            [stationController setStations: orderedStations];
+            stationController.stations = orderedStations;
             
             [self.navigationController pushViewController:stationController animated:YES];
         } else {

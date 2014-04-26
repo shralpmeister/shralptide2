@@ -30,7 +30,6 @@
 NSString *kUnitsKey = @"units_preference";
 NSString *kDaysKey = @"days_preference";
 NSString *kCurrentsKey = @"currents_preference";
-NSString *kBackgroundKey = @"background_preference";
 
 @interface ShralpTideAppDelegate ()
 - (void)setupByPreferences;
@@ -86,6 +85,7 @@ NSString *kBackgroundKey = @"background_preference";
     } else {
         // set a reference to the one we already have
         self.persistentState = results[0];
+        self.locationPage = [self.persistentState.favoriteLocations indexOfObject:self.persistentState.selectedLocation];
     }
     [self calculateTides];
 }
@@ -180,16 +180,12 @@ NSString *kBackgroundKey = @"background_preference";
             {
                 currentsDefault = defaultValue;
             }
-            else if ([keyValueStr isEqualToString:kBackgroundKey]) {
-                backgroundDefault = defaultValue;
-            }
         }
         
         // since no default values have been set (i.e. no preferences file created), create it here     
         NSDictionary *appDefaults = @{kUnitsKey: unitsDefault,
                                      kDaysKey: daysDefault,
-                                     kCurrentsKey: currentsDefault,
-                                     kBackgroundKey: backgroundDefault};
+                                     kCurrentsKey: currentsDefault};
         
         [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
         [[NSUserDefaults standardUserDefaults] synchronize];
@@ -199,7 +195,6 @@ NSString *kBackgroundKey = @"background_preference";
     self.unitsPref = [[NSUserDefaults standardUserDefaults] stringForKey:kUnitsKey];
     self.daysPref = [[NSUserDefaults standardUserDefaults] integerForKey:kDaysKey];
     self.showsCurrentsPref = [[NSUserDefaults standardUserDefaults] boolForKey:kCurrentsKey];
-    self.backgroundPref = [[NSUserDefaults standardUserDefaults] stringForKey:kBackgroundKey];
     
     DLog(@"setting daysPref to %ld", (long)self.daysPref);
     DLog(@"Setting currentsPref to %@", self.showsCurrentsPref ? @"YES" : @"NO");
@@ -268,21 +263,24 @@ NSString *kBackgroundKey = @"background_preference";
     if (![fm fileExistsAtPath:cachedTideDatastorePath]) {
         NSError *error;
         if (![fm copyItemAtPath:tideDatastorePath toPath:cachedTideDatastorePath error:&error]) {
-            DLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             exit(-1);
         };
     }
     
     NSError *error;
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
-    if (![persistentStoreCoordinator addPersistentStoreWithType: NSSQLiteStoreType configuration:@"TideDatastore" URL:[NSURL fileURLWithPath:cachedTideDatastorePath] options:nil error:&error]) {
+    if (![persistentStoreCoordinator addPersistentStoreWithType: NSSQLiteStoreType configuration:@"TideDatastore" URL:[NSURL fileURLWithPath:cachedTideDatastorePath] options:options error:&error]) {
         // Handle the error.
-        DLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         exit(-1);  // Fail
     }
-    if (![persistentStoreCoordinator addPersistentStoreWithType: NSSQLiteStoreType configuration:@"StateDatastore" URL:[NSURL fileURLWithPath:stateDataStorePath] options:nil error:&error]) {
+    if (![persistentStoreCoordinator addPersistentStoreWithType: NSSQLiteStoreType configuration:@"StateDatastore" URL:[NSURL fileURLWithPath:stateDataStorePath] options:options error:&error]) {
         // Handle the error.
-        DLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         exit(-1);  // Fail
     }
     
@@ -304,19 +302,20 @@ NSString *kBackgroundKey = @"background_preference";
         SDApplicationState *appState = nil;
         if ([fetchResults count] == 0) {
             appState = [NSEntityDescription insertNewObjectForEntityForName:entityDesc.name inManagedObjectContext:context];
-            appState.selectedLocationIndex = @0;
             SDFavoriteLocation *location = [NSEntityDescription insertNewObjectForEntityForName:@"SDFavoriteLocation" inManagedObjectContext:context];
             location.locationName = defaultLocation;
             appState.favoriteLocations = [NSOrderedSet orderedSetWithObject:location];
             
+            appState.selectedLocation = location;
+            
             if (![context save:&error]) {
-                DLog(@"Unable to save change to default location. %@", error);
+                NSLog(@"Unable to save change to default location. %@", error);
                 return;
             }
             self.persistentState = appState;
         }
     } else {
-        DLog(@"Unable to execute fetch for default location due to error: %@", error);
+        NSLog(@"Unable to execute fetch for default location due to error: %@", error);
         return;
     }
 }
@@ -341,16 +340,16 @@ NSString *kBackgroundKey = @"background_preference";
             [locations addObject:location];
             appState.favoriteLocations = locations;
         } else {
-            DLog(@"Location already present. Skipping.");
+            NSLog(@"Location already present. Skipping.");
             return;
         }
         if (![context save:&error]) {
-            DLog(@"Unable to save new favorite location. %@", error);
+            NSLog(@"Unable to save new favorite location. %@", error);
             return;
         }
         [self calculateTides];
     } else {
-        DLog(@"Unable to retrieve applications state. Fetch result = %@",fetchResults);
+        NSLog(@"Unable to retrieve applications state. Fetch result = %@",fetchResults);
     }
 }
 
@@ -369,14 +368,14 @@ NSString *kBackgroundKey = @"background_preference";
         NSOrderedSet* locationsWithName = [appState.favoriteLocations filteredOrderedSetUsingPredicate:namePredicate];
         if ([locationsWithName count] == 1) {
             SDFavoriteLocation *location = locationsWithName[0];
-            appState.selectedLocationIndex = @([appState.favoriteLocations indexOfObject:location]);
+            appState.selectedLocation = location;
             if (![context save:&error]) {
-                DLog(@"Unable to save change to selected location. %@",error);
+                NSLog(@"Unable to save change to selected location. %@",error);
                 return;
             }
         }
     } else {
-        DLog(@"Unable to retrieve applications state. Fetch result = %@",fetchResults);
+        NSLog(@"Unable to retrieve applications state. Fetch result = %@",fetchResults);
     }
 }
 
@@ -395,66 +394,24 @@ NSString *kBackgroundKey = @"background_preference";
         NSOrderedSet* locationsWithName = [appState.favoriteLocations filteredOrderedSetUsingPredicate:namePredicate];
         if ([locationsWithName count] == 1) {
             SDFavoriteLocation *location = locationsWithName[0];
-            SDFavoriteLocation *currentSelection = [appState.favoriteLocations objectAtIndex:[appState.selectedLocationIndex intValue]];
+            SDFavoriteLocation *currentSelection = appState.selectedLocation;
             if ([location isEqual:currentSelection]) {
-                appState.selectedLocationIndex = 0;
+                if ([appState.favoriteLocations count] == 1) {
+                    [self setDefaultLocation];
+                }
             }
             [context deleteObject:location];
-            appState.selectedLocationIndex = @([appState.favoriteLocations indexOfObject:currentSelection]);
+            appState.selectedLocation = appState.favoriteLocations[0];
             if (![context save:&error]) {
-                DLog(@"Unable to save change to selected location. %@",error);
+                NSLog(@"Unable to save change to selected location. %@",error);
                 return;
             }
         }
         [self calculateTides];
     } else {
-        DLog(@"Unable to retrieve applications state. Fetch result = %@",fetchResults);
+        NSLog(@"Unable to retrieve applications state. Fetch result = %@",fetchResults);
         return nil;
     }
-}
-
-#pragma mark -
-#pragma mark Application's documents directory
-
-/**
- Returns the path to the application's documents directory.
- */
-- (NSString *)applicationDocumentsDirectory {
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *basePath = ([paths count] > 0) ? paths[0] : nil;
-    return basePath;
-}
-
-#pragma mark savestate
-
-- (BOOL)writeApplicationPlist:(id)plist toFile:(NSString *)fileName {
-    NSString *error;
-    NSData *pData = [NSPropertyListSerialization dataFromPropertyList:plist format:NSPropertyListBinaryFormat_v1_0 errorDescription:&error];
-    if (!pData) {
-        DLog(@"%@", error);
-        return NO;
-    }
-    return ([pData writeToFile:self.cachedLocationFilePath atomically:YES]);
-}
-
-- (id)applicationPlistFromFile:(NSString *)fileName {
-    NSData *retData;
-    NSString *error;
-    id retPlist;
-    NSPropertyListFormat format;
-	
-    retData = [[NSData alloc] initWithContentsOfFile:self.cachedLocationFilePath];
-    if (!retData) {
-        DLog(@"Data file not returned.");
-        return nil;
-    }
-    retPlist = [NSPropertyListSerialization propertyListFromData:retData  mutabilityOption:NSPropertyListImmutable format:&format errorDescription:&error];
-    if (!retPlist){
-        DLog(@"Plist not returned, error: %@", error);
-    }
-    
-    return retPlist;
 }
 
 @end

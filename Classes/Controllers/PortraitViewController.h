@@ -17,4 +17,6 @@
  */
 @interface PortraitViewController : UIViewController
 
+@property (nonatomic, weak) IBOutlet UIButton* listViewButton;
+
 @end
