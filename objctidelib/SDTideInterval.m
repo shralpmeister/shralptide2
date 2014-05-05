@@ -25,4 +25,9 @@
 
 @implementation SDTideInterval
 
+-(NSString*)description
+{
+    return [NSString stringWithFormat:@"time=%@, height=%0.2f, units=%@",[self.time descriptionWithLocale:[NSLocale currentLocale]],self.height,self.units];
+}
+
 @end

@@ -180,8 +180,10 @@
 
 - (NSArray*)intervalsFromDate:(NSDate*)fromDate forHours:(NSInteger)hours
 {
-    NSDate *toDate = [fromDate dateByAddingTimeInterval:hours * 60 * 60];
-    NSPredicate *timeRange = [NSPredicate predicateWithFormat:@"time BETWEEN %@",@[ fromDate, toDate]];
+    NSInteger nearestFromInterval = [NSDate findNearestInterval:[fromDate timeInMinutesSinceMidnight]];
+    NSDate *fromIntervalDate = [[fromDate startOfDay] dateByAddingTimeInterval:nearestFromInterval * 60];
+    NSDate *toDate = [fromIntervalDate dateByAddingTimeInterval:hours * 60 * 60];
+    NSPredicate *timeRange = [NSPredicate predicateWithFormat:@"time BETWEEN %@",@[ fromIntervalDate, toDate]];
     return [self.intervals filteredArrayUsingPredicate:timeRange];
 }
 

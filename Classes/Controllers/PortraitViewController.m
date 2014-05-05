@@ -16,6 +16,8 @@
 #import "CountryListController.h"
 #import "FavoritesListViewController.h"
 
+#import "UIImage+Mask.h"
+
 #import "BackgroundScene.h"
 
 #import <SpriteKit/SpriteKit.h>
@@ -84,6 +86,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    _listViewButton.imageView.image = [_listViewButton.imageView.image maskImageWithColor: [UIColor colorWithWhite:0.8 alpha:1]];
     
     SKView *backgroundView = (SKView*)self.view;
     if (backgroundView.isPaused) {

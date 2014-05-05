@@ -12,7 +12,7 @@
 
 - (UIImage*)maskImageWithColor:(UIColor*)color
 {
-    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0);
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     

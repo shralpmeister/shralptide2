@@ -42,7 +42,7 @@
     formatter.dateStyle = NSDateFormatterFullStyle;
     self.dateLabel.text = [formatter stringFromDate:[self.tide startTime]];
     
-    //DLog(@"Scroll view frame width = %f", _chartScrollView.frame.size.width);
+    DLog(@"Scroll view frame width = %f", _chartScrollView.frame.size.width);
     _chartView.height = 40;
     _chartView.datasource = self;
     if ([_tide.startTime timeIntervalSince1970] > [[NSDate date] timeIntervalSince1970]) {
@@ -53,7 +53,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(redrawChart) name:kSDApplicationActivatedNotification object:nil];
     }
     
-    //DLog(@"Setting content width to %f",_chartView.frame.size.width);
+    DLog(@"Setting content width to %f",_chartView.frame.size.width);
     _chartScrollView.contentSize = _chartView.frame.size;
     [_chartScrollView addSubview:_chartView];
 }
