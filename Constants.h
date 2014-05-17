@@ -9,3 +9,5 @@
 #import <Foundation/Foundation.h>
 
 FOUNDATION_EXPORT NSString *const kSDApplicationActivatedNotification;
+
+FOUNDATION_EXPORT NSInteger const kSDSecondsPerMinute;

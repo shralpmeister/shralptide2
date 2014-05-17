@@ -29,6 +29,7 @@
 		DC32FFB40E88B3FD00AB78F2 /* ChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC32FFB30E88B3FD00AB78F2 /* ChartView.m */; };
 		DC32FFB70E88B40F00AB78F2 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC32FFB60E88B40F00AB78F2 /* ChartViewController.m */; };
 		DC3630B7179B27870027EB21 /* PortraitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3630B6179B27870027EB21 /* PortraitViewController.m */; };
+		DC3911B81918751000D28F8D /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC3911B71918751000D28F8D /* iAd.framework */; };
 		DC39945417E63B8200BC61D8 /* SDHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC39945317E63B8200BC61D8 /* SDHeaderViewController.m */; };
 		DC39945717E63B9800BC61D8 /* SDLocationMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC39945617E63B9800BC61D8 /* SDLocationMainViewController.m */; };
 		DC39946117E6C7E900BC61D8 /* SDHeaderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC39946017E6C7E900BC61D8 /* SDHeaderViewCell.m */; };
@@ -167,6 +168,7 @@
 		DC32FFB60E88B40F00AB78F2 /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChartViewController.m; path = Classes/Controllers/ChartViewController.m; sourceTree = "<group>"; };
 		DC3630B5179B27870027EB21 /* PortraitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PortraitViewController.h; path = Classes/Controllers/PortraitViewController.h; sourceTree = "<group>"; };
 		DC3630B6179B27870027EB21 /* PortraitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PortraitViewController.m; path = Classes/Controllers/PortraitViewController.m; sourceTree = "<group>"; };
+		DC3911B71918751000D28F8D /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		DC39945217E63B8200BC61D8 /* SDHeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDHeaderViewController.h; path = Classes/SDHeaderViewController.h; sourceTree = "<group>"; };
 		DC39945317E63B8200BC61D8 /* SDHeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDHeaderViewController.m; path = Classes/SDHeaderViewController.m; sourceTree = "<group>"; };
 		DC39945517E63B9800BC61D8 /* SDLocationMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDLocationMainViewController.h; path = Classes/SDLocationMainViewController.h; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC3911B81918751000D28F8D /* iAd.framework in Frameworks */,
 				DCB51F8E1867A82A00BF9082 /* SpriteKit.framework in Frameworks */,
 				DC65266B1350DDBE00B67AE7 /* CoreLocation.framework in Frameworks */,
 				DC6526691350DD4700B67AE7 /* MapKit.framework in Frameworks */,
@@ -496,6 +499,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DC3911B71918751000D28F8D /* iAd.framework */,
 				DCB51F8D1867A82A00BF9082 /* SpriteKit.framework */,
 				DC65266A1350DDBD00B67AE7 /* CoreLocation.framework */,
 				DC6526681350DD4600B67AE7 /* MapKit.framework */,
@@ -719,6 +723,11 @@
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = H29T9V7X78;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

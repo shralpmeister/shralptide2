@@ -10,3 +10,6 @@
 
 /* Notifcation Types */
 NSString *const kSDApplicationActivatedNotification = @"ApplicationActivated";
+
+/* Times */
+NSInteger const kSDSecondsPerMinute = 60;

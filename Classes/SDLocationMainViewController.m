@@ -81,10 +81,10 @@
     CGRect frame = bottomViewCell.frame;
     if ([UIScreen mainScreen].bounds.size.height != 568) {
         bottomViewCell.bounds = CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.width, 275);
-        bottomViewCell.frame = CGRectMake(frame.origin.x, 200, frame.size.width, 275);
+        bottomViewCell.frame = CGRectMake(frame.origin.x, 160, frame.size.width, 275);
     } else {
-        bottomViewCell.bounds = CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.width, 360);
-        bottomViewCell.frame = CGRectMake(frame.origin.x, 200, frame.size.width, 360);
+        bottomViewCell.bounds = CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.width, 330);
+        bottomViewCell.frame = CGRectMake(frame.origin.x, 190, frame.size.width, 330);
     }
     
     SDTide *tide = appDelegate.tides[indexPath.section];

@@ -56,6 +56,9 @@ NSString *kCurrentsKey = @"currents_preference";
     
     [self setupByPreferences];
     
+    // Enables background fetch to update UI at periodic intervals when backgrounded.
+    [application setMinimumBackgroundFetchInterval:15*kSDSecondsPerMinute];
+    
     // listen for changes to our preferences
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(defaultsChanged:)
@@ -127,6 +130,14 @@ NSString *kCurrentsKey = @"currents_preference";
 - (NSArray*)tides
 {
     return [NSArray arrayWithArray:_mutableTides];
+}
+
+#pragma mark -
+#pragma mark Handle Background Fetch
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    [self recalculateTidesForNewDay];
+    completionHandler(UIBackgroundFetchResultNewData);
 }
 
 #pragma mark -

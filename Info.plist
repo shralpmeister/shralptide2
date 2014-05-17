@@ -25,11 +25,15 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>037B</string>
+	<string>03D4</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationIsOpaque</key>
 	<false/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard</string>
 	<key>UISupportedInterfaceOrientations</key>

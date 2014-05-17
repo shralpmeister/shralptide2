@@ -26,9 +26,10 @@
 @interface PortraitViewController ()
 
 @property (nonatomic, assign) BOOL pageControlUsed;
-@property (nonatomic,strong) SDHeaderViewController *headerViewController;
+@property (nonatomic, strong) SDHeaderViewController *headerViewController;
 @property (nonatomic, strong) SDLocationMainViewController *locationMainViewController;
 @property (nonatomic, strong) BackgroundScene *backgroundScene;
+@property (nonatomic, assign) BOOL bannerIsVisible;
 
 @end
 
@@ -46,6 +47,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.bannerIsVisible = NO;
     
     SKView *view = (SKView*)self.view;
     
@@ -159,6 +162,34 @@
     } else if ([segue.identifier isEqualToString:@"FavoritesListSegue"]) {
         FavoritesListViewController *favoritesController = (FavoritesListViewController*)segue.destinationViewController;
         favoritesController.portraitViewController = self;
+    }
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    if (!self.bannerIsVisible)
+    {
+        // Assumes the banner view is just off the bottom of the screen.
+        self.bannerAdTop.constant += banner.frame.size.height;
+        self.listButtonBottom.constant -= 10;
+        [UIView animateWithDuration:0.5 animations:^{
+            [self.view layoutIfNeeded];
+        }];
+        self.bannerIsVisible = YES;
+    }
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    if (self.bannerIsVisible)
+    {
+        // Assumes the banner view is placed at the bottom of the screen.
+        self.bannerAdTop.constant -= banner.frame.size.height;
+        self.listButtonBottom.constant += 10;
+        [UIView animateWithDuration:0.5 animations:^{
+            [self.view layoutIfNeeded];
+        }];
+        self.bannerIsVisible = NO;
     }
 }
 
