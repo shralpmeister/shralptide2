@@ -8,8 +8,6 @@
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFile</key>
-	<string>HomescreenIcon</string>
 	<key>CFBundleIcons~ipad</key>
 	<dict/>
 	<key>CFBundleIdentifier</key>
@@ -21,15 +19,13 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.1.0</string>
+	<string>2.5.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>03DC</string>
+	<string>1.1.1009</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>UIApplicationIsOpaque</key>
-	<false/>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

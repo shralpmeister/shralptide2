@@ -76,7 +76,7 @@
 {
 	static NSString *reuseLabel = @"StationListViewCell";
 	
-	int row = indexPath.row;
+	NSInteger row = indexPath.row;
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseLabel];
 	
@@ -131,7 +131,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DLog(@"Selected row %d",indexPath.row);
+    DLog(@"Selected row %ld",(long)indexPath.row);
 
     if ([self.sections count] > 0) {
         [self chooseStation:self.sections[self.sectionKeys[indexPath.section]][indexPath.row]];

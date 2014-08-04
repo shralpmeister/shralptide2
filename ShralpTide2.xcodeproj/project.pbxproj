@@ -799,7 +799,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "BUILDVERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nMKTVERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$INFOPLIST_FILE\")\nBUILDVERSION=$((0x$BUILDVERSION))\nBUILDVERSION=$(($BUILDVERSION + 1))\nBUILDVERSION=$(printf \"%04X\" $BUILDVERSION)\nif [ \"$CONFIGURATION\" = \"Debug\" ] ; then\n    MKTVERSION=\"${MKTVERSION}-SNAPSHOT\"\n    echo \"Updating $CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist with version and build number for 'Debug' build.\"\nelse\n    echo \"Updating $CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist with version and build number for 'Release' build\"\nfi\necho \"$MKTVERSION ($BUILDVERSION)\"\n\nSETTINGSBUNDLEPATH=\"$CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist\"\n\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:Title 'Version $MKTVERSION ($BUILDVERSION)'\" \"$SETTINGSBUNDLEPATH\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $BUILDVERSION\" \"$INFOPLIST_FILE\"\n";
+			shellScript = "BUILDVERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nMKTVERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$INFOPLIST_FILE\")\nBUILDVERSION=${BUILDVERSION##*.}\nBUILDVERSION=$(($BUILDVERSION + 1))\nBUILDVERSION=$(printf \"1.1.%u\" $BUILDVERSION)\nif [ \"$CONFIGURATION\" = \"Debug\" ] ; then\n    MKTVERSION=\"${MKTVERSION}-SNAPSHOT\"\n    echo \"Updating $CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist with version and build number for 'Debug' build.\"\nelse\n    echo \"Updating $CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist with version and build number for 'Release' build\"\nfi\necho \"$MKTVERSION ($BUILDVERSION)\"\n\nSETTINGSBUNDLEPATH=\"$CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist\"\n\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:Title 'Version $MKTVERSION ($BUILDVERSION)'\" \"$SETTINGSBUNDLEPATH\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $BUILDVERSION\" \"$INFOPLIST_FILE\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -951,7 +951,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -973,8 +973,8 @@
 				);
 				OTHER_LDFLAGS = "-fobjc-arc";
 				PRODUCT_NAME = ShralpTide2;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "21F776D9-2C3F-49D7-9F7F-9830D714A162";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21F776D9-2C3F-49D7-9F7F-9830D714A162";
 				SDKROOT = iphoneos;
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1030,8 +1030,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "21F776D9-2C3F-49D7-9F7F-9830D714A162";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21F776D9-2C3F-49D7-9F7F-9830D714A162";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
