@@ -53,7 +53,6 @@ NSString *kCurrentsKey = @"currents_preference";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary*)options {
     DLog(@"applicationDidFinishLaunchingWithOptions");
-    
     [self setupByPreferences];
     
     // Enables background fetch to update UI at periodic intervals when backgrounded.
@@ -89,6 +88,7 @@ NSString *kCurrentsKey = @"currents_preference";
         // set a reference to the one we already have
         self.persistentState = results[0];
         self.locationPage = [self.persistentState.favoriteLocations indexOfObject:self.persistentState.selectedLocation];
+        DLog(@"Selected location = %@, page = %ld", self.persistentState.selectedLocation.locationName, self.locationPage);
     }
     [self calculateTides];
 }

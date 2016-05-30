@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,8 +11,6 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		280E754E0DD40C5E005A515E /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 280E754B0DD40C5E005A515E /* MainView.xib */; };
-		280E754F0DD40C5E005A515E /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 280E754C0DD40C5E005A515E /* MainWindow.xib */; };
 		DC016068133EB6990065CBAA /* SDTide.m in Sources */ = {isa = PBXBuildFile; fileRef = DC016067133EB6990065CBAA /* SDTide.m */; };
 		DC01606A133EB8950065CBAA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC016069133EB8950065CBAA /* CoreData.framework */; };
 		DC06A25B17DBC6870095E217 /* FavoritesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC06A25A17DBC6870095E217 /* FavoritesListViewController.m */; };
@@ -24,8 +22,8 @@
 		DC06A2AC17DD87150095E217 /* SDState.m in Sources */ = {isa = PBXBuildFile; fileRef = DC06A2AB17DD87150095E217 /* SDState.m */; };
 		DC06A2AF17DD87150095E217 /* SDTideStation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC06A2AE17DD87150095E217 /* SDTideStation.m */; };
 		DC0C0DD6105C1D8F0080297E /* ChartScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0C0DD5105C1D8F0080297E /* ChartScrollView.m */; };
+		DC1DC0C71BC06EB800EA14ED /* StationInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC1DC0C61BC06EB800EA14ED /* StationInfoView.xib */; settings = {ASSET_TAGS = (); }; };
 		DC2563FF18D63588007C41E6 /* UIButtonBarListIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC2563FE18D63588007C41E6 /* UIButtonBarListIcon@2x.png */; };
-		DC32FFAB0E88B08A00AB78F2 /* ChartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC32FFAA0E88B08A00AB78F2 /* ChartView.xib */; };
 		DC32FFB40E88B3FD00AB78F2 /* ChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC32FFB30E88B3FD00AB78F2 /* ChartView.m */; };
 		DC32FFB70E88B40F00AB78F2 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC32FFB60E88B40F00AB78F2 /* ChartViewController.m */; };
 		DC3630B7179B27870027EB21 /* PortraitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3630B6179B27870027EB21 /* PortraitViewController.m */; };
@@ -61,7 +59,6 @@
 		DC91540817EE4E7400A6FC46 /* SDTideEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC91540717EE4E7400A6FC46 /* SDTideEventCell.m */; };
 		DC9D39A218256BE200BC86AD /* InteractiveChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9D39A118256BE200BC86AD /* InteractiveChartView.m */; };
 		DC9D39A61828B66900BC86AD /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9D39A51828B66900BC86AD /* Constants.m */; };
-		DC9D77C7135A6C7000981199 /* LocationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9D77C6135A6C7000981199 /* LocationView.xib */; };
 		DCA3BEE8133E4DB500EA966A /* SDTideFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BEE6133E4DB500EA966A /* SDTideFactory.mm */; };
 		DCA3BEF8133E4F1F00EA966A /* TideStationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BEF7133E4F1F00EA966A /* TideStationAnnotation.m */; };
 		DCA3BF49133E4F8F00EA966A /* Colors.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BEFD133E4F8F00EA966A /* Colors.cc */; };
@@ -102,11 +99,7 @@
 		DCA3BF6C133E4F8F00EA966A /* xml_l.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BF47133E4F8F00EA966A /* xml_l.cc */; };
 		DCA3BF72133E4FFA00EA966A /* harmonics-dwf-20081228-free.tcd in Resources */ = {isa = PBXBuildFile; fileRef = DCA3BF70133E4FFA00EA966A /* harmonics-dwf-20081228-free.tcd */; };
 		DCA3BF73133E4FFA00EA966A /* harmonics-dwf-20081228-nonfree.tcd in Resources */ = {isa = PBXBuildFile; fileRef = DCA3BF71133E4FFA00EA966A /* harmonics-dwf-20081228-nonfree.tcd */; };
-		DCA3BF7E133E503900EA966A /* StationInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCA3BF77133E503900EA966A /* StationInfoView.xib */; };
-		DCA3BF7F133E503900EA966A /* CountryListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCA3BF78133E503900EA966A /* CountryListView.xib */; };
-		DCA3BF80133E503900EA966A /* StateListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCA3BF79133E503900EA966A /* StateListView.xib */; };
 		DCA3BF81133E503900EA966A /* PickerTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCA3BF7A133E503900EA966A /* PickerTableCell.xib */; };
-		DCA3BF82133E503900EA966A /* StationListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCA3BF7B133E503900EA966A /* StationListView.xib */; };
 		DCA3BF86133E9D6600EA966A /* SDTideEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BF85133E9D6600EA966A /* SDTideEvent.m */; };
 		DCA3BF89133E9DB200EA966A /* SDTideInterval.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BF88133E9DB200EA966A /* SDTideInterval.m */; };
 		DCA3BF90133E9DE800EA966A /* bit_pack.c in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BF8B133E9DE800EA966A /* bit_pack.c */; };
@@ -122,8 +115,20 @@
 		DCCA701D10672D9E00322BC6 /* TideRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCA701C10672D9E00322BC6 /* TideRowView.m */; };
 		DCE897DB0EEE3CAE00BF2357 /* CursorView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE897DA0EEE3CAE00BF2357 /* CursorView.m */; };
 		DCE898A20EEE514900BF2357 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCE898A10EEE514900BF2357 /* QuartzCore.framework */; };
-		DCFD521D16055C60006E17D2 /* MainViewTall.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCFD521C16055C60006E17D2 /* MainViewTall.xib */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DCCC65E319CE43A300E92D62 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -131,10 +136,9 @@
 		1D3623250D0F684500981E51 /* ShralpTideAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShralpTideAppDelegate.m; path = Controllers/ShralpTideAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* ShralpTide2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShralpTide2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		280E754B0DD40C5E005A515E /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainView.xib; path = Resources/MainView.xib; sourceTree = "<group>"; };
-		280E754C0DD40C5E005A515E /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* ShralpTide2_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShralpTide2_Prefix.pch; sourceTree = "<group>"; };
+		71A7D58B4987466A81BFB6D7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC016066133EB6990065CBAA /* SDTide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDTide.h; path = objctidelib/SDTide.h; sourceTree = "<group>"; };
 		DC016067133EB6990065CBAA /* SDTide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDTide.m; path = objctidelib/SDTide.m; sourceTree = "<group>"; };
@@ -157,11 +161,11 @@
 		DC06A2AE17DD87150095E217 /* SDTideStation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTideStation.m; sourceTree = "<group>"; };
 		DC0C0DD5105C1D8F0080297E /* ChartScrollView.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; name = ChartScrollView.m; path = Classes/Views/ChartScrollView.m; sourceTree = "<group>"; };
 		DC12E841184BCA3D00B7AD86 /* SDTideCalculationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTideCalculationDelegate.h; sourceTree = "<group>"; };
+		DC1DC0C61BC06EB800EA14ED /* StationInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StationInfoView.xib; path = Resources/StationInfoView.xib; sourceTree = "<group>"; };
 		DC2563FE18D63588007C41E6 /* UIButtonBarListIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIButtonBarListIcon@2x.png"; sourceTree = "<group>"; };
 		DC25640418F1DFF7007C41E6 /* shralptide 2.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "shralptide 2.1.xcdatamodel"; sourceTree = "<group>"; };
 		DC25A1FA0EEA575D0038078B /* ChartViewDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChartViewDatasource.h; path = Classes/Controllers/ChartViewDatasource.h; sourceTree = "<group>"; };
 		DC29826F102A784B009259BA /* ChartScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChartScrollView.h; path = Classes/Views/ChartScrollView.h; sourceTree = "<group>"; };
-		DC32FFAA0E88B08A00AB78F2 /* ChartView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChartView.xib; path = Resources/ChartView.xib; sourceTree = "<group>"; };
 		DC32FFB20E88B3FD00AB78F2 /* ChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChartView.h; path = Classes/Views/ChartView.h; sourceTree = "<group>"; };
 		DC32FFB30E88B3FD00AB78F2 /* ChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChartView.m; path = Classes/Views/ChartView.m; sourceTree = "<group>"; };
 		DC32FFB50E88B40F00AB78F2 /* ChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChartViewController.h; path = Classes/Controllers/ChartViewController.h; sourceTree = "<group>"; };
@@ -222,7 +226,6 @@
 		DC9D39A118256BE200BC86AD /* InteractiveChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractiveChartView.m; sourceTree = "<group>"; };
 		DC9D39A41828B66900BC86AD /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DC9D39A51828B66900BC86AD /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
-		DC9D77C6135A6C7000981199 /* LocationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocationView.xib; path = Resources/LocationView.xib; sourceTree = "<group>"; };
 		DCA3BEE6133E4DB500EA966A /* SDTideFactory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SDTideFactory.mm; path = objctidelib/SDTideFactory.mm; sourceTree = "<group>"; };
 		DCA3BEE7133E4DB500EA966A /* SDTideFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDTideFactory.h; path = objctidelib/SDTideFactory.h; sourceTree = "<group>"; };
 		DCA3BEF6133E4F1F00EA966A /* TideStationAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TideStationAnnotation.h; path = objctidelib/TideStationAnnotation.h; sourceTree = "<group>"; };
@@ -308,11 +311,7 @@
 		DCA3BF48133E4F8F00EA966A /* xml_l.ll */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm.llvm; path = xml_l.ll; sourceTree = "<group>"; };
 		DCA3BF70133E4FFA00EA966A /* harmonics-dwf-20081228-free.tcd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "harmonics-dwf-20081228-free.tcd"; path = "Resources/harmonics-dwf-20081228-free.tcd"; sourceTree = "<group>"; };
 		DCA3BF71133E4FFA00EA966A /* harmonics-dwf-20081228-nonfree.tcd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "harmonics-dwf-20081228-nonfree.tcd"; path = "Resources/harmonics-dwf-20081228-nonfree.tcd"; sourceTree = "<group>"; };
-		DCA3BF77133E503900EA966A /* StationInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StationInfoView.xib; path = Resources/StationInfoView.xib; sourceTree = "<group>"; };
-		DCA3BF78133E503900EA966A /* CountryListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CountryListView.xib; path = Resources/CountryListView.xib; sourceTree = "<group>"; };
-		DCA3BF79133E503900EA966A /* StateListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StateListView.xib; path = Resources/StateListView.xib; sourceTree = "<group>"; };
 		DCA3BF7A133E503900EA966A /* PickerTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PickerTableCell.xib; path = Resources/PickerTableCell.xib; sourceTree = "<group>"; };
-		DCA3BF7B133E503900EA966A /* StationListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StationListView.xib; path = Resources/StationListView.xib; sourceTree = "<group>"; };
 		DCA3BF84133E9D6600EA966A /* SDTideEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDTideEvent.h; path = objctidelib/SDTideEvent.h; sourceTree = "<group>"; };
 		DCA3BF85133E9D6600EA966A /* SDTideEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDTideEvent.m; path = objctidelib/SDTideEvent.m; sourceTree = "<group>"; };
 		DCA3BF87133E9DB200EA966A /* SDTideInterval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDTideInterval.h; path = objctidelib/SDTideInterval.h; sourceTree = "<group>"; };
@@ -334,10 +333,11 @@
 		DCCA701B10672D9E00322BC6 /* TideRowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TideRowView.h; path = Classes/Views/TideRowView.h; sourceTree = "<group>"; };
 		DCCA701C10672D9E00322BC6 /* TideRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TideRowView.m; path = Classes/Views/TideRowView.m; sourceTree = "<group>"; };
 		DCCAD9310F1DD25E00141002 /* DeveloperSettings.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DeveloperSettings.xcconfig; sourceTree = "<group>"; };
+		DCCC65D219CE43A300E92D62 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		DCCC65EA19CE515300E92D62 /* ShralpTide2-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ShralpTide2-Bridging-Header.h"; path = "ShralpTideWidget/ShralpTide2-Bridging-Header.h"; sourceTree = "<group>"; };
 		DCE897D90EEE3CAE00BF2357 /* CursorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CursorView.h; path = Classes/Views/CursorView.h; sourceTree = "<group>"; };
 		DCE897DA0EEE3CAE00BF2357 /* CursorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CursorView.m; path = Classes/Views/CursorView.m; sourceTree = "<group>"; };
 		DCE898A10EEE514900BF2357 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		DCFD521C16055C60006E17D2 /* MainViewTall.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainViewTall.xib; path = Resources/MainViewTall.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -448,6 +448,7 @@
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				DCCAD9310F1DD25E00141002 /* DeveloperSettings.xcconfig */,
 				DC493E5C0F206C8B0087B341 /* COPYING */,
+				71A7D58B4987466A81BFB6D7 /* Pods.xcconfig */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -455,6 +456,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				DCCC65EA19CE515300E92D62 /* ShralpTide2-Bridging-Header.h */,
 				32CA4F630368D1EE00C91783 /* ShralpTide2_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				DC9D39A41828B66900BC86AD /* Constants.h */,
@@ -466,6 +468,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DC1DC0C61BC06EB800EA14ED /* StationInfoView.xib */,
 				DC2563FE18D63588007C41E6 /* UIButtonBarListIcon@2x.png */,
 				DC8A827D189DB42F00792149 /* lightray@2x.png */,
 				DCA9D301188328340037DBAB /* background-gradient@2x.png */,
@@ -476,17 +479,8 @@
 				DC70BD0417F8B5ED00D5FF3A /* Images.xcassets */,
 				DCA3BF70133E4FFA00EA966A /* harmonics-dwf-20081228-free.tcd */,
 				DCA3BF71133E4FFA00EA966A /* harmonics-dwf-20081228-nonfree.tcd */,
-				DCA3BF77133E503900EA966A /* StationInfoView.xib */,
-				DC9D77C6135A6C7000981199 /* LocationView.xib */,
-				DCA3BF78133E503900EA966A /* CountryListView.xib */,
-				DCA3BF79133E503900EA966A /* StateListView.xib */,
 				DCA3BF7A133E503900EA966A /* PickerTableCell.xib */,
-				DCA3BF7B133E503900EA966A /* StationListView.xib */,
 				DC06A26217DC44F60095E217 /* shralptide.xcdatamodeld */,
-				280E754B0DD40C5E005A515E /* MainView.xib */,
-				DCFD521C16055C60006E17D2 /* MainViewTall.xib */,
-				280E754C0DD40C5E005A515E /* MainWindow.xib */,
-				DC32FFAA0E88B08A00AB78F2 /* ChartView.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				DC59FDF2140752A7008FD0D2 /* Settings.bundle */,
 				DC4FBBE7178BCF3200C0CFEE /* MainStoryboard.storyboard */,
@@ -508,6 +502,7 @@
 				DCA9379A0EE1B3910050113B /* CoreGraphics.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				DCCC65D219CE43A300E92D62 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -699,10 +694,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "ShralpTide2" */;
 			buildPhases = (
+				5534142B73EF4DD2B0AF057C /* Check Pods Manifest.lock */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
 				DCE14C54140B69E900B51E06 /* ShellScript */,
+				23A7FAC78EAE40AA95AB55FD /* Copy Pods Resources */,
+				DCCC65E319CE43A300E92D62 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -719,7 +717,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0700;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = H29T9V7X78;
@@ -732,7 +730,7 @@
 				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ShralpTide2" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -756,11 +754,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				280E754E0DD40C5E005A515E /* MainView.xib in Resources */,
 				DCA7708418305F0A00439850 /* FavoritesFooterVIew.xib in Resources */,
 				DC907A92186F7674007AF5E4 /* spark.png in Resources */,
-				280E754F0DD40C5E005A515E /* MainWindow.xib in Resources */,
-				DC32FFAB0E88B08A00AB78F2 /* ChartView.xib in Resources */,
 				DC2563FF18D63588007C41E6 /* UIButtonBarListIcon@2x.png in Resources */,
 				DC493E5D0F206C8B0087B341 /* COPYING in Resources */,
 				DCA3BF6A133E4F8F00EA966A /* xml_y.yy in Resources */,
@@ -768,26 +763,51 @@
 				DCA3BF72133E4FFA00EA966A /* harmonics-dwf-20081228-free.tcd in Resources */,
 				DC907A90186F7669007AF5E4 /* Bubbles.sks in Resources */,
 				DCA3BF73133E4FFA00EA966A /* harmonics-dwf-20081228-nonfree.tcd in Resources */,
-				DCA3BF7E133E503900EA966A /* StationInfoView.xib in Resources */,
-				DCA3BF7F133E503900EA966A /* CountryListView.xib in Resources */,
-				DCA3BF80133E503900EA966A /* StateListView.xib in Resources */,
 				DCA9D302188328340037DBAB /* background-gradient@2x.png in Resources */,
 				DCA3BF81133E503900EA966A /* PickerTableCell.xib in Resources */,
-				DCA3BF82133E503900EA966A /* StationListView.xib in Resources */,
 				DCA9D2FE18820ABB0037DBAB /* datastore.sqlite in Resources */,
 				DC4FBBE8178BCF3200C0CFEE /* MainStoryboard.storyboard in Resources */,
+				DC1DC0C71BC06EB800EA14ED /* StationInfoView.xib in Resources */,
 				DCA7707F182EFB1E00439850 /* FavoritesHeaderView.xib in Resources */,
 				DC70BD0517F8B5ED00D5FF3A /* Images.xcassets in Resources */,
-				DC9D77C7135A6C7000981199 /* LocationView.xib in Resources */,
 				DC59FDF3140752A7008FD0D2 /* Settings.bundle in Resources */,
 				DCA9D2E6187242C10037DBAB /* bubble.png in Resources */,
-				DCFD521D16055C60006E17D2 /* MainViewTall.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		23A7FAC78EAE40AA95AB55FD /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5534142B73EF4DD2B0AF057C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		DCE14C54140B69E900B51E06 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -897,10 +917,11 @@
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71A7D58B4987466A81BFB6D7 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -923,35 +944,44 @@
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VALUE = YES;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				"OTHER_CFLAGS[arch=*]" = "-DDEBUG";
-				OTHER_LDFLAGS = "-fobjc-arc";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-fobjc-arc",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2;
 				PRODUCT_NAME = ShralpTide2;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "ShralpTide2-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_SUFFIX = a;
-				WARNING_CFLAGS = "-Wl,-M";
+				WARNING_CFLAGS = "";
 				WARNING_LDFLAGS = "-fobjc-arc";
 			};
 			name = Debug;
 		};
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71A7D58B4987466A81BFB6D7 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -966,17 +996,25 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = NO;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				OTHER_LDFLAGS = "-fobjc-arc";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-fobjc-arc",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2;
 				PRODUCT_NAME = ShralpTide2;
 				PROVISIONING_PROFILE = "21F776D9-2C3F-49D7-9F7F-9830D714A162";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21F776D9-2C3F-49D7-9F7F-9830D714A162";
 				SDKROOT = iphoneos;
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ShralpTide2-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 				WARNING_LDFLAGS = "-fobjc-arc";
 			};
@@ -992,9 +1030,13 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Parlee (25H7G2523Q)";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1002,7 +1044,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "04EC56F3-F532-4CAF-95A8-7563B9435321";
 				SDKROOT = iphoneos;
@@ -1018,10 +1060,13 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1029,7 +1074,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				PROVISIONING_PROFILE = "21F776D9-2C3F-49D7-9F7F-9830D714A162";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21F776D9-2C3F-49D7-9F7F-9830D714A162";
 				SDKROOT = iphoneos;

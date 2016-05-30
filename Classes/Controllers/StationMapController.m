@@ -53,6 +53,7 @@ BOOL zoomedToLocal;
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     if (appDelegate.showsCurrentsPref) {
         [self.navigationController setToolbarHidden:NO];
         if (self.stationType == SDStationTypeTide) {
@@ -68,6 +69,7 @@ BOOL zoomedToLocal;
 
 -(void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     self.mapView.showsUserLocation = NO;
 }
 

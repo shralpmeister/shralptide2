@@ -102,6 +102,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     SKView *backgroundView = (SKView*)self.view;
     backgroundView.paused = YES;
 }
@@ -121,19 +122,22 @@
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     switch (toInterfaceOrientation) {
-        case UIDeviceOrientationLandscapeLeft:
+        case UIInterfaceOrientationLandscapeLeft:
             DLog(@"Device rotated to Landscape Left");
             [self performSegueWithIdentifier:@"landscapeSegue" sender:self];
             break;
-        case UIDeviceOrientationLandscapeRight:
+        case UIInterfaceOrientationLandscapeRight:
             DLog(@"Device rotated to Landscape Right");
             [self performSegueWithIdentifier:@"landscapeSegue" sender:self];
             break;
-        case UIDeviceOrientationPortrait:
+        case UIInterfaceOrientationPortrait:
             DLog(@"Device rotated to Portrait");
             break;
-        case UIDeviceOrientationPortraitUpsideDown:
+        case UIInterfaceOrientationPortraitUpsideDown:
             DLog(@"Device rotated to Portrait upsidedown");
+            break;
+        case UIInterfaceOrientationUnknown:
+            DLog(@"Device rotated to unknown position");
             break;
     }
 }

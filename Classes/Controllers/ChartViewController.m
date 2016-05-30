@@ -36,6 +36,7 @@
 
 -(void)viewDidLoad
 {
+    [super viewDidLoad];
     self.view.layer.backgroundColor = [UIColor blackColor].CGColor;
     self.view.layer.cornerRadius = 20;
 }

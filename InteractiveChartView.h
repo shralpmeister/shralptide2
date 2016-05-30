@@ -23,7 +23,6 @@
 - (void)showTideForPoint:(CGPoint) point;
 
 @property (nonatomic,weak) id<InteractiveChartViewDelegate> delegate;
-@property (nonatomic,strong) CursorView *cursorView;
 
 @end
 

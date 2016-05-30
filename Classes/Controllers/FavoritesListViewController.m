@@ -58,6 +58,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     DLog(@"Favorites list view will appear.");
     
     self.favorites = [NSMutableArray arrayWithArray:appDelegate.tides];

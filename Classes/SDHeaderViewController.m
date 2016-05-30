@@ -26,9 +26,9 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    DLog(@"Header view controller view will appear called. Page = %ld, offset=%f", appDelegate.locationPage, self.collectionView.contentOffset.x);
     float headerOffset = appDelegate.locationPage * self.collectionView.frame.size.width * 1.5;
     self.collectionView.contentOffset = CGPointMake(headerOffset,0);
+    DLog(@"Header view controller view will appear called. Page = %ld, offset=%f", appDelegate.locationPage, self.collectionView.contentOffset.x);
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section;
@@ -72,11 +72,19 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath;
 {
     SDHeaderViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"headerCell" forIndexPath:indexPath];
-    if ([UIScreen mainScreen].bounds.size.height == 568) {
+    if ([UIScreen mainScreen].bounds.size.height >= 568) {
         cell.topVerticalConstraint.constant = 20;
+//        cell.bounds = CGRectMake(cell.bounds.origin.x, cell.bounds.origin.y, cell.bounds.size.width, 214);
+//        cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, 214);
+    } else {
+        cell.topVerticalConstraint.constant = 0;
+//        cell.bounds = CGRectMake(cell.bounds.origin.x, cell.bounds.origin.y, cell.bounds.size.width, 194);
+//        cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, 194);
     }
     SDTide *tide = appDelegate.tides[indexPath.section];
-    DLog(@"Returning cell for location: %@",tide.stationName);
+    DLog(@"Header cell bounds=%f,%f,%f,%f",cell.bounds.origin.x, cell.bounds.origin.y, cell.bounds.size.width, cell.bounds.size.height);
+    DLog(@"Header cell frame=%f,%f,%f,%f",cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
+    DLog(@"SDHeaderView Controller returning cell for location: %@, indexPath=%lu",tide.stationName, (long)indexPath.section);
     [self refreshCurrentTideStatus:tide forCell:cell];
     return cell;
 }   

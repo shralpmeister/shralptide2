@@ -84,6 +84,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     _tide = self.locationMainViewController.tide;
     
     _activityView.hidden = NO;
@@ -103,18 +104,21 @@
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     switch (toInterfaceOrientation) {
-        case UIDeviceOrientationLandscapeLeft:
+        case UIInterfaceOrientationLandscapeLeft:
             DLog(@"Device rotated to Landscape Left");
             break;
-        case UIDeviceOrientationLandscapeRight:
+        case UIInterfaceOrientationLandscapeRight:
             DLog(@"Device rotated to Landscape Right");
             break;
-        case UIDeviceOrientationPortrait:
+        case UIInterfaceOrientationPortrait:
             DLog(@"Device rotated to Portrait");
             [self.navigationController popToRootViewControllerAnimated:YES];
             break;
-        case UIDeviceOrientationPortraitUpsideDown:
+        case UIInterfaceOrientationPortraitUpsideDown:
             DLog(@"Device rotated to Portrait upsidedown");
+            break;
+        case UIInterfaceOrientationUnknown:
+            DLog(@"Deivce rotated to unknown position");
             break;
     }
 }

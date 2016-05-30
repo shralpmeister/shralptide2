@@ -14,8 +14,15 @@
     if (self = [super initWithSize:size]) {
         DLog(@"Background scene initialized");
         /* Setup your scene here */
+        
         SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"background-gradient"];
+        
+        double xscale = self.frame.size.width / background.size.width;
+        double yscale = self.frame.size.height / background.size.height;
+        
         background.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
+        background.xScale = xscale;
+        background.yScale = yscale;
         
         [self addChild:background];
         
@@ -33,17 +40,23 @@
         lightRay.anchorPoint = CGPointMake(0, 1);
         lightRay.position = CGPointMake(0, self.frame.size.height);
         lightRay.alpha = MIN_ALPHA;
+        lightRay.xScale = xscale;
+        lightRay.yScale = yscale;
         
         SKSpriteNode *lightRay2 = [[SKSpriteNode alloc] initWithImageNamed:@"lightray"];
         lightRay2.anchorPoint = CGPointMake(0, 1);
         lightRay2.position = CGPointMake(-10, self.frame.size.height);
         lightRay2.alpha = MIN_ALPHA;
+        lightRay2.xScale = xscale;
+        lightRay2.yScale = yscale;
         lightRay2.scale = 2.3;
         
         SKSpriteNode *lightRay3 = [[SKSpriteNode alloc] initWithImageNamed:@"lightray"];
         lightRay3.anchorPoint = CGPointMake(0, 1);
         lightRay3.position = CGPointMake(20, self.frame.size.height);
         lightRay3.alpha = MIN_ALPHA;
+        lightRay3.xScale = xscale;
+        lightRay3.yScale = yscale;
         lightRay3.scale = 1.8;
         
         SKAction *fadeIn = [SKAction fadeAlphaTo:MAX_ALPHA duration:HALF_DURATION];

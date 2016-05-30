@@ -112,18 +112,4 @@
 	// Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-    
-    
-    self.titleView = nil;
-    self.buttonView = nil;
-    self.titleLabel = nil;
-    self.selectButton = nil;
-    self.mapView = nil;
-    
-    self.locationCell = nil;
-    self.primaryCell = nil;
-}
-
 @end
