@@ -70,6 +70,11 @@
     return [appDelegate.tides count];
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(self.view.frame.size.width, self.view.frame.size.height * 2/3);
+}
+
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath;
 {
@@ -77,19 +82,6 @@
     static NSString* bottomCellId = @"bottomCell";
     
     SDBottomViewCell *bottomViewCell = (SDBottomViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:bottomCellId forIndexPath:indexPath];
-    
-    CGRect bounds = bottomViewCell.bounds;
-    CGRect frame = bottomViewCell.frame;
-    DLog(@"Main screen bounds: %f, %f", bounds.size.width, bounds.size.height);
-    if ([UIScreen mainScreen].bounds.size.height < 568) {
-        bottomViewCell.bounds = CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.width, 275);
-        bottomViewCell.frame = CGRectMake(frame.origin.x, 160, frame.size.width, 275);
-        DLog(@"Adjusting bounds and frame for small screen. origin = %f", frame.origin.y);
-    } else {
-        DLog(@"Ajusting bounds and frame for tall screen.");
-        bottomViewCell.bounds = CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.width, 330);
-        bottomViewCell.frame = CGRectMake(frame.origin.x, 190, frame.size.width, 330);
-    }
     
     SDTide *tide = appDelegate.tides[indexPath.section];
     [bottomViewCell createPages:tide];

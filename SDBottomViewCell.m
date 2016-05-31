@@ -82,11 +82,6 @@
             pageController.tide = _tidesForDays[i];
         }
         pageController.view.frame = CGRectMake(xOrigin,0,self.frame.size.width,self.frame.size.height);
-        if ([UIScreen mainScreen].bounds.size.height == 568) {
-            pageController.bottomVerticalConstraint.constant = 70;
-        } else {
-            pageController.bottomVerticalConstraint.constant = 30;
-        }
         [self.scrollView addSubview:pageController.view];
         controllers[i] = pageController;
         xOrigin += self.frame.size.width;

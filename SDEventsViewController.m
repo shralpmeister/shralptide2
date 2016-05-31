@@ -90,6 +90,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    DLog(@"Cell for Row at Index Path %ld called.", (long)indexPath.row);
     static NSString* reuseId = @"eventCell";
     SDTideEvent *event = (SDTideEvent*)self.tide.events[indexPath.row];
     SDTideEventCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseId];
