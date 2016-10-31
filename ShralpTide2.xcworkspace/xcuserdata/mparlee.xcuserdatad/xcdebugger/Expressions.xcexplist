@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[ShralpTideAppDelegate calculateTides]:ShralpTideAppDelegate.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "AppStateData.sharedInstance.persistentState">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AppStateData.setDefaultLocation() throws -&gt; ():AppStateData.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "context.persistentStoreCoordinator.managedObjectModel.entities(forConfigurationName:&quot;StateDatastore&quot;)">
+            </PersistentString>
+            <PersistentString
+               value = "context.persistentStoreCoordinator?.persistentStore(for: self.StateContainerUrl).configurationName">
+            </PersistentString>
+            <PersistentString
+               value = "appState.entity.name">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AppStateData.setSelectedLocation(locationName : String) throws -&gt; ():AppStateData.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "appState.favoriteLocations[0]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AppStateData.(setDefaultLocation() throws -&gt; ()).(closure #1):AppStateData.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "context">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AppStateData.loadSavedState() -&gt; ():AppStateData.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.libraryDirectory.path">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AppStateData.(persistentStoreCoordinator.getter).(closure #1):AppStateData.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "coordinator.persistentStores">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

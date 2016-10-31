@@ -12,8 +12,9 @@
 #import "SDTideFactory.h"
 #import "NSDate+Day.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ConfigHelper.h"
 
-#define appDelegate ((ShralpTideAppDelegate*)[[UIApplication sharedApplication] delegate])
+#define configHelper ((ConfigHelper*)ConfigHelper.sharedInstance)
 
 
 @interface LandscapeViewController ()
@@ -132,7 +133,7 @@
     self.chartScrollView.pagingEnabled = YES;
 	// put 20 back on the height and subtract 20 from width to account for scroll bar at top of landscape
  //   DLog(@"Frame = %0.1f x %0.1f", self.view.frame.size.width, self.view.frame.size.height);
-	self.chartScrollView.contentSize = CGSizeMake((self.view.frame.size.width) * appDelegate.daysPref, self.view.frame.size.height);
+	self.chartScrollView.contentSize = CGSizeMake((self.view.frame.size.width) * configHelper.daysPref, self.view.frame.size.height);
 	self.chartScrollView.showsVerticalScrollIndicator = NO;
 	self.chartScrollView.showsVerticalScrollIndicator = NO;
 	self.chartScrollView.scrollsToTop = NO;
@@ -142,7 +143,7 @@
     
     self.chartView.frame = CGRectMake(0,0,self.chartScrollView.contentSize.width,self.chartScrollView.frame.size.height);
     self.chartView.datasource = self;
-    self.chartView.hoursToPlot = appDelegate.daysPref * 24;
+    self.chartView.hoursToPlot = configHelper.daysPref * 24;
     self.chartView.labelInset = 20;
     self.chartView.delegate = self;
     [self.chartScrollView addSubview:self.chartView];

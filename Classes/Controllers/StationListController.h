@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SDTideStation.h"
+#import "ShralpTide2-Swift.h"
 
 @interface StationListController : UITableViewController
 

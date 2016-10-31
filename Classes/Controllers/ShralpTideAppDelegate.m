@@ -22,24 +22,11 @@
 */
 
 #import "ShralpTideAppDelegate.h"
-#import "SDApplicationState.h"
-#import "SDFavoriteLocation.h"
 #import "SDTideFactory.h"
-
-/* Preference Keys */
-NSString *kUnitsKey = @"units_preference";
-NSString *kDaysKey = @"days_preference";
-NSString *kCurrentsKey = @"currents_preference";
+#import "ConfigHelper.h"
 
 @interface ShralpTideAppDelegate ()
-- (void)setupByPreferences;
 - (void)defaultsChanged:(NSNotification *)notif;
-- (NSDictionary*)readSettingsDictionary;
-
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
-@property (nonatomic, strong) SDApplicationState *persistentState;
 
 @property (nonatomic, strong) NSMutableArray *mutableTides;
 
@@ -49,11 +36,9 @@ NSString *kCurrentsKey = @"currents_preference";
 
 @implementation ShralpTideAppDelegate
 
-@synthesize managedObjectContext, persistentStoreCoordinator, managedObjectModel;
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary*)options {
     DLog(@"applicationDidFinishLaunchingWithOptions");
-    [self setupByPreferences];
+    [ConfigHelper.sharedInstance setupByPreferences];
     
     // Enables background fetch to update UI at periodic intervals when backgrounded.
     [application setMinimumBackgroundFetchInterval:15*kSDSecondsPerMinute];
@@ -72,24 +57,10 @@ NSString *kCurrentsKey = @"currents_preference";
 	[pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-nonfree" ofType:@"tcd"]];
 	setenv("HFILE_PATH",[pathBuilder cStringUsingEncoding:NSUTF8StringEncoding],1);
     
-    NSManagedObjectContext *context = self.managedObjectContext;
-    NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"SDApplicationState"
-											  inManagedObjectContext:context];
+    [AppStateData.sharedInstance loadSavedState];
     
-	NSFetchRequest *fr = [[NSFetchRequest alloc] init];
-	fr.entity = entityDescription;
-    NSError *error;
-	NSArray *results = [context executeFetchRequest:fr error:&error];
-	if ([results count] == 0) {
-        // create a new entity
-        [self setDefaultLocation];
-    } else {
-        // set a reference to the one we already have
-        self.persistentState = results[0];
-        self.locationPage = [self.persistentState.favoriteLocations indexOfObject:self.persistentState.selectedLocation];
-        DLog(@"Selected location = %@, page = %ld", self.persistentState.selectedLocation.locationName, self.locationPage);
-    }
+    [WatchSessionManager.sharedInstance startSession];
+    
     [self calculateTides];
 }
 
@@ -121,7 +92,7 @@ NSString *kCurrentsKey = @"currents_preference";
 - (void)calculateTides
 {
     _mutableTides = [NSMutableArray new];
-    for (SDFavoriteLocation* location in self.persistentState.favoriteLocations) {
+    for (SDFavoriteLocation* location in AppStateData.sharedInstance.persistentState.favoriteLocations) {
         SDTide *todaysTide = [SDTideFactory todaysTidesForStationName:location.locationName];
         [_mutableTides addObject:todaysTide];
     }
@@ -132,297 +103,21 @@ NSString *kCurrentsKey = @"currents_preference";
     return [NSArray arrayWithArray:_mutableTides];
 }
 
+#pragma mark - 
+#pragma mark Handle preferences change
+- (void)defaultsChanged:(NSNotification *)notif
+{
+    DLog(@"Reading preferences and recreating views and tide calculations");
+    [ConfigHelper.sharedInstance setupByPreferences];
+    [self calculateTides];
+}
+
 #pragma mark -
 #pragma mark Handle Background Fetch
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
     [self recalculateTidesForNewDay];
     completionHandler(UIBackgroundFetchResultNewData);
-}
-
-#pragma mark -
-#pragma mark Read Preferences
-
-- (void)defaultsChanged:(NSNotification *)notif
-{
-    DLog(@"Reading preferences and recreating views and tide calculations");
-    [self setupByPreferences];
-    [self calculateTides];
-}
-
--(NSDictionary*)readSettingsDictionary
-{
-    NSString *pathStr = [[NSBundle mainBundle] bundlePath];
-    NSString *settingsBundlePath = [pathStr stringByAppendingPathComponent:@"Settings.bundle"];
-    NSString *finalPath = [settingsBundlePath stringByAppendingPathComponent:@"Root.plist"];
-    
-    return [NSDictionary dictionaryWithContentsOfFile:finalPath];
-}
-
-- (void)setupByPreferences
-{
-    NSString *testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kUnitsKey];
-    if (testValue == nil)
-    {
-        // no default values have been set, create them here based on what's in our Settings bundle info
-        //
-        NSDictionary *settingsDict = [self readSettingsDictionary];
-        NSArray *prefSpecifierArray = settingsDict[@"PreferenceSpecifiers"];
-        
-        NSString *unitsDefault = nil;
-        NSNumber *daysDefault = nil;
-        NSNumber *currentsDefault = nil;
-        NSString *backgroundDefault = nil;
-        
-        for (NSDictionary *prefItem in prefSpecifierArray)
-        {
-            NSString *keyValueStr = prefItem[@"Key"];
-            id defaultValue = prefItem[@"DefaultValue"];
-            
-            if ([keyValueStr isEqualToString:kUnitsKey])
-            {
-                unitsDefault = defaultValue;
-            }
-            else if ([keyValueStr isEqualToString:kDaysKey])
-            {
-                daysDefault = defaultValue;
-            }
-            else if ([keyValueStr isEqualToString:kCurrentsKey])
-            {
-                currentsDefault = defaultValue;
-            }
-        }
-        
-        // since no default values have been set (i.e. no preferences file created), create it here     
-        NSDictionary *appDefaults = @{kUnitsKey: unitsDefault,
-                                     kDaysKey: daysDefault,
-                                     kCurrentsKey: currentsDefault};
-        
-        [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
-    
-    // we're ready to go, so lastly set the key preference values
-    self.unitsPref = [[NSUserDefaults standardUserDefaults] stringForKey:kUnitsKey];
-    self.daysPref = [[NSUserDefaults standardUserDefaults] integerForKey:kDaysKey];
-    self.showsCurrentsPref = [[NSUserDefaults standardUserDefaults] boolForKey:kCurrentsKey];
-    
-    DLog(@"setting daysPref to %ld", (long)self.daysPref);
-    DLog(@"Setting currentsPref to %@", self.showsCurrentsPref ? @"YES" : @"NO");
-}
-
-#pragma mark -
-#pragma mark Core Data stack
-
-/**
- Returns the managed object context for the application.
- If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
- */
-- (NSManagedObjectContext *) managedObjectContext {
-    
-    if (managedObjectContext != nil) {
-        return managedObjectContext;
-    }
-    
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (coordinator != nil) {
-        managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [managedObjectContext setPersistentStoreCoordinator: coordinator];
-        [managedObjectContext setUndoManager:nil];
-    }
-    return managedObjectContext;
-}
-
-
-/**
- Returns the managed object model for the application.
- If the model doesn't already exist, it is created by merging all of the models found in the application bundle.
- */
-- (NSManagedObjectModel *)managedObjectModel {
-    
-    if (managedObjectModel != nil) {
-        return managedObjectModel;
-    };
-    
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"shralptide" withExtension:@"momd"];
-    managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    
-    return managedObjectModel;
-}
-
-
-/**
- Returns the persistent store coordinator for the application.
- If the coordinator doesn't already exist, it is created and the application's store added to it.
- */
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
-    
-    if (persistentStoreCoordinator != nil) {
-        return persistentStoreCoordinator;
-    }
-    
-    NSFileManager *fm = [NSFileManager defaultManager];
-    
-    NSString *cachesDir = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
-    NSString *tideDatastorePath = [[NSBundle mainBundle] pathForResource:@"datastore" ofType:@"sqlite"];
-    NSString *cachedTideDatastorePath = [cachesDir stringByAppendingPathComponent:@"datastore.sqlite"];
-    
-    NSString *libDir = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
-    NSString *stateDataStorePath = [libDir stringByAppendingPathComponent:@"appstate.sqlite"];
-    
-    
-    if (![fm fileExistsAtPath:cachedTideDatastorePath]) {
-        NSError *error;
-        if (![fm copyItemAtPath:tideDatastorePath toPath:cachedTideDatastorePath error:&error]) {
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            exit(-1);
-        };
-    }
-    
-    NSError *error;
-    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
-                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
-                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
-    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
-    if (![persistentStoreCoordinator addPersistentStoreWithType: NSSQLiteStoreType configuration:@"TideDatastore" URL:[NSURL fileURLWithPath:cachedTideDatastorePath] options:options error:&error]) {
-        // Handle the error.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        exit(-1);  // Fail
-    }
-    if (![persistentStoreCoordinator addPersistentStoreWithType: NSSQLiteStoreType configuration:@"StateDatastore" URL:[NSURL fileURLWithPath:stateDataStorePath] options:options error:&error]) {
-        // Handle the error.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        exit(-1);  // Fail
-    }
-    
-    return persistentStoreCoordinator;
-}
-
-- (void)setDefaultLocation {
-    // This is what we do when there's no location set.
-	NSString *defaultLocation = @"La Jolla (Scripps Institution Wharf), California";
-    NSManagedObjectContext *context = self.managedObjectContext;
-    
-    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"SDApplicationState" inManagedObjectContext:context];
-    NSFetchRequest *fr = [[NSFetchRequest alloc] init];
-    fr.entity = entityDesc;
-    
-    NSError *error;
-    NSArray *fetchResults = [context executeFetchRequest:fr error:&error];
-    if (fetchResults) {
-        SDApplicationState *appState = nil;
-        if ([fetchResults count] == 0) {
-            appState = [NSEntityDescription insertNewObjectForEntityForName:entityDesc.name inManagedObjectContext:context];
-            SDFavoriteLocation *location = [NSEntityDescription insertNewObjectForEntityForName:@"SDFavoriteLocation" inManagedObjectContext:context];
-            location.locationName = defaultLocation;
-            appState.favoriteLocations = [NSOrderedSet orderedSetWithObject:location];
-            
-            appState.selectedLocation = location;
-            
-            if (![context save:&error]) {
-                NSLog(@"Unable to save change to default location. %@", error);
-                return;
-            }
-            self.persistentState = appState;
-        }
-    } else {
-        NSLog(@"Unable to execute fetch for default location due to error: %@", error);
-        return;
-    }
-}
-
-- (void)addFavoriteLocation:(NSString*)locationName
-{
-    NSManagedObjectContext *context = self.managedObjectContext;
-    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"SDApplicationState" inManagedObjectContext:context];
-    NSFetchRequest *fr = [[NSFetchRequest alloc] init];
-    fr.entity = entityDesc;
-    
-    NSError *error;
-    NSArray *fetchResults = [context executeFetchRequest:fr error:&error];
-    if (fetchResults && [fetchResults count] == 1) {
-        SDApplicationState *appState = [fetchResults objectAtIndex:0];
-        NSPredicate *namePredicate = [NSPredicate predicateWithFormat:@"locationName = %@",locationName];
-        NSOrderedSet *results = [appState.favoriteLocations filteredOrderedSetUsingPredicate:namePredicate];
-        if ([results count] == 0) {
-            SDFavoriteLocation *location = [NSEntityDescription insertNewObjectForEntityForName:@"SDFavoriteLocation" inManagedObjectContext:context];
-            location.locationName = locationName;
-            NSMutableOrderedSet *locations = [[NSMutableOrderedSet alloc] initWithOrderedSet:appState.favoriteLocations];
-            [locations addObject:location];
-            appState.favoriteLocations = locations;
-        } else {
-            NSLog(@"Location already present. Skipping.");
-            return;
-        }
-        if (![context save:&error]) {
-            NSLog(@"Unable to save new favorite location. %@", error);
-            return;
-        }
-        [self calculateTides];
-    } else {
-        NSLog(@"Unable to retrieve applications state. Fetch result = %@",fetchResults);
-    }
-}
-
-- (void)setSelectedLocation:(NSString*)locationName
-{
-    NSManagedObjectContext *context = self.managedObjectContext;
-    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"SDApplicationState" inManagedObjectContext:context];
-    NSFetchRequest *fr = [[NSFetchRequest alloc] init];
-    fr.entity = entityDesc;
-    
-    NSError *error;
-    NSArray *fetchResults = [context executeFetchRequest:fr error:&error];
-    if (fetchResults && [fetchResults count] == 1) {
-        SDApplicationState *appState = [fetchResults objectAtIndex:0];
-        NSPredicate *namePredicate = [NSPredicate predicateWithFormat:@"locationName = %@", locationName];
-        NSOrderedSet* locationsWithName = [appState.favoriteLocations filteredOrderedSetUsingPredicate:namePredicate];
-        if ([locationsWithName count] == 1) {
-            SDFavoriteLocation *location = locationsWithName[0];
-            appState.selectedLocation = location;
-            if (![context save:&error]) {
-                NSLog(@"Unable to save change to selected location. %@",error);
-                return;
-            }
-        }
-    } else {
-        NSLog(@"Unable to retrieve applications state. Fetch result = %@",fetchResults);
-    }
-}
-
-- (void)removeFavoriteLocation:(NSString *)locationName
-{
-    NSManagedObjectContext *context = self.managedObjectContext;
-    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"SDApplicationState" inManagedObjectContext:context];
-    NSFetchRequest *fr = [[NSFetchRequest alloc] init];
-    fr.entity = entityDesc;
-    
-    NSError *error;
-    NSArray *fetchResults = [context executeFetchRequest:fr error:&error];
-    if (fetchResults && [fetchResults count] == 1) {
-        SDApplicationState *appState = [fetchResults objectAtIndex:0];
-        NSPredicate *namePredicate = [NSPredicate predicateWithFormat:@"locationName = %@", locationName];
-        NSOrderedSet* locationsWithName = [appState.favoriteLocations filteredOrderedSetUsingPredicate:namePredicate];
-        if ([locationsWithName count] == 1) {
-            SDFavoriteLocation *location = locationsWithName[0];
-            SDFavoriteLocation *currentSelection = appState.selectedLocation;
-            if ([location isEqual:currentSelection]) {
-                if ([appState.favoriteLocations count] == 1) {
-                    [self setDefaultLocation];
-                }
-            }
-            [context deleteObject:location];
-            appState.selectedLocation = appState.favoriteLocations[0];
-            if (![context save:&error]) {
-                NSLog(@"Unable to save change to selected location. %@",error);
-                return;
-            }
-        }
-        [self calculateTides];
-    } else {
-        NSLog(@"Unable to retrieve applications state. Fetch result = %@",fetchResults);
-        return nil;
-    }
 }
 
 @end

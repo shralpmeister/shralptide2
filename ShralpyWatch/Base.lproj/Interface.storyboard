@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="11508"/>
+    </dependencies>
+    <scenes>
+        <!--Tide-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller title="Tide" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="ShralpyWatch_Extension">
+                    <items>
+                        <table alignment="left" id="nyO-nO-5QE">
+                            <items>
+                                <tableRow identifier="stationRow" selectable="NO" id="1Iv-x0-90m" customClass="TideStationRowController" customModule="ShralpyWatch_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="FPT-sK-AAN">
+                                        <items>
+                                            <label alignment="left" text="Label" textAlignment="left" numberOfLines="2" id="Ak8-P0-ePZ"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="stationName" destination="Ak8-P0-ePZ" id="a4r-ks-85l"/>
+                                    </connections>
+                                </tableRow>
+                                <tableRow identifier="heightRow" selectable="NO" id="igL-iz-7O5" customClass="TideHeightRowController" customModule="ShralpyWatch_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="dYH-WE-v6k">
+                                        <items>
+                                            <label alignment="center" verticalAlignment="center" text="Label" id="BCg-L7-0Dm">
+                                                <fontDescription key="font" type="system" weight="heavy" pointSize="30"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="heightLabel" destination="BCg-L7-0Dm" id="pHg-C3-ofr"/>
+                                    </connections>
+                                </tableRow>
+                                <tableRow identifier="chartRow" selectable="NO" id="X4z-Pf-qly" customClass="TideChartRowController" customModule="ShralpyWatch_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" id="suk-TH-EgZ">
+                                        <items>
+                                            <imageView alignment="left" id="bQO-dx-0g9"/>
+                                        </items>
+                                        <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="tideImage" destination="bQO-dx-0g9" id="7Qz-hw-3PJ"/>
+                                    </connections>
+                                </tableRow>
+                                <tableRow identifier="tableRow" selectable="NO" id="Kq5-uX-FPp" customClass="TideTableRowController" customModule="ShralpyWatch_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="3Cy-0z-Idx"/>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="mainTable" destination="nyO-nO-5QE" id="uvA-vG-Vfk"/>
+                        <segue destination="ADh-Mo-Ye4" kind="relationship" relationship="nextPage" id="qbl-5U-VRl"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="117" y="117"/>
+        </scene>
+        <!--Stations-->
+        <scene sceneID="D8y-6C-v2Z">
+            <objects>
+                <controller title="Stations" id="ADh-Mo-Ye4">
+                    <items>
+                        <label alignment="left" text="Select station:" id="MGX-f1-yr9"/>
+                        <picker height="126" alignment="left" id="FdJ-YX-Nbi"/>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="398" y="117"/>
+        </scene>
+    </scenes>
+    <color key="tintColor" red="0.11835330996626378" green="0.69539345854922274" blue="0.4658983806262319" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+</document>

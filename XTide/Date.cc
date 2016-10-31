@@ -45,7 +45,7 @@ const Date::DateStruct Date::dateStruct() const {
   tm tempTm (_timestamp.tmStruct(timezoneLocalVar));
   assert (tempTm.tm_wday >= 0 && tempTm.tm_mon >= 0 &&
           tempTm.tm_wday < 7 && tempTm.tm_mon < 12);
-  DateStruct tempDateStruct = {tempTm.tm_wday, tempTm.tm_mon};
+  DateStruct tempDateStruct = {static_cast<unsigned int>(tempTm.tm_wday), static_cast<unsigned int>(tempTm.tm_mon)};
   return tempDateStruct;
 }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0800"
    version = "2.0">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -28,6 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DC7702CC1DA3672300B3C4F9"
+               BuildableName = "TideChartFrameworkTests.xctest"
+               BlueprintName = "TideChartFrameworkTests"
+               ReferencedContainer = "container:ShralpTide2.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DC7702EC1DA40A5200B3C4F9"
+               BuildableName = "ShralpTide2Tests.xctest"
+               BlueprintName = "ShralpTide2Tests"
+               ReferencedContainer = "container:ShralpTide2.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

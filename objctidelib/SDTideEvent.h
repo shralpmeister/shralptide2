@@ -20,10 +20,11 @@
    You should have received a copy of the GNU General Public License
    along with ShralpTide.  If not, see <http://www.gnu.org/licenses/>.
 */
+#import <Foundation/Foundation.h>
 
-typedef enum eventTypeEnum {max, min, slackrise, slackfall, markrise, markfall,
+typedef NS_ENUM(NSInteger,SDTideState) {max, min, slackrise, slackfall, markrise, markfall,
     sunrise, sunset, moonrise, moonset, newmoon, firstquarter, fullmoon,
-    lastquarter, rawreading} SDTideState;
+    lastquarter, rawreading};
 
 @interface SDTideEvent : NSObject
 

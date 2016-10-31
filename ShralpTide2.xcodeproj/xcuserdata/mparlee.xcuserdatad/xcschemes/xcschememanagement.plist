@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>SharedDataFramework.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>ShralpTide2 - Background Fetch.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -14,15 +19,65 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>ShralpTideWidget.xcscheme</key>
+		<key>ShralpyWatch (Complication).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>ShralpyWatch.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>2</integer>
+		</dict>
+		<key>tidelibs.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>1D6058900D05DD3D006BFB54</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DC7702971DA2CBE000B3C4F9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DC7702C41DA3672300B3C4F9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DC7702CC1DA3672300B3C4F9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DC7702EC1DA40A5200B3C4F9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DC7702FF1DA740CD00B3C4F9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DC7703131DA846EB00B3C4F9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DC7703251DA8474700B3C4F9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DC7704131DADCA9900B3C4F9</key>
 		<dict>
 			<key>primary</key>
 			<true/>

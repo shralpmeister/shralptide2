@@ -21,14 +21,16 @@
    along with ShralpTide.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#import <CoreGraphics/CoreGraphics.h>
 #import "SDTideStationData.h"
 #import <Foundation/Foundation.h>
+#import "SDTideInterval.h"
 
-typedef enum {
+typedef NS_ENUM(NSInteger, SDTideStateRiseFall) {
     SDTideStateRising,
     SDTideStateFalling,
     SDTideStateUnknown,
-} SDTideStateRiseFall;
+};
 
 @interface SDTide : NSObject
 
@@ -36,6 +38,7 @@ typedef enum {
 - (NSString*)shortLocationName;
 - (float)findTideForTime:(NSInteger) time;
 - (SDTideStateRiseFall)tideDirectionForTime:(NSInteger) time;
+- (SDTideInterval*)findTideIntervalForTime:(NSInteger) time;
 - (CGPoint)nearestDataPointForTime:(NSInteger) minutesFromMidnight;
 - (CGPoint)nearestDataPointToCurrentTime;
 - (NSNumber*)nextEventIndex;
@@ -54,10 +57,13 @@ typedef enum {
 - (NSArray*)intervalsFromDate:(NSDate*)fromDate forHours:(NSInteger)hours;
 + (SDTide*)tideByCombiningTides:(NSArray*)tides;
 
+-(NSNumber*)highestTide;
+-(NSNumber*)lowestTide;
+
 @property (nonatomic,strong) NSDate *startTime;
 @property (nonatomic,strong) NSDate *stopTime;
 @property (nonatomic,strong) NSArray *allEvents;
-@property (nonatomic,strong) NSArray *intervals;
+@property (nonatomic,strong) NSArray *allIntervals;
 @property (nonatomic,copy) NSString *stationName;
 @property (nonatomic,copy) NSString *unitLong;
 @property (nonatomic,copy) NSString *unitShort;

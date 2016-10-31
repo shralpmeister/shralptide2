@@ -8,6 +8,7 @@
 
 #import "SDLocationMainViewController.h"
 #import "ShralpTideAppDelegate.h"
+#import "ShralpTide2-Swift.h"
 
 @interface SDLocationMainViewController ()
 
@@ -103,7 +104,11 @@
     if (scrollView.isDecelerating) {
         // we know we're past halfway... take whatever action might be good here.
         appDelegate.locationPage = page;
-        appDelegate.selectedLocation = [appDelegate.tides[page] valueForKey:@"stationName"];
+        NSError *error;
+        BOOL success = [AppStateData.sharedInstance setSelectedLocationWithLocationName: [appDelegate.tides[page] valueForKey:@"stationName"] error:&error];
+        if (!success) {
+            DLog(@"Failed to persist the currenlty selected station.");
+        }
     }
     self.headerViewController.collectionView.contentOffset = CGPointMake(pushOffset, 0);
 }

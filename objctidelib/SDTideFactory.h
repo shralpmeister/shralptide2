@@ -31,7 +31,7 @@
 + (NSArray*)tidesForStationName:(NSString*)name withInterval:(long)interval forDays:(long)days;
 + (SDTide*)tidesForStationName:(NSString*)name fromDate:(NSDate*)fromDate toDate:(NSDate*)toDate;
 + (SDTide*)tideForStationName:(NSString*)name withInterval:(long)interval fromDate:(NSDate*)fromDate toDate:(NSDate*)toDate;
-+ (SDTideStationData*)tideStationWithName:(NSString*)name;
+
 
 @end
 

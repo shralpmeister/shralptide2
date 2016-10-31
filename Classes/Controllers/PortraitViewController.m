@@ -10,7 +10,6 @@
 
 #import "CountryListController.h"
 #import "ChartViewController.h"
-#import "ChartView.h"
 #import "StationMapController.h"
 #import "SDLocationMainViewController.h"
 #import "CountryListController.h"
@@ -166,34 +165,6 @@
     } else if ([segue.identifier isEqualToString:@"FavoritesListSegue"]) {
         FavoritesListViewController *favoritesController = (FavoritesListViewController*)segue.destinationViewController;
         favoritesController.portraitViewController = self;
-    }
-}
-
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner
-{
-    if (!self.bannerIsVisible)
-    {
-        // Assumes the banner view is just off the bottom of the screen.
-        self.bannerAdTop.constant += banner.frame.size.height;
-        self.listButtonBottom.constant -= 10;
-        [UIView animateWithDuration:0.5 animations:^{
-            [self.view layoutIfNeeded];
-        }];
-        self.bannerIsVisible = YES;
-    }
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
-{
-    if (self.bannerIsVisible)
-    {
-        // Assumes the banner view is placed at the bottom of the screen.
-        self.bannerAdTop.constant -= banner.frame.size.height;
-        self.listButtonBottom.constant += 10;
-        [UIView animateWithDuration:0.5 animations:^{
-            [self.view layoutIfNeeded];
-        }];
-        self.bannerIsVisible = NO;
     }
 }
 

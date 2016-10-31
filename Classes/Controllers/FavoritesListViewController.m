@@ -13,6 +13,7 @@
 #import "SDTide.h"
 #import "StationMapController.h"
 #import "BackgroundScene.h"
+#import "ShralpTide2-Swift.h"
 
 @interface FavoritesListViewController ()
 
@@ -85,7 +86,11 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     appDelegate.locationPage = indexPath.row;
-    appDelegate.selectedLocation = ((SDTide*)self.favorites[indexPath.row]).stationName;
+    NSError *error;
+    BOOL success = [AppStateData.sharedInstance setSelectedLocationWithLocationName:((SDTide*)self.favorites[indexPath.row]).stationName error: &error];
+    if (!success) {
+        DLog(@"Unabled to persist selected station: %@",error);
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -146,7 +151,13 @@
 {
     // If row is deleted, remove it from the list.
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [appDelegate removeFavoriteLocation:((SDTide*)self.favorites[indexPath.row]).stationName];
+        NSError *error;
+        BOOL success = [AppStateData.sharedInstance removeFavoriteLocationWithLocationName:((SDTide*)self.favorites[indexPath.row]).stationName error: &error];
+        if (!success) {
+            DLog(@"Unable to remove location from persistent store: %@", error);
+        } else {
+            [appDelegate calculateTides];
+        }
         [self.favorites removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
@@ -216,13 +227,19 @@
                       addTideStation:(NSString *)stationName
 {
     DLog(@"Adding tide station: %@",stationName);
-    [appDelegate addFavoriteLocation:stationName];
+    NSError *error;
+    BOOL success = [AppStateData.sharedInstance addFavoriteLocationWithLocationName:stationName error:&error];
+    if (!success) {
+        DLog(@"Unable to add selected location to persistence store: %@",error);
+    } else {
+        [appDelegate calculateTides];
+    }
     [self reloadData];
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 -(NSArray*)queryCountries {
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSManagedObjectContext *context = AppStateData.sharedInstance.managedObjectContext;
     NSEntityDescription *entityDescription = [NSEntityDescription
                                               entityForName:@"SDCountry"
                                               inManagedObjectContext:context];

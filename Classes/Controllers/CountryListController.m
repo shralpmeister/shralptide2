@@ -10,6 +10,7 @@
 #import "StationListController.h"
 #import "PickerTableCell.h"
 #import "SelectStationNavigationController.h"
+#import "ShralpTide2-Swift.h"
 
 @implementation CountryListController
 
@@ -61,7 +62,7 @@
 {
 	NSString *countryName = ((SDCountry*)(self.rows)[indexPath.row]).name;
     
-    NSManagedObjectContext *context = [(ShralpTideAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSManagedObjectContext *context = AppStateData.sharedInstance.managedObjectContext;
     NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:@"SDCountry" 
 											  inManagedObjectContext:context];

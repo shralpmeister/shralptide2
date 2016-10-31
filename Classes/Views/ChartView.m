@@ -192,14 +192,14 @@
 - (float)findLowestTide:(SDTide *)tide {	
 	NSSortDescriptor *ascDescriptor = [[NSSortDescriptor alloc] initWithKey:@"height" ascending:YES];
 	NSArray *descriptors = @[ascDescriptor];
-	NSArray *ascResult = [[tide intervals] sortedArrayUsingDescriptors:descriptors];
+	NSArray *ascResult = [[tide allIntervals] sortedArrayUsingDescriptors:descriptors];
 	return [(SDTideInterval*)ascResult[0] height];
 }
 
 - (float)findHighestTide:(SDTide *)tide {
 	NSSortDescriptor *descDescriptor = [[NSSortDescriptor alloc] initWithKey:@"height" ascending:NO];
 	NSArray *descriptors = @[descDescriptor];
-	NSArray *descResult = [[tide intervals] sortedArrayUsingDescriptors:descriptors];
+	NSArray *descResult = [[tide allIntervals] sortedArrayUsingDescriptors:descriptors];
 	return [(SDTideInterval*)descResult[0] height];
 }
 

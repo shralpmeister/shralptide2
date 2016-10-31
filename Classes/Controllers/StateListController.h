@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SDStateProvince.h"
-#import "SDCountry.h"
+#import "ShralpTide2-Swift.h"
 #import "ShralpTideAppDelegate.h"
 
 

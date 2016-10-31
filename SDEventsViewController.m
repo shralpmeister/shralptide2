@@ -74,7 +74,7 @@
 {
     NSDate *date = [self.tide startTime];
     NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
-    NSUInteger preservedComponents = (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit);
+    NSUInteger preservedComponents = (NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay);
     date = [calendar dateFromComponents:[calendar components:preservedComponents fromDate:date]];
     date = [date dateByAddingTimeInterval:1440 * 60]; // add one day to get midnight tonight
     

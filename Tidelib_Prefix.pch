@@ -1,0 +1,23 @@
+//
+//  Tidelib_Prefix.pch
+//  ShralpTide2
+//
+//  Created by Michael Parlee on 10/7/16.
+//
+//
+
+#ifndef Tidelib_Prefix_pch
+#define Tidelib_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#ifdef DEBUG
+#    define DLog(...) NSLog(__VA_ARGS__)
+#else
+#    define DLog(...) /* */
+#endif
+#define ALog(...) NSLog(__VA_ARGS__)
+
+
+#endif /* Tidelib_Prefix_pch */

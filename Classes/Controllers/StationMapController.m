@@ -7,6 +7,10 @@
 //
 
 #import "StationMapController.h"
+#import "ShralpTide2-Swift.h"
+#import "ConfigHelper.h"
+
+#define configHelper ((ConfigHelper*)ConfigHelper.sharedInstance)
 
 BOOL zoomedToLocal;
 
@@ -54,7 +58,7 @@ BOOL zoomedToLocal;
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if (appDelegate.showsCurrentsPref) {
+    if (configHelper.showsCurrentsPref) {
         [self.navigationController setToolbarHidden:NO];
         if (self.stationType == SDStationTypeTide) {
             self.tideCurrentSelector.selectedSegmentIndex = 0;
@@ -75,7 +79,7 @@ BOOL zoomedToLocal;
 
 -(void)addTideStationsForRegion:(MKCoordinateRegion)region
 {
-	NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSManagedObjectContext *context = AppStateData.sharedInstance.managedObjectContext;
     if (!context) {
         DLog(@"Error occurred starting CoreData managed object context, %@",context);
         return;

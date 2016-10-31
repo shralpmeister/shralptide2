@@ -10,8 +10,9 @@
 #import "StationListController.h"
 #import "PickerTableCell.h"
 #import "SelectStationNavigationController.h"
+#import "ConfigHelper.h"
 
-#define appDelegate ((ShralpTideAppDelegate*)[[UIApplication sharedApplication] delegate])
+#define configHelper ((ConfigHelper*)ConfigHelper.sharedInstance)
 
 @implementation StateListController
 
@@ -68,7 +69,7 @@
 {
 	NSString *stateName = ((SDStateProvince*)(self.rows)[indexPath.row]).name;
     
-    NSManagedObjectContext *context = [(ShralpTideAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSManagedObjectContext *context = AppStateData.sharedInstance.managedObjectContext;
     NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:@"SDStateProvince" 
 											  inManagedObjectContext:context];
@@ -88,7 +89,7 @@
             
         NSArray *orderedStations = [[state.tideStations objectsPassingTest:
                                      ^(id obj, BOOL *stop) {
-                                         BOOL result = appDelegate.showsCurrentsPref ? YES : ![((SDTideStation*)obj).current boolValue];
+                                         BOOL result = configHelper.showsCurrentsPref ? YES : ![((SDTideStation*)obj).current boolValue];
                                          return result;
                                      }] sortedArrayUsingDescriptors:@[sortByName]];
         

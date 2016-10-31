@@ -20,29 +20,22 @@
    You should have received a copy of the GNU General Public License
    along with ShralpTide.  If not, see <http://www.gnu.org/licenses/>.
 */
-
+#import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "SDTideStationData.h"
+#import <Foundation/Foundation.h>
+#import "ShralpTide2-Swift.h"
 
 @class RootViewController;
 
 @interface ShralpTideAppDelegate : NSObject <UIApplicationDelegate>
 
 @property (nonatomic, strong) IBOutlet UIWindow *window;
-@property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (nonatomic, strong, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, strong, readonly) NSArray *tides;
 @property (nonatomic, assign) int page;
 @property (nonatomic, assign) long locationPage;
 
-@property (nonatomic,strong) NSString *unitsPref;
-@property (nonatomic,assign) NSInteger daysPref;
-@property (nonatomic,assign) BOOL showsCurrentsPref;
-
-- (void)setSelectedLocation:(NSString*)locationName;
-- (void)addFavoriteLocation:(NSString*)locationName;
-- (void)removeFavoriteLocation:(NSString*)locationName;
+- (void)calculateTides;
 
 @end
 

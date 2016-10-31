@@ -27,14 +27,13 @@
 
 #import "SDTideFactory.h"
 #import "SDTide.h"
-#import "ShralpTideAppDelegate.h"
 #import "SDTideStationData.h"
-#import "SDTideStation.h"
 #import "NSDate+Day.h"
+#import "ConfigHelper.h"
 
+#define configHelper ((ConfigHelper*)ConfigHelper.sharedInstance)
 
 #define SECONDS_PER_DAY 86400
-#define appDelegate ((ShralpTideAppDelegate*)[[UIApplication sharedApplication] delegate])
 
 static NSArray* tideEventsForLocation(const Dstr &name, Interval step, Timestamp start, Timestamp end, Units::PredictionUnits units);
 static NSArray* rawEventsForLocation(const Dstr &name, Interval step, Timestamp start, Timestamp end, Units::PredictionUnits units);
@@ -50,7 +49,7 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
 
 +(NSArray*)tidesForStationName:(NSString *)name
 {
-    return [SDTideFactory tidesForStationName:name withInterval:900 forDays:appDelegate.daysPref];
+    return [SDTideFactory tidesForStationName:name withInterval:900 forDays:configHelper.daysPref];
 }
 
 +(NSArray*)tidesForStationName:(NSString*)name withInterval:(long)interval forDays:(long)days
@@ -82,7 +81,7 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
         Global::settings.applyUserDefaults();
         Global::settings.fixUpDeprecatedSettings();
         
-        Units::PredictionUnits units = [appDelegate.unitsPref isEqualToString:@"metric"] ? Units::meters : Units::feet;
+        Units::PredictionUnits units = [configHelper.unitsPref isEqualToString:@"metric"] ? Units::meters : Units::feet;
         
         Dstr location ([name UTF8String]);
         
@@ -114,39 +113,13 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
         tide.stationName = name;
         tide.startTime = [NSDate dateWithTimeIntervalSince1970:startTime.timet()];
         tide.stopTime = [NSDate dateWithTimeIntervalSince1970:endTime.timet()];
-        tide.intervals = intervals;
+        tide.allIntervals = intervals;
         tide.allEvents = events;
         tide.unitLong = nil;
         tide.unitShort = eventZero.units;
         
         return tide;
     }
-}
-
-+(SDTideStationData*)tideStationWithName:(NSString*)name
-{
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"SDTideStation" 
-											  inManagedObjectContext:context];
-	
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", name];
-    
-	NSFetchRequest *fr = [[NSFetchRequest alloc] init];
-	[fr setEntity: entityDescription];
-	[fr setPredicate:predicate];
-    
-    SDTideStationData *station = nil;
-    
-	NSError *error = nil;
-	NSArray *results = [context executeFetchRequest:fr error:&error];
-	if ([results count] == 1) {
-        SDTideStation *entityObj = results[0];
-        station = [[SDTideStationData alloc] init];
-        station.name = entityObj.name;
-        station.units = entityObj.units;
-    }    
-    return station;
 }
 
 @end

@@ -20,12 +20,6 @@
 
 #include "common.hh"
 
-
-// Separator between tide stations in text client output
-// \f is form feed
-static constString stationSeparator = "\f";
-
-
 //static void doLocation (const Dstr &name,
 //                        Interval step,
 //                        FILE *outfp,

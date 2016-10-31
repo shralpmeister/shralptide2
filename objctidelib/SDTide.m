@@ -22,7 +22,6 @@
 */
 
 #import "SDTide.h"
-#import "SDTideInterval.h"
 #import "SDTideEvent.h"
 #import "NSDate+Day.h"
 
@@ -42,7 +41,7 @@
         
         self.startTime = start;
         self.stopTime = end;
-        self.intervals = tideIntervals;
+        self.allIntervals = tideIntervals;
         self.allEvents = events;
         self.stationName = station;
     }
@@ -81,22 +80,28 @@
 	}
 }
 
+-(SDTideInterval*)findTideIntervalForTime:(NSInteger) time {
+    int basetime = 0;
+    for (SDTideInterval *tidePoint in [self allIntervals]) {
+        int minutesSinceMidnight = 0;
+        if (basetime == 0) {
+            basetime = (int)[[tidePoint time] timeIntervalSince1970];
+        }
+        minutesSinceMidnight = (int)([[tidePoint time] timeIntervalSince1970] - basetime) / 60;
+        if (minutesSinceMidnight == [NSDate findNearestInterval:(int)time]) {
+            return tidePoint;
+        }
+    }
+    return nil;
+}
+
 -(float)findTideForTime:(NSInteger) time {
-	float height = 0.0;
-	int basetime = 0;
-	for (SDTideInterval *tidePoint in [self intervals]) {
-		int minutesSinceMidnight = 0;
-		if (basetime == 0) {
-			basetime = (int)[[tidePoint time] timeIntervalSince1970];
-		}
-		minutesSinceMidnight = (int)([[tidePoint time] timeIntervalSince1970] - basetime) / 60;
-		if (minutesSinceMidnight == time) {
-			height = tidePoint.height;
-            self.unitShort = tidePoint.units;
-			return height;
-		}
-	}
-	return height;
+    SDTideInterval *interval = [self findTideIntervalForTime:time];
+    if (interval != nil) {
+        self.unitShort = interval.units;
+        return interval.height;
+    }
+	return 0.0;
 }
 
 -(NSNumber*)nextEventIndex
@@ -116,6 +121,16 @@
 {
     NSPredicate *tideEventsOnly = [NSPredicate predicateWithFormat:@"(eventType == %d OR eventType == %d)", max, min];
     return [self.allEvents filteredArrayUsingPredicate:tideEventsOnly];
+}
+
+-(NSNumber*)highestTide
+{
+    return [self.allIntervals valueForKeyPath:@"@max.height"];
+}
+
+-(NSNumber*)lowestTide
+{
+    return [self.allIntervals valueForKeyPath:@"@min.height"];
 }
 
 -(NSDictionary*)sunriseSunsetEventsForDay:(NSDate*)date
@@ -175,7 +190,7 @@
 -(NSArray*)intervalsForDay:(NSDate*)date
 {
     NSPredicate *daysIntervalsOnly = [NSPredicate predicateWithFormat:@"time BETWEEN %@",@[[date startOfDay], [date endOfDay]]];
-    return [self.intervals filteredArrayUsingPredicate:daysIntervalsOnly];
+    return [self.allIntervals filteredArrayUsingPredicate:daysIntervalsOnly];
 }
 
 - (NSArray*)intervalsFromDate:(NSDate*)fromDate forHours:(NSInteger)hours
@@ -184,7 +199,7 @@
     NSDate *fromIntervalDate = [[fromDate startOfDay] dateByAddingTimeInterval:nearestFromInterval * 60];
     NSDate *toDate = [fromIntervalDate dateByAddingTimeInterval:hours * 60 * 60];
     NSPredicate *timeRange = [NSPredicate predicateWithFormat:@"time BETWEEN %@",@[ fromIntervalDate, toDate]];
-    return [self.intervals filteredArrayUsingPredicate:timeRange];
+    return [self.allIntervals filteredArrayUsingPredicate:timeRange];
 }
 
 + (SDTide*)tideByCombiningTides:(NSArray*)tides
@@ -209,7 +224,7 @@
     NSSet *intervalsSet = [NSSet set];
     NSTimeInterval lastIntervalTime = 0;
     for (SDTide* tide in tides) {
-        SDTideInterval *nextInterval = (SDTideInterval*)[tide.intervals firstObject];
+        SDTideInterval *nextInterval = (SDTideInterval*)[tide.allIntervals firstObject];
         NSTimeInterval nextIntervalTime = [nextInterval.time timeIntervalSince1970];
         if (![tide.stationName isEqualToString:combinedTide.stationName] || (lastIntervalTime > 0 && !(nextIntervalTime - lastIntervalTime == 0))) {
             NSException* myException = [NSException
@@ -219,15 +234,15 @@
             @throw myException;
         }
         allEventsSet = [allEventsSet setByAddingObjectsFromArray:tide.allEvents];
-        intervalsSet = [intervalsSet setByAddingObjectsFromArray:tide.intervals];
-        lastIntervalTime = [((SDTideInterval*)[tide.intervals lastObject]).time timeIntervalSince1970];
+        intervalsSet = [intervalsSet setByAddingObjectsFromArray:tide.allIntervals];
+        lastIntervalTime = [((SDTideInterval*)[tide.allIntervals lastObject]).time timeIntervalSince1970];
     }
     
     NSSortDescriptor *eventTimeDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"eventTime" ascending:YES];
     combinedTide.allEvents = [[allEventsSet allObjects] sortedArrayUsingDescriptors:@[eventTimeDescriptor]];
     
     NSSortDescriptor *intervalTimeDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"time" ascending:YES];
-    combinedTide.intervals = [[intervalsSet allObjects] sortedArrayUsingDescriptors:@[intervalTimeDescriptor]];
+    combinedTide.allIntervals = [[intervalsSet allObjects] sortedArrayUsingDescriptors:@[intervalTimeDescriptor]];
 
     return combinedTide;
 }
@@ -238,7 +253,7 @@
     formatter.dateStyle = NSDateFormatterShortStyle;
     return [NSString stringWithFormat:@"Location: %@, startDate: %@, no.events: %lu, no.intervals:%lu", _stationName,
             [formatter stringFromDate:_startTime], (unsigned long)[self.events count], (unsigned long
-)[self.intervals count]];
+)[self.allIntervals count]];
 }
 
 #pragma mark PrivateMethods
