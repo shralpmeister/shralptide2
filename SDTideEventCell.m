@@ -14,7 +14,9 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
+        self.timeLabel.adjustsFontSizeToFitWidth = YES;
+        self.heightLabel.adjustsFontSizeToFitWidth = YES;
+        self.typeLabel.adjustsFontSizeToFitWidth = YES;
     }
     return self;
 }

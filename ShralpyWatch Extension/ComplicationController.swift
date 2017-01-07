@@ -39,18 +39,17 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         
         let direction = tide.tideDirection(forTime: interval.time.timeInMinutesSinceMidnight())
         
-        let text = String.tideFormatString(value: interval.height, units: tide.unitShort)
-        let shortText = String.tideFormatStringSmall(value: interval.height, units: tide.unitShort)
+        let text = String.tideFormatString(value: interval.height)
+        let shortText = String.tideFormatStringSmall(value: interval.height)
         let symbolText = direction == .falling ? String.DownSymbol : String.UpSymbol
         
         return populateTemplate(for: complication, longText: text, shortText: shortText , symbolText: symbolText, height: interval.height, min:tide.lowestTide().floatValue, max:tide.highestTide().floatValue)
     }
     
-    func populateTemplate(for complication:CLKComplication, longText:String, shortText:String?, symbolText:String?, height:Float?, min:Float?, max:Float?) -> CLKComplicationTemplate {
+    func populateTemplate(for complication:CLKComplication, longText:String, shortText:String?, symbolText:String?, height:Float, min:Float, max:Float) -> CLKComplicationTemplate {
         
         var template:CLKComplicationTemplate?
-        let fillFraction = height! / (max! - min!)
-        
+        let fillFraction = (height - min) / (max - min)
         switch (complication.family) {
         case .modularLarge:
             let lgmTemplate = CLKComplicationTemplateModularLargeTallBody()
@@ -66,7 +65,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             break
         case .utilitarianLarge:
             let lgUtTemplate = CLKComplicationTemplateUtilitarianLargeFlat()
-            lgUtTemplate.textProvider = CLKSimpleTextProvider(text: longText+symbolText!, shortText: shortText!+symbolText!)
+            lgUtTemplate.textProvider = CLKSimpleTextProvider(text: "Tide: " + longText+symbolText!, shortText: shortText!+symbolText!)
             template = lgUtTemplate
             break
         case .utilitarianSmallFlat:
@@ -86,6 +85,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             template = circTemplate
         case .extraLarge:
             let xlTemplate = CLKComplicationTemplateExtraLargeRingText()
+            xlTemplate.tintColor = UIColor.green
             xlTemplate.fillFraction = fillFraction
             xlTemplate.ringStyle = .open
             xlTemplate.textProvider = CLKSimpleTextProvider(text:symbolText!)
@@ -97,22 +97,30 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     // MARK: - Timeline Population
     
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
+        guard let tides = extDelegate.tides else {
+            handler(nil)
+            return
+        }
         let date = Date()
-        let interval = extDelegate.tides?.findInterval(forTime: date.timeInMinutesSinceMidnight())!
-        let entry = CLKComplicationTimelineEntry(date: date.intervalStartDate(), complicationTemplate: complicationTemplate(for:complication, interval:interval!, tide:extDelegate.tides!))
+        let interval = tides.findInterval(forTime: date.timeInMinutesSinceMidnight())!
+        let entry = CLKComplicationTimelineEntry(date: date.intervalStartDate(), complicationTemplate: complicationTemplate(for:complication, interval:interval, tide:tides))
         
         // Call the handler with the current timeline entry
         handler(entry)
     }
     
     func getTimelineEntries(for complication: CLKComplication, before date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
+        guard let tides = extDelegate.tides else {
+            handler(nil)
+            return
+        }
         let calendar = Calendar.current
         var entries = [CLKComplicationTimelineEntry]()
         let limitInHours = limit / ComplicationController.IntervalsPerHour
         let startDate = calendar.date(byAdding: Calendar.Component.hour, value: -1 * limitInHours, to: date)
-        let intervals = extDelegate.tides?.intervals(from: startDate, forHours:limitInHours) as! [SDTideInterval]
+        let intervals = tides.intervals(from: startDate, forHours:limitInHours) as! [SDTideInterval]
         for interval in intervals {
-            let entry = CLKComplicationTimelineEntry(date:interval.time.intervalStartDate(), complicationTemplate:complicationTemplate(for:complication, interval:interval, tide: extDelegate.tides!))
+            let entry = CLKComplicationTimelineEntry(date:interval.time.intervalStartDate(), complicationTemplate:complicationTemplate(for:complication, interval:interval, tide: tides))
             entries.append(entry)
         }
         // Call the handler with the timeline entries prior to the given date
@@ -120,12 +128,16 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     }
     
     func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
+        guard let tides = extDelegate.tides else {
+            handler(nil)
+            return
+        }
         // Call the handler with the timeline entries after to the given date
         var entries = [CLKComplicationTimelineEntry]()
         let limitInHours = limit / ComplicationController.IntervalsPerHour
-        let intervals = extDelegate.tides?.intervals(from: date, forHours: limitInHours) as! [SDTideInterval]
+        let intervals = tides.intervals(from: date, forHours: limitInHours) as! [SDTideInterval]
         for interval in intervals {
-            let entry = CLKComplicationTimelineEntry(date:interval.time.intervalStartDate(), complicationTemplate:complicationTemplate(for:complication, interval:interval, tide: extDelegate.tides!))
+            let entry = CLKComplicationTimelineEntry(date:interval.time.intervalStartDate(), complicationTemplate:complicationTemplate(for:complication, interval:interval, tide: tides))
             entries.append(entry)
         }
         // Call the handler with the timeline entries prior to the given date
@@ -138,10 +150,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         // This method will be called once per supported complication, and the results will be cached
         let template = populateTemplate(for: complication, longText: "-.--m", shortText: "-.-m", symbolText: String.DownSymbol, height: 2.5, min: 0.0, max: 5.5)
         handler(template)
-    }
-    
-    func getLocalizableTemplate(for complication: CLKComplication, longText:String?, shortText:String?) {
-        
     }
     
 }

@@ -30,7 +30,7 @@ import CoreData
                 try self.setDefaultLocation()
             } else {
                 self.persistentState = results?[0]
-                self.locationPage = (self.persistentState?.favoriteLocations?.index(of:self.persistentState?.selectedLocation))!
+                self.locationPage = (self.persistentState?.favoriteLocations?.index(of:self.persistentState?.selectedLocation as Any))!
                 print("Selected location = \(self.persistentState?.selectedLocation?.locationName), page = \(self.locationPage)")
             }
         } catch {

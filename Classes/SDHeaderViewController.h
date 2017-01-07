@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SDTide.h"
 
 @class SDLocationMainViewController;
 
-@interface SDHeaderViewController : UICollectionViewController
+@interface SDHeaderViewController : UIViewController
+
+@property (nonatomic,retain) SDTide *tide;
+@property (nonatomic,weak) IBOutlet UILabel *locationLabel;
+@property (nonatomic,weak) IBOutlet UILabel *tideLevelLabel;
+@property (nonatomic,weak) IBOutlet UIImageView *directionArrowView;
 
 @end

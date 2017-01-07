@@ -10,7 +10,7 @@
 #import "SDTide.h"
 #import "ChartView.h"
 
-@interface SDEventsViewController : UIViewController <UITableViewDataSource,ChartViewDatasource>
+@interface SDEventsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,ChartViewDatasource>
 
 @property (nonatomic,weak) IBOutlet UILabel *dateLabel;
 @property (nonatomic,strong) IBOutlet ChartView *chartView;

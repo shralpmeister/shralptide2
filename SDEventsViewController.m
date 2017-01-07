@@ -41,6 +41,7 @@
     formatter.formatterBehavior = NSDateFormatterBehaviorDefault;
     formatter.dateStyle = NSDateFormatterFullStyle;
     self.dateLabel.text = [formatter stringFromDate:[self.tide startTime]];
+    self.dateLabel.adjustsFontSizeToFitWidth = YES;
     
     DLog(@"Scroll view frame width = %f", _chartScrollView.frame.size.width);
     _chartView.height = 40;
@@ -68,6 +69,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark Table View Delegate Methods
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return tableView.bounds.size.height / 4;
+}
+
 #pragma mark Table View Data Source methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

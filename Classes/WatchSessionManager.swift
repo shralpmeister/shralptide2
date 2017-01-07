@@ -44,14 +44,21 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
             print("Activation failed with error: \(error)")
         } else {
             print("WatchConnectivity session active!")
+        }
+    }
+    
+    public func session(_ session: WCSession, didReceiveMessage message: [String : Any],
+                        replyHandler: @escaping ([String : Any]) -> Void) {
+        
+        guard let request = message["request"] as! String? else {
+            return
+        }
+        
+        if request == "provision" {
             var settings = (ConfigHelper.sharedInstance() as!ConfigHelper).preferencesAsDictionary() as! [String:Any]
             settings["selected_station"] = AppStateData.sharedInstance.persistentState?.selectedLocation?.locationName
             settings["favorite_locations"] = (AppStateData.sharedInstance.persistentState?.favoriteLocations?.array as! [SDFavoriteLocation]).map { $0.locationName } as! [String]
-            do {
-                try session.updateApplicationContext(settings)
-            } catch {
-                print("Error watch application context failed to update: \(error)");
-            }
+            replyHandler(settings)
         }
     }
     

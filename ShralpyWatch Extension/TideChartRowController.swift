@@ -11,6 +11,5 @@ import WatchKit
 import SceneKit
 
 class TideChartRowController:NSObject {
-    
     @IBOutlet weak var tideImage:WKInterfaceImage!
 }

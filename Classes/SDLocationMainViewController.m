@@ -8,7 +8,6 @@
 
 #import "SDLocationMainViewController.h"
 #import "ShralpTideAppDelegate.h"
-#import "ShralpTide2-Swift.h"
 
 @interface SDLocationMainViewController ()
 
@@ -73,7 +72,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(self.view.frame.size.width, self.view.frame.size.height * 2/3);
+    return CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
@@ -110,7 +109,6 @@
             DLog(@"Failed to persist the currenlty selected station.");
         }
     }
-    self.headerViewController.collectionView.contentOffset = CGPointMake(pushOffset, 0);
 }
 
 @end

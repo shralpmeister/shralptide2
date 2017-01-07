@@ -119,9 +119,9 @@
 
 -(NSString*)description {
     if (self.units != nil) {
-        return [NSString stringWithFormat:@"%@ %@: %0.1f%@",[self eventTimeString24HR],[SDTideEvent eventTypeDescriptions][self.eventType],self.eventHeight,self.units];
+        return [NSString stringWithFormat:@"%@\t%@: %0.1f%@",[self eventTimeString24HR],[SDTideEvent eventTypeDescriptions][self.eventType],self.eventHeight,self.units];
     } else {
-        return [NSString stringWithFormat:@"%@ %@",[self eventTimeString24HR],[SDTideEvent eventTypeDescriptions][self.eventType]];
+        return [NSString stringWithFormat:@"%@\t%@",[self eventTimeString24HR],[SDTideEvent eventTypeDescriptions][self.eventType]];
     }
 }
 

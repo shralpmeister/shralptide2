@@ -8,6 +8,7 @@
 
 import Foundation
 import WatchConnectivity
+import WatchKit
 
 class WatchSessionManager: NSObject, WCSessionDelegate
 {
@@ -16,7 +17,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate
         super.init()
     }
     
-    private let session: WCSession = WCSession.default()
+    public let session: WCSession = WCSession.default()
     
     func startSession() {
         session.delegate = self
@@ -28,7 +29,14 @@ class WatchSessionManager: NSObject, WCSessionDelegate
         if error != nil {
             print("Activation failed with error: \(error)")
         } else {
-            print("WatchConnectivity session active!")
+            if activationState == .activated {
+                print("WatchConnectivity session active!")
+            }
         }
     }
+    
+    public func sessionReachabilityDidChange(_ session: WCSession) {
+        // may want to do some checking when this happens
+    }
+
 }

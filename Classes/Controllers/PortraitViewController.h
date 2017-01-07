@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SDHeaderViewController.h"
 #import "ChartScrollView.h"
 #import "LandscapeViewController.h"
 #import "SDTide.h"
@@ -18,7 +19,5 @@
 @interface PortraitViewController : UIViewController
 
 @property (nonatomic, weak) IBOutlet UIButton* listViewButton;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *bannerAdTop;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *listButtonBottom;
 
 @end

@@ -9,16 +9,27 @@
 import Foundation
 
 extension String {
-    
+    static let MetersPerFoot:Float = 0.3048
     static let DownSymbol = "▼"
     static let UpSymbol = "▲"
     
-    static func tideFormatString(value:Float, units:String) -> String {
-        return String(format:"%1.2f%@",value,units)
+    private static func localizeHeight(value:Float) -> Float {
+        let units = ConfigHelper.sharedInstance.selectedUnits
+        let conversionFactor:Float = units == .METRIC ? MetersPerFoot : 1
+        return value * conversionFactor
     }
     
-    static func tideFormatStringSmall(value:Float, units:String) -> String {
-        return String(format:"%1.1f%@",value,units)
+    private static func localizedUnit() -> String {
+        let units = ConfigHelper.sharedInstance.selectedUnits
+        return units == SDTideUnitsPref.METRIC ? "m" : "ft"
+    }
+    
+    static func tideFormatString(value:Float) -> String {
+        return String(format:"%1.2f%@", String.localizeHeight(value: value), String.localizedUnit())
+    }
+    
+    static func tideFormatStringSmall(value:Float) -> String {
+        return String(format:"%1.1f%@",String.localizeHeight(value: value), String.localizedUnit())
     }
     
     static func directionIndicator(_ direction:SDTideStateRiseFall) -> String {
@@ -30,5 +41,12 @@ extension String {
         default:
             return ""
         }
+    }
+    
+    static func localizedDescription(event:SDTideEvent) -> String {
+        let localHeight = String.localizeHeight(value: event.eventHeight)
+        let localUnit = String.localizedUnit()
+        let localTime = DateFormatter.localizedString(from: event.eventTime, dateStyle: .none, timeStyle: .short)
+        return String(format: "%8s\t%6s% 2.2f%@", (localTime as NSString).utf8String!, (event.eventTypeDescription() as NSString).utf8String!, localHeight, localUnit)
     }
 }

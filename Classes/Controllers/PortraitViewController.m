@@ -28,7 +28,6 @@
 @property (nonatomic, strong) SDHeaderViewController *headerViewController;
 @property (nonatomic, strong) SDLocationMainViewController *locationMainViewController;
 @property (nonatomic, strong) BackgroundScene *backgroundScene;
-@property (nonatomic, assign) BOOL bannerIsVisible;
 
 @end
 
@@ -47,13 +46,13 @@
 {
     [super viewDidLoad];
     
-    self.bannerIsVisible = NO;
-    
-    SKView *view = (SKView*)self.view;
-    
-    _backgroundScene = [BackgroundScene sceneWithSize:view.frame.size];
-    _backgroundScene.name = @"Background Scene";
-    _backgroundScene.scaleMode = SKSceneScaleModeAspectFill;
+    if ([self.view isKindOfClass:SKView.class]) {
+        SKView *view = (SKView*)self.view;
+        
+        _backgroundScene = [BackgroundScene sceneWithSize:view.frame.size];
+        _backgroundScene.name = @"Background Scene";
+        _backgroundScene.scaleMode = SKSceneScaleModeAspectFill;
+    }
         
     self.automaticallyAdjustsScrollViewInsets = NO;
     for (UIViewController *controller in [self childViewControllers]) {
@@ -62,7 +61,6 @@
         } else if ([controller.restorationIdentifier isEqualToString:@"MainViewController"]) {
             self.locationMainViewController = (SDLocationMainViewController*)controller;
         }
-        self.locationMainViewController.headerViewController = self.headerViewController;
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTideData) name:kSDApplicationActivatedNotification object:nil];
 }
@@ -75,7 +73,6 @@
 - (void)refreshTideData
 {
     DLog(@"Portrait View Controller got recalc notification. Reloading data");
-    [self.headerViewController.collectionView reloadData];
     [self.locationMainViewController.collectionView reloadData];
 }
 
@@ -91,19 +88,23 @@
     
     _listViewButton.imageView.image = [_listViewButton.imageView.image maskImageWithColor: [UIColor colorWithWhite:0.8 alpha:1]];
     
-    SKView *backgroundView = (SKView*)self.view;
-    if (backgroundView.isPaused) {
-        backgroundView.paused = NO;
-    } else {
-        [backgroundView presentScene:_backgroundScene];
+    if ([self.view isKindOfClass:[SKView class]]) {
+        SKView *backgroundView = (SKView*)self.view;
+        if (backgroundView.isPaused) {
+            backgroundView.paused = NO;
+        } else {
+            [backgroundView presentScene:_backgroundScene];
+        }
     }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    SKView *backgroundView = (SKView*)self.view;
-    backgroundView.paused = YES;
+    if ([self.view isKindOfClass:[SKView class]]) {
+        SKView *backgroundView = (SKView*)self.view;
+        backgroundView.paused = YES;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -148,7 +149,7 @@
 //    CGRect frame = self.collectionView.frame;
 //    frame.origin.x = frame.size.width * page;
 //    frame.origin.y = 0;
-//    
+//
 //    [self.collectionView scrollRectToVisible:frame animated:YES];
 //    // Set the boolean used when scrolls originate from the UIPageControl. See scrollViewDidScroll: above.
 //    self.pageControlUsed = YES;

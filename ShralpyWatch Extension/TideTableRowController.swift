@@ -10,5 +10,5 @@ import Foundation
 import WatchKit
 
 class TideTableRowController:NSObject {
-    @IBOutlet weak var row1:WKInterfaceLabel!
+    @IBOutlet weak var eventDescription:WKInterfaceLabel!
 }

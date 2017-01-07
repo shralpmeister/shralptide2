@@ -15,21 +15,24 @@
                     <items>
                         <table alignment="left" id="nyO-nO-5QE">
                             <items>
-                                <tableRow identifier="stationRow" selectable="NO" id="1Iv-x0-90m" customClass="TideStationRowController" customModule="ShralpyWatch_Extension">
-                                    <group key="rootItem" width="1" alignment="left" id="FPT-sK-AAN">
+                                <tableRow identifier="stationRow" id="1Iv-x0-90m" customClass="TideStationRowController" customModule="ShralpyWatch_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" id="FPT-sK-AAN">
                                         <items>
-                                            <label alignment="left" text="Label" textAlignment="left" numberOfLines="2" id="Ak8-P0-ePZ"/>
+                                            <label alignment="left" text="Label" textAlignment="left" numberOfLines="2" id="Ak8-P0-ePZ">
+                                                <fontDescription key="font" type="system" pointSize="14"/>
+                                            </label>
                                         </items>
                                     </group>
                                     <connections>
                                         <outlet property="stationName" destination="Ak8-P0-ePZ" id="a4r-ks-85l"/>
+                                        <segue destination="ADh-Mo-Ye4" kind="push" id="WeQ-3q-2gp"/>
                                     </connections>
                                 </tableRow>
                                 <tableRow identifier="heightRow" selectable="NO" id="igL-iz-7O5" customClass="TideHeightRowController" customModule="ShralpyWatch_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="dYH-WE-v6k">
                                         <items>
                                             <label alignment="center" verticalAlignment="center" text="Label" id="BCg-L7-0Dm">
-                                                <fontDescription key="font" type="system" weight="heavy" pointSize="30"/>
+                                                <fontDescription key="font" type="system" weight="semibold" pointSize="30"/>
                                             </label>
                                         </items>
                                     </group>
@@ -48,28 +51,76 @@
                                         <outlet property="tideImage" destination="bQO-dx-0g9" id="7Qz-hw-3PJ"/>
                                     </connections>
                                 </tableRow>
-                                <tableRow identifier="tableRow" selectable="NO" id="Kq5-uX-FPp" customClass="TideTableRowController" customModule="ShralpyWatch_Extension">
-                                    <group key="rootItem" width="1" alignment="left" id="3Cy-0z-Idx"/>
+                                <tableRow identifier="eventRow" selectable="NO" id="Kq5-uX-FPp" customClass="TideTableRowController" customModule="ShralpyWatch_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" id="3Cy-0z-Idx">
+                                        <items>
+                                            <label alignment="left" text="Label" id="0xT-dZ-jnh">
+                                                <fontDescription key="font" type="system" pointSize="12"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="eventDescription" destination="0xT-dZ-jnh" id="Yrv-ek-qJA"/>
+                                    </connections>
                                 </tableRow>
                             </items>
                         </table>
                     </items>
                     <connections>
                         <outlet property="mainTable" destination="nyO-nO-5QE" id="uvA-vG-Vfk"/>
-                        <segue destination="ADh-Mo-Ye4" kind="relationship" relationship="nextPage" id="qbl-5U-VRl"/>
                     </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="117" y="117"/>
         </scene>
-        <!--Stations-->
+        <!--Retry-->
+        <scene sceneID="g0H-FP-9md">
+            <objects>
+                <controller identifier="missingSettings" title="Retry" id="KY3-fe-M2P" customClass="MissingSettingsModalController" customModule="ShralpyWatch_Extension">
+                    <items>
+                        <group height="100" alignment="center" verticalAlignment="center" radius="5" id="Ccm-ss-Hoa">
+                            <items>
+                                <label height="1" alignment="center" text="Please launch the iPhone app to complete installation" textAlignment="center" numberOfLines="8" id="WYJ-kp-Xvj"/>
+                            </items>
+                            <color key="backgroundColor" red="0.48460852580000002" green="0.48460852580000002" blue="0.48460852580000002" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                            <edgeInsets key="margins" left="2" right="2" top="2" bottom="2"/>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="messageLabel" destination="WYJ-kp-Xvj" id="lNy-Iv-8Dw"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="126" y="408"/>
+        </scene>
+        <!--stationList-->
         <scene sceneID="D8y-6C-v2Z">
             <objects>
-                <controller title="Stations" id="ADh-Mo-Ye4">
+                <controller identifier="stationList" id="ADh-Mo-Ye4" customClass="StationListInterfaceController" customModule="ShralpyWatch_Extension">
                     <items>
                         <label alignment="left" text="Select station:" id="MGX-f1-yr9"/>
-                        <picker height="126" alignment="left" id="FdJ-YX-Nbi"/>
+                        <table alignment="left" id="2mc-Lx-j8f">
+                            <items>
+                                <tableRow identifier="tideStationRow" id="jGM-Qm-E4J" customClass="TideStationRowController" customModule="ShralpyWatch_Extension">
+                                    <group key="rootItem" width="1" alignment="left" radius="3" id="Jpx-dP-L9G">
+                                        <items>
+                                            <label alignment="left" text="Label" textAlignment="left" numberOfLines="2" id="YPf-DJ-gcp">
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <fontDescription key="font" type="system" pointSize="14"/>
+                                            </label>
+                                        </items>
+                                        <color key="backgroundColor" red="0.88011051799098705" green="1" blue="0.92651462760667536" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="stationName" destination="YPf-DJ-gcp" id="6Ok-AK-67f"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
                     </items>
+                    <connections>
+                        <outlet property="stationTable" destination="2mc-Lx-j8f" id="CWe-W4-ogJ"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="398" y="117"/>
