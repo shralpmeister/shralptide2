@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Michael Parlee. All rights reserved.
 //
 
-#import "SDHeaderViewController.h"
+#import "CurrentTideViewController.h"
 #import "ShralpTideAppDelegate.h"
 #import "SDTide.h"
 

@@ -15,7 +15,13 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "SettingsIcon@2x - Alt.png",
+      "filename" : "ShralpTideIcon29.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "iphone",
+      "filename" : "ShralpTideIcon58.png",
       "scale" : "2x"
     },
     {
@@ -27,7 +33,7 @@
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "SpotlightIcon@2x - Alt.png",
+      "filename" : "ShralpTideIcon80.png",
       "scale" : "2x"
     },
     {
@@ -37,9 +43,21 @@
       "scale" : "3x"
     },
     {
+      "size" : "57x57",
+      "idiom" : "iphone",
+      "filename" : "ShralpTideIcon57.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "57x57",
+      "idiom" : "iphone",
+      "filename" : "ShralpTideIcon114.png",
+      "scale" : "2x"
+    },
+    {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "HomeScreenIcon@2x - Alt.png",
+      "filename" : "ShralpTideIcon120.png",
       "scale" : "2x"
     },
     {
@@ -49,15 +67,81 @@
       "scale" : "3x"
     },
     {
+      "size" : "20x20",
+      "idiom" : "ipad",
+      "filename" : "ShralpTideIcon20.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "20x20",
+      "idiom" : "ipad",
+      "filename" : "ShralpTideIcon40.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "ipad",
+      "filename" : "ShralpTideIcon29.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "ipad",
+      "filename" : "ShralpTideIcon58.png",
+      "scale" : "2x"
+    },
+    {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "SpotlightIPad.png",
+      "filename" : "ShralpTideIcon40.png",
       "scale" : "1x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "SpotlightIPad@2x.png",
+      "filename" : "ShralpTideIcon80.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "50x50",
+      "idiom" : "ipad",
+      "filename" : "ShralpTideIcon50.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "50x50",
+      "idiom" : "ipad",
+      "filename" : "ShralpTideIcon100.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "72x72",
+      "idiom" : "ipad",
+      "filename" : "ShralpTideIcon72.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "72x72",
+      "idiom" : "ipad",
+      "filename" : "ShralpTideIcon144.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "ShralpTideIcon76.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "ShralpTideIcon152.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "83.5x83.5",
+      "idiom" : "ipad",
+      "filename" : "ShralpTideIcon167.png",
       "scale" : "2x"
     }
   ],

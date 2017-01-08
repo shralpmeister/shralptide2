@@ -11,7 +11,7 @@
 
 @class SDLocationMainViewController;
 
-@interface SDHeaderViewController : UIViewController
+@interface CurrentTideViewController : UIViewController
 
 @property (nonatomic,retain) SDTide *tide;
 @property (nonatomic,weak) IBOutlet UILabel *locationLabel;

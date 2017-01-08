@@ -85,7 +85,7 @@
 }
 
 -(void)drawRect:(CGRect)rect {
-
+    DLog(@"*** Drawing chart!");
     CGFloat chartBottom = self.frame.size.height;
     
 	CGContextRef context = UIGraphicsGetCurrentContext();
@@ -170,6 +170,7 @@
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateStyle:NSDateFormatterFullStyle];
 	self.dateLabel.text = [formatter stringFromDate:[self.datasource day]];
+    DLog(@"*** Finished drawing chart. xratio=%f", self.xratio);
 }
 
 -(void)hideTideDetails
@@ -183,7 +184,7 @@
 
 - (NSDate*)midnight: (NSDate*)date {
 	NSCalendar *gregorian = [NSCalendar currentCalendar];
-	unsigned unitflags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+	unsigned unitflags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
 	NSDateComponents *components = [gregorian components: unitflags fromDate: date];
 	
 	return [gregorian dateFromComponents:components];

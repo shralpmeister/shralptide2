@@ -142,6 +142,7 @@
 }
 
 - (void)animateCursorViewToCurrentTime {
+    DLog(@"Displaying cursor at current time.");
     if (self.cursorView.superview == nil) {
 		[self addSubview:self.cursorView];
 	}

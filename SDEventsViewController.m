@@ -29,7 +29,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    self.dateLabel.adjustsFontSizeToFitWidth = YES;
+    self.dateLabel.translatesAutoresizingMaskIntoConstraints = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -41,7 +43,6 @@
     formatter.formatterBehavior = NSDateFormatterBehaviorDefault;
     formatter.dateStyle = NSDateFormatterFullStyle;
     self.dateLabel.text = [formatter stringFromDate:[self.tide startTime]];
-    self.dateLabel.adjustsFontSizeToFitWidth = YES;
     
     DLog(@"Scroll view frame width = %f", _chartScrollView.frame.size.width);
     _chartView.height = 40;
@@ -99,7 +100,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DLog(@"Cell for Row at Index Path %ld called.", (long)indexPath.row);
+    DLog(@"Cell for Row at Index Path %ld called by table %@", (long)indexPath.row, tableView);
     static NSString* reuseId = @"eventCell";
     SDTideEvent *event = (SDTideEvent*)self.tide.events[indexPath.row];
     SDTideEventCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseId];

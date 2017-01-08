@@ -146,8 +146,11 @@
     self.chartView.hoursToPlot = configHelper.daysPref * 24;
     self.chartView.labelInset = 20;
     self.chartView.delegate = self;
+    self.chartView.tide = self.tide;
     [self.chartScrollView addSubview:self.chartView];
     self.chartScrollView.contentOffset = CGPointMake(appDelegate.page * self.view.frame.size.width, 0);
+    
+    [self.chartView animateCursorViewToCurrentTime];
 }
 
 - (void)clearChartViews
@@ -160,7 +163,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.chartView animateCursorViewToCurrentTime];
 }
 
 - (void)loadChartScrollViewWithPage:(int)page {
