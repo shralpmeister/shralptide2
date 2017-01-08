@@ -36,6 +36,15 @@
 
 @implementation ShralpTideAppDelegate
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.supportedOrientations = UIInterfaceOrientationMaskPortrait;
+    }
+    return self;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary*)options {
     DLog(@"applicationDidFinishLaunchingWithOptions");
     [ConfigHelper.sharedInstance setupByPreferences];
@@ -62,6 +71,11 @@
     [WatchSessionManager.sharedInstance startSession];
     
     [self calculateTides];
+}
+
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    return self.supportedOrientations;
 }
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application

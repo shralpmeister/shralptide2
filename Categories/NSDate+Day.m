@@ -31,21 +31,21 @@
 
 -(NSDateComponents*)dayComponents
 {
-	unsigned int unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+	unsigned int unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
 	NSDateComponents *comps = [[NSCalendar currentCalendar] components:unitFlags fromDate:self];
     return comps;
 }
 
 -(BOOL)isOnTheHour
 {
-	NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSMinuteCalendarUnit fromDate:self];
+	NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSCalendarUnitMinute fromDate:self];
     return comps.minute == 0;
 }
 
 - (NSInteger)timeInMinutesSinceMidnight
 {
 	NSCalendar *gregorian = [NSCalendar currentCalendar];
-	unsigned unitflags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+	unsigned unitflags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
 	NSDateComponents *components = [gregorian components: unitflags fromDate: self];
 	
 	NSDate *midnight = [gregorian dateFromComponents:components];

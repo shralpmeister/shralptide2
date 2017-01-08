@@ -90,7 +90,8 @@
                 CGContextSetRGBStrokeColor(context, 1, 1, 1, 1);
                 CGContextSetRGBFillColor(context, 1, 1, 1, 1);
                 NSString *hour = [[_hourFormatter stringFromDate:tidePoint.time] stringByReplacingOccurrencesOfString:@" " withString:@""];
-                UIFont *font = [UIFont fontWithName:@"Helvetica Neue" size:9];
+                //UIFont *font = [UIFont fontWithName:@"Helvetica Neue" size:9];
+                UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
                 [hour drawAtPoint:CGPointMake(x, _labelInset) withAttributes:@{ NSFontAttributeName:font, NSForegroundColorAttributeName: [UIColor whiteColor] }];
             }
         }

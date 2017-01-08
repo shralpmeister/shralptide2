@@ -30,8 +30,8 @@
 }
 
 - (int)currentTimeInMinutes {
-	// The following shows the current time on the tide chart.  Need to make sure that it only shows on
-	// the current day!
+	// The following shows the current time on the tide chart.
+    // Need to make sure that it only shows on the current day!
 	NSDate *datestamp = [NSDate date];
 	NSDate *midnight = [self midnight];
     
@@ -141,9 +141,17 @@
     [UIView commitAnimations];
 }
 
+- (void)drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
+    
+    [self animateCursorViewToCurrentTime];
+}
+
 - (void)animateCursorViewToCurrentTime {
     DLog(@"Displaying cursor at current time.");
     if (self.cursorView.superview == nil) {
+        self.cursorView.frame = CGRectMake(0, 0, CURSOR_LABEL_WIDTH, self.frame.size.width);
 		[self addSubview:self.cursorView];
 	}
     

@@ -60,6 +60,8 @@ typedef NS_ENUM(NSInteger, SDTideStateRiseFall) {
 -(NSNumber*)highestTide;
 -(NSNumber*)lowestTide;
 
+- (BOOL)isEqualToTide:(SDTide*)other;
+
 @property (nonatomic,strong) NSDate *startTime;
 @property (nonatomic,strong) NSDate *stopTime;
 @property (nonatomic,strong) NSArray *allEvents;

@@ -10,11 +10,11 @@
 #import "ShralpTideAppDelegate.h"
 #import "SDTide.h"
 
-@interface SDHeaderViewController ()
+@interface CurrentTideViewController ()
 
 @end
 
-@implementation SDHeaderViewController
+@implementation CurrentTideViewController
 
 - (void)viewDidLoad
 {
@@ -24,31 +24,28 @@
     self.tideLevelLabel.adjustsFontSizeToFitWidth = YES;
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     DLog(@"SDHeaderViewController refreshing tide for current time, location:%@",[self.tide shortLocationName]);
     self.tide = appDelegate.tides[appDelegate.locationPage];
-    self.tideLevelLabel.text = [NSString stringWithFormat:@"%0.2f %@",
-                                [self.tide nearestDataPointToCurrentTime].y,
-                                [self.tide unitShort]];
-    self.locationLabel.text = self.tide.shortLocationName;
     
     SDTideStateRiseFall direction = [self.tide tideDirection];
-    NSString *imageName = nil;
+    NSString *arrow = nil;
     switch (direction) {
         case SDTideStateRising:
-            imageName = @"increasing";
+            arrow = @"▲";
             break;
         case SDTideStateFalling:
         default:
-            imageName = @"decreasing";
+            arrow = @"▼";
     }
-    if (imageName != nil) {
-        self.directionArrowView.image = [UIImage imageNamed:imageName];
-        self.directionArrowView.accessibilityLabel = [imageName isEqualToString:@"increasing"] ? @"rising" : @"falling";
-    } else {
-        self.directionArrowView.image = nil;
-    }
+    
+    self.tideLevelLabel.text = [NSString stringWithFormat:@"%0.2f%@%@",
+                                [self.tide nearestDataPointToCurrentTime].y,
+                                [self.tide unitShort],
+                                arrow];
+    self.locationLabel.text = self.tide.shortLocationName;
+
 }
 
 @end

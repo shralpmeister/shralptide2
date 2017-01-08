@@ -91,8 +91,6 @@
     _activityView.hidden = NO;
     _activityIndicator.hidden = NO;
     [_activityIndicator startAnimating];
-    
-    [self createChartViews];
 }
 
 - (void)didReceiveMemoryWarning
@@ -149,8 +147,6 @@
     self.chartView.tide = self.tide;
     [self.chartScrollView addSubview:self.chartView];
     self.chartScrollView.contentOffset = CGPointMake(appDelegate.page * self.view.frame.size.width, 0);
-    
-    [self.chartView animateCursorViewToCurrentTime];
 }
 
 - (void)clearChartViews
@@ -163,37 +159,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-}
-
-- (void)loadChartScrollViewWithPage:(int)page {
-    //    if (page < 0) return;
-    //    if (page >= appDelegate.daysPref) return;
-    
-    // okay we need to put the current page into a shared location.
-	
-    // replace the placeholder if necessary
-    //    ChartViewController *controller = self.chartViewControllers[page];
-    //    if ((NSNull *)controller == [NSNull null]) {
-    //        DLog(@"Initializing new ChartViewController");
-    //		controller = [[ChartViewController alloc] initWithNibName:@"ChartView" bundle:nil tide:[self.viewControllers[page] sdTide]];
-    //        self.chartViewControllers[page] = controller;
-    //    } else {
-    //		if (controller.sdTide == nil) {
-    //			[controller setSdTide:[self.viewControllers[page] sdTide]];
-    //		}
-    //	}
-    
-    //    controller.page = page;
-    //
-    //    // add the controller's view to the scroll view
-    //    if (nil == controller.view.superview) {
-    //        CGRect frame = self.chartScrollView.frame;
-    //        frame.origin.x = frame.size.width * page;
-    //        frame.origin.y = 0;
-    //        controller.view.frame = frame;
-    //        [self.chartScrollView addSubview:controller.view];
-    //    }
-	
 }
 
 #pragma mark UIScrollViewDelegate

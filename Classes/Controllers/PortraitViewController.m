@@ -25,7 +25,7 @@
 @interface PortraitViewController ()
 
 @property (nonatomic, assign) BOOL pageControlUsed;
-@property (nonatomic, strong) SDHeaderViewController *headerViewController;
+@property (nonatomic, strong) CurrentTideViewController *headerViewController;
 @property (nonatomic, strong) SDLocationMainViewController *locationMainViewController;
 @property (nonatomic, strong) BackgroundScene *backgroundScene;
 
@@ -57,12 +57,14 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     for (UIViewController *controller in [self childViewControllers]) {
         if ([controller.restorationIdentifier isEqualToString:@"HeaderViewController"]) {
-            self.headerViewController = (SDHeaderViewController*)controller;
+            self.headerViewController = (CurrentTideViewController*)controller;
         } else if ([controller.restorationIdentifier isEqualToString:@"MainViewController"]) {
             self.locationMainViewController = (SDLocationMainViewController*)controller;
         }
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTideData) name:kSDApplicationActivatedNotification object:nil];
+    
+    appDelegate.supportedOrientations = UIInterfaceOrientationMaskAll | UIInterfaceOrientationMaskPortraitUpsideDown;
 }
 
 - (void)dealloc
@@ -140,19 +142,6 @@
             DLog(@"Device rotated to unknown position");
             break;
     }
-}
-
-- (IBAction)changePage:(id)sender {
-//    int page = self.pageControl.currentPage;
-//    
-//    // update the scroll view to the appropriate page
-//    CGRect frame = self.collectionView.frame;
-//    frame.origin.x = frame.size.width * page;
-//    frame.origin.y = 0;
-//
-//    [self.collectionView scrollRectToVisible:frame animated:YES];
-//    // Set the boolean used when scrolls originate from the UIPageControl. See scrollViewDidScroll: above.
-//    self.pageControlUsed = YES;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

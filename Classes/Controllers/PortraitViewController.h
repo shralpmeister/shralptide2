@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SDHeaderViewController.h"
+#import "CurrentTideViewController.h"
 #import "ChartScrollView.h"
 #import "LandscapeViewController.h"
 #import "SDTide.h"

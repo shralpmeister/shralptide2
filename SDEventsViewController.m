@@ -105,7 +105,7 @@
     SDTideEvent *event = (SDTideEvent*)self.tide.events[indexPath.row];
     SDTideEventCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseId];
     cell.timeLabel.text = event.eventTimeNativeFormat;
-    cell.heightLabel.text = [NSString stringWithFormat:@"%1.2f %@",event.eventHeight,self.tide.unitShort];
+    cell.heightLabel.text = [NSString stringWithFormat:@"%1.2f%@",event.eventHeight,self.tide.unitShort];
     cell.typeLabel.text = event.eventTypeDescription;
     return cell;
 }

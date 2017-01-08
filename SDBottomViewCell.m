@@ -12,6 +12,7 @@
 #import "SDEventsViewController.h"
 #import "ShralpTideAppDelegate.h"
 #import "SDTideFactory.h"
+#import "NSDate+Day.h"
 
 @interface SDBottomViewCell () {
     dispatch_queue_t calculationQueue;
@@ -35,6 +36,11 @@
 
 - (void)createPages:(SDTide*)tide
 {
+    // skip if we're still on the same day.
+    if ([tide isEqualToTide:_tidesForDays[0]]) {
+        DLog(@"We're still on the same day. Skipping refresh.");
+        return;
+    }
     [self clearScrollView];
     if (_tidesForDays == nil) {
         self.tidesForDays = @[tide];

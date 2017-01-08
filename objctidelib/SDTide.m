@@ -256,6 +256,46 @@
 )[self.allIntervals count]];
 }
 
+- (BOOL)isEqual:(id)other
+{
+    if (other == self)
+        return YES;
+    if (!other || ![other isKindOfClass:[self class]])
+        return NO;
+    return [self isEqualToTide:other];
+}
+
+- (BOOL)isEqualToTide:(SDTide*)other
+{
+    if (![self.startTime isEqualToDate:other.startTime]) {
+        return NO;
+    } else if (![self.stopTime isEqualToDate:other.stopTime]) {
+        return NO;
+    } else if (![self.stationName isEqualToString:other.stationName]) {
+        return NO;
+    } else if (![self.unitShort isEqualToString:other.unitShort]) {
+        return NO;
+    } else if (![self.highestTide isEqualToNumber:other.highestTide]) {
+        return NO;
+    } else if (![self.lowestTide isEqualToNumber:other.lowestTide]) {
+        return NO;
+    }
+    return YES;
+}
+
+- (NSUInteger)hash
+{
+    NSUInteger prime = 31;
+    NSUInteger result = 1;
+    result = prime * result + [self.startTime hash];
+    result = prime * result + [self.stopTime hash];
+    result = prime * result + [self.stationName hash];
+    result = prime * result + [self.unitShort hash];
+    result = prime * result + [self.highestTide hash];
+    result = prime * result + [self.lowestTide hash];
+    return result;
+}
+
 #pragma mark PrivateMethods
 
 - (NSInteger)currentTimeInMinutes
