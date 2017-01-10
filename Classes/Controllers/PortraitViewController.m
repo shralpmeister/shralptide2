@@ -11,7 +11,7 @@
 #import "CountryListController.h"
 #import "ChartViewController.h"
 #import "StationMapController.h"
-#import "SDLocationMainViewController.h"
+#import "SDBottomViewController.h"
 #import "CountryListController.h"
 #import "FavoritesListViewController.h"
 
@@ -26,7 +26,7 @@
 
 @property (nonatomic, assign) BOOL pageControlUsed;
 @property (nonatomic, strong) CurrentTideViewController *headerViewController;
-@property (nonatomic, strong) SDLocationMainViewController *locationMainViewController;
+@property (nonatomic, strong) SDBottomViewController *bottomViewController;
 @property (nonatomic, strong) BackgroundScene *backgroundScene;
 
 @end
@@ -59,7 +59,7 @@
         if ([controller.restorationIdentifier isEqualToString:@"HeaderViewController"]) {
             self.headerViewController = (CurrentTideViewController*)controller;
         } else if ([controller.restorationIdentifier isEqualToString:@"MainViewController"]) {
-            self.locationMainViewController = (SDLocationMainViewController*)controller;
+            self.bottomViewController = (SDBottomViewController*)controller;
         }
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTideData) name:kSDApplicationActivatedNotification object:nil];
@@ -75,7 +75,7 @@
 - (void)refreshTideData
 {
     DLog(@"Portrait View Controller got recalc notification. Reloading data");
-    [self.locationMainViewController.collectionView reloadData];
+    [self.bottomViewController createPages:appDelegate.tides[0]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -147,11 +147,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"locationMainViewSegue"]) {
-        _locationMainViewController = (SDLocationMainViewController*)segue.destinationViewController;
+        _bottomViewController = (SDBottomViewController*)segue.destinationViewController;
     } else if ([segue.identifier isEqualToString:@"landscapeSegue"]) {
         LandscapeViewController *landscapeController = (LandscapeViewController*)segue.destinationViewController;
-        landscapeController.locationMainViewController = _locationMainViewController;
-        _locationMainViewController.tideCalculationDelegate = landscapeController;
+        landscapeController.bottomViewController = _bottomViewController;
     } else if ([segue.identifier isEqualToString:@"FavoritesListSegue"]) {
         FavoritesListViewController *favoritesController = (FavoritesListViewController*)segue.destinationViewController;
         favoritesController.portraitViewController = self;

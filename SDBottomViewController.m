@@ -6,7 +6,7 @@
 //
 //
 #import "SDTide.h"
-#import "SDBottomViewCell.h"
+#import "SDBottomViewController.h"
 #import "SDTideEventCell.h"
 #import "SDTideEvent.h"
 #import "SDEventsViewController.h"
@@ -14,7 +14,7 @@
 #import "SDTideFactory.h"
 #import "NSDate+Day.h"
 
-@interface SDBottomViewCell () {
+@interface SDBottomViewController () {
     dispatch_queue_t calculationQueue;
 }
 
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation SDBottomViewCell
+@implementation SDBottomViewController
 
 - (id) initWithCoder:(NSCoder *)aDecoder
 {
@@ -34,11 +34,19 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self createPages:appDelegate.tides[0]];
+}
+
 - (void)createPages:(SDTide*)tide
 {
     // skip if we're still on the same day.
     if ([tide isEqualToTide:_tidesForDays[0]]) {
         DLog(@"We're still on the same day. Skipping refresh.");
+        [self scrollToActivePage];
         return;
     }
     [self clearScrollView];
@@ -56,10 +64,10 @@
     dispatch_async(calculationQueue, ^(void) {
         NSArray *tides = [SDTideFactory tidesForStationName:tide.stationName];
         dispatch_async(dispatch_get_main_queue(), ^(void) {
-            [_tideCalculationDelegate tideCalculationsCompleted:tides];
             [self displayTides:tides];
             [_activityIndicator stopAnimating];
             _activityView.hidden = YES;
+            _scrollView.hidden = NO;
         });
     });
     
@@ -76,7 +84,7 @@
     _tidesForDays = tides;
     long numPages = [_tidesForDays count];
     DLog(@"SDBottomViewCell creating %ld days of tide events",numPages);
-    self.scrollView.contentSize = CGSizeMake(self.frame.size.width * numPages, self.frame.size.height);
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width * numPages, self.view.frame.size.height);
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
     NSMutableArray *controllers = [[NSMutableArray alloc] init];
     int xOrigin = 0;
@@ -87,17 +95,22 @@
         } else {
             pageController.tide = _tidesForDays[i];
         }
-        pageController.view.frame = CGRectMake(xOrigin,0,self.frame.size.width,self.frame.size.height);
+        pageController.view.frame = CGRectMake(xOrigin,0,self.view.frame.size.width,self.view.frame.size.height);
         [self.scrollView addSubview:pageController.view];
         controllers[i] = pageController;
-        xOrigin += self.frame.size.width;
+        xOrigin += self.view.frame.size.width;
     }
     _viewControllers = [NSArray arrayWithArray:controllers];
     
-    // Scroll to the last page index. Intended to ensure that the portrait view page is in sync with the landscape view page. It kind of messes up scrolling between locations though in that each location's visible day always matches the last location's.
-    [self.scrollView scrollRectToVisible:CGRectMake(appDelegate.page * self.frame.size.width,0,self.frame.size.width,self.frame.size.height) animated:NO];
-    self.pageIndicator.frame = CGRectMake((self.frame.size.width - self.pageIndicator.frame.size.width) / 2, self.frame.size.height - self.pageIndicator.frame.size.height, self.pageIndicator.frame.size.width, self.pageIndicator.frame.size.height);
     self.pageIndicator.numberOfPages = numPages;
+    
+    [self scrollToActivePage];
+}
+
+-(void)scrollToActivePage
+{
+    // Scroll to the last page index. Intended to ensure that the portrait view page is in sync with the landscape view page. It kind of messes up scrolling between locations though in that each location's visible day always matches the last location's.
+    [self.scrollView scrollRectToVisible:CGRectMake(appDelegate.page * self.view.frame.size.width,0,self.view.frame.size.width,self.view.frame.size.height) animated:NO];
     self.pageIndicator.currentPage = appDelegate.page;
 }
 
@@ -108,10 +121,19 @@
     }
 }
 
+/**
+ * Yikes! This accessor iterates each day's tides and combines them into a single tide object. Could be
+ * expensive if it's called often.
+ */
+- (SDTide*)tide
+{
+    return [SDTide tideByCombiningTides:self.tidesForDays];
+}
+
 #pragma mark UIScrollViewDelegate Methods
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    int page = scrollView.contentOffset.x / self.frame.size.width;
+    int page = scrollView.contentOffset.x / self.view.frame.size.width;
     if (scrollView.isDecelerating) {
         appDelegate.page = page;
         self.pageIndicator.currentPage = page;

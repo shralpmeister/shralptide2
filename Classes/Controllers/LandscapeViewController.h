@@ -8,14 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "InteractiveChartView.h"
-#import "SDLocationMainViewController.h"
+#import "SDBottomViewController.h"
 #import "ChartScrollView.h"
-#import "SDTideCalculationDelegate.h"
 
-@interface LandscapeViewController : UIViewController <UIScrollViewDelegate, ChartViewDatasource, InteractiveChartViewDelegate, SDTideCalculationDelegate>
+@interface LandscapeViewController : UIViewController <UIScrollViewDelegate, UINavigationControllerDelegate, ChartViewDatasource, InteractiveChartViewDelegate>
 
 @property (nonatomic, weak) IBOutlet ChartScrollView *chartScrollView;
-@property (nonatomic, strong) SDLocationMainViewController *locationMainViewController;
+@property (nonatomic, strong) SDBottomViewController *bottomViewController;
 @property (nonatomic, weak) IBOutlet InteractiveChartView *chartView;
 @property (nonatomic, weak) IBOutlet UILabel *locationLabel;
 @property (nonatomic, weak) IBOutlet UILabel *dateLabel;
@@ -23,11 +22,5 @@
 @property (nonatomic, weak) IBOutlet UIView *heightView;
 @property (nonatomic, weak) IBOutlet UIView *activityView;
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *activityIndicator;
-
-//@property (nonatomic, weak) IBOutlet ChartScrollView *chartScrollView;
-//@property (nonatomic, weak) IBOutlet UIPageControl *pageControl;
-
-//- (void)createChartViews;
-//- (void)clearChartData;
 
 @end
