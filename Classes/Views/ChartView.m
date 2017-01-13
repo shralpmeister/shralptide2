@@ -85,7 +85,7 @@
 }
 
 -(void)drawRect:(CGRect)rect {
-    DLog(@"*** Drawing chart!");
+    //DLog(@"*** Drawing chart!");
     CGFloat chartBottom = self.frame.size.height;
     
 	CGContextRef context = UIGraphicsGetCurrentContext();
@@ -170,7 +170,7 @@
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateStyle:NSDateFormatterFullStyle];
 	self.dateLabel.text = [formatter stringFromDate:[self.datasource day]];
-    DLog(@"*** Finished drawing chart. xratio=%f", self.xratio);
+    //DLog(@"*** Finished drawing chart. xratio=%f", self.xratio);
 }
 
 -(void)hideTideDetails
