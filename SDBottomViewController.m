@@ -118,12 +118,7 @@
     // Scroll to the last page index. Intended to ensure that the portrait view page is in sync with the landscape view page. It kind of messes up scrolling between locations though in that each location's visible day always matches the last location's.
     CGFloat width = UIScreen.mainScreen.bounds.size.width;
     CGFloat height = UIScreen.mainScreen.bounds.size.height;
-    if (width > height) {
-        CGFloat temp = width;
-        width = height;
-        height = temp;
-    }
-    DLog(@"Scrolling to day %d, by width %f, height %f. content.x requested at %f", appDelegate.page, width, height, appDelegate.page * width);
+//    DLog(@"Scrolling to day %d, by width %f, height %f. content.x requested at %f", appDelegate.page, width, height, appDelegate.page * width);
     [self.scrollView scrollRectToVisible:CGRectMake(appDelegate.page * width,0,width,height) animated:NO];
     self.pageIndicator.currentPage = appDelegate.page;
 }
@@ -147,7 +142,7 @@
 #pragma mark UIScrollViewDelegate Methods
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    DLog(@"Did scroll to day %d, showing from %f, to width %f.", appDelegate.page, self.scrollView.bounds.origin.x, self.scrollView.bounds.size.width);
+//    DLog(@"Did scroll to day %d, showing from %f, to width %f.", appDelegate.page, self.scrollView.bounds.origin.x, self.scrollView.bounds.size.width);
     int page = scrollView.contentOffset.x / self.view.frame.size.width;
     if (scrollView.isDecelerating) {
         appDelegate.page = page;
