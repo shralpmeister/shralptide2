@@ -37,11 +37,6 @@
     return self;
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
-}
-
 -(BOOL)shouldAutorotate
 {
     return NO;
@@ -61,8 +56,12 @@
 {
     [super viewWillAppear:animated];
     DLog(@"Favorites list view will appear.");
-    
     self.favorites = [NSMutableArray arrayWithArray:appDelegate.tides];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)refreshData
@@ -114,7 +113,18 @@
     SDTide *tide = ((SDTide*)self.favorites[row]);
     cell.tide = tide;
 	cell.nameLabel.text = tide.shortLocationName;
-	cell.levelLabel.text = [NSString stringWithFormat:@"%0.2f %@", [tide nearestDataPointToCurrentTime].y, tide.unitShort];
+    SDTideStateRiseFall direction = [tide tideDirection];
+    NSString *arrow = nil;
+    switch (direction) {
+        case SDTideStateRising:
+            arrow = @"▲";
+            break;
+        case SDTideStateFalling:
+        default:
+            arrow = @"▼";
+    }
+
+	cell.levelLabel.text = [NSString stringWithFormat:@"%0.2f%@%@", [tide nearestDataPointToCurrentTime].y, tide.unitShort, arrow];
     cell.directionArrowView.image = [self directionArrowForTide:tide];
     cell.directionArrowView.accessibilityLabel = tide.tideDirection == SDTideStateRising ? @"rising" : @"falling";
 	

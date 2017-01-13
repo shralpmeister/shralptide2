@@ -37,8 +37,16 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    [self createPages:appDelegate.tides[0]];
+}
+
+/** 
+ * Overridden so that we ensure the scrollview window is positioned after
+ * screen rotation has completed.
+ */
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    [self scrollToActivePage];
 }
 
 - (void)createPages:(SDTide*)tide
@@ -49,11 +57,6 @@
         [self scrollToActivePage];
         return;
     }
-    [self clearScrollView];
-    if (_tidesForDays == nil) {
-        self.tidesForDays = @[tide];
-    }
-    [self displayTides:_tidesForDays];
     
     _activityView.layer.cornerRadius = 10;
     _activityView.layer.masksToBounds = YES;
@@ -61,6 +64,11 @@
     
     _activityIndicator.hidden = NO;
     [_activityIndicator startAnimating];
+    
+    if (_tidesForDays == nil) {
+        self.tidesForDays = @[tide];
+    }
+
     dispatch_async(calculationQueue, ^(void) {
         NSArray *tides = [SDTideFactory tidesForStationName:tide.stationName];
         dispatch_async(dispatch_get_main_queue(), ^(void) {
@@ -103,14 +111,20 @@
     _viewControllers = [NSArray arrayWithArray:controllers];
     
     self.pageIndicator.numberOfPages = numPages;
-    
-    [self scrollToActivePage];
 }
 
 -(void)scrollToActivePage
 {
     // Scroll to the last page index. Intended to ensure that the portrait view page is in sync with the landscape view page. It kind of messes up scrolling between locations though in that each location's visible day always matches the last location's.
-    [self.scrollView scrollRectToVisible:CGRectMake(appDelegate.page * self.view.frame.size.width,0,self.view.frame.size.width,self.view.frame.size.height) animated:NO];
+    CGFloat width = UIScreen.mainScreen.bounds.size.width;
+    CGFloat height = UIScreen.mainScreen.bounds.size.height;
+    if (width > height) {
+        CGFloat temp = width;
+        width = height;
+        height = temp;
+    }
+    DLog(@"Scrolling to day %d, by width %f, height %f. content.x requested at %f", appDelegate.page, width, height, appDelegate.page * width);
+    [self.scrollView scrollRectToVisible:CGRectMake(appDelegate.page * width,0,width,height) animated:NO];
     self.pageIndicator.currentPage = appDelegate.page;
 }
 
@@ -133,6 +147,7 @@
 #pragma mark UIScrollViewDelegate Methods
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    DLog(@"Did scroll to day %d, showing from %f, to width %f.", appDelegate.page, self.scrollView.bounds.origin.x, self.scrollView.bounds.size.width);
     int page = scrollView.contentOffset.x / self.view.frame.size.width;
     if (scrollView.isDecelerating) {
         appDelegate.page = page;

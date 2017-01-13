@@ -37,7 +37,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -45,14 +44,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    if ([self.view isKindOfClass:SKView.class]) {
-        SKView *view = (SKView*)self.view;
-        
-        _backgroundScene = [BackgroundScene sceneWithSize:view.frame.size];
-        _backgroundScene.name = @"Background Scene";
-        _backgroundScene.scaleMode = SKSceneScaleModeAspectFill;
-    }
         
     self.automaticallyAdjustsScrollViewInsets = NO;
     for (UIViewController *controller in [self childViewControllers]) {
@@ -62,6 +53,14 @@
             self.bottomViewController = (SDBottomViewController*)controller;
         }
     }
+    
+    if ([self.view isKindOfClass:[UIImageView class]]) {
+        UIImageView *imageView = (UIImageView*)self.view;
+        imageView.image = [UIImage imageNamed:@"background-gradient"];
+        imageView.contentMode = UIViewContentModeScaleToFill;
+    }
+    _listViewButton.imageView.image = [_listViewButton.imageView.image maskImageWithColor: [UIColor colorWithWhite:0.8 alpha:1]];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTideData) name:kSDApplicationActivatedNotification object:nil];
     
     appDelegate.supportedOrientations = UIInterfaceOrientationMaskAll | UIInterfaceOrientationMaskPortraitUpsideDown;
@@ -75,7 +74,7 @@
 - (void)refreshTideData
 {
     DLog(@"Portrait View Controller got recalc notification. Reloading data");
-    [self.bottomViewController createPages:appDelegate.tides[0]];
+    [self.bottomViewController createPages:appDelegate.tides[appDelegate.locationPage]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,26 +86,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    _listViewButton.imageView.image = [_listViewButton.imageView.image maskImageWithColor: [UIColor colorWithWhite:0.8 alpha:1]];
-    
-    if ([self.view isKindOfClass:[SKView class]]) {
-        SKView *backgroundView = (SKView*)self.view;
-        if (backgroundView.isPaused) {
-            backgroundView.paused = NO;
-        } else {
-            [backgroundView presentScene:_backgroundScene];
-        }
-    }
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    if ([self.view isKindOfClass:[SKView class]]) {
-        SKView *backgroundView = (SKView*)self.view;
-        backgroundView.paused = YES;
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

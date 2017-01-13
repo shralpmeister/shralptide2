@@ -15,6 +15,9 @@
 BOOL zoomedToLocal;
 
 @interface StationMapController()
+
+@property (nonatomic,strong) CLLocationManager *locationMgr;
+
 -(void)addTideStationsForRegion:(MKCoordinateRegion)location;
 -(void)showNearbyLocations:(CLLocation *)location;
 @end
@@ -43,12 +46,14 @@ BOOL zoomedToLocal;
 
 -(void)loadView {
     [super loadView];
-    self.navigationItem.prompt = NSLocalizedString(@"Select a Tide Station",nil);
+    self.navigationItem.title = NSLocalizedString(@"Select a Tide Station",nil);
 }
 
 -(void)viewDidLoad
 {
 	[super viewDidLoad];
+    self.locationMgr = [[CLLocationManager alloc] init];
+    [self.locationMgr requestWhenInUseAuthorization];
     
     zoomedToLocal = NO;
 
@@ -69,6 +74,12 @@ BOOL zoomedToLocal;
         [self.navigationController setToolbarHidden:YES];
     }
     self.mapView.showsUserLocation = YES;
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -159,7 +170,7 @@ BOOL zoomedToLocal;
 	if (view == nil) {
 		MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"TideStationPinView"];
         TideStationAnnotation *tsAnnotation = (TideStationAnnotation*)annotation;
-        pin.pinColor = tsAnnotation.isPrimary ? MKPinAnnotationColorGreen : MKPinAnnotationColorRed;
+        pin.pinTintColor = tsAnnotation.isPrimary ? [UIColor greenColor] : [UIColor redColor];
 		[pin setCanShowCallout:YES];
 		UIButton *disclosure = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 		[disclosure addTarget:self action:@selector(chooseStation) forControlEvents:UIControlEventTouchUpInside];
@@ -168,7 +179,7 @@ BOOL zoomedToLocal;
 	} else {
         MKPinAnnotationView *pin = (MKPinAnnotationView*)view;
         TideStationAnnotation *tsAnnotation = (TideStationAnnotation*)annotation;
-        pin.pinColor = tsAnnotation.isPrimary ? MKPinAnnotationColorGreen : MKPinAnnotationColorRed;
+        pin.pinTintColor = tsAnnotation.isPrimary ? [UIColor greenColor] : [UIColor redColor];
 		[view setAnnotation:annotation];
 	}
 	return view;
