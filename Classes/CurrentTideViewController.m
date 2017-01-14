@@ -28,7 +28,11 @@
 {
     DLog(@"SDHeaderViewController refreshing tide for current time, location:%@",[self.tide shortLocationName]);
     self.tide = appDelegate.tides[appDelegate.locationPage];
-    
+    [self refresh];
+}
+
+- (void)refresh
+{
     SDTideStateRiseFall direction = [self.tide tideDirection];
     NSString *arrow = nil;
     switch (direction) {
@@ -39,13 +43,11 @@
         default:
             arrow = @"▼";
     }
-    
     self.tideLevelLabel.text = [NSString stringWithFormat:@"%0.2f%@%@",
                                 [self.tide nearestDataPointToCurrentTime].y,
                                 [self.tide unitShort],
                                 arrow];
     self.locationLabel.text = self.tide.shortLocationName;
-
 }
 
 @end

@@ -75,6 +75,7 @@
 {
     DLog(@"Portrait View Controller got recalc notification. Reloading data");
     [self.bottomViewController createPages:appDelegate.tides[appDelegate.locationPage]];
+    [self.headerViewController refresh];
 }
 
 - (void)didReceiveMemoryWarning

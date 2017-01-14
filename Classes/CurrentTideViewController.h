@@ -17,4 +17,6 @@
 @property (nonatomic,weak) IBOutlet UILabel *locationLabel;
 @property (nonatomic,weak) IBOutlet UILabel *tideLevelLabel;
 
+- (void)refresh;
+
 @end
