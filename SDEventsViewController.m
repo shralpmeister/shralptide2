@@ -44,16 +44,10 @@
     formatter.dateStyle = NSDateFormatterFullStyle;
     self.dateLabel.text = [formatter stringFromDate:[self.tide startTime]];
     
-    //DLog(@"Scroll view frame width = %f", _chartScrollView.frame.size.width);
     _chartView.height = 40;
     _chartView.datasource = self;
-    if ([_tide.startTime timeIntervalSince1970] > [[NSDate date] timeIntervalSince1970]) {
-        _chartView.hoursToPlot = 24;
-        _chartView.frame = CGRectMake(0, 0, 1200, _chartView.frame.size.height);
-    } else {
-        _chartView.hoursToPlot = 12;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(redrawChart) name:kSDApplicationActivatedNotification object:nil];
-    }
+    _chartView.hoursToPlot = 24;
+    _chartView.frame = CGRectMake(0, 0, _chartScrollView.frame.size.width, _chartView.frame.size.height);
     
     //DLog(@"Setting content width to %f",_chartView.frame.size.width);
     _chartScrollView.contentSize = _chartView.frame.size;
@@ -118,12 +112,7 @@
 
 -(NSDate*)day
 {
-    NSDate *now = [NSDate date];
-    if ([_tide.startTime timeIntervalSince1970] > [now timeIntervalSince1970]) {
-        return _tide.startTime;
-    } else {
-        return now;
-    }
+    return _tide.startTime;
 }
 
 -(int)page

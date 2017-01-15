@@ -43,6 +43,7 @@
 	if ((self = [super initWithCoder:coder])) {
         self.height = 234; // legacy default
         self.hoursToPlot = 24;
+        self.showZero = YES;
     }
     return self;
 }
@@ -85,7 +86,6 @@
 }
 
 -(void)drawRect:(CGRect)rect {
-    //DLog(@"*** Drawing chart!");
     CGFloat chartBottom = self.frame.size.height;
     
 	CGContextRef context = UIGraphicsGetCurrentContext();
@@ -106,7 +106,6 @@
     NSArray *moonEvents = [_tide moonriseMoonsetEvents];
     NSArray *moonPairs = [self pairRiseAndSetEvents:moonEvents riseEventType:moonrise setEventType:moonset];
 	
-	// 480 x 320 = 24hrs x amplitude + some margin
 	float min = [self findLowestTide:_tide];
 	float max = [self findHighestTide:_tide];
 	
@@ -114,13 +113,10 @@
 	float ymax = max + 1;
 	self.yratio =  _height / (ymax - ymin);
 	self.yoffset = (_height + ymin * self.yratio) + (chartBottom - _height);
-	//DLog(@"yoffset = %0.4f", self.yoffset);
 	
 	float xmin = 0;
 	float xmax = MINUTES_PER_HOUR * _hoursToPlot;
-	//DLog(@"Frame size is: %0.1f x %0.1f", self.frame.size.width, self.frame.size.height);
     self.xratio = self.frame.size.width / xmax;
-	//DLog(@"xratio = %0.4f",self.xratio);
     
     // show daylight hours as light background
     CGContextSetRGBFillColor(context, 0.04, 0.27, 0.61, 1.0);
@@ -141,7 +137,6 @@
     // draws the tide level curve
     for (SDTideInterval *tidePoint in intervalsForDay) {
 		int minute = ([[tidePoint time] timeIntervalSince1970] - baseSeconds) / SECONDS_PER_MINUTE;
-        //DLog(@"Plotting interval: %@, min since midnight: %d",tidePoint.time, minute);
 		if (minute == 0) {
 			CGContextMoveToPoint(context, minute * self.xratio, self.yoffset - [tidePoint height] * self.yratio);
 		} else {
@@ -158,19 +153,19 @@
 	CGContextSetRGBFillColor(context, 0.0, 1.0, 1.0, 0.7);
 	CGContextFillPath(context);
     
-    // Drawing with a white stroke color
-	CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);
-    
     // draws the zero height line
-    CGContextSetLineWidth(context,2.0);
-	CGContextMoveToPoint(context, xmin, _yoffset);
-	CGContextAddLineToPoint(context, xmax * _xratio, _yoffset);
-	CGContextStrokePath(context);
+    if (self.showZero) {
+        // Drawing with a white stroke color
+        CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);
+        CGContextSetLineWidth(context,2.0);
+        CGContextMoveToPoint(context, xmin, _yoffset);
+        CGContextAddLineToPoint(context, xmax * _xratio, _yoffset);
+        CGContextStrokePath(context);
+    }
 
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateStyle:NSDateFormatterFullStyle];
 	self.dateLabel.text = [formatter stringFromDate:[self.datasource day]];
-    //DLog(@"*** Finished drawing chart. xratio=%f", self.xratio);
 }
 
 -(void)hideTideDetails

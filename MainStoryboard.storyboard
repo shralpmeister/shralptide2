@@ -475,7 +475,7 @@
                                     <outlet property="delegate" destination="szh-Hb-Wbi" id="JDQ-Kb-2Pm"/>
                                 </connections>
                             </tableView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" canCancelContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HvM-K8-yCW">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" canCancelContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HvM-K8-yCW">
                                 <rect key="frame" x="0.0" y="90" width="414" height="46"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             </scrollView>
@@ -506,7 +506,7 @@
                             <constraint firstItem="jvp-LI-d5b" firstAttribute="top" secondItem="zvP-bZ-S06" secondAttribute="bottom" constant="20" id="JiQ-rS-4A1"/>
                             <constraint firstItem="jvp-LI-d5b" firstAttribute="leading" secondItem="8KW-iu-HeF" secondAttribute="leading" constant="20" symbolic="YES" id="Jn1-gU-8gC"/>
                             <constraint firstItem="ffW-u1-Kes" firstAttribute="top" secondItem="0pG-4x-xrN" secondAttribute="bottom" constant="40" id="KmF-np-Ngs"/>
-                            <constraint firstItem="HvM-K8-yCW" firstAttribute="leading" secondItem="8KW-iu-HeF" secondAttribute="leading" id="PvM-03-diQ"/>
+                            <constraint firstItem="HvM-K8-yCW" firstAttribute="leading" secondItem="8KW-iu-HeF" secondAttribute="leading" id="MXv-Qk-2sC"/>
                             <constraint firstAttribute="trailing" secondItem="jvp-LI-d5b" secondAttribute="trailing" constant="20" symbolic="YES" id="RB3-JL-yCr"/>
                             <constraint firstAttribute="trailing" secondItem="HvM-K8-yCW" secondAttribute="trailing" id="T2L-vh-kf7"/>
                             <constraint firstItem="HvM-K8-yCW" firstAttribute="top" secondItem="jvp-LI-d5b" secondAttribute="bottom" constant="8" symbolic="YES" id="aGC-iN-2g2"/>
@@ -514,11 +514,11 @@
                             <constraint firstItem="0pG-4x-xrN" firstAttribute="leading" secondItem="8KW-iu-HeF" secondAttribute="leading" id="eWG-oh-8yw"/>
                             <constraint firstItem="0pG-4x-xrN" firstAttribute="centerX" secondItem="jvp-LI-d5b" secondAttribute="centerX" id="rql-RG-izb"/>
                             <constraint firstItem="jvp-LI-d5b" firstAttribute="centerX" secondItem="0pG-4x-xrN" secondAttribute="centerX" id="xAi-jq-yOS"/>
+                            <constraint firstItem="HvM-K8-yCW" firstAttribute="centerX" secondItem="8KW-iu-HeF" secondAttribute="centerX" id="z2d-mK-ir1"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="xAi-jq-yOS"/>
-                                <exclude reference="PvM-03-diQ"/>
                                 <exclude reference="T2L-vh-kf7"/>
                             </mask>
                         </variation>
@@ -527,7 +527,6 @@
                                 <exclude reference="Jn1-gU-8gC"/>
                                 <exclude reference="RB3-JL-yCr"/>
                                 <include reference="xAi-jq-yOS"/>
-                                <include reference="PvM-03-diQ"/>
                                 <include reference="T2L-vh-kf7"/>
                                 <exclude reference="AM9-HX-uaT"/>
                                 <exclude reference="eWG-oh-8yw"/>
@@ -543,7 +542,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2np-h0-kH9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="qXu-Ze-G6h" customClass="LabelledChartView">
+                <view contentMode="scaleToFill" id="qXu-Ze-G6h" customClass="SunMoonChartView">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="46"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>

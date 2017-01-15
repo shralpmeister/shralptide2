@@ -47,6 +47,7 @@
 @property (readonly) float xratio;
 @property (readonly) float yratio;
 @property (readonly) float yoffset;
+@property (nonatomic, assign) BOOL showZero;
 @property (nonatomic, strong) SDTide *tide;
 
 @end

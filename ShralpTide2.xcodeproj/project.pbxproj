@@ -46,6 +46,7 @@
 		DC65266B1350DDBE00B67AE7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65266A1350DDBD00B67AE7 /* CoreLocation.framework */; };
 		DC6869051E28880900870F6E /* background-gradient@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC6869041E28880900870F6E /* background-gradient@3x.png */; };
 		DC6869071E288AAA00870F6E /* UIButtonBarListIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC6869061E288AAA00870F6E /* UIButtonBarListIcon@3x.png */; };
+		DC6869091E2AA16E00870F6E /* SunMoonChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6869081E2AA16E00870F6E /* SunMoonChartView.m */; };
 		DC6936851DCD6E6D0091A015 /* MissingSettingsModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6936841DCD6E6D0091A015 /* MissingSettingsModalController.swift */; };
 		DC7099B01E2327E60060691A /* SDBottomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7099AF1E2327E60060691A /* SDBottomViewController.m */; };
 		DC70BD0517F8B5ED00D5FF3A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC70BD0417F8B5ED00D5FF3A /* Images.xcassets */; };
@@ -349,6 +350,8 @@
 		DC65266A1350DDBD00B67AE7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		DC6869041E28880900870F6E /* background-gradient@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-gradient@3x.png"; sourceTree = "<group>"; };
 		DC6869061E288AAA00870F6E /* UIButtonBarListIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIButtonBarListIcon@3x.png"; sourceTree = "<group>"; };
+		DC6869081E2AA16E00870F6E /* SunMoonChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SunMoonChartView.m; sourceTree = "<group>"; };
+		DC68690A1E2AA17900870F6E /* SunMoonChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunMoonChartView.h; sourceTree = "<group>"; };
 		DC6936841DCD6E6D0091A015 /* MissingSettingsModalController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingSettingsModalController.swift; sourceTree = "<group>"; };
 		DC7099AF1E2327E60060691A /* SDBottomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBottomViewController.m; sourceTree = "<group>"; };
 		DC7099B11E2327F30060691A /* SDBottomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBottomViewController.h; sourceTree = "<group>"; };
@@ -740,6 +743,8 @@
 				DC0C0DD5105C1D8F0080297E /* ChartScrollView.m */,
 				DC8EAAC61812EA7C00C4BCFF /* LabelledChartView.h */,
 				DC8EAAC71812EA7C00C4BCFF /* LabelledChartView.m */,
+				DC68690A1E2AA17900870F6E /* SunMoonChartView.h */,
+				DC6869081E2AA16E00870F6E /* SunMoonChartView.m */,
 				DC9D39A018256BE200BC86AD /* InteractiveChartView.h */,
 				DC9D39A118256BE200BC86AD /* InteractiveChartView.m */,
 			);
@@ -1275,6 +1280,7 @@
 				DCA3BF55133E4F8F00EA966A /* HarmonicsPath.cc in Sources */,
 				DCA3BF56133E4F8F00EA966A /* MetaField.cc in Sources */,
 				DCA3BF57133E4F8F00EA966A /* Nullable.cc in Sources */,
+				DC6869091E2AA16E00870F6E /* SunMoonChartView.m in Sources */,
 				DCA3BF58133E4F8F00EA966A /* NullableInterval.cc in Sources */,
 				DCA3BF59133E4F8F00EA966A /* NullablePredictionValue.cc in Sources */,
 				DCA3BF5A133E4F8F00EA966A /* Offsets.cc in Sources */,

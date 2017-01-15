@@ -98,11 +98,7 @@
     int xOrigin = 0;
     for (int i=0; i < numPages; i++) {
         SDEventsViewController* pageController = [storyboard instantiateViewControllerWithIdentifier:@"eventsViewController"];
-        if (numPages > 1 && i == 0) {
-            pageController.tide = [SDTide tideByCombiningTides:@[_tidesForDays[0], _tidesForDays[1]]];
-        } else {
-            pageController.tide = _tidesForDays[i];
-        }
+        pageController.tide = _tidesForDays[i];
         pageController.view.frame = CGRectMake(xOrigin,0,self.view.frame.size.width,self.view.frame.size.height);
         [self.scrollView addSubview:pageController.view];
         controllers[i] = pageController;
