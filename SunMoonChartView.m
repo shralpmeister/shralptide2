@@ -101,7 +101,7 @@
         CGFloat timeCenterX = x - timeWidth / 2;
         if (timeCenterX < 0) {
             timeCenterX = 0;
-        } else if (x + (timeWidth / 2) >= self.frame.size.width) {
+        } else if (x + (timeWidth / 2) + 10 >= self.frame.size.width) {
             timeCenterX = self.frame.size.width - timeWidth - 10;
         }
         [time drawAtPoint:CGPointMake(timeCenterX, yOffset) withAttributes:@{ NSFontAttributeName:font, NSForegroundColorAttributeName: [UIColor whiteColor] }];
