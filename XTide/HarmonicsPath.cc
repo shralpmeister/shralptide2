@@ -58,7 +58,7 @@ HarmonicsPath::HarmonicsPath ():
 
   // Trying to tolerate whitespace in file names.
   while (hfile_path.length()) {
-    int i = hfile_path.strchr (pathSeparator);
+    long i = hfile_path.strchr (pathSeparator);
     if (i == 0)
       hfile_path /= 1;
     else if (i < 0) {

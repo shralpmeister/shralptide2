@@ -16,7 +16,7 @@
 
 @end
 
-@interface InteractiveChartView : LabelledChartView
+@interface InteractiveChartView : LabelledChartView <CAAnimationDelegate>
 
 - (void)animateCursorViewToCurrentTime;
 - (void)animateFirstTouchAtPoint:(CGPoint)touchPoint;

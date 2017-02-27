@@ -112,8 +112,6 @@
 		DC7703FB1DA84A6000B3C4F9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC7703FA1DA84A6000B3C4F9 /* CoreFoundation.framework */; };
 		DC7703FD1DA84B7B00B3C4F9 /* ShralpTide2_Prefix.pch in Resources */ = {isa = PBXBuildFile; fileRef = 32CA4F630368D1EE00C91783 /* ShralpTide2_Prefix.pch */; };
 		DC7704021DA8851800B3C4F9 /* SDTideFactoryNew.mm in Sources */ = {isa = PBXBuildFile; fileRef = DC7704001DA8851800B3C4F9 /* SDTideFactoryNew.mm */; };
-		DC7704051DA977E500B3C4F9 /* xml_y.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BF46133E4F8F00EA966A /* xml_y.cc */; };
-		DC7704061DA977E500B3C4F9 /* xml_l.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BF47133E4F8F00EA966A /* xml_l.cc */; };
 		DC7704071DA977EF00B3C4F9 /* Settings.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BF28133E4F8F00EA966A /* Settings.cc */; };
 		DC7704081DA9783700B3C4F9 /* bit_pack.c in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BF8B133E9DE800EA966A /* bit_pack.c */; };
 		DC7704091DA9783700B3C4F9 /* tide_db.c in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BF8F133E9DE800EA966A /* tide_db.c */; };
@@ -168,9 +166,6 @@
 		DCA3BF67133E4F8F00EA966A /* Units.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BF3D133E4F8F00EA966A /* Units.cc */; };
 		DCA3BF68133E4F8F00EA966A /* Year.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BF3F133E4F8F00EA966A /* Year.cc */; };
 		DCA3BF69133E4F8F00EA966A /* ZoneIndex.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BF41133E4F8F00EA966A /* ZoneIndex.cc */; };
-		DCA3BF6A133E4F8F00EA966A /* xml_y.yy in Resources */ = {isa = PBXBuildFile; fileRef = DCA3BF44133E4F8F00EA966A /* xml_y.yy */; };
-		DCA3BF6B133E4F8F00EA966A /* xml_y.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BF46133E4F8F00EA966A /* xml_y.cc */; };
-		DCA3BF6C133E4F8F00EA966A /* xml_l.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BF47133E4F8F00EA966A /* xml_l.cc */; };
 		DCA3BF72133E4FFA00EA966A /* harmonics-dwf-20081228-free.tcd in Resources */ = {isa = PBXBuildFile; fileRef = DCA3BF70133E4FFA00EA966A /* harmonics-dwf-20081228-free.tcd */; };
 		DCA3BF73133E4FFA00EA966A /* harmonics-dwf-20081228-nonfree.tcd in Resources */ = {isa = PBXBuildFile; fileRef = DCA3BF71133E4FFA00EA966A /* harmonics-dwf-20081228-nonfree.tcd */; };
 		DCA3BF81133E503900EA966A /* PickerTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCA3BF7A133E503900EA966A /* PickerTableCell.xib */; };
@@ -484,12 +479,6 @@
 		DCA3BF40133E4F8F00EA966A /* Year.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Year.hh; sourceTree = "<group>"; };
 		DCA3BF41133E4F8F00EA966A /* ZoneIndex.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZoneIndex.cc; sourceTree = "<group>"; };
 		DCA3BF42133E4F8F00EA966A /* ZoneIndex.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ZoneIndex.hh; sourceTree = "<group>"; };
-		DCA3BF43133E4F8F00EA966A /* xmlparser.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = xmlparser.hh; sourceTree = "<group>"; };
-		DCA3BF44133E4F8F00EA966A /* xml_y.yy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = xml_y.yy; sourceTree = "<group>"; };
-		DCA3BF45133E4F8F00EA966A /* xml_y.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xml_y.h; sourceTree = "<group>"; };
-		DCA3BF46133E4F8F00EA966A /* xml_y.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xml_y.cc; sourceTree = "<group>"; };
-		DCA3BF47133E4F8F00EA966A /* xml_l.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xml_l.cc; sourceTree = "<group>"; };
-		DCA3BF48133E4F8F00EA966A /* xml_l.ll */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm.llvm; path = xml_l.ll; sourceTree = "<group>"; };
 		DCA3BF70133E4FFA00EA966A /* harmonics-dwf-20081228-free.tcd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "harmonics-dwf-20081228-free.tcd"; path = "Resources/harmonics-dwf-20081228-free.tcd"; sourceTree = "<group>"; };
 		DCA3BF71133E4FFA00EA966A /* harmonics-dwf-20081228-nonfree.tcd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "harmonics-dwf-20081228-nonfree.tcd"; path = "Resources/harmonics-dwf-20081228-nonfree.tcd"; sourceTree = "<group>"; };
 		DCA3BF7A133E503900EA966A /* PickerTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PickerTableCell.xib; path = Resources/PickerTableCell.xib; sourceTree = "<group>"; };
@@ -911,12 +900,6 @@
 				DCA3BF40133E4F8F00EA966A /* Year.hh */,
 				DCA3BF41133E4F8F00EA966A /* ZoneIndex.cc */,
 				DCA3BF42133E4F8F00EA966A /* ZoneIndex.hh */,
-				DCA3BF43133E4F8F00EA966A /* xmlparser.hh */,
-				DCA3BF44133E4F8F00EA966A /* xml_y.yy */,
-				DCA3BF45133E4F8F00EA966A /* xml_y.h */,
-				DCA3BF46133E4F8F00EA966A /* xml_y.cc */,
-				DCA3BF47133E4F8F00EA966A /* xml_l.cc */,
-				DCA3BF48133E4F8F00EA966A /* xml_l.ll */,
 			);
 			name = XTide2;
 			path = XTide;
@@ -1156,7 +1139,6 @@
 				DC2563FF18D63588007C41E6 /* UIButtonBarListIcon@2x.png in Resources */,
 				DC6869071E288AAA00870F6E /* UIButtonBarListIcon@3x.png in Resources */,
 				DC493E5D0F206C8B0087B341 /* COPYING in Resources */,
-				DCA3BF6A133E4F8F00EA966A /* xml_y.yy in Resources */,
 				DC8A827E189DB42F00792149 /* lightray@2x.png in Resources */,
 				DCA3BF72133E4FFA00EA966A /* harmonics-dwf-20081228-free.tcd in Resources */,
 				DC907A90186F7669007AF5E4 /* Bubbles.sks in Resources */,
@@ -1303,8 +1285,6 @@
 				DCA3BF67133E4F8F00EA966A /* Units.cc in Sources */,
 				DCA3BF68133E4F8F00EA966A /* Year.cc in Sources */,
 				DCA3BF69133E4F8F00EA966A /* ZoneIndex.cc in Sources */,
-				DCA3BF6B133E4F8F00EA966A /* xml_y.cc in Sources */,
-				DCA3BF6C133E4F8F00EA966A /* xml_l.cc in Sources */,
 				DC9D39A218256BE200BC86AD /* InteractiveChartView.m in Sources */,
 				DC7099B01E2327E60060691A /* SDBottomViewController.m in Sources */,
 				DCA3BF86133E9D6600EA966A /* SDTideEvent.m in Sources */,
@@ -1366,8 +1346,6 @@
 				DC7704081DA9783700B3C4F9 /* bit_pack.c in Sources */,
 				DC7704091DA9783700B3C4F9 /* tide_db.c in Sources */,
 				DC7704071DA977EF00B3C4F9 /* Settings.cc in Sources */,
-				DC7704051DA977E500B3C4F9 /* xml_y.cc in Sources */,
-				DC7704061DA977E500B3C4F9 /* xml_l.cc in Sources */,
 				DC7704021DA8851800B3C4F9 /* SDTideFactoryNew.mm in Sources */,
 				DC7703B01DA8488C00B3C4F9 /* SDTideStationData.m in Sources */,
 				DC7703B11DA8488C00B3C4F9 /* SDTide.m in Sources */,

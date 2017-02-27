@@ -311,7 +311,7 @@ static int moascf (const char *val1, const char *val2, bool slack) {
   // match or not, it's just as good if we find a mismatch in the loop
   // below.
 
-  unsigned n = val2x.length();
+  size_t n = val2x.length();
   if (val1x.length() < n)
     n = val1x.length();
 
@@ -421,7 +421,7 @@ Dstr::Dstr () {
 Dstr::Dstr (const char *val) {
   if (val) {
     require (theBuffer = strdup (val));
-    used = (unsigned)strlen (val);
+    used = (size_t)strlen (val);
     max = used + 1;
   } else
     theBuffer = NULL;
@@ -449,7 +449,7 @@ Dstr::Dstr (int val) {
   char t[80];
   sprintf (t, "%d", val);
   require (theBuffer = strdup (t));
-  used = (unsigned)strlen (theBuffer);
+  used = (size_t)strlen (theBuffer);
   max = used + 1;
 }
 
@@ -457,7 +457,7 @@ Dstr::Dstr (unsigned int val) {
   char t[80];
   sprintf (t, "%u", val);
   require (theBuffer = strdup (t));
-  used = (unsigned)strlen (theBuffer);
+  used = (size_t)strlen (theBuffer);
   max = used + 1;
 }
 
@@ -473,7 +473,7 @@ Dstr::Dstr (long unsigned int val) {
   char t[80];
   sprintf (t, "%lu", val);
   require (theBuffer = strdup (t));
-  used = (unsigned)strlen (theBuffer);
+  used = (size_t)strlen (theBuffer);
   max = used + 1;
 }
 
@@ -565,7 +565,7 @@ Dstr &Dstr::scan (FILE *fp) {
   }
 }
 
-Dstr &Dstr::pad (unsigned to_length) {
+Dstr &Dstr::pad (size_t to_length) {
   while (length() < to_length)
     operator+= (" ");
   return (*this);
@@ -589,7 +589,7 @@ Dstr &Dstr::trim_tail () {
   return (*this);
 }
 
-Dstr &Dstr::operator-= (unsigned at_index) {
+Dstr &Dstr::operator-= (size_t at_index) {
   if (theBuffer) {
     if (at_index < used) {
       theBuffer[at_index] = '\0';
@@ -599,7 +599,7 @@ Dstr &Dstr::operator-= (unsigned at_index) {
   return (*this);
 }
 
-int Dstr::strchr (char val) const {
+long Dstr::strchr (char val) const {
   if (!theBuffer)
     return -1;
   char *c = ::strchr (theBuffer, val);
@@ -608,7 +608,7 @@ int Dstr::strchr (char val) const {
   return (c - theBuffer);
 }
 
-int Dstr::strrchr (char val) const {
+long Dstr::strrchr (char val) const {
   if (!theBuffer)
     return -1;
   char *c = ::strrchr (theBuffer, val);
@@ -617,7 +617,7 @@ int Dstr::strrchr (char val) const {
   return (c - theBuffer);
 }
 
-int Dstr::strstr (const Dstr &val) const {
+long Dstr::strstr (const Dstr &val) const {
   if (!theBuffer)
     return -1;
   if (!val.theBuffer)
@@ -710,7 +710,7 @@ Dstr &Dstr::operator+= (const char *val) {
     if (!theBuffer)
       operator= (val);
     else {
-      unsigned l;
+      size_t l;
       if ((l = strlen (val))) {
         while (l + used >= max) {  // Leave room for terminator
           // Expand
@@ -808,7 +808,7 @@ Dstr &Dstr::operator*= (const Dstr &val) {
   return (*this);
 }
 
-Dstr &Dstr::operator/= (unsigned at_index) {
+Dstr &Dstr::operator/= (size_t at_index) {
   if (theBuffer)
     operator= (ascharfrom (at_index));
   return (*this);
@@ -850,7 +850,7 @@ Dstr &Dstr::operator/= (Dstr &val) {
   return (*this);
 }
 
-char Dstr::operator[] (unsigned at_index) const {
+char Dstr::operator[] (size_t at_index) const {
   if (!theBuffer)
     return '\0';
   if (at_index >= used)
@@ -864,8 +864,8 @@ char Dstr::back() const {
   return '\0';
 }
 
-unsigned Dstr::repchar (char X, char Y) {
-  unsigned i, l = length(), repcount=0;
+size_t Dstr::repchar (char X, char Y) {
+  size_t i, l = length(), repcount=0;
   for (i=0; i<l; ++i)
     if (theBuffer[i] == X) {
       theBuffer[i] = Y;
@@ -874,7 +874,7 @@ unsigned Dstr::repchar (char X, char Y) {
   return repcount;
 }
 
-unsigned Dstr::repstr (const char *X, const char *Y) {
+size_t Dstr::repstr (const char *X, const char *Y) {
   if (!theBuffer)
     return 0;
   assert (X);
@@ -883,7 +883,7 @@ unsigned Dstr::repstr (const char *X, const char *Y) {
   assert (Xlen > 0);
   if (Xlen > length())
     return 0;
-  unsigned i, l = length() - Xlen + 1, repcount=0;
+  size_t i, l = length() - Xlen + 1, repcount=0;
   Dstr temp;
   for (i=0; i<l;)
     if (!strncmp (theBuffer+i, X, Xlen)) {
@@ -897,7 +897,7 @@ unsigned Dstr::repstr (const char *X, const char *Y) {
   return repcount;
 }
 
-unsigned Dstr::length () const {
+size_t Dstr::length () const {
   if (!theBuffer)
     return 0;
   return used;
@@ -919,7 +919,7 @@ char *Dstr::asdupchar() const {
   return temp;
 }
 
-char *Dstr::ascharfrom(unsigned from_index) const {
+char *Dstr::ascharfrom(size_t from_index) const {
   if (!theBuffer)
     return emptyString;
   if (from_index >= used)
@@ -972,7 +972,7 @@ bool InsensitiveOrdering (const Dstr &a, const Dstr &b) {
 }
 
 Dstr &Dstr::lowercase() {
-  unsigned i, l = length();
+  size_t i, l = length();
   for (i=0; i<l; ++i)
     theBuffer[i] = tolower(theBuffer[i]);
   return (*this);
@@ -980,7 +980,7 @@ Dstr &Dstr::lowercase() {
 
 Dstr &Dstr::rfc2445_mangle() {
   Dstr temp;
-  unsigned i, l = length();
+  size_t i, l = length();
   for (i=0; i<l; ++i) {
     switch (theBuffer[i]) {
     case ';':
@@ -1006,7 +1006,7 @@ Dstr &Dstr::rfc2445_mangle() {
 // after abbreviations.
 Dstr &Dstr::LaTeX_mangle() {
   Dstr temp;
-  unsigned i, l = length();
+  size_t i, l = length();
   bool quotehack=false;
   for (i=0; i<l; ++i) {
     switch (theBuffer[i]) {
@@ -1048,7 +1048,7 @@ Dstr &Dstr::LaTeX_mangle() {
 
 Dstr &Dstr::expand_ligatures() {
   Dstr temp;
-  unsigned i, l = length();
+  size_t i, l = length();
   for (i=0; i<l; ++i) {
     switch (theBuffer[i]) {
     case (char)0xBC:
@@ -1079,7 +1079,7 @@ Dstr &Dstr::expand_ligatures() {
 
 Dstr &Dstr::utf8 () {
   Dstr temp;
-  unsigned i, l = length();
+  size_t i, l = length();
   for (i=0; i<l; ++i) {
     if (theBuffer[i] & 0x80) {
       // The & 3 is to defend against possible sign bit propagation
@@ -1094,7 +1094,7 @@ Dstr &Dstr::utf8 () {
 
 Dstr &Dstr::unutf8 () {
   Dstr temp;
-  unsigned i, l = length();
+  size_t i, l = length();
   for (i=0; i<l; ++i) {
     if (theBuffer[i] & 0x80) {
       if (((theBuffer[i] & 0xC2) != 0xC2) ||

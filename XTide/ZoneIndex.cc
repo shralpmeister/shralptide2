@@ -53,7 +53,7 @@ ZoneIndex::ZInode &ZoneIndex::makezone (const Dstr &zone) {
     return *tryit;
   else {
     Dstr smallzone (zone), addzone (zone);
-    int i;
+    long i;
     // Find the level that already exists.
     while ((i = smallzone.strrchr ('/')) != -1) {
       if (i == (int)smallzone.length() - 1) {

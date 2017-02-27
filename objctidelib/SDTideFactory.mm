@@ -78,7 +78,6 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
     @synchronized([SDTideFactory class]) {
         srand ((unsigned)time (NULL));
         Global::initCodeset();
-        Global::settings.applyUserDefaults();
         Global::settings.fixUpDeprecatedSettings();
         
         Units::PredictionUnits units = [configHelper.unitsPref isEqualToString:@"metric"] ? Units::meters : Units::feet;

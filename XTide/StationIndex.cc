@@ -81,7 +81,7 @@ const double StationIndex::bestCenterLongitude() const {
       ++(counters[j]);
     }
   }
-  unsigned best = 0;
+  size_t best = 0;
   for (i=1; i<12; ++i) {
     if (counters[i] > counters[best])
       best = i;

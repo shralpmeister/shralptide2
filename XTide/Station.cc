@@ -641,7 +641,7 @@ void Station::setUnits (Units::PredictionUnits units) {
 void Station::aboutMode (Dstr &text_out,
 			 Format::Format form,
 			 const Dstr &codeset) const {
-  unsigned maximumNameLength = 0;
+  size_t maximumNameLength = 0;
   assert (form == Format::text || form == Format::HTML);
   if (form == Format::HTML)
     text_out = "<table>\n";

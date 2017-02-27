@@ -19,7 +19,6 @@
 */
 
 #include "common.hh"
-#include "xmlparser.hh"
 #include "config.hh"
 
 
@@ -30,41 +29,6 @@ static constString legalFormats = "chilpt";
 static const bool (*_getResource) (const Dstr &resourceName, Dstr &val_out)
   = NULL;
 static bool commandLineCached = false;
-
-
-static void setxmlfilename () {
-#ifdef UseLocalFiles
-  xmlfilename = ".xtide.xml";
-#else
-  xmlfilename = getenv ("HOME");
-  if (xmlfilename.isNull())
-    return;
-  xmlfilename += "/.xtide.xml";
-#endif
-}
-
-
-static void freexml (xmlattribute *v);
-
-static void freexml (xmltag *v) {
-  if (!v)
-    return;
-  freexml (v->next);
-  freexml (v->contents);
-  freexml (v->attributes);
-  delete v->name;
-  delete v;
-}
-
-static void freexml (xmlattribute *v) {
-  if (!v)
-    return;
-  freexml (v->next);
-  delete v->value;
-  delete v->name;
-  delete v;
-}
-
 
 static void contentOrNull (Dstr &details, const Dstr &val) {
   if (val.isNull())
@@ -736,41 +700,6 @@ void Settings::apply (const Settings &settings) {
 }
 
 
-void Settings::applyUserDefaults () {
-  setxmlfilename();
-  if (xmlfilename.isNull())
-    return;
-
-  xmlparsetree = NULL;
-  if ((yyin = fopen (xmlfilename.aschar(), "rb"))) {
-    yyparse();
-    fclose (yyin);
-    xmltag *tag = xmlparsetree;
-    while (tag) {
-      if ((*(tag->name)) == "xtideoptions") {
-        xmlattribute *a = tag->attributes;
-        while (a) {
-          // Ignore any settings that we don't already have.
-          ConfigurablesMap::iterator it = find (*(a->name));
-          if (it != end()) {
-            Configurable &cfbl = it->second;
-            if (cfbl.kind == Configurable::settingKind) {
-              Dstr culprit ("the ~/.xtide.xml attribute for ");
-              culprit += cfbl.switchName;
-              install (cfbl, culprit, *(a->value));
-            }
-          }
-          a = a->next;
-        }
-      }
-      tag = tag->next;
-    }
-  }
-  freexml (xmlparsetree);
-  xmlparsetree = NULL;
-}
-
-
 void Settings::applyXResources () {
   assert (_getResource);
   for (ConfigurablesMap::iterator it = begin(); it != end(); ++it) {
@@ -793,47 +722,6 @@ void Settings::applyXResources (
   _getResource = &getResource;
   applyXResources();
 }
-
-
-void Settings::save() {
-  setxmlfilename();
-  if (xmlfilename.isNull())
-    Global::barf (Error::NOHOMEDIR);
-
-  FILE *fp = fopen (xmlfilename.aschar(), "wb");
-  if (!fp) {
-    Global::cantOpenFile (xmlfilename, Error::nonfatal);
-    return;
-  }
-  fprintf (fp, "<?xml version=\"1.0\"?>\n<xtideoptions ");
-
-  for (ConfigurablesMap::iterator it = begin(); it != end(); ++it) {
-    Configurable &cfbl = it->second;
-    if (cfbl.kind == Configurable::settingKind && !cfbl.isNull) {
-      fprintf (fp, "%s=\"", cfbl.switchName.aschar());
-      switch (cfbl.representation) {
-      case Configurable::unsignedRep:
-        fprintf (fp, "%u", cfbl.u);
-        break;
-      case Configurable::doubleRep:
-        fprintf (fp, "%0.2f", cfbl.d);
-        break;
-      case Configurable::charRep:
-        fprintf (fp, "%c", cfbl.c);
-        break;
-      case Configurable::dstrRep:
-        fprintf (fp, "%s", cfbl.s.aschar());
-        break;
-      default:
-        assert (false);
-      }
-      fprintf (fp, "\"\n");
-    }
-  }
-  fprintf (fp, "/>\n");
-  fclose (fp);
-}
-
 
 void Settings::applyCommandLine () {
   assert (commandLineCached);

@@ -91,7 +91,7 @@ class DateExtensionTests: XCTestCase {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
-            Date.findPreviousInterval(906)
+            _ = Date.findPreviousInterval(906)
         }
     }
     

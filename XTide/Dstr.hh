@@ -70,7 +70,7 @@ public:
 
   // -------- General attributes --------
 
-  unsigned length() const; // Returns 0 if null.
+  size_t length() const; // Returns 0 if null.
   bool isNull() const;
 
 
@@ -112,10 +112,10 @@ public:
   // -------- Truncate --------
 
   // Remove all text before the specified index.
-  Dstr& operator/= (unsigned at_index);
+  Dstr& operator/= (size_t at_index);
 
   // Remove all text at and after the specified index.
-  Dstr& operator-= (unsigned at_index);
+  Dstr& operator-= (size_t at_index);
 
   // See also, whitespace operations (trim).
 
@@ -150,7 +150,7 @@ public:
   // -------- Char operations --------
 
   // Get character at index.  Returns '\0' if index is out of bounds.
-  char operator[] (unsigned at_index) const;
+  char operator[] (size_t at_index) const;
 
   // Get last character.  Returns '\0' if string is null or empty.
   char back() const;
@@ -165,7 +165,7 @@ public:
 
   // Same thing, but starting at index.  Returns empty string if index
   // is out of bounds.
-  char *ascharfrom(unsigned from_index) const;
+  char *ascharfrom(size_t from_index) const;
 
   // Retrieve value as a character string, no NULL masking.
   char *asrawchar() const;
@@ -175,9 +175,9 @@ public:
 
   // Get index; returns -1 if not found.
   // These are all sensitive.
-  int strchr (char val) const;
-  int strrchr (char val) const;
-  int strstr (const Dstr &val) const;
+  long strchr (char val) const;
+  long strrchr (char val) const;
+  long strstr (const Dstr &val) const;
 
   // Returns true if val appears as a substring.
   // Insensitive.
@@ -193,7 +193,7 @@ public:
 
   // Replace all instances of character X with character Y; returns
   // number of reps.  Sensitive.
-  unsigned repchar (char X, char Y);
+  size_t repchar (char X, char Y);
 
   // Replace all instances of string X with string Y; returns number
   // of reps.  The replacement is done in one pass; any additional
@@ -202,7 +202,7 @@ public:
   // N.B. I use this method a lot, but to this day every invocation
   // has involved two string constants--so accepting const Dstr& would
   // just create a bunch of unneeded temporaries.
-  unsigned repstr (const char *X, const char *Y);
+  size_t repstr (const char *X, const char *Y);
 
   // Mangle per RFC 2445 TEXT.  This is equivalent to
   //   repstr (";", "\\;")
@@ -240,7 +240,7 @@ public:
   // -------- Whitespace operations --------
 
   // Pad to length with spaces.
-  Dstr &pad (unsigned to_length);
+  Dstr &pad (size_t to_length);
 
   // Strip leading and trailing whitespace.
   Dstr &trim ();
@@ -252,8 +252,8 @@ public:
 
 protected:
   char *theBuffer;
-  unsigned max;   // Total max buffer size including \0
-  unsigned used;  // Length not including \0
+  size_t max;   // Total max buffer size including \0
+  size_t used;  // Length not including \0
 };
 
 

@@ -32,16 +32,16 @@ public:
   // default constructor is needed in BetterMap--one of the deep
   // mysteries of templates I guess.)
   SafeVector (): std::vector<T>() {}
-  SafeVector (unsigned n): std::vector<T>(n) {}
+  SafeVector (size_t n): std::vector<T>(n) {}
 
   // Die with assertion failure if index >= size().
-  T &operator[] (unsigned index) {
+  T &operator[] (size_t index) {
     assert (index < this->size());
     return std::vector<T>::operator[] (index);
   }
 
   // Die with assertion failure if index >= size().
-  const T &operator[] (unsigned index) const {
+  const T &operator[] (size_t index) const {
     assert (index < this->size());
     return std::vector<T>::operator[] (index);
   }

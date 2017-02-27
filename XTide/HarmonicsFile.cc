@@ -72,7 +72,7 @@ http://www.flaterco.com/xtide/files.html for a link to the current data.";
   DB_HEADER_PUBLIC db = get_tide_db_header();
   _versionString = _filename;
   {
-    int i;
+    long i;
     if ((i = _versionString.strrchr ('/')) != -1)
       _versionString /= (i+1);
   }
@@ -101,7 +101,7 @@ HarmonicsFile::~HarmonicsFile() {
 
 StationRef * const HarmonicsFile::getNextStationRef () {
   TIDE_STATION_HEADER rec;
-  long i;
+  uint32_t i;
   if ((i = get_next_partial_tide_record (&rec)) == -1) return NULL;
   assert (i >= 0);
   StationRef *sr = new StationRef (_filename,
@@ -134,7 +134,7 @@ static void parse_xfields (MetaFieldVector &metadata,
         name = (char *)NULL;
         value = (char *)NULL;
       }
-      int i = linebuf.strchr (':');
+      long i = linebuf.strchr (':');
       if (i > 0) {
         name = linebuf;
         name -= (unsigned)i;

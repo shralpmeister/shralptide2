@@ -89,7 +89,7 @@ NSString *kCurrentsKey = @"currents_preference";
 -(NSDictionary*)preferencesAsDictionary {
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     [dict setObject:self.unitsPref forKey:kUnitsKey];
-    [dict setObject:[NSNumber numberWithLong:self.daysPref] forKey:kDaysKey];
+    [dict setObject:[NSNumber numberWithInteger:self.daysPref] forKey:kDaysKey];
     [dict setObject:[NSNumber numberWithBool:self.showsCurrentsPref] forKey:kCurrentsKey];
     return dict;
 }
