@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch38" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="11508"/>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="12029"/>
     </dependencies>
     <scenes>
         <!--Tide-->
@@ -43,7 +44,7 @@
                                 <tableRow identifier="chartRow" selectable="NO" id="X4z-Pf-qly" customClass="TideChartRowController" customModule="ShralpyWatch_Extension">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" id="suk-TH-EgZ">
                                         <items>
-                                            <imageView alignment="left" id="bQO-dx-0g9"/>
+                                            <imageView width="1" height="70" alignment="left" id="bQO-dx-0g9"/>
                                         </items>
                                         <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                     </group>
@@ -71,7 +72,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="117" y="117"/>
+            <point key="canvasLocation" x="117" y="102"/>
         </scene>
         <!--Retry-->
         <scene sceneID="g0H-FP-9md">
