@@ -27,7 +27,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate
     /** Called when the session has completed activation. If session state is WCSessionActivationStateNotActivated there will be an error with more details. */
     public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if error != nil {
-            print("Activation failed with error: \(error)")
+            print("Activation failed with error: \(String(describing: error))")
         } else {
             if activationState == .activated {
                 print("WatchConnectivity session active!")

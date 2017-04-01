@@ -31,7 +31,7 @@ import CoreData
             } else {
                 self.persistentState = results?[0]
                 self.locationPage = (self.persistentState?.favoriteLocations?.index(of:self.persistentState?.selectedLocation as Any))!
-                print("Selected location = \(self.persistentState?.selectedLocation?.locationName), page = \(self.locationPage)")
+                print("Selected location = \(String(describing: self.persistentState?.selectedLocation?.locationName)), page = \(self.locationPage)")
             }
         } catch {
             fatalError("Unable to fetch saved state: \(error)")
