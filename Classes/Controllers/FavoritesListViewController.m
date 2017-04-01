@@ -84,7 +84,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    appDelegate.locationPage = indexPath.row;
     NSError *error;
     BOOL success = [AppStateData.sharedInstance setSelectedLocationWithLocationName:((SDTide*)self.favorites[indexPath.row]).stationName error: &error];
     if (!success) {

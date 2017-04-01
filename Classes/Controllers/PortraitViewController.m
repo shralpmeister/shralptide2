@@ -14,6 +14,7 @@
 #import "SDBottomViewController.h"
 #import "CountryListController.h"
 #import "FavoritesListViewController.h"
+#import "ShralpTide2-Swift.h"
 
 #import "UIImage+Mask.h"
 
@@ -73,8 +74,8 @@
 
 - (void)refreshTideData
 {
-    DLog(@"Portrait View Controller got recalc notification. Reloading data");
-    [self.bottomViewController createPages:appDelegate.tides[appDelegate.locationPage]];
+    DLog(@"Portrait View Controller got recalc notification. Reloading data for page %ld", (long)AppStateData.sharedInstance.locationPage);
+    [self.bottomViewController createPages:appDelegate.tides[AppStateData.sharedInstance.locationPage]];
     [self.headerViewController refresh];
 }
 

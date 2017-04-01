@@ -33,7 +33,6 @@
 @property (nonatomic, strong) IBOutlet UIWindow *window;
 @property (nonatomic, strong, readonly) NSArray *tides;
 @property (nonatomic, assign) int page;
-@property (nonatomic, assign) long locationPage;
 @property (nonatomic, assign) UIInterfaceOrientationMask supportedOrientations;
 
 - (void)calculateTides;

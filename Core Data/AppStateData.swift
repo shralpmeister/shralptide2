@@ -13,8 +13,8 @@ import CoreData
     
     static let sharedInstance = AppStateData()
     
-    var persistentState:SDApplicationState?
-    var locationPage:Int?
+    private(set) public var persistentState:SDApplicationState?
+    private(set) public var locationPage = 0
     
     private override init() {}
     
@@ -50,6 +50,7 @@ import CoreData
         } else {
             fatalError("Must have at least one configured location")
         }
+        self.loadSavedState()
     }
 
     private func setDefaultLocation() throws {

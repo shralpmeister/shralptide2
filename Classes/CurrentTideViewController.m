@@ -9,6 +9,7 @@
 #import "CurrentTideViewController.h"
 #import "ShralpTideAppDelegate.h"
 #import "SDTide.h"
+#import "ShralpTide2-Swift.h"
 
 @interface CurrentTideViewController ()
 
@@ -26,8 +27,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.tide = appDelegate.tides[AppStateData.sharedInstance.locationPage];
     DLog(@"SDHeaderViewController refreshing tide for current time, location:%@",[self.tide shortLocationName]);
-    self.tide = appDelegate.tides[appDelegate.locationPage];
     [self refresh];
 }
 
