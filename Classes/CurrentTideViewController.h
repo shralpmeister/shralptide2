@@ -13,7 +13,6 @@
 
 @interface CurrentTideViewController : UIViewController
 
-@property (nonatomic,retain) SDTide *tide;
 @property (nonatomic,weak) IBOutlet UILabel *locationLabel;
 @property (nonatomic,weak) IBOutlet UILabel *tideLevelLabel;
 

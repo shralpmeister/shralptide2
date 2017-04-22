@@ -88,12 +88,12 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self refreshTideData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self refreshTideData];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle

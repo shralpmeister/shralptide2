@@ -27,14 +27,15 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.tide = appDelegate.tides[AppStateData.sharedInstance.locationPage];
-    DLog(@"SDHeaderViewController refreshing tide for current time, location:%@",[self.tide shortLocationName]);
+    DLog(@"SDHeaderViewController refreshing tide for current time, location:%@",
+         appDelegate.tides[AppStateData.sharedInstance.locationPage]);
     [self refresh];
 }
 
 - (void)refresh
 {
-    SDTideStateRiseFall direction = [self.tide tideDirection];
+    SDTide *tide = appDelegate.tides[AppStateData.sharedInstance.locationPage];
+    SDTideStateRiseFall direction = [tide tideDirection];
     NSString *arrow = nil;
     switch (direction) {
         case SDTideStateRising:
@@ -45,10 +46,10 @@
             arrow = @"▼";
     }
     self.tideLevelLabel.text = [NSString stringWithFormat:@"%0.2f%@%@",
-                                [self.tide nearestDataPointToCurrentTime].y,
-                                [self.tide unitShort],
+                                [tide nearestDataPointToCurrentTime].y,
+                                [tide unitShort],
                                 arrow];
-    self.locationLabel.text = self.tide.shortLocationName;
+    self.locationLabel.text = tide.shortLocationName;
 }
 
 @end
