@@ -37,7 +37,8 @@ NSString *kCurrentsKey = @"currents_preference";
 
 - (void)setupByPreferences
 {
-    NSString *testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kUnitsKey];
+    NSUserDefaults *stdDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *testValue = [stdDefaults stringForKey:kUnitsKey];
     if (testValue == nil)
     {
         // no default values have been set, create them here based on what's in our Settings bundle info
@@ -69,18 +70,15 @@ NSString *kCurrentsKey = @"currents_preference";
         }
         
         // since no default values have been set (i.e. no preferences file created), create it here
-        NSDictionary *appDefaults = @{kUnitsKey: unitsDefault,
-                                      kDaysKey: daysDefault,
-                                      kCurrentsKey: currentsDefault};
-        
-        [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [stdDefaults setInteger:[daysDefault integerValue] forKey:kDaysKey];
+        [stdDefaults setValue:unitsDefault forKey:kUnitsKey];
+        [stdDefaults setBool:currentsDefault forKey:kCurrentsKey];
     }
     
     // we're ready to go, so lastly set the key preference values
-    self.unitsPref = [[NSUserDefaults standardUserDefaults] stringForKey:kUnitsKey];
-    self.daysPref = [[NSUserDefaults standardUserDefaults] integerForKey:kDaysKey];
-    self.showsCurrentsPref = [[NSUserDefaults standardUserDefaults] boolForKey:kCurrentsKey];
+    self.unitsPref = [stdDefaults stringForKey:kUnitsKey];
+    self.daysPref = [stdDefaults integerForKey:kDaysKey];
+    self.showsCurrentsPref = [stdDefaults boolForKey:kCurrentsKey];
     
     DLog(@"setting daysPref to %ld", (long)self.daysPref);
     DLog(@"Setting currentsPref to %@", self.showsCurrentsPref ? @"YES" : @"NO");
