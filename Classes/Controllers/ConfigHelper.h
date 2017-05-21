@@ -15,10 +15,10 @@
 @property (nonatomic,assign) BOOL showsCurrentsPref;
 
 - (void)setupByPreferences;
-- (NSDictionary*)readSettingsDictionary;
-- (NSDictionary*)preferencesAsDictionary;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary *readSettingsDictionary;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary *preferencesAsDictionary;
 
-+(id)sharedInstance;
++(ConfigHelper*)sharedInstance;
 
 @end
 

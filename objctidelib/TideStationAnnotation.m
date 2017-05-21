@@ -15,7 +15,7 @@
 
 @implementation TideStationAnnotation
 
--(id)init
+-(instancetype)init
 {
     if ((self = [super init])) {
         self.title = @"";
@@ -24,7 +24,7 @@
     return self;
 }
 
--(id)initWithCoordinate:(CLLocationCoordinate2D)aCoordinate
+-(instancetype)initWithCoordinate:(CLLocationCoordinate2D)aCoordinate
 {
 	if ( (self = [self init]) != nil ) {
 		self.coordinate = aCoordinate;
@@ -68,8 +68,8 @@
     int prime = 31;
     NSUInteger result = 1;
     
-    result = prime + [self.title hash];
-    result = prime * result + [self.subtitle hash];
+    result = prime + (self.title).hash;
+    result = prime * result + (self.subtitle).hash;
     result = prime * result + self.coordinate.longitude * 1000;
     result = prime * result + self.coordinate.latitude * 1000;
     result = prime * result + (self.primary?1231:1237);

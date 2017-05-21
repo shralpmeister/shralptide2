@@ -102,11 +102,11 @@ class ChartViewSwift {
         
         let baseSeconds:TimeInterval = intervalsForDay[0].time.timeIntervalSince1970
         
-        let sunEvents:[SDTideEvent] = tide.sunriseSunsetEvents() as! [SDTideEvent]
+        let sunEvents:[SDTideEvent] = tide.sunriseSunsetEvents as! [SDTideEvent]
         
         let sunPairs:Array<Array<Date>> = self.pairRiseAndSetEvents(sunEvents, riseEventType: .sunrise, setEventType: .sunset)
         
-        let moonEvents:[SDTideEvent] = tide.moonriseMoonsetEvents() as! [SDTideEvent]
+        let moonEvents:[SDTideEvent] = tide.moonriseMoonsetEvents as! [SDTideEvent]
         
         let moonPairs:Array<Array<Date>> = self.pairRiseAndSetEvents(moonEvents, riseEventType: .moonrise, setEventType: .moonset)
         

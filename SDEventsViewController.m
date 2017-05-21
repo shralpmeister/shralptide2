@@ -17,7 +17,7 @@
 
 @implementation SDEventsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -42,7 +42,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.formatterBehavior = NSDateFormatterBehaviorDefault;
     formatter.dateStyle = NSDateFormatterFullStyle;
-    self.dateLabel.text = [formatter stringFromDate:[self.tide startTime]];
+    self.dateLabel.text = [formatter stringFromDate:(self.tide).startTime];
     
     _chartView.height = 40;
     _chartView.datasource = self;
@@ -76,7 +76,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSDate *date = [self.tide startTime];
+    NSDate *date = (self.tide).startTime;
     NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
     NSUInteger preservedComponents = (NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay);
     date = [calendar dateFromComponents:[calendar components:preservedComponents fromDate:date]];
@@ -84,7 +84,7 @@
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"eventTime < %@", date];
     NSArray *todaysEvents = [self.tide.events filteredArrayUsingPredicate:predicate];
-    return [todaysEvents count];
+    return todaysEvents.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

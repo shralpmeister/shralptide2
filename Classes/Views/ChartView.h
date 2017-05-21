@@ -32,7 +32,7 @@
 
 @interface ChartView : UIView
 
-- (NSDate*)midnight;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDate *midnight;
 
 @property (nonatomic, unsafe_unretained) id<ChartViewDatasource> datasource;
 @property (nonatomic, strong) IBOutlet UIView *cursorView;

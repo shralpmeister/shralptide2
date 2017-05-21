@@ -14,18 +14,18 @@
 -(NSDate*)startOfDay
 {
     NSDateComponents *comps = [self dayComponents];
-	[comps setHour: 0];
-	[comps setMinute: 0];
-	[comps setSecond:0];
+	comps.hour = 0;
+	comps.minute = 0;
+	comps.second = 0;
 	return [[NSCalendar currentCalendar] dateFromComponents:comps];
 }
 
 -(NSDate*)endOfDay
 {
     NSDateComponents *comps = [self dayComponents];
-	[comps setHour:24];
-	[comps setMinute:00];
-	[comps setSecond:00];
+	comps.hour = 24;
+	comps.minute = 00;
+	comps.second = 00;
     return [[NSCalendar currentCalendar] dateFromComponents:comps];
 }
 
@@ -50,7 +50,7 @@
 	
 	NSDate *midnight = [gregorian dateFromComponents:components];
 	
-    return ([self timeIntervalSince1970] - [midnight timeIntervalSince1970]) / 60;
+    return (self.timeIntervalSince1970 - midnight.timeIntervalSince1970) / 60;
 }
 
 +(NSInteger)findPreviousInterval:(NSInteger) minutesFromMidnight {

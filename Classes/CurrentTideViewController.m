@@ -47,7 +47,7 @@
     }
     self.tideLevelLabel.text = [NSString stringWithFormat:@"%0.2f%@%@",
                                 [tide nearestDataPointToCurrentTime].y,
-                                [tide unitShort],
+                                tide.unitShort,
                                 arrow];
     self.locationLabel.text = tide.shortLocationName;
 }

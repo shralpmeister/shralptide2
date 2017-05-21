@@ -19,7 +19,7 @@
 
 @implementation InteractiveChartView
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
@@ -36,7 +36,7 @@
 	NSDate *midnight = [self midnight];
     
 	if ([midnight compare:[self.datasource day]] == NSOrderedSame) {
-		return ([datestamp timeIntervalSince1970] - [midnight timeIntervalSince1970]) / SECONDS_PER_MINUTE;
+		return (datestamp.timeIntervalSince1970 - midnight.timeIntervalSince1970) / SECONDS_PER_MINUTE;
 	} else {
 		return -1;
 	}
@@ -51,7 +51,7 @@
     NSDate *dateTime = [self dateTimeFromMinutes:point.x];
     [self.delegate displayHeight: point.y
                           atTime: dateTime
-                  withUnitString: [[self.datasource tideDataToChart] unitShort]];
+                  withUnitString: [self.datasource tideDataToChart].unitShort];
 }
 
 - (NSDate*)dateTimeFromMinutes:(int)minutesSinceMidnight
@@ -65,8 +65,8 @@
 		
 		NSCalendar *gregorian = [NSCalendar currentCalendar];
 		NSDateComponents *components = [[NSDateComponents alloc] init];
-		[components setHour:hours];
-		[components setMinute:minutes];
+		components.hour = hours;
+		components.minute = minutes;
 		
 		NSDate *time = [gregorian dateByAddingComponents:components toDate:[self.datasource day] options:0];
         return time;

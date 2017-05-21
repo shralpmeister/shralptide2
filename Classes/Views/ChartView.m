@@ -29,8 +29,6 @@
 - (float)findLowestTide:(SDTide *)tide;
 - (float)findHighestTide:(SDTide *)tide;
 - (void)hideTideDetails;
-- (NSDate*)midnight;
-- (NSDate*)midnight:(NSDate*)date;
 
 @property (assign) float xratio;
 @property (assign) float yratio;
@@ -39,7 +37,7 @@
 
 @implementation ChartView
 
-- (id)initWithCoder:(NSCoder *)coder {
+- (instancetype)initWithCoder:(NSCoder *)coder {
 	if ((self = [super initWithCoder:coder])) {
         self.height = 234; // legacy default
         self.hoursToPlot = 24;
@@ -55,7 +53,7 @@
 
 - (NSDate*)endTime
 {
-    return [NSDate dateWithTimeIntervalSince1970:[[self.datasource day] timeIntervalSince1970] + (self.hoursToPlot * 60 * 60)];
+    return [NSDate dateWithTimeIntervalSince1970:[self.datasource day].timeIntervalSince1970 + (self.hoursToPlot * 60 * 60)];
 }
 
 - (NSArray*)pairRiseAndSetEvents:(NSArray*)events riseEventType:(SDTideState)riseType setEventType:(SDTideState)setType
@@ -66,7 +64,7 @@
     for (SDTideEvent *event in events) {
         if (event.eventType == riseType) {
             riseTime = event.eventTime;
-            if ([event isEqual:[events lastObject]]) {
+            if ([event isEqual:events.lastObject]) {
                 setTime = self.endTime;
             }
         }
@@ -93,12 +91,12 @@
 	_tide = [self.datasource tideDataToChart];
     
     NSArray *intervalsForDay = [_tide intervalsFromDate:[self.datasource day] forHours:self.hoursToPlot];
-    if ([intervalsForDay count] == 0) {
+    if (intervalsForDay.count == 0) {
         // we're in a bad state. maybe activated on a new day before model has been updated?
         return;
     }
     
-    NSTimeInterval baseSeconds = [((SDTideInterval*)intervalsForDay[0]).time timeIntervalSince1970];
+    NSTimeInterval baseSeconds = (((SDTideInterval*)intervalsForDay[0]).time).timeIntervalSince1970;
     
     NSArray *sunEvents = [_tide sunriseSunsetEvents];
     NSArray *sunPairs = [self pairRiseAndSetEvents:sunEvents riseEventType:sunrise setEventType:sunset];
@@ -136,16 +134,16 @@
     
     // draws the tide level curve
     for (SDTideInterval *tidePoint in intervalsForDay) {
-		int minute = ([[tidePoint time] timeIntervalSince1970] - baseSeconds) / SECONDS_PER_MINUTE;
+		int minute = (tidePoint.time.timeIntervalSince1970 - baseSeconds) / SECONDS_PER_MINUTE;
 		if (minute == 0) {
-			CGContextMoveToPoint(context, minute * self.xratio, self.yoffset - [tidePoint height] * self.yratio);
+			CGContextMoveToPoint(context, minute * self.xratio, self.yoffset - tidePoint.height * self.yratio);
 		} else {
-			CGContextAddLineToPoint(context, (minute * self.xratio), self.yoffset - ([tidePoint height] * self.yratio));
+			CGContextAddLineToPoint(context, (minute * self.xratio), self.yoffset - (tidePoint.height * self.yratio));
 		}
 	}
 	
     // closes the path so that it can be filled.
-    int lastMinute = ([((SDTideInterval*)[intervalsForDay lastObject]).time timeIntervalSince1970] - baseSeconds) / SECONDS_PER_MINUTE;
+    int lastMinute = ((((SDTideInterval*)intervalsForDay.lastObject).time).timeIntervalSince1970 - baseSeconds) / SECONDS_PER_MINUTE;
 	CGContextAddLineToPoint(context, lastMinute*self.xratio, chartBottom);
 	CGContextAddLineToPoint(context, 0, chartBottom);
 	
@@ -164,7 +162,7 @@
     }
 
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-	[formatter setDateStyle:NSDateFormatterFullStyle];
+	formatter.dateStyle = NSDateFormatterFullStyle;
 	self.dateLabel.text = [formatter stringFromDate:[self.datasource day]];
 }
 
@@ -188,15 +186,15 @@
 - (float)findLowestTide:(SDTide *)tide {	
 	NSSortDescriptor *ascDescriptor = [[NSSortDescriptor alloc] initWithKey:@"height" ascending:YES];
 	NSArray *descriptors = @[ascDescriptor];
-	NSArray *ascResult = [[tide allIntervals] sortedArrayUsingDescriptors:descriptors];
-	return [(SDTideInterval*)ascResult[0] height];
+	NSArray *ascResult = [tide.allIntervals sortedArrayUsingDescriptors:descriptors];
+	return ((SDTideInterval*)ascResult[0]).height;
 }
 
 - (float)findHighestTide:(SDTide *)tide {
 	NSSortDescriptor *descDescriptor = [[NSSortDescriptor alloc] initWithKey:@"height" ascending:NO];
 	NSArray *descriptors = @[descDescriptor];
-	NSArray *descResult = [[tide allIntervals] sortedArrayUsingDescriptors:descriptors];
-	return [(SDTideInterval*)descResult[0] height];
+	NSArray *descResult = [tide.allIntervals sortedArrayUsingDescriptors:descriptors];
+	return ((SDTideInterval*)descResult[0]).height;
 }
 
 @end

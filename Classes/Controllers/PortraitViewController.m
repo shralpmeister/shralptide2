@@ -34,7 +34,7 @@
 
 @implementation PortraitViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -47,7 +47,7 @@
     [super viewDidLoad];
         
     self.automaticallyAdjustsScrollViewInsets = NO;
-    for (UIViewController *controller in [self childViewControllers]) {
+    for (UIViewController *controller in self.childViewControllers) {
         if ([controller.restorationIdentifier isEqualToString:@"HeaderViewController"]) {
             self.headerViewController = (CurrentTideViewController*)controller;
         } else if ([controller.restorationIdentifier isEqualToString:@"MainViewController"]) {

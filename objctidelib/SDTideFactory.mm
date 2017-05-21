@@ -82,14 +82,14 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
         
         Units::PredictionUnits units = [configHelper.unitsPref isEqualToString:@"metric"] ? Units::meters : Units::feet;
         
-        Dstr location ([name UTF8String]);
+        Dstr location (name.UTF8String);
         
         if (![fromDate isEqualToDate:[fromDate startOfDay]]) {
             fromDate = [[fromDate startOfDay] dateByAddingTimeInterval: [NSDate findNearestInterval:[fromDate timeInMinutesSinceMidnight]] * 60];
         }
         
-        Timestamp startTime = (time_t)[fromDate timeIntervalSince1970];
-        Timestamp endTime = (time_t)[toDate timeIntervalSince1970] + 1;
+        Timestamp startTime = (time_t)fromDate.timeIntervalSince1970;
+        Timestamp endTime = (time_t)toDate.timeIntervalSince1970 + 1;
         
         NSArray *events = tideEventsForLocation(location, Interval (interval), startTime, endTime, units);
         
@@ -102,7 +102,7 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
         
         SDTideEvent *eventZero = nil;
         for (SDTideEvent *event in events) {
-            if ([event eventType] == max || [event eventType] == min) {
+            if (event.eventType == max || event.eventType == min) {
                 eventZero = event;
                 break;
             }

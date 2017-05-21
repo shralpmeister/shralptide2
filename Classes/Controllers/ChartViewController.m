@@ -26,7 +26,11 @@
 
 @implementation ChartViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil tide:(SDTide *)aTide {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    return [super initWithCoder:aDecoder];
+}
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil tide:(SDTide *)aTide {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         // Custom initialization
 		self.sdTide = aTide;
@@ -54,7 +58,7 @@
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [[NSDateComponents alloc] init];
-    [components setDay: self.page];
+    components.day = self.page;
     
     NSDate* day = [calendar dateByAddingComponents:components toDate:self.sdTide.startTime options:0];
     

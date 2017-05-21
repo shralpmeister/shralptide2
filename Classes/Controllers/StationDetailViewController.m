@@ -20,11 +20,11 @@
 }
 
 -(void)setTideStation:(SDTideStation*) station {
-    CLLocationCoordinate2D coordinates = CLLocationCoordinate2DMake([station.latitude doubleValue], [station.longitude doubleValue]);
+    CLLocationCoordinate2D coordinates = CLLocationCoordinate2DMake((station.latitude).doubleValue, (station.longitude).doubleValue);
     TideStationAnnotation *tideAnnotation = [[TideStationAnnotation alloc] initWithCoordinate: coordinates];
     self.tideStationData = tideAnnotation;
     self.tideStationData.title = station.name;
-    self.tideStationData.primary = [station.primary boolValue];
+    self.tideStationData.primary = (station.primary).boolValue;
 }
 
 -(void)loadView 

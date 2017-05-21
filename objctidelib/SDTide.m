@@ -28,12 +28,12 @@
 @interface SDTide(PrivateMethods)
 - (int)findPreviousInterval:(int) minutesFromMidnight;
 - (int)findNearestInterval:(int) minutesFromMidnight;
-- (int)currentTimeInMinutes;
+@property (NS_NONATOMIC_IOSONLY, readonly) int currentTimeInMinutes;
 @end
 
 @implementation SDTide
 
--(id)initWithTideStation:(NSString *)station StartDate: (NSDate*)start EndDate:(NSDate*)end Events:(NSArray*)events andIntervals:(NSArray*)tideIntervals
+-(instancetype)initWithTideStation:(NSString *)station StartDate: (NSDate*)start EndDate:(NSDate*)end Events:(NSArray*)events andIntervals:(NSArray*)tideIntervals
 {
     if (self = [super init]) {
         NSAssert(start != nil, @"Start date must not be nil");
@@ -82,12 +82,12 @@
 
 -(SDTideInterval*)findTideIntervalForTime:(NSInteger) time {
     int basetime = 0;
-    for (SDTideInterval *tidePoint in [self allIntervals]) {
+    for (SDTideInterval *tidePoint in self.allIntervals) {
         int minutesSinceMidnight = 0;
         if (basetime == 0) {
-            basetime = (int)[[tidePoint time] timeIntervalSince1970];
+            basetime = (int)tidePoint.time.timeIntervalSince1970;
         }
-        minutesSinceMidnight = (int)([[tidePoint time] timeIntervalSince1970] - basetime) / 60;
+        minutesSinceMidnight = (int)(tidePoint.time.timeIntervalSince1970 - basetime) / 60;
         if (minutesSinceMidnight == [NSDate findNearestInterval:(int)time]) {
             return tidePoint;
         }
@@ -108,7 +108,7 @@
 {
 	int count = 0;
 	for (SDTideEvent *event in [self events]) {
-		if ([[NSDate date] timeIntervalSince1970] < [[event eventTime] timeIntervalSince1970]) {
+		if ([NSDate date].timeIntervalSince1970 < event.eventTime.timeIntervalSince1970) {
             self.unitShort = event.units;
 			return @(count);
 		}
@@ -213,8 +213,8 @@
     }
     
     SDTide *combinedTide = [[SDTide alloc] init];
-    SDTide *firstTide = (SDTide*)[tides firstObject];
-    SDTide *lastTide = (SDTide*)[tides lastObject];
+    SDTide *firstTide = (SDTide*)tides.firstObject;
+    SDTide *lastTide = (SDTide*)tides.lastObject;
     combinedTide.stationName = firstTide.stationName;
     combinedTide.startTime = firstTide.startTime;
     combinedTide.stopTime = lastTide.stopTime;
@@ -224,8 +224,8 @@
     NSSet *intervalsSet = [NSSet set];
     NSTimeInterval lastIntervalTime = 0;
     for (SDTide* tide in tides) {
-        SDTideInterval *nextInterval = (SDTideInterval*)[tide.allIntervals firstObject];
-        NSTimeInterval nextIntervalTime = [nextInterval.time timeIntervalSince1970];
+        SDTideInterval *nextInterval = (SDTideInterval*)(tide.allIntervals).firstObject;
+        NSTimeInterval nextIntervalTime = (nextInterval.time).timeIntervalSince1970;
         if (![tide.stationName isEqualToString:combinedTide.stationName] || (lastIntervalTime > 0 && !(nextIntervalTime - lastIntervalTime == 0))) {
             NSException* myException = [NSException
                                         exceptionWithName:@"InvalidArgumentException"
@@ -235,14 +235,14 @@
         }
         allEventsSet = [allEventsSet setByAddingObjectsFromArray:tide.allEvents];
         intervalsSet = [intervalsSet setByAddingObjectsFromArray:tide.allIntervals];
-        lastIntervalTime = [((SDTideInterval*)[tide.allIntervals lastObject]).time timeIntervalSince1970];
+        lastIntervalTime = (((SDTideInterval*)(tide.allIntervals).lastObject).time).timeIntervalSince1970;
     }
     
     NSSortDescriptor *eventTimeDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"eventTime" ascending:YES];
-    combinedTide.allEvents = [[allEventsSet allObjects] sortedArrayUsingDescriptors:@[eventTimeDescriptor]];
+    combinedTide.allEvents = [allEventsSet.allObjects sortedArrayUsingDescriptors:@[eventTimeDescriptor]];
     
     NSSortDescriptor *intervalTimeDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"time" ascending:YES];
-    combinedTide.allIntervals = [[intervalsSet allObjects] sortedArrayUsingDescriptors:@[intervalTimeDescriptor]];
+    combinedTide.allIntervals = [intervalsSet.allObjects sortedArrayUsingDescriptors:@[intervalTimeDescriptor]];
 
     return combinedTide;
 }
@@ -252,8 +252,8 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateStyle = NSDateFormatterShortStyle;
     return [NSString stringWithFormat:@"Location: %@, startDate: %@, no.events: %lu, no.intervals:%lu", _stationName,
-            [formatter stringFromDate:_startTime], (unsigned long)[self.events count], (unsigned long
-)[self.allIntervals count]];
+            [formatter stringFromDate:_startTime], (unsigned long)(self.events).count, (unsigned long
+)(self.allIntervals).count];
 }
 
 - (BOOL)isEqual:(id)other
@@ -287,12 +287,12 @@
 {
     NSUInteger prime = 31;
     NSUInteger result = 1;
-    result = prime * result + [self.startTime hash];
-    result = prime * result + [self.stopTime hash];
-    result = prime * result + [self.stationName hash];
-    result = prime * result + [self.unitShort hash];
-    result = prime * result + [self.highestTide hash];
-    result = prime * result + [self.lowestTide hash];
+    result = prime * result + (self.startTime).hash;
+    result = prime * result + (self.stopTime).hash;
+    result = prime * result + (self.stationName).hash;
+    result = prime * result + (self.unitShort).hash;
+    result = prime * result + (self.highestTide).hash;
+    result = prime * result + (self.lowestTide).hash;
     return result;
 }
 

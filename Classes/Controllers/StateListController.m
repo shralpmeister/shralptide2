@@ -62,7 +62,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [self.rows count];
+	return (self.rows).count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -77,23 +77,23 @@
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", stateName];
     
 	NSFetchRequest *fr = [[NSFetchRequest alloc] init];
-	[fr setEntity: entityDescription];
-	[fr setPredicate:predicate];
+	fr.entity = entityDescription;
+	fr.predicate = predicate;
     
     NSSortDescriptor *sortByName = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
 	NSError *error;
 	NSArray *results = [context executeFetchRequest:fr error:&error];
-	if ([results count] > 0) {
+	if (results.count > 0) {
 		SDStateProvince *state = results[0];
         StationListController *stationController = [[StationListController alloc] initWithNibName:@"StationListView" bundle:nil];
             
         NSArray *orderedStations = [[state.tideStations objectsPassingTest:
                                      ^(id obj, BOOL *stop) {
-                                         BOOL result = configHelper.showsCurrentsPref ? YES : ![((SDTideStation*)obj).current boolValue];
+                                         BOOL result = configHelper.showsCurrentsPref ? YES : !(((SDTideStation*)obj).current).boolValue;
                                          return result;
                                      }] sortedArrayUsingDescriptors:@[sortByName]];
         
-        [stationController setStations: orderedStations];
+        stationController.stations = orderedStations;
         stationController.navigationItem.title = @"Tide Stations";
         
         [self.navigationController pushViewController:stationController animated:YES];

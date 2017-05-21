@@ -43,7 +43,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         let shortText = String.tideFormatStringSmall(value: interval.height)
         let symbolText = direction == .falling ? String.DownSymbol : String.UpSymbol
         
-        return populateTemplate(for: complication, longText: text, shortText: shortText , symbolText: symbolText, height: interval.height, min:tide.lowestTide().floatValue, max:tide.highestTide().floatValue)
+        return populateTemplate(for: complication, longText: text, shortText: shortText , symbolText: symbolText, height: interval.height, min:tide.lowestTide.floatValue, max:tide.highestTide.floatValue)
     }
     
     func populateTemplate(for complication:CLKComplication, longText:String, shortText:String?, symbolText:String?, height:Float, min:Float, max:Float) -> CLKComplicationTemplate {

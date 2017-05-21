@@ -47,6 +47,6 @@ extension String {
         let localHeight = String.localizeHeight(value: event.eventHeight)
         let localUnit = String.localizedUnit()
         let localTime = DateFormatter.localizedString(from: event.eventTime, dateStyle: .none, timeStyle: .short)
-        return String(format: "%8s\t%6s% 2.2f%@", (localTime as NSString).utf8String!, (event.eventTypeDescription() as NSString).utf8String!, localHeight, localUnit)
+        return String(format: "%8s\t%6s% 2.2f%@", (localTime as NSString).utf8String!, (event.eventTypeDescription as NSString).utf8String!, localHeight, localUnit)
     }
 }

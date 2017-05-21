@@ -34,7 +34,7 @@
     return @[@"max", @"min", @"slackrise", @"slackfall", @"markrise", @"markfall",@"sunrise", @"sunset", @"moonrise", @"moonset", @"newmoon", @"firstquarter", @"fullmoon",@"lastquarter", @"rawreading"];
 }
 
--(id)initWithTime:(NSDate *)time Event:(SDTideState)state andHeight:(float)height;
+-(instancetype)initWithTime:(NSDate *)time Event:(SDTideState)state andHeight:(float)height
 {
     if (self = [super init]) {
         self.eventTime = time;
@@ -47,7 +47,7 @@
 -(NSString *)eventTypeDescription
 {
     NSString* result;
-    switch ([self eventType]) {
+    switch (self.eventType) {
         case min:
             result = @"Low";
             break;
@@ -99,20 +99,20 @@
 
 -(NSString *)eventTimeNativeFormat {
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-	[formatter setTimeStyle:NSDateFormatterShortStyle];
+	formatter.timeStyle = NSDateFormatterShortStyle;
 	NSString *fTime = [formatter stringFromDate:self.eventTime];
     return fTime;
 }
 
 -(NSString *)eventTimeString24HR {
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-	[formatter setDateFormat:@"HH:mm"];
+	formatter.dateFormat = @"HH:mm";
     NSString *fTime = [formatter stringFromDate:self.eventTime];
     return fTime;
 }
 -(NSString *)eventTimeString12HR {
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-	[formatter setDateFormat:@"HH:mm pm"];
+	formatter.dateFormat = @"HH:mm pm";
     NSString *fTime = [formatter stringFromDate:self.eventTime];
 	return fTime;	
 }
