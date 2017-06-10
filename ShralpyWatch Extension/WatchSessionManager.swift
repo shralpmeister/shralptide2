@@ -17,7 +17,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate
         super.init()
     }
     
-    public let session: WCSession = WCSession.default()
+    public let session: WCSession = WCSession.default
     
     func startSession() {
         session.delegate = self
