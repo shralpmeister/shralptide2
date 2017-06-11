@@ -9,9 +9,9 @@
 import Foundation
 import WatchConnectivity
 
-class WatchSessionManager: NSObject, WCSessionDelegate {
+@objc class WatchSessionManager: NSObject, WCSessionDelegate {
 
-    static let sharedInstance = WatchSessionManager()
+    @objc static let sharedInstance = WatchSessionManager()
     
     private override init() {
         super.init()
@@ -33,7 +33,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
         return nil
     }
     
-    func startSession() {
+    @objc func startSession() {
         session?.delegate = self
         session?.activate()
     }

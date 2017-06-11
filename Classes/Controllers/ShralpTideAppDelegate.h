@@ -26,8 +26,6 @@
 #import <Foundation/Foundation.h>
 #import "ShralpTide2-Swift.h"
 
-@class RootViewController;
-
 @interface ShralpTideAppDelegate : NSObject <UIApplicationDelegate>
 
 @property (nonatomic, strong) IBOutlet UIWindow *window;

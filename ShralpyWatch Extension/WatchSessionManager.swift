@@ -10,16 +10,16 @@ import Foundation
 import WatchConnectivity
 import WatchKit
 
-class WatchSessionManager: NSObject, WCSessionDelegate
+@objc class WatchSessionManager: NSObject, WCSessionDelegate
 {
-    static let sharedInstance = WatchSessionManager()
+    @objc public static let sharedInstance = WatchSessionManager()
     private override init() {
         super.init()
     }
     
-    public let session: WCSession = WCSession.default
+    @objc public let session: WCSession = WCSession.default
     
-    func startSession() {
+    @objc func startSession() {
         session.delegate = self
         session.activate()
     }

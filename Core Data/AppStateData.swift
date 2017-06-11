@@ -11,14 +11,14 @@ import CoreData
 
 @objc class AppStateData: NSObject {
     
-    static let sharedInstance = AppStateData()
+    @objc public static let sharedInstance = AppStateData()
     
-    private(set) public var persistentState:SDApplicationState?
-    private(set) public var locationPage = 0
+    @objc private(set) public var persistentState:SDApplicationState?
+    @objc private(set) public var locationPage = 0
     
     private override init() {}
     
-    public func loadSavedState() {
+    @objc public func loadSavedState() {
         let context = self.managedObjectContext
         let fetchRequest:NSFetchRequest<SDApplicationState> = SDApplicationState.fetchRequest()
         
@@ -38,7 +38,7 @@ import CoreData
         }
     }
     
-    public func setSelectedLocation(locationName:String) throws {
+    @objc public func setSelectedLocation(locationName:String) throws {
         let context = self.managedObjectContext
         let appState = try lastPersistedState(context: context!)
         let namePredicate = NSPredicate(format: "locationName = %@", locationName)
@@ -69,7 +69,7 @@ import CoreData
         saveContext()
     }
     
-    public func addFavoriteLocation(locationName:String) throws {
+    @objc public func addFavoriteLocation(locationName:String) throws {
         let context = self.managedObjectContext!
         let appState = try lastPersistedState(context: context)
         
@@ -88,7 +88,7 @@ import CoreData
         saveContext()
     }
     
-    public func removeFavoriteLocation(locationName:String) throws {
+    @objc public func removeFavoriteLocation(locationName:String) throws {
         let context = self.managedObjectContext!
         let appState = try lastPersistedState(context: context)
         let namePredicate = NSPredicate(format:"locationName = %@",locationName)
@@ -108,7 +108,7 @@ import CoreData
         }
     }
     
-    public func lastPersistedState(context:NSManagedObjectContext) throws -> SDApplicationState {
+    @objc public func lastPersistedState(context:NSManagedObjectContext) throws -> SDApplicationState {
         let fetchRequest:NSFetchRequest<SDApplicationState> = SDApplicationState.fetchRequest()
         fetchRequest.relationshipKeyPathsForPrefetching = ["favoriteLocations", "selectedLocations"]
         let result = try context.fetch(fetchRequest)
@@ -117,24 +117,24 @@ import CoreData
     
     //MARK: - CoreData bits
 
-    lazy public var StateContainerUrl: URL = {
+    @objc lazy public var StateContainerUrl: URL = {
         let urls = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)
         let libUrl = (urls[urls.count-1] as NSURL) as URL
         return libUrl.appendingPathComponent("appstate.sqlite")
     }()
     
-    lazy public var DataContainerUrl: URL = {
+    @objc lazy public var DataContainerUrl: URL = {
         let urls = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
         let cacheUrl = (urls[urls.count-1] as NSURL) as URL
         return cacheUrl.appendingPathComponent("datastore.sqlite")
     }()
 
-    lazy public var managedObjectModel: NSManagedObjectModel = {
+    @objc lazy public var managedObjectModel: NSManagedObjectModel = {
         let modelURL = Bundle.main.url(forResource: "shralptide", withExtension: "momd")!
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
     
-    lazy public var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
+    @objc lazy public var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
         let fm = FileManager()
         let bundledDataStoreUrl = Bundle.main.url(forResource:"datastore", withExtension:"sqlite")
         
@@ -163,7 +163,7 @@ import CoreData
     }()
 
 
-    lazy public var managedObjectContext: NSManagedObjectContext? = {
+    @objc lazy public var managedObjectContext: NSManagedObjectContext? = {
         let coordinator = self.persistentStoreCoordinator
         if coordinator == nil {
             return nil
@@ -175,7 +175,7 @@ import CoreData
 
     // MARK: - Core Data Saving support
 
-    public func saveContext () {
+    @objc public func saveContext () {
         if let moc = self.managedObjectContext {
             if moc.hasChanges {
                 moc.performAndWait {

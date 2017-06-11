@@ -329,7 +329,7 @@ void set_node_factor (NV_INT32 num, NV_INT32 year, NV_FLOAT32 value);
 NV_BOOL open_tide_db (NV_CHAR *file);
 
 /* Closes the open database. */
-void close_tide_db ();
+void close_tide_db (void);
 
 /* Creates a TCD file with the supplied constituents and no tide
    stations.  Returns false if creation failed.  The database is left
@@ -340,7 +340,7 @@ NV_BOOL create_tide_db (NV_CHAR *file, NV_U_INT32 constituents,
     NV_FLOAT32 *node_factor[]);
 
 /* Returns a copy of the database header for the open database. */
-DB_HEADER_PUBLIC get_tide_db_header ();
+DB_HEADER_PUBLIC get_tide_db_header (void);
 
 /* Gets "header" portion of tide record for the station whose
    record_number is num [0,number_of_records-1] and writes it into
