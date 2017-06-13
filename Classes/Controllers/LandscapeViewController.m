@@ -29,7 +29,7 @@
 
 @implementation LandscapeViewController
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
@@ -38,7 +38,7 @@
     return self;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -137,7 +137,7 @@
 
 - (void)clearChartViews
 {
-    for (UIView* view in [self.chartScrollView subviews]) {
+    for (UIView* view in (self.chartScrollView).subviews) {
         [view removeFromSuperview];
     }
 }

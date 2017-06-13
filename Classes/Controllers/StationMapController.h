@@ -16,14 +16,14 @@
 #import "StationDetailViewController.h"
 #import "SelectStationNavigationController.h"
 
-typedef enum {
+typedef NS_ENUM(unsigned int, SDStationType) {
 	SDStationTypeTide,
 	SDStationTypeCurrent
-} SDStationType;
+};
 
 @interface StationMapController : UIViewController <CLLocationManagerDelegate,MKMapViewDelegate>
 
--(id)initWithNibName:(NSString *)nibNameOrNil forStationType:(SDStationType)aStationType;
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil forStationType:(SDStationType)aStationType;
 -(void)updateDisplayedStations;
 
 @property (nonatomic,strong) IBOutlet MKMapView *mapView;

@@ -18,7 +18,7 @@
 
 @implementation LabelledChartView
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
@@ -27,7 +27,7 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -54,10 +54,10 @@
 	CGContextRef context = UIGraphicsGetCurrentContext();
     
     NSArray *intervalsForDay = [super.tide intervalsFromDate:[self.datasource day] forHours:self.hoursToPlot];
-    if ([intervalsForDay count] == 0) {
+    if (intervalsForDay.count == 0) {
         return;
     }
-    NSTimeInterval baseSeconds = [((SDTideInterval*)intervalsForDay[0]).time timeIntervalSince1970];
+    NSTimeInterval baseSeconds = (((SDTideInterval*)intervalsForDay[0]).time).timeIntervalSince1970;
     
     // draws the sun/moon events
     for (SDTideEvent *event in super.tide.sunAndMoonEvents) {
@@ -71,7 +71,7 @@
         } else if (event.eventType == moonset) {
             image = self.moonsetIcon;
         }
-        int minute = ([event.eventTime timeIntervalSince1970] - baseSeconds) / SECONDS_PER_MINUTE;
+        int minute = ((event.eventTime).timeIntervalSince1970 - baseSeconds) / SECONDS_PER_MINUTE;
         float x = minute * self.xratio;
         CGSize size = CGSizeMake(15, 15);
         UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
@@ -82,7 +82,7 @@
     // draws the time labels
     float lastX = 0;
     for (SDTideInterval *tidePoint in intervalsForDay) {
-		int minute = ([[tidePoint time] timeIntervalSince1970] - baseSeconds) / SECONDS_PER_MINUTE;
+		int minute = (tidePoint.time.timeIntervalSince1970 - baseSeconds) / SECONDS_PER_MINUTE;
         //DLog(@"Plotting interval: %@, min since midnight: %d",tidePoint.time, minute);
         if ([tidePoint.time isOnTheHour]) {
             float x = minute * self.xratio;

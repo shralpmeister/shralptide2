@@ -28,7 +28,7 @@
 
 @implementation FavoritesListViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -153,7 +153,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [self.favorites count];
+	return (self.favorites).count;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -168,7 +168,7 @@
             [appDelegate calculateTides];
         }
         [self.favorites removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
@@ -253,7 +253,7 @@
                                               entityForName:@"SDCountry"
                                               inManagedObjectContext:context];
     NSFetchRequest *fr = [[NSFetchRequest alloc] init];
-    [fr setEntity: entityDescription];
+    fr.entity = entityDescription;
     
     NSError *error;
     NSArray *results = [context executeFetchRequest:fr error:&error];

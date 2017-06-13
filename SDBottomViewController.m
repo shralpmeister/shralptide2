@@ -25,7 +25,7 @@
 
 @implementation SDBottomViewController
 
-- (id) initWithCoder:(NSCoder *)aDecoder
+- (instancetype) initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
@@ -90,7 +90,7 @@
     [self clearScrollView];
     
     _tidesForDays = tides;
-    long numPages = [_tidesForDays count];
+    long numPages = _tidesForDays.count;
     DLog(@"SDBottomViewCell creating %ld days of tide events",numPages);
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width * numPages, self.view.frame.size.height);
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];

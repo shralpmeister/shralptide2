@@ -24,7 +24,7 @@
 #import "SDTide.h"
 
 @protocol ChartViewDatasource
--(SDTide *)tideDataToChart;
--(NSDate*)day;
--(int)page;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) SDTide *tideDataToChart;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDate *day;
+@property (NS_NONATOMIC_IOSONLY, readonly) int page;
 @end

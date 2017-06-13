@@ -55,7 +55,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [self.rows count];
+	return (self.rows).count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -70,20 +70,20 @@
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", countryName];
     
 	NSFetchRequest *fr = [[NSFetchRequest alloc] init];
-	[fr setEntity: entityDescription];
-	[fr setPredicate:predicate];
+	fr.entity = entityDescription;
+	fr.predicate = predicate;
     
     NSSortDescriptor *sortByName = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
 	NSError *error;
 	NSArray *results = [context executeFetchRequest:fr error:&error];
-	if ([results count] > 0) {
+	if (results.count > 0) {
 		SDCountry *country = results[0];
-        if ([country.states count] == 0) {
+        if ((country.states).count == 0) {
             StationListController *stationController = [[StationListController alloc] initWithNibName:@"StationListView" bundle:nil];
             
             NSArray *orderedStations = [[country.tideStations objectsPassingTest:
                                                   ^(id obj, BOOL *stop) {
-                                                      BOOL result = ![((SDTideStation*)obj).current boolValue];
+                                                      BOOL result = !(((SDTideStation*)obj).current).boolValue;
                                                       return result;
                                                   }] 
                                     sortedArrayUsingDescriptors:@[sortByName]];
@@ -93,7 +93,7 @@
         } else {
             StateListController *stateController = [[StateListController alloc] initWithNibName:@"StateListView" bundle:nil];
 
-            NSArray *orderedStates = [[country.states allObjects] sortedArrayUsingDescriptors:@[sortByName]];
+            NSArray *orderedStates = [(country.states).allObjects sortedArrayUsingDescriptors:@[sortByName]];
             stateController.rows = orderedStates;
             
             if ([country.name isEqualToString:@"Canada"]) {

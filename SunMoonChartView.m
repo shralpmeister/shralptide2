@@ -19,7 +19,7 @@
 
 @implementation SunMoonChartView
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
@@ -28,7 +28,7 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -43,8 +43,8 @@
     _hourFormatter = [[NSDateFormatter alloc] init];
     _hourFormatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"j" options:0 locale:[NSLocale currentLocale]];
     _timeFormatter = [[NSDateFormatter alloc] init];
-    [_timeFormatter setDateStyle:NSDateFormatterNoStyle];
-    [_timeFormatter setTimeStyle:NSDateFormatterShortStyle];
+    _timeFormatter.dateStyle = NSDateFormatterNoStyle;
+    _timeFormatter.timeStyle = NSDateFormatterShortStyle;
     self.sunriseIcon = [[UIImage imageNamed:@"sunrise_trnspt"] maskImageWithColor:[UIColor yellowColor]];
     self.sunsetIcon = [[UIImage imageNamed:@"sunset_trnspt"] maskImageWithColor:[UIColor orangeColor]];
     self.moonriseIcon = [[UIImage imageNamed:@"moonrise_trnspt"] maskImageWithColor:[UIColor whiteColor]];
@@ -59,10 +59,10 @@
 	CGContextRef context = UIGraphicsGetCurrentContext();
     
     NSArray *intervalsForDay = [super.tide intervalsFromDate:[self.datasource day] forHours:self.hoursToPlot];
-    if ([intervalsForDay count] == 0) {
+    if (intervalsForDay.count == 0) {
         return;
     }
-    NSTimeInterval baseSeconds = [((SDTideInterval*)intervalsForDay[0]).time timeIntervalSince1970];
+    NSTimeInterval baseSeconds = (((SDTideInterval*)intervalsForDay[0]).time).timeIntervalSince1970;
     
     // draws the sun/moon events
     float lastX = 0;
@@ -77,7 +77,7 @@
         } else if (event.eventType == moonset) {
             image = self.moonsetIcon;
         }
-        int minute = ([event.eventTime timeIntervalSince1970] - baseSeconds) / SECONDS_PER_MINUTE;
+        int minute = ((event.eventTime).timeIntervalSince1970 - baseSeconds) / SECONDS_PER_MINUTE;
         float x = minute * self.xratio;
         CGSize size = CGSizeMake(15, 15);
         UIFont *font = [UIFont systemFontOfSize:13 weight:UIFontWeightBold];

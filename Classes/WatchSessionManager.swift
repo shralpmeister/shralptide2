@@ -55,7 +55,7 @@ import WatchConnectivity
         }
         
         if request == "provision" {
-            var settings = (ConfigHelper.sharedInstance() as!ConfigHelper).preferencesAsDictionary() as! [String:Any]
+            var settings = ConfigHelper.sharedInstance().preferencesAsDictionary as! [String:Any]
             settings["selected_station"] = AppStateData.sharedInstance.persistentState?.selectedLocation?.locationName
             settings["favorite_locations"] = (AppStateData.sharedInstance.persistentState?.favoriteLocations?.array as! [SDFavoriteLocation]).map { $0.locationName } as! [String]
             replyHandler(settings)

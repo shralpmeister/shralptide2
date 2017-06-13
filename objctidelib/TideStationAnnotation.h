@@ -11,7 +11,7 @@
 
 @interface TideStationAnnotation : NSObject <MKAnnotation>
 
--(id)initWithCoordinate:(CLLocationCoordinate2D)aCoordinate;
+-(instancetype)initWithCoordinate:(CLLocationCoordinate2D)aCoordinate;
 -(BOOL)isEqualToTideStationAnnotation:(TideStationAnnotation*)other;
 
 @property (nonatomic,readonly) CLLocationCoordinate2D coordinate;

@@ -24,7 +24,7 @@ BOOL zoomedToLocal;
 
 @implementation StationMapController
 
--(id)initWithNibName:(NSString *)nibNameOrNil forStationType:(SDStationType)aStationType
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil forStationType:(SDStationType)aStationType
 {
 	if ((self = [super initWithNibName:nibNameOrNil bundle:nil])) {
 		self.stationType = aStationType;
@@ -120,29 +120,29 @@ BOOL zoomedToLocal;
     NSPredicate *predicate = [NSPredicate predicateWithFormat: filter, @[minLatitude, maxLatitude], @[minLongitude, maxLongitude],currentBoolean];
     
 	NSFetchRequest *fr = [[NSFetchRequest alloc] init];
-	[fr setEntity: entityDescription];
-	[fr setPredicate:predicate];
+	fr.entity = entityDescription;
+	fr.predicate = predicate;
     
 	NSError *error;
 	NSArray *results = [context executeFetchRequest:fr error:&error];
 	DLog(@"%lu results returned",(unsigned long)[results count]);
     
 	if (results == nil) {
-		NSLog(@"Error fetching stations! %@, %@",error, [error userInfo]);
-    } else if ([results count] > 100) {
+		NSLog(@"Error fetching stations! %@, %@",error, error.userInfo);
+    } else if (results.count > 100) {
         NSLog(@"That's too many results... won't plot until lower zoom level.");
 	} else {
 		for (SDTideStation *result in results) {
             DLog(@"Fetched %@",result.name);
 			CLLocationCoordinate2D coordinate;
-			coordinate.latitude = [result.latitude doubleValue];
-			coordinate.longitude = [result.longitude doubleValue];
+			coordinate.latitude = (result.latitude).doubleValue;
+			coordinate.longitude = (result.longitude).doubleValue;
 			
 			TideStationAnnotation *annotation = [[TideStationAnnotation alloc] initWithCoordinate: coordinate];
 			annotation.title = result.name;
-            annotation.primary = [result.primary boolValue];
+            annotation.primary = (result.primary).boolValue;
 			
-            if (![[self.mapView annotations] containsObject:annotation]) {
+            if (![(self.mapView).annotations containsObject:annotation]) {
                 [self.mapView addAnnotation: annotation];
             }
             
@@ -174,13 +174,13 @@ BOOL zoomedToLocal;
 		[pin setCanShowCallout:YES];
 		UIButton *disclosure = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 		[disclosure addTarget:self action:@selector(chooseStation) forControlEvents:UIControlEventTouchUpInside];
-		[pin setRightCalloutAccessoryView:disclosure];
+		pin.rightCalloutAccessoryView = disclosure;
 		view = pin;
 	} else {
         MKPinAnnotationView *pin = (MKPinAnnotationView*)view;
         TideStationAnnotation *tsAnnotation = (TideStationAnnotation*)annotation;
         pin.pinTintColor = tsAnnotation.isPrimary ? [UIColor greenColor] : [UIColor redColor];
-		[view setAnnotation:annotation];
+		view.annotation = annotation;
 	}
 	return view;
 }
@@ -191,12 +191,12 @@ BOOL zoomedToLocal;
 	double longitudeDelta = aMapView.region.span.longitudeDelta;
     
     if (latitudeDelta > 4 || longitudeDelta > 4) {
-        [self.mapView removeAnnotations:[self.mapView annotations]];
+        [self.mapView removeAnnotations:(self.mapView).annotations];
         return;
     }
     
-    if ([[self.mapView annotations] count] > 0) {
-        for (id<MKAnnotation> annotation in [NSArray arrayWithArray:[self.mapView annotations]]) {
+    if ((self.mapView).annotations.count > 0) {
+        for (id<MKAnnotation> annotation in [NSArray arrayWithArray:(self.mapView).annotations]) {
             if ([annotation isKindOfClass:[TideStationAnnotation class]]) {
                 // if annotation is no longer within our cache radius we'll remove it
                 if (annotation.coordinate.latitude > self.mapView.centerCoordinate.latitude + 4.0 ||
@@ -228,14 +228,14 @@ BOOL zoomedToLocal;
 
 -(void)chooseStation
 {
-	NSArray *selectedAnnotations = [self.mapView selectedAnnotations];
+	NSArray *selectedAnnotations = (self.mapView).selectedAnnotations;
 	for (id<MKAnnotation> annotation in selectedAnnotations) {
 		DLog(@"  - %@", annotation.title);
 	}
 
     StationDetailViewController *detailViewController = [[StationDetailViewController alloc] initWithNibName:@"StationInfoView" bundle:nil];
     detailViewController.modalViewDelegate = self.modalViewDelegate;
-	detailViewController.tideStationData = [self.mapView selectedAnnotations][0];
+	detailViewController.tideStationData = (self.mapView).selectedAnnotations[0];
 	[self.navigationController pushViewController: detailViewController animated:YES];
 }
 

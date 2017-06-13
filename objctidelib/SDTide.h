@@ -34,31 +34,31 @@ typedef NS_ENUM(NSInteger, SDTideStateRiseFall) {
 
 @interface SDTide : NSObject
 
-- (id)initWithTideStation:(NSString *)station StartDate: (NSDate*)start EndDate:(NSDate*)end Events:(NSArray*)tideEvents andIntervals:(NSArray*)tideIntervals;
-- (NSString*)shortLocationName;
+- (instancetype)initWithTideStation:(NSString *)station StartDate: (NSDate*)start EndDate:(NSDate*)end Events:(NSArray*)tideEvents andIntervals:(NSArray*)tideIntervals;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *shortLocationName;
 - (float)findTideForTime:(NSInteger) time;
 - (SDTideStateRiseFall)tideDirectionForTime:(NSInteger) time;
 - (SDTideInterval*)findTideIntervalForTime:(NSInteger) time;
 - (CGPoint)nearestDataPointForTime:(NSInteger) minutesFromMidnight;
-- (CGPoint)nearestDataPointToCurrentTime;
-- (NSNumber*)nextEventIndex;
-- (NSArray*)events; // all tide events (only tide events)
+@property (NS_NONATOMIC_IOSONLY, readonly) CGPoint nearestDataPointToCurrentTime;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSNumber *nextEventIndex;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *events; // all tide events (only tide events)
 - (NSArray*)eventsForDay:(NSDate*)date;
 - (NSArray*)intervalsForDay:(NSDate*)date;
 
 - (NSDictionary*)sunriseSunsetEventsForDay:(NSDate*)date;
 - (NSDictionary*)moonriseMoonsetEventsForDay:(NSDate*)date;
-- (NSArray*)sunriseSunsetEvents;
-- (NSArray*)moonriseMoonsetEvents;
-- (NSArray*)sunAndMoonEvents;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *sunriseSunsetEvents;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *moonriseMoonsetEvents;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *sunAndMoonEvents;
 
-- (SDTideStateRiseFall)tideDirection;
-- (NSInteger)currentTimeInMinutes;
+@property (NS_NONATOMIC_IOSONLY, readonly) SDTideStateRiseFall tideDirection;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSInteger currentTimeInMinutes;
 - (NSArray*)intervalsFromDate:(NSDate*)fromDate forHours:(NSInteger)hours;
 + (SDTide*)tideByCombiningTides:(NSArray*)tides;
 
--(NSNumber*)highestTide;
--(NSNumber*)lowestTide;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSNumber *highestTide;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSNumber *lowestTide;
 
 - (BOOL)isEqualToTide:(SDTide*)other;
 

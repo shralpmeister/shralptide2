@@ -35,7 +35,7 @@
     self.sections = [[NSMutableDictionary alloc] init];
     NSMutableSet *sectionKeySet = [[NSMutableSet alloc] init];
     
-    if ([_stations count] > 20) {
+    if (_stations.count > 20) {
         for (SDTideStation *station in self.stations) {
             
             NSString *groupKey = [station.name substringToIndex:1];
@@ -52,7 +52,7 @@
         }
     }
 
-    self.sectionKeys = [[sectionKeySet allObjects] sortedArrayUsingSelector:@selector(compare:)];
+    self.sectionKeys = [sectionKeySet.allObjects sortedArrayUsingSelector:@selector(compare:)];
     
     self.navigationItem.rightBarButtonItem = ((SelectStationNavigationController*)self.navigationController).doneButton;
 }
@@ -66,8 +66,8 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if ([self.sections count] > 0) {
-        return [self.sections count];
+    if ((self.sections).count > 0) {
+        return (self.sections).count;
     }
     return 1;
 }
@@ -86,13 +86,13 @@
 	}
 
     SDTideStation *station = nil;
-    if ([self.sections count] > 0) {
+    if ((self.sections).count > 0) {
         station = (SDTideStation*)self.sections[self.sectionKeys[indexPath.section]][row];
     } else {
         station = (SDTideStation*)self.stations[row];
     }
     
-    if ([station.current boolValue]) {
+    if ((station.current).boolValue) {
         cell.textLabel.textColor = [UIColor redColor];
     } else {
         cell.textLabel.textColor = [UIColor blackColor];
@@ -101,7 +101,7 @@
 	cell.textLabel.text = nameParts[0];
     
     NSMutableString *detailText = [[NSMutableString alloc] init];
-    for (int i=1; i < [nameParts count]; i++) {
+    for (int i=1; i < nameParts.count; i++) {
         if (i > 1) {
             [detailText appendString:@", "];
         }
@@ -114,15 +114,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	if ([self.sections count] > 0) {
+	if ((self.sections).count > 0) {
         return [self.sections[self.sectionKeys[section]] count];
     }
-    return [self.stations count];
+    return (self.stations).count;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if ([self.sections count] > 0) {
+    if ((self.sections).count > 0) {
         return self.sectionKeys[section];
     } else {
         return nil;
@@ -133,7 +133,7 @@
 {
     DLog(@"Selected row %ld",(long)indexPath.row);
 
-    if ([self.sections count] > 0) {
+    if ((self.sections).count > 0) {
         [self chooseStation:self.sections[self.sectionKeys[indexPath.section]][indexPath.row]];
     } else {
         [self chooseStation:self.stations[indexPath.row]];

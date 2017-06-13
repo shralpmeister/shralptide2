@@ -15,7 +15,7 @@ NSString *kCurrentsKey = @"currents_preference";
 
 @implementation ConfigHelper
 
-+(id)sharedInstance
++(ConfigHelper*)sharedInstance
 {
     static ConfigHelper *sharedInstance = nil;
     static dispatch_once_t onceToken;
@@ -28,7 +28,7 @@ NSString *kCurrentsKey = @"currents_preference";
 
 -(NSDictionary*)readSettingsDictionary
 {
-    NSString *pathStr = [[NSBundle mainBundle] bundlePath];
+    NSString *pathStr = [NSBundle mainBundle].bundlePath;
     NSString *settingsBundlePath = [pathStr stringByAppendingPathComponent:@"Settings.bundle"];
     NSString *finalPath = [settingsBundlePath stringByAppendingPathComponent:@"Root.plist"];
     
@@ -70,9 +70,9 @@ NSString *kCurrentsKey = @"currents_preference";
         }
         
         // since no default values have been set (i.e. no preferences file created), create it here
-        [stdDefaults setInteger:[daysDefault integerValue] forKey:kDaysKey];
+        [stdDefaults setInteger:daysDefault.integerValue forKey:kDaysKey];
         [stdDefaults setValue:unitsDefault forKey:kUnitsKey];
-        [stdDefaults setBool:currentsDefault forKey:kCurrentsKey];
+        [stdDefaults setBool:currentsDefault.boolValue forKey:kCurrentsKey];
     }
     
     // we're ready to go, so lastly set the key preference values
@@ -86,9 +86,9 @@ NSString *kCurrentsKey = @"currents_preference";
 
 -(NSDictionary*)preferencesAsDictionary {
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
-    [dict setObject:self.unitsPref forKey:kUnitsKey];
-    [dict setObject:[NSNumber numberWithInteger:self.daysPref] forKey:kDaysKey];
-    [dict setObject:[NSNumber numberWithBool:self.showsCurrentsPref] forKey:kCurrentsKey];
+    dict[kUnitsKey] = self.unitsPref;
+    dict[kDaysKey] = @(self.daysPref);
+    dict[kCurrentsKey] = @(self.showsCurrentsPref);
     return dict;
 }
 

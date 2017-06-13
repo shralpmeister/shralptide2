@@ -28,11 +28,12 @@ typedef NS_ENUM(NSInteger,SDTideState) {max, min, slackrise, slackfall, markrise
 
 @interface SDTideEvent : NSObject
 
--(id)initWithTime:(NSDate *)t Event:(SDTideState)e andHeight:(float)f;
--(NSString *)eventTypeDescription;
--(NSString *)eventTimeNativeFormat;
--(NSString *)eventTimeString12HR;
--(NSString *)eventTimeString24HR;
+-(instancetype)initWithTime:(NSDate *)t Event:(SDTideState)e andHeight:(float)f;
+
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *eventTypeDescription;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *eventTimeNativeFormat;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *eventTimeString12HR;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *eventTimeString24HR;
 
 @property (nonatomic,strong) NSDate *eventTime;
 @property (assign) SDTideState eventType;

@@ -24,8 +24,8 @@
     
     // Drawing code
     CGContextSetBlendMode(context, kCGBlendModeCopy);
-	CGContextClipToMask(context, imageRect, [self CGImage]);
-	CGContextSetFillColorWithColor(context, [color CGColor]);
+	CGContextClipToMask(context, imageRect, self.CGImage);
+	CGContextSetFillColorWithColor(context, color.CGColor);
 	CGContextFillRect(context, imageRect);
     
     UIImage *maskedImage = UIGraphicsGetImageFromCurrentImageContext();

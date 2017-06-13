@@ -25,7 +25,7 @@
 
 @implementation CursorView
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         // Initialization code
         self.backgroundColor = [UIColor clearColor];
@@ -36,7 +36,7 @@
 - (void)drawRect:(CGRect)rect {
     // Drawing code
 	CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [[UIColor redColor] CGColor]);
+    CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
 	CGContextFillRect(context, CGRectMake(rect.size.width / 2 - 1, 0, 2, rect.size.height));
 }
 

@@ -14,27 +14,27 @@
 /*
  * Returns a new date representing midnight of the day of the current date.
  */
--(NSDate*)startOfDay;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDate *startOfDay;
 
 /*
  * Returns a new date representing midnight of the day following the current date.
  */
--(NSDate*)endOfDay;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDate *endOfDay;
 
 /*
  * Returns the date components for year month and day of the current date.
  */
--(NSDateComponents*)dayComponents;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDateComponents *dayComponents;
 
 /*
  * Returns true if the minute is zero. ie. 0800, 0900, 1200, 0000.
  */
--(BOOL)isOnTheHour;
+@property (NS_NONATOMIC_IOSONLY, getter=isOnTheHour, readonly) BOOL onTheHour;
 
 /*
  * The time in minutes since midnight.
  */
-- (NSInteger)timeInMinutesSinceMidnight;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSInteger timeInMinutesSinceMidnight;
 
 +(NSInteger)findPreviousInterval:(NSInteger) minutesFromMidnight;
 

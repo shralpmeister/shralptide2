@@ -10,7 +10,7 @@
 
 @implementation BackgroundScene
 
--(id)initWithSize:(CGSize)size {
+-(instancetype)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
         DLog(@"Background scene initialized");
         /* Setup your scene here */

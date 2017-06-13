@@ -52,7 +52,7 @@ class InterfaceController: WKInterfaceController {
             refreshTableLayout(tides:tides)
             extDelegate.refreshComplications()
         }
-        let currentTidePoint = tides.nearestDataPointToCurrentTime()
+        let currentTidePoint = tides.nearestDataPointToCurrentTime
         if (currentTidePoint != lastDisplayedPoint || unitChanged) {
             refreshDisplayedTideLevel(with:currentTidePoint, tides: tides)
         }
@@ -82,14 +82,14 @@ class InterfaceController: WKInterfaceController {
         mainTable.insertRows(at: [1], withRowType: "heightRow")
         mainTable.insertRows(at: [2], withRowType: "chartRow")
         let firstEventIndex = 3
-        let numEvents = tides.events().count
+        let numEvents = tides.events.count
         for i in 0...numEvents-1 {
             mainTable.insertRows(at:[i+firstEventIndex], withRowType: "eventRow")
             let eventsController = (mainTable.rowController(at: i + firstEventIndex) as! TideTableRowController)
-            eventsController.eventDescription.setText(String.localizedDescription(event: tides.events()[i] as! SDTideEvent))
+            eventsController.eventDescription.setText(String.localizedDescription(event: tides.events[i] as! SDTideEvent))
         }
         
-        (mainTable.rowController(at: 0) as! TideStationRowController).stationName.setText(tides.shortLocationName())
+        (mainTable.rowController(at: 0) as! TideStationRowController).stationName.setText(tides.shortLocationName)
         
         lastStartTime = tides.startTime
         lastStationName = tides.stationName
@@ -98,7 +98,7 @@ class InterfaceController: WKInterfaceController {
     }
     
     func refreshDisplayedTideLevel(with tidePoint:CGPoint, tides:SDTide) {
-        (mainTable.rowController(at: 1) as! TideHeightRowController).heightLabel.setText(String.tideFormatString(value: Float(tidePoint.y)) + String.directionIndicator(tides.tideDirection()))
+        (mainTable.rowController(at: 1) as! TideHeightRowController).heightLabel.setText(String.tideFormatString(value: Float(tidePoint.y)) + String.directionIndicator(tides.tideDirection))
         
         let chartController = (mainTable.rowController(at: 2) as! TideChartRowController)
         

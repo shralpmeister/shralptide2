@@ -27,10 +27,10 @@
 
 @interface ChartViewController : UIViewController <ChartViewDatasource>
 
--(SDTide *)tideDataToChart;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil tide:(SDTide *)aTide;
-
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) SDTide *tideDataToChart;
 @property (nonatomic,strong) SDTide *sdTide;
-@property (assign) int page;
+@property (NS_NONATOMIC_IOSONLY, readonly) int page;
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil tide:(SDTide *)aTide;
+
 @end
