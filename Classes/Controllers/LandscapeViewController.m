@@ -60,6 +60,10 @@
 {
     [super viewDidLoad];
     
+    if (@available(iOS 11, *)) {
+        self.chartScrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    
     self.heightView.layer.cornerRadius = 5;
     self.heightView.layer.masksToBounds = YES;
     

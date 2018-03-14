@@ -18,8 +18,6 @@
 
 #import "UIImage+Mask.h"
 
-#import "BackgroundScene.h"
-
 #import <SpriteKit/SpriteKit.h>
 
 
@@ -28,7 +26,6 @@
 @property (nonatomic, assign) BOOL pageControlUsed;
 @property (nonatomic, strong) CurrentTideViewController *headerViewController;
 @property (nonatomic, strong) SDBottomViewController *bottomViewController;
-@property (nonatomic, strong) BackgroundScene *backgroundScene;
 
 @end
 

@@ -17,13 +17,13 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.0.5</string>
+	<string>3.0.7</string>
 	<key>CFBundleVersion</key>
-	<string>86</string>
+	<string>149</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
-		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
 	<string>com.shralpsoftware.ShralpTide2</string>

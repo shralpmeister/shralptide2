@@ -27,6 +27,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     DLog(@"SDHeaderViewController refreshing tide for current time, location:%@",
          appDelegate.tides[AppStateData.sharedInstance.locationPage]);
     [self refresh];

@@ -75,13 +75,12 @@
 
 #pragma mark HandleTouch
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    DLog(@"Touches began on chartview!");
+    // DLog(@"Touches began on chartview!");
     // We only support single touches, so anyObject retrieves just that touch from touches
     UITouch *touch = [touches anyObject];
     
     // Animate the first touch
     CGPoint touchPoint = [touch locationInView:self];
-    CGPoint dataPoint = [[self.datasource tideDataToChart] nearestDataPointForTime:[self timeInMinutes:touchPoint.x]];
 	CGPoint movePoint = CGPointMake(touchPoint.x, self.frame.size.height / 2 + CURSOR_TOP_GAP);
 	
 	if (self.cursorView.superview == nil) {

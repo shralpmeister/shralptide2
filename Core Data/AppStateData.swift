@@ -153,8 +153,6 @@ import CoreData
         
         do {
             try coordinator.addPersistentStore(ofType:NSSQLiteStoreType, configurationName:nil, at:self.DataContainerUrl, options:options)
-//            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: "StateDataStore", at: self.StateContainerUrl, options: options)
-//            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: "TideDataStore", at: self.DataContainerUrl, options: options)
         } catch {
             fatalError("Unresolved error: \(error)")
         }

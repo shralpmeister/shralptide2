@@ -119,9 +119,6 @@
 		DC8A827E189DB42F00792149 /* lightray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8A827D189DB42F00792149 /* lightray@2x.png */; };
 		DC8EAAC81812EA7C00C4BCFF /* LabelledChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC8EAAC71812EA7C00C4BCFF /* LabelledChartView.m */; };
 		DC9065F317F13AD8000F23D8 /* SDEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9065F217F13AD8000F23D8 /* SDEventsViewController.m */; };
-		DC907A90186F7669007AF5E4 /* Bubbles.sks in Resources */ = {isa = PBXBuildFile; fileRef = DC907A8F186F7669007AF5E4 /* Bubbles.sks */; };
-		DC907A92186F7674007AF5E4 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = DC907A91186F7674007AF5E4 /* spark.png */; };
-		DC907A96186F77FB007AF5E4 /* BackgroundScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DC907A95186F77FB007AF5E4 /* BackgroundScene.m */; };
 		DC91540817EE4E7400A6FC46 /* SDTideEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC91540717EE4E7400A6FC46 /* SDTideEventCell.m */; };
 		DC9343671DC52E5A00FFF266 /* TideStationRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9343661DC52E5A00FFF266 /* TideStationRowController.swift */; };
 		DC9343691DC52E7200FFF266 /* TideChartRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9343681DC52E7200FFF266 /* TideChartRowController.swift */; };
@@ -177,7 +174,6 @@
 		DCA7707F182EFB1E00439850 /* FavoritesHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCA7707E182EFB1E00439850 /* FavoritesHeaderView.xib */; };
 		DCA7708418305F0A00439850 /* FavoritesFooterVIew.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCA7708318305F0A00439850 /* FavoritesFooterVIew.xib */; };
 		DCA9379B0EE1B3910050113B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA9379A0EE1B3910050113B /* CoreGraphics.framework */; };
-		DCA9D2E6187242C10037DBAB /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = DCA9D2E5187242C10037DBAB /* bubble.png */; };
 		DCA9D2FE18820ABB0037DBAB /* datastore.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DCA9D2FD18820ABB0037DBAB /* datastore.sqlite */; };
 		DCA9D302188328340037DBAB /* background-gradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCA9D301188328340037DBAB /* background-gradient@2x.png */; };
 		DCB51F8E1867A82A00BF9082 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCB51F8D1867A82A00BF9082 /* SpriteKit.framework */; };
@@ -386,10 +382,6 @@
 		DC8EAAC71812EA7C00C4BCFF /* LabelledChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelledChartView.m; sourceTree = "<group>"; };
 		DC9065F117F13AD8000F23D8 /* SDEventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDEventsViewController.h; sourceTree = "<group>"; };
 		DC9065F217F13AD8000F23D8 /* SDEventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDEventsViewController.m; sourceTree = "<group>"; };
-		DC907A8F186F7669007AF5E4 /* Bubbles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Bubbles.sks; sourceTree = "<group>"; };
-		DC907A91186F7674007AF5E4 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
-		DC907A94186F77FB007AF5E4 /* BackgroundScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundScene.h; sourceTree = "<group>"; };
-		DC907A95186F77FB007AF5E4 /* BackgroundScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundScene.m; sourceTree = "<group>"; };
 		DC91540617EE4E7400A6FC46 /* SDTideEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTideEventCell.h; sourceTree = "<group>"; };
 		DC91540717EE4E7400A6FC46 /* SDTideEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTideEventCell.m; sourceTree = "<group>"; };
 		DC9343661DC52E5A00FFF266 /* TideStationRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TideStationRowController.swift; sourceTree = "<group>"; };
@@ -495,7 +487,6 @@
 		DCA7707E182EFB1E00439850 /* FavoritesHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesHeaderView.xib; sourceTree = "<group>"; };
 		DCA7708318305F0A00439850 /* FavoritesFooterVIew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesFooterVIew.xib; sourceTree = "<group>"; };
 		DCA9379A0EE1B3910050113B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		DCA9D2E5187242C10037DBAB /* bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble.png; sourceTree = "<group>"; };
 		DCA9D2FD18820ABB0037DBAB /* datastore.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = datastore.sqlite; sourceTree = "<group>"; };
 		DCA9D301188328340037DBAB /* background-gradient@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-gradient@2x.png"; sourceTree = "<group>"; };
 		DCB51F8D1867A82A00BF9082 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
@@ -627,7 +618,6 @@
 			isa = PBXGroup;
 			children = (
 				DC77040E1DAC718500B3C4F9 /* ShralpTide2.entitlements */,
-				DC907A93186F7736007AF5E4 /* SceneKit */,
 				DC65261E134797E100B67AE7 /* Categories */,
 				DCA3BF8A133E9DCF00EA966A /* libtcd */,
 				DCA3BEF9133E4F7200EA966A /* XTide2 */,
@@ -678,9 +668,6 @@
 				DCA9D301188328340037DBAB /* background-gradient@2x.png */,
 				DC6869041E28880900870F6E /* background-gradient@3x.png */,
 				DCA9D2FD18820ABB0037DBAB /* datastore.sqlite */,
-				DCA9D2E5187242C10037DBAB /* bubble.png */,
-				DC907A91186F7674007AF5E4 /* spark.png */,
-				DC907A8F186F7669007AF5E4 /* Bubbles.sks */,
 				DC70BD0417F8B5ED00D5FF3A /* Images.xcassets */,
 				DCA3BF70133E4FFA00EA966A /* harmonics-dwf-20081228-free.tcd */,
 				DCA3BF71133E4FFA00EA966A /* harmonics-dwf-20081228-nonfree.tcd */,
@@ -803,15 +790,6 @@
 				DC7703291DA8474700B3C4F9 /* Info.plist */,
 			);
 			path = tidelibs;
-			sourceTree = "<group>";
-		};
-		DC907A93186F7736007AF5E4 /* SceneKit */ = {
-			isa = PBXGroup;
-			children = (
-				DC907A94186F77FB007AF5E4 /* BackgroundScene.h */,
-				DC907A95186F77FB007AF5E4 /* BackgroundScene.m */,
-			);
-			name = SceneKit;
 			sourceTree = "<group>";
 		};
 		DCA3BEEC133E4EB200EA966A /* CoreData */ = {
@@ -958,10 +936,10 @@
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "ShralpTide2" */;
 			buildPhases = (
 				5534142B73EF4DD2B0AF057C /* Check Pods Manifest.lock */,
-				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
 				23A7FAC78EAE40AA95AB55FD /* Copy Pods Resources */,
+				1D60588D0D05DD3D006BFB54 /* Resources */,
 				DCCC65E319CE43A300E92D62 /* Embed App Extensions */,
 				DC7702BC1DA2CBE000B3C4F9 /* Embed Watch Content */,
 				DCAF3C501DB156730048FB66 /* Embed Frameworks */,
@@ -1144,13 +1122,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCA7708418305F0A00439850 /* FavoritesFooterVIew.xib in Resources */,
-				DC907A92186F7674007AF5E4 /* spark.png in Resources */,
 				DC2563FF18D63588007C41E6 /* UIButtonBarListIcon@2x.png in Resources */,
 				DC6869071E288AAA00870F6E /* UIButtonBarListIcon@3x.png in Resources */,
 				DC493E5D0F206C8B0087B341 /* COPYING in Resources */,
 				DC8A827E189DB42F00792149 /* lightray@2x.png in Resources */,
 				DCA3BF72133E4FFA00EA966A /* harmonics-dwf-20081228-free.tcd in Resources */,
-				DC907A90186F7669007AF5E4 /* Bubbles.sks in Resources */,
 				DCA3BF73133E4FFA00EA966A /* harmonics-dwf-20081228-nonfree.tcd in Resources */,
 				DCA9D302188328340037DBAB /* background-gradient@2x.png in Resources */,
 				DCA3BF81133E503900EA966A /* PickerTableCell.xib in Resources */,
@@ -1164,7 +1140,6 @@
 				DC70BD0517F8B5ED00D5FF3A /* Images.xcassets in Resources */,
 				DC59FDF3140752A7008FD0D2 /* Settings.bundle in Resources */,
 				DCC8EB151DC19F6A00D31C68 /* gallery.ckcomplication in Resources */,
-				DCA9D2E6187242C10037DBAB /* bubble.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1350,7 +1325,6 @@
 				DC91540817EE4E7400A6FC46 /* SDTideEventCell.m in Sources */,
 				DCA3BF4D133E4F8F00EA966A /* Constituent.cc in Sources */,
 				DCA3BF4E133E4F8F00EA966A /* ConstituentSet.cc in Sources */,
-				DC907A96186F77FB007AF5E4 /* BackgroundScene.m in Sources */,
 				DCA3BF4F133E4F8F00EA966A /* Coordinates.cc in Sources */,
 				DC9D39A61828B66900BC86AD /* Constants.m in Sources */,
 				DCA3BF50133E4F8F00EA966A /* CurrentBearing.cc in Sources */,

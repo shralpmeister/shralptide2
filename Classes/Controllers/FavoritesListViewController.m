@@ -12,7 +12,6 @@
 #import "TideStationTableViewCell.h"
 #import "SDTide.h"
 #import "StationMapController.h"
-#import "BackgroundScene.h"
 #import "ShralpTide2-Swift.h"
 
 @interface FavoritesListViewController ()
@@ -21,8 +20,6 @@
 @property (nonatomic, strong) UIView *sectionHeaderView;
 @property (nonatomic, strong) UIView *sectionFooterView;
 @property (nonatomic, strong) NSMutableArray *favorites;
-
-@property (nonatomic, strong) BackgroundScene *backgroundScene;
 
 @end
 
