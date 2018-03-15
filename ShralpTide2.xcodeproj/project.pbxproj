@@ -335,8 +335,8 @@
 		DC6526431350C2DA00B67AE7 /* PickerTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PickerTableCell.m; path = Classes/Views/PickerTableCell.m; sourceTree = "<group>"; };
 		DC65264A1350C2F600B67AE7 /* SelectStationNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectStationNavigationController.h; path = Classes/Controllers/SelectStationNavigationController.h; sourceTree = "<group>"; };
 		DC65264B1350C2F600B67AE7 /* SelectStationNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectStationNavigationController.m; path = Classes/Controllers/SelectStationNavigationController.m; sourceTree = "<group>"; };
-		DC65264C1350C2F600B67AE7 /* TideStationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TideStationTableViewCell.h; path = Views/TideStationTableViewCell.h; sourceTree = "<group>"; };
-		DC65264D1350C2F600B67AE7 /* TideStationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TideStationTableViewCell.m; path = Views/TideStationTableViewCell.m; sourceTree = "<group>"; };
+		DC65264C1350C2F600B67AE7 /* TideStationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TideStationTableViewCell.h; sourceTree = "<group>"; };
+		DC65264D1350C2F600B67AE7 /* TideStationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TideStationTableViewCell.m; sourceTree = "<group>"; };
 		DC6526681350DD4600B67AE7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DC65266A1350DDBD00B67AE7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		DC6869041E28880900870F6E /* background-gradient@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-gradient@3x.png"; sourceTree = "<group>"; };
@@ -551,8 +551,6 @@
 			isa = PBXGroup;
 			children = (
 				DCA7317C1E2191C700CA1400 /* WatchSessionManager.swift */,
-				DC65264C1350C2F600B67AE7 /* TideStationTableViewCell.h */,
-				DC65264D1350C2F600B67AE7 /* TideStationTableViewCell.m */,
 				1D3623240D0F684500981E51 /* ShralpTideAppDelegate.h */,
 				1D3623250D0F684500981E51 /* ShralpTideAppDelegate.m */,
 				DC06A25917DBC6870095E217 /* FavoritesListViewController.h */,
@@ -593,6 +591,8 @@
 				DC6526431350C2DA00B67AE7 /* PickerTableCell.m */,
 				DC65264A1350C2F600B67AE7 /* SelectStationNavigationController.h */,
 				DC65264B1350C2F600B67AE7 /* SelectStationNavigationController.m */,
+				DC65264C1350C2F600B67AE7 /* TideStationTableViewCell.h */,
+				DC65264D1350C2F600B67AE7 /* TideStationTableViewCell.m */,
 			);
 			name = "Flipside View";
 			sourceTree = "<group>";
