@@ -73,9 +73,9 @@
         NSArray *tides = [SDTideFactory tidesForStationName:tide.stationName];
         dispatch_async(dispatch_get_main_queue(), ^(void) {
             [self displayTides:tides];
-            [_activityIndicator stopAnimating];
-            _activityView.hidden = YES;
-            _scrollView.hidden = NO;
+            [self->_activityIndicator stopAnimating];
+            self->_activityView.hidden = YES;
+            self->_scrollView.hidden = NO;
         });
     });
     

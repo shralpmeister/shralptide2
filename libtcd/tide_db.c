@@ -4123,9 +4123,9 @@ NV_U_INT32 num_years, NV_FLOAT32 *equilibrium[], NV_FLOAT32 *node_factor[])
     {
         if (i == hd.pub.datum_types) break;
 
-        hd.datum[i] = (NV_CHAR *) calloc (strlen (datum[i]) + 1,
+        hd.datum[i] = (NV_CHAR *) calloc (strlen (xtideDatum[i]) + 1,
             sizeof (NV_CHAR));
-        strcpy (hd.datum[i], datum[i]);
+        strcpy (hd.datum[i], xtideDatum[i]);
     }
 
 

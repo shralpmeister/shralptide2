@@ -42,7 +42,7 @@ import CoreData
         let context = self.managedObjectContext
         let appState = try lastPersistedState(context: context!)
         let namePredicate = NSPredicate(format: "locationName = %@", locationName)
-        let locationsWithName = appState.favoriteLocations?.filtered(using:namePredicate) as NSOrderedSet!
+        let locationsWithName = appState.favoriteLocations?.filtered(using:namePredicate)
         if locationsWithName?.count == 1 {
             let location = locationsWithName?[0] as! SDFavoriteLocation
             appState.selectedLocation = location

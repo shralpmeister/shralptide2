@@ -119,7 +119,7 @@ NV_CHAR legalese[DEFAULT_LEGALESES][DEFAULT_LEGALESE_SIZE] = {
 
 /*  # Datum names  */
 
-NV_CHAR datum[DEFAULT_DATUM_TYPES][DEFAULT_DATUM_SIZE] = {
+NV_CHAR xtideDatum[DEFAULT_DATUM_TYPES][DEFAULT_DATUM_SIZE] = {
   "Unknown", "Mean Sea Level", "Mean Low Water", "Mean Lower Low Water",
   "Mean High Water", "Mean Higher High Water", "Mean Lower High Water",
   "Mean Higher Low Water", "Mean Low Water Springs",

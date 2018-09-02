@@ -90,25 +90,21 @@
 }
 
 #pragma mark Handle Screen Rotation
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    switch (toInterfaceOrientation) {
-        case UIInterfaceOrientationLandscapeLeft:
-            DLog(@"Device rotated to Landscape Left");
-            break;
-        case UIInterfaceOrientationLandscapeRight:
-            DLog(@"Device rotated to Landscape Right");
-            break;
-        case UIInterfaceOrientationPortrait:
-            DLog(@"Device rotated to Portrait");
-            [self.navigationController popToRootViewControllerAnimated:YES];
-            break;
-        case UIInterfaceOrientationPortraitUpsideDown:
-            DLog(@"Device rotated to Portrait upsidedown");
-            break;
-        case UIInterfaceOrientationUnknown:
-            DLog(@"Deivce rotated to unknown position");
-            break;
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        // handle pop to root view at start of transition
+        [self handleInterfaceOrientation];
+    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        // add code here if anything needs to happen on completion
+    }];
+}
+
+- (void)handleInterfaceOrientation {
+    if ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait) {
+        // Portrait
+        DLog(@"Device rotated to Landscape Left");
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
 

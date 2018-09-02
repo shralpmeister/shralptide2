@@ -99,26 +99,21 @@
 }
 
 #pragma mark Handle Screen Rotation
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    switch (toInterfaceOrientation) {
-        case UIInterfaceOrientationLandscapeLeft:
-            DLog(@"Device rotated to Landscape Left");
-            [self performSegueWithIdentifier:@"landscapeSegue" sender:self];
-            break;
-        case UIInterfaceOrientationLandscapeRight:
-            DLog(@"Device rotated to Landscape Right");
-            [self performSegueWithIdentifier:@"landscapeSegue" sender:self];
-            break;
-        case UIInterfaceOrientationPortrait:
-            DLog(@"Device rotated to Portrait");
-            break;
-        case UIInterfaceOrientationPortraitUpsideDown:
-            DLog(@"Device rotated to Portrait upsidedown");
-            break;
-        case UIInterfaceOrientationUnknown:
-            DLog(@"Device rotated to unknown position");
-            break;
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        // Start seque transition at start of rotation
+        [self handleInterfaceOrientation];
+    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        // add code here for any actions that should happen on completion
+    }];
+}
+
+- (void)handleInterfaceOrientation {
+    if ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationLandscapeLeft || [[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationLandscapeRight) {
+        // Landscape
+        DLog(@"Device rotated to Landscape Left");
+        [self performSegueWithIdentifier:@"landscapeSegue" sender:self];
     }
 }
 
