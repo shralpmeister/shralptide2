@@ -106,10 +106,6 @@
 		DC7703B41DA8488C00B3C4F9 /* TideStationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BEF7133E4F1F00EA966A /* TideStationAnnotation.m */; };
 		DC7703B61DA848BC00B3C4F9 /* harmonics-dwf-20081228-free.tcd in Resources */ = {isa = PBXBuildFile; fileRef = DCA3BF70133E4FFA00EA966A /* harmonics-dwf-20081228-free.tcd */; };
 		DC7703B71DA848BC00B3C4F9 /* harmonics-dwf-20081228-nonfree.tcd in Resources */ = {isa = PBXBuildFile; fileRef = DCA3BF71133E4FFA00EA966A /* harmonics-dwf-20081228-nonfree.tcd */; };
-		DC7703F71DA84A1D00B3C4F9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC7703F41DA84A1D00B3C4F9 /* CoreData.framework */; };
-		DC7703F81DA84A1D00B3C4F9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC7703F51DA84A1D00B3C4F9 /* CoreLocation.framework */; };
-		DC7703F91DA84A1D00B3C4F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC7703F61DA84A1D00B3C4F9 /* Foundation.framework */; };
-		DC7703FB1DA84A6000B3C4F9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC7703FA1DA84A6000B3C4F9 /* CoreFoundation.framework */; };
 		DC7703FD1DA84B7B00B3C4F9 /* ShralpTide2_Prefix.pch in Resources */ = {isa = PBXBuildFile; fileRef = 32CA4F630368D1EE00C91783 /* ShralpTide2_Prefix.pch */; };
 		DC7704021DA8851800B3C4F9 /* SDTideFactoryNew.mm in Sources */ = {isa = PBXBuildFile; fileRef = DC7704001DA8851800B3C4F9 /* SDTideFactoryNew.mm */; };
 		DC7704071DA977EF00B3C4F9 /* Settings.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BF28133E4F8F00EA966A /* Settings.cc */; };
@@ -177,9 +173,11 @@
 		DCA9D2FE18820ABB0037DBAB /* datastore.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DCA9D2FD18820ABB0037DBAB /* datastore.sqlite */; };
 		DCA9D302188328340037DBAB /* background-gradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCA9D301188328340037DBAB /* background-gradient@2x.png */; };
 		DCB51F8E1867A82A00BF9082 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCB51F8D1867A82A00BF9082 /* SpriteKit.framework */; };
+		DCB7F09E21695CEE0056CA7D /* CLKTextProvider+MultiColorPatch.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB7F09D21695CEE0056CA7D /* CLKTextProvider+MultiColorPatch.m */; };
 		DCC8EB0D1DBEA7B300D31C68 /* ChartViewSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7702BE1DA2D4F000B3C4F9 /* ChartViewSwift.swift */; };
 		DCC8EB111DC0414F00D31C68 /* String+TideFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8EB101DC0414F00D31C68 /* String+TideFormat.swift */; };
 		DCC8EB151DC19F6A00D31C68 /* gallery.ckcomplication in Resources */ = {isa = PBXBuildFile; fileRef = DCC8EB141DC19F6A00D31C68 /* gallery.ckcomplication */; };
+		DCDDF5D221612E2400D505D5 /* SDTide+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDDF5D121612E2400D505D5 /* SDTide+Events.swift */; };
 		DCE745CB1DC967AC008BF66C /* StationListInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE745CA1DC967AC008BF66C /* StationListInterfaceController.swift */; };
 		DCE897DB0EEE3CAE00BF2357 /* CursorView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE897DA0EEE3CAE00BF2357 /* CursorView.m */; };
 		DCE898A20EEE514900BF2357 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCE898A10EEE514900BF2357 /* QuartzCore.framework */; };
@@ -368,10 +366,6 @@
 		DC7703261DA8474700B3C4F9 /* WatchTides.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WatchTides.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC7703281DA8474700B3C4F9 /* tidelibs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tidelibs.h; sourceTree = "<group>"; };
 		DC7703291DA8474700B3C4F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DC7703F41DA84A1D00B3C4F9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS3.0.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
-		DC7703F51DA84A1D00B3C4F9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS3.0.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
-		DC7703F61DA84A1D00B3C4F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS3.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		DC7703FA1DA84A6000B3C4F9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS3.0.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		DC7703FE1DA84BEC00B3C4F9 /* Tidelib_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tidelib_Prefix.pch; sourceTree = "<group>"; };
 		DC7704001DA8851800B3C4F9 /* SDTideFactoryNew.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SDTideFactoryNew.mm; path = objctidelib/SDTideFactoryNew.mm; sourceTree = "<group>"; };
 		DC7704031DA8855A00B3C4F9 /* SDTideFactoryNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTideFactoryNew.h; sourceTree = "<group>"; };
@@ -490,15 +484,19 @@
 		DCA9D2FD18820ABB0037DBAB /* datastore.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = datastore.sqlite; sourceTree = "<group>"; };
 		DCA9D301188328340037DBAB /* background-gradient@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-gradient@2x.png"; sourceTree = "<group>"; };
 		DCB51F8D1867A82A00BF9082 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		DCB7F09D21695CEE0056CA7D /* CLKTextProvider+MultiColorPatch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CLKTextProvider+MultiColorPatch.m"; sourceTree = "<group>"; };
+		DCB7F09F21695D1D0056CA7D /* CLKTextProvider+MultiColorPatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLKTextProvider+MultiColorPatch.h"; sourceTree = "<group>"; };
 		DCC8EB101DC0414F00D31C68 /* String+TideFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+TideFormat.swift"; sourceTree = "<group>"; };
 		DCC8EB141DC19F6A00D31C68 /* gallery.ckcomplication */ = {isa = PBXFileReference; lastKnownFileType = folder; path = gallery.ckcomplication; sourceTree = "<group>"; };
 		DCCAD9310F1DD25E00141002 /* DeveloperSettings.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DeveloperSettings.xcconfig; sourceTree = "<group>"; };
 		DCCC65D219CE43A300E92D62 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		DCDDF5D121612E2400D505D5 /* SDTide+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SDTide+Events.swift"; sourceTree = "<group>"; };
 		DCE745CA1DC967AC008BF66C /* StationListInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationListInterfaceController.swift; sourceTree = "<group>"; };
 		DCE897D90EEE3CAE00BF2357 /* CursorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CursorView.h; path = Classes/Views/CursorView.h; sourceTree = "<group>"; };
 		DCE897DA0EEE3CAE00BF2357 /* CursorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CursorView.m; path = Classes/Views/CursorView.m; sourceTree = "<group>"; };
 		DCE898A10EEE514900BF2357 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DCF5B8A81DB418B4008C0DC8 /* shralptide3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = shralptide3.xcdatamodel; sourceTree = "<group>"; };
+		DCF8AB0121521AF100406568 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -537,10 +535,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC7703FB1DA84A6000B3C4F9 /* CoreFoundation.framework in Frameworks */,
-				DC7703F71DA84A1D00B3C4F9 /* CoreData.framework in Frameworks */,
-				DC7703F81DA84A1D00B3C4F9 /* CoreLocation.framework in Frameworks */,
-				DC7703F91DA84A1D00B3C4F9 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,10 +679,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DC7703FA1DA84A6000B3C4F9 /* CoreFoundation.framework */,
-				DC7703F41DA84A1D00B3C4F9 /* CoreData.framework */,
-				DC7703F51DA84A1D00B3C4F9 /* CoreLocation.framework */,
-				DC7703F61DA84A1D00B3C4F9 /* Foundation.framework */,
 				DC3911B71918751000D28F8D /* iAd.framework */,
 				DCB51F8D1867A82A00BF9082 /* SpriteKit.framework */,
 				DC65266A1350DDBD00B67AE7 /* CoreLocation.framework */,
@@ -699,6 +689,7 @@
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				DCCC65D219CE43A300E92D62 /* NotificationCenter.framework */,
+				DCF8AB0121521AF100406568 /* IntentsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -767,9 +758,12 @@
 				DC6936841DCD6E6D0091A015 /* MissingSettingsModalController.swift */,
 				DC3E37031DCFA8C200F97536 /* ConfigHelper.swift */,
 				DCC8EB101DC0414F00D31C68 /* String+TideFormat.swift */,
+				DCDDF5D121612E2400D505D5 /* SDTide+Events.swift */,
 				DC7702AF1DA2CBE000B3C4F9 /* Assets.xcassets */,
 				DC7702B11DA2CBE000B3C4F9 /* Info.plist */,
 				DC77040C1DA98A9400B3C4F9 /* Tidelibs-Swift.h */,
+				DCB7F09F21695D1D0056CA7D /* CLKTextProvider+MultiColorPatch.h */,
+				DCB7F09D21695CEE0056CA7D /* CLKTextProvider+MultiColorPatch.m */,
 			);
 			path = "ShralpyWatch Extension";
 			sourceTree = "<group>";
@@ -1039,7 +1033,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
+				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 1000;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
@@ -1051,6 +1045,9 @@
 							};
 							com.apple.BackgroundModes = {
 								enabled = 1;
+							};
+							com.apple.Siri = {
+								enabled = 0;
 							};
 						};
 					};
@@ -1078,7 +1075,6 @@
 					};
 					DC7702EC1DA40A5200B3C4F9 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = H29T9V7X78;
 						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 1D6058900D05DD3D006BFB54;
@@ -1391,8 +1387,10 @@
 				DC9343671DC52E5A00FFF266 /* TideStationRowController.swift in Sources */,
 				DCC8EB0D1DBEA7B300D31C68 /* ChartViewSwift.swift in Sources */,
 				DC93436D1DC54D6500FFF266 /* TideHeightRowController.swift in Sources */,
+				DCB7F09E21695CEE0056CA7D /* CLKTextProvider+MultiColorPatch.m in Sources */,
 				DC9343691DC52E7200FFF266 /* TideChartRowController.swift in Sources */,
 				DCC8EB111DC0414F00D31C68 /* String+TideFormat.swift in Sources */,
+				DCDDF5D221612E2400D505D5 /* SDTide+Events.swift in Sources */,
 				DC7702AC1DA2CBE000B3C4F9 /* ExtensionDelegate.swift in Sources */,
 				DC7702AA1DA2CBE000B3C4F9 /* InterfaceController.swift in Sources */,
 				DC93436B1DC52E8300FFF266 /* TideTableRowController.swift in Sources */,
@@ -1506,7 +1504,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 71A7D58B4987466A81BFB6D7 /* Pods.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1568,7 +1565,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 71A7D58B4987466A81BFB6D7 /* Pods.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1654,7 +1650,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				ONLY_ACTIVE_ARCH = YES;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "04EC56F3-F532-4CAF-95A8-7563B9435321";
 				SDKROOT = iphoneos;
@@ -1696,7 +1692,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				PROVISIONING_PROFILE = "21F776D9-2C3F-49D7-9F7F-9830D714A162";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21F776D9-2C3F-49D7-9F7F-9830D714A162";
 				SDKROOT = iphoneos;
@@ -1929,6 +1925,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "\"Automatic\"";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -1964,6 +1961,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "\"Automatic\"";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "\"Automatic\"";
 				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ShralpTide2.app/ShralpTide2";
 				VALIDATE_PRODUCT = YES;

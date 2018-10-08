@@ -1,11 +1,24 @@
-# xcode noise
-build/*
-*.pbxuser
-*.mode1v3
-*.xcconfig
-
-# osx noise
-.DS_Store
-profile
+# core data noise
 Core Data/.data506.90e
 ~~datastore.sqlite
+
+# Xcode
+.DS_Store
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+*.xcworkspace
+!default.xcworkspace
+xcuserdata
+profile
+*.moved-aside
+DerivedData
+.idea/
+# Pods - for those of you who use CocoaPods
+Pods
