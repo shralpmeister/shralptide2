@@ -42,7 +42,9 @@ class InterfaceController: WKInterfaceController {
         
         let extDelegate = (WKExtension.shared().delegate as! ExtensionDelegate)
         guard let tides = (WKExtension.shared().delegate as! ExtensionDelegate).tides else {
-            presentController(withName: "missingSettings", context: "Transeferring settings. Make sure iPhone is nearby.")
+            DispatchQueue.main.async {
+                self.presentController(withName: "missingSettings", context: "Transeferring settings. Make sure iPhone is nearby.")
+            }
             return
         }
         let unitChanged = ConfigHelper.sharedInstance.selectedUnits != lastSelectedUnits ||
@@ -86,7 +88,7 @@ class InterfaceController: WKInterfaceController {
         for i in 0...numEvents-1 {
             mainTable.insertRows(at:[i+firstEventIndex], withRowType: "eventRow")
             let eventsController = (mainTable.rowController(at: i + firstEventIndex) as! TideTableRowController)
-            eventsController.eventDescription.setText(String.localizedDescription(event: tides.events[i] as! SDTideEvent))
+            eventsController.eventDescription.setText(String.localizedDescription(event: tides.events[i]))
         }
         
         (mainTable.rowController(at: 0) as! TideStationRowController).stationName.setText(tides.shortLocationName)

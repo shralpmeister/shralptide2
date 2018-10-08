@@ -25,6 +25,7 @@
 #import "SDTideStationData.h"
 #import <Foundation/Foundation.h>
 #import "SDTideInterval.h"
+#import "SDTideEvent.h"
 
 typedef NS_ENUM(NSInteger, SDTideStateRiseFall) {
     SDTideStateRising,
@@ -41,8 +42,8 @@ typedef NS_ENUM(NSInteger, SDTideStateRiseFall) {
 - (SDTideInterval*)findTideIntervalForTime:(NSInteger) time;
 - (CGPoint)nearestDataPointForTime:(NSInteger) minutesFromMidnight;
 @property (NS_NONATOMIC_IOSONLY, readonly) CGPoint nearestDataPointToCurrentTime;
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSNumber *nextEventIndex;
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *events; // all tide events (only tide events)
+@property (readonly) int nextEventIndex;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray<SDTideEvent*> *events; // all tide events (only tide events)
 - (NSArray*)eventsForDay:(NSDate*)date;
 - (NSArray*)intervalsForDay:(NSDate*)date;
 

@@ -25,6 +25,17 @@
 
 @implementation SDTideInterval
 
+
+-(instancetype)initWithTime:(NSDate *)t height:(float)f andUnits:(NSString*)u
+{
+    if (self = [super init]) {
+        self.time = t;
+        self.height = f;
+        self.units = u;
+    }
+    return self;
+}
+
 -(NSString*)description
 {
     return [NSString stringWithFormat:@"time=%@, height=%0.2f, units=%@",[self.time descriptionWithLocale:[NSLocale currentLocale]],self.height,self.units];

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SpriteKit
 import UIKit
 
 class ChartViewSwift {
@@ -44,8 +43,8 @@ class ChartViewSwift {
         return Date(timeIntervalSince1970: self.startDate.timeIntervalSince1970 + Double(self.hoursToPlot) * Double(ChartViewSwift.MinutesPerHour * ChartViewSwift.SecondsPerMinute))
     }
     
-    fileprivate func pairRiseAndSetEvents(_ events:[SDTideEvent], riseEventType:SDTideState, setEventType:SDTideState) -> Array<Array<Date>> {
-        var pairs:Array<Array<Date>> = [[Date]]()
+    fileprivate func pairRiseAndSetEvents(_ events:[SDTideEvent], riseEventType:SDTideState, setEventType:SDTideState) -> Array<(Date,Date)> {
+        var pairs:Array<(Date,Date)> = [(Date,Date)]()
         var riseTime:Date!
         var setTime:Date!
         for event:SDTideEvent in events {
@@ -62,7 +61,7 @@ class ChartViewSwift {
                 setTime = event.eventTime
             }
             if riseTime != nil && setTime != nil {
-                pairs.append([riseTime,setTime])
+                pairs.append((riseTime,setTime))
                 riseTime = nil
                 setTime = nil
             }
@@ -104,11 +103,11 @@ class ChartViewSwift {
         
         let sunEvents:[SDTideEvent] = tide.sunriseSunsetEvents as! [SDTideEvent]
         
-        let sunPairs:Array<Array<Date>> = self.pairRiseAndSetEvents(sunEvents, riseEventType: .sunrise, setEventType: .sunset)
+        let sunPairs:Array<(Date,Date)> = self.pairRiseAndSetEvents(sunEvents, riseEventType: .sunrise, setEventType: .sunset)
         
         let moonEvents:[SDTideEvent] = tide.moonriseMoonsetEvents as! [SDTideEvent]
         
-        let moonPairs:Array<Array<Date>> = self.pairRiseAndSetEvents(moonEvents, riseEventType: .moonrise, setEventType: .moonset)
+        let moonPairs:Array<(Date,Date)> = self.pairRiseAndSetEvents(moonEvents, riseEventType: .moonrise, setEventType: .moonset)
         
         let min:CGFloat = self.findLowestTideValue(tide)
         let max:CGFloat = self.findHighestTideValue(tide)
@@ -135,9 +134,9 @@ class ChartViewSwift {
         dayColor.setFill()
         dayColor.setStroke()
         
-        for riseSet in sunPairs {
-            let sunriseMinutes = Int(riseSet[0].timeIntervalSince1970 - baseSeconds) / ChartViewSwift.SecondsPerMinute
-            let sunsetMinutes = Int(riseSet[1].timeIntervalSince1970 - baseSeconds) / ChartViewSwift.SecondsPerMinute
+        for (rise,set) in sunPairs {
+            let sunriseMinutes = Int(rise.timeIntervalSince1970 - baseSeconds) / ChartViewSwift.SecondsPerMinute
+            let sunsetMinutes = Int(set.timeIntervalSince1970 - baseSeconds) / ChartViewSwift.SecondsPerMinute
             context.addPath(CGPath(rect:CGRect(x:CGFloat(sunriseMinutes) * xratio, y:0, width:CGFloat(sunsetMinutes) * xratio - CGFloat(sunriseMinutes) * xratio, height:CGFloat(height)), transform:nil))
             context.fillPath()
         }
@@ -145,9 +144,9 @@ class ChartViewSwift {
         let moonColor = UIColor(red:1, green:1, blue: 1, alpha:0.2)
         moonColor.setStroke()
         moonColor.setFill()
-        for riseSet in moonPairs {
-            let moonriseMinutes = Int(riseSet[0].timeIntervalSince1970 - baseSeconds) / ChartViewSwift.SecondsPerMinute
-            let moonsetMinutes = Int(riseSet[1].timeIntervalSince1970 - baseSeconds) / ChartViewSwift.SecondsPerMinute
+        for (rise,set) in moonPairs {
+            let moonriseMinutes = Int(rise.timeIntervalSince1970 - baseSeconds) / ChartViewSwift.SecondsPerMinute
+            let moonsetMinutes = Int(set.timeIntervalSince1970 - baseSeconds) / ChartViewSwift.SecondsPerMinute
             context.addPath(CGPath(rect:CGRect(x:CGFloat(moonriseMinutes) * xratio, y:0, width:CGFloat(moonsetMinutes) * xratio - CGFloat(moonriseMinutes) * xratio, height:CGFloat(height)), transform:nil))
             context.fillPath()
         }
@@ -193,8 +192,8 @@ class ChartViewSwift {
         cursorColor.setStroke()
         
         let cursorPath = UIBezierPath()
-        context.setLineWidth(4)
-        let cursorX = self.tide.nearestDataPoint(forTime: Date().timeInMinutesSinceMidnight()).x * xratio
+        context.setLineWidth(3)
+        let cursorX = self.tide.nearestDataPoint(forTime: Date().timeInMinutesSinceMidnight()).x * xratio - CGFloat(self.startDate.timeInMinutesSinceMidnight()) * xratio
         cursorPath.move(to: CGPoint(x:cursorX, y:0.0))
         cursorPath.addLine(to: CGPoint(x:cursorX, y:CGFloat(height)))
         

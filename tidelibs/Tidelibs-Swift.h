@@ -12,3 +12,4 @@
 #import "SDTide.h"
 #import "SDTideEvent.h"
 #import "ConfigHelper.h"
+#import "CLKTextProvider+MultiColorPatch.h"

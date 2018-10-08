@@ -104,20 +104,20 @@
 	return 0.0;
 }
 
--(NSNumber*)nextEventIndex
+-(int)nextEventIndex
 {
 	int count = 0;
 	for (SDTideEvent *event in [self events]) {
 		if ([NSDate date].timeIntervalSince1970 < event.eventTime.timeIntervalSince1970) {
             self.unitShort = event.units;
-			return @(count);
+			return count;
 		}
 		++count;
 	}
-	return nil;
+	return -1;
 }
 
--(NSArray*)events 
+-(NSArray<SDTideEvent*>*)events
 {
     NSPredicate *tideEventsOnly = [NSPredicate predicateWithFormat:@"(eventType == %d OR eventType == %d)", max, min];
     return [self.allEvents filteredArrayUsingPredicate:tideEventsOnly];

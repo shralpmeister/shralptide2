@@ -145,7 +145,11 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     
     func refreshComplications() {
         print("Refreshing complications")
-        for complication in CLKComplicationServer.sharedInstance().activeComplications! {
+        guard let activeComplications = CLKComplicationServer.sharedInstance().activeComplications else {
+            NSLog("No active complications found. Skipping refresh")
+            return
+        }
+        for complication in activeComplications {
             CLKComplicationServer.sharedInstance().reloadTimeline(for: complication)
         }
     }
