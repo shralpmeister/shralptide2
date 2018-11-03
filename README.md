@@ -1,34 +1,15 @@
-    ShralpTide2  a tide clock and tide predictor for mobile devices
-    Version 2.0.1
-
-    Copyright (C) 2012  Michael Parlee
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-    
-    The tide prediction algorithms contained in this software are
-    derived from XTide 2.10. For more information please visit the
-    XTide website. http://www.flaterco.com/xtide
-
-THIS PACKAGE IS AVAILABLE FROM:
-http://github.com/shralpmeister/shralptide2
+![Image](icon.png "icon")
+ShralpTide2  
+-----------
+A tide clock and tide predictor for mobile devices.
 
 Introduction
 ------------
 
 ShralpTide2 provides a reduced feature set of the excellent Unix
 command line tide tool, XTide, in a format accessible to the casual
-beach goer on the iPhone mobile platform.
+beach goer on the Apple mobile devices including iPhone, iPad and
+Apple Watch..
 
 Hardware and operating system requirements
 ------------------------------------------
@@ -45,19 +26,14 @@ simulator or on an iPhone provisioned with a Development key.
 Usage
 -----
 
-Once installed the ShralpTide2 icon will show up on the iPhone home screen.
-Press the icon with a finger to launch it.
+Launching ShralpTide2 will bring up a utility style interface with the current
+tide level for the selected location displayed at the top and each tide event
+for the day displayed at the bottom.
 
-Launching ShralpTide2 will bring up a utility style interface. It takes a few
-seconds to load so be patient. Once it has finished caluculating tides you
-can scroll sideways between the days. Dots at the bottom of the screen show
+Scroll horizontally in the bottom half of the scrren to show tide events for 
+the next few days. Dots at the bottom of the screen show
 the number of pages -- the highlighted dot showing the position of the
 current page.
-
-The first page shows today's tide. The tide level closest to the current
-current time is displayed at the top with an upward pointing arrow indicating 
-an increasing or flowing tide and a downward pointing arrow indicting a
-decreasing or ebbing tide.
 
 Turning the device from a portrait to landscape orientation will display a
 plot of the tidal movement for the selected day. If the present day is 
@@ -89,6 +65,19 @@ ShralpTide2 adds a settings page under the iOS settings app. There the units
 of measure, number of days to show tide predictions for and currents can be
 configured. It is also possible to select an alternative background skin from
 a handful of predefined choices.
+
+Apple Watch
+-----------
+
+If you have paired an Apple Watch with your iPhone, ShralpTide2 will be
+installed on the watch automatically.
+
+To see the current tide level on your watch face you must customize the
+watch face and select a ShralpTide complication. 
+
+There are tide complications
+for just about every watch face and complication style. It's just a matter 
+of selecting the one that best suits your preferences.
 
 
 Installing from source code
@@ -126,11 +115,10 @@ and writing awesome FAQs.
 
 Thanks to all the XTide contributers.
 
-Thanks to my wife Larissa and my children for putting up with my late nights 
-of coding and graphics designing.
+Thanks to my wife Larissa and my children Alexander and Dasha.
 
 Contact Info
 ------------
 
 Mike Parlee
-shralpmeister@me.com
+[shralpmeister@icloud.com](mailto://shralpmeister@icloud.com)
