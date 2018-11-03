@@ -1,4 +1,5 @@
-![Image](icon.png | width=100  "icon")
+<img src="icon.png" width="100" height="100"/>
+
 ShralpTide2  
 -----------
 A tide clock and tide predictor for mobile devices.
