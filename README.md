@@ -14,8 +14,8 @@ Apple Watch..
 Hardware and operating system requirements
 ------------------------------------------
 
-ShralpTide2 can be run only on an Apple iPhone or iPhone simulator. 
-The iPhone simulator requires an Intel-based Mac running Mac OS X 10.5
+ShralpTide2 can be run only on an Apple iOS or Apple Watch devices or simulators. 
+An iPhone simulator requires an Intel-based Mac running Mac OS X 10.5
 or newer.  It can be obtained free of charge from Apple as part of the 
 iPhone SDK at http://developer.apple.com/iphone. Registration is required.
 
