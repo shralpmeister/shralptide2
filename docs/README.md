@@ -1,3 +1,3 @@
-Test
-----
-This is a test.
+Welcome
+-------
+Welcome to ShralpTide2.
