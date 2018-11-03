@@ -1,4 +1,4 @@
-![Image](icon.png "icon")
+![Image](icon.png | width=100  "icon")
 ShralpTide2  
 -----------
 A tide clock and tide predictor for mobile devices.
