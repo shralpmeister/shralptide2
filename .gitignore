@@ -20,5 +20,11 @@ profile
 *.moved-aside
 DerivedData
 .idea/
+DeveloperSettings.xcconfig
 # Pods - for those of you who use CocoaPods
 Pods
+
+# Documentation
+Gemfile
+Gemfile.lock
+_site
