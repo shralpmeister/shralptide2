@@ -1,3 +1,3 @@
 Test
 ----
-![Download PDF](privacy-policy.pdf)
+![Download PDF](file:///privacy-policy.pdf)
