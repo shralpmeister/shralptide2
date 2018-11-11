@@ -11,7 +11,7 @@ import WatchKit
 
 class StationListInterfaceController:WKInterfaceController {
     
-    @IBOutlet weak var stationTable:WKInterfaceTable!
+    @IBOutlet weak var stationTable:WKInterfaceTable?
     
     var stations:[String]?
     
@@ -20,10 +20,10 @@ class StationListInterfaceController:WKInterfaceController {
         guard let stations = self.stations else {
             return
         }
-        stationTable.setNumberOfRows(stations.count, withRowType: "tideStationRow")
+        stationTable?.setNumberOfRows(stations.count, withRowType: "tideStationRow")
         for i in 0...stations.count - 1 {
-            let rowController = stationTable.rowController(at: i) as! TideStationRowController
-            rowController.stationName.setText(stations[i])
+            let rowController = stationTable?.rowController(at: i) as! TideStationRowController
+            rowController.stationName?.setText(stations[i])
         }
     }
     

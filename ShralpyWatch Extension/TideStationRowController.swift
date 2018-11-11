@@ -10,5 +10,5 @@ import Foundation
 import WatchKit
 
 class TideStationRowController:NSObject {
-    @IBOutlet weak var stationName:WKInterfaceLabel!
+    @IBOutlet weak var stationName:WKInterfaceLabel?
 }

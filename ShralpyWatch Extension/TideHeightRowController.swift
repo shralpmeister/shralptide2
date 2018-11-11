@@ -10,5 +10,5 @@ import Foundation
 import WatchKit
 
 class TideHeightRowController:NSObject {
-    @IBOutlet weak var heightLabel:WKInterfaceLabel!
+    @IBOutlet weak var heightLabel:WKInterfaceLabel?
 }

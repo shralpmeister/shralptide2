@@ -11,7 +11,7 @@ import WatchKit
 
 class MissingSettingsModalController:WKInterfaceController {
     
-    @IBOutlet weak var messageLabel:WKInterfaceLabel!
+    @IBOutlet weak var messageLabel:WKInterfaceLabel?
     
     override init() {
         super.init()
@@ -24,10 +24,12 @@ class MissingSettingsModalController:WKInterfaceController {
     
     override func awake(withContext context: Any?) {
         let message = context as! String
-        messageLabel.setText(message)
+        messageLabel?.setText(message)
     }
     
     @IBAction func dismissModal() {
-        dismiss()
+        DispatchQueue.main.async {
+            self.dismiss()
+        }
     }
 }

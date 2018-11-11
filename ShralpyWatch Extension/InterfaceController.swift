@@ -10,6 +10,9 @@ import WatchKit
 import Foundation
 import SpriteKit
 
+enum UIError: Error {
+    case tableNotSet
+}
 
 extension Double {
     static let MinutesPerHour:Double = 60
@@ -24,7 +27,7 @@ class InterfaceController: WKInterfaceController {
     
     static let ChartHeight = 70
     
-    @IBOutlet weak var mainTable:WKInterfaceTable!
+    @IBOutlet weak var mainTable:WKInterfaceTable?
     
     var lastStartTime:Date?
     var lastStationName:String?
@@ -49,14 +52,18 @@ class InterfaceController: WKInterfaceController {
         }
         let unitChanged = ConfigHelper.sharedInstance.selectedUnits != lastSelectedUnits ||
                             isUsing12hClockFormat() != last24HFormatCheck
-        if (tides.startTime != lastStartTime || tides.stationName != lastStationName ||
-            unitChanged) {
-            refreshTableLayout(tides:tides)
-            extDelegate.refreshComplications()
-        }
-        let currentTidePoint = tides.nearestDataPointToCurrentTime
-        if (currentTidePoint != lastDisplayedPoint || unitChanged) {
-            refreshDisplayedTideLevel(with:currentTidePoint, tides: tides)
+        do {
+            if (tides.startTime != lastStartTime || tides.stationName != lastStationName ||
+                unitChanged) {
+                try refreshTableLayout(tides:tides)
+                extDelegate.refreshComplications()
+            }
+            let currentTidePoint = tides.nearestDataPointToCurrentTime
+            if (currentTidePoint != lastDisplayedPoint || unitChanged) {
+                try refreshDisplayedTideLevel(with:currentTidePoint, tides: tides)
+            }
+        } catch {
+            print("Failed to populate tide events. Tide table was not provided")
         }
     }
     
@@ -78,20 +85,21 @@ class InterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
     
-    func refreshTableLayout(tides:SDTide) {
-        mainTable.removeRows(at: IndexSet(0...mainTable.numberOfRows))
-        mainTable.insertRows(at: [0], withRowType: "stationRow")
-        mainTable.insertRows(at: [1], withRowType: "heightRow")
-        mainTable.insertRows(at: [2], withRowType: "chartRow")
+    func refreshTableLayout(tides:SDTide) throws {
+        guard let table = mainTable else { throw UIError.tableNotSet }
+        table.removeRows(at: IndexSet(0...table.numberOfRows))
+        table.insertRows(at: [0], withRowType: "stationRow")
+        table.insertRows(at: [1], withRowType: "heightRow")
+        table.insertRows(at: [2], withRowType: "chartRow")
         let firstEventIndex = 3
-        let numEvents = tides.events.count
-        for i in 0...numEvents-1 {
-            mainTable.insertRows(at:[i+firstEventIndex], withRowType: "eventRow")
-            let eventsController = (mainTable.rowController(at: i + firstEventIndex) as! TideTableRowController)
-            eventsController.eventDescription.setText(String.localizedDescription(event: tides.events[i]))
+        let todayEvents = tides.events.filter { $0.eventTime <= Date().endOfDay() }
+        for (i, event) in todayEvents.enumerated() {
+            table.insertRows(at:[i+firstEventIndex], withRowType: "eventRow")
+            let eventsController = (table.rowController(at: i + firstEventIndex) as! TideTableRowController)
+            eventsController.eventDescription?.setText(String.localizedDescription(event: event))
         }
         
-        (mainTable.rowController(at: 0) as! TideStationRowController).stationName.setText(tides.shortLocationName)
+        (table.rowController(at: 0) as! TideStationRowController).stationName?.setText(tides.shortLocationName)
         
         lastStartTime = tides.startTime
         lastStationName = tides.stationName
@@ -99,18 +107,23 @@ class InterfaceController: WKInterfaceController {
         last24HFormatCheck = isUsing12hClockFormat()
     }
     
-    func refreshDisplayedTideLevel(with tidePoint:CGPoint, tides:SDTide) {
-        (mainTable.rowController(at: 1) as! TideHeightRowController).heightLabel.setText(String.tideFormatString(value: Float(tidePoint.y)) + String.directionIndicator(tides.tideDirection))
+    func refreshDisplayedTideLevel(with tidePoint:CGPoint, tides:SDTide) throws {
+        guard let table = mainTable else { throw UIError.tableNotSet }
         
-        let chartController = (mainTable.rowController(at: 2) as! TideChartRowController)
+        (table.rowController(at: 1) as! TideHeightRowController).heightLabel?.setText(String.tideFormatString(value: Float(tidePoint.y)) + String.directionIndicator(tides.tideDirection))
+        
+        let chartController = (table.rowController(at: 2) as! TideChartRowController)
         
         let width = WKInterfaceDevice.current().screenBounds.width
         
         let hoursInDay = Calendar.current.range(of: .hour, in: .day, for: Date())
         let chartView = ChartViewSwift(withTide: tides, height: InterfaceController.ChartHeight, hours: (hoursInDay?.count)!, startDate: Date().startOfDay(), page: 0)
-        
-        chartController.tideImage.setImage(chartView.drawImage(bounds: CGRect(x:Int(0),y:Int(0),width:Int(width),height:InterfaceController.ChartHeight)))
-        lastDisplayedPoint = tidePoint
+        do {
+            try chartController.tideImage?.setImage(chartView.drawImage(bounds: CGRect(x:Int(0),y:Int(0),width:Int(width),height:InterfaceController.ChartHeight)))
+            lastDisplayedPoint = tidePoint
+        } catch {
+            print("Unable to generate tide chart image. \(error)")
+        }
     }
 
 }

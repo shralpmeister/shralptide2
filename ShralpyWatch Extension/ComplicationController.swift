@@ -48,7 +48,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     @available(watchOSApplicationExtension 5.0, *)
     fileprivate func createCornerRangeTemplate(fillFraction: Float, min: Float, max: Float, shortText: String, symbol: String) -> CLKComplicationTemplateGraphicCornerGaugeText {
         let cornerTemplate = CLKComplicationTemplateGraphicCornerGaugeText()
-        cornerTemplate.gaugeProvider = CLKSimpleGaugeProvider(style: CLKGaugeProviderStyle.ring, gaugeColors: [UIColor.red, UIColor.green, UIColor.blue], gaugeColorLocations: [0, 0.5, 1], fillFraction: fillFraction)
+        let shralpGreen = UIColor(red: 103 / 255, green: 208 / 255, blue: 209 / 255, alpha: 1)
+        cornerTemplate.gaugeProvider = CLKSimpleGaugeProvider(style: .ring, gaugeColors: [.black, shralpGreen, .blue], gaugeColorLocations: [0, 0.3, 1], fillFraction: fillFraction)
         cornerTemplate.leadingTextProvider = CLKSimpleTextProvider(text: String.localizedStringWithFormat("%0.1f", min))
         cornerTemplate.trailingTextProvider = CLKSimpleTextProvider(text: String.localizedStringWithFormat("%0.1f", max))
         cornerTemplate.outerTextProvider = CLKSimpleTextProvider(text: shortText + symbol)
@@ -56,25 +57,78 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     }
     
     @available(watchOSApplicationExtension 5.0, *)
-    fileprivate func createGraphicCircularTemplate(fillFraction: Float, min: Float, max: Float, shortText: String, symbol: String) -> CLKComplicationTemplateGraphicCircular {
-        let template = CLKComplicationTemplateGraphicCircularOpenGaugeRangeText()
-        template.gaugeProvider = CLKSimpleGaugeProvider(style: CLKGaugeProviderStyle.ring, gaugeColors: [UIColor.red, UIColor.green, UIColor.blue], gaugeColorLocations: [0, 0.5, 1], fillFraction: fillFraction)
+    fileprivate func createGraphicCircularTemplate(fillFraction: Float, min: Float, max: Float, shortText: String, symbol: String, interval: SDTideInterval) -> CLKComplicationTemplateGraphicCircular {
+        let template = CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText()
+        let shralpGreen = UIColor(red: 103 / 255, green: 208 / 255, blue: 209 / 255, alpha: 1)
+        template.gaugeProvider = CLKSimpleGaugeProvider(style: .ring, gaugeColors: [.black, shralpGreen, .blue], gaugeColorLocations: [0, 0.3, 1], fillFraction: fillFraction)
         template.centerTextProvider = CLKSimpleTextProvider(text: symbol)
-        template.leadingTextProvider = CLKSimpleTextProvider(text: String.localizedStringWithFormat("%0.1f", min))
-        template.leadingTextProvider.tintColor = UIColor.red
-        template.trailingTextProvider = CLKSimpleTextProvider(text: String.localizedStringWithFormat("%0.1f", max))
-        template.trailingTextProvider.tintColor = UIColor.blue
+        template.centerTextProvider.tintColor = shralpGreen
+        template.bottomTextProvider = CLKSimpleTextProvider(text: String(format:"%0.1f", interval.height))
         return template
     }
     
     @available(watchOSApplicationExtension 5.0, *)
     fileprivate func createGraphicCircularChartTemplate(height: Float, min: Float, max: Float, shortText: String, symbol: String, tide: SDTide) -> CLKComplicationTemplateGraphicCircularImage {
-        let chartWidth = WKInterfaceDevice.current().screenBounds.width < 325 ? 84 : 94
+        let chartWidth = WKInterfaceDevice.current().screenBounds.width < 325 ? 47 : 54
         let template = CLKComplicationTemplateGraphicCircularImage()
         let startDate = Date().addingTimeInterval(TimeInterval(-7.hrs))
-        let chart = ChartViewSwift(withTide: tide, height: InterfaceController.ChartHeight, hours: 14, startDate: startDate, page: 0)
-        let image = chart.drawImage(bounds: CGRect(x: 0, y: 0, width: chartWidth, height: chartWidth))!
-        template.imageProvider = CLKFullColorImageProvider(fullColorImage: image)
+        let chartView = ChartViewSwift(withTide: tide, height: chartWidth, hours: 14, startDate: startDate, page: 0)
+        do {
+            let image = try chartView.drawImage(bounds:CGRect(x: 0, y: 0, width: chartWidth, height: chartWidth))
+            template.imageProvider = CLKFullColorImageProvider(fullColorImage: image)
+        } catch {
+            print("Unable to draw chart. \(error)")
+        }
+        return template
+    }
+    
+    @available(watchOSApplicationExtension 5.0, *)
+    fileprivate func createGraphicRectangularChartTemplate(height: Float, min: Float, max: Float, shortText: String, longText: String, symbol: String, tide: SDTide) -> CLKComplicationTemplateGraphicRectangularLargeImage {
+        let height = WKInterfaceDevice.current().screenBounds.width < 325 ? 50 : 64
+        let width = WKInterfaceDevice.current().screenBounds.width < 325 ? 170 : 191
+        let graphTemplate = CLKComplicationTemplateGraphicRectangularLargeImage()
+        let currentTideTextProvider = CLKSimpleTextProvider(text: longText + symbol)
+        do {
+            let nextTide = try tide.nextTideFromNow()
+            let nextTideTextProvider = CLKSimpleTextProvider(text: String.tideFormatStringSmall(value: nextTide.eventHeight))
+            nextTideTextProvider.tintColor = .green
+            let timeToNextTideTextProvider = CLKRelativeDateTextProvider(date: nextTide.eventTime, style: .naturalAbbreviated, units: NSCalendar.Unit([.hour, .minute]))
+            graphTemplate.textProvider = CLKTextProvider(byJoining: [currentTideTextProvider, nextTideTextProvider], separator: "→")
+            graphTemplate.textProvider = CLKTextProvider(byJoining: [graphTemplate.textProvider, timeToNextTideTextProvider], separator: " ")
+        } catch {
+            NSLog("WARN: Unable to find next tide event")
+            graphTemplate.textProvider = currentTideTextProvider
+        }
+        
+        graphTemplate.imageProvider = CLKFullColorImageProvider()
+        let chartView = ChartViewSwift(withTide: tide, height: height, hours: 24, startDate: Date().startOfDay(), page: 1)
+        do {
+            try graphTemplate.imageProvider.image = chartView.drawImage(bounds:CGRect(x: 0, y: 0, width: width, height: height))
+        } catch {
+            print("Unable to draw chart. \(error)")
+        }
+        return graphTemplate
+    }
+    
+    @available(watchOSApplicationExtension 5.0, *)
+    fileprivate func createGraphicRectangularTextGuageTemplate(fillFraction: Float, height: Float, min: Float, max: Float, shortText: String, longText: String, symbol: String, tide: SDTide) -> CLKComplicationTemplateGraphicRectangularTextGauge {
+        let template = CLKComplicationTemplateGraphicRectangularTextGauge()
+        let color = UIColor(red:94/255, green: 205/255, blue: 117/255, alpha: 1)
+        template.gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: color, fillFraction: fillFraction)
+        let currentTideTextProvider = CLKSimpleTextProvider(text: longText + symbol)
+        template.headerTextProvider = CLKSimpleTextProvider(text: tide.shortLocationName)
+        template.headerTextProvider.tintColor = UIColor(red: 103 / 255, green: 208 / 255, blue: 209 / 255, alpha: 1)
+        do {
+            let nextTide = try tide.nextTideFromNow()
+            let nextTideTextProvider = CLKSimpleTextProvider(text: String.tideFormatStringSmall(value: nextTide.eventHeight))
+            nextTideTextProvider.tintColor = .green
+            let timeToNextTideTextProvider = CLKRelativeDateTextProvider(date: nextTide.eventTime, style: .naturalAbbreviated, units: NSCalendar.Unit([.hour, .minute]))
+            template.body1TextProvider = CLKTextProvider(byJoining: [currentTideTextProvider, nextTideTextProvider], separator: "→")
+            template.body1TextProvider = CLKTextProvider(byJoining: [template.body1TextProvider, timeToNextTideTextProvider], separator: " ")
+        } catch {
+            NSLog("WARN: Unable to find next tide event")
+            template.body1TextProvider = CLKSimpleTextProvider(text: "\(longText) and \(tide.tideDirection == .falling ? "falling" : "rising")")
+        }
         return template
     }
     
@@ -118,7 +172,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             template = circTemplate
         case .extraLarge:
             let xlTemplate = CLKComplicationTemplateExtraLargeRingText()
-            xlTemplate.tintColor = UIColor.green
+            xlTemplate.tintColor = .green
             xlTemplate.fillFraction = fillFraction
             xlTemplate.ringStyle = .open
             xlTemplate.textProvider = CLKSimpleTextProvider(text:symbolText)
@@ -134,14 +188,16 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                 let circTemplate = createGraphicCircularChartTemplate(height: interval.height, min: min, max: max, shortText: shortText, symbol: symbolText, tide: tide)
                 let bezel = CLKComplicationTemplateGraphicBezelCircularText()
                 bezel.circularTemplate = circTemplate
-                var tideInfo = "\(shortText)"
-                var nextTideInfo = tide.tideDirection == SDTideStateRiseFall.falling ? " Falling to" : " Rising to"
+//                bezel.circularTemplate = createGraphicCircularChartTemplate(height: interval.height, min: min, max: max, shortText: shortText, symbol: symbolText, tide: tide)
+                var tideInfo = "\(shortText) "
+                var nextTideInfo = tide.tideDirection == SDTideStateRiseFall.falling ? "Falling" : "Rising"
                 do {
                     let nextTide = try tide.nextTideFromNow()
-                    nextTideInfo += " " + String.tideFormatStringSmall(value: nextTide.eventHeight)
+                    nextTideInfo += " to " + String.tideFormatStringSmall(value: nextTide.eventHeight)
                     nextTideInfo += " at " + String.localizedTime(tideEvent: nextTide)
                     tideInfo += nextTideInfo
                 } catch {
+                    tideInfo += "and \(nextTideInfo)"
                     NSLog("WARN: Unable to find next tide event")
                 }
                 bezel.textProvider = CLKSimpleTextProvider(text: tideInfo)
@@ -151,31 +207,13 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             }
         case .graphicCircular:
             if #available(watchOSApplicationExtension 5.0, *) {
-                template = createGraphicCircularTemplate(fillFraction: fillFraction, min: min, max: max, shortText: shortText, symbol: symbolText)
+                template = createGraphicCircularTemplate(fillFraction: fillFraction, min: min, max: max, shortText: shortText, symbol: symbolText, interval: interval)
             } else {
                 NSLog("Graphic Corner is not available on this device.")
             }
         case .graphicRectangular:
             if #available(watchOSApplicationExtension 5.0, *) {
-                let height = WKInterfaceDevice.current().screenBounds.width < 325 ? 94 : 108
-                let width = WKInterfaceDevice.current().screenBounds.width < 325 ? 300 : 342
-                let graphTemplate = CLKComplicationTemplateGraphicRectangularLargeImage()
-                let currentTideTextProvider = CLKSimpleTextProvider(text: longText + symbolText)
-                do {
-                    let nextTide = try tide.nextTideFromNow()
-                    let nextTideTextProvider = CLKSimpleTextProvider(text: String.tideFormatStringSmall(value: nextTide.eventHeight))
-                    nextTideTextProvider.tintColor = .green
-                    let timeToNextTideTextProvider = CLKRelativeDateTextProvider(date: nextTide.eventTime, style: .naturalAbbreviated, units: NSCalendar.Unit([.hour, .minute]))
-                    graphTemplate.textProvider = CLKTextProvider(byJoining: [currentTideTextProvider, nextTideTextProvider], separator: "→")
-                    graphTemplate.textProvider = CLKTextProvider(byJoining: [graphTemplate.textProvider, timeToNextTideTextProvider], separator: " ")
-                } catch {
-                    NSLog("WARN: Unable to find next tide event")
-                    graphTemplate.textProvider = currentTideTextProvider
-                }
-                
-                graphTemplate.imageProvider = CLKFullColorImageProvider()
-                graphTemplate.imageProvider.image = ChartViewSwift(withTide: tide, height: InterfaceController.ChartHeight, hours: 24, startDate: Date().startOfDay(), page: 1).drawImage(bounds:CGRect(x: 0, y: 0, width: width, height: height))!
-                template = graphTemplate
+                template = createGraphicRectangularChartTemplate(height: interval.height, min: min, max: max, shortText: shortText, longText: longText, symbol: symbolText, tide: tide)
             } else {
                 NSLog("Graphic Corner is not available on this device.")
             }
