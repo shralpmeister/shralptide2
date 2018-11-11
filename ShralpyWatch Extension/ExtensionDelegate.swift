@@ -139,7 +139,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             return
         }
         print("Refreshing tides")
-        tides = SDTideFactoryNew.todaysTides(forStationName: selectedStation, withUnits: .US)
+        tides = SDTide(byCombiningTides: SDTideFactoryNew.tides(forStationName: selectedStation, forDays: 2, withUnits: .US))
         refreshComplications()
     }
     

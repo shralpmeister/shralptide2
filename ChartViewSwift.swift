@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 
+enum ChartError: Error {
+    case noTideData
+    case unableToGetImageFromContext
+}
+
 class ChartViewSwift {
     
     static let MinutesPerHour = 60
@@ -88,15 +93,15 @@ class ChartViewSwift {
         return CGFloat((tide.allIntervals as! Array<SDTideInterval>).sorted( by: { $0.height > $1.height } )[0].height)
     }
     
-    func drawImage(bounds:CGRect) -> UIImage? {
+    func drawImage(bounds:CGRect) throws -> UIImage {
         let height = (self.height != nil ? self.height : Int(bounds.size.height))!
         let chartBottom:CGFloat = 0
         
         let intervalsForDay:[SDTideInterval] = tide.intervals(from: self.startDate, forHours: self.hoursToPlot) as! [SDTideInterval]
         
-        if intervalsForDay.count == 0 {
+        guard intervalsForDay.count > 0 else {
             // activated on a new day before model has been updated?
-            return nil
+            throw ChartError.noTideData
         }
         
         let baseSeconds:TimeInterval = intervalsForDay[0].time.timeIntervalSince1970
@@ -200,7 +205,9 @@ class ChartViewSwift {
         context.addPath(cursorPath.cgPath)
         context.strokePath()
         
-        let image = UIGraphicsGetImageFromCurrentImageContext()
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else {
+            throw ChartError.unableToGetImageFromContext
+        }
         
         UIGraphicsPopContext()
         UIGraphicsEndImageContext()
