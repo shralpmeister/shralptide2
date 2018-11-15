@@ -32,13 +32,13 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         let hfilePath = Bundle(for: SDTideFactoryNew.self).path(forResource: "harmonics-dwf-20081228-free", ofType: "tcd")! + ":" + Bundle(for: SDTideFactoryNew.self).path(forResource: "harmonics-dwf-20081228-nonfree", ofType: "tcd")!
         setenv("HFILE_PATH", hfilePath, 1)
         
-        WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: Date(timeIntervalSinceNow: .SecondsPerMinute), userInfo: nil) { (error: Error?) in
+        WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: Date(timeIntervalSinceNow: 15 * .SecondsPerMinute), userInfo: nil) { (error: Error?) in
             if let error = error {
                 print("Error occurred refreshing app state: \(error)")
             }
         }
         
-        WKExtension.shared().scheduleSnapshotRefresh(withPreferredDate: Date(timeIntervalSinceNow: 60 * 15), userInfo: nil) { (error:Error?) in
+        WKExtension.shared().scheduleSnapshotRefresh(withPreferredDate: Date(timeIntervalSinceNow: 15 * .SecondsPerMinute), userInfo: nil) { (error:Error?) in
             if let error = error {
                 print("Error occurred refreshing snapshot: \(error)")
             }
