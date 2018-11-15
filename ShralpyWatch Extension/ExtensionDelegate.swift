@@ -31,8 +31,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
         let hfilePath = Bundle(for: SDTideFactoryNew.self).path(forResource: "harmonics-dwf-20081228-free", ofType: "tcd")! + ":" + Bundle(for: SDTideFactoryNew.self).path(forResource: "harmonics-dwf-20081228-nonfree", ofType: "tcd")!
         setenv("HFILE_PATH", hfilePath, 1)
-
-        WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: Date().endOfDay(), userInfo: nil) { (error: Error?) in
+        
+        WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: Date(timeIntervalSinceNow: .SecondsPerMinute), userInfo: nil) { (error: Error?) in
             if let error = error {
                 print("Error occurred refreshing app state: \(error)")
             }
@@ -66,7 +66,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 backgroundTask.setTaskCompleted()
                 
                 // Schedule the next background refresh
-                WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: Date().endOfDay(), userInfo: nil) { (error: Error?) in
+                WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: Date(timeIntervalSinceNow: 15 * .SecondsPerMinute), userInfo: nil) { error in
                     if let error = error {
                         print("Error occurred refreshing app state: \(error)")
                     }
@@ -115,12 +115,6 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     }
     
     func checkAndRefreshTides() {
-        let sessionManager = WatchSessionManager.sharedInstance
-        if (sessionManager.session.isReachable) {
-            print("iPhone is reachable. Provisioning")
-            provisionUserDefaults()
-        }
-        
         if let tides = self.tides {
             if Date().timeIntervalSince(tides.startTime) >= ExtensionDelegate.DayInSeconds {
                 refreshTides()
@@ -128,11 +122,22 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         } else {
             refreshTides()
         }
+        refreshComplications()
+    }
+    
+    private func getPhoneSettings() {
+        let sessionManager = WatchSessionManager.sharedInstance
+        if (sessionManager.session.isReachable) {
+            print("iPhone is reachable. Provisioning")
+            provisionUserDefaults()
+        }
     }
     
     private func refreshTides() {
         objc_sync_enter(lock)
         defer { objc_sync_exit(lock) }
+        
+        getPhoneSettings()
         
         guard let selectedStation = config.selectedStation else {
             tides = nil
@@ -140,7 +145,6 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         }
         print("Refreshing tides")
         tides = SDTide(byCombiningTides: SDTideFactoryNew.tides(forStationName: selectedStation, forDays: 2, withUnits: .US))
-        refreshComplications()
     }
     
     func refreshComplications() {

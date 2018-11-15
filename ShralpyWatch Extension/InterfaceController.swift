@@ -43,7 +43,6 @@ class InterfaceController: WKInterfaceController {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         
-        let extDelegate = (WKExtension.shared().delegate as! ExtensionDelegate)
         guard let tides = (WKExtension.shared().delegate as! ExtensionDelegate).tides else {
             DispatchQueue.main.async {
                 self.presentController(withName: "missingSettings", context: "Transeferring settings. Make sure iPhone is nearby.")
@@ -56,7 +55,6 @@ class InterfaceController: WKInterfaceController {
             if (tides.startTime != lastStartTime || tides.stationName != lastStationName ||
                 unitChanged) {
                 try refreshTableLayout(tides:tides)
-                extDelegate.refreshComplications()
             }
             let currentTidePoint = tides.nearestDataPointToCurrentTime
             if (currentTidePoint != lastDisplayedPoint || unitChanged) {
