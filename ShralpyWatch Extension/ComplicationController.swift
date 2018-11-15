@@ -32,7 +32,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     // MARK: - Timeline Configuration
     
     func getSupportedTimeTravelDirections(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimeTravelDirections) -> Void) {
-        handler([.forward, .backward])
+        handler([])
     }
     
     func getTimelineStartDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
@@ -40,14 +40,14 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     }
     
     func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
-        handler(extDelegate.tides?.stopTime)
+        handler(extDelegate.tides?.startTime.endOfDay())
     }
     
     func getPrivacyBehavior(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationPrivacyBehavior) -> Void) {
         handler(.showOnLockScreen)
     }
     
-    func complicationTemplate(for complication:CLKComplication, interval:SDTideInterval, tide:SDTide) -> CLKComplicationTemplate {
+    fileprivate func complicationTemplate(for complication:CLKComplication, interval:SDTideInterval, tide:SDTide) -> CLKComplicationTemplate {
         let direction = tide.tideDirection(forTime: interval.time.timeInMinutesSinceMidnight())
         
         let text = String.tideFormatString(value: interval.height)
@@ -243,41 +243,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         
         // Call the handler with the current timeline entry
         handler(entry)
-    }
-    
-    func getTimelineEntries(for complication: CLKComplication, before date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
-        guard let tides = extDelegate.tides else {
-            handler(nil)
-            return
-        }
-        let calendar = Calendar.current
-        var entries = [CLKComplicationTimelineEntry]()
-        let limitInHours = limit / ComplicationController.IntervalsPerHour
-        let startDate = calendar.date(byAdding: Calendar.Component.hour, value: -1 * limitInHours, to: date)
-        let intervals = tides.intervals(from: startDate, forHours:limitInHours) as! [SDTideInterval]
-        for interval in intervals {
-            let entry = CLKComplicationTimelineEntry(date:interval.time.intervalStartDate(), complicationTemplate:complicationTemplate(for:complication, interval:interval, tide: tides))
-            entries.append(entry)
-        }
-        // Call the handler with the timeline entries prior to the given date
-        handler(entries)
-    }
-    
-    func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
-        guard let tides = extDelegate.tides else {
-            handler(nil)
-            return
-        }
-        // Call the handler with the timeline entries after to the given date
-        var entries = [CLKComplicationTimelineEntry]()
-        let limitInHours = limit / ComplicationController.IntervalsPerHour
-        let intervals = tides.intervals(from: date, forHours: limitInHours) as! [SDTideInterval]
-        for interval in intervals {
-            let entry = CLKComplicationTimelineEntry(date:interval.time.intervalStartDate(), complicationTemplate:complicationTemplate(for:complication, interval:interval, tide: tides))
-            entries.append(entry)
-        }
-        // Call the handler with the timeline entries prior to the given date
-        handler(entries)
     }
     
     // MARK: - Placeholder Templates
