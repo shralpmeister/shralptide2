@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "SelectStationNavigationController.h"
-#import "PortraitViewController.h"
+
+@class PortraitViewController;
 
 @interface FavoritesListViewController : UITableViewController <StationDetailViewControllerDelegate>
 

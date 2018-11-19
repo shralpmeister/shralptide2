@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="sHG-fy-qjl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="sHG-fy-qjl">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -55,7 +55,7 @@
         <!--Portrait View Controller-->
         <scene sceneID="8pg-HT-J4s">
             <objects>
-                <viewController id="5sz-va-Cyx" customClass="PortraitViewController" sceneMemberID="viewController">
+                <viewController id="5sz-va-Cyx" customClass="PortraitViewController" customModule="ShralpTide2" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="K1u-Lg-QtF"/>
                         <viewControllerLayoutGuide type="bottom" id="1Iy-Wi-R3J"/>
@@ -137,7 +137,7 @@
         <!--Current Tide View Controller-->
         <scene sceneID="9Kc-Jy-W6Q">
             <objects>
-                <viewController restorationIdentifier="HeaderViewController" storyboardIdentifier="headerViewController" id="IDj-7z-q0L" customClass="CurrentTideViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="HeaderViewController" storyboardIdentifier="headerViewController" id="IDj-7z-q0L" customClass="CurrentTideViewController" customModule="ShralpTide2" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Yb0-AP-uh5"/>
                         <viewControllerLayoutGuide type="bottom" id="8vn-cW-4Tp"/>
@@ -336,7 +336,7 @@
         <!--Events View Controller-->
         <scene sceneID="TCQ-4V-Opp">
             <objects>
-                <viewController storyboardIdentifier="eventsViewController" id="szh-Hb-Wbi" customClass="SDEventsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="eventsViewController" id="szh-Hb-Wbi" customClass="SDEventsViewController" customModule="ShralpTide2" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zvP-bZ-S06"/>
                         <viewControllerLayoutGuide type="bottom" id="ffW-u1-Kes"/>
@@ -351,7 +351,7 @@
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <color key="sectionIndexTrackingBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="eventCell" id="gus-te-Omo" customClass="SDTideEventCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="eventCell" id="gus-te-Omo" customClass="SDTideEventCell" customModule="ShralpTide2">
                                         <rect key="frame" x="0.0" y="1" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gus-te-Omo" id="o4F-yZ-J9b">
@@ -769,6 +769,6 @@
         <image name="UIButtonBarListIcon" width="22" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sxc-mJ-GSf"/>
+        <segue reference="fBT-02-fD3"/>
     </inferredMetricsTieBreakers>
 </document>

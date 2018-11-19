@@ -9,7 +9,7 @@
 #import "StationDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SelectStationNavigationController.h"
-
+#import <ShralpTide2-Swift.h>
 
 @implementation StationDetailViewController
 

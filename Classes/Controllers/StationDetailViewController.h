@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "TideStationAnnotation.h"
-#import "ShralpTide2-Swift.h"
+
+@class SDTideStation;
 
 @protocol StationDetailViewControllerDelegate;
 

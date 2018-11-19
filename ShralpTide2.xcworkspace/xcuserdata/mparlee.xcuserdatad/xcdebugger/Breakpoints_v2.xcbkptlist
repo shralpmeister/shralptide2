@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Classes/Controllers/PortraitViewController.m"
-            timestampString = "557533843.991138"
+            timestampString = "564255457.885271"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "75"
@@ -112,6 +112,22 @@
             startingLineNumber = "201"
             endingLineNumber = "201"
             landmarkName = "-intervalsFromDate:forHours:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SDBottomViewController.m"
+            timestampString = "564288512.471063"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "-displayTides:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

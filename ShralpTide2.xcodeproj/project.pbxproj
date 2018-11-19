@@ -23,9 +23,7 @@
 		DC2995281DB2D30800AC80E8 /* ConfigHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DC2995261DB2D30700AC80E8 /* ConfigHelper.m */; };
 		DC32FFB40E88B3FD00AB78F2 /* ChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC32FFB30E88B3FD00AB78F2 /* ChartView.m */; };
 		DC32FFB70E88B40F00AB78F2 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC32FFB60E88B40F00AB78F2 /* ChartViewController.m */; };
-		DC3630B7179B27870027EB21 /* PortraitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3630B6179B27870027EB21 /* PortraitViewController.m */; };
 		DC3911B81918751000D28F8D /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC3911B71918751000D28F8D /* iAd.framework */; };
-		DC39945417E63B8200BC61D8 /* CurrentTideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC39945317E63B8200BC61D8 /* CurrentTideViewController.m */; };
 		DC3E37041DCFA8C200F97536 /* ConfigHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E37031DCFA8C200F97536 /* ConfigHelper.swift */; };
 		DC493E5D0F206C8B0087B341 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = DC493E5C0F206C8B0087B341 /* COPYING */; };
 		DC4FBBE8178BCF3200C0CFEE /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC4FBBE7178BCF3200C0CFEE /* MainStoryboard.storyboard */; };
@@ -114,8 +112,6 @@
 		DC77040D1DA98A9400B3C4F9 /* Tidelibs-Swift.h in Headers */ = {isa = PBXBuildFile; fileRef = DC77040C1DA98A9400B3C4F9 /* Tidelibs-Swift.h */; };
 		DC8A827E189DB42F00792149 /* lightray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8A827D189DB42F00792149 /* lightray@2x.png */; };
 		DC8EAAC81812EA7C00C4BCFF /* LabelledChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC8EAAC71812EA7C00C4BCFF /* LabelledChartView.m */; };
-		DC9065F317F13AD8000F23D8 /* SDEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9065F217F13AD8000F23D8 /* SDEventsViewController.m */; };
-		DC91540817EE4E7400A6FC46 /* SDTideEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC91540717EE4E7400A6FC46 /* SDTideEventCell.m */; };
 		DC9343671DC52E5A00FFF266 /* TideStationRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9343661DC52E5A00FFF266 /* TideStationRowController.swift */; };
 		DC9343691DC52E7200FFF266 /* TideChartRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9343681DC52E7200FFF266 /* TideChartRowController.swift */; };
 		DC93436B1DC52E8300FFF266 /* TideTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC93436A1DC52E8300FFF266 /* TideTableRowController.swift */; };
@@ -169,9 +165,11 @@
 		DCA7317D1E2191C700CA1400 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7317C1E2191C700CA1400 /* WatchSessionManager.swift */; };
 		DCA7707F182EFB1E00439850 /* FavoritesHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCA7707E182EFB1E00439850 /* FavoritesHeaderView.xib */; };
 		DCA7708418305F0A00439850 /* FavoritesFooterVIew.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCA7708318305F0A00439850 /* FavoritesFooterVIew.xib */; };
+		DCA8F6F121A0C07B00B5ECE8 /* iPadMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCA8F6F021A0C07B00B5ECE8 /* iPadMain.storyboard */; };
 		DCA9379B0EE1B3910050113B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA9379A0EE1B3910050113B /* CoreGraphics.framework */; };
 		DCA9D2FE18820ABB0037DBAB /* datastore.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DCA9D2FD18820ABB0037DBAB /* datastore.sqlite */; };
 		DCA9D302188328340037DBAB /* background-gradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCA9D301188328340037DBAB /* background-gradient@2x.png */; };
+		DCADEA3E21A23D4D00A249AF /* PortraitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADEA3D21A23D4D00A249AF /* PortraitViewController.swift */; };
 		DCB51F8E1867A82A00BF9082 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCB51F8D1867A82A00BF9082 /* SpriteKit.framework */; };
 		DCB7F09E21695CEE0056CA7D /* CLKTextProvider+MultiColorPatch.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB7F09D21695CEE0056CA7D /* CLKTextProvider+MultiColorPatch.m */; };
 		DCC8EB0D1DBEA7B300D31C68 /* ChartViewSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7702BE1DA2D4F000B3C4F9 /* ChartViewSwift.swift */; };
@@ -181,6 +179,9 @@
 		DCE745CB1DC967AC008BF66C /* StationListInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE745CA1DC967AC008BF66C /* StationListInterfaceController.swift */; };
 		DCE897DB0EEE3CAE00BF2357 /* CursorView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE897DA0EEE3CAE00BF2357 /* CursorView.m */; };
 		DCE898A20EEE514900BF2357 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCE898A10EEE514900BF2357 /* QuartzCore.framework */; };
+		DCF4C24421A0C94D00BB379B /* CurrentTideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF4C24321A0C94D00BB379B /* CurrentTideViewController.swift */; };
+		DCF4C25A21A13DDB00BB379B /* SDTideEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF4C25921A13DDB00BB379B /* SDTideEventCell.swift */; };
+		DCF4C25C21A1484000BB379B /* SDEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF4C25B21A1484000BB379B /* SDEventsViewController.swift */; };
 		DCF5B8AB1DB456C4008C0DC8 /* shralptide.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC06A26217DC44F60095E217 /* shralptide.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -302,11 +303,7 @@
 		DC32FFB30E88B3FD00AB78F2 /* ChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChartView.m; path = Classes/Views/ChartView.m; sourceTree = "<group>"; };
 		DC32FFB50E88B40F00AB78F2 /* ChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChartViewController.h; path = Classes/Controllers/ChartViewController.h; sourceTree = "<group>"; };
 		DC32FFB60E88B40F00AB78F2 /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChartViewController.m; path = Classes/Controllers/ChartViewController.m; sourceTree = "<group>"; };
-		DC3630B5179B27870027EB21 /* PortraitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PortraitViewController.h; path = Classes/Controllers/PortraitViewController.h; sourceTree = "<group>"; };
-		DC3630B6179B27870027EB21 /* PortraitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PortraitViewController.m; path = Classes/Controllers/PortraitViewController.m; sourceTree = "<group>"; };
 		DC3911B71918751000D28F8D /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
-		DC39945217E63B8200BC61D8 /* CurrentTideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CurrentTideViewController.h; path = Classes/CurrentTideViewController.h; sourceTree = "<group>"; };
-		DC39945317E63B8200BC61D8 /* CurrentTideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CurrentTideViewController.m; path = Classes/CurrentTideViewController.m; sourceTree = "<group>"; };
 		DC3E37031DCFA8C200F97536 /* ConfigHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigHelper.swift; sourceTree = "<group>"; };
 		DC493E5C0F206C8B0087B341 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
 		DC4FBBE7178BCF3200C0CFEE /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -374,10 +371,6 @@
 		DC8A827D189DB42F00792149 /* lightray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lightray@2x.png"; sourceTree = "<group>"; };
 		DC8EAAC61812EA7C00C4BCFF /* LabelledChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelledChartView.h; sourceTree = "<group>"; };
 		DC8EAAC71812EA7C00C4BCFF /* LabelledChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelledChartView.m; sourceTree = "<group>"; };
-		DC9065F117F13AD8000F23D8 /* SDEventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDEventsViewController.h; sourceTree = "<group>"; };
-		DC9065F217F13AD8000F23D8 /* SDEventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDEventsViewController.m; sourceTree = "<group>"; };
-		DC91540617EE4E7400A6FC46 /* SDTideEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTideEventCell.h; sourceTree = "<group>"; };
-		DC91540717EE4E7400A6FC46 /* SDTideEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTideEventCell.m; sourceTree = "<group>"; };
 		DC9343661DC52E5A00FFF266 /* TideStationRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TideStationRowController.swift; sourceTree = "<group>"; };
 		DC9343681DC52E7200FFF266 /* TideChartRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TideChartRowController.swift; sourceTree = "<group>"; };
 		DC93436A1DC52E8300FFF266 /* TideTableRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TideTableRowController.swift; sourceTree = "<group>"; };
@@ -480,9 +473,11 @@
 		DCA7317C1E2191C700CA1400 /* WatchSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		DCA7707E182EFB1E00439850 /* FavoritesHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesHeaderView.xib; sourceTree = "<group>"; };
 		DCA7708318305F0A00439850 /* FavoritesFooterVIew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesFooterVIew.xib; sourceTree = "<group>"; };
+		DCA8F6F021A0C07B00B5ECE8 /* iPadMain.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = iPadMain.storyboard; sourceTree = "<group>"; };
 		DCA9379A0EE1B3910050113B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DCA9D2FD18820ABB0037DBAB /* datastore.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = datastore.sqlite; sourceTree = "<group>"; };
 		DCA9D301188328340037DBAB /* background-gradient@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-gradient@2x.png"; sourceTree = "<group>"; };
+		DCADEA3D21A23D4D00A249AF /* PortraitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortraitViewController.swift; sourceTree = "<group>"; };
 		DCB51F8D1867A82A00BF9082 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		DCB7F09D21695CEE0056CA7D /* CLKTextProvider+MultiColorPatch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CLKTextProvider+MultiColorPatch.m"; sourceTree = "<group>"; };
 		DCB7F09F21695D1D0056CA7D /* CLKTextProvider+MultiColorPatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLKTextProvider+MultiColorPatch.h"; sourceTree = "<group>"; };
@@ -495,6 +490,9 @@
 		DCE897D90EEE3CAE00BF2357 /* CursorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CursorView.h; path = Classes/Views/CursorView.h; sourceTree = "<group>"; };
 		DCE897DA0EEE3CAE00BF2357 /* CursorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CursorView.m; path = Classes/Views/CursorView.m; sourceTree = "<group>"; };
 		DCE898A10EEE514900BF2357 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DCF4C24321A0C94D00BB379B /* CurrentTideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTideViewController.swift; sourceTree = "<group>"; };
+		DCF4C25921A13DDB00BB379B /* SDTideEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDTideEventCell.swift; sourceTree = "<group>"; };
+		DCF4C25B21A1484000BB379B /* SDEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDEventsViewController.swift; sourceTree = "<group>"; };
 		DCF5B8A81DB418B4008C0DC8 /* shralptide3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = shralptide3.xcdatamodel; sourceTree = "<group>"; };
 		DCF8AB0121521AF100406568 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -594,16 +592,12 @@
 		289233A00DB2D0730083E9F9 /* Main View */ = {
 			isa = PBXGroup;
 			children = (
-				DC39945217E63B8200BC61D8 /* CurrentTideViewController.h */,
-				DC39945317E63B8200BC61D8 /* CurrentTideViewController.m */,
-				DC3630B5179B27870027EB21 /* PortraitViewController.h */,
-				DC3630B6179B27870027EB21 /* PortraitViewController.m */,
 				DC7099B11E2327F30060691A /* SDBottomViewController.h */,
 				DC7099AF1E2327E60060691A /* SDBottomViewController.m */,
-				DC91540617EE4E7400A6FC46 /* SDTideEventCell.h */,
-				DC91540717EE4E7400A6FC46 /* SDTideEventCell.m */,
-				DC9065F117F13AD8000F23D8 /* SDEventsViewController.h */,
-				DC9065F217F13AD8000F23D8 /* SDEventsViewController.m */,
+				DCF4C24321A0C94D00BB379B /* CurrentTideViewController.swift */,
+				DCF4C25921A13DDB00BB379B /* SDTideEventCell.swift */,
+				DCF4C25B21A1484000BB379B /* SDEventsViewController.swift */,
+				DCADEA3D21A23D4D00A249AF /* PortraitViewController.swift */,
 			);
 			name = "Main View";
 			sourceTree = "<group>";
@@ -672,6 +666,7 @@
 				DC4FBBE7178BCF3200C0CFEE /* MainStoryboard.storyboard */,
 				DCA7707E182EFB1E00439850 /* FavoritesHeaderView.xib */,
 				DCA7708318305F0A00439850 /* FavoritesFooterVIew.xib */,
+				DCA8F6F021A0C07B00B5ECE8 /* iPadMain.storyboard */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1134,6 +1129,7 @@
 				DC1DC0C71BC06EB800EA14ED /* StationInfoView.xib in Resources */,
 				DCA7707F182EFB1E00439850 /* FavoritesHeaderView.xib in Resources */,
 				DC70BD0517F8B5ED00D5FF3A /* Images.xcassets in Resources */,
+				DCA8F6F121A0C07B00B5ECE8 /* iPadMain.storyboard in Resources */,
 				DC59FDF3140752A7008FD0D2 /* Settings.bundle in Resources */,
 				DCC8EB151DC19F6A00D31C68 /* gallery.ckcomplication in Resources */,
 			);
@@ -1312,13 +1308,14 @@
 				DCE897DB0EEE3CAE00BF2357 /* CursorView.m in Sources */,
 				DC0C0DD6105C1D8F0080297E /* ChartScrollView.m in Sources */,
 				DC06A25B17DBC6870095E217 /* FavoritesListViewController.m in Sources */,
+				DCF4C25C21A1484000BB379B /* SDEventsViewController.swift in Sources */,
 				DCA3BEE8133E4DB500EA966A /* SDTideFactory.mm in Sources */,
 				DCA3BEF8133E4F1F00EA966A /* TideStationAnnotation.m in Sources */,
 				DCA3BF49133E4F8F00EA966A /* Colors.cc in Sources */,
 				DCA3BF4A133E4F8F00EA966A /* Interval.cc in Sources */,
 				DCA3BF4B133E4F8F00EA966A /* Amplitude.cc in Sources */,
 				DCA3BF4C133E4F8F00EA966A /* Angle.cc in Sources */,
-				DC91540817EE4E7400A6FC46 /* SDTideEventCell.m in Sources */,
+				DCF4C25A21A13DDB00BB379B /* SDTideEventCell.swift in Sources */,
 				DCA3BF4D133E4F8F00EA966A /* Constituent.cc in Sources */,
 				DCA3BF4E133E4F8F00EA966A /* ConstituentSet.cc in Sources */,
 				DCA3BF4F133E4F8F00EA966A /* Coordinates.cc in Sources */,
@@ -1336,8 +1333,6 @@
 				DCA3BF58133E4F8F00EA966A /* NullableInterval.cc in Sources */,
 				DCA3BF59133E4F8F00EA966A /* NullablePredictionValue.cc in Sources */,
 				DCA3BF5A133E4F8F00EA966A /* Offsets.cc in Sources */,
-				DC9065F317F13AD8000F23D8 /* SDEventsViewController.m in Sources */,
-				DC39945417E63B8200BC61D8 /* CurrentTideViewController.m in Sources */,
 				DCA3BF5B133E4F8F00EA966A /* PredictionValue.cc in Sources */,
 				DCA3BF5C133E4F8F00EA966A /* Settings.cc in Sources */,
 				DCA3BF5D133E4F8F00EA966A /* Skycal.cc in Sources */,
@@ -1346,6 +1341,7 @@
 				DCA3BF5F133E4F8F00EA966A /* Station.cc in Sources */,
 				DCA3BF60133E4F8F00EA966A /* StationIndex.cc in Sources */,
 				DC8EAAC81812EA7C00C4BCFF /* LabelledChartView.m in Sources */,
+				DCF4C24421A0C94D00BB379B /* CurrentTideViewController.swift in Sources */,
 				DCA3BF61133E4F8F00EA966A /* StationRef.cc in Sources */,
 				DCA3BF62133E4F8F00EA966A /* SubordinateStation.cc in Sources */,
 				DCA3BF63133E4F8F00EA966A /* tide.cc in Sources */,
@@ -1367,10 +1363,10 @@
 				DC608AA51812FE2E00FA9F33 /* UIImage+Mask.m in Sources */,
 				DC6526441350C2DA00B67AE7 /* StationMapController.m in Sources */,
 				DC4FBBEB178C62EC00C0CFEE /* LandscapeViewController.m in Sources */,
+				DCADEA3E21A23D4D00A249AF /* PortraitViewController.swift in Sources */,
 				DC6526451350C2DA00B67AE7 /* StationDetailViewController.m in Sources */,
 				DC6526461350C2DA00B67AE7 /* CountryListController.m in Sources */,
 				DC6526471350C2DA00B67AE7 /* StateListController.m in Sources */,
-				DC3630B7179B27870027EB21 /* PortraitViewController.m in Sources */,
 				DC7702E81DA4042600B3C4F9 /* Date+Day.swift in Sources */,
 				DC6526481350C2DA00B67AE7 /* StationListController.m in Sources */,
 				DC6526491350C2DA00B67AE7 /* PickerTableCell.m in Sources */,

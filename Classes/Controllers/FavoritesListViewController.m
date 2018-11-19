@@ -12,7 +12,6 @@
 #import "TideStationTableViewCell.h"
 #import "SDTide.h"
 #import "StationMapController.h"
-#import "ShralpTide2-Swift.h"
 
 @interface FavoritesListViewController ()
 

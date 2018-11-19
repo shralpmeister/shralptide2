@@ -24,6 +24,7 @@
 #import "ShralpTideAppDelegate.h"
 #import "SDTideFactory.h"
 #import "ConfigHelper.h"
+#import "ShralpTide2-Swift.h"
 
 @interface ShralpTideAppDelegate ()
 - (void)defaultsChanged:(NSNotification *)notif;

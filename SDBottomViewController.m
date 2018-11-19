@@ -7,12 +7,11 @@
 //
 #import "SDTide.h"
 #import "SDBottomViewController.h"
-#import "SDTideEventCell.h"
 #import "SDTideEvent.h"
-#import "SDEventsViewController.h"
 #import "ShralpTideAppDelegate.h"
 #import "SDTideFactory.h"
 #import "NSDate+Day.h"
+#import <ShralpTide2-Swift.h>
 
 @interface SDBottomViewController () {
     dispatch_queue_t calculationQueue;

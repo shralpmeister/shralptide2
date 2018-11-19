@@ -24,7 +24,6 @@
 #import <CoreData/CoreData.h>
 #import "SDTideStationData.h"
 #import <Foundation/Foundation.h>
-#import "ShralpTide2-Swift.h"
 
 @interface ShralpTideAppDelegate : NSObject <UIApplicationDelegate>
 
