@@ -8,7 +8,7 @@
 import Foundation
 
 @objc class PortraitViewController: UIViewController {
-    @IBOutlet weak var listViewButton: UIButton!
+    @IBOutlet fileprivate weak var listViewButton: UIButton!
 
     fileprivate var headerViewController: CurrentTideViewController!
     fileprivate var bottomViewController: SDBottomViewController!
@@ -50,7 +50,7 @@ import Foundation
     
     @objc func refreshTideData() {
         let app = UIApplication.shared.delegate as! ShralpTideAppDelegate
-        self.bottomViewController.createPages(app.tides?[AppStateData.sharedInstance.locationPage] as? SDTide)
+        self.bottomViewController.createPages(app.tides?[AppStateData.sharedInstance.locationPage])
         self.headerViewController.refresh()
     }
     

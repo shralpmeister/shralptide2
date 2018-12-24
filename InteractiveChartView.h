@@ -22,7 +22,7 @@
 - (void)animateFirstTouchAtPoint:(CGPoint)touchPoint;
 - (void)showTideForPoint:(CGPoint) point;
 
-@property (nonatomic,weak) id<InteractiveChartViewDelegate> delegate;
+@property (nonatomic,weak) IBOutlet id<InteractiveChartViewDelegate> delegate;
 
 @end
 

@@ -17,3 +17,5 @@
 #import "UIImage+Mask.h"
 #import "LandscapeViewController.h"
 #import "FavoritesListViewController.h"
+#import "SunMoonChartView.h"
+#import "SDTideFactoryNew.h"

@@ -113,7 +113,7 @@
     }
 }
 
-- (NSArray*)tides
+- (NSArray<SDTide*>*)tides
 {
     return [NSArray arrayWithArray:_mutableTides];
 }

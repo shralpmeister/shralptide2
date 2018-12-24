@@ -9,15 +9,15 @@ import Foundation
 
 @objc class SDEventsViewController: UIViewController {
 
-    @IBOutlet weak var dateLabel: UILabel! {
+    @IBOutlet fileprivate weak var dateLabel: UILabel! {
         didSet {
             self.dateLabel.adjustsFontSizeToFitWidth = true
             self.dateLabel.translatesAutoresizingMaskIntoConstraints = false
         }
     }
-    @IBOutlet var chartView: ChartView!
-    @IBOutlet weak var chartScrollView: UIScrollView!
-    @IBOutlet weak var bottomVerticalConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate var chartView: ChartView!
+    @IBOutlet fileprivate weak var chartScrollView: UIScrollView!
+    @IBOutlet fileprivate weak var bottomVerticalConstraint: NSLayoutConstraint!
     @objc var tide: SDTide!
     
     override func viewWillAppear(_ animated: Bool) {

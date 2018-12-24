@@ -24,7 +24,7 @@
 #import "SDTideInterval.h"
 #import "SDTideEvent.h"
 
-    @interface SDTideFactory : NSObject
+@interface SDTideFactory : NSObject
 
 + (SDTide*)todaysTidesForStationName:(NSString*)name;
 + (NSArray*)tidesForStationName:(NSString*)name;

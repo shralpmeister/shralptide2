@@ -31,7 +31,7 @@ import Foundation
     
     @objc func refresh() {
         let app = UIApplication.shared.delegate as! ShralpTideAppDelegate
-        let tide: SDTide = app.tides[AppStateData.sharedInstance.locationPage] as! SDTide
+        let tide: SDTide = app.tides[AppStateData.sharedInstance.locationPage]
         self.tideLevelLabel.text = String(format: "%0.2f%@%@",
                                            tide.nearestDataPointToCurrentTime.y,
                                            tide.unitShort, tide.tideDirection == .rising ? "▲" : "▼")

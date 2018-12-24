@@ -33,9 +33,9 @@ typedef NS_ENUM(NSInteger,SDTideUnitsPref) {
 
 + (SDTide*)todaysTidesForStationName:(NSString*)name withUnits:(SDTideUnitsPref)units
 ;
-+ (NSArray*)tidesForStationName:(NSString *)name forDays:(long)days withUnits:(SDTideUnitsPref)units
-;
-+(NSArray*)tidesForStationName:(NSString*)name withInterval:(long)interval forDays:(long)days withUnits:(SDTideUnitsPref)units;
++ (NSArray<SDTide*>*)tidesForStationName:(NSString *)name forDays:(long)days withUnits:(SDTideUnitsPref)units;
++(NSArray<SDTide*>*)tidesForStationName:(NSString*)name withInterval:(long)interval forDays:(long)days withUnits:(SDTideUnitsPref)units;
++(NSArray<SDTide*>*)tidesForStationName:(NSString *)name withInterval:(long)interval forDays:(long)days withUnits:(SDTideUnitsPref)units fromDate:(NSDate*)date;
 + (SDTide*)tidesForStationName:(NSString*)name fromDate:(NSDate*)fromDate toDate:(NSDate*)toDate withUnits:(SDTideUnitsPref)units;
 + (SDTide*)tideForStationName:(NSString*)name withInterval:(long)interval fromDate:(NSDate*)fromDate toDate:(NSDate*)toDate withUnits:(SDTideUnitsPref)unitPref;
 

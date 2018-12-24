@@ -34,7 +34,7 @@
 
 @property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDate *midnight;
 
-@property (nonatomic, unsafe_unretained) id<ChartViewDatasource> datasource;
+@property (nonatomic, unsafe_unretained) IBOutlet id<ChartViewDatasource> datasource;
 @property (nonatomic, strong) IBOutlet UIView *cursorView;
 @property (nonatomic, strong) IBOutlet UILabel *dateLabel;
 @property (nonatomic, strong) IBOutlet UILabel *valueLabel;

@@ -24,11 +24,12 @@
 #import <CoreData/CoreData.h>
 #import "SDTideStationData.h"
 #import <Foundation/Foundation.h>
+#import "SDTide.h"
 
 @interface ShralpTideAppDelegate : NSObject <UIApplicationDelegate>
 
 @property (nonatomic, strong) IBOutlet UIWindow *window;
-@property (nonatomic, strong, readonly) NSArray *tides;
+@property (nonatomic, strong, readonly) NSArray<SDTide*> *tides;
 @property (nonatomic, assign) int page;
 @property (nonatomic, assign) UIInterfaceOrientationMask supportedOrientations;
 

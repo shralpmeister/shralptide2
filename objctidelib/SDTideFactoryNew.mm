@@ -43,24 +43,27 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
     return [SDTideFactoryNew tidesForStationName:name withInterval:900 forDays:1 withUnits:units][0];
 }
 
-+(NSArray*)tidesForStationName:(NSString *)name forDays:(long)days withUnits:(SDTideUnitsPref)units
++(NSArray<SDTide*>*)tidesForStationName:(NSString *)name forDays:(long)days withUnits:(SDTideUnitsPref)units
 {
     return [SDTideFactoryNew tidesForStationName:name withInterval:900 forDays:days withUnits:units];
 }
 
-+(NSArray*)tidesForStationName:(NSString*)name withInterval:(long)interval forDays:(long)days withUnits:(SDTideUnitsPref)units
++(NSArray<SDTide*>*)tidesForStationName:(NSString*)name withInterval:(long)interval forDays:(long)days withUnits:(SDTideUnitsPref)units
 {
-    NSMutableArray *tideCollection = [[NSMutableArray alloc] init];
-    
     NSDate *now = [NSDate date];
+    return [SDTideFactoryNew tidesForStationName:name withInterval:interval forDays:days withUnits:units fromDate:now];
+}
+
++(NSArray<SDTide*>*)tidesForStationName:(NSString *)name withInterval:(long)interval forDays:(long)days withUnits:(SDTideUnitsPref)units fromDate:(NSDate*)date {
+    NSMutableArray<SDTide*> *tideCollection = [[NSMutableArray alloc] init];
     
     for (int i=0; i < days; i++) {
-        NSDate *day = [now dateByAddingTimeInterval:i * SECONDS_PER_DAY];
+        NSDate *day = [date dateByAddingTimeInterval:i * SECONDS_PER_DAY];
         SDTide* tidy = [SDTideFactoryNew tideForStationName:name withInterval:interval fromDate:[day startOfDay] toDate:[day endOfDay] withUnits: units];
         [tideCollection addObject:tidy];
     }
     
-    NSArray *result = [NSArray arrayWithArray:tideCollection];
+    NSArray<SDTide*> *result = [NSArray arrayWithArray:tideCollection];
     return result;
 }
 
