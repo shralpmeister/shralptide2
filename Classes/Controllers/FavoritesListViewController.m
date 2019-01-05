@@ -44,7 +44,6 @@
     
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background-gradient"]];
     self.sectionHeaderView = [[NSBundle mainBundle] loadNibNamed:@"FavoritesHeaderView" owner:self options:nil][0];
-    self.tableView.tableFooterView = [[NSBundle mainBundle] loadNibNamed:@"FavoritesFooterVIew" owner:self options:nil][0];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:kSDApplicationActivatedNotification object:nil];
 }
 
@@ -85,7 +84,8 @@
     if (!success) {
         DLog(@"Unabled to persist selected station: %@",error);
     }
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.popoverPresentationController.delegate popoverPresentationControllerDidDismissPopover: self.popoverPresentationController];
+    [self dismissViewControllerAnimated:YES completion: nil];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -263,6 +263,11 @@
     NSArray *sortDescriptors = @[sortByName];
     
     return [countries sortedArrayUsingDescriptors:sortDescriptors];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return [[NSBundle mainBundle] loadNibNamed:@"FavoritesFooterView" owner:self options:nil][0];
 }
 
 @end

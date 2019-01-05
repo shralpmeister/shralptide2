@@ -10,6 +10,7 @@ import Foundation
 class CalendarViewCell: UICollectionViewCell, UICollectionViewDataSource {
     
     var tides: [ChartViewDatasource] = [ChartViewDatasource]()
+    @IBOutlet var collectionView: UICollectionView!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return tides.count
@@ -22,12 +23,15 @@ class CalendarViewCell: UICollectionViewCell, UICollectionViewDataSource {
         cell.chartView.hoursToPlot = 24;
         cell.chartView.height = 40
         cell.chartView.setNeedsDisplay()
-
-        //let format = DateFormatter()
-        //format.dateStyle = .short
-        //format.timeStyle = .none
-        //cell.dayLabel.text = format.string(from: tides[dayCellIndex].day)
+        
         cell.dayLabel.text = String(Calendar.current.component(.day, from: tides[dayCellIndex].day))
         return cell
+    }
+}
+
+extension CalendarViewCell: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = collectionView.superview!.frame.size.width / 7.1
+        return CGSize(width: width, height: width)
     }
 }
