@@ -23,7 +23,6 @@
 		DC29951E1DB16D4600AC80E8 /* AppStateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC29951D1DB16D4600AC80E8 /* AppStateData.swift */; };
 		DC2995271DB2D30700AC80E8 /* ConfigHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DC2995261DB2D30700AC80E8 /* ConfigHelper.m */; };
 		DC2995281DB2D30800AC80E8 /* ConfigHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DC2995261DB2D30700AC80E8 /* ConfigHelper.m */; };
-		DC32FFB40E88B3FD00AB78F2 /* ChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC32FFB30E88B3FD00AB78F2 /* ChartView.m */; };
 		DC32FFB70E88B40F00AB78F2 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC32FFB60E88B40F00AB78F2 /* ChartViewController.m */; };
 		DC3911B81918751000D28F8D /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC3911B71918751000D28F8D /* iAd.framework */; };
 		DC3E37041DCFA8C200F97536 /* ConfigHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E37031DCFA8C200F97536 /* ConfigHelper.swift */; };
@@ -31,6 +30,11 @@
 		DC4FBBE8178BCF3200C0CFEE /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC4FBBE7178BCF3200C0CFEE /* MainStoryboard.storyboard */; };
 		DC4FBBEB178C62EC00C0CFEE /* LandscapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4FBBEA178C62EC00C0CFEE /* LandscapeViewController.m */; };
 		DC51919B21CE0C4E0058A9A5 /* CalendarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC51919A21CE0C4E0058A9A5 /* CalendarViewCell.swift */; };
+		DC51919E21E16E830058A9A5 /* WatchChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7702BE1DA2D4F000B3C4F9 /* WatchChartView.swift */; };
+		DC5191A221E1703B0058A9A5 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5191A121E1703B0058A9A5 /* ChartView.swift */; };
+		DC5191A421E173930058A9A5 /* LabeledChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5191A321E173930058A9A5 /* LabeledChartView.swift */; };
+		DC5191A621E199820058A9A5 /* SunMoonChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5191A521E199820058A9A5 /* SunMoonChartView.swift */; };
+		DC5191A821E19D470058A9A5 /* InteractiveChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5191A721E19D470058A9A5 /* InteractiveChartView.swift */; };
 		DC59FDF3140752A7008FD0D2 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DC59FDF2140752A7008FD0D2 /* Settings.bundle */; };
 		DC608AA51812FE2E00FA9F33 /* UIImage+Mask.m in Sources */ = {isa = PBXBuildFile; fileRef = DC608AA41812FE2E00FA9F33 /* UIImage+Mask.m */; };
 		DC65261D134071EE00B67AE7 /* SDTideStationData.m in Sources */ = {isa = PBXBuildFile; fileRef = DC65261C134071EE00B67AE7 /* SDTideStationData.m */; };
@@ -47,7 +51,6 @@
 		DC65266B1350DDBE00B67AE7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC65266A1350DDBD00B67AE7 /* CoreLocation.framework */; };
 		DC6869051E28880900870F6E /* background-gradient@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC6869041E28880900870F6E /* background-gradient@3x.png */; };
 		DC6869071E288AAA00870F6E /* UIButtonBarListIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC6869061E288AAA00870F6E /* UIButtonBarListIcon@3x.png */; };
-		DC6869091E2AA16E00870F6E /* SunMoonChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6869081E2AA16E00870F6E /* SunMoonChartView.m */; };
 		DC6936851DCD6E6D0091A015 /* MissingSettingsModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6936841DCD6E6D0091A015 /* MissingSettingsModalController.swift */; };
 		DC7099B01E2327E60060691A /* SDBottomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7099AF1E2327E60060691A /* SDBottomViewController.m */; };
 		DC70BD0517F8B5ED00D5FF3A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC70BD0417F8B5ED00D5FF3A /* Images.xcassets */; };
@@ -114,14 +117,12 @@
 		DC7704091DA9783700B3C4F9 /* tide_db.c in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BF8F133E9DE800EA966A /* tide_db.c */; };
 		DC77040D1DA98A9400B3C4F9 /* Tidelibs-Swift.h in Headers */ = {isa = PBXBuildFile; fileRef = DC77040C1DA98A9400B3C4F9 /* Tidelibs-Swift.h */; };
 		DC8A827E189DB42F00792149 /* lightray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8A827D189DB42F00792149 /* lightray@2x.png */; };
-		DC8EAAC81812EA7C00C4BCFF /* LabelledChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC8EAAC71812EA7C00C4BCFF /* LabelledChartView.m */; };
 		DC9343671DC52E5A00FFF266 /* TideStationRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9343661DC52E5A00FFF266 /* TideStationRowController.swift */; };
 		DC9343691DC52E7200FFF266 /* TideChartRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9343681DC52E7200FFF266 /* TideChartRowController.swift */; };
 		DC93436B1DC52E8300FFF266 /* TideTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC93436A1DC52E8300FFF266 /* TideTableRowController.swift */; };
 		DC93436D1DC54D6500FFF266 /* TideHeightRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC93436C1DC54D6500FFF266 /* TideHeightRowController.swift */; };
 		DC9BDF301CFD432400950F39 /* StateListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9BDF2F1CFD432400950F39 /* StateListView.xib */; };
 		DC9BDF321CFD435E00950F39 /* StationListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9BDF311CFD435E00950F39 /* StationListView.xib */; };
-		DC9D39A218256BE200BC86AD /* InteractiveChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9D39A118256BE200BC86AD /* InteractiveChartView.m */; };
 		DC9D39A61828B66900BC86AD /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9D39A51828B66900BC86AD /* Constants.m */; };
 		DCA3BEE8133E4DB500EA966A /* SDTideFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BEE6133E4DB500EA966A /* SDTideFactory.mm */; };
 		DCA3BEF8133E4F1F00EA966A /* TideStationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BEF7133E4F1F00EA966A /* TideStationAnnotation.m */; };
@@ -167,7 +168,7 @@
 		DCA3BF91133E9DE800EA966A /* tide_db.c in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BF8F133E9DE800EA966A /* tide_db.c */; };
 		DCA7317D1E2191C700CA1400 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7317C1E2191C700CA1400 /* WatchSessionManager.swift */; };
 		DCA7707F182EFB1E00439850 /* FavoritesHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCA7707E182EFB1E00439850 /* FavoritesHeaderView.xib */; };
-		DCA7708418305F0A00439850 /* FavoritesFooterVIew.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCA7708318305F0A00439850 /* FavoritesFooterVIew.xib */; };
+		DCA7708418305F0A00439850 /* FavoritesFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCA7708318305F0A00439850 /* FavoritesFooterView.xib */; };
 		DCA8F6F121A0C07B00B5ECE8 /* iPadMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCA8F6F021A0C07B00B5ECE8 /* iPadMain.storyboard */; };
 		DCA9379B0EE1B3910050113B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA9379A0EE1B3910050113B /* CoreGraphics.framework */; };
 		DCA9D2FE18820ABB0037DBAB /* datastore.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DCA9D2FD18820ABB0037DBAB /* datastore.sqlite */; };
@@ -178,10 +179,12 @@
 		DCADEA4521A7CD1700A249AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCADEA4421A7CD1700A249AF /* LaunchScreen.storyboard */; };
 		DCB51F8E1867A82A00BF9082 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCB51F8D1867A82A00BF9082 /* SpriteKit.framework */; };
 		DCB7F09E21695CEE0056CA7D /* CLKTextProvider+MultiColorPatch.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB7F09D21695CEE0056CA7D /* CLKTextProvider+MultiColorPatch.m */; };
-		DCC8EB0D1DBEA7B300D31C68 /* ChartViewSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7702BE1DA2D4F000B3C4F9 /* ChartViewSwift.swift */; };
 		DCC8EB111DC0414F00D31C68 /* String+TideFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8EB101DC0414F00D31C68 /* String+TideFormat.swift */; };
 		DCC8EB151DC19F6A00D31C68 /* gallery.ckcomplication in Resources */ = {isa = PBXBuildFile; fileRef = DCC8EB141DC19F6A00D31C68 /* gallery.ckcomplication */; };
 		DCDDF5D221612E2400D505D5 /* SDTide+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDDF5D121612E2400D505D5 /* SDTide+Events.swift */; };
+		DCDE6CB221F40419000B2ACF /* WatchChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7702BE1DA2D4F000B3C4F9 /* WatchChartView.swift */; };
+		DCDE6CB421F4F7B8000B2ACF /* ChartError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDE6CB321F4F7B8000B2ACF /* ChartError.swift */; };
+		DCDE6CB521F4F7B8000B2ACF /* ChartError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDE6CB321F4F7B8000B2ACF /* ChartError.swift */; };
 		DCE745CB1DC967AC008BF66C /* StationListInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE745CA1DC967AC008BF66C /* StationListInterfaceController.swift */; };
 		DCE897DB0EEE3CAE00BF2357 /* CursorView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE897DA0EEE3CAE00BF2357 /* CursorView.m */; };
 		DCE898A20EEE514900BF2357 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCE898A10EEE514900BF2357 /* QuartzCore.framework */; };
@@ -310,8 +313,6 @@
 		DC29951D1DB16D4600AC80E8 /* AppStateData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStateData.swift; sourceTree = "<group>"; };
 		DC2995261DB2D30700AC80E8 /* ConfigHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfigHelper.m; path = /Users/mparlee/Development/Cocoa/ShralpTide2/Classes/Controllers/ConfigHelper.m; sourceTree = "<absolute>"; };
 		DC2995291DB2D32800AC80E8 /* ConfigHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ConfigHelper.h; path = Controllers/ConfigHelper.h; sourceTree = "<group>"; };
-		DC32FFB20E88B3FD00AB78F2 /* ChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChartView.h; path = Classes/Views/ChartView.h; sourceTree = "<group>"; };
-		DC32FFB30E88B3FD00AB78F2 /* ChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChartView.m; path = Classes/Views/ChartView.m; sourceTree = "<group>"; };
 		DC32FFB50E88B40F00AB78F2 /* ChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChartViewController.h; path = Classes/Controllers/ChartViewController.h; sourceTree = "<group>"; };
 		DC32FFB60E88B40F00AB78F2 /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChartViewController.m; path = Classes/Controllers/ChartViewController.m; sourceTree = "<group>"; };
 		DC3911B71918751000D28F8D /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
@@ -321,6 +322,10 @@
 		DC4FBBE9178C62EC00C0CFEE /* LandscapeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LandscapeViewController.h; path = Classes/Controllers/LandscapeViewController.h; sourceTree = "<group>"; };
 		DC4FBBEA178C62EC00C0CFEE /* LandscapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LandscapeViewController.m; path = Classes/Controllers/LandscapeViewController.m; sourceTree = "<group>"; };
 		DC51919A21CE0C4E0058A9A5 /* CalendarViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewCell.swift; sourceTree = "<group>"; };
+		DC5191A121E1703B0058A9A5 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChartView.swift; path = /Users/mparlee/Development/Cocoa/ShralpTide2/Classes/Views/ChartView.swift; sourceTree = "<absolute>"; };
+		DC5191A321E173930058A9A5 /* LabeledChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LabeledChartView.swift; path = Classes/Views/LabeledChartView.swift; sourceTree = "<group>"; };
+		DC5191A521E199820058A9A5 /* SunMoonChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SunMoonChartView.swift; path = Classes/Views/SunMoonChartView.swift; sourceTree = "<group>"; };
+		DC5191A721E19D470058A9A5 /* InteractiveChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InteractiveChartView.swift; path = Classes/Views/InteractiveChartView.swift; sourceTree = "<group>"; };
 		DC59FDF2140752A7008FD0D2 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		DC608AA31812FE2E00FA9F33 /* UIImage+Mask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Mask.h"; sourceTree = "<group>"; };
 		DC608AA41812FE2E00FA9F33 /* UIImage+Mask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Mask.m"; sourceTree = "<group>"; };
@@ -348,8 +353,6 @@
 		DC65266A1350DDBD00B67AE7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		DC6869041E28880900870F6E /* background-gradient@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-gradient@3x.png"; sourceTree = "<group>"; };
 		DC6869061E288AAA00870F6E /* UIButtonBarListIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIButtonBarListIcon@3x.png"; sourceTree = "<group>"; };
-		DC6869081E2AA16E00870F6E /* SunMoonChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SunMoonChartView.m; sourceTree = "<group>"; };
-		DC68690A1E2AA17900870F6E /* SunMoonChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunMoonChartView.h; sourceTree = "<group>"; };
 		DC6936841DCD6E6D0091A015 /* MissingSettingsModalController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingSettingsModalController.swift; sourceTree = "<group>"; };
 		DC7099AF1E2327E60060691A /* SDBottomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBottomViewController.m; sourceTree = "<group>"; };
 		DC7099B11E2327F30060691A /* SDBottomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBottomViewController.h; sourceTree = "<group>"; };
@@ -365,7 +368,7 @@
 		DC7702AF1DA2CBE000B3C4F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC7702B11DA2CBE000B3C4F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC7702BD1DA2D4F000B3C4F9 /* ShralpTide2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShralpTide2-Bridging-Header.h"; sourceTree = "<group>"; };
-		DC7702BE1DA2D4F000B3C4F9 /* ChartViewSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartViewSwift.swift; path = ../ChartViewSwift.swift; sourceTree = "<group>"; };
+		DC7702BE1DA2D4F000B3C4F9 /* WatchChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchChartView.swift; sourceTree = "<group>"; };
 		DC7702E71DA4042600B3C4F9 /* Date+Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Date+Day.swift"; path = "../Categories/Date+Day.swift"; sourceTree = "<group>"; };
 		DC7702ED1DA40A5200B3C4F9 /* ShralpTide2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShralpTide2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC7702EF1DA40A5300B3C4F9 /* DateExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionTests.swift; sourceTree = "<group>"; };
@@ -381,16 +384,12 @@
 		DC77040C1DA98A9400B3C4F9 /* Tidelibs-Swift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Tidelibs-Swift.h"; path = "../tidelibs/Tidelibs-Swift.h"; sourceTree = "<group>"; };
 		DC77040E1DAC718500B3C4F9 /* ShralpTide2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShralpTide2.entitlements; sourceTree = "<group>"; };
 		DC8A827D189DB42F00792149 /* lightray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lightray@2x.png"; sourceTree = "<group>"; };
-		DC8EAAC61812EA7C00C4BCFF /* LabelledChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelledChartView.h; sourceTree = "<group>"; };
-		DC8EAAC71812EA7C00C4BCFF /* LabelledChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelledChartView.m; sourceTree = "<group>"; };
 		DC9343661DC52E5A00FFF266 /* TideStationRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TideStationRowController.swift; sourceTree = "<group>"; };
 		DC9343681DC52E7200FFF266 /* TideChartRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TideChartRowController.swift; sourceTree = "<group>"; };
 		DC93436A1DC52E8300FFF266 /* TideTableRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TideTableRowController.swift; sourceTree = "<group>"; };
 		DC93436C1DC54D6500FFF266 /* TideHeightRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TideHeightRowController.swift; sourceTree = "<group>"; };
 		DC9BDF2F1CFD432400950F39 /* StateListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StateListView.xib; path = Resources/StateListView.xib; sourceTree = "<group>"; };
 		DC9BDF311CFD435E00950F39 /* StationListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StationListView.xib; path = Resources/StationListView.xib; sourceTree = "<group>"; };
-		DC9D39A018256BE200BC86AD /* InteractiveChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractiveChartView.h; sourceTree = "<group>"; };
-		DC9D39A118256BE200BC86AD /* InteractiveChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractiveChartView.m; sourceTree = "<group>"; };
 		DC9D39A41828B66900BC86AD /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DC9D39A51828B66900BC86AD /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		DCA3BEE6133E4DB500EA966A /* SDTideFactory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SDTideFactory.mm; path = objctidelib/SDTideFactory.mm; sourceTree = "<group>"; };
@@ -484,7 +483,7 @@
 		DCA3BF8F133E9DE800EA966A /* tide_db.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tide_db.c; sourceTree = "<group>"; };
 		DCA7317C1E2191C700CA1400 /* WatchSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		DCA7707E182EFB1E00439850 /* FavoritesHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesHeaderView.xib; sourceTree = "<group>"; };
-		DCA7708318305F0A00439850 /* FavoritesFooterVIew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesFooterVIew.xib; sourceTree = "<group>"; };
+		DCA7708318305F0A00439850 /* FavoritesFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesFooterView.xib; sourceTree = "<group>"; };
 		DCA8F6F021A0C07B00B5ECE8 /* iPadMain.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = iPadMain.storyboard; sourceTree = "<group>"; };
 		DCA9379A0EE1B3910050113B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DCA9D2FD18820ABB0037DBAB /* datastore.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = datastore.sqlite; sourceTree = "<group>"; };
@@ -501,6 +500,7 @@
 		DCCAD9310F1DD25E00141002 /* DeveloperSettings.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DeveloperSettings.xcconfig; sourceTree = "<group>"; };
 		DCCC65D219CE43A300E92D62 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		DCDDF5D121612E2400D505D5 /* SDTide+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SDTide+Events.swift"; sourceTree = "<group>"; };
+		DCDE6CB321F4F7B8000B2ACF /* ChartError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartError.swift; sourceTree = "<group>"; };
 		DCE745CA1DC967AC008BF66C /* StationListInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationListInterfaceController.swift; sourceTree = "<group>"; };
 		DCE897D90EEE3CAE00BF2357 /* CursorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CursorView.h; path = Classes/Views/CursorView.h; sourceTree = "<group>"; };
 		DCE897DA0EEE3CAE00BF2357 /* CursorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CursorView.m; path = Classes/Views/CursorView.m; sourceTree = "<group>"; };
@@ -685,7 +685,7 @@
 				DC59FDF2140752A7008FD0D2 /* Settings.bundle */,
 				DC4FBBE7178BCF3200C0CFEE /* MainStoryboard.storyboard */,
 				DCA7707E182EFB1E00439850 /* FavoritesHeaderView.xib */,
-				DCA7708318305F0A00439850 /* FavoritesFooterVIew.xib */,
+				DCA7708318305F0A00439850 /* FavoritesFooterView.xib */,
 				DCA8F6F021A0C07B00B5ECE8 /* iPadMain.storyboard */,
 				DCADEA4421A7CD1700A249AF /* LaunchScreen.storyboard */,
 			);
@@ -713,10 +713,10 @@
 		DC32FFA90E88B04800AB78F2 /* ChartView */ = {
 			isa = PBXGroup;
 			children = (
+				DC5191A121E1703B0058A9A5 /* ChartView.swift */,
+				DC5191A321E173930058A9A5 /* LabeledChartView.swift */,
 				DC4FBBE9178C62EC00C0CFEE /* LandscapeViewController.h */,
 				DC4FBBEA178C62EC00C0CFEE /* LandscapeViewController.m */,
-				DC32FFB20E88B3FD00AB78F2 /* ChartView.h */,
-				DC32FFB30E88B3FD00AB78F2 /* ChartView.m */,
 				DC32FFB50E88B40F00AB78F2 /* ChartViewController.h */,
 				DC32FFB60E88B40F00AB78F2 /* ChartViewController.m */,
 				DC25A1FA0EEA575D0038078B /* ChartViewDatasource.h */,
@@ -724,12 +724,9 @@
 				DCE897DA0EEE3CAE00BF2357 /* CursorView.m */,
 				DC29826F102A784B009259BA /* ChartScrollView.h */,
 				DC0C0DD5105C1D8F0080297E /* ChartScrollView.m */,
-				DC8EAAC61812EA7C00C4BCFF /* LabelledChartView.h */,
-				DC8EAAC71812EA7C00C4BCFF /* LabelledChartView.m */,
-				DC68690A1E2AA17900870F6E /* SunMoonChartView.h */,
-				DC6869081E2AA16E00870F6E /* SunMoonChartView.m */,
-				DC9D39A018256BE200BC86AD /* InteractiveChartView.h */,
-				DC9D39A118256BE200BC86AD /* InteractiveChartView.m */,
+				DC5191A521E199820058A9A5 /* SunMoonChartView.swift */,
+				DC5191A721E19D470058A9A5 /* InteractiveChartView.swift */,
+				DCDE6CB321F4F7B8000B2ACF /* ChartError.swift */,
 			);
 			name = ChartView;
 			sourceTree = "<group>";
@@ -764,8 +761,8 @@
 				DCE745CA1DC967AC008BF66C /* StationListInterfaceController.swift */,
 				DC7702AB1DA2CBE000B3C4F9 /* ExtensionDelegate.swift */,
 				DC7702AD1DA2CBE000B3C4F9 /* ComplicationController.swift */,
+				DC7702BE1DA2D4F000B3C4F9 /* WatchChartView.swift */,
 				DC093E921DB6C1C700720289 /* WatchSessionManager.swift */,
-				DC7702BE1DA2D4F000B3C4F9 /* ChartViewSwift.swift */,
 				DC9343661DC52E5A00FFF266 /* TideStationRowController.swift */,
 				DC9343681DC52E7200FFF266 /* TideChartRowController.swift */,
 				DC93436A1DC52E8300FFF266 /* TideTableRowController.swift */,
@@ -1148,7 +1145,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCA7708418305F0A00439850 /* FavoritesFooterVIew.xib in Resources */,
+				DCA7708418305F0A00439850 /* FavoritesFooterView.xib in Resources */,
 				DC2563FF18D63588007C41E6 /* UIButtonBarListIcon@2x.png in Resources */,
 				DC6869071E288AAA00870F6E /* UIButtonBarListIcon@3x.png in Resources */,
 				DC493E5D0F206C8B0087B341 /* COPYING in Resources */,
@@ -1341,7 +1338,6 @@
 				DCF5B8AB1DB456C4008C0DC8 /* shralptide.xcdatamodeld in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* ShralpTideAppDelegate.m in Sources */,
-				DC32FFB40E88B3FD00AB78F2 /* ChartView.m in Sources */,
 				DC32FFB70E88B40F00AB78F2 /* ChartViewController.m in Sources */,
 				DCE897DB0EEE3CAE00BF2357 /* CursorView.m in Sources */,
 				DC0C0DD6105C1D8F0080297E /* ChartScrollView.m in Sources */,
@@ -1350,6 +1346,7 @@
 				DCA3BEE8133E4DB500EA966A /* SDTideFactory.mm in Sources */,
 				DCA3BEF8133E4F1F00EA966A /* TideStationAnnotation.m in Sources */,
 				DC296E8D21C5BB2A00FF73DE /* SIngleDayTideModel.swift in Sources */,
+				DC5191A221E1703B0058A9A5 /* ChartView.swift in Sources */,
 				DCA3BF49133E4F8F00EA966A /* Colors.cc in Sources */,
 				DCA3BF4A133E4F8F00EA966A /* Interval.cc in Sources */,
 				DCA3BF4B133E4F8F00EA966A /* Amplitude.cc in Sources */,
@@ -1372,19 +1369,19 @@
 				DCA3BF55133E4F8F00EA966A /* HarmonicsPath.cc in Sources */,
 				DCA3BF56133E4F8F00EA966A /* MetaField.cc in Sources */,
 				DCA3BF57133E4F8F00EA966A /* Nullable.cc in Sources */,
-				DC6869091E2AA16E00870F6E /* SunMoonChartView.m in Sources */,
 				DCA3BF58133E4F8F00EA966A /* NullableInterval.cc in Sources */,
 				DCA3BF59133E4F8F00EA966A /* NullablePredictionValue.cc in Sources */,
 				DCA3BF5A133E4F8F00EA966A /* Offsets.cc in Sources */,
 				DCA3BF5B133E4F8F00EA966A /* PredictionValue.cc in Sources */,
 				DCA3BF5C133E4F8F00EA966A /* Settings.cc in Sources */,
 				DCA3BF5D133E4F8F00EA966A /* Skycal.cc in Sources */,
+				DC51919E21E16E830058A9A5 /* WatchChartView.swift in Sources */,
 				DCF6B5CA21AB4E4F004F1044 /* LocationHeaderView.swift in Sources */,
+				DC5191A421E173930058A9A5 /* LabeledChartView.swift in Sources */,
 				DC29951E1DB16D4600AC80E8 /* AppStateData.swift in Sources */,
 				DCA3BF5E133E4F8F00EA966A /* Speed.cc in Sources */,
 				DCA3BF5F133E4F8F00EA966A /* Station.cc in Sources */,
 				DCA3BF60133E4F8F00EA966A /* StationIndex.cc in Sources */,
-				DC8EAAC81812EA7C00C4BCFF /* LabelledChartView.m in Sources */,
 				DCF4C24421A0C94D00BB379B /* CurrentTideViewController.swift in Sources */,
 				DCA3BF61133E4F8F00EA966A /* StationRef.cc in Sources */,
 				DCA3BF62133E4F8F00EA966A /* SubordinateStation.cc in Sources */,
@@ -1394,8 +1391,8 @@
 				DCA3BF66133E4F8F00EA966A /* Timestamp.cc in Sources */,
 				DCA3BF67133E4F8F00EA966A /* Units.cc in Sources */,
 				DCA3BF68133E4F8F00EA966A /* Year.cc in Sources */,
+				DCDE6CB421F4F7B8000B2ACF /* ChartError.swift in Sources */,
 				DCA3BF69133E4F8F00EA966A /* ZoneIndex.cc in Sources */,
-				DC9D39A218256BE200BC86AD /* InteractiveChartView.m in Sources */,
 				DCF6B5CE21B48419004F1044 /* CalendarTideFactory.swift in Sources */,
 				DC7099B01E2327E60060691A /* SDBottomViewController.m in Sources */,
 				DCA3BF86133E9D6600EA966A /* SDTideEvent.m in Sources */,
@@ -1405,6 +1402,7 @@
 				DCA3BF91133E9DE800EA966A /* tide_db.c in Sources */,
 				DC016068133EB6990065CBAA /* SDTide.m in Sources */,
 				DC65261D134071EE00B67AE7 /* SDTideStationData.m in Sources */,
+				DC5191A821E19D470058A9A5 /* InteractiveChartView.swift in Sources */,
 				DC6526211347981700B67AE7 /* NSDate+Day.m in Sources */,
 				DC608AA51812FE2E00FA9F33 /* UIImage+Mask.m in Sources */,
 				DC6526441350C2DA00B67AE7 /* StationMapController.m in Sources */,
@@ -1415,6 +1413,7 @@
 				DC6526471350C2DA00B67AE7 /* StateListController.m in Sources */,
 				DC7702E81DA4042600B3C4F9 /* Date+Day.swift in Sources */,
 				DC6526481350C2DA00B67AE7 /* StationListController.m in Sources */,
+				DC5191A621E199820058A9A5 /* SunMoonChartView.swift in Sources */,
 				DC6526491350C2DA00B67AE7 /* PickerTableCell.m in Sources */,
 				DC65264E1350C2F600B67AE7 /* SelectStationNavigationController.m in Sources */,
 				DC65264F1350C2F600B67AE7 /* TideStationTableViewCell.m in Sources */,
@@ -1426,8 +1425,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCDE6CB221F40419000B2ACF /* WatchChartView.swift in Sources */,
+				DCDE6CB521F4F7B8000B2ACF /* ChartError.swift in Sources */,
 				DC9343671DC52E5A00FFF266 /* TideStationRowController.swift in Sources */,
-				DCC8EB0D1DBEA7B300D31C68 /* ChartViewSwift.swift in Sources */,
 				DC93436D1DC54D6500FFF266 /* TideHeightRowController.swift in Sources */,
 				DCB7F09E21695CEE0056CA7D /* CLKTextProvider+MultiColorPatch.m in Sources */,
 				DC9343691DC52E7200FFF266 /* TideChartRowController.swift in Sources */,
