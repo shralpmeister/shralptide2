@@ -44,18 +44,18 @@ typedef NS_ENUM(NSInteger, SDTideStateRiseFall) {
 @property (NS_NONATOMIC_IOSONLY, readonly) CGPoint nearestDataPointToCurrentTime;
 @property (readonly) int nextEventIndex;
 @property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray<SDTideEvent*> *events; // all tide events (only tide events)
-- (NSArray*)eventsForDay:(NSDate*)date;
-- (NSArray*)intervalsForDay:(NSDate*)date;
+- (NSArray<SDTideEvent*>*)eventsForDay:(NSDate*)date;
+- (NSArray<SDTideInterval*>*)intervalsForDay:(NSDate*)date;
 
-- (NSDictionary*)sunriseSunsetEventsForDay:(NSDate*)date;
-- (NSDictionary*)moonriseMoonsetEventsForDay:(NSDate*)date;
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *sunriseSunsetEvents;
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *moonriseMoonsetEvents;
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *sunAndMoonEvents;
+- (NSDictionary<NSString*, SDTideEvent*>*)sunriseSunsetEventsForDay:(NSDate*)date;
+- (NSDictionary<NSString*, SDTideEvent*>*)moonriseMoonsetEventsForDay:(NSDate*)date;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray<SDTideEvent*> *sunriseSunsetEvents;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray<SDTideEvent*> *moonriseMoonsetEvents;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray<SDTideEvent*> *sunAndMoonEvents;
 
 @property (NS_NONATOMIC_IOSONLY, readonly) SDTideStateRiseFall tideDirection;
 @property (NS_NONATOMIC_IOSONLY, readonly) NSInteger currentTimeInMinutes;
-- (NSArray*)intervalsFromDate:(NSDate*)fromDate forHours:(NSInteger)hours;
+- (NSArray<SDTideInterval*>*)intervalsFromDate:(NSDate*)fromDate forHours:(NSInteger)hours;
 + (SDTide*)tideByCombiningTides:(NSArray*)tides;
 
 @property (NS_NONATOMIC_IOSONLY, readonly, copy) NSNumber *highestTide;
@@ -65,8 +65,8 @@ typedef NS_ENUM(NSInteger, SDTideStateRiseFall) {
 
 @property (nonatomic,strong) NSDate *startTime;
 @property (nonatomic,strong) NSDate *stopTime;
-@property (nonatomic,strong) NSArray *allEvents;
-@property (nonatomic,strong) NSArray *allIntervals;
+@property (nonatomic,strong) NSArray<SDTideEvent*> *allEvents;
+@property (nonatomic,strong) NSArray<SDTideInterval*> *allIntervals;
 @property (nonatomic,copy) NSString *stationName;
 @property (nonatomic,copy) NSString *unitLong;
 @property (nonatomic,copy) NSString *unitShort;

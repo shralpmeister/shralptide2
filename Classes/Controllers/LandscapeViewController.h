@@ -5,9 +5,8 @@
 //  Created by Michael Parlee on 7/9/13.
 //
 //
-
+#import "ShralpTide2-Swift.h"
 #import <UIKit/UIKit.h>
-#import "InteractiveChartView.h"
 #import "SDBottomViewController.h"
 #import "ChartScrollView.h"
 

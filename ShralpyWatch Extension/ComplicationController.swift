@@ -82,7 +82,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         let chartHeight = WKInterfaceDevice.current().screenBounds.width < UIConst.SCREEN_WIDTH_44MM ? UIConst.CHART_HEIGHT_40MM : UIConst.CHART_HEIGHT_44MM
         let template = CLKComplicationTemplateGraphicCircularImage()
         let startDate = Date().addingTimeInterval(TimeInterval(-7.hrs))
-        let chartView = ChartViewSwift(withTide: tide, height: chartHeight, hours: 14, startDate: startDate, page: 0)
+        let chartView = WatchChartView(withTide: tide, height: chartHeight, hours: 14, startDate: startDate, page: 0)
         do {
             let image = try chartView.drawImage(bounds:CGRect(x: 0, y: 0, width: chartHeight, height: chartHeight))
             template.imageProvider = CLKFullColorImageProvider(fullColorImage: image)
@@ -111,7 +111,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         }
         
         graphTemplate.imageProvider = CLKFullColorImageProvider()
-        let chartView = ChartViewSwift(withTide: tide, height: height, hours: 24, startDate: Date().startOfDay(), page: 1)
+        let chartView = WatchChartView(withTide: tide, height: height, hours: 24, startDate: Date().startOfDay(), page: 1)
         do {
             try graphTemplate.imageProvider.image = chartView.drawImage(bounds:CGRect(x: 0, y: 0, width: width, height: height))
         } catch {

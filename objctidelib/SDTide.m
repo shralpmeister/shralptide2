@@ -133,7 +133,7 @@
     return [self.allIntervals valueForKeyPath:@"@min.height"];
 }
 
--(NSDictionary*)sunriseSunsetEventsForDay:(NSDate*)date
+-(NSDictionary<NSString*, SDTideEvent*>*)sunriseSunsetEventsForDay:(NSDate*)date
 {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     NSPredicate *sunEvents = [NSPredicate predicateWithFormat:@"(eventType == %d OR eventType == %d) AND eventTime BETWEEN %@", sunrise, sunset, @[[date startOfDay], [date endOfDay]]];
@@ -148,11 +148,11 @@
     return [NSDictionary dictionaryWithDictionary:result];
 }
 
--(NSDictionary*)moonriseMoonsetEventsForDay:(NSDate*)date
+-(NSDictionary<NSString*, SDTideEvent*>*)moonriseMoonsetEventsForDay:(NSDate*)date
 {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     NSPredicate *sunEvents = [NSPredicate predicateWithFormat:@"(eventType == %d OR eventType == %d) AND eventTime BETWEEN %@", moonrise, moonset, @[[date startOfDay], [date endOfDay]]];
-    NSArray* events = [self.allEvents filteredArrayUsingPredicate:sunEvents];
+    NSArray<SDTideEvent*>* events = [self.allEvents filteredArrayUsingPredicate:sunEvents];
     for (SDTideEvent* event in events) {
         if (event.eventType == moonrise) {
             result[@"moonrise"] = event;
@@ -163,37 +163,37 @@
     return [NSDictionary dictionaryWithDictionary:result];
 }
 
--(NSArray*)sunriseSunsetEvents
+-(NSArray<SDTideEvent*>*)sunriseSunsetEvents
 {
     NSPredicate *sunEvents = [NSPredicate predicateWithFormat:@"eventType == %d OR eventType == %d", sunrise, sunset];
     return [self.allEvents filteredArrayUsingPredicate:sunEvents];
 }
 
--(NSArray*)moonriseMoonsetEvents
+-(NSArray<SDTideEvent*>*)moonriseMoonsetEvents
 {
     NSPredicate *sunEvents = [NSPredicate predicateWithFormat:@"eventType == %d OR eventType == %d", moonrise, moonset];
     return [self.allEvents filteredArrayUsingPredicate:sunEvents];
 }
 
--(NSArray*)sunAndMoonEvents
+-(NSArray<SDTideEvent*>*)sunAndMoonEvents
 {
     NSPredicate *events = [NSPredicate predicateWithFormat:@"eventType in %@", @[@(moonrise), @(moonset), @(sunrise), @(sunset)]];
     return [self.allEvents filteredArrayUsingPredicate:events];
 }
 
--(NSArray*)eventsForDay:(NSDate*)date
+-(NSArray<SDTideEvent*>*)eventsForDay:(NSDate*)date
 {
     NSPredicate *daysEventsOnly = [NSPredicate predicateWithFormat:@"eventTime BETWEEN %@",@[[date startOfDay], [date endOfDay]]];
     return [[self events] filteredArrayUsingPredicate:daysEventsOnly];
 }
 
--(NSArray*)intervalsForDay:(NSDate*)date
+-(NSArray<SDTideInterval*>*)intervalsForDay:(NSDate*)date
 {
     NSPredicate *daysIntervalsOnly = [NSPredicate predicateWithFormat:@"time BETWEEN %@",@[[date startOfDay], [date endOfDay]]];
     return [self.allIntervals filteredArrayUsingPredicate:daysIntervalsOnly];
 }
 
-- (NSArray*)intervalsFromDate:(NSDate*)fromDate forHours:(NSInteger)hours
+- (NSArray<SDTideInterval*>*)intervalsFromDate:(NSDate*)fromDate forHours:(NSInteger)hours
 {
     NSInteger nearestFromInterval = [NSDate findNearestInterval:[fromDate timeInMinutesSinceMidnight]];
     NSDate *fromIntervalDate = [[fromDate startOfDay] dateByAddingTimeInterval:nearestFromInterval * 60];

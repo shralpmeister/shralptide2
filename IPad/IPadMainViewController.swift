@@ -125,16 +125,17 @@ extension IPadMainViewController: ChartViewDatasource {
 }
 
 extension IPadMainViewController: InteractiveChartViewDelegate {
-    func interactionsEnded() {
+    
+    func display(height: CGFloat, time: NSDate, units: String) {
         UIView.beginAnimations("displayHeightAnimation", context: nil)
-        self.heightView.alpha = 0.0;
+        self.heightView.alpha = 1.0
+        self.heightLabel.text = String(format: "%0.2f %@ @ %@", height, units, DateFormatter.localizedString(from: time as Date, dateStyle: .none, timeStyle: .short))
         UIView.commitAnimations()
     }
     
-    func displayHeight(_ height: CGFloat, atTime time: Date!, withUnitString units: String!) {
+    func interactionsEnded() {
         UIView.beginAnimations("displayHeightAnimation", context: nil)
-        self.heightView.alpha = 1.0
-        self.heightLabel.text = String(format: "%0.2f %@ @ %@", height, units, DateFormatter.localizedString(from: time, dateStyle: .none, timeStyle: .short))
+        self.heightView.alpha = 0.0;
         UIView.commitAnimations()
     }
 }

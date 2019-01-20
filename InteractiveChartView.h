@@ -6,7 +6,7 @@
 //
 //
 
-#import "LabelledChartView.h"
+#import <ShralpTide2-Swift.h>
 
 @protocol InteractiveChartViewDelegate <NSObject>
 

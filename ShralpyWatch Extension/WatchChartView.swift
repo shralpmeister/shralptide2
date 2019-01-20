@@ -9,12 +9,7 @@
 import Foundation
 import UIKit
 
-enum ChartError: Error {
-    case noTideData
-    case unableToGetImageFromContext
-}
-
-class ChartViewSwift {
+class WatchChartView {
     
     static let MinutesPerHour = 60
     static let SecondsPerMinute = 60
@@ -45,7 +40,7 @@ class ChartViewSwift {
     }
     
     fileprivate func endTime() -> Date {
-        return Date(timeIntervalSince1970: self.startDate.timeIntervalSince1970 + Double(self.hoursToPlot) * Double(ChartViewSwift.MinutesPerHour * ChartViewSwift.SecondsPerMinute))
+        return Date(timeIntervalSince1970: self.startDate.timeIntervalSince1970 + Double(self.hoursToPlot) * Double(WatchChartView.MinutesPerHour * WatchChartView.SecondsPerMinute))
     }
     
     fileprivate func pairRiseAndSetEvents(_ events:[SDTideEvent], riseEventType:SDTideState, setEventType:SDTideState) -> Array<(Date,Date)> {
@@ -86,11 +81,11 @@ class ChartViewSwift {
     }
     
     fileprivate func findLowestTideValue(_ tide:SDTide) -> CGFloat {
-        return CGFloat((tide.allIntervals as! Array<SDTideInterval>).sorted( by: { $0.height < $1.height } )[0].height)
+        return CGFloat((tide.allIntervals).sorted( by: { $0.height < $1.height } )[0].height)
     }
     
     fileprivate func findHighestTideValue(_ tide:SDTide) -> CGFloat {
-        return CGFloat((tide.allIntervals as! Array<SDTideInterval>).sorted( by: { $0.height > $1.height } )[0].height)
+        return CGFloat((tide.allIntervals).sorted( by: { $0.height > $1.height } )[0].height)
     }
     
     func drawImage(bounds:CGRect) throws -> UIImage {
@@ -124,7 +119,7 @@ class ChartViewSwift {
         let yoffset:CGFloat = chartBottom - ymin * yratio
         
         let xmin:Int = 0
-        let xmax:Int = ChartViewSwift.MinutesPerHour * hoursToPlot
+        let xmax:Int = WatchChartView.MinutesPerHour * hoursToPlot
         
         let xratio:CGFloat = CGFloat(bounds.size.width) / CGFloat(xmax)
         
@@ -140,8 +135,8 @@ class ChartViewSwift {
         dayColor.setStroke()
         
         for (rise,set) in sunPairs {
-            let sunriseMinutes = Int(rise.timeIntervalSince1970 - baseSeconds) / ChartViewSwift.SecondsPerMinute
-            let sunsetMinutes = Int(set.timeIntervalSince1970 - baseSeconds) / ChartViewSwift.SecondsPerMinute
+            let sunriseMinutes = Int(rise.timeIntervalSince1970 - baseSeconds) / WatchChartView.SecondsPerMinute
+            let sunsetMinutes = Int(set.timeIntervalSince1970 - baseSeconds) / WatchChartView.SecondsPerMinute
             context.addPath(CGPath(rect:CGRect(x:CGFloat(sunriseMinutes) * xratio, y:0, width:CGFloat(sunsetMinutes) * xratio - CGFloat(sunriseMinutes) * xratio, height:CGFloat(height)), transform:nil))
             context.fillPath()
         }
@@ -150,8 +145,8 @@ class ChartViewSwift {
         moonColor.setStroke()
         moonColor.setFill()
         for (rise,set) in moonPairs {
-            let moonriseMinutes = Int(rise.timeIntervalSince1970 - baseSeconds) / ChartViewSwift.SecondsPerMinute
-            let moonsetMinutes = Int(set.timeIntervalSince1970 - baseSeconds) / ChartViewSwift.SecondsPerMinute
+            let moonriseMinutes = Int(rise.timeIntervalSince1970 - baseSeconds) / WatchChartView.SecondsPerMinute
+            let moonsetMinutes = Int(set.timeIntervalSince1970 - baseSeconds) / WatchChartView.SecondsPerMinute
             context.addPath(CGPath(rect:CGRect(x:CGFloat(moonriseMinutes) * xratio, y:0, width:CGFloat(moonsetMinutes) * xratio - CGFloat(moonriseMinutes) * xratio, height:CGFloat(height)), transform:nil))
             context.fillPath()
         }
@@ -159,7 +154,7 @@ class ChartViewSwift {
         //draws the tide level curve
         let tidePath = UIBezierPath()
         for tidePoint:SDTideInterval in intervalsForDay {
-            let minute:Int = Int(tidePoint.time.timeIntervalSince1970 - baseSeconds) / ChartViewSwift.SecondsPerMinute
+            let minute:Int = Int(tidePoint.time.timeIntervalSince1970 - baseSeconds) / WatchChartView.SecondsPerMinute
             if minute == 0 {
                 tidePath.move(to: CGPoint(x:CGFloat(minute) * xratio, y:CGFloat(tidePoint.height) * yratio + yoffset))
             } else {
@@ -168,7 +163,7 @@ class ChartViewSwift {
         }
         
         // closes the path so it can be filled
-        let lastMinute:Int = Int(intervalsForDay.last!.time.timeIntervalSince1970 - baseSeconds) / ChartViewSwift.SecondsPerMinute
+        let lastMinute:Int = Int(intervalsForDay.last!.time.timeIntervalSince1970 - baseSeconds) / WatchChartView.SecondsPerMinute
         tidePath.addLine(to:CGPoint(x:CGFloat(lastMinute) * xratio, y: chartBottom))
         tidePath.addLine(to:CGPoint(x:0, y:chartBottom))
         

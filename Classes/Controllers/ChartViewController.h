@@ -23,7 +23,7 @@
 #import "SDTide.h"
 #import "SDTideInterval.h"
 #import "ChartViewDatasource.h"
-#import "ChartView.h"
+#import "ShralpTide2-Swift.h"
 
 @interface ChartViewController : UIViewController <ChartViewDatasource>
 
