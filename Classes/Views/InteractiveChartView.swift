@@ -8,22 +8,21 @@
 import Foundation
 import UIKit
 import QuartzCore
+import CoreGraphics
 
-@objc protocol InteractiveChartViewDelegate {
-    func display(height: CGFloat, time: NSDate, units: String)
-    func interactionsEnded()
-}
-
-class InteractiveChartView: LabeledChartView, CAAnimationDelegate {
+@objc class InteractiveChartView: LabeledChartView, CAAnimationDelegate {
     
     static let CursorTopGap = 40
     static let CursorLabelWidth = 3
     
     @IBOutlet var delegate: InteractiveChartViewDelegate!
     
-    let cursorView = CursorView(frame: CGRect(x: 0, y: CursorTopGap, width: CursorLabelWidth, height: frame.size.width - CursorTopGap))
-    
     var times = Dictionary<String, Date>()
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        cursorView = CursorView(frame: CGRect(x: 0, y: InteractiveChartView.CursorTopGap, width: InteractiveChartView.CursorLabelWidth, height: Int(frame.size.width - CGFloat(InteractiveChartView.CursorTopGap))))
+    }
     
     fileprivate func currentTimeInMinutes() -> Int {
         // The following shows the current time on the tide chart.
@@ -31,65 +30,69 @@ class InteractiveChartView: LabeledChartView, CAAnimationDelegate {
         let datestamp = Date()
         
         if midnight() == self.datasource.day {
-            return (datestamp.timeIntervalSince1970 - self.midnight().timeIntervalSince1970) / SecondsPerMinute
+            return Int(datestamp.timeIntervalSince1970 - self.midnight().timeIntervalSince1970) / InteractiveChartView.SecondsPerMinute
         } else {
             return -1
         }
     }
     
     fileprivate func currentTimeOnChart() -> Int {
-        return currentTimeInMinutes * frame.size.width / MinutesPerHour * self.hoursToPlot
+        return Int(round(CGFloat(currentTimeInMinutes()) * frame.size.width)) / ChartView.MinutesPerHour * hoursToPlot
     }
     
     func showTide(forPoint point: CGPoint) {
-        let dateTime = self.dateTime(fromMinutes: point.x)
-        delegate.display(height: point.y, time: dateTime, units: datasource.tideDataToChart.unitShort)
+        let dateTime = self.dateTime(fromMinutesSinceMidnight: Int(point.x))
+        delegate.displayHeight(point.y, atTime: dateTime, withUnitString: datasource.tideDataToChart.unitShort)
     }
     
     fileprivate func dateTime(fromMinutesSinceMidnight minutes: Int) -> Date {
         let key = String(format: "%d", minutes)
         if self.times[key] != nil {
-            return self.times[key]
+            return self.times[key]!
         } else {
-            let hours = minutes / MinutesPerHour
-            let minutes = minutes % MinutesPerHour
+            let hours = minutes / ChartView.MinutesPerHour
+            let minutes = minutes % ChartView.MinutesPerHour
             
             let cal = Calendar.current
-            let components = DateComponents()
+            var components = DateComponents()
             components.hour = hours
             components.minute = minutes
-            return cal.date(byAdding: components, to: datasource.day)
+            return cal.date(byAdding: components, to: datasource.day)!
         }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // We only support single touches, so anyObject retrieves just that touch from touches
-        let touch = touches.anyObject
+        // We only support single touches, so we retrieve just that touch from touches
+        guard let touch = touches.first else {
+            return
+        }
         
         // Animate first touch
-        let touchPoint = touch.location(inView: self)
-        let movePoint = CGPoint(x: touchPoint.x, y: frame.size.height / 2 + CursorTopGap)
+        let touchPoint = touch.location(in: self)
+        let movePoint = CGPoint(x: touchPoint.x, y: frame.size.height / 2 + CGFloat(InteractiveChartView.CursorTopGap))
         
         if cursorView.superview == nil {
             addSubview(self.cursorView)
         }
         
-        animateFirstTouch(atPoint: movePoint)
+        animateFirstTouch(touchPoint: movePoint)
         showTide(forPoint: self.datasource.tideDataToChart.nearestDataPoint(forTime: timeInMinutes(touchPoint.x)))
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.anyObject
-        let touchPoint = touch.location(inView: self)
+        guard let touch = touches.first else {
+            return
+        }
+        let touchPoint = touch.location(in: self)
         let dataPoint = datasource.tideDataToChart.nearestDataPoint(forTime: timeInMinutes(touchPoint.x))
-        let movePoint = CGPoint(x: touchPoint.x, frame.size.height / 2 + CursorTopGap)
+        let movePoint = CGPoint(x: touchPoint.x, y: frame.size.height / 2 + CGFloat(InteractiveChartView.CursorTopGap))
         
         cursorView.center = movePoint
         showTide(forPoint: dataPoint)
     }
     
     fileprivate func timeInMinutes(_ xPosition: CGFloat) -> Int {
-        return xPosition / self.xratio
+        return Int(round(xPosition / self.xratio))
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -97,33 +100,32 @@ class InteractiveChartView: LabeledChartView, CAAnimationDelegate {
         animateCursorViewToCurrentTime()
         
         if cursorView.center.x <= 0.0 {
-            cursorView.removeFromSuperView()
+            cursorView.removeFromSuperview()
         }
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         cursorView.center = self.center
-        cursorView.transform = CGAffineTransformIdentity
+        cursorView.transform = CGAffineTransform.identity
     }
     
     func animateFirstTouch(touchPoint: CGPoint) {
         let durationSec = 0.15
-        let touchPointVale = NSValue(cgPoint: touchPoint)
-        UIView.beginAnimations(nil, context: touchPointVale)
-        UIView.setAnimationDuration(durationSec)
-        let movePoint = CGPoint(x: touchPoint.x, frame.size.height / 2 + CursorTopGap)
-        cursorView.center = movePoint
-        UIView.commitAnimations()
+        UIView.animate(withDuration: durationSec, animations: {
+            let movePoint = CGPoint(x: touchPoint.x, y: self.frame.size.height / 2 + CGFloat(InteractiveChartView.CursorTopGap))
+            self.cursorView.center = movePoint
+        })
     }
     
-    override func draw(rect: CGRect) {
-        super.draw(rect: rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        if tide == nil { return }
         animateCursorViewToCurrentTime()
     }
     
     func animateCursorViewToCurrentTime() {
         if cursorView.superview == nil {
-            cursorView.frame = CGRect(x: 0, y: 0, width: CursorLabelWidth, frame.size.width)
+            cursorView.frame = CGRect(x: 0, y: 0, width: InteractiveChartView.CursorLabelWidth, height: Int(frame.size.width))
             addSubview(cursorView)
         }
         
@@ -131,46 +133,45 @@ class InteractiveChartView: LabeledChartView, CAAnimationDelegate {
         let welcomeLayer: CALayer = cursorView.layer
         
         // Create a keyframe animation to follow a path back to the center
-        let bounceAnimation = CAKeyframeAnimation.animation(keyPath: "position")
-        bounceAnimation.removedOnCompletion = false
+        let bounceAnimation = CAKeyframeAnimation(keyPath: "position")
+        bounceAnimation.isRemovedOnCompletion = false
         
-        let animationDuration:CGFloat = 0.5
+        var animationDuration:CGFloat = 0.5
         
         // Create the path for the bounces
-        let thePath = CGPathCreateMutable()
+        let thePath = CGMutablePath()
         
-        let midX = currentTimeInMinutes() * xratio
-        let dataPoint = datasource.tideDataToChart.nearestDataPoint(forTime: timeInMinutes(midX))
-        let midY = frame.size.height / 2 + CursorTopGap
+        let midX = CGFloat(currentTimeInMinutes()) * xratio
+        let midY = frame.size.height / 2 + CGFloat(InteractiveChartView.CursorTopGap)
         let originalOffsetX = cursorView.center.x - midX
         let originalOffsetY = cursorView.center.y - midY
-        let offsetDivider: CGFloat = 10.0
         
-        let stopBouncing = false
+        var offsetDivider: CGFloat = 10.0
+        var stopBouncing = false
         
         // Start the path at the cursor's current location
-        CGPathMoveToPoint(thePath, NULL, cursorView.center.x, cursorView.center.y)
-        CGPathAddLineToPoint(thePath, NULL, midX, midY)
+        thePath.move(to: CGPoint(x: cursorView.center.x, y: cursorView.center.y))
+        thePath.addLine(to: CGPoint(x: midX, y: midY))
         
         // Add to the bound path in decreasing excursions from the center
         while stopBouncing != true {
-            CGPathAddLineToPoint(thePath, NULL, midX + originalOffsetX/offsetDivider, midY + originalOffsetY/offsetDivider)
-            CGPathAddLineToPoint(thePath, NULL, midX, midY)
+            thePath.addLine(to: CGPoint(x: midX + originalOffsetX/offsetDivider, y: midY + originalOffsetY/offsetDivider))
+            thePath.addLine(to: CGPoint(x: midX, y: midY))
             
             offsetDivider += 10
             animationDuration += 1/offsetDivider
-            if fabs(originalOffsetX/offsetDivider) < 6 {
+            if abs(originalOffsetX/offsetDivider) < 6 {
                 stopBouncing = true
             }
         }
         
         bounceAnimation.path = thePath
-        bounceAnimation.duration = animationDuration
+        bounceAnimation.duration = TimeInterval(animationDuration)
         
         // Create a basic animation to restore the size of the placard
-        let transformAnimation = CABasicAnimation.animationWithKeyPath("transform")
-        transformAnimation.removedOnCompletion = true
-        transformAnimation.duration = animationDuration
+        let transformAnimation = CABasicAnimation(keyPath: "transform")
+        transformAnimation.isRemovedOnCompletion = true
+        transformAnimation.duration = TimeInterval(animationDuration)
         transformAnimation.toValue = NSValue(caTransform3D:CATransform3DIdentity)
         
         // Create an animation group to combine the keyframe and basic animations
@@ -178,8 +179,8 @@ class InteractiveChartView: LabeledChartView, CAAnimationDelegate {
         
         // Set self as the delegate to allow for a callback to reenable user interaction
         theGroup.delegate = self
-        theGroup.duration = animationDuration
-        theGroup.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+        theGroup.duration = TimeInterval(animationDuration)
+        theGroup.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
         
         theGroup.animations = [bounceAnimation, transformAnimation]
         
@@ -188,15 +189,13 @@ class InteractiveChartView: LabeledChartView, CAAnimationDelegate {
         
         // Set the placard view's center and transformation to the original values in preparation for the end of the animation
         cursorView.center = CGPoint(x: midX, y: midY)
-        cursorView.transform = CGAffineTransformIdentity
-        
-        CGPathRelease(thePath)
+        cursorView.transform = CGAffineTransform.identity
         
         showTide(forPoint: datasource.tideDataToChart.nearestDataPoint(forTime: timeInMinutes(midX)))
         delegate.interactionsEnded()
     }
     
-    override func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         //Animation delegate method called when the animation's finished:
         // restore the transform and reenable user interaction
         self.isUserInteractionEnabled = false

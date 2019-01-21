@@ -16,3 +16,5 @@
 #import "UIImage+Mask.h"
 #import "FavoritesListViewController.h"
 #import "SDTideFactoryNew.h"
+#import "LandscapeViewController.h"
+#import "InteractiveChartViewDelegate.h"

@@ -92,7 +92,7 @@ class WatchChartView {
         let height = (self.height != nil ? self.height : Int(bounds.size.height))!
         let chartBottom:CGFloat = 0
         
-        let intervalsForDay:[SDTideInterval] = tide.intervals(from: self.startDate, forHours: self.hoursToPlot) as! [SDTideInterval]
+        let intervalsForDay:[SDTideInterval] = tide.intervals(from: self.startDate, forHours: self.hoursToPlot)
         
         guard intervalsForDay.count > 0 else {
             // activated on a new day before model has been updated?
@@ -101,11 +101,11 @@ class WatchChartView {
         
         let baseSeconds:TimeInterval = intervalsForDay[0].time.timeIntervalSince1970
         
-        let sunEvents:[SDTideEvent] = tide.sunriseSunsetEvents as! [SDTideEvent]
+        let sunEvents:[SDTideEvent] = tide.sunriseSunsetEvents
         
         let sunPairs:Array<(Date,Date)> = self.pairRiseAndSetEvents(sunEvents, riseEventType: .sunrise, setEventType: .sunset)
         
-        let moonEvents:[SDTideEvent] = tide.moonriseMoonsetEvents as! [SDTideEvent]
+        let moonEvents:[SDTideEvent] = tide.moonriseMoonsetEvents
         
         let moonPairs:Array<(Date,Date)> = self.pairRiseAndSetEvents(moonEvents, riseEventType: .moonrise, setEventType: .moonset)
         

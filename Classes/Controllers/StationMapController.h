@@ -10,7 +10,6 @@
 #import <CoreData/CoreData.h>
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import "ShralpTide2-Swift.h"
 #import "ShralpTideAppDelegate.h"
 #import "TideStationAnnotation.h"
 #import "StationDetailViewController.h"

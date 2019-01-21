@@ -8,10 +8,11 @@
 import Foundation
 import UIKit
 
-class LabeledChartView: ChartView {
+@objc class LabeledChartView: ChartView {
     
-    var labelInset: Float = 0
-    var hourFormatter: DateFormatter = DateFormatter()
+    fileprivate var hourFormatter: DateFormatter = DateFormatter()
+    
+    @objc var labelInset: Float = 0
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

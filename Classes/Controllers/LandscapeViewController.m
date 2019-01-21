@@ -5,6 +5,7 @@
 //  Created by Michael Parlee on 7/9/13.
 //
 //
+#import "ShralpTide2-Swift.h"
 #import "LandscapeViewController.h"
 #import "ShralpTideAppDelegate.h"
 #import "ChartViewController.h"
@@ -115,13 +116,13 @@
     
     self.chartScrollView.pagingEnabled = YES;
     DLog(@"Frame = %0.1f x %0.1f", self.view.frame.size.width, self.view.frame.size.height);
-	self.chartScrollView.contentSize = CGSizeMake((self.view.frame.size.width) * configHelper.daysPref, self.view.frame.size.height);
-	self.chartScrollView.showsVerticalScrollIndicator = NO;
-	self.chartScrollView.showsVerticalScrollIndicator = NO;
-	self.chartScrollView.scrollsToTop = NO;
-	self.chartScrollView.directionalLockEnabled = YES;
-	self.chartScrollView.delegate = self;
-	self.chartScrollView.autoresizingMask = UIViewAutoresizingNone;
+    self.chartScrollView.contentSize = CGSizeMake((self.view.frame.size.width) * configHelper.daysPref, self.view.frame.size.height);
+    self.chartScrollView.showsVerticalScrollIndicator = NO;
+    self.chartScrollView.showsVerticalScrollIndicator = NO;
+    self.chartScrollView.scrollsToTop = NO;
+    self.chartScrollView.directionalLockEnabled = YES;
+    self.chartScrollView.delegate = self;
+    self.chartScrollView.autoresizingMask = UIViewAutoresizingNone;
     
     self.chartView.frame = CGRectMake(0,0,self.chartScrollView.contentSize.width,self.chartScrollView.frame.size.height);
     self.chartView.datasource = self;
