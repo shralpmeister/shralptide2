@@ -501,6 +501,7 @@
 		DCCC65D219CE43A300E92D62 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		DCDDF5D121612E2400D505D5 /* SDTide+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SDTide+Events.swift"; sourceTree = "<group>"; };
 		DCDE6CB321F4F7B8000B2ACF /* ChartError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartError.swift; sourceTree = "<group>"; };
+		DCDE6CB621F64907000B2ACF /* InteractiveChartViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InteractiveChartViewDelegate.h; sourceTree = "<group>"; };
 		DCE745CA1DC967AC008BF66C /* StationListInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationListInterfaceController.swift; sourceTree = "<group>"; };
 		DCE897D90EEE3CAE00BF2357 /* CursorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CursorView.h; path = Classes/Views/CursorView.h; sourceTree = "<group>"; };
 		DCE897DA0EEE3CAE00BF2357 /* CursorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CursorView.m; path = Classes/Views/CursorView.m; sourceTree = "<group>"; };
@@ -727,6 +728,7 @@
 				DC5191A521E199820058A9A5 /* SunMoonChartView.swift */,
 				DC5191A721E19D470058A9A5 /* InteractiveChartView.swift */,
 				DCDE6CB321F4F7B8000B2ACF /* ChartError.swift */,
+				DCDE6CB621F64907000B2ACF /* InteractiveChartViewDelegate.h */,
 			);
 			name = ChartView;
 			sourceTree = "<group>";
