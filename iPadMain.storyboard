@@ -91,7 +91,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wtw-e5-ULu" customClass="SunMoonChartView" customModule="ShralpTide2">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wtw-e5-ULu" customClass="ChartView" customModule="ShralpTide2">
                                                                         <rect key="frame" x="0.0" y="47" width="110" height="63"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <viewLayoutGuide key="safeArea" id="5si-zY-bjl"/>

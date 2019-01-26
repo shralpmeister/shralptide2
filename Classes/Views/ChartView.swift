@@ -26,9 +26,6 @@ import UIKit
     
     @objc var showZero = true
     
-    @objc var tide:SDTide?
-    
-    @objc var startDate:Date?
     @objc var page:Int = 0
     
     var xratio: CGFloat = 0
@@ -37,7 +34,7 @@ import UIKit
     
     @IBOutlet var datasource: ChartViewDatasource!
     @IBOutlet var cursorView: UIView!
-    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var dateLabel: UILabel?
     @IBOutlet var valueLabel: UILabel!
     
     required init?(coder aDecoder: NSCoder) {
@@ -46,10 +43,7 @@ import UIKit
     }
     
     fileprivate func endTime() throws -> Date  {
-        guard let startDate = startDate else {
-            throw ChartError.noTideData
-        }
-        return Date(timeIntervalSince1970: startDate.timeIntervalSince1970 + Double(hoursToPlot) * Double(ChartView.MinutesPerHour * ChartView.SecondsPerMinute))
+        return Date(timeIntervalSince1970: datasource.day.timeIntervalSince1970 + Double(hoursToPlot) * Double(ChartView.MinutesPerHour * ChartView.SecondsPerMinute))
     }
     
     fileprivate func pairRiseAndSetEvents(_ events:[SDTideEvent], riseEventType:SDTideState, setEventType:SDTideState) throws -> Array<(Date,Date)> {
@@ -65,7 +59,7 @@ import UIKit
             }
             if event.eventType == setEventType {
                 if events.index(of:event) == 0 {
-                    riseTime = self.startDate
+                    riseTime = datasource.day
                 }
                 setTime = event.eventTime
             }
@@ -80,7 +74,7 @@ import UIKit
     }
     
     func midnight() -> Date {
-        return self.midnight(Date())
+        return midnight(Date())
     }
     
     func midnight(_ date:Date) -> Date {
@@ -98,17 +92,14 @@ import UIKit
     }
     
     override func draw(_ rect:CGRect) {
-        let chartBottom:CGFloat = 0
+        let chartBottom:CGFloat = frame.size.height
         
-        guard let tide = self.tide else {
+        guard let tide = datasource.tideDataToChart else {
+            print("No tide data found.")
             return
         }
         
-        guard let startDate = self.startDate else {
-            return
-        }
-        
-        let intervalsForDay:[SDTideInterval] = tide.intervals(from: startDate, forHours: self.hoursToPlot)
+        let intervalsForDay:[SDTideInterval] = tide.intervals(from: datasource.day, forHours: hoursToPlot)
         
         guard intervalsForDay.count > 0 else {
             return
@@ -119,31 +110,30 @@ import UIKit
             
             let sunEvents:[SDTideEvent] = tide.sunriseSunsetEvents
             
-            let sunPairs:Array<(Date,Date)> = try self.pairRiseAndSetEvents(sunEvents, riseEventType: .sunrise, setEventType: .sunset)
+            let sunPairs:Array<(Date,Date)> = try pairRiseAndSetEvents(sunEvents, riseEventType: .sunrise, setEventType: .sunset)
             
             let moonEvents:[SDTideEvent] = tide.moonriseMoonsetEvents
             
-            let moonPairs:Array<(Date,Date)> = try self.pairRiseAndSetEvents(moonEvents, riseEventType: .moonrise, setEventType: .moonset)
+            let moonPairs:Array<(Date,Date)> = try pairRiseAndSetEvents(moonEvents, riseEventType: .moonrise, setEventType: .moonset)
             
-            let min:CGFloat = self.findLowestTideValue(tide)
-            let max:CGFloat = self.findHighestTideValue(tide)
+            let min:CGFloat = findLowestTideValue(tide)
+            let max:CGFloat = findHighestTideValue(tide)
             
             let ymin:CGFloat = min - 1
             let ymax:CGFloat = max + 1
             
             yratio = CGFloat(height) / (ymax - ymin)
-            yoffset = chartBottom - ymin * yratio
+            yoffset = (CGFloat(height) + ymin * self.yratio) + (chartBottom - CGFloat(height))
             
             let xmin:Int = 0
             let xmax:Int = ChartView.MinutesPerHour * hoursToPlot
             
             xratio = CGFloat(bounds.size.width) / CGFloat(xmax)
             
-            UIGraphicsBeginImageContextWithOptions(bounds.size, true, 0.0)
-            
-            let context = UIGraphicsGetCurrentContext()!
-            context.translateBy(x: 0, y: CGFloat(height))
-            context.scaleBy(x: 1, y: -1)
+            guard let context = UIGraphicsGetCurrentContext() else {
+                print("Failed to get graphics context.")
+                return
+            }
             
             // show daylight hours as light background
             let dayColor = UIColor(red:0.04, green:0.27, blue:0.61, alpha:1)
@@ -153,7 +143,7 @@ import UIKit
             for (rise,set) in sunPairs {
                 let sunriseMinutes = Int(rise.timeIntervalSince1970 - baseSeconds) / ChartView.SecondsPerMinute
                 let sunsetMinutes = Int(set.timeIntervalSince1970 - baseSeconds) / ChartView.SecondsPerMinute
-                context.addPath(CGPath(rect:CGRect(x:CGFloat(sunriseMinutes) * xratio, y:0, width:CGFloat(sunsetMinutes) * xratio - CGFloat(sunriseMinutes) * xratio, height:CGFloat(height)), transform:nil))
+                context.addPath(CGPath(rect:CGRect(x:CGFloat(sunriseMinutes) * xratio, y:0, width:CGFloat(sunsetMinutes) * xratio - CGFloat(sunriseMinutes) * xratio, height:chartBottom), transform:nil))
                 context.fillPath()
             }
             
@@ -163,7 +153,7 @@ import UIKit
             for (rise,set) in moonPairs {
                 let moonriseMinutes = Int(rise.timeIntervalSince1970 - baseSeconds) / ChartView.SecondsPerMinute
                 let moonsetMinutes = Int(set.timeIntervalSince1970 - baseSeconds) / ChartView.SecondsPerMinute
-                context.addPath(CGPath(rect:CGRect(x:CGFloat(moonriseMinutes) * xratio, y:0, width:CGFloat(moonsetMinutes) * xratio - CGFloat(moonriseMinutes) * xratio, height:CGFloat(height)), transform:nil))
+                context.addPath(CGPath(rect:CGRect(x:CGFloat(moonriseMinutes) * xratio, y:0, width:CGFloat(moonsetMinutes) * xratio - CGFloat(moonriseMinutes) * xratio, height:chartBottom), transform:nil))
                 context.fillPath()
             }
             
@@ -172,9 +162,9 @@ import UIKit
             for tidePoint:SDTideInterval in intervalsForDay {
                 let minute:Int = Int(tidePoint.time.timeIntervalSince1970 - baseSeconds) / ChartView.SecondsPerMinute
                 if minute == 0 {
-                    tidePath.move(to: CGPoint(x:CGFloat(minute) * xratio, y:CGFloat(tidePoint.height) * yratio + yoffset))
+                    tidePath.move(to: CGPoint(x:CGFloat(minute) * xratio, y:yoffset - CGFloat(tidePoint.height) * yratio))
                 } else {
-                    tidePath.addLine(to: CGPoint(x:CGFloat(minute) * xratio, y:CGFloat(tidePoint.height) * yratio + yoffset))
+                    tidePath.addLine(to: CGPoint(x:CGFloat(minute) * xratio, y:yoffset - CGFloat(tidePoint.height) * yratio))
                 }
             }
             
@@ -206,22 +196,7 @@ import UIKit
                 context.strokePath()
             }
             
-            let cursorColor = UIColor(red:1,green:0,blue:0,alpha:1)
-            cursorColor.setStroke()
-            
-            let cursorPath = UIBezierPath()
-            context.setLineWidth(3)
-            let cursorX = tide.nearestDataPoint(forTime: Date().timeInMinutesSinceMidnight()).x * xratio - CGFloat(startDate.timeInMinutesSinceMidnight()) * xratio
-            cursorPath.move(to: CGPoint(x:cursorX, y:0.0))
-            cursorPath.addLine(to: CGPoint(x:cursorX, y:CGFloat(height)))
-            
-            context.addPath(cursorPath.cgPath)
-            context.strokePath()
-            
-            UIGraphicsPopContext()
-            UIGraphicsEndImageContext()
-            
-            dateLabel.text = dateFormatter.string(from: datasource.day)
+            dateLabel?.text = dateFormatter.string(from: datasource.day)
         } catch {
             print("Error drawing chart")
             return

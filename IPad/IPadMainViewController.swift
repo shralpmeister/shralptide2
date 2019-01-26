@@ -83,7 +83,7 @@ extension IPadMainViewController: UICollectionViewDataSource {
             if let layout = collectionView.layoutAttributesForItem(at: indexPath) {
                 chartView.height = Int(layout.bounds.size.height * 3/4)
             }
-            chartView.tide = tideData[0].tideDataToChart
+            chartView.datasource = tideData[0]
             cell.contentView.addSubview(chartView)
             chartView.addSubview(informationOverlay)
             chartView.setNeedsDisplay()

@@ -3,6 +3,7 @@ import UIKit
 import QuartzCore
 import CoreGraphics
 
+
 @objc class SunMoonChartView: ChartView {
     
     @objc var labelInset: CGFloat = 0
@@ -28,7 +29,7 @@ import CoreGraphics
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        guard let tide = self.tide else {
+        guard let tide = datasource.tideDataToChart else {
             return
         }
         
@@ -73,6 +74,8 @@ import CoreGraphics
                     ]
                 )
                 image.draw(in: rect)
+                
+                context.strokePath()
             } catch {
                 print("Unexpected error: \(error)")
             }

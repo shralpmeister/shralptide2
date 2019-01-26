@@ -130,7 +130,6 @@
     self.chartView.labelInset = [[UIDevice currentDevice].model isEqualToString: @"iPad"] ? 20 : 5;
     self.chartView.height = self.view.bounds.size.height * 3/4;
     self.chartView.delegate = self;
-    self.chartView.tide = self.tide;
     [self.chartScrollView addSubview:self.chartView];
     self.chartScrollView.contentOffset = CGPointMake(appDelegate.page * self.view.frame.size.width, 0);
 }

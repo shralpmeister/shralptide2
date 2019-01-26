@@ -10,6 +10,7 @@ import UIKit
 import QuartzCore
 import CoreGraphics
 
+
 @objc class InteractiveChartView: LabeledChartView, CAAnimationDelegate {
     
     static let CursorTopGap = 40
@@ -119,7 +120,6 @@ import CoreGraphics
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        if tide == nil { return }
         animateCursorViewToCurrentTime()
     }
     

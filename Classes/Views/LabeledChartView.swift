@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+
 @objc class LabeledChartView: ChartView {
     
     fileprivate var hourFormatter: DateFormatter = DateFormatter()
@@ -29,10 +30,10 @@ import UIKit
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-    
+
         let context = UIGraphicsGetCurrentContext()!
         
-        guard let intervalsForDay = tide?.intervals(from: datasource.day, forHours: hoursToPlot) else {
+        guard let intervalsForDay = datasource.tideDataToChart.intervals(from: datasource.day, forHours: hoursToPlot) else {
             return
         }
         
@@ -42,7 +43,7 @@ import UIKit
         
         let baseSeconds = intervalsForDay[0].time?.timeIntervalSince1970
             // draws the sun/moon events
-        tide?.sunAndMoonEvents.forEach { event in
+        datasource.tideDataToChart.sunAndMoonEvents.forEach { event in
             do {
                 let image = try self.image(forEvent: event)
                 let minute = Int(event.eventTime!.timeIntervalSince1970 - baseSeconds!) / ChartView.SecondsPerMinute
@@ -78,6 +79,7 @@ import UIKit
                 }
             }
         }
+        context.strokePath()
     }
     
     fileprivate func image(forEvent event: SDTideEvent) throws -> UIImage {
