@@ -769,6 +769,7 @@
         <image name="UIButtonBarListIcon" width="22" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="ACT-wc-Byc"/>
         <segue reference="sxc-mJ-GSf"/>
     </inferredMetricsTieBreakers>
 </document>

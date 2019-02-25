@@ -28,3 +28,4 @@ Pods
 Gemfile
 Gemfile.lock
 _site
+.python-version

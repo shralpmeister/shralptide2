@@ -8,15 +8,11 @@
 import Foundation
 
 class CurrentTideCell: UICollectionViewCell {
-    @IBOutlet fileprivate weak var tideLevelLabel: UILabel! {
-        didSet {
-            self.tideLevelLabel.adjustsFontSizeToFitWidth = true;
-        }
-    }
+    @IBOutlet fileprivate weak var tideLevelLabel: UILabel!
+    @IBOutlet fileprivate weak var dateLabel: UILabel!
     
     func refresh(tide: SDTide) {
-        self.tideLevelLabel.text = String(format: "%0.2f%@%@",
-                                          tide.nearestDataPointToCurrentTime.y,
-                                          tide.unitShort, tide.tideDirection == .rising ? "▲" : "▼")
+        self.tideLevelLabel.text = String.tideFormatString(value: Float(tide.nearestDataPointToCurrentTime.y)) + String.directionIndicator(tide.tideDirection)
+        self.dateLabel.text = DateFormatter.localizedString(from: tide.startTime, dateStyle: .long, timeStyle: .none)
     }
 }

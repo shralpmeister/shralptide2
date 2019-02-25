@@ -15,7 +15,7 @@ NSString *kCurrentsKey = @"currents_preference";
 
 @implementation ConfigHelper
 
-+(ConfigHelper*)sharedInstance
++(nonnull ConfigHelper*)sharedInstance
 {
     static ConfigHelper *sharedInstance = nil;
     static dispatch_once_t onceToken;

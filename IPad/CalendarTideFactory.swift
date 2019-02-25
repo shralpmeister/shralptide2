@@ -10,18 +10,10 @@ import Foundation
 class CalendarTideFactory {
     fileprivate static let app: ShralpTideAppDelegate = UIApplication.shared.delegate as! ShralpTideAppDelegate
     
-    static func tidesForCurrentMonth() -> [SDTide] {
-        let cal = Calendar.current
-        let today = Date()
-        let year = cal.component(.year, from: today)
-        let month = cal.component(.month, from: today)
-        return createTides(forYear: year, month: month)
-    }
-    
     static func createTides(forYear year: Int, month: Int) -> [SDTide] {
         let interval = findDateRange(year: year, month: month)
         let station = AppStateData.sharedInstance.persistentState?.selectedLocation?.locationName
-        let tides: [SDTide] = SDTideFactoryNew.tides(forStationName: station, withInterval: 900, forDays: Calendar.current.dateComponents([.day], from: interval.start, to: interval.end).day!, withUnits: ConfigHelper.sharedInstance()?.unitsPref == "metric" ? .METRIC : .US, from: interval.start.startOfDay())
+        let tides: [SDTide] = SDTideFactoryNew.tides(forStationName: station, withInterval: 900, forDays: Calendar.current.dateComponents([.day], from: interval.start, to: interval.end).day!, withUnits: ConfigHelper.sharedInstance().unitsPref == "metric" ? .METRIC : .US, from: interval.start.startOfDay())
         return tides
     }
     

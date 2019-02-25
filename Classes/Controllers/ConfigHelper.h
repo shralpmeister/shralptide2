@@ -10,15 +10,15 @@
 
 @interface ConfigHelper : NSObject
 
-@property (nonatomic,strong) NSString *unitsPref;
+@property (nonatomic,strong) NSString * _Nonnull unitsPref;
 @property (nonatomic,assign) NSInteger daysPref;
 @property (nonatomic,assign) BOOL showsCurrentsPref;
 
 - (void)setupByPreferences;
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary *readSettingsDictionary;
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary *preferencesAsDictionary;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary * _Nonnull readSettingsDictionary;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary * _Nonnull preferencesAsDictionary;
 
-+(ConfigHelper*)sharedInstance;
++(nonnull ConfigHelper*)sharedInstance;
 
 @end
 

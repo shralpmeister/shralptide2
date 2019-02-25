@@ -10,6 +10,15 @@ import Foundation
 class CalendarViewCell: UICollectionViewCell, UICollectionViewDataSource {
     
     var tides: [ChartViewDatasource] = [ChartViewDatasource]()
+    var displayedMonth = Calendar.current.component(.month, from: Date())
+    var displayYear = Calendar.current.component(.year, from: Date())
+    let monthFormat = DateFormatter()
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        monthFormat.dateFormat = "MMM"
+    }
+    
     @IBOutlet var collectionView: UICollectionView!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -21,10 +30,24 @@ class CalendarViewCell: UICollectionViewCell, UICollectionViewDataSource {
         let dayCellIndex = indexPath.item
         cell.chartView.datasource = tides[dayCellIndex]
         cell.chartView.hoursToPlot = 24;
-        cell.chartView.height = 40
+        cell.chartView.height = Int(0.8 * (collectionView.layoutAttributesForItem(at: indexPath)!.frame.height - 47))
         cell.chartView.setNeedsDisplay()
         
-        cell.dayLabel.text = String(Calendar.current.component(.day, from: tides[dayCellIndex].day))
+        let cellMonth = Calendar.current.component(.month, from: tides[dayCellIndex].day)
+        let cellDay = Calendar.current.component(.day, from: tides[dayCellIndex].day)
+        if cellMonth != displayedMonth {
+            cell.backgroundColor = UIColor.black.withAlphaComponent(1.0)
+            cell.dayLabel.textColor = UIColor.lightGray
+            cell.dayLabel.text = monthFormat.string(from: tides[dayCellIndex].day) + String(cellDay)
+        } else if cellDay == Calendar.current.component(.day, from: Date()) {
+            cell.backgroundColor = UIColor.black.withAlphaComponent(1.0)
+            cell.dayLabel.textColor = UIColor.yellow
+            cell.dayLabel.text = String(cellDay)
+        } else {
+            cell.backgroundColor = UIColor.black.withAlphaComponent(1.0)
+            cell.dayLabel.textColor = UIColor.white
+            cell.dayLabel.text = String(cellDay)
+        }
         return cell
     }
 }

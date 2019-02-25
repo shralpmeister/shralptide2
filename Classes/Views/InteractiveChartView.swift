@@ -22,7 +22,8 @@ import CoreGraphics
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        cursorView = CursorView(frame: CGRect(x: 0, y: InteractiveChartView.CursorTopGap, width: InteractiveChartView.CursorLabelWidth, height: Int(frame.size.width - CGFloat(InteractiveChartView.CursorTopGap))))
+        cursorView = CursorView(frame: CGRect(x: 0, y: 0, width: InteractiveChartView.CursorLabelWidth, height: Int(frame.size.height)))
+        cursorView.bounds = cursorView.frame
     }
     
     fileprivate func currentTimeInMinutes() -> Int {
@@ -72,9 +73,7 @@ import CoreGraphics
         let touchPoint = touch.location(in: self)
         let movePoint = CGPoint(x: touchPoint.x, y: frame.size.height / 2 + CGFloat(InteractiveChartView.CursorTopGap))
         
-        if cursorView.superview == nil {
-            addSubview(self.cursorView)
-        }
+        cursorView.isHidden = false
         
         animateFirstTouch(touchPoint: movePoint)
         showTide(forPoint: self.datasource.tideDataToChart.nearestDataPoint(forTime: timeInMinutes(touchPoint.x)))
@@ -85,6 +84,9 @@ import CoreGraphics
             return
         }
         let touchPoint = touch.location(in: self)
+        if !frame.contains(touchPoint) {
+            return
+        }
         let dataPoint = datasource.tideDataToChart.nearestDataPoint(forTime: timeInMinutes(touchPoint.x))
         let movePoint = CGPoint(x: touchPoint.x, y: frame.size.height / 2 + CGFloat(InteractiveChartView.CursorTopGap))
         
@@ -101,7 +103,7 @@ import CoreGraphics
         animateCursorViewToCurrentTime()
         
         if cursorView.center.x <= 0.0 {
-            cursorView.removeFromSuperview()
+            cursorView.isHidden = true
         }
     }
     
@@ -198,7 +200,7 @@ import CoreGraphics
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         //Animation delegate method called when the animation's finished:
         // restore the transform and reenable user interaction
-        self.isUserInteractionEnabled = false
+        self.isUserInteractionEnabled = true
     }
 }
 

@@ -128,7 +128,7 @@ import UIKit
             let xmin:Int = 0
             let xmax:Int = ChartView.MinutesPerHour * hoursToPlot
             
-            xratio = CGFloat(bounds.size.width) / CGFloat(xmax)
+            xratio = CGFloat(frame.size.width) / CGFloat(xmax)
             
             guard let context = UIGraphicsGetCurrentContext() else {
                 print("Failed to get graphics context.")
@@ -201,5 +201,5 @@ import UIKit
             print("Error drawing chart")
             return
         }
-    }    
+    }
 }

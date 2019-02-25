@@ -8,6 +8,7 @@
 import Foundation
 
 class IPadMainViewController: UIViewController {
+    fileprivate let monthDateFormatter = DateFormatter()
     
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
     @IBOutlet fileprivate weak var chartView: InteractiveChartView!
@@ -19,6 +20,8 @@ class IPadMainViewController: UIViewController {
     
     fileprivate let app: ShralpTideAppDelegate = UIApplication.shared.delegate as! ShralpTideAppDelegate
     fileprivate var tideData: [SingleDayTideModel] = [SingleDayTideModel]()
+    fileprivate var displayMonth = Calendar.current.component(.month, from: Date())
+    fileprivate var displayYear = Calendar.current.component(.year, from: Date())
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -28,24 +31,30 @@ class IPadMainViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     
+    fileprivate func monthYearString() -> String {
+        let date = Calendar.current.date(from: DateComponents(year: displayYear, month: displayMonth))!
+        monthDateFormatter.setLocalizedDateFormatFromTemplate("MMMM YYYY")
+        return monthDateFormatter.string(from: date)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.refreshTideData()
+        refreshTideData()
         
         app.supportedOrientations = .allButUpsideDown
         
-        self.dateLabel.text = DateFormatter.localizedString(from: self.tideDataToChart.startTime, dateStyle: .long, timeStyle: .none)
+        dateLabel.text = DateFormatter.localizedString(from: tideDataToChart.startTime, dateStyle: .long, timeStyle: .none)
         
-        self.heightView.layer.cornerRadius = 5
-        self.heightView.layer.masksToBounds = true
+        heightView.layer.cornerRadius = 5
+        heightView.layer.masksToBounds = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(refreshTideData), name: .sdApplicationActivated, object: nil)
     }
     
     @objc func refreshTideData() {
         self.navigationItem.title = self.tideDataToChart.shortLocationName
-        let tides = CalendarTideFactory.tidesForCurrentMonth()
+        let tides = CalendarTideFactory.createTides(forYear: displayYear, month: displayMonth)
         self.tideData = tides.map { SingleDayTideModel(tide: $0) }
         
         collectionView.reloadData()
@@ -69,7 +78,7 @@ class IPadMainViewController: UIViewController {
 // Collection view data source
 extension IPadMainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -82,14 +91,21 @@ extension IPadMainViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ChartViewCell", for: indexPath) as! ChartViewCell
             if let layout = collectionView.layoutAttributesForItem(at: indexPath) {
                 chartView.height = Int(layout.bounds.size.height * 3/4)
+                chartView.frame = layout.bounds
+                informationOverlay.superview!.frame = layout.bounds
             }
-            chartView.datasource = tideData[0]
             cell.contentView.addSubview(chartView)
-            chartView.addSubview(informationOverlay)
+            chartView.addSubview(informationOverlay.superview!)
             chartView.setNeedsDisplay()
+            return cell
+        case 2:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CalendarHeader", for: indexPath) as! CalendarHeader
+            cell.monthLabel.text = monthYearString()
             return cell
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CalendarViewCell", for: indexPath) as! CalendarViewCell
+            cell.displayedMonth = displayMonth
+            cell.displayYear = displayYear
             cell.tides = self.tideData
             cell.layoutIfNeeded()
             cell.collectionView.reloadData()
@@ -105,8 +121,10 @@ extension IPadMainViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: getTideInfoWidth(collectionView), height: 275)
         case 1:
             return CGSize(width: getTideGraphWidth(collectionView), height: 275)
+        case 2:
+            return CGSize(width: collectionView.frame.size.width, height: 46)
         default:
-            return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height - 275)
+            return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height - (275 + 60) )
         }
     }
 }
@@ -143,6 +161,21 @@ extension IPadMainViewController: InteractiveChartViewDelegate {
 extension IPadMainViewController: UIPopoverPresentationControllerDelegate {
     func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
         self.refreshTideData()
+    }
+}
+
+extension IPadMainViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tideDataToChart.events.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let event = tideDataToChart.events[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tideEventCell") as! SDTideEventCell
+        cell.heightLabel.text = String.tideFormatString(value: event.eventHeight)
+        cell.timeLabel.text = String.localizedTime(tideEvent: event)
+        cell.typeLabel.text = event.eventType == .max ? "High" : "Low"
+        return cell
     }
 }
 
