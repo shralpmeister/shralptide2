@@ -84,7 +84,7 @@ import CoreGraphics
             return
         }
         let touchPoint = touch.location(in: self)
-        if !frame.contains(touchPoint) {
+        if !bounds.contains(touchPoint) {
             return
         }
         let dataPoint = datasource.tideDataToChart.nearestDataPoint(forTime: timeInMinutes(touchPoint.x))

@@ -35,7 +35,7 @@ typedef NS_ENUM(NSInteger, SDTideStateRiseFall) {
 
 @interface SDTide : NSObject
 
-- (instancetype)initWithTideStation:(NSString *)station StartDate: (NSDate*)start EndDate:(NSDate*)end Events:(NSArray*)tideEvents andIntervals:(NSArray*)tideIntervals;
+- (instancetype)initWithTideStation:(NSString *)station StartDate: (NSDate*)start EndDate:(NSDate*)end Events:(NSArray<SDTideEvent *> *)tideEvents andIntervals:(NSArray<SDTideInterval *> *)tideIntervals;
 @property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *shortLocationName;
 - (float)findTideForTime:(NSInteger) time;
 - (SDTideStateRiseFall)tideDirectionForTime:(NSInteger) time;

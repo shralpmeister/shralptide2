@@ -7,5 +7,5 @@
 #import <ClockKit/ClockKit.h>
 
 @interface CLKTextProvider (MultiColorPatch)
-+ (CLKTextProvider *)textProviderByJoiningTextProviders: (NSArray<CLKTextProvider *> *)textProviders separator:(NSString * _Nullable) separator;
++ (CLKTextProvider * _Nonnull)textProviderByJoiningTextProviders: (NSArray<CLKTextProvider *> * _Nonnull )textProviders separator:(NSString * _Nullable) separator;
 @end

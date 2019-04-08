@@ -6,8 +6,14 @@
 //
 
 import Foundation
+import QuartzCore
 
 class CalendarDayCell: UICollectionViewCell {
     @IBOutlet weak var chartView: SunMoonChartView!
-    @IBOutlet weak var dayLabel: UILabel!
+    @IBOutlet weak var dayLabel: UILabel! {
+        didSet {
+            dayLabel.layer.masksToBounds = true
+            dayLabel.layer.cornerRadius = 5
+        }
+    }
 }

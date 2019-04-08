@@ -226,6 +226,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             } else {
                 NSLog("Graphic Corner is not available on this device.")
             }
+        @unknown default:
+            fatalError("complicatino template type was not passed")
         }
         return template!
     }

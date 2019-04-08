@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,7 @@
 		DC06A25B17DBC6870095E217 /* FavoritesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC06A25A17DBC6870095E217 /* FavoritesListViewController.m */; };
 		DC093E931DB6C1C700720289 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC093E921DB6C1C700720289 /* WatchSessionManager.swift */; };
 		DC0C0DD6105C1D8F0080297E /* ChartScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0C0DD5105C1D8F0080297E /* ChartScrollView.m */; };
+		DC18B3A92246F2020076EB83 /* ConstraintExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC18B3A82246F2020076EB83 /* ConstraintExtension.swift */; };
 		DC1DC0C71BC06EB800EA14ED /* StationInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC1DC0C61BC06EB800EA14ED /* StationInfoView.xib */; };
 		DC2563FF18D63588007C41E6 /* UIButtonBarListIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC2563FE18D63588007C41E6 /* UIButtonBarListIcon@2x.png */; };
 		DC296E8D21C5BB2A00FF73DE /* SIngleDayTideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC296E8C21C5BB2A00FF73DE /* SIngleDayTideModel.swift */; };
@@ -32,7 +33,6 @@
 		DC493E5D0F206C8B0087B341 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = DC493E5C0F206C8B0087B341 /* COPYING */; };
 		DC4FBBE8178BCF3200C0CFEE /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC4FBBE7178BCF3200C0CFEE /* MainStoryboard.storyboard */; };
 		DC4FBBEB178C62EC00C0CFEE /* LandscapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4FBBEA178C62EC00C0CFEE /* LandscapeViewController.m */; };
-		DC51919B21CE0C4E0058A9A5 /* CalendarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC51919A21CE0C4E0058A9A5 /* CalendarViewCell.swift */; };
 		DC51919E21E16E830058A9A5 /* WatchChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7702BE1DA2D4F000B3C4F9 /* WatchChartView.swift */; };
 		DC5191A221E1703B0058A9A5 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5191A121E1703B0058A9A5 /* ChartView.swift */; };
 		DC5191A421E173930058A9A5 /* LabeledChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5191A321E173930058A9A5 /* LabeledChartView.swift */; };
@@ -65,7 +65,6 @@
 		DC7702AE1DA2CBE000B3C4F9 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7702AD1DA2CBE000B3C4F9 /* ComplicationController.swift */; };
 		DC7702B01DA2CBE000B3C4F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC7702AF1DA2CBE000B3C4F9 /* Assets.xcassets */; };
 		DC7702B41DA2CBE000B3C4F9 /* ShralpyWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = DC7702981DA2CBE000B3C4F9 /* ShralpyWatch.app */; };
-		DC7702F01DA40A5300B3C4F9 /* DateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7702EF1DA40A5300B3C4F9 /* DateExtensionTests.swift */; };
 		DC77032A1DA8474700B3C4F9 /* tidelibs.h in Headers */ = {isa = PBXBuildFile; fileRef = DC7703281DA8474700B3C4F9 /* tidelibs.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DC77032D1DA8474700B3C4F9 /* WatchTides.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC7703261DA8474700B3C4F9 /* WatchTides.framework */; };
 		DC77032E1DA8474700B3C4F9 /* WatchTides.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC7703261DA8474700B3C4F9 /* WatchTides.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -174,14 +173,12 @@
 		DCA9D302188328340037DBAB /* background-gradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCA9D301188328340037DBAB /* background-gradient@2x.png */; };
 		DCADEA3E21A23D4D00A249AF /* PortraitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADEA3D21A23D4D00A249AF /* PortraitViewController.swift */; };
 		DCADEA4021A78B4D00A249AF /* IPadMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADEA3F21A78B4D00A249AF /* IPadMainViewController.swift */; };
-		DCADEA4321A7A8B000A249AF /* CurrentTideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADEA4221A7A8B000A249AF /* CurrentTideCell.swift */; };
 		DCADEA4521A7CD1700A249AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCADEA4421A7CD1700A249AF /* LaunchScreen.storyboard */; };
 		DCB51F8E1867A82A00BF9082 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCB51F8D1867A82A00BF9082 /* SpriteKit.framework */; };
 		DCB7F09E21695CEE0056CA7D /* CLKTextProvider+MultiColorPatch.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB7F09D21695CEE0056CA7D /* CLKTextProvider+MultiColorPatch.m */; };
 		DCC8EB151DC19F6A00D31C68 /* gallery.ckcomplication in Resources */ = {isa = PBXBuildFile; fileRef = DCC8EB141DC19F6A00D31C68 /* gallery.ckcomplication */; };
 		DCDDF5D221612E2400D505D5 /* SDTide+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDDF5D121612E2400D505D5 /* SDTide+Events.swift */; };
 		DCDE6CB221F40419000B2ACF /* WatchChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7702BE1DA2D4F000B3C4F9 /* WatchChartView.swift */; };
-		DCDE6CF422078F7B000B2ACF /* CalendarHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDE6CF322078F7B000B2ACF /* CalendarHeader.swift */; };
 		DCE745CB1DC967AC008BF66C /* StationListInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE745CA1DC967AC008BF66C /* StationListInterfaceController.swift */; };
 		DCE897DB0EEE3CAE00BF2357 /* CursorView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE897DA0EEE3CAE00BF2357 /* CursorView.m */; };
 		DCE898A20EEE514900BF2357 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCE898A10EEE514900BF2357 /* QuartzCore.framework */; };
@@ -189,8 +186,6 @@
 		DCF4C25A21A13DDB00BB379B /* SDTideEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF4C25921A13DDB00BB379B /* SDTideEventCell.swift */; };
 		DCF4C25C21A1484000BB379B /* SDEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF4C25B21A1484000BB379B /* SDEventsViewController.swift */; };
 		DCF5B8AB1DB456C4008C0DC8 /* shralptide.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC06A26217DC44F60095E217 /* shralptide.xcdatamodeld */; };
-		DCF6B5C621A8897B004F1044 /* ChartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF6B5C521A8897B004F1044 /* ChartViewCell.swift */; };
-		DCF6B5CA21AB4E4F004F1044 /* LocationHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF6B5C921AB4E4F004F1044 /* LocationHeaderView.swift */; };
 		DCF6B5CC21B34A31004F1044 /* CalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF6B5CB21B34A31004F1044 /* CalendarDayCell.swift */; };
 		DCF6B5CE21B48419004F1044 /* CalendarTideFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF6B5CD21B48419004F1044 /* CalendarTideFactory.swift */; };
 		DCFC01E42223642600A30F82 /* Dstr.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCA3BF11133E4F8F00EA966A /* Dstr.cc */; };
@@ -212,13 +207,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = DC7702971DA2CBE000B3C4F9;
 			remoteInfo = ShralpyWatch;
-		};
-		DC7702F21DA40A5300B3C4F9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
-			remoteInfo = ShralpTide2;
 		};
 		DC77032B1DA8474700B3C4F9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -304,6 +292,7 @@
 		DC06A26417DC44F60095E217 /* shralptide2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = shralptide2.xcdatamodel; sourceTree = "<group>"; };
 		DC093E921DB6C1C700720289 /* WatchSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		DC0C0DD5105C1D8F0080297E /* ChartScrollView.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; name = ChartScrollView.m; path = Classes/Views/ChartScrollView.m; sourceTree = "<group>"; };
+		DC18B3A82246F2020076EB83 /* ConstraintExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintExtension.swift; sourceTree = "<group>"; };
 		DC1DC0C61BC06EB800EA14ED /* StationInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StationInfoView.xib; path = Resources/StationInfoView.xib; sourceTree = "<group>"; };
 		DC2563FE18D63588007C41E6 /* UIButtonBarListIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIButtonBarListIcon@2x.png"; sourceTree = "<group>"; };
 		DC25640418F1DFF7007C41E6 /* shralptide 2.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "shralptide 2.1.xcdatamodel"; sourceTree = "<group>"; };
@@ -324,7 +313,6 @@
 		DC4FBBE7178BCF3200C0CFEE /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		DC4FBBE9178C62EC00C0CFEE /* LandscapeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LandscapeViewController.h; path = Classes/Controllers/LandscapeViewController.h; sourceTree = "<group>"; };
 		DC4FBBEA178C62EC00C0CFEE /* LandscapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LandscapeViewController.m; path = Classes/Controllers/LandscapeViewController.m; sourceTree = "<group>"; };
-		DC51919A21CE0C4E0058A9A5 /* CalendarViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewCell.swift; sourceTree = "<group>"; };
 		DC5191A121E1703B0058A9A5 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChartView.swift; path = /Users/mparlee/Development/Cocoa/ShralpTide2/Classes/Views/ChartView.swift; sourceTree = "<absolute>"; };
 		DC5191A321E173930058A9A5 /* LabeledChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LabeledChartView.swift; path = Classes/Views/LabeledChartView.swift; sourceTree = "<group>"; };
 		DC5191A521E199820058A9A5 /* SunMoonChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SunMoonChartView.swift; path = Classes/Views/SunMoonChartView.swift; sourceTree = "<group>"; };
@@ -372,7 +360,6 @@
 		DC7702B11DA2CBE000B3C4F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC7702BD1DA2D4F000B3C4F9 /* ShralpTide2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShralpTide2-Bridging-Header.h"; sourceTree = "<group>"; };
 		DC7702BE1DA2D4F000B3C4F9 /* WatchChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchChartView.swift; sourceTree = "<group>"; };
-		DC7702ED1DA40A5200B3C4F9 /* ShralpTide2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShralpTide2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC7702EF1DA40A5300B3C4F9 /* DateExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionTests.swift; sourceTree = "<group>"; };
 		DC7702F11DA40A5300B3C4F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC7702FA1DA5796C00B3C4F9 /* ShralpyWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShralpyWatch.entitlements; sourceTree = "<group>"; };
@@ -492,7 +479,6 @@
 		DCA9D301188328340037DBAB /* background-gradient@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-gradient@2x.png"; sourceTree = "<group>"; };
 		DCADEA3D21A23D4D00A249AF /* PortraitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortraitViewController.swift; sourceTree = "<group>"; };
 		DCADEA3F21A78B4D00A249AF /* IPadMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPadMainViewController.swift; sourceTree = "<group>"; };
-		DCADEA4221A7A8B000A249AF /* CurrentTideCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTideCell.swift; sourceTree = "<group>"; };
 		DCADEA4421A7CD1700A249AF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DCB51F8D1867A82A00BF9082 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		DCB7F09D21695CEE0056CA7D /* CLKTextProvider+MultiColorPatch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CLKTextProvider+MultiColorPatch.m"; sourceTree = "<group>"; };
@@ -503,7 +489,6 @@
 		DCCC65D219CE43A300E92D62 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		DCDDF5D121612E2400D505D5 /* SDTide+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SDTide+Events.swift"; sourceTree = "<group>"; };
 		DCDE6CB621F64907000B2ACF /* InteractiveChartViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InteractiveChartViewDelegate.h; sourceTree = "<group>"; };
-		DCDE6CF322078F7B000B2ACF /* CalendarHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeader.swift; sourceTree = "<group>"; };
 		DCE745CA1DC967AC008BF66C /* StationListInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationListInterfaceController.swift; sourceTree = "<group>"; };
 		DCE897D90EEE3CAE00BF2357 /* CursorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CursorView.h; path = Classes/Views/CursorView.h; sourceTree = "<group>"; };
 		DCE897DA0EEE3CAE00BF2357 /* CursorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CursorView.m; path = Classes/Views/CursorView.m; sourceTree = "<group>"; };
@@ -512,8 +497,6 @@
 		DCF4C25921A13DDB00BB379B /* SDTideEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDTideEventCell.swift; sourceTree = "<group>"; };
 		DCF4C25B21A1484000BB379B /* SDEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDEventsViewController.swift; sourceTree = "<group>"; };
 		DCF5B8A81DB418B4008C0DC8 /* shralptide3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = shralptide3.xcdatamodel; sourceTree = "<group>"; };
-		DCF6B5C521A8897B004F1044 /* ChartViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartViewCell.swift; sourceTree = "<group>"; };
-		DCF6B5C921AB4E4F004F1044 /* LocationHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHeaderView.swift; sourceTree = "<group>"; };
 		DCF6B5CB21B34A31004F1044 /* CalendarDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
 		DCF6B5CD21B48419004F1044 /* CalendarTideFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTideFactory.swift; sourceTree = "<group>"; };
 		DCF8AB0121521AF100406568 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
@@ -541,13 +524,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC77032D1DA8474700B3C4F9 /* WatchTides.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DC7702EA1DA40A5200B3C4F9 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,7 +558,6 @@
 				1D6058910D05DD3D006BFB54 /* ShralpTide2.app */,
 				DC7702981DA2CBE000B3C4F9 /* ShralpyWatch.app */,
 				DC7702A41DA2CBE000B3C4F9 /* ShralpyWatch Extension.appex */,
-				DC7702ED1DA40A5200B3C4F9 /* ShralpTide2Tests.xctest */,
 				DC7703261DA8474700B3C4F9 /* WatchTides.framework */,
 			);
 			name = Products;
@@ -911,14 +886,10 @@
 			isa = PBXGroup;
 			children = (
 				DCADEA3F21A78B4D00A249AF /* IPadMainViewController.swift */,
-				DCDE6CF322078F7B000B2ACF /* CalendarHeader.swift */,
-				DCADEA4221A7A8B000A249AF /* CurrentTideCell.swift */,
-				DCF6B5C521A8897B004F1044 /* ChartViewCell.swift */,
+				DC18B3A82246F2020076EB83 /* ConstraintExtension.swift */,
 				DCF6B5CB21B34A31004F1044 /* CalendarDayCell.swift */,
-				DCF6B5C921AB4E4F004F1044 /* LocationHeaderView.swift */,
 				DCF6B5CD21B48419004F1044 /* CalendarTideFactory.swift */,
 				DC296E8C21C5BB2A00FF73DE /* SIngleDayTideModel.swift */,
-				DC51919A21CE0C4E0058A9A5 /* CalendarViewCell.swift */,
 			);
 			path = IPad;
 			sourceTree = "<group>";
@@ -1025,24 +996,6 @@
 			productReference = DC7702A41DA2CBE000B3C4F9 /* ShralpyWatch Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
-		DC7702EC1DA40A5200B3C4F9 /* ShralpTide2Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DC7702F41DA40A5300B3C4F9 /* Build configuration list for PBXNativeTarget "ShralpTide2Tests" */;
-			buildPhases = (
-				DC7702E91DA40A5200B3C4F9 /* Sources */,
-				DC7702EA1DA40A5200B3C4F9 /* Frameworks */,
-				DC7702EB1DA40A5200B3C4F9 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DC7702F31DA40A5300B3C4F9 /* PBXTargetDependency */,
-			);
-			name = ShralpTide2Tests;
-			productName = ShralpTide2Tests;
-			productReference = DC7702ED1DA40A5200B3C4F9 /* ShralpTide2Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		DC7703251DA8474700B3C4F9 /* WatchTides */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC77032F1DA8474700B3C4F9 /* Build configuration list for PBXNativeTarget "WatchTides" */;
@@ -1107,12 +1060,6 @@
 							};
 						};
 					};
-					DC7702EC1DA40A5200B3C4F9 = {
-						CreatedOnToolsVersion = 8.0;
-						LastSwiftMigration = 1000;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 1D6058900D05DD3D006BFB54;
-					};
 					DC7703251DA8474700B3C4F9 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = H29T9V7X78;
@@ -1122,16 +1069,15 @@
 				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ShralpTide2" */;
-			compatibilityVersion = "Xcode 8.0";
-			developmentRegion = English;
+			compatibilityVersion = "Xcode 10.0";
+			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
-				English,
-				Japanese,
-				French,
-				German,
 				en,
 				Base,
+				de,
+				fr,
+				ja,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -1140,7 +1086,6 @@
 				1D6058900D05DD3D006BFB54 /* ShralpTide2 */,
 				DC7702971DA2CBE000B3C4F9 /* ShralpyWatch */,
 				DC7702A31DA2CBE000B3C4F9 /* ShralpyWatch Extension */,
-				DC7702EC1DA40A5200B3C4F9 /* ShralpTide2Tests */,
 				DC7703251DA8474700B3C4F9 /* WatchTides */,
 			);
 		};
@@ -1189,13 +1134,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC7702B01DA2CBE000B3C4F9 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DC7702EB1DA40A5200B3C4F9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1253,7 +1191,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"$CONFIGURATION\" = \"Release\" ] ; then\necho \"Updating $CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist with version and build number for 'Release' build\"\n\nBUILDVERSION=\"`/usr/libexec/PlistBuddy -c \\\"Print :CFBundleVersion\\\" \\\"$CODESIGNING_FOLDER_PATH/Info.plist\\\"`\"\nMKTVERSION=\"`/usr/libexec/PlistBuddy -c \\\"Print :CFBundleShortVersionString\\\" \\\"$CODESIGNING_FOLDER_PATH/Info.plist\\\"`\"\nSETTINGSBUNDLEPATH=\"$CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist\"\n\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:Title 'Version $MKTVERSION ($BUILDVERSION)'\" \"$SETTINGSBUNDLEPATH\"\nfi";
+			shellScript = "if [ \"$CONFIGURATION\" = \"Release\" ] ; then\necho \"Updating $CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist with version and build number for 'Release' build\"\n\nBUILDVERSION=\"`/usr/libexec/PlistBuddy -c \\\"Print :CFBundleVersion\\\" \\\"$CODESIGNING_FOLDER_PATH/Info.plist\\\"`\"\nMKTVERSION=\"`/usr/libexec/PlistBuddy -c \\\"Print :CFBundleShortVersionString\\\" \\\"$CODESIGNING_FOLDER_PATH/Info.plist\\\"`\"\nSETTINGSBUNDLEPATH=\"$CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist\"\n\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:Title 'Version $MKTVERSION ($BUILDVERSION)'\" \"$SETTINGSBUNDLEPATH\"\nfi\n";
 		};
 		DC1CD6291E6CCF9300321C11 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1266,7 +1204,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# xcode-build-bump.sh\n# @desc Auto-increment the build number every time the project is run.\n# @usage\n# 1. Select: your Target in Xcode\n# 2. Select: Build Phases Tab\n# 3. Select: Add Build Phase -> Add Run Script\n# 4. Paste code below in to new \"Run Script\" section\n# 5. Drag the \"Run Script\" below \"Link Binaries With Libraries\"\n# 6. Insure that your starting build number is set to a whole integer and not a float (e.g. 1, not 1.0)\n\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
+			shellScript = "# xcode-build-bump.sh\n# @desc Auto-increment the build number every time the project is run.\n# @usage\n# 1. Select: your Target in Xcode\n# 2. Select: Build Phases Tab\n# 3. Select: Add Build Phase -> Add Run Script\n# 4. Paste code below in to new \"Run Script\" section\n# 5. Drag the \"Run Script\" below \"Link Binaries With Libraries\"\n# 6. Insure that your starting build number is set to a whole integer and not a float (e.g. 1, not 1.0)\n\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
 		};
 		DC1CD62A1E6CCFA900321C11 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1279,7 +1217,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "# xcode-version-bump.sh\n# @desc Auto-increment the version number (only) when a project is archived for export.\n# @usage\n# 1. Select: your Target in Xcode\n# 2. Select: Build Phases Tab\n# 3. Select: Add Build Phase -> Add Run Script\n# 4. Paste code below in to new \"Run Script\" section\n# 5. Check the checkbox \"Run script only when installing\"\n# 6. Drag the \"Run Script\" below \"Link Binaries With Libraries\"\n# 7. Insure your starting version number is in SemVer format (e.g. 1.0.0)\n\n# This splits a two-decimal version string, such as \"0.45.123\", allowing us to increment the third position.\nVERSIONNUM=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nNEWSUBVERSION=`echo $VERSIONNUM | awk -F \".\" '{print $3}'`\nNEWSUBVERSION=$(($NEWSUBVERSION + 1))\nNEWVERSIONSTRING=`echo $VERSIONNUM | awk -F \".\" '{print $1 \".\" $2 \".'$NEWSUBVERSION'\" }'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $NEWVERSIONSTRING\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
+			shellScript = "# xcode-version-bump.sh\n# @desc Auto-increment the version number (only) when a project is archived for export.\n# @usage\n# 1. Select: your Target in Xcode\n# 2. Select: Build Phases Tab\n# 3. Select: Add Build Phase -> Add Run Script\n# 4. Paste code below in to new \"Run Script\" section\n# 5. Check the checkbox \"Run script only when installing\"\n# 6. Drag the \"Run Script\" below \"Link Binaries With Libraries\"\n# 7. Insure your starting version number is in SemVer format (e.g. 1.0.0)\n\n# This splits a two-decimal version string, such as \"0.45.123\", allowing us to increment the third position.\nVERSIONNUM=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nNEWSUBVERSION=`echo $VERSIONNUM | awk -F \".\" '{print $3}'`\nNEWSUBVERSION=$(($NEWSUBVERSION + 1))\nNEWVERSIONSTRING=`echo $VERSIONNUM | awk -F \".\" '{print $1 \".\" $2 \".'$NEWSUBVERSION'\" }'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $NEWVERSIONSTRING\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
 		};
 		DC1CD62B1E6CDEFD00321C11 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1344,7 +1282,6 @@
 				DCF5B8AB1DB456C4008C0DC8 /* shralptide.xcdatamodeld in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* ShralpTideAppDelegate.m in Sources */,
-				DCDE6CF422078F7B000B2ACF /* CalendarHeader.swift in Sources */,
 				DC32FFB70E88B40F00AB78F2 /* ChartViewController.m in Sources */,
 				DCE897DB0EEE3CAE00BF2357 /* CursorView.m in Sources */,
 				DC0C0DD6105C1D8F0080297E /* ChartScrollView.m in Sources */,
@@ -1361,13 +1298,11 @@
 				DCF4C25A21A13DDB00BB379B /* SDTideEventCell.swift in Sources */,
 				DCA3BF4D133E4F8F00EA966A /* Constituent.cc in Sources */,
 				DCA3BF4E133E4F8F00EA966A /* ConstituentSet.cc in Sources */,
-				DCADEA4321A7A8B000A249AF /* CurrentTideCell.swift in Sources */,
 				DCA3BF4F133E4F8F00EA966A /* Coordinates.cc in Sources */,
 				DC30B4172223294E00AEE176 /* String+iOSTideFormat.swift in Sources */,
 				DCADEA4021A78B4D00A249AF /* IPadMainViewController.swift in Sources */,
 				DC9D39A61828B66900BC86AD /* Constants.m in Sources */,
 				DCA3BF50133E4F8F00EA966A /* CurrentBearing.cc in Sources */,
-				DCF6B5C621A8897B004F1044 /* ChartViewCell.swift in Sources */,
 				DCA7317D1E2191C700CA1400 /* WatchSessionManager.swift in Sources */,
 				DCA3BF51133E4F8F00EA966A /* Date.cc in Sources */,
 				DCF6B5CC21B34A31004F1044 /* CalendarDayCell.swift in Sources */,
@@ -1384,7 +1319,6 @@
 				DCA3BF5C133E4F8F00EA966A /* Settings.cc in Sources */,
 				DCA3BF5D133E4F8F00EA966A /* Skycal.cc in Sources */,
 				DC51919E21E16E830058A9A5 /* WatchChartView.swift in Sources */,
-				DCF6B5CA21AB4E4F004F1044 /* LocationHeaderView.swift in Sources */,
 				DC5191A421E173930058A9A5 /* LabeledChartView.swift in Sources */,
 				DC29951E1DB16D4600AC80E8 /* AppStateData.swift in Sources */,
 				DCA3BF5E133E4F8F00EA966A /* Speed.cc in Sources */,
@@ -1404,7 +1338,6 @@
 				DC7099B01E2327E60060691A /* SDBottomViewController.m in Sources */,
 				DC30B4102221F3E400AEE176 /* ChartError.swift in Sources */,
 				DCA3BF86133E9D6600EA966A /* SDTideEvent.m in Sources */,
-				DC51919B21CE0C4E0058A9A5 /* CalendarViewCell.swift in Sources */,
 				DCA3BF89133E9DB200EA966A /* SDTideInterval.m in Sources */,
 				DCA3BF90133E9DE800EA966A /* bit_pack.c in Sources */,
 				DCA3BF91133E9DE800EA966A /* tide_db.c in Sources */,
@@ -1419,6 +1352,7 @@
 				DCADEA3E21A23D4D00A249AF /* PortraitViewController.swift in Sources */,
 				DC6526451350C2DA00B67AE7 /* StationDetailViewController.m in Sources */,
 				DC6526461350C2DA00B67AE7 /* CountryListController.m in Sources */,
+				DC18B3A92246F2020076EB83 /* ConstraintExtension.swift in Sources */,
 				DC6526471350C2DA00B67AE7 /* StateListController.m in Sources */,
 				DC6526481350C2DA00B67AE7 /* StationListController.m in Sources */,
 				DC5191A621E199820058A9A5 /* SunMoonChartView.swift in Sources */,
@@ -1449,14 +1383,6 @@
 				DC3E37041DCFA8C200F97536 /* ConfigHelper.swift in Sources */,
 				DCFC01E52223674400A30F82 /* String+TideFormat.swift in Sources */,
 				DC6936851DCD6E6D0091A015 /* MissingSettingsModalController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DC7702E91DA40A5200B3C4F9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DC7702F01DA40A5300B3C4F9 /* DateExtensionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1524,11 +1450,6 @@
 			target = DC7702971DA2CBE000B3C4F9 /* ShralpyWatch */;
 			targetProxy = DC7702B21DA2CBE000B3C4F9 /* PBXContainerItemProxy */;
 		};
-		DC7702F31DA40A5300B3C4F9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1D6058900D05DD3D006BFB54 /* ShralpTide2 */;
-			targetProxy = DC7702F21DA40A5300B3C4F9 /* PBXContainerItemProxy */;
-		};
 		DC77032C1DA8474700B3C4F9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DC7703251DA8474700B3C4F9 /* WatchTides */;
@@ -1580,7 +1501,10 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1599,7 +1523,7 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "ShralpTide2-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_SUFFIX = pre;
@@ -1635,7 +1559,10 @@
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1652,7 +1579,7 @@
 				SDKROOT = iphoneos;
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "ShralpTide2-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				WARNING_LDFLAGS = "-fobjc-arc";
@@ -1731,6 +1658,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1744,7 +1672,8 @@
 				PROVISIONING_PROFILE = "21F776D9-2C3F-49D7-9F7F-9830D714A162";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21F776D9-2C3F-49D7-9F7F-9830D714A162";
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
@@ -1783,7 +1712,11 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IBSC_MODULE = ShralpyWatch_Extension;
 				INFOPLIST_FILE = ShralpyWatch/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1794,7 +1727,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "ShralpyWatch-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.1;
 			};
@@ -1830,7 +1763,11 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IBSC_MODULE = ShralpyWatch_Extension;
 				INFOPLIST_FILE = ShralpyWatch/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1838,10 +1775,11 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "ShralpyWatch-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 3.1;
@@ -1881,7 +1819,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "ShralpyWatch Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -1891,7 +1833,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "tidelibs/Tidelibs-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.1;
 			};
@@ -1924,96 +1866,24 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "ShralpyWatch Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "tidelibs/Tidelibs-Swift.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 3.1;
-			};
-			name = Release;
-		};
-		DC7702F51DA40A5300B3C4F9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = H29T9V7X78;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = ShralpTide2Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2Tests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "\"Automatic\"";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ShralpTide2.app/ShralpTide2";
-			};
-			name = Debug;
-		};
-		DC7702F61DA40A5300B3C4F9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = H29T9V7X78;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = ShralpTide2Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2Tests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "\"Automatic\"";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "\"Automatic\"";
-				SWIFT_VERSION = 4.2;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ShralpTide2.app/ShralpTide2";
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -2054,7 +1924,11 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = tidelibs/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.WatchTides;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2062,7 +1936,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -2102,13 +1976,17 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = tidelibs/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.WatchTides;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2152,15 +2030,6 @@
 			buildConfigurations = (
 				DC7702B51DA2CBE000B3C4F9 /* Debug */,
 				DC7702B61DA2CBE000B3C4F9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DC7702F41DA40A5300B3C4F9 /* Build configuration list for PBXNativeTarget "ShralpTide2Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DC7702F51DA40A5300B3C4F9 /* Debug */,
-				DC7702F61DA40A5300B3C4F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

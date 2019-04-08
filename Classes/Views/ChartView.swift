@@ -58,7 +58,7 @@ import UIKit
                 }
             }
             if event.eventType == setEventType {
-                if events.index(of:event) == 0 {
+                if events.firstIndex(of:event) == 0 {
                     riseTime = datasource.day
                 }
                 setTime = event.eventTime
