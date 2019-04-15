@@ -86,7 +86,7 @@ class IPadMainViewController: UIViewController {
         let dateString = DateFormatter.localizedString(from: tideDataToChart.startTime, dateStyle: .long, timeStyle: .none)
         dateLabel.text = dateString
         currentDate.text = dateString
-        currentLevel.text = String.tideFormatString(value: Float(tideDataToChart.nearestDataPointToCurrentTime.y)) + String.directionIndicator(tideDataToChart.tideDirection)
+        currentLevel.text = String.tideFormatString(value: Float(app.tides[AppStateData.sharedInstance.locationPage].nearestDataPointToCurrentTime.y)) + String.directionIndicator(app.tides[AppStateData.sharedInstance.locationPage].tideDirection)
         eventsTable.reloadData()
     }
     
@@ -111,6 +111,12 @@ class IPadMainViewController: UIViewController {
         
         heightView.layer.cornerRadius = 5
         heightView.layer.masksToBounds = true
+        
+        chartView.layer.cornerRadius = 5
+        chartView.layer.masksToBounds = true
+        chartView.contentMode = .scaleToFill
+        
+        eventsTable.rowHeight = view.frame.height / 31
         
         populateDaysOfWeek()
         
@@ -138,7 +144,7 @@ class IPadMainViewController: UIViewController {
     }
     
     @objc func refreshTideData() {
-        navigationItem.title = self.tideDataToChart.shortLocationName
+        navigationItem.title = app.tides[AppStateData.sharedInstance.locationPage].shortLocationName
         refreshCurrentTide()
         chartView.setNeedsDisplay()
         
@@ -152,6 +158,13 @@ class IPadMainViewController: UIViewController {
             
             DispatchQueue.main.async {
                 self.monthLabel.text = self.monthYearString()
+                self.displayDayIndex = nil
+                if let selectedItems = self.collectionView.indexPathsForSelectedItems {
+                    selectedItems.forEach { index in
+                        self.collectionView.deselectItem(at: index, animated: false)
+                        self.collectionView.cellForItem(at: index)?.isSelected = false
+                    }
+                }
                 self.collectionView.reloadData()
                 self.activityIndicator.stopAnimating()
                 self.overlayView.removeFromSuperview()
@@ -233,7 +246,7 @@ extension IPadMainViewController: UICollectionViewDataSource {
                 attributes: boldFont
             )
             todayIndex = indexPath
-            if (displayDayIndex == nil) {
+            if (collectionView.indexPathsForSelectedItems?.isEmpty ?? true) {
                 displayDayIndex = indexPath
                 collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
             }
@@ -261,12 +274,16 @@ extension IPadMainViewController: UICollectionViewDelegate {
         cell?.layer.borderWidth = 4
         cell?.layer.borderColor = UIColor.yellow.cgColor
         displayDayIndex = indexPath
+        if let todayIndex = self.todayIndex {
+            collectionView.reloadItems(at: [todayIndex])
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.layer.borderWidth = 0
-        displayDayIndex = todayIndex
+        displayDayIndex = nil
+        collectionView.reloadItems(at: [indexPath])
     }
 }
 
@@ -330,12 +347,6 @@ extension IPadMainViewController: UITableViewDataSource {
         cell.timeLabel.text = String.localizedTime(tideEvent: event)
         cell.typeLabel.text = event.eventType == .max ? "High" : "Low"
         return cell
-    }
-}
-
-extension IPadMainViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.frame.height / 4
     }
 }
 
