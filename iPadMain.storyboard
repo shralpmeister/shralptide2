@@ -403,13 +403,15 @@
                         <outlet property="day4" destination="FHC-4c-L3T" id="gpi-5E-DVQ"/>
                         <outlet property="day5" destination="Sjy-Jz-Ghc" id="vpw-gZ-mon"/>
                         <outlet property="day6" destination="jP5-YG-hQs" id="OYI-wC-SPM"/>
-                        <outlet property="editButton" destination="FMq-DX-7dS" id="OSM-vk-i6V"/>
                         <outlet property="eventsTable" destination="h57-Vg-kKN" id="bNh-d8-qwa"/>
                         <outlet property="heightLabel" destination="GAe-ws-m3J" id="4ag-uw-H4d"/>
                         <outlet property="heightView" destination="pQX-hq-EF1" id="waN-oQ-CC3"/>
                         <outlet property="informationOverlay" destination="2nJ-AE-TzF" id="hkz-be-mjq"/>
+                        <outlet property="locationButton" destination="FMq-DX-7dS" id="OSM-vk-i6V"/>
                         <outlet property="monthLabel" destination="jub-83-Hfp" id="ThW-7h-Ep4"/>
+                        <outlet property="nextButton" destination="7U3-Ap-jfi" id="7mP-A4-clc"/>
                         <outlet property="overlayView" destination="hAQ-aa-6sL" id="geV-EB-ZHU"/>
+                        <outlet property="prevButton" destination="jMk-nE-AMY" id="h4Z-aq-R9m"/>
                         <outlet property="resetButton" destination="0Oe-re-fYE" id="CMq-pN-QTV"/>
                         <outlet property="view" destination="dQ5-AI-96y" id="5un-pT-srz"/>
                     </connections>
@@ -423,7 +425,7 @@
                             <rect key="frame" x="281.5" y="381.5" width="37" height="37"/>
                         </activityIndicatorView>
                     </subviews>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.25357614434507042" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="JyH-Vf-mWI" firstAttribute="centerY" secondItem="hAQ-aa-6sL" secondAttribute="centerY" id="Nz1-CY-S0i"/>
                         <constraint firstItem="JyH-Vf-mWI" firstAttribute="centerX" secondItem="hAQ-aa-6sL" secondAttribute="centerX" id="Wzh-Tp-3PT"/>

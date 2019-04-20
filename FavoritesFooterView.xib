@@ -39,9 +39,9 @@
             <color key="backgroundColor" red="0.02064089291" green="0.25836950539999998" blue="0.30878552790000002" alpha="0.90187610035211263" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="16g-HY-3in" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="APp-Ki-f63"/>
-                <constraint firstItem="16g-HY-3in" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" id="DTW-Q4-VVB"/>
+                <constraint firstItem="16g-HY-3in" firstAttribute="centerY" secondItem="1" secondAttribute="centerY" id="OyB-63-Z8w"/>
+                <constraint firstItem="b0j-LH-pKb" firstAttribute="centerY" secondItem="1" secondAttribute="centerY" id="S4m-RV-HwO"/>
                 <constraint firstAttribute="trailing" secondItem="b0j-LH-pKb" secondAttribute="trailing" constant="20" id="lcW-a1-XZ8"/>
-                <constraint firstItem="b0j-LH-pKb" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" id="qso-Y6-SdB"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

@@ -21,6 +21,8 @@ class IPadMainViewController: UIViewController {
     @IBOutlet fileprivate weak var day6: UILabel!
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
     @IBOutlet fileprivate weak var resetButton: UIButton!
+    @IBOutlet fileprivate weak var prevButton: UIButton!
+    @IBOutlet fileprivate weak var nextButton: UIButton!
     
     // current conditions
     @IBOutlet fileprivate weak var currentTideView: UIView!
@@ -36,7 +38,7 @@ class IPadMainViewController: UIViewController {
     @IBOutlet fileprivate weak var informationOverlay: UIView!
     
     // location selection
-    @IBOutlet fileprivate weak var editButton: UIBarButtonItem!
+    @IBOutlet fileprivate weak var locationButton: UIBarButtonItem!
     
     // activity indicator
     @IBOutlet fileprivate weak var activityIndicator: UIActivityIndicatorView!
@@ -143,38 +145,63 @@ class IPadMainViewController: UIViewController {
         }
     }
     
-    @objc func refreshTideData() {
-        navigationItem.title = app.tides[AppStateData.sharedInstance.locationPage].shortLocationName
-        refreshCurrentTide()
-        chartView.setNeedsDisplay()
-        
+    fileprivate func startActivityIndicator() {
         activityIndicator.startAnimating()
         overlayView.frame = collectionView.bounds
         overlayView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.addSubview(overlayView)
+    }
+    
+    fileprivate func stopActivityIndicator() {
+        self.activityIndicator.stopAnimating()
+        self.overlayView.removeFromSuperview()
+    }
+    
+    @objc func refreshTideData() {
+        locationButton.isEnabled = false
+        nextButton.isEnabled = false
+        prevButton.isEnabled = false
+        resetButton.isHidden = true
+        
+        navigationItem.title = app.tides[AppStateData.sharedInstance.locationPage].shortLocationName
+        refreshCurrentTide()
+        chartView.setNeedsDisplay()
+        
+        startActivityIndicator()
+        
         DispatchQueue.global(qos: .background).async {
             let tides = CalendarTideFactory.createTides(forYear: self.displayYear, month: self.displayMonth)
             self.tideData = tides.map { SingleDayTideModel(tide: $0) }
-            
-            DispatchQueue.main.async {
-                self.monthLabel.text = self.monthYearString()
-                self.displayDayIndex = nil
-                if let selectedItems = self.collectionView.indexPathsForSelectedItems {
-                    selectedItems.forEach { index in
-                        self.collectionView.deselectItem(at: index, animated: false)
-                        self.collectionView.cellForItem(at: index)?.isSelected = false
-                    }
-                }
-                self.collectionView.reloadData()
-                self.activityIndicator.stopAnimating()
-                self.overlayView.removeFromSuperview()
-                
-                if self.displayMonth == Calendar.current.component(.month, from: Date()) &&
-                    self.displayYear == Calendar.current.component(.year, from: Date()) {
-                    self.resetButton.isHidden = true
-                } else {
-                    self.resetButton.isHidden = false
-                }
+            DispatchQueue.main.async(execute: self.postRefreshDisplay)
+        }
+    }
+    
+    fileprivate func postRefreshDisplay() {
+        self.monthLabel.text = self.monthYearString()
+        self.displayDayIndex = nil
+        updateSelectedDay()
+        self.collectionView.reloadData()
+        stopActivityIndicator()
+        updateDisplayedMonth()
+        self.locationButton.isEnabled = true
+        self.nextButton.isEnabled = true
+        self.prevButton.isEnabled = true
+    }
+    
+    fileprivate func updateDisplayedMonth() {
+        if self.displayMonth == Calendar.current.component(.month, from: Date()) &&
+            self.displayYear == Calendar.current.component(.year, from: Date()) {
+            self.resetButton.isHidden = true
+        } else {
+            self.resetButton.isHidden = false
+        }
+    }
+    
+    fileprivate func updateSelectedDay() {
+        if let selectedItems = self.collectionView.indexPathsForSelectedItems {
+            selectedItems.forEach { index in
+                self.collectionView.deselectItem(at: index, animated: false)
+                self.collectionView.cellForItem(at: index)?.isSelected = false
             }
         }
     }
@@ -205,7 +232,7 @@ class IPadMainViewController: UIViewController {
         let storyboard = UIStoryboard(name: "iPadMain", bundle: nil)
         let locationsVC = storyboard.instantiateViewController(withIdentifier: "locationListController") as! FavoritesListViewController
         locationsVC.modalPresentationStyle = .popover
-        locationsVC.popoverPresentationController!.barButtonItem = editButton
+        locationsVC.popoverPresentationController!.barButtonItem = locationButton
         locationsVC.popoverPresentationController!.delegate = self
         
         present(locationsVC, animated: true, completion: nil)
@@ -257,12 +284,13 @@ extension IPadMainViewController: UICollectionViewDataSource {
         }
         if indexPath == displayDayIndex {
             cell.isSelected = true
-            cell.layer.cornerRadius = 5
             cell.layer.borderWidth = 4
             cell.layer.borderColor = UIColor.yellow.cgColor
         } else {
             cell.layer.borderWidth = 0
         }
+        cell.layer.cornerRadius = 5
+        cell.layer.masksToBounds = true
         return cell
     }
 }

@@ -48,6 +48,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary*)options {
     DLog(@"applicationDidFinishLaunchingWithOptions");
+    UIApplication.sharedApplication.statusBarStyle = UIStatusBarStyleLightContent;
     [ConfigHelper.sharedInstance setupByPreferences];
     
     // Enables background fetch to update UI at periodic intervals when backgrounded.
