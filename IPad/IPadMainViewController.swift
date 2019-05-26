@@ -100,7 +100,7 @@ class IPadMainViewController: UIViewController {
         navigationItem.title = self.tideDataToChart.shortLocationName
         monthLabel.text = monthYearString()
 
-        refreshTideData()
+        refreshTideData(true)
         
         app.supportedOrientations = .allButUpsideDown
         
@@ -157,22 +157,22 @@ class IPadMainViewController: UIViewController {
         self.overlayView.removeFromSuperview()
     }
     
-    @objc func refreshTideData() {
-        locationButton.isEnabled = false
-        nextButton.isEnabled = false
-        prevButton.isEnabled = false
-        resetButton.isHidden = true
-        
+    @objc func refreshTideData(_ recalculateMonth: Bool = false) {
         navigationItem.title = app.tides[AppStateData.sharedInstance.locationPage].shortLocationName
         refreshCurrentTide()
         chartView.setNeedsDisplay()
         
-        startActivityIndicator()
-        
-        DispatchQueue.global(qos: .background).async {
-            let tides = CalendarTideFactory.createTides(forYear: self.displayYear, month: self.displayMonth)
-            self.tideData = tides.map { SingleDayTideModel(tide: $0) }
-            DispatchQueue.main.async(execute: self.postRefreshDisplay)
+        if recalculateMonth {
+            locationButton.isEnabled = false
+            nextButton.isEnabled = false
+            prevButton.isEnabled = false
+            resetButton.isHidden = true
+            startActivityIndicator()
+            DispatchQueue.global(qos: .background).async {
+                let tides = CalendarTideFactory.createTides(forYear: self.displayYear, month: self.displayMonth)
+                self.tideData = tides.map { SingleDayTideModel(tide: $0) }
+                DispatchQueue.main.async(execute: self.postRefreshDisplay)
+            }
         }
     }
     
@@ -210,14 +210,14 @@ class IPadMainViewController: UIViewController {
         todayIndex = nil
         displayDayIndex = nil
         displayMonth += 1
-        refreshTideData()
+        refreshTideData(true)
     }
     
     @IBAction func lastMonth() {
         todayIndex = nil
         displayDayIndex = nil
         displayMonth -= 1
-        refreshTideData()
+        refreshTideData(true)
     }
     
     @IBAction func resetToCurrent() {
@@ -225,7 +225,7 @@ class IPadMainViewController: UIViewController {
         displayDayIndex = nil
         displayMonth = Calendar.current.component(.month, from: Date())
         displayYear = Calendar.current.component(.year, from: Date())
-        refreshTideData()
+        refreshTideData(true)
     }
     
     @IBAction func displayFavoritesPopover() {
@@ -273,34 +273,22 @@ extension IPadMainViewController: UICollectionViewDataSource {
                 attributes: boldFont
             )
             todayIndex = indexPath
-            if (collectionView.indexPathsForSelectedItems?.isEmpty ?? true) {
+            if (displayDayIndex == nil) {
                 displayDayIndex = indexPath
                 collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
+                cell.isSelected = true
             }
         } else {
             cell.backgroundColor = UIColor.black.withAlphaComponent(1.0)
             cell.dayLabel.textColor = .white
             cell.dayLabel.text = String(cellDay)
         }
-        if indexPath == displayDayIndex {
-            cell.isSelected = true
-            cell.layer.borderWidth = 4
-            cell.layer.borderColor = UIColor.yellow.cgColor
-        } else {
-            cell.layer.borderWidth = 0
-        }
-        cell.layer.cornerRadius = 5
-        cell.layer.masksToBounds = true
         return cell
     }
 }
 
 extension IPadMainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-        cell?.layer.cornerRadius = 5
-        cell?.layer.borderWidth = 4
-        cell?.layer.borderColor = UIColor.yellow.cgColor
         displayDayIndex = indexPath
         if let todayIndex = self.todayIndex {
             collectionView.reloadItems(at: [todayIndex])
@@ -308,8 +296,6 @@ extension IPadMainViewController: UICollectionViewDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-        cell?.layer.borderWidth = 0
         displayDayIndex = nil
         collectionView.reloadItems(at: [indexPath])
     }
@@ -359,7 +345,7 @@ extension IPadMainViewController: InteractiveChartViewDelegate {
 
 extension IPadMainViewController: UIPopoverPresentationControllerDelegate {
     func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
-        self.refreshTideData()
+        self.refreshTideData(true)
     }
 }
 

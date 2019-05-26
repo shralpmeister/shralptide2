@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>3.1.5</string>
 	<key>CFBundleVersion</key>
-	<string>1310</string>
+	<string>1358</string>
 	<key>CLKComplicationPrincipalClass</key>
 	<string>$(PRODUCT_MODULE_NAME).ComplicationController</string>
 	<key>CLKComplicationSupportedFamilies</key>

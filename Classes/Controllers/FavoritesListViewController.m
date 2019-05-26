@@ -267,7 +267,10 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    return [[NSBundle mainBundle] loadNibNamed:@"FavoritesFooterView" owner:self options:nil][0];
+    UITableView *view = [[NSBundle mainBundle] loadNibNamed:@"FavoritesFooterView" owner:self options:nil][0];
+    view.subviews[0].layer.cornerRadius = 15;
+    view.subviews[0].clipsToBounds = YES;
+    return view;
 }
 
 @end

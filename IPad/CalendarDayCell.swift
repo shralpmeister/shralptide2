@@ -16,4 +16,21 @@ class CalendarDayCell: UICollectionViewCell {
             dayLabel.layer.cornerRadius = 5
         }
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        layer.cornerRadius = 5
+        layer.masksToBounds = true
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                layer.borderWidth = 4
+                layer.borderColor = UIColor.yellow.cgColor
+            } else {
+                layer.borderWidth = 0
+            }
+        }
+    }
 }
