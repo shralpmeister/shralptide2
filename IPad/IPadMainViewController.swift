@@ -290,14 +290,10 @@ extension IPadMainViewController: UICollectionViewDataSource {
 extension IPadMainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         displayDayIndex = indexPath
-        if let todayIndex = self.todayIndex {
-            collectionView.reloadItems(at: [todayIndex])
-        }
     }
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         displayDayIndex = nil
-        collectionView.reloadItems(at: [indexPath])
     }
 }
 
