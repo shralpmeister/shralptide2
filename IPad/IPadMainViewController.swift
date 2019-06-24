@@ -92,6 +92,19 @@ class IPadMainViewController: UIViewController {
         eventsTable.reloadData()
     }
     
+    @objc func appWillEnterForeground(notification: NSNotification) {
+        if let index = todayIndex {
+            let todayCell = collectionView.cellForItem(at: index) as! CalendarDayCell
+            if let dayOfMonth = todayCell.dayLabel?.text {
+                let now = Date()
+                if Int(dayOfMonth) != Calendar.current.component(.day, from: now) &&
+                    displayMonth == Calendar.current.component(.month, from: now) {
+                    refreshTideData(true)
+                }
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -125,6 +138,7 @@ class IPadMainViewController: UIViewController {
         resetButton.isHidden = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(refreshTideData), name: .sdApplicationActivated, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
