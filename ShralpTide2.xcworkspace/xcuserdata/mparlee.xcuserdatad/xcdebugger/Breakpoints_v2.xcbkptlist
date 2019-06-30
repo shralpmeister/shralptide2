@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IPad/IPadMainViewController.swift"
-            timestampString = "583020518.328009"
+            filePath = "Categories/String+iOSTideFormat.swift"
+            timestampString = "583618571.2988811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "appWillEnterForeground(notification:)"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "directionIndicator(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

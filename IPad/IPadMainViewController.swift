@@ -94,8 +94,8 @@ class IPadMainViewController: UIViewController {
     
     @objc func appWillEnterForeground(notification: NSNotification) {
         if let index = todayIndex {
-            let todayCell = collectionView.cellForItem(at: index) as! CalendarDayCell
-            if let dayOfMonth = todayCell.dayLabel?.text {
+            let todayCell = collectionView.cellForItem(at: index) as? CalendarDayCell
+            if let dayOfMonth = todayCell?.dayLabel?.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
                 let now = Date()
                 if Int(dayOfMonth) != Calendar.current.component(.day, from: now) &&
                     displayMonth == Calendar.current.component(.month, from: now) {

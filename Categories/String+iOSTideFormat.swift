@@ -24,11 +24,11 @@ extension String {
     }
     
     static func tideFormatString(value:Float) -> String {
-        return String(format:"%1.2f%@", String.localizeHeight(value: value), String.localizedUnit())
+        return String(format:"%1.2f%@", value, String.localizedUnit())
     }
     
     static func tideFormatStringSmall(value:Float) -> String {
-        return String(format:"%1.1f%@",String.localizeHeight(value: value), String.localizedUnit())
+        return String(format:"%1.1f%@", value, String.localizedUnit())
     }
     
     static func directionIndicator(_ direction:SDTideStateRiseFall) -> String {
@@ -40,13 +40,6 @@ extension String {
         default:
             return ""
         }
-    }
-    
-    static func localizedDescription(event:SDTideEvent) -> String {
-        let localHeight = String.localizeHeight(value: event.eventHeight)
-        let localUnit = String.localizedUnit()
-        let localTime = localizedTime(tideEvent: event)
-        return String(format: "%8s\t%6s% 2.2f%@", (localTime as NSString).utf8String!, (event.eventTypeDescription as NSString).utf8String!, localHeight, localUnit)
     }
     
     static func localizedTime(tideEvent:SDTideEvent) -> String {
