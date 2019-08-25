@@ -61,11 +61,12 @@
                                                object:nil];
     
     // Load the tide station data
-    DLog(@"%@", [[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-free" ofType:@"tcd"]);
+    //DLog(@"%@", [[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-free" ofType:@"tcd"]);
 	NSMutableString *pathBuilder = [[NSMutableString alloc] init];
-	[pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-free" ofType:@"tcd"]];
-	[pathBuilder appendString:@":"];
-	[pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-nonfree" ofType:@"tcd"]];
+    [pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-20040614-wxtide" ofType:@"tcd"]];
+//    [pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-free" ofType:@"tcd"]];
+//    [pathBuilder appendString:@":"];
+//    [pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-nonfree" ofType:@"tcd"]];
 	setenv("HFILE_PATH",[pathBuilder cStringUsingEncoding:NSUTF8StringEncoding],1);
     
     [AppStateData.sharedInstance loadSavedState];

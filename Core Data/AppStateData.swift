@@ -54,7 +54,7 @@ import CoreData
     }
 
     private func setDefaultLocation() throws {
-        let defaultLocation = "La Jolla (Scripps Institution Wharf), California";
+        let defaultLocation = "La Jolla, Scripps Pier, California";
         let context = self.managedObjectContext!
         
         let appState = SDApplicationState(context:context)
@@ -126,7 +126,7 @@ import CoreData
     @objc lazy public var DataContainerUrl: URL = {
         let urls = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
         let cacheUrl = (urls[urls.count-1] as NSURL) as URL
-        return cacheUrl.appendingPathComponent("datastore.sqlite")
+        return cacheUrl.appendingPathComponent("legacy-datastore.sqlite")
     }()
 
     @objc lazy public var managedObjectModel: NSManagedObjectModel = {
@@ -136,7 +136,8 @@ import CoreData
     
     @objc lazy public var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
         let fm = FileManager()
-        let bundledDataStoreUrl = Bundle.main.url(forResource:"datastore", withExtension:"sqlite")
+        let bundledDataStoreUrl = Bundle.main.url(forResource: "legacy-datastore", withExtension: "sqlite")
+        //let bundledDataStoreUrl = Bundle.main.url(forResource:"datastore", withExtension:"sqlite")
         
         let coordinator: NSPersistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
 
