@@ -27,11 +27,11 @@
 @interface SDTideFactory : NSObject
 
 + (SDTide*)todaysTidesForStationName:(NSString*)name;
-+ (NSArray*)tidesForStationName:(NSString*)name;
-+ (NSArray*)tidesForStationName:(NSString*)name withInterval:(long)interval forDays:(long)days;
++ (NSArray<SDTide*>*)tidesForStationName:(NSString*)name;
++ (NSArray<SDTide*>*)tidesForStationName:(NSString*)name withInterval:(long)interval forDays:(long)days;
 + (SDTide*)tidesForStationName:(NSString*)name fromDate:(NSDate*)fromDate toDate:(NSDate*)toDate;
 + (SDTide*)tideForStationName:(NSString*)name withInterval:(long)interval fromDate:(NSDate*)fromDate toDate:(NSDate*)toDate;
-
++ (NSArray<SDTide*>*)tidesForStationName:(NSString *)name withInterval:(long)interval forDays:(long)days fromDate:(NSDate*)date;
 
 @end
 

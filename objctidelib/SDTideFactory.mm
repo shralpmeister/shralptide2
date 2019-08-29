@@ -47,12 +47,12 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
     return [SDTideFactory tidesForStationName:name withInterval:900 forDays:1][0];
 }
 
-+(NSArray*)tidesForStationName:(NSString *)name
++(NSArray<SDTide*>*)tidesForStationName:(NSString *)name
 {
     return [SDTideFactory tidesForStationName:name withInterval:900 forDays:configHelper.daysPref];
 }
 
-+(NSArray*)tidesForStationName:(NSString*)name withInterval:(long)interval forDays:(long)days
++(NSArray<SDTide*>*)tidesForStationName:(NSString*)name withInterval:(long)interval forDays:(long)days
 {
     NSMutableArray *tideCollection = [[NSMutableArray alloc] init];
     
@@ -65,6 +65,20 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
     }
     
     NSArray *result = [NSArray arrayWithArray:tideCollection];
+    return result;
+}
+
++(NSArray<SDTide*>*)tidesForStationName:(NSString *)name withInterval:(long)interval forDays:(long)days fromDate:(NSDate*)date
+{
+    NSMutableArray<SDTide*> *tideCollection = [[NSMutableArray alloc] init];
+    
+    for (int i=0; i < days; i++) {
+        NSDate *day = [date dateByAddingTimeInterval:i * SECONDS_PER_DAY];
+        SDTide* tidy = [SDTideFactory tideForStationName:name withInterval:interval fromDate:[day startOfDay] toDate:[day endOfDay]];
+        [tideCollection addObject:tidy];
+    }
+    
+    NSArray<SDTide*> *result = [NSArray arrayWithArray:tideCollection];
     return result;
 }
 
