@@ -307,7 +307,7 @@
 		DC30B40F2221F3E400AEE176 /* ChartError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartError.swift; path = Classes/Views/ChartError.swift; sourceTree = "<group>"; };
 		DC30B411222327AD00AEE176 /* Date+Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Day.swift"; sourceTree = "<group>"; };
 		DC30B4162223294E00AEE176 /* String+iOSTideFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+iOSTideFormat.swift"; sourceTree = "<group>"; };
-		DC31774822DBF3C300484336 /* harmonics-20040614-wxtide.tcd */ = {isa = PBXFileReference; lastKnownFileType = text; name = "harmonics-20040614-wxtide.tcd"; path = "Resources/harmonics-20040614-wxtide.tcd"; sourceTree = "<group>"; };
+		DC31774822DBF3C300484336 /* harmonics-20040614-wxtide.tcd */ = {isa = PBXFileReference; lastKnownFileType = text; path = "harmonics-20040614-wxtide.tcd"; sourceTree = "<group>"; };
 		DC31774A22DBF3E700484336 /* legacy-datastore.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "legacy-datastore.sqlite"; sourceTree = "<group>"; };
 		DC32FFB50E88B40F00AB78F2 /* ChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChartViewController.h; path = Classes/Controllers/ChartViewController.h; sourceTree = "<group>"; };
 		DC32FFB60E88B40F00AB78F2 /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChartViewController.m; path = Classes/Controllers/ChartViewController.m; sourceTree = "<group>"; };
@@ -606,8 +606,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				DC31774A22DBF3E700484336 /* legacy-datastore.sqlite */,
-				DC31774822DBF3C300484336 /* harmonics-20040614-wxtide.tcd */,
 				DC77040E1DAC718500B3C4F9 /* ShralpTide2.entitlements */,
 				DC65261E134797E100B67AE7 /* Categories */,
 				DCA3BF8A133E9DCF00EA966A /* libtcd */,
@@ -660,6 +658,8 @@
 				DCA9D301188328340037DBAB /* background-gradient@2x.png */,
 				DC6869041E28880900870F6E /* background-gradient@3x.png */,
 				DCA9D2FD18820ABB0037DBAB /* datastore.sqlite */,
+				DC31774A22DBF3E700484336 /* legacy-datastore.sqlite */,
+				DC31774822DBF3C300484336 /* harmonics-20040614-wxtide.tcd */,
 				DC70BD0417F8B5ED00D5FF3A /* Images.xcassets */,
 				DCA3BF70133E4FFA00EA966A /* harmonics-dwf-20081228-free.tcd */,
 				DCA3BF71133E4FFA00EA966A /* harmonics-dwf-20081228-nonfree.tcd */,
