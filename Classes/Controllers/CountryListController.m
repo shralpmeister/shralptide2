@@ -45,10 +45,11 @@
 	}
 	
     SDCountry *country = ((SDCountry*)self.rows[row]);
-	cell.nameLabel.text = country.name;
+    cell.nameLabel.text = [country.name isEqualToString:@""] ? @"Undefined" : country.name;
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-	cell.flagView.image = [UIImage imageNamed:country.flag];
+	//cell.flagView.image = [UIImage imageNamed:country.flag];
+    cell.flagView.image = [[[appDelegate.countries valueForKey: country.name] toFlagEmoji] image];
 	
 	return cell;
 }
@@ -60,9 +61,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSString *countryName = ((SDCountry*)(self.rows)[indexPath.row]).name;
+    id<StationData> tideData = ConfigHelper.sharedInstance.legacyMode ? LegacyStationData.sharedInstance : NoaaStationData.sharedInstance;
     
-    NSManagedObjectContext *context = AppStateData.sharedInstance.managedObjectContext;
+	NSString *countryName = ((SDCountry*)(self.rows)[indexPath.row]).name;
+    NSManagedObjectContext *context = tideData.managedObjectContext;
     NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:@"SDCountry" 
 											  inManagedObjectContext:context];
@@ -78,7 +80,7 @@
 	NSArray *results = [context executeFetchRequest:fr error:&error];
 	if (results.count > 0) {
 		SDCountry *country = results[0];
-        if ((country.states).count == 0) {
+        if (([country.states filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"name.length > 0"]]).count == 0) {
             StationListController *stationController = [[StationListController alloc] initWithNibName:@"StationListView" bundle:nil];
             
             NSArray *orderedStations = [[country.tideStations objectsPassingTest:

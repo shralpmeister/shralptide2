@@ -33,6 +33,8 @@
 
 @property (nonatomic, strong) NSString *cachedLocationFilePath;
 
+@property (nonatomic, strong) NSDictionary<NSString*, NSString*>* countries;
+
 @end
 
 @implementation ShralpTideAppDelegate
@@ -59,14 +61,18 @@
                                              selector:@selector(defaultsChanged:)
                                                  name:NSUserDefaultsDidChangeNotification
                                                object:nil];
+    // Load country data
+    self.countries = [self readCountryData];
     
     // Load the tide station data
-    //DLog(@"%@", [[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-free" ofType:@"tcd"]);
-	NSMutableString *pathBuilder = [[NSMutableString alloc] init];
-    [pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-20040614-wxtide" ofType:@"tcd"]];
-//    [pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-free" ofType:@"tcd"]];
-//    [pathBuilder appendString:@":"];
-//    [pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-nonfree" ofType:@"tcd"]];
+    NSMutableString *pathBuilder = [[NSMutableString alloc] init];
+    if (ConfigHelper.sharedInstance.legacyMode) {
+        [pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-20040614-wxtide" ofType:@"tcd"]];
+    } else {
+        [pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-free" ofType:@"tcd"]];
+        [pathBuilder appendString:@":"];
+        [pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-nonfree" ofType:@"tcd"]];
+    }
 	setenv("HFILE_PATH",[pathBuilder cStringUsingEncoding:NSUTF8StringEncoding],1);
     
     [AppStateData.sharedInstance loadSavedState];
@@ -135,6 +141,21 @@
 {
     [self recalculateTidesForNewDay];
     completionHandler(UIBackgroundFetchResultNewData);
+}
+
+#pragma mark -
+#pragma mark Misc Util Methods
+- (NSDictionary<NSString*, NSString*>*) readCountryData {
+    NSMutableDictionary<NSString*, NSString*>* result = [[NSMutableDictionary alloc] init];
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"countries" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    NSArray *json = [NSJSONSerialization JSONObjectWithData:data  options:kNilOptions error:nil];
+    for (NSDictionary* jsonObj in json) {
+        NSString* key = jsonObj[@"Name"];
+        NSString* value = jsonObj[@"Code"];
+        result[key] = value;
+    }
+    return [[NSDictionary alloc] initWithDictionary:result];
 }
 
 @end

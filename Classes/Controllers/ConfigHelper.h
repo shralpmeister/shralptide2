@@ -13,6 +13,7 @@
 @property (nonatomic,strong) NSString * _Nonnull unitsPref;
 @property (nonatomic,assign) NSInteger daysPref;
 @property (nonatomic,assign) BOOL showsCurrentsPref;
+@property (nonatomic,assign) BOOL legacyMode;
 
 - (void)setupByPreferences;
 @property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary * _Nonnull readSettingsDictionary;

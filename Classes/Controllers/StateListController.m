@@ -50,7 +50,7 @@
 	
 	SDStateProvince* state = (SDStateProvince*)self.rows[row];
     
-    cell.nameLabel.text = state.name;
+    cell.nameLabel.text = [state.name isEqualToString:@""]  ? @"Undefined" : state.name;
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.flagView.image = [UIImage imageNamed:state.flag];
     if (cell.flagView.image == nil) {
@@ -67,9 +67,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    id<StationData> tideData = ConfigHelper.sharedInstance.legacyMode ? LegacyStationData.sharedInstance : NoaaStationData.sharedInstance;
 	NSString *stateName = ((SDStateProvince*)(self.rows)[indexPath.row]).name;
-    
-    NSManagedObjectContext *context = AppStateData.sharedInstance.managedObjectContext;
+    NSManagedObjectContext *context = tideData.managedObjectContext;
     NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:@"SDStateProvince" 
 											  inManagedObjectContext:context];

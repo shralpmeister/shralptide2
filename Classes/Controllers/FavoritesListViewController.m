@@ -253,7 +253,8 @@
 }
 
 -(NSArray*)queryCountries {
-    NSManagedObjectContext *context = AppStateData.sharedInstance.managedObjectContext;
+    id<StationData> tideData = ConfigHelper.sharedInstance.legacyMode ? LegacyStationData.sharedInstance : NoaaStationData.sharedInstance;
+    NSManagedObjectContext *context = tideData.managedObjectContext;
     NSEntityDescription *entityDescription = [NSEntityDescription
                                               entityForName:@"SDCountry"
                                               inManagedObjectContext:context];

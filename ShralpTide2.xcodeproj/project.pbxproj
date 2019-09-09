@@ -28,7 +28,7 @@
 		DC30B413222327AD00AEE176 /* Date+Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC30B411222327AD00AEE176 /* Date+Day.swift */; };
 		DC30B4172223294E00AEE176 /* String+iOSTideFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC30B4162223294E00AEE176 /* String+iOSTideFormat.swift */; };
 		DC31774922DBF3C400484336 /* harmonics-20040614-wxtide.tcd in Resources */ = {isa = PBXBuildFile; fileRef = DC31774822DBF3C300484336 /* harmonics-20040614-wxtide.tcd */; };
-		DC31774B22DBF3E700484336 /* legacy-datastore.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DC31774A22DBF3E700484336 /* legacy-datastore.sqlite */; };
+		DC31774B22DBF3E700484336 /* legacy-data.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DC31774A22DBF3E700484336 /* legacy-data.sqlite */; };
 		DC32FFB70E88B40F00AB78F2 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC32FFB60E88B40F00AB78F2 /* ChartViewController.m */; };
 		DC3911B81918751000D28F8D /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC3911B71918751000D28F8D /* iAd.framework */; };
 		DC3E37041DCFA8C200F97536 /* ConfigHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E37031DCFA8C200F97536 /* ConfigHelper.swift */; };
@@ -171,7 +171,7 @@
 		DCA7708418305F0A00439850 /* FavoritesFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCA7708318305F0A00439850 /* FavoritesFooterView.xib */; };
 		DCA8F6F121A0C07B00B5ECE8 /* iPadMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCA8F6F021A0C07B00B5ECE8 /* iPadMain.storyboard */; };
 		DCA9379B0EE1B3910050113B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA9379A0EE1B3910050113B /* CoreGraphics.framework */; };
-		DCA9D2FE18820ABB0037DBAB /* datastore.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DCA9D2FD18820ABB0037DBAB /* datastore.sqlite */; };
+		DCA9D2FE18820ABB0037DBAB /* noaa-data.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DCA9D2FD18820ABB0037DBAB /* noaa-data.sqlite */; };
 		DCA9D302188328340037DBAB /* background-gradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCA9D301188328340037DBAB /* background-gradient@2x.png */; };
 		DCADEA3E21A23D4D00A249AF /* PortraitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADEA3D21A23D4D00A249AF /* PortraitViewController.swift */; };
 		DCADEA4021A78B4D00A249AF /* IPadMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCADEA3F21A78B4D00A249AF /* IPadMainViewController.swift */; };
@@ -179,11 +179,19 @@
 		DCB51F8E1867A82A00BF9082 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCB51F8D1867A82A00BF9082 /* SpriteKit.framework */; };
 		DCB7F09E21695CEE0056CA7D /* CLKTextProvider+MultiColorPatch.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB7F09D21695CEE0056CA7D /* CLKTextProvider+MultiColorPatch.m */; };
 		DCC8EB151DC19F6A00D31C68 /* gallery.ckcomplication in Resources */ = {isa = PBXBuildFile; fileRef = DCC8EB141DC19F6A00D31C68 /* gallery.ckcomplication */; };
+		DCD29288231DACCF001FE6DA /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = DCD29287231DACCF001FE6DA /* countries.json */; };
+		DCD2928A231DB460001FE6DA /* NSString+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD29289231DB460001FE6DA /* NSString+Image.swift */; };
 		DCDDF5D221612E2400D505D5 /* SDTide+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDDF5D121612E2400D505D5 /* SDTide+Events.swift */; };
 		DCDE6CB221F40419000B2ACF /* WatchChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7702BE1DA2D4F000B3C4F9 /* WatchChartView.swift */; };
 		DCE745CB1DC967AC008BF66C /* StationListInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE745CA1DC967AC008BF66C /* StationListInterfaceController.swift */; };
 		DCE897DB0EEE3CAE00BF2357 /* CursorView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE897DA0EEE3CAE00BF2357 /* CursorView.m */; };
 		DCE898A20EEE514900BF2357 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCE898A10EEE514900BF2357 /* QuartzCore.framework */; };
+		DCEC13142325D138002D9C25 /* tidedata.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DCEC13122325D138002D9C25 /* tidedata.xcdatamodeld */; };
+		DCEC13162325D4BB002D9C25 /* ModelMigrate2to3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = DCEC13152325D4BB002D9C25 /* ModelMigrate2to3.xcmappingmodel */; };
+		DCEC13182325D4DC002D9C25 /* ModelMigrate2To3.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEC13172325D4DC002D9C25 /* ModelMigrate2To3.swift */; };
+		DCEC131A2325DDFF002D9C25 /* NoaaStationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEC13192325DDFF002D9C25 /* NoaaStationData.swift */; };
+		DCEC131C2325E030002D9C25 /* LegacyStationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEC131B2325E030002D9C25 /* LegacyStationData.swift */; };
+		DCEC131E2325F649002D9C25 /* StationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEC131D2325F649002D9C25 /* StationData.swift */; };
 		DCF4C24421A0C94D00BB379B /* CurrentTideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF4C24321A0C94D00BB379B /* CurrentTideViewController.swift */; };
 		DCF4C25A21A13DDB00BB379B /* SDTideEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF4C25921A13DDB00BB379B /* SDTideEventCell.swift */; };
 		DCF4C25C21A1484000BB379B /* SDEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF4C25B21A1484000BB379B /* SDEventsViewController.swift */; };
@@ -308,7 +316,7 @@
 		DC30B411222327AD00AEE176 /* Date+Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Day.swift"; sourceTree = "<group>"; };
 		DC30B4162223294E00AEE176 /* String+iOSTideFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+iOSTideFormat.swift"; sourceTree = "<group>"; };
 		DC31774822DBF3C300484336 /* harmonics-20040614-wxtide.tcd */ = {isa = PBXFileReference; lastKnownFileType = text; path = "harmonics-20040614-wxtide.tcd"; sourceTree = "<group>"; };
-		DC31774A22DBF3E700484336 /* legacy-datastore.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "legacy-datastore.sqlite"; sourceTree = "<group>"; };
+		DC31774A22DBF3E700484336 /* legacy-data.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "legacy-data.sqlite"; sourceTree = "<group>"; };
 		DC32FFB50E88B40F00AB78F2 /* ChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChartViewController.h; path = Classes/Controllers/ChartViewController.h; sourceTree = "<group>"; };
 		DC32FFB60E88B40F00AB78F2 /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChartViewController.m; path = Classes/Controllers/ChartViewController.m; sourceTree = "<group>"; };
 		DC3911B71918751000D28F8D /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
@@ -376,6 +384,7 @@
 		DC7704031DA8855A00B3C4F9 /* SDTideFactoryNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTideFactoryNew.h; sourceTree = "<group>"; };
 		DC77040C1DA98A9400B3C4F9 /* Tidelibs-Swift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Tidelibs-Swift.h"; path = "../tidelibs/Tidelibs-Swift.h"; sourceTree = "<group>"; };
 		DC77040E1DAC718500B3C4F9 /* ShralpTide2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShralpTide2.entitlements; sourceTree = "<group>"; };
+		DC847855232574C600E50EFA /* shralptide 3.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "shralptide 3.1.xcdatamodel"; sourceTree = "<group>"; };
 		DC8A827D189DB42F00792149 /* lightray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lightray@2x.png"; sourceTree = "<group>"; };
 		DC9343661DC52E5A00FFF266 /* TideStationRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TideStationRowController.swift; sourceTree = "<group>"; };
 		DC9343681DC52E7200FFF266 /* TideChartRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TideChartRowController.swift; sourceTree = "<group>"; };
@@ -479,7 +488,7 @@
 		DCA7708318305F0A00439850 /* FavoritesFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesFooterView.xib; sourceTree = "<group>"; };
 		DCA8F6F021A0C07B00B5ECE8 /* iPadMain.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = iPadMain.storyboard; sourceTree = "<group>"; };
 		DCA9379A0EE1B3910050113B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		DCA9D2FD18820ABB0037DBAB /* datastore.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = datastore.sqlite; sourceTree = "<group>"; };
+		DCA9D2FD18820ABB0037DBAB /* noaa-data.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "noaa-data.sqlite"; sourceTree = "<group>"; };
 		DCA9D301188328340037DBAB /* background-gradient@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-gradient@2x.png"; sourceTree = "<group>"; };
 		DCADEA3D21A23D4D00A249AF /* PortraitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortraitViewController.swift; sourceTree = "<group>"; };
 		DCADEA3F21A78B4D00A249AF /* IPadMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPadMainViewController.swift; sourceTree = "<group>"; };
@@ -491,16 +500,23 @@
 		DCC8EB141DC19F6A00D31C68 /* gallery.ckcomplication */ = {isa = PBXFileReference; lastKnownFileType = folder; path = gallery.ckcomplication; sourceTree = "<group>"; };
 		DCCAD9310F1DD25E00141002 /* DeveloperSettings.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DeveloperSettings.xcconfig; sourceTree = "<group>"; };
 		DCCC65D219CE43A300E92D62 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		DCD29287231DACCF001FE6DA /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
+		DCD29289231DB460001FE6DA /* NSString+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSString+Image.swift"; sourceTree = "<group>"; };
 		DCDDF5D121612E2400D505D5 /* SDTide+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SDTide+Events.swift"; sourceTree = "<group>"; };
 		DCDE6CB621F64907000B2ACF /* InteractiveChartViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InteractiveChartViewDelegate.h; sourceTree = "<group>"; };
 		DCE745CA1DC967AC008BF66C /* StationListInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationListInterfaceController.swift; sourceTree = "<group>"; };
 		DCE897D90EEE3CAE00BF2357 /* CursorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CursorView.h; path = Classes/Views/CursorView.h; sourceTree = "<group>"; };
 		DCE897DA0EEE3CAE00BF2357 /* CursorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CursorView.m; path = Classes/Views/CursorView.m; sourceTree = "<group>"; };
 		DCE898A10EEE514900BF2357 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DCEC13132325D138002D9C25 /* tidedata.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tidedata.xcdatamodel; sourceTree = "<group>"; };
+		DCEC13152325D4BB002D9C25 /* ModelMigrate2to3.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = ModelMigrate2to3.xcmappingmodel; sourceTree = "<group>"; };
+		DCEC13172325D4DC002D9C25 /* ModelMigrate2To3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelMigrate2To3.swift; sourceTree = "<group>"; };
+		DCEC13192325DDFF002D9C25 /* NoaaStationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoaaStationData.swift; sourceTree = "<group>"; };
+		DCEC131B2325E030002D9C25 /* LegacyStationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyStationData.swift; sourceTree = "<group>"; };
+		DCEC131D2325F649002D9C25 /* StationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationData.swift; sourceTree = "<group>"; };
 		DCF4C24321A0C94D00BB379B /* CurrentTideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTideViewController.swift; sourceTree = "<group>"; };
 		DCF4C25921A13DDB00BB379B /* SDTideEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDTideEventCell.swift; sourceTree = "<group>"; };
 		DCF4C25B21A1484000BB379B /* SDEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDEventsViewController.swift; sourceTree = "<group>"; };
-		DCF5B8A81DB418B4008C0DC8 /* shralptide3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = shralptide3.xcdatamodel; sourceTree = "<group>"; };
 		DCF6B5CB21B34A31004F1044 /* CalendarDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
 		DCF6B5CD21B48419004F1044 /* CalendarTideFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTideFactory.swift; sourceTree = "<group>"; };
 		DCF8AB0121521AF100406568 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
@@ -648,6 +664,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DCD29287231DACCF001FE6DA /* countries.json */,
 				DCC8EB141DC19F6A00D31C68 /* gallery.ckcomplication */,
 				DC9BDF311CFD435E00950F39 /* StationListView.xib */,
 				DC9BDF2F1CFD432400950F39 /* StateListView.xib */,
@@ -657,8 +674,8 @@
 				DC8A827D189DB42F00792149 /* lightray@2x.png */,
 				DCA9D301188328340037DBAB /* background-gradient@2x.png */,
 				DC6869041E28880900870F6E /* background-gradient@3x.png */,
-				DCA9D2FD18820ABB0037DBAB /* datastore.sqlite */,
-				DC31774A22DBF3E700484336 /* legacy-datastore.sqlite */,
+				DCA9D2FD18820ABB0037DBAB /* noaa-data.sqlite */,
+				DC31774A22DBF3E700484336 /* legacy-data.sqlite */,
 				DC31774822DBF3C300484336 /* harmonics-20040614-wxtide.tcd */,
 				DC70BD0417F8B5ED00D5FF3A /* Images.xcassets */,
 				DCA3BF70133E4FFA00EA966A /* harmonics-dwf-20081228-free.tcd */,
@@ -672,6 +689,8 @@
 				DCA7708318305F0A00439850 /* FavoritesFooterView.xib */,
 				DCA8F6F021A0C07B00B5ECE8 /* iPadMain.storyboard */,
 				DCADEA4421A7CD1700A249AF /* LaunchScreen.storyboard */,
+				DCEC13122325D138002D9C25 /* tidedata.xcdatamodeld */,
+				DCEC13152325D4BB002D9C25 /* ModelMigrate2to3.xcmappingmodel */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -725,6 +744,7 @@
 				DC608AA31812FE2E00FA9F33 /* UIImage+Mask.h */,
 				DC608AA41812FE2E00FA9F33 /* UIImage+Mask.m */,
 				DC30B4162223294E00AEE176 /* String+iOSTideFormat.swift */,
+				DCD29289231DB460001FE6DA /* NSString+Image.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -788,8 +808,11 @@
 		DCA3BEEC133E4EB200EA966A /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				DCF5B8A71DB418B4008C0DC8 /* shralptide3.xcdatamodeld */,
 				DC29951D1DB16D4600AC80E8 /* AppStateData.swift */,
+				DCEC13172325D4DC002D9C25 /* ModelMigrate2To3.swift */,
+				DCEC13192325DDFF002D9C25 /* NoaaStationData.swift */,
+				DCEC131B2325E030002D9C25 /* LegacyStationData.swift */,
+				DCEC131D2325F649002D9C25 /* StationData.swift */,
 			);
 			name = CoreData;
 			path = "Core Data";
@@ -1102,7 +1125,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC31774B22DBF3E700484336 /* legacy-datastore.sqlite in Resources */,
+				DC31774B22DBF3E700484336 /* legacy-data.sqlite in Resources */,
 				DC31774922DBF3C400484336 /* harmonics-20040614-wxtide.tcd in Resources */,
 				DCA7708418305F0A00439850 /* FavoritesFooterView.xib in Resources */,
 				DC2563FF18D63588007C41E6 /* UIButtonBarListIcon@2x.png in Resources */,
@@ -1114,12 +1137,13 @@
 				DCA9D302188328340037DBAB /* background-gradient@2x.png in Resources */,
 				DCA3BF81133E503900EA966A /* PickerTableCell.xib in Resources */,
 				DC9BDF301CFD432400950F39 /* StateListView.xib in Resources */,
-				DCA9D2FE18820ABB0037DBAB /* datastore.sqlite in Resources */,
+				DCA9D2FE18820ABB0037DBAB /* noaa-data.sqlite in Resources */,
 				DC9BDF321CFD435E00950F39 /* StationListView.xib in Resources */,
 				DC4FBBE8178BCF3200C0CFEE /* MainStoryboard.storyboard in Resources */,
 				DC6869051E28880900870F6E /* background-gradient@3x.png in Resources */,
 				DC1DC0C71BC06EB800EA14ED /* StationInfoView.xib in Resources */,
 				DCA7707F182EFB1E00439850 /* FavoritesHeaderView.xib in Resources */,
+				DCD29288231DACCF001FE6DA /* countries.json in Resources */,
 				DC70BD0517F8B5ED00D5FF3A /* Images.xcassets in Resources */,
 				DCA8F6F121A0C07B00B5ECE8 /* iPadMain.storyboard in Resources */,
 				DCADEA4521A7CD1700A249AF /* LaunchScreen.storyboard in Resources */,
@@ -1287,6 +1311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC296E8E21C5EA4F00FF73DE /* SDTideFactoryNew.mm in Sources */,
+				DCEC13162325D4BB002D9C25 /* ModelMigrate2to3.xcmappingmodel in Sources */,
 				DCF5B8AB1DB456C4008C0DC8 /* shralptide.xcdatamodeld in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* ShralpTideAppDelegate.m in Sources */,
@@ -1318,7 +1343,9 @@
 				DCA3BF53133E4F8F00EA966A /* Global.cc in Sources */,
 				DCA3BF54133E4F8F00EA966A /* HarmonicsFile.cc in Sources */,
 				DCA3BF55133E4F8F00EA966A /* HarmonicsPath.cc in Sources */,
+				DCD2928A231DB460001FE6DA /* NSString+Image.swift in Sources */,
 				DCA3BF56133E4F8F00EA966A /* MetaField.cc in Sources */,
+				DCEC131C2325E030002D9C25 /* LegacyStationData.swift in Sources */,
 				DCA3BF57133E4F8F00EA966A /* Nullable.cc in Sources */,
 				DCA3BF58133E4F8F00EA966A /* NullableInterval.cc in Sources */,
 				DCA3BF59133E4F8F00EA966A /* NullablePredictionValue.cc in Sources */,
@@ -1330,6 +1357,7 @@
 				DC5191A421E173930058A9A5 /* LabeledChartView.swift in Sources */,
 				DC29951E1DB16D4600AC80E8 /* AppStateData.swift in Sources */,
 				DCA3BF5E133E4F8F00EA966A /* Speed.cc in Sources */,
+				DCEC131E2325F649002D9C25 /* StationData.swift in Sources */,
 				DCA3BF5F133E4F8F00EA966A /* Station.cc in Sources */,
 				DCA3BF60133E4F8F00EA966A /* StationIndex.cc in Sources */,
 				DCF4C24421A0C94D00BB379B /* CurrentTideViewController.swift in Sources */,
@@ -1341,11 +1369,13 @@
 				DCA3BF66133E4F8F00EA966A /* Timestamp.cc in Sources */,
 				DCA3BF67133E4F8F00EA966A /* Units.cc in Sources */,
 				DCA3BF68133E4F8F00EA966A /* Year.cc in Sources */,
+				DCEC131A2325DDFF002D9C25 /* NoaaStationData.swift in Sources */,
 				DCA3BF69133E4F8F00EA966A /* ZoneIndex.cc in Sources */,
 				DCF6B5CE21B48419004F1044 /* CalendarTideFactory.swift in Sources */,
 				DC7099B01E2327E60060691A /* SDBottomViewController.m in Sources */,
 				DC30B4102221F3E400AEE176 /* ChartError.swift in Sources */,
 				DCA3BF86133E9D6600EA966A /* SDTideEvent.m in Sources */,
+				DCEC13142325D138002D9C25 /* tidedata.xcdatamodeld in Sources */,
 				DCA3BF89133E9DB200EA966A /* SDTideInterval.m in Sources */,
 				DCA3BF90133E9DE800EA966A /* bit_pack.c in Sources */,
 				DCA3BF91133E9DE800EA966A /* tide_db.c in Sources */,
@@ -1358,6 +1388,7 @@
 				DC4FBBEB178C62EC00C0CFEE /* LandscapeViewController.m in Sources */,
 				DC30B412222327AD00AEE176 /* Date+Day.swift in Sources */,
 				DCADEA3E21A23D4D00A249AF /* PortraitViewController.swift in Sources */,
+				DCEC13182325D4DC002D9C25 /* ModelMigrate2To3.swift in Sources */,
 				DC6526451350C2DA00B67AE7 /* StationDetailViewController.m in Sources */,
 				DC6526461350C2DA00B67AE7 /* CountryListController.m in Sources */,
 				DC18B3A92246F2020076EB83 /* ConstraintExtension.swift in Sources */,
@@ -2057,22 +2088,23 @@
 		DC06A26217DC44F60095E217 /* shralptide.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				DC847855232574C600E50EFA /* shralptide 3.1.xcdatamodel */,
 				DC25640418F1DFF7007C41E6 /* shralptide 2.1.xcdatamodel */,
 				DC06A26317DC44F60095E217 /* shralptide.xcdatamodel */,
 				DC06A26417DC44F60095E217 /* shralptide2.xcdatamodel */,
 			);
-			currentVersion = DC25640418F1DFF7007C41E6 /* shralptide 2.1.xcdatamodel */;
+			currentVersion = DC847855232574C600E50EFA /* shralptide 3.1.xcdatamodel */;
 			path = shralptide.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
-		DCF5B8A71DB418B4008C0DC8 /* shralptide3.xcdatamodeld */ = {
+		DCEC13122325D138002D9C25 /* tidedata.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				DCF5B8A81DB418B4008C0DC8 /* shralptide3.xcdatamodel */,
+				DCEC13132325D138002D9C25 /* tidedata.xcdatamodel */,
 			);
-			currentVersion = DCF5B8A81DB418B4008C0DC8 /* shralptide3.xcdatamodel */;
-			path = shralptide3.xcdatamodeld;
+			currentVersion = DCEC13132325D138002D9C25 /* tidedata.xcdatamodel */;
+			path = tidedata.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

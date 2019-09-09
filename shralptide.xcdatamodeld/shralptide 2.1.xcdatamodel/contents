@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="16A323" minimumToolsVersion="Xcode 8.0" sourceLanguage="Swift" userDefinedModelVersionIdentifier="2.1">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18G95" minimumToolsVersion="Xcode 8.0" sourceLanguage="Swift" userDefinedModelVersionIdentifier="2.1">
     <entity name="SDApplicationState" representedClassName="SDApplicationState" syncable="YES" codeGenerationType="class">
         <relationship name="favoriteLocations" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="SDFavoriteLocation" inverseName="applicationState" inverseEntity="SDFavoriteLocation" indexed="YES" syncable="YES"/>
         <relationship name="selectedLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDFavoriteLocation" indexed="YES" syncable="YES"/>

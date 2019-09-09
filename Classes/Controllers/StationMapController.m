@@ -90,7 +90,14 @@ BOOL zoomedToLocal;
 
 -(void)addTideStationsForRegion:(MKCoordinateRegion)region
 {
-    NSManagedObjectContext *context = AppStateData.sharedInstance.managedObjectContext;
+    // TODO: Change AppStateData to the appropriate tide state data depending on legacyMode preference
+    id<StationData> tideData = nil;
+    if (ConfigHelper.sharedInstance.legacyMode) {
+        tideData = LegacyStationData.sharedInstance;
+    } else {
+        tideData = NoaaStationData.sharedInstance;
+    }
+    NSManagedObjectContext *context = tideData.managedObjectContext;
     if (!context) {
         DLog(@"Error occurred starting CoreData managed object context, %@",context);
         return;

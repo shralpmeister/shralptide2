@@ -32,6 +32,7 @@
 @property (nonatomic, strong, readonly) NSArray<SDTide*> *tides;
 @property (nonatomic, assign) int page;
 @property (nonatomic, assign) UIInterfaceOrientationMask supportedOrientations;
+@property (nonatomic, readonly) NSDictionary<NSString*, NSString*>* countries;
 
 - (void)calculateTides;
 

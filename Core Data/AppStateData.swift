@@ -29,9 +29,16 @@ import CoreData
                 print("No location selected. Using factory default.")
                 try self.setDefaultLocation()
             } else {
+                let datastoreName = ConfigHelper.sharedInstance().legacyMode ? "legacy-data" : "data"
+                let namePredicate = NSPredicate(format: "datastoreName = %@", datastoreName)
                 self.persistentState = results?[0]
-                self.locationPage = (self.persistentState?.favoriteLocations?.index(of:self.persistentState?.selectedLocation as Any))!
-                print("Selected location = \(String(describing: self.persistentState?.selectedLocation?.locationName)), page = \(self.locationPage)")
+                let availableLocations = self.persistentState?.favoriteLocations?.filtered(using: namePredicate)
+                if availableLocations?.count ?? 0 > 0 {
+                    self.locationPage = (self.persistentState?.favoriteLocations?.index(of:self.persistentState?.selectedLocation as Any))!
+                    print("Selected location = \(String(describing: self.persistentState?.selectedLocation?.locationName)), page = \(self.locationPage)")
+                } else {
+                    try self.setDefaultLocation()
+                }
             }
         } catch {
             fatalError("Unable to fetch saved state: \(error)")
@@ -40,8 +47,9 @@ import CoreData
     
     @objc public func setSelectedLocation(locationName:String) throws {
         let context = self.managedObjectContext
+        let datastoreName = ConfigHelper.sharedInstance().legacyMode ? "legacy-data" : "noaa-data"
         let appState = try lastPersistedState(context: context!)
-        let namePredicate = NSPredicate(format: "locationName = %@", locationName)
+        let namePredicate = NSPredicate(format: "locationName = %@ and datastoreName = %@", locationName, datastoreName)
         let locationsWithName = appState.favoriteLocations?.filtered(using:namePredicate)
         if locationsWithName?.count == 1 {
             let location = locationsWithName?[0] as! SDFavoriteLocation
@@ -54,13 +62,16 @@ import CoreData
     }
 
     private func setDefaultLocation() throws {
-        let defaultLocation = "La Jolla, Scripps Pier, California";
+        let legacyMode = ConfigHelper.sharedInstance().legacyMode
+        let defaultLocation = legacyMode ? "La Jolla, Scripps Pier, California" : "La Jolla (Scripps Institution Wharf), California"
+        let datastoreName = legacyMode ? "legacy-data" : "noaa-data"
         let context = self.managedObjectContext!
         
         let appState = SDApplicationState(context:context)
         let location = SDFavoriteLocation(context: context)
         
         location.locationName = defaultLocation
+        location.datastoreName = datastoreName
         appState.favoriteLocations = NSOrderedSet(object: location)
         appState.selectedLocation = location
         
@@ -71,9 +82,10 @@ import CoreData
     
     @objc public func addFavoriteLocation(locationName:String) throws {
         let context = self.managedObjectContext!
+        let datastoreName = ConfigHelper.sharedInstance().legacyMode ? "legacy-data" : "noaa-data"
         let appState = try lastPersistedState(context: context)
         
-        let namePredicate = NSPredicate(format:"locationName = %@", locationName)
+        let namePredicate = NSPredicate(format:"locationName = %@ and datastoreName = %@", locationName, datastoreName)
         let results = appState.favoriteLocations?.filtered(using: namePredicate)
         if results?.count == 0 {
             let location = SDFavoriteLocation(context: context)
@@ -90,8 +102,9 @@ import CoreData
     
     @objc public func removeFavoriteLocation(locationName:String) throws {
         let context = self.managedObjectContext!
+        let datastoreName = ConfigHelper.sharedInstance().legacyMode ? "legacy-data" : "noaa-data"
         let appState = try lastPersistedState(context: context)
-        let namePredicate = NSPredicate(format:"locationName = %@",locationName)
+        let namePredicate = NSPredicate(format:"locationName = %@ and datastoreName = %@",locationName, datastoreName)
         let locationsWithName = appState.favoriteLocations?.filtered(using: namePredicate)
         
         if locationsWithName?.count == 1 {
@@ -116,17 +129,10 @@ import CoreData
     }
     
     //MARK: - CoreData bits
-
-    @objc lazy public var StateContainerUrl: URL = {
-        let urls = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)
-        let libUrl = (urls[urls.count-1] as NSURL) as URL
-        return libUrl.appendingPathComponent("appstate.sqlite")
-    }()
-    
     @objc lazy public var DataContainerUrl: URL = {
         let urls = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
         let cacheUrl = (urls[urls.count-1] as NSURL) as URL
-        return cacheUrl.appendingPathComponent("legacy-datastore.sqlite")
+        return cacheUrl.appendingPathComponent("datastore.sqlite")
     }()
 
     @objc lazy public var managedObjectModel: NSManagedObjectModel = {
@@ -136,24 +142,15 @@ import CoreData
     
     @objc lazy public var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
         let fm = FileManager()
-        let bundledDataStoreUrl = Bundle.main.url(forResource: "legacy-datastore", withExtension: "sqlite")
-        //let bundledDataStoreUrl = Bundle.main.url(forResource:"datastore", withExtension:"sqlite")
+        let bundledDataStoreUrl = Bundle.main.url(forResource: "datastore", withExtension: "sqlite")
         
         let coordinator: NSPersistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-
-        if !fm.fileExists(atPath:self.DataContainerUrl.path) {
-            do {
-                try fm.copyItem(at: bundledDataStoreUrl!, to: self.DataContainerUrl)
-            } catch {
-                fatalError("Failed to copy tide locations to cache directory: \(error)")
-            }
-        }
         
         let options:Dictionary<String,Bool> = [NSMigratePersistentStoresAutomaticallyOption:true,
                        NSInferMappingModelAutomaticallyOption:true ]
         
         do {
-            try coordinator.addPersistentStore(ofType:NSSQLiteStoreType, configurationName:nil, at:self.DataContainerUrl, options:options)
+            try coordinator.addPersistentStore(ofType:NSSQLiteStoreType, configurationName:nil, at:self.DataContainerUrl, options:nil)
         } catch {
             fatalError("Unresolved error: \(error)")
         }
