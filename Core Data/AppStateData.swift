@@ -146,11 +146,10 @@ import CoreData
         
         let coordinator: NSPersistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         
-        let options:Dictionary<String,Bool> = [NSMigratePersistentStoresAutomaticallyOption:true,
-                       NSInferMappingModelAutomaticallyOption:true ]
+        let options:Dictionary<String,Bool> = [NSMigratePersistentStoresAutomaticallyOption:true ]
         
         do {
-            try coordinator.addPersistentStore(ofType:NSSQLiteStoreType, configurationName:nil, at:self.DataContainerUrl, options:nil)
+            try coordinator.addPersistentStore(ofType:NSSQLiteStoreType, configurationName:nil, at:self.DataContainerUrl, options:options)
         } catch {
             fatalError("Unresolved error: \(error)")
         }
