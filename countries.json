@@ -656,6 +656,10 @@
     "Name": "Micronesia"
   },
   {
+    "Code": "FM",
+    "Name": "Federated States of Micronesia"
+  },
+  {
       "Code": "FM",
       "Name": "Caroline Islands"
   },
@@ -1170,6 +1174,10 @@
   {
       "Code": "US",
       "Name": "Marianas"
+  },
+  {
+      "Code": "US",
+      "Name": "Northern Mariana Islands"
   },
   {
       "Code": "US",

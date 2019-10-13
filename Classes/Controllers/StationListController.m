@@ -15,7 +15,7 @@
 -(void)loadView {
     [super loadView];
     self.navigationItem.title = NSLocalizedString(@"Tide Stations", nil);
-    self.navigationItem.prompt = NSLocalizedString(@"Select a Tide Station",nil);
+    self.navigationItem.prompt = NSLocalizedString(@"Select Tide Station",nil);
     self.navigationController.navigationBarHidden = NO;
     
     self.navigationItem.rightBarButtonItem = ((SelectStationNavigationController*)self.navigationController).doneButton;
@@ -95,7 +95,7 @@
     if ((station.current).boolValue) {
         cell.textLabel.textColor = [UIColor redColor];
     } else {
-        cell.textLabel.textColor = [UIColor blackColor];
+        cell.textLabel.textColor = [UIColor colorNamed:@"tableCellForeground"];
     }
     NSArray *nameParts = [station.name componentsSeparatedByString:@", "];
 	cell.textLabel.text = nameParts[0];

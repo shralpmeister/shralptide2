@@ -127,7 +127,7 @@ static NSArray* tideEventsForLocation(const Dstr &name, Interval step, Timestamp
     NSMutableArray* tideEvents = [NSMutableArray array];
     const StationRef *sr (Global::stationIndex().getStationRefByName(name));
     if (sr) {
-        std::auto_ptr<Station> station (sr->load());
+        std::shared_ptr<Station> station (sr->load());
         station->setUnits(units);
         station->step = step;
         
@@ -191,7 +191,7 @@ static NSArray* rawEventsForLocation(const Dstr &name, Interval step, Timestamp 
     NSMutableArray *intervals = [NSMutableArray array];
     const StationRef *sr (Global::stationIndex().getStationRefByName(name));
     if (sr) {
-        std::auto_ptr<Station> station (sr->load());
+        std::shared_ptr<Station> station (sr->load());
         station->setUnits(units);
         station->step = step;
         

@@ -28,6 +28,7 @@
 
 @interface ShralpTideAppDelegate ()
 - (void)defaultsChanged:(NSNotification *)notif;
+- (void)setHarmonicsFilePaths;
 
 @property (nonatomic, strong) NSMutableArray *mutableTides;
 
@@ -64,16 +65,7 @@
     // Load country data
     self.countries = [self readCountryData];
     
-    // Load the tide station data
-    NSMutableString *pathBuilder = [[NSMutableString alloc] init];
-    if (ConfigHelper.sharedInstance.legacyMode) {
-        [pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-20040614-wxtide" ofType:@"tcd"]];
-    } else {
-        [pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-free" ofType:@"tcd"]];
-        [pathBuilder appendString:@":"];
-        [pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-nonfree" ofType:@"tcd"]];
-    }
-	setenv("HFILE_PATH",[pathBuilder cStringUsingEncoding:NSUTF8StringEncoding],1);
+    [self setHarmonicsFilePaths];
     
     [AppStateData.sharedInstance loadSavedState];
     
@@ -115,7 +107,8 @@
 - (void)calculateTides
 {
     _mutableTides = [NSMutableArray new];
-    for (SDFavoriteLocation* location in AppStateData.sharedInstance.persistentState.favoriteLocations) {
+    NSOrderedSet<SDFavoriteLocation*> *locations = AppStateData.sharedInstance.favoriteLocations;
+    for (SDFavoriteLocation* location in locations) {
         SDTide *todaysTide = [SDTideFactory todaysTidesForStationName:location.locationName];
         [_mutableTides addObject:todaysTide];
     }
@@ -126,12 +119,26 @@
     return [NSArray arrayWithArray:_mutableTides];
 }
 
+-(void)setHarmonicsFilePaths
+{
+    // Load the tide station data
+    NSMutableString *pathBuilder = [[NSMutableString alloc] init];
+    [pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-20040614-wxtide" ofType:@"tcd"]];
+    [pathBuilder appendString:@":"];
+    [pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-free" ofType:@"tcd"]];
+    [pathBuilder appendString:@":"];
+    [pathBuilder appendString:[[NSBundle mainBundle] pathForResource:@"harmonics-dwf-20081228-nonfree" ofType:@"tcd"]];
+    setenv("HFILE_PATH",[pathBuilder cStringUsingEncoding:NSUTF8StringEncoding],1);
+    
+}
+
 #pragma mark - 
 #pragma mark Handle preferences change
 - (void)defaultsChanged:(NSNotification *)notif
 {
     DLog(@"Reading preferences and recreating views and tide calculations");
     [ConfigHelper.sharedInstance setupByPreferences];
+    [AppStateData.sharedInstance loadSavedState];
     [self calculateTides];
 }
 

@@ -441,8 +441,9 @@ Dstr::Dstr (const Dstr &val) {
     theBuffer = val.asdupchar();
     used = val.length();
     max = used + 1;
-  } else
-    theBuffer = NULL;
+  } else {
+      theBuffer = NULL;
+  }
 }
 
 Dstr::Dstr (int val) {

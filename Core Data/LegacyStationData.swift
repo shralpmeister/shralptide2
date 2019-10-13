@@ -33,7 +33,16 @@ import CoreData
         let coordinator: NSPersistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         
         do {
-            try fm.copyItem(at: bundledDataStoreUrl!, to: self.NoaaTidesUrl)
+            if fm.fileExists(atPath: self.NoaaTidesUrl.path) {
+                let bundleFileAttr = try fm.attributesOfItem(atPath: bundledDataStoreUrl!.path)
+                let existingFileAttr = try fm.attributesOfItem(atPath: self.NoaaTidesUrl.path)
+                if (existingFileAttr[FileAttributeKey.creationDate]! as! Date) < (bundleFileAttr[FileAttributeKey.creationDate]! as! Date) {
+                    try fm.removeItem(at: self.NoaaTidesUrl)
+                    try fm.copyItem(at: bundledDataStoreUrl!, to: self.NoaaTidesUrl)
+                }
+            } else {
+                try fm.copyItem(at: bundledDataStoreUrl!, to: self.NoaaTidesUrl)
+            }
         } catch {
             fatalError("Failed to copy tide locations to cache directory: \(error)")
         }

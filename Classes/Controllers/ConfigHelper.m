@@ -12,7 +12,7 @@
 NSString *kUnitsKey = @"units_preference";
 NSString *kDaysKey = @"days_preference";
 NSString *kCurrentsKey = @"currents_preference";
-NSString *kLegacyKey = @"legacy_preference";
+NSString *kLegacyKey = @"legacy_data";
 
 @implementation ConfigHelper
 

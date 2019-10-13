@@ -16,12 +16,22 @@ import CoreData
     @objc private(set) public var persistentState:SDApplicationState?
     @objc private(set) public var locationPage = 0
     
+    private static var datastoreName: String {
+        get {
+            ConfigHelper.sharedInstance().legacyMode ? "legacy-data" : "noaa-data"
+        }
+    }
+    
     private override init() {}
+    
+    @objc public func favoriteLocations() -> NSOrderedSet {
+        let namePredicate = NSPredicate(format: "datastoreName = %@", AppStateData.datastoreName)
+        return self.persistentState?.favoriteLocations?.filtered(using: namePredicate) ?? NSOrderedSet()
+    }
     
     @objc public func loadSavedState() {
         let context = self.managedObjectContext
         let fetchRequest:NSFetchRequest<SDApplicationState> = SDApplicationState.fetchRequest()
-        
         do {
             let results = try context?.fetch(fetchRequest)
             if results?.count == 0 {
@@ -29,12 +39,17 @@ import CoreData
                 print("No location selected. Using factory default.")
                 try self.setDefaultLocation()
             } else {
-                let datastoreName = ConfigHelper.sharedInstance().legacyMode ? "legacy-data" : "data"
-                let namePredicate = NSPredicate(format: "datastoreName = %@", datastoreName)
+                let namePredicate = NSPredicate(format: "datastoreName = %@", AppStateData.datastoreName)
                 self.persistentState = results?[0]
                 let availableLocations = self.persistentState?.favoriteLocations?.filtered(using: namePredicate)
                 if availableLocations?.count ?? 0 > 0 {
-                    self.locationPage = (self.persistentState?.favoriteLocations?.index(of:self.persistentState?.selectedLocation as Any))!
+                    if (self.persistentState?.selectedLocation?.datastoreName == AppStateData.datastoreName) {
+                        self.locationPage = ((availableLocations?.index(of:self.persistentState?.selectedLocation as Any))!)
+                    } else {
+                        // since the selected location is not from the active datastore, use the first
+                        // available location that is.
+                        self.locationPage = 0
+                    }
                     print("Selected location = \(String(describing: self.persistentState?.selectedLocation?.locationName)), page = \(self.locationPage)")
                 } else {
                     try self.setDefaultLocation()
@@ -47,9 +62,8 @@ import CoreData
     
     @objc public func setSelectedLocation(locationName:String) throws {
         let context = self.managedObjectContext
-        let datastoreName = ConfigHelper.sharedInstance().legacyMode ? "legacy-data" : "noaa-data"
         let appState = try lastPersistedState(context: context!)
-        let namePredicate = NSPredicate(format: "locationName = %@ and datastoreName = %@", locationName, datastoreName)
+        let namePredicate = NSPredicate(format: "locationName = %@ and datastoreName = %@", locationName, AppStateData.datastoreName)
         let locationsWithName = appState.favoriteLocations?.filtered(using:namePredicate)
         if locationsWithName?.count == 1 {
             let location = locationsWithName?[0] as! SDFavoriteLocation
@@ -64,15 +78,14 @@ import CoreData
     private func setDefaultLocation() throws {
         let legacyMode = ConfigHelper.sharedInstance().legacyMode
         let defaultLocation = legacyMode ? "La Jolla, Scripps Pier, California" : "La Jolla (Scripps Institution Wharf), California"
-        let datastoreName = legacyMode ? "legacy-data" : "noaa-data"
         let context = self.managedObjectContext!
         
-        let appState = SDApplicationState(context:context)
+        let appState = self.persistentState ?? SDApplicationState(context: context)
         let location = SDFavoriteLocation(context: context)
         
         location.locationName = defaultLocation
-        location.datastoreName = datastoreName
-        appState.favoriteLocations = NSOrderedSet(object: location)
+        location.datastoreName = AppStateData.datastoreName
+        appState.addToFavoriteLocations(location)
         appState.selectedLocation = location
         
         persistentState = appState; 
@@ -82,17 +95,17 @@ import CoreData
     
     @objc public func addFavoriteLocation(locationName:String) throws {
         let context = self.managedObjectContext!
-        let datastoreName = ConfigHelper.sharedInstance().legacyMode ? "legacy-data" : "noaa-data"
         let appState = try lastPersistedState(context: context)
-        
-        let namePredicate = NSPredicate(format:"locationName = %@ and datastoreName = %@", locationName, datastoreName)
+        let namePredicate = NSPredicate(format:"locationName = %@ and datastoreName = %@", locationName, AppStateData.datastoreName)
         let results = appState.favoriteLocations?.filtered(using: namePredicate)
         if results?.count == 0 {
             let location = SDFavoriteLocation(context: context)
             location.locationName = locationName
-            let locations = NSMutableOrderedSet(orderedSet: (appState.favoriteLocations)!)
-            locations.add(location)
-            appState.favoriteLocations = locations
+            location.datastoreName = AppStateData.datastoreName
+            appState.addToFavoriteLocations(location)
+//            let locations = NSMutableOrderedSet(orderedSet: (appState.favoriteLocations)!)
+//            locations.add(location)
+//            appState.favoriteLocations = locations
         } else {
             print("location already present. skipping.")
             return
@@ -102,9 +115,8 @@ import CoreData
     
     @objc public func removeFavoriteLocation(locationName:String) throws {
         let context = self.managedObjectContext!
-        let datastoreName = ConfigHelper.sharedInstance().legacyMode ? "legacy-data" : "noaa-data"
         let appState = try lastPersistedState(context: context)
-        let namePredicate = NSPredicate(format:"locationName = %@ and datastoreName = %@",locationName, datastoreName)
+        let namePredicate = NSPredicate(format:"locationName = %@ and datastoreName = %@",locationName, AppStateData.datastoreName)
         let locationsWithName = appState.favoriteLocations?.filtered(using: namePredicate)
         
         if locationsWithName?.count == 1 {

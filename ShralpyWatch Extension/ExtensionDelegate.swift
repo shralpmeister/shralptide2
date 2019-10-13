@@ -63,7 +63,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
                 // Be sure to complete the background task once you’re done.
                 checkAndRefreshTides()
-                backgroundTask.setTaskCompleted()
+                backgroundTask.setTaskCompletedWithSnapshot(false)
                 
                 // Schedule the next background refresh
                 WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: Date(timeIntervalSinceNow: 15 * .SecondsPerMinute), userInfo: nil) { error in
@@ -76,13 +76,13 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 snapshotTask.setTaskCompleted(restoredDefaultState: true, estimatedSnapshotExpiration: Date(timeIntervalSinceNow: 60 * 15), userInfo: nil)
             case let connectivityTask as WKWatchConnectivityRefreshBackgroundTask:
                 // Be sure to complete the connectivity task once you’re done.
-                connectivityTask.setTaskCompleted()
+                connectivityTask.setTaskCompletedWithSnapshot(false)
             case let urlSessionTask as WKURLSessionRefreshBackgroundTask:
                 // Be sure to complete the URL session task once you’re done.
-                urlSessionTask.setTaskCompleted()
+                urlSessionTask.setTaskCompletedWithSnapshot(false)
             default:
                 // make sure to complete unhandled task types
-                task.setTaskCompleted()
+                task.setTaskCompletedWithSnapshot(false)
             }
         }
     }

@@ -85,6 +85,9 @@
         DLog(@"Unabled to persist selected station: %@",error);
     }
     [self.popoverPresentationController.delegate popoverPresentationControllerDidDismissPopover: self.popoverPresentationController];
+    if (@available(iOS 13.0, *)) {
+        [self.presentationController.delegate presentationControllerDidDismiss:self.presentationController];
+    }
     [self dismissViewControllerAnimated:YES completion: nil];
 }
 

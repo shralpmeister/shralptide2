@@ -7,7 +7,7 @@
 
 import Foundation
 
-@objc class PortraitViewController: UIViewController {
+@objc class PortraitViewController: UIViewController, UIAdaptivePresentationControllerDelegate {
     @IBOutlet fileprivate weak var listViewButton: UIButton!
 
     fileprivate var headerViewController: CurrentTideViewController!
@@ -24,7 +24,6 @@ import Foundation
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.automaticallyAdjustsScrollViewInsets = false;
         self.children.forEach { controller in
             switch (controller.restorationIdentifier) {
             case "HeaderViewController":
@@ -90,8 +89,13 @@ import Foundation
         } else if (segue.identifier == "FavoritesListSegue") {
             let favoritesController = segue.destination as! FavoritesListViewController
             favoritesController.portraitViewController = self
+            favoritesController.presentationController?.delegate = self
         } else {
             print("Unexpected transition \(String(describing: segue.identifier))")
         }
+    }
+    
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        self.viewWillAppear(true)
     }
 }

@@ -36,20 +36,17 @@
 	
 	NSInteger row = indexPath.row;
 	
-	PickerTableCell *cell = (PickerTableCell*)[tableView dequeueReusableCellWithIdentifier:reuseLabel];
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseLabel];
 	
     if (cell == nil)
     {
-        NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:@"PickerTableCell" owner:self options:nil];
-        cell = nibViews[0];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseLabel];
 	}
 	
     SDCountry *country = ((SDCountry*)self.rows[row]);
-    cell.nameLabel.text = [country.name isEqualToString:@""] ? @"Undefined" : country.name;
+    cell.textLabel.text = [country.name isEqualToString:@""] ? @"Undefined" : country.name;
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-	//cell.flagView.image = [UIImage imageNamed:country.flag];
-    cell.flagView.image = [[[appDelegate.countries valueForKey: country.name] toFlagEmoji] image];
+    cell.imageView.image = [[[appDelegate.countries valueForKey: country.name] toFlagEmoji] image];
 	
 	return cell;
 }
