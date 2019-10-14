@@ -12,16 +12,18 @@
         <scene sceneID="YpG-tF-qMi">
             <objects>
                 <tableViewController id="t4X-P6-eQ9" customClass="CountryListController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="u8a-nf-GZu">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="u8a-nf-GZu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="660"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="tableCellBackground"/>
+                        <viewLayoutGuide key="contentLayoutGuide" id="Hfj-bz-44f"/>
+                        <viewLayoutGuide key="frameLayoutGuide" id="Wi5-U7-LKi"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CountryListCell" id="o2t-9w-y55" customClass="PickerTableCell">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o2t-9w-y55" id="Mfr-KT-TDV">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="o2t-9w-y55" translatesAutoresizingMaskIntoConstraints="NO" id="Mfr-KT-TDV">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" name="tableCellBackground"/>
@@ -523,28 +525,28 @@
         <scene sceneID="U8q-10-bLt">
             <objects>
                 <tableViewController title="LocationList" id="0V8-BU-bny" customClass="FavoritesListViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelectionDuringEditing="YES" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="88" id="jyF-0B-nHC">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="22" estimatedSectionHeaderHeight="-1" sectionFooterHeight="88" estimatedSectionFooterHeight="-1" id="jyF-0B-nHC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexTrackingBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="CurrentTideCell" rowHeight="88" id="BlM-wk-ra3" customClass="TideStationTableViewCell">
-                                <rect key="frame" x="0.0" y="28" width="375" height="88"/>
+                            <tableViewCell opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="CurrentTideCell" translatesAutoresizingMaskIntoConstraints="NO" id="BlM-wk-ra3" customClass="TideStationTableViewCell">
+                                <rect key="frame" x="0.0" y="28" width="375" height="95.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="bottom" preservesSuperviewLayoutMargins="YES" tableViewCell="BlM-wk-ra3" id="flq-vJ-HLh">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="95.5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Station name" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="PGQ-CS-FYR">
-                                            <rect key="frame" x="28" y="16" width="319" height="24"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" preservesSuperviewLayoutMargins="YES" text="Station name" lineBreakMode="tailTruncation" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PGQ-CS-FYR">
+                                            <rect key="frame" x="28" y="19" width="319" height="24.5"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tide Level" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="KUw-9f-D5P">
-                                            <rect key="frame" x="28" y="48" width="132" height="34"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" preservesSuperviewLayoutMargins="YES" text="Tide Level" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="28" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KUw-9f-D5P">
+                                            <rect key="frame" x="28" y="51.5" width="132" height="36"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </label>
@@ -554,7 +556,8 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="PGQ-CS-FYR" secondAttribute="trailing" constant="12" id="6Hb-rK-ZSk"/>
                                         <constraint firstItem="PGQ-CS-FYR" firstAttribute="leading" secondItem="flq-vJ-HLh" secondAttribute="leadingMargin" constant="12" id="SVC-TR-T4x"/>
                                         <constraint firstItem="KUw-9f-D5P" firstAttribute="top" secondItem="PGQ-CS-FYR" secondAttribute="bottom" constant="8" symbolic="YES" id="aLj-6B-O2q"/>
-                                        <constraint firstItem="PGQ-CS-FYR" firstAttribute="top" secondItem="flq-vJ-HLh" secondAttribute="topMargin" constant="5" id="hbY-Yy-O5Z"/>
+                                        <constraint firstAttribute="bottom" secondItem="KUw-9f-D5P" secondAttribute="bottom" constant="8" id="dWk-Ev-DNk"/>
+                                        <constraint firstItem="PGQ-CS-FYR" firstAttribute="top" secondItem="flq-vJ-HLh" secondAttribute="topMargin" constant="8" id="hbY-Yy-O5Z"/>
                                         <constraint firstItem="KUw-9f-D5P" firstAttribute="leading" secondItem="flq-vJ-HLh" secondAttribute="leadingMargin" constant="12" id="xyz-z1-40g"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -578,7 +581,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RLr-3b-DME" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1309" y="-843"/>
+            <point key="canvasLocation" x="1308" y="-843.32833583208401"/>
         </scene>
         <!--Select Station Navigation Controller-->
         <scene sceneID="WaI-BP-7PE">
@@ -740,7 +743,7 @@
     <resources>
         <image name="UIButtonBarListIcon" width="22" height="20"/>
         <namedColor name="tableCellBackground">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>

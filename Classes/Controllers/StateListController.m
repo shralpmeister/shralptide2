@@ -18,7 +18,9 @@
 
 -(void)loadView {
     [super loadView];
-    self.navigationItem.prompt = NSLocalizedString(@"Select a Tide Station",nil);
+    self.navigationItem.prompt = NSLocalizedString(@"Select Tide Station",nil);
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = UITableViewAutomaticDimension;
 }
 
 -(void)viewWillAppear:(BOOL)animated
