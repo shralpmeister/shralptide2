@@ -86,7 +86,9 @@
     }
     [self.popoverPresentationController.delegate popoverPresentationControllerDidDismissPopover: self.popoverPresentationController];
     if (@available(iOS 13.0, *)) {
-        [self.presentationController.delegate presentationControllerDidDismiss:self.presentationController];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            [self.presentationController.delegate presentationControllerDidDismiss:self.presentationController];
+        }
     }
     [self dismissViewControllerAnimated:YES completion: nil];
 }

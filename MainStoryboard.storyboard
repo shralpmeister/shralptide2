@@ -18,6 +18,7 @@
                         <color key="backgroundColor" name="tableCellBackground"/>
                         <viewLayoutGuide key="contentLayoutGuide" id="Hfj-bz-44f"/>
                         <viewLayoutGuide key="frameLayoutGuide" id="Wi5-U7-LKi"/>
+                        <color key="sectionIndexBackgroundColor" name="tableCellBackground"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CountryListCell" id="o2t-9w-y55" customClass="PickerTableCell">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
@@ -743,7 +744,7 @@
     <resources>
         <image name="UIButtonBarListIcon" width="22" height="20"/>
         <namedColor name="tableCellBackground">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
