@@ -29,7 +29,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     func applicationDidFinishLaunching() {
         WatchSessionManager.sharedInstance.startSession()
 
-        let hfilePath = Bundle(for: SDTideFactoryNew.self).path(forResource: "harmonics-dwf-20081228-free", ofType: "tcd")! + ":" + Bundle(for: SDTideFactoryNew.self).path(forResource: "harmonics-dwf-20081228-nonfree", ofType: "tcd")!
+        let hfilePath = Bundle(for: SDTideFactoryNew.self).path(forResource: "harmonics-20040614-wxtide", ofType: "tcd")! + ":" + Bundle(for: SDTideFactoryNew.self).path(forResource: "harmonics-dwf-20081228-free", ofType: "tcd")! + ":" + Bundle(for: SDTideFactoryNew.self).path(forResource: "harmonics-dwf-20081228-nonfree", ofType: "tcd")!
         setenv("HFILE_PATH", hfilePath, 1)
         
         WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: Date(timeIntervalSinceNow: 15 * .SecondsPerMinute), userInfo: nil) { (error: Error?) in

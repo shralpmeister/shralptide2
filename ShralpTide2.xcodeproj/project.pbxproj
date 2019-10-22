@@ -33,6 +33,7 @@
 		DC3911B81918751000D28F8D /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC3911B71918751000D28F8D /* iAd.framework */; };
 		DC3E37041DCFA8C200F97536 /* ConfigHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E37031DCFA8C200F97536 /* ConfigHelper.swift */; };
 		DC493E5D0F206C8B0087B341 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = DC493E5C0F206C8B0087B341 /* COPYING */; };
+		DC49D75423555BBC0084430F /* harmonics-20040614-wxtide.tcd in Resources */ = {isa = PBXBuildFile; fileRef = DC31774822DBF3C300484336 /* harmonics-20040614-wxtide.tcd */; };
 		DC4FBBE8178BCF3200C0CFEE /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC4FBBE7178BCF3200C0CFEE /* MainStoryboard.storyboard */; };
 		DC4FBBEB178C62EC00C0CFEE /* LandscapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4FBBEA178C62EC00C0CFEE /* LandscapeViewController.m */; };
 		DC51919E21E16E830058A9A5 /* WatchChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7702BE1DA2D4F000B3C4F9 /* WatchChartView.swift */; };
@@ -1173,6 +1174,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC49D75423555BBC0084430F /* harmonics-20040614-wxtide.tcd in Resources */,
 				DC7703FD1DA84B7B00B3C4F9 /* ShralpTide2_Prefix.pch in Resources */,
 				DC7703B61DA848BC00B3C4F9 /* harmonics-dwf-20081228-free.tcd in Resources */,
 				DC7703B71DA848BC00B3C4F9 /* harmonics-dwf-20081228-nonfree.tcd in Resources */,
