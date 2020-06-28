@@ -25,18 +25,20 @@ class WatchChartView {
     let tide:SDTide
     let startDate:Date
     let page:Int
+    let date: Date
     
-    init(withTide tide:SDTide, height:Int, hours:Int, startDate:Date, page:Int) {
+    init(withTide tide:SDTide, height:Int, hours:Int, startDate:Date, page:Int, date: Date) {
         self.tide = tide
         self.hoursToPlot = hours
         self.height = height
         self.height = height > 0 ? height : nil
         self.startDate = startDate
         self.page = page
+        self.date = date
     }
     
     convenience init(withTide tide:SDTide) {
-        self.init(withTide: tide, height: 0, hours: 24, startDate:Date().startOfDay(), page:0)
+        self.init(withTide: tide, height: 0, hours: 24, startDate:Date().startOfDay(), page:0, date: Date())
     }
     
     fileprivate func endTime() -> Date {
@@ -88,7 +90,7 @@ class WatchChartView {
         return CGFloat((tide.allIntervals).sorted( by: { $0.height > $1.height } )[0].height)
     }
     
-    func drawImage(bounds:CGRect) throws -> UIImage {
+func drawImage(bounds:CGRect) throws -> UIImage {
         let height = (self.height != nil ? self.height : Int(bounds.size.height))!
         let chartBottom:CGFloat = 0
         
@@ -193,7 +195,7 @@ class WatchChartView {
         
         let cursorPath = UIBezierPath()
         context.setLineWidth(3)
-        let cursorX = self.tide.nearestDataPoint(forTime: Date().timeInMinutesSinceMidnight()).x * xratio - CGFloat(self.startDate.timeInMinutesSinceMidnight()) * xratio
+        let cursorX = self.tide.nearestDataPoint(forTime: self.date.timeInMinutesSinceMidnight()).x * xratio - CGFloat(self.startDate.timeInMinutesSinceMidnight()) * xratio
         cursorPath.move(to: CGPoint(x:cursorX, y:0.0))
         cursorPath.addLine(to: CGPoint(x:cursorX, y:CGFloat(height)))
         

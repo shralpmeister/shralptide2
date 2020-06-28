@@ -115,7 +115,7 @@ class InterfaceController: WKInterfaceController {
         let width = WKInterfaceDevice.current().screenBounds.width
         
         let hoursInDay = Calendar.current.range(of: .hour, in: .day, for: Date())
-        let chartView = WatchChartView(withTide: tides, height: InterfaceController.ChartHeight, hours: (hoursInDay?.count)!, startDate: Date().startOfDay(), page: 0)
+        let chartView = WatchChartView(withTide: tides, height: InterfaceController.ChartHeight, hours: (hoursInDay?.count)!, startDate: Date().startOfDay(), page: 0, date: Date())
         do {
             try chartController.tideImage?.setImage(chartView.drawImage(bounds: CGRect(x:Int(0),y:Int(0),width:Int(width),height:InterfaceController.ChartHeight)))
             lastDisplayedPoint = tidePoint

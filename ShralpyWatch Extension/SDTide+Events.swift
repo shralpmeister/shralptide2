@@ -12,10 +12,9 @@ enum TideError: Error {
 }
 
 extension SDTide {
-    func nextTideFromNow() throws -> SDTideEvent {
-        guard let events:[SDTideEvent] = self.events else { throw TideError.notFound }
-        let index = Int(self.nextEventIndex)
-        if index < 0 { throw TideError.notFound }
-        return events[index]
+    func nextTide(from date: Date) throws -> SDTideEvent
+    {
+        guard let nextEvent = (self.events.filter { date.timeIntervalSince1970 < $0.eventTime.timeIntervalSince1970 }.first) else { throw TideError.notFound }
+        return nextEvent
     }
 }

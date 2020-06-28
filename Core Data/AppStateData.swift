@@ -103,9 +103,6 @@ import CoreData
             location.locationName = locationName
             location.datastoreName = AppStateData.datastoreName
             appState.addToFavoriteLocations(location)
-//            let locations = NSMutableOrderedSet(orderedSet: (appState.favoriteLocations)!)
-//            locations.add(location)
-//            appState.favoriteLocations = locations
         } else {
             print("location already present. skipping.")
             return

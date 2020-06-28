@@ -32,15 +32,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         let hfilePath = Bundle(for: SDTideFactoryNew.self).path(forResource: "harmonics-20040614-wxtide", ofType: "tcd")! + ":" + Bundle(for: SDTideFactoryNew.self).path(forResource: "harmonics-dwf-20081228-free", ofType: "tcd")! + ":" + Bundle(for: SDTideFactoryNew.self).path(forResource: "harmonics-dwf-20081228-nonfree", ofType: "tcd")!
         setenv("HFILE_PATH", hfilePath, 1)
         
-        WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: Date(timeIntervalSinceNow: 15 * .SecondsPerMinute), userInfo: nil) { (error: Error?) in
+        WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: Date(timeIntervalSinceNow: 4 * .MinutesPerHour * .SecondsPerMinute), userInfo: nil) { (error: Error?) in
             if let error = error {
                 print("Error occurred refreshing app state: \(error)")
-            }
-        }
-        
-        WKExtension.shared().scheduleSnapshotRefresh(withPreferredDate: Date(timeIntervalSinceNow: 15 * .SecondsPerMinute), userInfo: nil) { (error:Error?) in
-            if let error = error {
-                print("Error occurred refreshing snapshot: \(error)")
             }
         }
     }
@@ -66,9 +60,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 backgroundTask.setTaskCompletedWithSnapshot(false)
                 
                 // Schedule the next background refresh
-                WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: Date(timeIntervalSinceNow: 15 * .SecondsPerMinute), userInfo: nil) { error in
+                WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: Date(timeIntervalSinceNow: 4 * .MinutesPerHour * .SecondsPerMinute), userInfo: nil) { error in
                     if let error = error {
-                        print("Error occurred refreshing app state: \(error)")
+                        NSLog("Error occurred refreshing app state: \(error)")
                     }
                 }
             case let snapshotTask as WKSnapshotRefreshBackgroundTask:
@@ -143,12 +137,13 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             tides = nil
             return
         }
-        print("Refreshing tides")
-        tides = SDTide(byCombiningTides: SDTideFactoryNew.tides(forStationName: selectedStation, forDays: 2, withUnits: .US))
+        NSLog("Refreshing tides")
+        let tidesArray = SDTideFactoryNew.tides(forStationName: selectedStation, withInterval: 900, forDays: 2, withUnits: .US, from: Date().addingTimeInterval(ExtensionDelegate.DayInSeconds / -2))
+        tides = SDTide(byCombiningTides: tidesArray)
     }
     
     func refreshComplications() {
-        print("Refreshing complications")
+        NSLog("Refreshing complications")
         guard let activeComplications = CLKComplicationServer.sharedInstance().activeComplications else {
             NSLog("No active complications found. Skipping refresh")
             return
