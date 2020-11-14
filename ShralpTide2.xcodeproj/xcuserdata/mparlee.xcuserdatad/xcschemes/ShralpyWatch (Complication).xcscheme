@@ -84,8 +84,10 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "32">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/ShralpTide">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DC7702971DA2CBE000B3C4F9"
@@ -93,7 +95,7 @@
             BlueprintName = "ShralpyWatch"
             ReferencedContainer = "container:ShralpTide2.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -102,8 +104,10 @@
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES"
       launchAutomaticallySubstyle = "32">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/ShralpTide">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DC7702971DA2CBE000B3C4F9"
@@ -111,7 +115,16 @@
             BlueprintName = "ShralpyWatch"
             ReferencedContainer = "container:ShralpTide2.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "DC7702971DA2CBE000B3C4F9"
+            BuildableName = "ShralpyWatch.app"
+            BlueprintName = "ShralpyWatch"
+            ReferencedContainer = "container:ShralpTide2.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
