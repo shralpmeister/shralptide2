@@ -90,7 +90,8 @@ class InterfaceController: WKInterfaceController {
         table.insertRows(at: [1], withRowType: "heightRow")
         table.insertRows(at: [2], withRowType: "chartRow")
         let firstEventIndex = 3
-        let todayEvents = tides.events.filter { $0.eventTime <= Date().endOfDay() }
+        let today = Date()
+        let todayEvents = tides.events.filter { today.startOfDay() <= $0.eventTime && $0.eventTime <= today.endOfDay() }
         for (i, event) in todayEvents.enumerated() {
             table.insertRows(at:[i+firstEventIndex], withRowType: "eventRow")
             let eventsController = (table.rowController(at: i + firstEventIndex) as! TideTableRowController)
