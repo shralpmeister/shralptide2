@@ -30,13 +30,25 @@
 #import "SDTideStationData.h"
 #import "NSDate+Day.h"
 
-#define SECONDS_PER_DAY 86400
-
 static NSArray* tideEventsForLocation(const Dstr &name, Interval step, Timestamp start, Timestamp end, Units::PredictionUnits units);
 static NSArray* rawEventsForLocation(const Dstr &name, Interval step, Timestamp start, Timestamp end, Units::PredictionUnits units);
 static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
 
+@interface SDTideFactoryNew()
++(NSDate*)addDays:(int)n toDate:(NSDate*)date;
+@end
+
 @implementation SDTideFactoryNew
+
++(NSDate*)addDays:(int)n toDate:(NSDate*)date
+{
+    NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
+    dayComponent.day = n;
+    
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    return [cal dateByAddingComponents: dayComponent toDate: date options: 0];
+}
+
 
 +(SDTide*)todaysTidesForStationName:(NSString*)name withUnits:(SDTideUnitsPref)units
 {
@@ -58,7 +70,7 @@ static SDTideState cppEventEnumToObjCEventEnum(TideEvent event);
     NSMutableArray<SDTide*> *tideCollection = [[NSMutableArray alloc] init];
     
     for (int i=0; i < days; i++) {
-        NSDate *day = [date dateByAddingTimeInterval:i * SECONDS_PER_DAY];
+        NSDate *day = [self addDays:i toDate: date];
         SDTide* tidy = [SDTideFactoryNew tideForStationName:name withInterval:interval fromDate:[day startOfDay] toDate:[day endOfDay] withUnits: units];
         [tideCollection addObject:tidy];
     }

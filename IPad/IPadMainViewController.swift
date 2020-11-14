@@ -260,15 +260,21 @@ extension IPadMainViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        var oneDay = DateComponents()
+        oneDay.day = 1
+        
+        let cal = Calendar.current
+        
+        let today = Date()
+        let tomorrow = cal.date(byAdding: oneDay, to: today)!
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CalendarDayCell", for: indexPath) as! CalendarDayCell
         let dayCellIndex = indexPath.item
         cell.chartView.datasource = tideData[dayCellIndex]
-        cell.chartView.hoursToPlot = 24;
+        cell.chartView.hoursToPlot = cal.dateComponents([.hour], from: today.startOfDay(), to: tomorrow.startOfDay()).hour!
         cell.chartView.height = Int(0.8 * (collectionView.layoutAttributesForItem(at: indexPath)!.frame.height - 47))
         cell.chartView.setNeedsDisplay()
         cell.dayLabel.backgroundColor = .black
-        
-        let today = Date()
         
         let cellMonth = Calendar.current.component(.month, from: tideData[dayCellIndex].day)
         let cellDay = Calendar.current.component(.day, from: tideData[dayCellIndex].day)

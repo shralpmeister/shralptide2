@@ -226,12 +226,28 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                 NSLog("Creating graphic for interval \(interval)")
                 template = createGraphicRectangularChartTemplate(height: interval.height, min: min, max: max, shortText: shortText, longText: longText, symbol: symbolText, tide: tide, interval: interval)
             } else {
-                NSLog("Graphic Corner is not available on this device.")
+                NSLog("Graphic Rectangle is not available on this device.")
+            }
+        case .graphicExtraLarge:
+            if #available(watchOSApplicationExtension 7.0, *) {
+                template = createGraphicExtraLargeGuageTemplate(fillFraction: fillFraction, min: min, max: max, shortText: shortText, symbol: symbolText, interval: interval)
+            } else {
+                NSLog("Graphic Extra Large is not available on this device")
             }
         @unknown default:
-            fatalError("complicatino template type was not passed")
+            fatalError("complication template type was not passed")
         }
         return template!
+    }
+    
+    @available(watchOSApplicationExtension 7.0, *)
+    fileprivate func createGraphicExtraLargeGuageTemplate(fillFraction: Float, min: Float, max: Float, shortText: String, symbol: String, interval: SDTideInterval) -> CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeSimpleText {
+        let template = CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeSimpleText()
+        template.gaugeProvider = CLKSimpleGaugeProvider(style: .ring, gaugeColors: [.black, .shralpGreen, .blue], gaugeColorLocations: [0, 0.3, 1], fillFraction: fillFraction)
+        template.centerTextProvider = CLKSimpleTextProvider(text: symbol)
+        template.centerTextProvider.tintColor = .shralpGreen
+        template.bottomTextProvider = CLKSimpleTextProvider(text: String(format:"%0.1f", interval.height))
+        return template
     }
     
     // MARK: - Timeline Population

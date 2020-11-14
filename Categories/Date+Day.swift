@@ -19,18 +19,16 @@ extension Date {
     /** The number of seconds in a minute. */
     static let SecondsPerMinute = 60
     
-    /** The number of seconds in a day. */
-    static let SecondsPerDay = 86400
-    
     public func startOfDay() -> Date {
         let cal:Calendar = Calendar(identifier: .gregorian)
         return cal.startOfDay(for: self)
     }
     
     public func endOfDay() -> Date {
+        var oneDay = DateComponents()
+        oneDay.day = 1
         let cal = Calendar(identifier: .gregorian)
-        let nextDay = self.addingTimeInterval(TimeInterval(Date.SecondsPerDay))
-        return cal.startOfDay(for: nextDay)
+        return cal.date(byAdding: oneDay, to: startOfDay())!
     }
     
     public func isOnTheHour() -> Bool {
