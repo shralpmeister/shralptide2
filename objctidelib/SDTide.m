@@ -28,6 +28,7 @@
 @interface SDTide(PrivateMethods)
 - (int)findPreviousInterval:(int) minutesFromMidnight;
 - (int)findNearestInterval:(int) minutesFromMidnight;
+- (NSArray<SDTideInterval*>*) todaysTideIntervals;
 @property (NS_NONATOMIC_IOSONLY, readonly) int currentTimeInMinutes;
 @end
 
@@ -80,9 +81,15 @@
 	}
 }
 
+-(NSArray<SDTideInterval*>*)todaysTideIntervals {
+    NSDate* today = [[NSDate alloc] init];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%@ <= time && time <= %@", [today startOfDay], [today endOfDay]];
+    return [self.allIntervals filteredArrayUsingPredicate:predicate];
+}
+
 -(SDTideInterval*)findTideIntervalForTime:(NSInteger) time {
     int basetime = 0;
-    for (SDTideInterval *tidePoint in self.allIntervals) {
+    for (SDTideInterval *tidePoint in self.todaysTideIntervals) {
         int minutesSinceMidnight = 0;
         if (basetime == 0) {
             basetime = (int)tidePoint.time.timeIntervalSince1970;

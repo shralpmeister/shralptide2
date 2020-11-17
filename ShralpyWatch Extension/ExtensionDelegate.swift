@@ -11,9 +11,7 @@ import CoreData
 import WatchTides
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
-    
-    static let DayInSeconds:Double = 86400
-    
+        
     let lock = NSObject()
     
     var tides:SDTide? {
@@ -108,9 +106,17 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         )
     }
     
+    private func secondsInToday() -> Double {
+        let cal = Calendar.current
+        let now = Date()
+        let tomorrow = cal.date(byAdding: .day, value: 1, to: now)!
+        return Double(cal.dateComponents([.second], from: now.startOfDay(), to: tomorrow.startOfDay()).second!)
+    }
+    
     func checkAndRefreshTides() {
+
         if let tides = self.tides {
-            if Date().timeIntervalSince(tides.startTime) >= ExtensionDelegate.DayInSeconds {
+            if Date().timeIntervalSince(tides.startTime) >= secondsInToday() {
                 refreshTides()
             }
         } else {
@@ -138,7 +144,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             return
         }
         NSLog("Refreshing tides")
-        let tidesArray = SDTideFactoryNew.tides(forStationName: selectedStation, withInterval: 900, forDays: 2, withUnits: .US, from: Date().addingTimeInterval(ExtensionDelegate.DayInSeconds / -2))
+        let tidesArray = SDTideFactoryNew.tides(forStationName: selectedStation, withInterval: 900, forDays: 2, withUnits: .US, from: Date().addingTimeInterval(secondsInToday() / -2))
         tides = SDTide(byCombiningTides: tidesArray)
     }
     
