@@ -83,7 +83,7 @@
 
 -(NSArray<SDTideInterval*>*)todaysTideIntervals {
     NSDate* today = [[NSDate alloc] init];
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%@ <= time && time <= %@", [today startOfDay], [today endOfDay]];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%@ <= time", [today startOfDay]];
     return [self.allIntervals filteredArrayUsingPredicate:predicate];
 }
 
