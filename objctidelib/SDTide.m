@@ -89,7 +89,12 @@
 
 -(SDTideInterval*)findTideIntervalForTime:(NSInteger) time {
     int basetime = 0;
-    for (SDTideInterval *tidePoint in self.todaysTideIntervals) {
+#if TARGET_OS_WATCH
+    NSArray<SDTideInterval*>* tideIntervals = self.todaysTideIntervals;
+#else
+    NSArray<SDTideInterval*>* tideIntervals = self.allIntervals;
+#endif
+    for (SDTideInterval *tidePoint in tideIntervals) {
         int minutesSinceMidnight = 0;
         if (basetime == 0) {
             basetime = (int)tidePoint.time.timeIntervalSince1970;
