@@ -11,16 +11,19 @@ import SwiftUI
 struct TideEventsView: View {
   @EnvironmentObject var appState: AppState
   @EnvironmentObject var config: ConfigHelper
+  
+  @Binding private var pageIndex: Int
 
   let formatter = DateFormatter()
 
-  init() {
+  init(pageIndex: Binding<Int>) {
+    self._pageIndex = pageIndex
     formatter.dateStyle = .full
   }
 
   var body: some View {
     return GeometryReader { proxy in
-      TabView {
+      TabView(selection: $pageIndex) {
         ForEach(0..<appState.tidesForDays.count, id: \.self) { index in
           VStack(alignment: .center, spacing: 0) {
             let tide = appState.tidesForDays[index]
@@ -80,7 +83,7 @@ struct TideEventsView_Previews: PreviewProvider {
   static var previews: some View {
     ZStack {
       Color("SeaGreen")
-      TideEventsView()
+      //TideEventsView(pageIndex: Binding(0))
     }
   }
 }

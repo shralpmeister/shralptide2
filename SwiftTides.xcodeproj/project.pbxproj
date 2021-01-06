@@ -57,6 +57,8 @@
 		DC0DE8A42595696F00FD75A0 /* SDTide+Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE8A22595696F00FD75A0 /* SDTide+Formatters.swift */; };
 		DC115D9725A28D6A00954972 /* PagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115D9625A28D6A00954972 /* PagerView.swift */; };
 		DC115D9825A28D6A00954972 /* PagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115D9625A28D6A00954972 /* PagerView.swift */; };
+		DC115DAB25A5572600954972 /* TideGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DA925A5572600954972 /* TideGraphView.swift */; };
+		DC115DB825A576CA00954972 /* TideGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DA925A5572600954972 /* TideGraphView.swift */; };
 		DC15911B259A70400092E473 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC15911A259A70400092E473 /* ChartView.swift */; };
 		DC15911C259A70400092E473 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC15911A259A70400092E473 /* ChartView.swift */; };
 		DC160B5024CFAC9D00C62C56 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC160B4F24CFAC9D00C62C56 /* HeaderView.swift */; };
@@ -141,6 +143,7 @@
 		DC0DE8752593D4D400FD75A0 /* ShralpTideFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ShralpTideFramework.framework; path = ../../../Library/Frameworks/ShralpTideFramework.framework; sourceTree = "<group>"; };
 		DC0DE8A22595696F00FD75A0 /* SDTide+Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SDTide+Formatters.swift"; sourceTree = "<group>"; };
 		DC115D9625A28D6A00954972 /* PagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerView.swift; sourceTree = "<group>"; };
+		DC115DA925A5572600954972 /* TideGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideGraphView.swift; sourceTree = "<group>"; };
 		DC15911A259A70400092E473 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		DC160B4F24CFAC9D00C62C56 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		DC26BAE824BB807900453A5F /* SwiftTidesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftTidesApp.swift; sourceTree = "<group>"; };
@@ -350,6 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				DC0DE59A258D577F00FD75A0 /* SwiftTides.entitlements */,
+				DC115DA925A5572600954972 /* TideGraphView.swift */,
 				DC26BAE924BB807900453A5F /* ContentView.swift */,
 				DC160B4F24CFAC9D00C62C56 /* HeaderView.swift */,
 				DC77459D24F31681001747AE /* TideEventsView.swift */,
@@ -562,6 +566,7 @@
 				DC079F74259BAED800F1CB0E /* InteractiveChartViewModifier.swift in Sources */,
 				DC0DE8A32595696F00FD75A0 /* SDTide+Formatters.swift in Sources */,
 				DC0DE8162593B87C00FD75A0 /* TideStationInteractor.swift in Sources */,
+				DC115DB825A576CA00954972 /* TideGraphView.swift in Sources */,
 				DC0DE589258C1B6C00FD75A0 /* EnvironmentValues.swift in Sources */,
 				DC079F7A259C06D200F1CB0E /* Date+Day.swift in Sources */,
 				DC0DE7C72593B2E400FD75A0 /* AppStateRepository.swift in Sources */,
@@ -591,6 +596,7 @@
 				DC079F75259BAED800F1CB0E /* InteractiveChartViewModifier.swift in Sources */,
 				DC0DE8A42595696F00FD75A0 /* SDTide+Formatters.swift in Sources */,
 				DC0DE8172593B87C00FD75A0 /* TideStationInteractor.swift in Sources */,
+				DC115DAB25A5572600954972 /* TideGraphView.swift in Sources */,
 				DC0DE58A258C1B6C00FD75A0 /* EnvironmentValues.swift in Sources */,
 				DC079F7B259C06D200F1CB0E /* Date+Day.swift in Sources */,
 				DC0DE7C82593B2E400FD75A0 /* AppStateRepository.swift in Sources */,

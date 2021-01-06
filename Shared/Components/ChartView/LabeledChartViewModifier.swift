@@ -13,19 +13,19 @@ struct LabeledChartViewModifier: ViewModifier {
 
   fileprivate var hourFormatter: DateFormatter = DateFormatter()
 
-  let labelInset: Int
-  let hoursToPlot: Int
-  let chartMinutes: Int
+  private let labelInset: Int
+  private let hoursToPlot: Int
+  private let chartMinutes: Int
 
   init(hoursToPlot: Int, labelInset: Int = 0) {
     self.hoursToPlot = hoursToPlot
     self.labelInset = labelInset
-    self.chartMinutes = hoursToPlot * 60
+    self.chartMinutes = hoursToPlot * ChartConstants.minutesPerHour
     hourFormatter.dateFormat = DateFormatter.dateFormat(
       fromTemplate: "j", options: 0, locale: Locale.current)
   }
 
-  fileprivate func imageForEvent(_ event: SDTideEvent) -> some View {
+  private func imageForEvent(_ event: SDTideEvent) -> some View {
     switch event.eventType {
     case .moonrise:
       return Color.white
@@ -45,13 +45,13 @@ struct LabeledChartViewModifier: ViewModifier {
     }
   }
 
-  fileprivate func xCoord(forTime time: Date, baseSeconds: TimeInterval, xratio: CGFloat) -> CGFloat
+  private func xCoord(forTime time: Date, baseSeconds: TimeInterval, xratio: CGFloat) -> CGFloat
   {
-    let minute = Int(time.timeIntervalSince1970 - baseSeconds) / 60
+    let minute = Int(time.timeIntervalSince1970 - baseSeconds) / ChartConstants.secondsPerMinute
     return CGFloat(minute) * xratio
   }
 
-  fileprivate func makeLabels(
+  private func makeLabels(
     _ intervals: [SDTideInterval], baseSeconds: TimeInterval, xratio: CGFloat
   ) -> [TimeLabel] {
     return intervals.filter { $0.time.isOnTheHour() }
@@ -84,7 +84,7 @@ struct LabeledChartViewModifier: ViewModifier {
               let label = labels[index]
               Text(label.text)
                 .font(.footnote)
-                .foregroundColor(Color.white)
+                .foregroundColor(.white)
                 .position(x: label.x, y: CGFloat(labelInset))
             }
           }

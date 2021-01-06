@@ -10,9 +10,11 @@ import SwiftUI
 struct ContentView: View {
   @EnvironmentObject var appState: AppState
   
-  @State var isFirstLaunch = true
-  @State var pageIndex = 0
-
+  @State private var isFirstLaunch = true
+  @State private var pageIndex: Int = 0
+  @State private var cursorLocation: CGPoint = .zero
+  @GestureState private var translation: CGFloat = 0
+  
   var body: some View {
     return GeometryReader { proxy in
       if isFirstLaunch || proxy.size.width < proxy.size.height {
@@ -24,7 +26,7 @@ struct ContentView: View {
                 width: proxy.size.width,
                 height: proxy.size.height / 2.8
               )
-            TideEventsView()
+            TideEventsView(pageIndex: $pageIndex)
             Spacer()
               .frame(
                 width: proxy.size.width,
@@ -38,17 +40,31 @@ struct ContentView: View {
           isFirstLaunch = false
         }
       } else {
-        let hours = appState.tidesForDays.reduce(0) { acc, tide in
-          return acc + tide.startTime.hoursInDay()
-        }
-        let width = proxy.size.width * CGFloat(appState.tidesForDays.count)
-        PagerView(pageCount: appState.tidesForDays.count, currentIndex: $pageIndex) {
-          ChartView(hoursToPlot: hours)
-              .modifier(InteractiveChartViewModifier(hoursToPlot: hours))
-              .modifier(LabeledChartViewModifier(hoursToPlot: hours, labelInset: 15))
-              .ignoresSafeArea()
-              .frame(width: width, height: nil)
-        }
+        let dragGesture = DragGesture(minimumDistance: 0)
+          .onChanged {
+            self.cursorLocation = $0.location
+          }
+          .onEnded { _ in
+            self.cursorLocation = .zero
+          }
+        
+        let pressGesture = LongPressGesture(minimumDuration: 0.2)
+        
+        let pressDrag = pressGesture.sequenced(before: dragGesture)
+        
+        let swipeDrag = DragGesture()
+          .updating(self.$translation) { value, state, _ in
+            state = value.translation.width
+          }
+          .onEnded { value in
+            let offset = value.translation.width / proxy.size.width
+            let newIndex = offset > 0 ? pageIndex - 1 : pageIndex + 1
+            self.pageIndex = min(max(Int(newIndex), 0), appState.tidesForDays.count - 1)
+          }
+        
+        let exclusive = pressDrag.exclusively(before: swipeDrag)
+        TideGraphView(pageIndex: $pageIndex, cursorLocation: $cursorLocation)
+          .gesture(exclusive)
       }
     }
     .onAppear(perform: {
@@ -57,9 +73,9 @@ struct ContentView: View {
   }
 }
 
-struct ContentView_Previews: PreviewProvider {
-  static var previews: some View {
-    ContentView()
-      .previewDevice("iPhone 12")
-  }
-}
+//struct ContentView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    ContentView()
+//      .previewDevice("iPhone 12")
+//  }
+//}

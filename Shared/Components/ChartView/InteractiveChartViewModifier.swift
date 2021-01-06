@@ -9,53 +9,25 @@ import ShralpTideFramework
 import SwiftUI
 
 struct InteractiveChartViewModifier: ViewModifier {
-  enum DragState {
-    case inactive
-    case pressing
-    case dragging(location: CGPoint)
 
-    var location: CGPoint {
-      switch self {
-      case .inactive, .pressing:
-        return .zero
-      case .dragging(let location):
-        return location
-      }
-    }
-
-    var isActive: Bool {
-      switch self {
-      case .inactive:
-        return false
-      case .pressing, .dragging:
-        return true
-      }
-    }
-
-    var isDragging: Bool {
-      switch self {
-      case .inactive, .pressing:
-        return false
-      case .dragging:
-        return true
-      }
-    }
-  }
-
-  @GestureState var dragState = DragState.inactive
   @EnvironmentObject var appState: AppState
+  
+  @Binding private var pageIndex: Int
+  @Binding private var cursorLocation: CGPoint
+  
+  private var dateFormatter: DateFormatter = DateFormatter()
 
-  fileprivate var chartMinutes: Int
-
-  init(hoursToPlot: Int) {
-    chartMinutes = hoursToPlot * 60
+  init(currentIndex: Binding<Int>, cursorLocation: Binding<CGPoint>) {
+    self._pageIndex = currentIndex
+    self._cursorLocation = cursorLocation
+    dateFormatter.dateStyle = .full
   }
 
-  fileprivate func timeInMinutes(x xPosition: CGFloat, xRatio: CGFloat) -> Int {
+  private func timeInMinutes(x xPosition: CGFloat, xRatio: CGFloat) -> Int {
     return Int(round(xPosition / xRatio))
   }
   
-  fileprivate func currentTimeInMinutes() -> Int {
+  private func currentTimeInMinutes() -> Int {
     // The following shows the current time on the tide chart.
     // Need to make sure that it only shows on the current day!
     let datestamp = Date()
@@ -68,50 +40,54 @@ struct InteractiveChartViewModifier: ViewModifier {
   }
 
   func body(content: Content) -> some View {
-    let drag = DragGesture(minimumDistance: 0)
-      .updating($dragState) { value, state, transaction in
-        state = .dragging(location: value.location)
-      }
     return GeometryReader { proxy in
+      let screenMinutes = appState.tidesForDays[self.pageIndex].startTime.hoursInDay() * ChartConstants.minutesPerHour
+      let xRatio = proxy.size.width / CGFloat(screenMinutes)
+      let midpointX = UIScreen.main.bounds.size.width / 2.0
+      
+      let xPosition =
+        cursorLocation.x > .zero ? cursorLocation.x : CGFloat(currentTimeInMinutes()) * xRatio
+      
+      let dataPoint = appState.tideChartData!.nearestDataPoint(
+        forTime: timeInMinutes(x: xPosition, xRatio: xRatio))
+      
       content
         .overlay(
-          ZStack {
-            let xRatio = proxy.size.width / CGFloat(self.chartMinutes)
-            let xPosition =
-              dragState.isActive ? dragState.location.x : CGFloat(currentTimeInMinutes()) * xRatio
-            let dataPoint = appState.tideChartData!.nearestDataPoint(
-              forTime: timeInMinutes(x: xPosition, xRatio: xRatio))
-            let middayMinutes = appState.tideChartData!.startTime.midday().timeInMinutesSinceMidnight()
-            let midpointX = appState.tideChartData!.nearestDataPoint(forTime: middayMinutes).x * xRatio
-            Cursor(xPosition: xPosition, height: proxy.size.height)
             ZStack {
-              if xPosition > 0 {
+              if pageIndex == 0 || cursorLocation.x > 0 {
+                Cursor(height: proxy.size.height)
+                  .position(x: xPosition, y: proxy.size.height / 2.0)
                 TideOverlay(
                   dataPoint: dataPoint, unit: appState.tideChartData!.unitShort,
-                  startDate: appState.tideChartData!.startTime
+                  startDate: appState.tidesForDays[self.pageIndex].startTime
                 )
-                .position(x: midpointX,
-                          y: 55)
+                .position(x: midpointX, y: 75)
               }
+              HStack(alignment: .bottom) {
+                Text(appState.tideChartData?.shortLocationName ?? "Unknown Station")
+                Spacer()
+                Text(dateFormatter.string(from: appState.tidesForDays[self.pageIndex].startTime))
+              }
+              .font(.footnote)
+              .padding(.all)
+              .foregroundColor(.white)
+              .frame(width: proxy.size.width, height: 40)
+              .position(x: proxy.size.width / 2.0, y: 50)
             }
             .frame(alignment: .top)
-            .padding(.top)
-          }
         )
-        .highPriorityGesture(TapGesture())
-        .gesture(drag, including: .gesture)
     }
   }
 }
 
 struct Cursor: View {
-  let xPosition: CGFloat
   let height: CGFloat
 
   var body: some View {
     Rectangle()
-      .path(in: CGRect(x: xPosition, y: 0, width: 4.0, height: height))
-      .foregroundColor(Color.red)
+      .fill(Color.red)
+      .frame(width: 4.0, height: height)
+      .animation(.interactiveSpring())
   }
 }
 
@@ -120,7 +96,7 @@ struct TideOverlay: View {
   let unit: String
   let startDate: Date
 
-  fileprivate let timeFormatter = DateFormatter()
+  private let timeFormatter = DateFormatter()
 
   init(dataPoint: CGPoint, unit: String, startDate: Date) {
     self.dataPoint = dataPoint
@@ -137,17 +113,14 @@ struct TideOverlay: View {
       Text(String(format: "%0.2f %@ @ %@", dataPoint.y, unit, timeFormatter.string(from: xDate)))
         .font(.title)
         .foregroundColor(Color.white)
-        .transition(.identity)
-        .animation(.none)
     }
-    .frame(width: 300, height: 50)
     .transition(.opacity)
-    .animation(.default)
+    .frame(width: 300, height: 50)
   }
 
-  fileprivate func dateTime(fromMinutesSinceMidnight minutes: Int) -> Date {
-    let hours = minutes / 60
-    let minutes = minutes % 60
+  private func dateTime(fromMinutesSinceMidnight minutes: Int) -> Date {
+    let hours = minutes / ChartConstants.minutesPerHour
+    let minutes = minutes % ChartConstants.secondsPerMinute
 
     let cal = Calendar.current
     let components = DateComponents(hour: hours, minute: minutes)

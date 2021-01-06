@@ -15,7 +15,7 @@ struct ChartConstants {
 struct ChartView: View {
   @EnvironmentObject var appState: AppState
 
-  fileprivate let dateFormatter = DateFormatter()
+  private let dateFormatter = DateFormatter()
 
   var hoursToPlot: Int
   var showZero = true
@@ -25,14 +25,14 @@ struct ChartView: View {
     dateFormatter.dateStyle = .full
   }
 
-  fileprivate func endTime() -> Date {
+  private func endTime() -> Date {
     // TODO: store current day index in app state?
     return Date(
       timeIntervalSince1970: appState.tidesForDays[0].startTime.timeIntervalSince1970 + Double(
         hoursToPlot) * Double(ChartConstants.minutesPerHour * ChartConstants.secondsPerMinute))
   }
 
-  fileprivate func pairRiseAndSetEvents(
+  private func pairRiseAndSetEvents(
     _ events: [SDTideEvent], riseEventType: SDTideState, setEventType: SDTideState
   ) -> [(Date, Date)] {
     var pairs: [(Date, Date)] = [(Date, Date)]()
@@ -61,25 +61,25 @@ struct ChartView: View {
     return immutablePairs
   }
 
-  fileprivate func midnight() -> Date {
+  private func midnight() -> Date {
     return midnight(Date())
   }
 
-  fileprivate func midnight(_ date: Date) -> Date {
+  private func midnight(_ date: Date) -> Date {
     let date = Date()
     let calendar = Calendar(identifier: .gregorian)
     return calendar.startOfDay(for: date)
   }
 
-  fileprivate func findLowestTideValue(_ tide: SDTide) -> CGFloat {
+  private func findLowestTideValue(_ tide: SDTide) -> CGFloat {
     return CGFloat(tide.allIntervals.sorted(by: { $0.height < $1.height }).first!.height)
   }
 
-  fileprivate func findHighestTideValue(_ tide: SDTide) -> CGFloat {
+  private func findHighestTideValue(_ tide: SDTide) -> CGFloat {
     return CGFloat(tide.allIntervals.sorted(by: { $0.height > $1.height }).first!.height)
   }
 
-  fileprivate func drawTideLevel(
+  private func drawTideLevel(
     _ baseSeconds: TimeInterval, _ xratio: CGFloat, _ yoffset: CGFloat, _ yratio: CGFloat,
     _ height: CGFloat
   ) -> some View {
@@ -111,7 +111,7 @@ struct ChartView: View {
     return path.fill(tideColor)
   }
 
-  fileprivate func drawMoonlight(_ baseSeconds: TimeInterval, _ xratio: CGFloat, _ height: CGFloat)
+  private func drawMoonlight(_ baseSeconds: TimeInterval, _ xratio: CGFloat, _ height: CGFloat)
     -> some View
   {
     return Path { path in
@@ -133,7 +133,7 @@ struct ChartView: View {
     .fill(Color(red: 1, green: 1, blue: 1).opacity(0.2))
   }
 
-  fileprivate func drawDaylight(_ baseSeconds: TimeInterval, _ xratio: CGFloat, _ height: CGFloat)
+  private func drawDaylight(_ baseSeconds: TimeInterval, _ xratio: CGFloat, _ height: CGFloat)
     -> some View
   {
     let sunEvents: [SDTideEvent] = appState.tideChartData!.sunriseSunsetEvents
@@ -154,7 +154,7 @@ struct ChartView: View {
     .fill(Color(red: 0.04, green: 0.27, blue: 0.61))
   }
 
-  fileprivate func drawBaseline(_ xmin: Int, _ yoffset: (CGFloat), _ xmax: Int, _ xratio: CGFloat)
+  private func drawBaseline(_ xmin: Int, _ yoffset: (CGFloat), _ xmax: Int, _ xratio: CGFloat)
     -> some View
   {
     return Path { baselinePath in
@@ -164,7 +164,7 @@ struct ChartView: View {
     .stroke(Color.white, lineWidth: 2)
   }
 
-  fileprivate func calculateDimensions(_ proxy: GeometryProxy) -> ChartDimensions {
+  private func calculateDimensions(_ proxy: GeometryProxy) -> ChartDimensions {
     let height: CGFloat = proxy.size.height * 0.8  // max height for plotting y axis
     let chartBottom: CGFloat = proxy.size.height
 
