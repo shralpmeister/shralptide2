@@ -31,7 +31,11 @@ struct TideEventsView: View {
               .padding()
               .lineLimit(1)
               .minimumScaleFactor(0.2)
-            Color(.black)
+            ChartView(
+              tide: tide,
+              showZero: true)
+              .animation(.none)
+              .modifier(SunMoonLabelsChartViewModifier(tide: tide))
               .frame(width: UIScreen.main.bounds.width, height: proxy.size.height * 0.18)
             ForEach(
               convertEvents(tide.startTime != nil ? tide.events(forDay: tide.startTime) : []),

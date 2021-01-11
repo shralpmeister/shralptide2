@@ -20,17 +20,14 @@ struct TideGraphView: View {
   
   var body: some View {
     return GeometryReader { proxy in
-      let hours = appState.tidesForDays.reduce(0) { acc, tide in
-        return acc + tide.startTime.hoursInDay()
-      }
       let width = proxy.size.width * CGFloat(appState.tidesForDays.count)
       PagerView(pageCount: appState.tidesForDays.count, currentIndex: $pageIndex) {
-        ChartView(hoursToPlot: hours)
-          .modifier(LabeledChartViewModifier(hoursToPlot: hours, labelInset: 15))
+        ChartView(tide: appState.tideChartData!)
+          .modifier(LabeledChartViewModifier(tide: appState.tideChartData!, labelInset: 15))
           .ignoresSafeArea()
           .frame(width: width, height: nil)
       }
-      .modifier(InteractiveChartViewModifier(currentIndex: $pageIndex, cursorLocation: $cursorLocation))
+      .modifier(InteractiveChartViewModifier(tide: appState.tideChartData!, currentIndex: $pageIndex, cursorLocation: $cursorLocation))
     }
   }
 }

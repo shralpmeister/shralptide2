@@ -7,29 +7,15 @@
 import ShralpTideFramework
 import SwiftUI
 
-struct ChartConstants {
-  static let minutesPerHour = 60
-  static let secondsPerMinute = 60
-}
-
 struct ChartView: View {
-  @EnvironmentObject var appState: AppState
-
   private let dateFormatter = DateFormatter()
 
-  var hoursToPlot: Int
-  var showZero = true
+  private var showZero = true
+  private var tideData: SDTide
 
-  init(hoursToPlot: Int = 24, showZero: Bool = true) {
-    self.hoursToPlot = hoursToPlot
+  init(tide: SDTide, showZero: Bool = true) {
+    self.tideData = tide
     dateFormatter.dateStyle = .full
-  }
-
-  private func endTime() -> Date {
-    // TODO: store current day index in app state?
-    return Date(
-      timeIntervalSince1970: appState.tidesForDays[0].startTime.timeIntervalSince1970 + Double(
-        hoursToPlot) * Double(ChartConstants.minutesPerHour * ChartConstants.secondsPerMinute))
   }
 
   private func pairRiseAndSetEvents(
@@ -42,12 +28,12 @@ struct ChartView: View {
       if event.eventType == riseEventType {
         riseTime = event.eventTime
         if event === events.last {
-          setTime = endTime()
+          setTime = tideData.stopTime
         }
       }
       if event.eventType == setEventType {
         if events.firstIndex(of: event) == 0 {
-          riseTime = appState.tidesForDays[0].startTime
+          riseTime = tideData.startTime
         }
         setTime = event.eventTime
       }
@@ -59,16 +45,6 @@ struct ChartView: View {
     }
     let immutablePairs = pairs
     return immutablePairs
-  }
-
-  private func midnight() -> Date {
-    return midnight(Date())
-  }
-
-  private func midnight(_ date: Date) -> Date {
-    let date = Date()
-    let calendar = Calendar(identifier: .gregorian)
-    return calendar.startOfDay(for: date)
   }
 
   private func findLowestTideValue(_ tide: SDTide) -> CGFloat {
@@ -83,8 +59,8 @@ struct ChartView: View {
     _ baseSeconds: TimeInterval, _ xratio: CGFloat, _ yoffset: CGFloat, _ yratio: CGFloat,
     _ height: CGFloat
   ) -> some View {
-    let intervalsForDay: [SDTideInterval] = appState.tideChartData!.intervals(
-      from: Date(timeIntervalSince1970: baseSeconds), forHours: hoursToPlot)
+    let intervalsForDay: [SDTideInterval] = tideData.intervals(
+      from: Date(timeIntervalSince1970: baseSeconds), forHours: tideData.hoursToPlot())
     var path = Path { tidePath in
       for tidePoint: SDTideInterval in intervalsForDay {
         let minute: Int =
@@ -115,7 +91,7 @@ struct ChartView: View {
     -> some View
   {
     return Path { path in
-      let moonEvents: [SDTideEvent] = appState.tideChartData!.moonriseMoonsetEvents
+      let moonEvents: [SDTideEvent] = tideData.moonriseMoonsetEvents
       let moonPairs: [(Date, Date)] = pairRiseAndSetEvents(
         moonEvents, riseEventType: .moonrise, setEventType: .moonset)
       for (rise, set) in moonPairs {
@@ -136,7 +112,7 @@ struct ChartView: View {
   private func drawDaylight(_ baseSeconds: TimeInterval, _ xratio: CGFloat, _ height: CGFloat)
     -> some View
   {
-    let sunEvents: [SDTideEvent] = appState.tideChartData!.sunriseSunsetEvents
+    let sunEvents: [SDTideEvent] = tideData.sunriseSunsetEvents
     let sunPairs: [(Date, Date)] = pairRiseAndSetEvents(
       sunEvents, riseEventType: .sunrise, setEventType: .sunset)
     return Path { path in
@@ -168,14 +144,14 @@ struct ChartView: View {
     let height: CGFloat = proxy.size.height * 0.8  // max height for plotting y axis
     let chartBottom: CGFloat = proxy.size.height
 
-    let min: CGFloat = findLowestTideValue(appState.tideChartData!)
-    let max: CGFloat = findHighestTideValue(appState.tideChartData!)
+    let min: CGFloat = findLowestTideValue(tideData)
+    let max: CGFloat = findHighestTideValue(tideData)
 
     let ymin: CGFloat = min - 1
     let ymax: CGFloat = max + 1
 
     let xmin: Int = 0
-    let xmax: Int = ChartConstants.minutesPerHour * hoursToPlot
+    let xmax: Int = ChartConstants.minutesPerHour * tideData.hoursToPlot()
 
     let yratio: CGFloat = CGFloat(height) / (ymax - ymin)
     let yoffset: CGFloat = (CGFloat(height) + ymin * yratio) + (chartBottom - CGFloat(height))
@@ -196,7 +172,7 @@ struct ChartView: View {
     return GeometryReader { proxy in
       let dim = calculateDimensions(proxy)
 
-      let day = appState.tidesForDays[0].startTime!
+      let day = tideData.startTime!
       let baseSeconds: TimeInterval = day.timeIntervalSince1970
 
       Rectangle()

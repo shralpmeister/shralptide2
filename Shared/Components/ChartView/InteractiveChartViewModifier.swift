@@ -15,9 +15,12 @@ struct InteractiveChartViewModifier: ViewModifier {
   @Binding private var pageIndex: Int
   @Binding private var cursorLocation: CGPoint
   
+  private var tideData: SDTide
+  
   private var dateFormatter: DateFormatter = DateFormatter()
 
-  init(currentIndex: Binding<Int>, cursorLocation: Binding<CGPoint>) {
+  init(tide: SDTide, currentIndex: Binding<Int>, cursorLocation: Binding<CGPoint>) {
+    self.tideData = tide
     self._pageIndex = currentIndex
     self._cursorLocation = cursorLocation
     dateFormatter.dateStyle = .full
@@ -32,7 +35,7 @@ struct InteractiveChartViewModifier: ViewModifier {
     // Need to make sure that it only shows on the current day!
     let datestamp = Date()
 
-    if datestamp.startOfDay() == self.appState.tideChartData!.startTime {
+    if datestamp.startOfDay() == tideData.startTime {
       return Date().timeInMinutesSinceMidnight()
     } else {
       return -1
@@ -48,7 +51,7 @@ struct InteractiveChartViewModifier: ViewModifier {
       let xPosition =
         cursorLocation.x > .zero ? cursorLocation.x : CGFloat(currentTimeInMinutes()) * xRatio
       
-      let dataPoint = appState.tideChartData!.nearestDataPoint(
+      let dataPoint = tideData.nearestDataPoint(
         forTime: timeInMinutes(x: xPosition, xRatio: xRatio))
       
       content
@@ -58,7 +61,7 @@ struct InteractiveChartViewModifier: ViewModifier {
                 Cursor(height: proxy.size.height)
                   .position(x: xPosition, y: proxy.size.height / 2.0)
                 TideOverlay(
-                  dataPoint: dataPoint, unit: appState.tideChartData!.unitShort,
+                  dataPoint: dataPoint, unit: tideData.unitShort,
                   startDate: appState.tidesForDays[self.pageIndex].startTime
                 )
                 .position(x: midpointX, y: 75)

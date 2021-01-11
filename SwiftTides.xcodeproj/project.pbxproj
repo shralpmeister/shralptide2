@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		DC079F74259BAED800F1CB0E /* InteractiveChartViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC079F73259BAED800F1CB0E /* InteractiveChartViewModifier.swift */; };
 		DC079F75259BAED800F1CB0E /* InteractiveChartViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC079F73259BAED800F1CB0E /* InteractiveChartViewModifier.swift */; };
-		DC079F7A259C06D200F1CB0E /* Date+Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC079F79259C06D200F1CB0E /* Date+Day.swift */; };
-		DC079F7B259C06D200F1CB0E /* Date+Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC079F79259C06D200F1CB0E /* Date+Day.swift */; };
+		DC079F7A259C06D200F1CB0E /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC079F79259C06D200F1CB0E /* Date.swift */; };
+		DC079F7B259C06D200F1CB0E /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC079F79259C06D200F1CB0E /* Date.swift */; };
 		DC079F80259C34BB00F1CB0E /* LabeledChartViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC079F7F259C34BB00F1CB0E /* LabeledChartViewModifier.swift */; };
 		DC079F81259C34BB00F1CB0E /* LabeledChartViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC079F7F259C34BB00F1CB0E /* LabeledChartViewModifier.swift */; };
 		DC0DE589258C1B6C00FD75A0 /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE588258C1B6C00FD75A0 /* EnvironmentValues.swift */; };
@@ -53,12 +53,16 @@
 		DC0DE8172593B87C00FD75A0 /* TideStationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE8152593B87C00FD75A0 /* TideStationInteractor.swift */; };
 		DC0DE8762593D4D400FD75A0 /* ShralpTideFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0DE8752593D4D400FD75A0 /* ShralpTideFramework.framework */; };
 		DC0DE8772593D4D400FD75A0 /* ShralpTideFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC0DE8752593D4D400FD75A0 /* ShralpTideFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		DC0DE8A32595696F00FD75A0 /* SDTide+Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE8A22595696F00FD75A0 /* SDTide+Formatters.swift */; };
-		DC0DE8A42595696F00FD75A0 /* SDTide+Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE8A22595696F00FD75A0 /* SDTide+Formatters.swift */; };
+		DC0DE8A32595696F00FD75A0 /* SDTide.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE8A22595696F00FD75A0 /* SDTide.swift */; };
+		DC0DE8A42595696F00FD75A0 /* SDTide.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE8A22595696F00FD75A0 /* SDTide.swift */; };
 		DC115D9725A28D6A00954972 /* PagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115D9625A28D6A00954972 /* PagerView.swift */; };
 		DC115D9825A28D6A00954972 /* PagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115D9625A28D6A00954972 /* PagerView.swift */; };
 		DC115DAB25A5572600954972 /* TideGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DA925A5572600954972 /* TideGraphView.swift */; };
 		DC115DB825A576CA00954972 /* TideGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DA925A5572600954972 /* TideGraphView.swift */; };
+		DC115DD525ABD97100954972 /* SunMoonLabelsChartViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DD425ABD97100954972 /* SunMoonLabelsChartViewModifier.swift */; };
+		DC115DD625ABD97100954972 /* SunMoonLabelsChartViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DD425ABD97100954972 /* SunMoonLabelsChartViewModifier.swift */; };
+		DC115DDB25ABDA7000954972 /* ChartUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DDA25ABDA7000954972 /* ChartUtils.swift */; };
+		DC115DDC25ABDA7000954972 /* ChartUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DDA25ABDA7000954972 /* ChartUtils.swift */; };
 		DC15911B259A70400092E473 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC15911A259A70400092E473 /* ChartView.swift */; };
 		DC15911C259A70400092E473 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC15911A259A70400092E473 /* ChartView.swift */; };
 		DC160B5024CFAC9D00C62C56 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC160B4F24CFAC9D00C62C56 /* HeaderView.swift */; };
@@ -115,7 +119,7 @@
 
 /* Begin PBXFileReference section */
 		DC079F73259BAED800F1CB0E /* InteractiveChartViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveChartViewModifier.swift; sourceTree = "<group>"; };
-		DC079F79259C06D200F1CB0E /* Date+Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Day.swift"; sourceTree = "<group>"; };
+		DC079F79259C06D200F1CB0E /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		DC079F7F259C34BB00F1CB0E /* LabeledChartViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledChartViewModifier.swift; sourceTree = "<group>"; };
 		DC0DE588258C1B6C00FD75A0 /* EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValues.swift; sourceTree = "<group>"; };
 		DC0DE593258C1CFC00FD75A0 /* ConfigHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigHelper.swift; sourceTree = "<group>"; };
@@ -141,9 +145,11 @@
 		DC0DE7FA2593B3FD00FD75A0 /* tidedata.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tidedata.xcdatamodel; sourceTree = "<group>"; };
 		DC0DE8152593B87C00FD75A0 /* TideStationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideStationInteractor.swift; sourceTree = "<group>"; };
 		DC0DE8752593D4D400FD75A0 /* ShralpTideFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ShralpTideFramework.framework; path = ../../../Library/Frameworks/ShralpTideFramework.framework; sourceTree = "<group>"; };
-		DC0DE8A22595696F00FD75A0 /* SDTide+Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SDTide+Formatters.swift"; sourceTree = "<group>"; };
+		DC0DE8A22595696F00FD75A0 /* SDTide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDTide.swift; sourceTree = "<group>"; };
 		DC115D9625A28D6A00954972 /* PagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerView.swift; sourceTree = "<group>"; };
 		DC115DA925A5572600954972 /* TideGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideGraphView.swift; sourceTree = "<group>"; };
+		DC115DD425ABD97100954972 /* SunMoonLabelsChartViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunMoonLabelsChartViewModifier.swift; sourceTree = "<group>"; };
+		DC115DDA25ABDA7000954972 /* ChartUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartUtils.swift; sourceTree = "<group>"; };
 		DC15911A259A70400092E473 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		DC160B4F24CFAC9D00C62C56 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		DC26BAE824BB807900453A5F /* SwiftTidesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftTidesApp.swift; sourceTree = "<group>"; };
@@ -276,8 +282,8 @@
 		DC0DE8A12595695400FD75A0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				DC079F79259C06D200F1CB0E /* Date+Day.swift */,
-				DC0DE8A22595696F00FD75A0 /* SDTide+Formatters.swift */,
+				DC079F79259C06D200F1CB0E /* Date.swift */,
+				DC0DE8A22595696F00FD75A0 /* SDTide.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -302,9 +308,11 @@
 		DC159120259AB0230092E473 /* ChartView */ = {
 			isa = PBXGroup;
 			children = (
+				DC115DDA25ABDA7000954972 /* ChartUtils.swift */,
 				DC15911A259A70400092E473 /* ChartView.swift */,
 				DC079F73259BAED800F1CB0E /* InteractiveChartViewModifier.swift */,
 				DC079F7F259C34BB00F1CB0E /* LabeledChartViewModifier.swift */,
+				DC115DD425ABD97100954972 /* SunMoonLabelsChartViewModifier.swift */,
 			);
 			path = ChartView;
 			sourceTree = "<group>";
@@ -564,11 +572,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC079F74259BAED800F1CB0E /* InteractiveChartViewModifier.swift in Sources */,
-				DC0DE8A32595696F00FD75A0 /* SDTide+Formatters.swift in Sources */,
+				DC0DE8A32595696F00FD75A0 /* SDTide.swift in Sources */,
 				DC0DE8162593B87C00FD75A0 /* TideStationInteractor.swift in Sources */,
 				DC115DB825A576CA00954972 /* TideGraphView.swift in Sources */,
 				DC0DE589258C1B6C00FD75A0 /* EnvironmentValues.swift in Sources */,
-				DC079F7A259C06D200F1CB0E /* Date+Day.swift in Sources */,
+				DC079F7A259C06D200F1CB0E /* Date.swift in Sources */,
 				DC0DE7C72593B2E400FD75A0 /* AppStateRepository.swift in Sources */,
 				DC0DE7FB2593B3FD00FD75A0 /* shralptide.xcdatamodeld in Sources */,
 				DC079F80259C34BB00F1CB0E /* LabeledChartViewModifier.swift in Sources */,
@@ -576,7 +584,9 @@
 				DC0DE7CB2593B2E400FD75A0 /* ModelMigrate2To3.swift in Sources */,
 				DC0DE7CF2593B2E400FD75A0 /* StationRepository.swift in Sources */,
 				DC26BB1324BB807B00453A5F /* ContentView.swift in Sources */,
+				DC115DD525ABD97100954972 /* SunMoonLabelsChartViewModifier.swift in Sources */,
 				DC115D9725A28D6A00954972 /* PagerView.swift in Sources */,
+				DC115DDB25ABDA7000954972 /* ChartUtils.swift in Sources */,
 				DC0DE7AF259305F600FD75A0 /* AppState.swift in Sources */,
 				DC77459E24F31681001747AE /* TideEventsView.swift in Sources */,
 				DC0DE7CD2593B2E400FD75A0 /* NoaaStationRepository.swift in Sources */,
@@ -594,11 +604,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC079F75259BAED800F1CB0E /* InteractiveChartViewModifier.swift in Sources */,
-				DC0DE8A42595696F00FD75A0 /* SDTide+Formatters.swift in Sources */,
+				DC0DE8A42595696F00FD75A0 /* SDTide.swift in Sources */,
 				DC0DE8172593B87C00FD75A0 /* TideStationInteractor.swift in Sources */,
 				DC115DAB25A5572600954972 /* TideGraphView.swift in Sources */,
 				DC0DE58A258C1B6C00FD75A0 /* EnvironmentValues.swift in Sources */,
-				DC079F7B259C06D200F1CB0E /* Date+Day.swift in Sources */,
+				DC079F7B259C06D200F1CB0E /* Date.swift in Sources */,
 				DC0DE7C82593B2E400FD75A0 /* AppStateRepository.swift in Sources */,
 				DC0DE7FC2593B3FD00FD75A0 /* shralptide.xcdatamodeld in Sources */,
 				DC079F81259C34BB00F1CB0E /* LabeledChartViewModifier.swift in Sources */,
@@ -606,7 +616,9 @@
 				DC0DE7CC2593B2E400FD75A0 /* ModelMigrate2To3.swift in Sources */,
 				DC0DE7D02593B2E400FD75A0 /* StationRepository.swift in Sources */,
 				DC26BB1424BB807B00453A5F /* ContentView.swift in Sources */,
+				DC115DD625ABD97100954972 /* SunMoonLabelsChartViewModifier.swift in Sources */,
 				DC115D9825A28D6A00954972 /* PagerView.swift in Sources */,
+				DC115DDC25ABDA7000954972 /* ChartUtils.swift in Sources */,
 				DC0DE7B0259305F600FD75A0 /* AppState.swift in Sources */,
 				DC77459F24F31681001747AE /* TideEventsView.swift in Sources */,
 				DC0DE7CE2593B2E400FD75A0 /* NoaaStationRepository.swift in Sources */,

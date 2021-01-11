@@ -9,40 +9,19 @@ import ShralpTideFramework
 import SwiftUI
 
 struct LabeledChartViewModifier: ViewModifier {
-  @EnvironmentObject var appState: AppState
 
-  fileprivate var hourFormatter: DateFormatter = DateFormatter()
+  private var hourFormatter: DateFormatter = DateFormatter()
 
+  private let tideData: SDTide
   private let labelInset: Int
-  private let hoursToPlot: Int
   private let chartMinutes: Int
 
-  init(hoursToPlot: Int, labelInset: Int = 0) {
-    self.hoursToPlot = hoursToPlot
+  init(tide: SDTide, labelInset: Int = 0) {
+    self.tideData = tide
     self.labelInset = labelInset
-    self.chartMinutes = hoursToPlot * ChartConstants.minutesPerHour
+    self.chartMinutes = tide.hoursToPlot() * ChartConstants.minutesPerHour
     hourFormatter.dateFormat = DateFormatter.dateFormat(
       fromTemplate: "j", options: 0, locale: Locale.current)
-  }
-
-  private func imageForEvent(_ event: SDTideEvent) -> some View {
-    switch event.eventType {
-    case .moonrise:
-      return Color.white
-        .mask(Image("moonrise_trnspt"))
-    case .moonset:
-      return Color.white
-        .mask(Image("moonset_trnspt"))
-    case .sunrise:
-      return Color.yellow
-        .mask(Image("sunrise_trnspt"))
-    case .sunset:
-      return Color.orange
-        .mask(Image("sunset_trnspt"))
-    default:
-      return Color.yellow
-        .mask(Image("sunset_trnspt"))
-    }
   }
 
   private func xCoord(forTime time: Date, baseSeconds: TimeInterval, xratio: CGFloat) -> CGFloat
@@ -72,8 +51,8 @@ struct LabeledChartViewModifier: ViewModifier {
 
   func body(content: Content) -> some View {
     GeometryReader { proxy in
-      let day = appState.tidesForDays[0].startTime
-      let intervalsForDay = appState.tideChartData!.intervals(from: day, forHours: hoursToPlot)!
+      let day = tideData.startTime
+      let intervalsForDay = tideData.intervals(from: day, forHours: tideData.hoursToPlot())!
       let baseSeconds = intervalsForDay[0].time.timeIntervalSince1970
       let xratio = proxy.size.width / CGFloat(self.chartMinutes)
       content.overlay(
@@ -90,8 +69,8 @@ struct LabeledChartViewModifier: ViewModifier {
           }
           .frame(width: proxy.size.width, height: 25)
           ZStack {
-            ForEach(0..<(appState.tideChartData?.sunAndMoonEvents.count)!, id: \.self) { index in
-              let event = appState.tideChartData!.sunAndMoonEvents[index]
+            ForEach(0..<tideData.sunAndMoonEvents.count, id: \.self) { index in
+              let event = tideData.sunAndMoonEvents[index]
               let minute = Int(event.eventTime!.timeIntervalSince1970 - baseSeconds) / 60
               let x = CGFloat(minute) * xratio
               imageForEvent(event)

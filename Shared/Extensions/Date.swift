@@ -74,5 +74,4 @@ extension Date {
     let cal = Calendar.current
     return cal.date(byAdding: .minute, value: -1 * DateConstants.intervalSize / 2, to: self)!
   }
-
 }

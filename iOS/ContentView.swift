@@ -17,6 +17,8 @@ struct ContentView: View {
   
   var body: some View {
     return GeometryReader { proxy in
+      Rectangle()
+        .background(Color("background-color"))
       if isFirstLaunch || proxy.size.width < proxy.size.height {
         ZStack {
           Image("background-gradient").resizable()
