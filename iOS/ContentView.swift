@@ -11,6 +11,7 @@ struct ContentView: View {
   @EnvironmentObject var appState: AppState
   
   @State private var isFirstLaunch = true
+  @State private var showingFavorites = false
   @State private var pageIndex: Int = 0
   @State private var cursorLocation: CGPoint = .zero
   @GestureState private var translation: CGFloat = 0
@@ -29,11 +30,21 @@ struct ContentView: View {
                 height: proxy.size.height / 2.8
               )
             TideEventsView(pageIndex: $pageIndex)
-            Spacer()
-              .frame(
-                width: proxy.size.width,
-                height: proxy.size.height * 0.06
-              )
+            HStack() {
+              Spacer()
+              Button(action: { showingFavorites.toggle() }) {
+                Image(systemName: "list.bullet")
+                  .font(.system(size: 24))
+              }
+              .padding()
+              .sheet(isPresented: $showingFavorites) {
+                FavoritesListView()
+              }
+            }
+            .frame(
+              width: proxy.size.width,
+              height: proxy.size.height * 0.1
+            )
           }
         }
         .ignoresSafeArea()

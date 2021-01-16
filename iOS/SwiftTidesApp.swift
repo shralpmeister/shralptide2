@@ -17,6 +17,7 @@ struct SwiftTidesApp: App {
   var body: some Scene {
     WindowGroup {
       ContentView()
+        .accentColor(.white)
         .ignoresSafeArea()
         .environmentObject(config)
         .environmentObject(appState)

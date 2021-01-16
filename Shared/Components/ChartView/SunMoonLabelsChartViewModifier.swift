@@ -37,6 +37,7 @@ struct SunMoonLabelsChartViewModifier: ViewModifier {
 
               Text(timeFormatter.string(from: event.eventTime))
                 .font(.footnote)
+                .fontWeight(.bold)
                 .position(x: x, y: -15)
               imageForEvent(event)
                 .position(x: x)
@@ -52,6 +53,7 @@ struct SunMoonLabelsChartViewModifier: ViewModifier {
 
               Text(timeFormatter.string(from: event.eventTime))
                 .font(.footnote)
+                .fontWeight(.bold)
                 .position(x: x, y: 15)
               imageForEvent(event)
                 .position(x: x)

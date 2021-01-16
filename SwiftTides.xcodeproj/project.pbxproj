@@ -63,6 +63,10 @@
 		DC115DD625ABD97100954972 /* SunMoonLabelsChartViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DD425ABD97100954972 /* SunMoonLabelsChartViewModifier.swift */; };
 		DC115DDB25ABDA7000954972 /* ChartUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DDA25ABDA7000954972 /* ChartUtils.swift */; };
 		DC115DDC25ABDA7000954972 /* ChartUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DDA25ABDA7000954972 /* ChartUtils.swift */; };
+		DC115DE425AD56B200954972 /* FavoritesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DE325AD56B200954972 /* FavoritesListView.swift */; };
+		DC115DE525AD56B200954972 /* FavoritesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DE325AD56B200954972 /* FavoritesListView.swift */; };
+		DC115DEA25AD576100954972 /* FavoriteRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DE925AD576100954972 /* FavoriteRow.swift */; };
+		DC115DEB25AD576100954972 /* FavoriteRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DE925AD576100954972 /* FavoriteRow.swift */; };
 		DC15911B259A70400092E473 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC15911A259A70400092E473 /* ChartView.swift */; };
 		DC15911C259A70400092E473 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC15911A259A70400092E473 /* ChartView.swift */; };
 		DC160B5024CFAC9D00C62C56 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC160B4F24CFAC9D00C62C56 /* HeaderView.swift */; };
@@ -150,6 +154,8 @@
 		DC115DA925A5572600954972 /* TideGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideGraphView.swift; sourceTree = "<group>"; };
 		DC115DD425ABD97100954972 /* SunMoonLabelsChartViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunMoonLabelsChartViewModifier.swift; sourceTree = "<group>"; };
 		DC115DDA25ABDA7000954972 /* ChartUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartUtils.swift; sourceTree = "<group>"; };
+		DC115DE325AD56B200954972 /* FavoritesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListView.swift; sourceTree = "<group>"; };
+		DC115DE925AD576100954972 /* FavoriteRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRow.swift; sourceTree = "<group>"; };
 		DC15911A259A70400092E473 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		DC160B4F24CFAC9D00C62C56 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		DC26BAE824BB807900453A5F /* SwiftTidesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftTidesApp.swift; sourceTree = "<group>"; };
@@ -361,10 +367,12 @@
 			isa = PBXGroup;
 			children = (
 				DC0DE59A258D577F00FD75A0 /* SwiftTides.entitlements */,
-				DC115DA925A5572600954972 /* TideGraphView.swift */,
 				DC26BAE924BB807900453A5F /* ContentView.swift */,
+				DC115DE325AD56B200954972 /* FavoritesListView.swift */,
+				DC115DE925AD576100954972 /* FavoriteRow.swift */,
 				DC160B4F24CFAC9D00C62C56 /* HeaderView.swift */,
 				DC77459D24F31681001747AE /* TideEventsView.swift */,
+				DC115DA925A5572600954972 /* TideGraphView.swift */,
 				DC26BAE824BB807900453A5F /* SwiftTidesApp.swift */,
 				DC26BAF224BB807B00453A5F /* Info.plist */,
 			);
@@ -573,6 +581,7 @@
 			files = (
 				DC079F74259BAED800F1CB0E /* InteractiveChartViewModifier.swift in Sources */,
 				DC0DE8A32595696F00FD75A0 /* SDTide.swift in Sources */,
+				DC115DE425AD56B200954972 /* FavoritesListView.swift in Sources */,
 				DC0DE8162593B87C00FD75A0 /* TideStationInteractor.swift in Sources */,
 				DC115DB825A576CA00954972 /* TideGraphView.swift in Sources */,
 				DC0DE589258C1B6C00FD75A0 /* EnvironmentValues.swift in Sources */,
@@ -587,6 +596,7 @@
 				DC115DD525ABD97100954972 /* SunMoonLabelsChartViewModifier.swift in Sources */,
 				DC115D9725A28D6A00954972 /* PagerView.swift in Sources */,
 				DC115DDB25ABDA7000954972 /* ChartUtils.swift in Sources */,
+				DC115DEA25AD576100954972 /* FavoriteRow.swift in Sources */,
 				DC0DE7AF259305F600FD75A0 /* AppState.swift in Sources */,
 				DC77459E24F31681001747AE /* TideEventsView.swift in Sources */,
 				DC0DE7CD2593B2E400FD75A0 /* NoaaStationRepository.swift in Sources */,
@@ -605,6 +615,7 @@
 			files = (
 				DC079F75259BAED800F1CB0E /* InteractiveChartViewModifier.swift in Sources */,
 				DC0DE8A42595696F00FD75A0 /* SDTide.swift in Sources */,
+				DC115DE525AD56B200954972 /* FavoritesListView.swift in Sources */,
 				DC0DE8172593B87C00FD75A0 /* TideStationInteractor.swift in Sources */,
 				DC115DAB25A5572600954972 /* TideGraphView.swift in Sources */,
 				DC0DE58A258C1B6C00FD75A0 /* EnvironmentValues.swift in Sources */,
@@ -619,6 +630,7 @@
 				DC115DD625ABD97100954972 /* SunMoonLabelsChartViewModifier.swift in Sources */,
 				DC115D9825A28D6A00954972 /* PagerView.swift in Sources */,
 				DC115DDC25ABDA7000954972 /* ChartUtils.swift in Sources */,
+				DC115DEB25AD576100954972 /* FavoriteRow.swift in Sources */,
 				DC0DE7B0259305F600FD75A0 /* AppState.swift in Sources */,
 				DC77459F24F31681001747AE /* TideEventsView.swift in Sources */,
 				DC0DE7CE2593B2E400FD75A0 /* NoaaStationRepository.swift in Sources */,
