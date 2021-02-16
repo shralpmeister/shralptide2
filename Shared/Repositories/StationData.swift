@@ -8,7 +8,7 @@
 import CoreData
 import Foundation
 
-protocol StationRepository {
+protocol StationData {
   var managedObjectModel: NSManagedObjectModel { get }
 
   var persistentStoreCoordinator: NSPersistentStoreCoordinator? { get }

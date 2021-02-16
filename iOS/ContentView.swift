@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
   @EnvironmentObject var appState: AppState
+  @EnvironmentObject var config: ConfigHelper
   
   @State private var isFirstLaunch = true
   @State private var showingFavorites = false
@@ -32,13 +33,15 @@ struct ContentView: View {
             TideEventsView(pageIndex: $pageIndex)
             HStack() {
               Spacer()
-              Button(action: { showingFavorites.toggle() }) {
+              Button(action: { showingFavorites = true }) {
                 Image(systemName: "list.bullet")
                   .font(.system(size: 24))
               }
               .padding()
               .sheet(isPresented: $showingFavorites) {
-                FavoritesListView()
+                FavoritesListView(isShowing: $showingFavorites)
+                  .environmentObject(self.appState)
+                  .environmentObject(self.config)
               }
             }
             .frame(
@@ -80,15 +83,5 @@ struct ContentView: View {
           .gesture(exclusive)
       }
     }
-    .onAppear(perform: {
-      UIScrollView.appearance().bounces = false
-    })
   }
 }
-
-//struct ContentView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    ContentView()
-//      .previewDevice("iPhone 12")
-//  }
-//}

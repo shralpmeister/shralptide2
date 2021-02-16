@@ -130,12 +130,12 @@ struct ChartView: View {
     .fill(Color(red: 0.04, green: 0.27, blue: 0.61))
   }
 
-  private func drawBaseline(_ xmin: Int, _ yoffset: (CGFloat), _ xmax: Int, _ xratio: CGFloat)
+  private func drawBaseline(_ dim: ChartDimensions)
     -> some View
   {
     return Path { baselinePath in
-      baselinePath.move(to: CGPoint(x: CGFloat(xmin), y: CGFloat(yoffset)))
-      baselinePath.addLine(to: CGPoint(x: CGFloat(xmax) * CGFloat(xratio), y: CGFloat(yoffset)))
+      baselinePath.move(to: CGPoint(x: CGFloat(dim.xmin), y: CGFloat(dim.yoffset)))
+      baselinePath.addLine(to: CGPoint(x: CGFloat(dim.xmax) * CGFloat(dim.xratio), y: CGFloat(dim.yoffset)))
     }
     .stroke(Color.white, lineWidth: 2)
   }
@@ -180,8 +180,8 @@ struct ChartView: View {
       drawDaylight(baseSeconds, dim.xratio, dim.height)
       drawMoonlight(baseSeconds, dim.xratio, dim.height)
       drawTideLevel(baseSeconds, dim.xratio, dim.yoffset, dim.yratio, dim.height)
-      if showZero {
-        drawBaseline(dim.xmin, dim.yoffset, dim.xmax, dim.xratio)
+      if showZero && dim.height >= dim.yoffset {
+        drawBaseline(dim)
       }
     }
   }

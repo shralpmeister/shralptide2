@@ -8,9 +8,7 @@
 import CoreData
 import Foundation
 
-class NoaaStationRepository: StationRepository {
-
-  public static let shared = NoaaStationRepository()
+class NoaaStationData: StationData {
 
   //MARK: - CoreData bits
   lazy fileprivate var noaaTidesUrl: URL = {

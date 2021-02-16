@@ -12,10 +12,6 @@ import SwiftUI
 
 class AppStateRepository {
 
-  //fileprivate var config: ConfigHelper
-
-  //static let shared = AppStateRepository()
-
   fileprivate(set) public var persistentState: SDApplicationState?
   fileprivate(set) public var locationPage = 0
 

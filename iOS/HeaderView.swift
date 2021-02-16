@@ -7,7 +7,6 @@
 
 import ShralpTideFramework
 import SwiftUI
-import os
 
 struct HeaderView: View {
   @EnvironmentObject var config: ConfigHelper

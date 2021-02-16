@@ -8,18 +8,18 @@
 import CoreData
 import Foundation
 
-class LegacyStationRepository: StationRepository {
+class LegacyStationData: StationData {
 
-  static let shared = LegacyStationRepository()
+  //static let shared = LegacyStationData()
 
   //MARK: - CoreData bits
-  lazy fileprivate var legacyTideUrl: URL = {
+  lazy fileprivate var LegacyTideUrl: URL = {
     let directory = FileManager.default.containerURL(
       forSecurityApplicationGroupIdentifier: "group.com.shralpsoftware.shared.config")!
     return directory.appendingPathComponent("legacy-data.sqlite")
   }()
 
-  lazy fileprivate var oldLegacyTideUrl: URL = {
+  lazy fileprivate var OldLegacyTideUrl: URL = {
     let urls = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
     let cacheUrl = (urls[urls.count - 1] as NSURL) as URL
     return cacheUrl.appendingPathComponent("legacy-data.sqlite")
@@ -38,25 +38,25 @@ class LegacyStationRepository: StationRepository {
       managedObjectModel: self.managedObjectModel)
 
     do {
-      if fm.fileExists(atPath: self.legacyTideUrl.path) {
+      if fm.fileExists(atPath: self.LegacyTideUrl.path) {
         let bundleFileAttr = try fm.attributesOfItem(atPath: bundledDataStoreUrl!.path)
-        let existingFileAttr = try fm.attributesOfItem(atPath: self.legacyTideUrl.path)
+        let existingFileAttr = try fm.attributesOfItem(atPath: self.LegacyTideUrl.path)
         if (existingFileAttr[FileAttributeKey.creationDate]! as! Date)
           < (bundleFileAttr[FileAttributeKey.creationDate]! as! Date)
         {
-          try fm.removeItem(at: self.legacyTideUrl)
-          try fm.copyItem(at: bundledDataStoreUrl!, to: self.legacyTideUrl)
+          try fm.removeItem(at: self.LegacyTideUrl)
+          try fm.copyItem(at: bundledDataStoreUrl!, to: self.LegacyTideUrl)
         }
       } else {
-        try fm.copyItem(at: bundledDataStoreUrl!, to: self.legacyTideUrl)
+        try fm.copyItem(at: bundledDataStoreUrl!, to: self.LegacyTideUrl)
       }
     } catch {
       fatalError("Failed to copy tide locations to cache directory: \(error)")
     }
 
     do {
-      if fm.fileExists(atPath: self.oldLegacyTideUrl.path) {
-        try fm.removeItem(at: self.oldLegacyTideUrl)
+      if fm.fileExists(atPath: self.OldLegacyTideUrl.path) {
+        try fm.removeItem(at: self.OldLegacyTideUrl)
       }
     } catch {
       fatalError("Failed to remove old legacy tide data store: \(error)")
@@ -69,7 +69,7 @@ class LegacyStationRepository: StationRepository {
 
     do {
       try coordinator.addPersistentStore(
-        ofType: NSSQLiteStoreType, configurationName: nil, at: self.legacyTideUrl, options: options)
+        ofType: NSSQLiteStoreType, configurationName: nil, at: self.LegacyTideUrl, options: options)
     } catch {
       fatalError("Unresolved error: \(error)")
     }

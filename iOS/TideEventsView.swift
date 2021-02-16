@@ -72,6 +72,12 @@ struct TideEventsView: View {
       .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
       .id(appState.tidesForDays.count)
     }
+    .onAppear(perform: {
+       UIScrollView.appearance().bounces = false
+     })
+    .onDisappear(perform: {
+      UIScrollView.appearance().bounces = true
+    })
   }
 
   func convertEvents(_ events: [SDTideEvent]) -> [SDTideEvent] {

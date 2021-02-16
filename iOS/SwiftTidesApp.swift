@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct SwiftTidesApp: App {
-  @Environment(\.tideStationInteractor) private var tideStationInteractor: TideStationInteractor
+  @Environment(\.appStateInteractor) private var tideStationInteractor: AppStateInteractor
 
   @StateObject private var config: ConfigHelper = ConfigHelper()
   @StateObject private var appState: AppState = AppState()
@@ -17,6 +17,7 @@ struct SwiftTidesApp: App {
   var body: some Scene {
     WindowGroup {
       ContentView()
+        .statusBar(hidden: true)
         .accentColor(.white)
         .ignoresSafeArea()
         .environmentObject(config)

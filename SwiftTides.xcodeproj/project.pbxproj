@@ -23,14 +23,14 @@
 		DC0DE7B0259305F600FD75A0 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7AE259305F600FD75A0 /* AppState.swift */; };
 		DC0DE7C72593B2E400FD75A0 /* AppStateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C22593B2E400FD75A0 /* AppStateRepository.swift */; };
 		DC0DE7C82593B2E400FD75A0 /* AppStateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C22593B2E400FD75A0 /* AppStateRepository.swift */; };
-		DC0DE7C92593B2E400FD75A0 /* LegacyStationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C32593B2E400FD75A0 /* LegacyStationRepository.swift */; };
-		DC0DE7CA2593B2E400FD75A0 /* LegacyStationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C32593B2E400FD75A0 /* LegacyStationRepository.swift */; };
+		DC0DE7C92593B2E400FD75A0 /* LegacyStationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C32593B2E400FD75A0 /* LegacyStationData.swift */; };
+		DC0DE7CA2593B2E400FD75A0 /* LegacyStationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C32593B2E400FD75A0 /* LegacyStationData.swift */; };
 		DC0DE7CB2593B2E400FD75A0 /* ModelMigrate2To3.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C42593B2E400FD75A0 /* ModelMigrate2To3.swift */; };
 		DC0DE7CC2593B2E400FD75A0 /* ModelMigrate2To3.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C42593B2E400FD75A0 /* ModelMigrate2To3.swift */; };
-		DC0DE7CD2593B2E400FD75A0 /* NoaaStationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C52593B2E400FD75A0 /* NoaaStationRepository.swift */; };
-		DC0DE7CE2593B2E400FD75A0 /* NoaaStationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C52593B2E400FD75A0 /* NoaaStationRepository.swift */; };
-		DC0DE7CF2593B2E400FD75A0 /* StationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C62593B2E400FD75A0 /* StationRepository.swift */; };
-		DC0DE7D02593B2E400FD75A0 /* StationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C62593B2E400FD75A0 /* StationRepository.swift */; };
+		DC0DE7CD2593B2E400FD75A0 /* NoaaStationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C52593B2E400FD75A0 /* NoaaStationData.swift */; };
+		DC0DE7CE2593B2E400FD75A0 /* NoaaStationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C52593B2E400FD75A0 /* NoaaStationData.swift */; };
+		DC0DE7CF2593B2E400FD75A0 /* StationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C62593B2E400FD75A0 /* StationData.swift */; };
+		DC0DE7D02593B2E400FD75A0 /* StationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C62593B2E400FD75A0 /* StationData.swift */; };
 		DC0DE7DF2593B3C200FD75A0 /* noaa-data.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE7D82593B3C200FD75A0 /* noaa-data.sqlite */; };
 		DC0DE7E02593B3C200FD75A0 /* noaa-data.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE7D82593B3C200FD75A0 /* noaa-data.sqlite */; };
 		DC0DE7E12593B3C300FD75A0 /* legacy-data.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE7D92593B3C200FD75A0 /* legacy-data.sqlite */; };
@@ -49,8 +49,8 @@
 		DC0DE7FC2593B3FD00FD75A0 /* shralptide.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7F42593B3FD00FD75A0 /* shralptide.xcdatamodeld */; };
 		DC0DE7FD2593B3FD00FD75A0 /* tidedata.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7F92593B3FD00FD75A0 /* tidedata.xcdatamodeld */; };
 		DC0DE7FE2593B3FD00FD75A0 /* tidedata.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7F92593B3FD00FD75A0 /* tidedata.xcdatamodeld */; };
-		DC0DE8162593B87C00FD75A0 /* TideStationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE8152593B87C00FD75A0 /* TideStationInteractor.swift */; };
-		DC0DE8172593B87C00FD75A0 /* TideStationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE8152593B87C00FD75A0 /* TideStationInteractor.swift */; };
+		DC0DE8162593B87C00FD75A0 /* AppStateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE8152593B87C00FD75A0 /* AppStateInteractor.swift */; };
+		DC0DE8172593B87C00FD75A0 /* AppStateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE8152593B87C00FD75A0 /* AppStateInteractor.swift */; };
 		DC0DE8762593D4D400FD75A0 /* ShralpTideFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0DE8752593D4D400FD75A0 /* ShralpTideFramework.framework */; };
 		DC0DE8772593D4D400FD75A0 /* ShralpTideFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC0DE8752593D4D400FD75A0 /* ShralpTideFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DC0DE8A32595696F00FD75A0 /* SDTide.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE8A22595696F00FD75A0 /* SDTide.swift */; };
@@ -67,6 +67,14 @@
 		DC115DE525AD56B200954972 /* FavoritesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DE325AD56B200954972 /* FavoritesListView.swift */; };
 		DC115DEA25AD576100954972 /* FavoriteRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DE925AD576100954972 /* FavoriteRow.swift */; };
 		DC115DEB25AD576100954972 /* FavoriteRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DE925AD576100954972 /* FavoriteRow.swift */; };
+		DC115DF825B26CE800954972 /* StationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DF725B26CE800954972 /* StationMapView.swift */; };
+		DC115DF925B26CE800954972 /* StationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DF725B26CE800954972 /* StationMapView.swift */; };
+		DC115E2525B521F400954972 /* StationDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115E2425B521F400954972 /* StationDataRepository.swift */; };
+		DC115E2625B521F400954972 /* StationDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115E2425B521F400954972 /* StationDataRepository.swift */; };
+		DC115E3125BCB28400954972 /* SDTideStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115E3025BCB28400954972 /* SDTideStation.swift */; };
+		DC115E3225BCB28400954972 /* SDTideStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115E3025BCB28400954972 /* SDTideStation.swift */; };
+		DC115E3725BCBB4D00954972 /* TideAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115E3625BCBB4D00954972 /* TideAnnotation.swift */; };
+		DC115E3825BCBB4D00954972 /* TideAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115E3625BCBB4D00954972 /* TideAnnotation.swift */; };
 		DC15911B259A70400092E473 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC15911A259A70400092E473 /* ChartView.swift */; };
 		DC15911C259A70400092E473 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC15911A259A70400092E473 /* ChartView.swift */; };
 		DC160B5024CFAC9D00C62C56 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC160B4F24CFAC9D00C62C56 /* HeaderView.swift */; };
@@ -79,8 +87,22 @@
 		DC26BB1424BB807B00453A5F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC26BAE924BB807900453A5F /* ContentView.swift */; };
 		DC26BB1524BB807B00453A5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC26BAEA24BB807B00453A5F /* Assets.xcassets */; };
 		DC26BB1624BB807B00453A5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC26BAEA24BB807B00453A5F /* Assets.xcassets */; };
+		DC43CBE525C77B00002A330E /* RegionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CBE425C77B00002A330E /* RegionListView.swift */; };
+		DC43CBE625C77B00002A330E /* RegionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CBE425C77B00002A330E /* RegionListView.swift */; };
+		DC43CBF125C782BD002A330E /* TideStationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CBF025C782BD002A330E /* TideStationInteractor.swift */; };
+		DC43CBF225C782BD002A330E /* TideStationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CBF025C782BD002A330E /* TideStationInteractor.swift */; };
+		DC43CBF725C78697002A330E /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CBF625C78697002A330E /* Region.swift */; };
+		DC43CBF825C78697002A330E /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CBF625C78697002A330E /* Region.swift */; };
+		DC43CBFD25C7882C002A330E /* RegionSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CBFC25C7882C002A330E /* RegionSelectionView.swift */; };
+		DC43CBFE25C7882C002A330E /* RegionSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CBFC25C7882C002A330E /* RegionSelectionView.swift */; };
+		DC43CC0625CBC44E002A330E /* TideStationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CC0525CBC44E002A330E /* TideStationListView.swift */; };
+		DC43CC0725CBC44E002A330E /* TideStationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CC0525CBC44E002A330E /* TideStationListView.swift */; };
 		DC77459E24F31681001747AE /* TideEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77459D24F31681001747AE /* TideEventsView.swift */; };
 		DC77459F24F31681001747AE /* TideEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77459D24F31681001747AE /* TideEventsView.swift */; };
+		DCF96C0C25BE3AC900255096 /* StationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF96C0B25BE3AC900255096 /* StationDetailView.swift */; };
+		DCF96C0D25BE3AC900255096 /* StationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF96C0B25BE3AC900255096 /* StationDetailView.swift */; };
+		DCF96C1225BE492700255096 /* MapSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF96C1125BE492700255096 /* MapSelectionView.swift */; };
+		DCF96C1325BE492700255096 /* MapSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF96C1125BE492700255096 /* MapSelectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,10 +153,10 @@
 		DC0DE5A0258D580E00FD75A0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		DC0DE7AE259305F600FD75A0 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		DC0DE7C22593B2E400FD75A0 /* AppStateRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStateRepository.swift; sourceTree = "<group>"; };
-		DC0DE7C32593B2E400FD75A0 /* LegacyStationRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyStationRepository.swift; sourceTree = "<group>"; };
+		DC0DE7C32593B2E400FD75A0 /* LegacyStationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyStationData.swift; sourceTree = "<group>"; };
 		DC0DE7C42593B2E400FD75A0 /* ModelMigrate2To3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelMigrate2To3.swift; sourceTree = "<group>"; };
-		DC0DE7C52593B2E400FD75A0 /* NoaaStationRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoaaStationRepository.swift; sourceTree = "<group>"; };
-		DC0DE7C62593B2E400FD75A0 /* StationRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationRepository.swift; sourceTree = "<group>"; };
+		DC0DE7C52593B2E400FD75A0 /* NoaaStationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoaaStationData.swift; sourceTree = "<group>"; };
+		DC0DE7C62593B2E400FD75A0 /* StationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationData.swift; sourceTree = "<group>"; };
 		DC0DE7D82593B3C200FD75A0 /* noaa-data.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "noaa-data.sqlite"; sourceTree = "<group>"; };
 		DC0DE7D92593B3C200FD75A0 /* legacy-data.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "legacy-data.sqlite"; sourceTree = "<group>"; };
 		DC0DE7DA2593B3C200FD75A0 /* noaa-data.sqlite-wal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "noaa-data.sqlite-wal"; sourceTree = "<group>"; };
@@ -147,7 +169,7 @@
 		DC0DE7F72593B3FD00FD75A0 /* shralptide 3.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "shralptide 3.1.xcdatamodel"; sourceTree = "<group>"; };
 		DC0DE7F82593B3FD00FD75A0 /* shralptide2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = shralptide2.xcdatamodel; sourceTree = "<group>"; };
 		DC0DE7FA2593B3FD00FD75A0 /* tidedata.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tidedata.xcdatamodel; sourceTree = "<group>"; };
-		DC0DE8152593B87C00FD75A0 /* TideStationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideStationInteractor.swift; sourceTree = "<group>"; };
+		DC0DE8152593B87C00FD75A0 /* AppStateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateInteractor.swift; sourceTree = "<group>"; };
 		DC0DE8752593D4D400FD75A0 /* ShralpTideFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ShralpTideFramework.framework; path = ../../../Library/Frameworks/ShralpTideFramework.framework; sourceTree = "<group>"; };
 		DC0DE8A22595696F00FD75A0 /* SDTide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDTide.swift; sourceTree = "<group>"; };
 		DC115D9625A28D6A00954972 /* PagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerView.swift; sourceTree = "<group>"; };
@@ -156,6 +178,10 @@
 		DC115DDA25ABDA7000954972 /* ChartUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartUtils.swift; sourceTree = "<group>"; };
 		DC115DE325AD56B200954972 /* FavoritesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListView.swift; sourceTree = "<group>"; };
 		DC115DE925AD576100954972 /* FavoriteRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRow.swift; sourceTree = "<group>"; };
+		DC115DF725B26CE800954972 /* StationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationMapView.swift; sourceTree = "<group>"; };
+		DC115E2425B521F400954972 /* StationDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDataRepository.swift; sourceTree = "<group>"; };
+		DC115E3025BCB28400954972 /* SDTideStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDTideStation.swift; sourceTree = "<group>"; };
+		DC115E3625BCBB4D00954972 /* TideAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideAnnotation.swift; sourceTree = "<group>"; };
 		DC15911A259A70400092E473 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		DC160B4F24CFAC9D00C62C56 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		DC26BAE824BB807900453A5F /* SwiftTidesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftTidesApp.swift; sourceTree = "<group>"; };
@@ -172,7 +198,14 @@
 		DC26BB0A24BB807B00453A5F /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC26BB0E24BB807B00453A5F /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		DC26BB1024BB807B00453A5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC43CBE425C77B00002A330E /* RegionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionListView.swift; sourceTree = "<group>"; };
+		DC43CBF025C782BD002A330E /* TideStationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideStationInteractor.swift; sourceTree = "<group>"; };
+		DC43CBF625C78697002A330E /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
+		DC43CBFC25C7882C002A330E /* RegionSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionSelectionView.swift; sourceTree = "<group>"; };
+		DC43CC0525CBC44E002A330E /* TideStationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideStationListView.swift; sourceTree = "<group>"; };
 		DC77459D24F31681001747AE /* TideEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideEventsView.swift; sourceTree = "<group>"; };
+		DCF96C0B25BE3AC900255096 /* StationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailView.swift; sourceTree = "<group>"; };
+		DCF96C1125BE492700255096 /* MapSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSelectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,7 +252,8 @@
 		DC0DE7BD2593B05100FD75A0 /* Interactors */ = {
 			isa = PBXGroup;
 			children = (
-				DC0DE8152593B87C00FD75A0 /* TideStationInteractor.swift */,
+				DC0DE8152593B87C00FD75A0 /* AppStateInteractor.swift */,
+				DC43CBF025C782BD002A330E /* TideStationInteractor.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -228,10 +262,11 @@
 			isa = PBXGroup;
 			children = (
 				DC0DE7C22593B2E400FD75A0 /* AppStateRepository.swift */,
-				DC0DE7C32593B2E400FD75A0 /* LegacyStationRepository.swift */,
+				DC0DE7C32593B2E400FD75A0 /* LegacyStationData.swift */,
 				DC0DE7C42593B2E400FD75A0 /* ModelMigrate2To3.swift */,
-				DC0DE7C52593B2E400FD75A0 /* NoaaStationRepository.swift */,
-				DC0DE7C62593B2E400FD75A0 /* StationRepository.swift */,
+				DC0DE7C52593B2E400FD75A0 /* NoaaStationData.swift */,
+				DC0DE7C62593B2E400FD75A0 /* StationData.swift */,
+				DC115E2425B521F400954972 /* StationDataRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -290,6 +325,7 @@
 			children = (
 				DC079F79259C06D200F1CB0E /* Date.swift */,
 				DC0DE8A22595696F00FD75A0 /* SDTide.swift */,
+				DC115E3025BCB28400954972 /* SDTideStation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -309,6 +345,25 @@
 				DC115D9625A28D6A00954972 /* PagerView.swift */,
 			);
 			path = PagerView;
+			sourceTree = "<group>";
+		};
+		DC115DF525B26C9600954972 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				DC115DE325AD56B200954972 /* FavoritesListView.swift */,
+				DC115DE925AD576100954972 /* FavoriteRow.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		DC115DF625B26CBB00954972 /* StationSelection */ = {
+			isa = PBXGroup;
+			children = (
+				DC43CBE325C7781A002A330E /* List */,
+				DC43CBE225C7474B002A330E /* Map */,
+				DCF96C0B25BE3AC900255096 /* StationDetailView.swift */,
+			);
+			path = StationSelection;
 			sourceTree = "<group>";
 		};
 		DC159120259AB0230092E473 /* ChartView */ = {
@@ -339,6 +394,8 @@
 		DC26BAE724BB807900453A5F /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				DC115DF625B26CBB00954972 /* StationSelection */,
+				DC115DF525B26C9600954972 /* Favorites */,
 				DC115D9125A28D0A00954972 /* Components */,
 				DC0DE8A12595695400FD75A0 /* Extensions */,
 				DC0DE7D72593B39A00FD75A0 /* Persistence */,
@@ -368,8 +425,6 @@
 			children = (
 				DC0DE59A258D577F00FD75A0 /* SwiftTides.entitlements */,
 				DC26BAE924BB807900453A5F /* ContentView.swift */,
-				DC115DE325AD56B200954972 /* FavoritesListView.swift */,
-				DC115DE925AD576100954972 /* FavoriteRow.swift */,
 				DC160B4F24CFAC9D00C62C56 /* HeaderView.swift */,
 				DC77459D24F31681001747AE /* TideEventsView.swift */,
 				DC115DA925A5572600954972 /* TideGraphView.swift */,
@@ -404,6 +459,27 @@
 				DC26BB1024BB807B00453A5F /* Info.plist */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		DC43CBE225C7474B002A330E /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				DCF96C1125BE492700255096 /* MapSelectionView.swift */,
+				DC115DF725B26CE800954972 /* StationMapView.swift */,
+				DC115E3625BCBB4D00954972 /* TideAnnotation.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		DC43CBE325C7781A002A330E /* List */ = {
+			isa = PBXGroup;
+			children = (
+				DC43CBE425C77B00002A330E /* RegionListView.swift */,
+				DC43CBF625C78697002A330E /* Region.swift */,
+				DC43CBFC25C7882C002A330E /* RegionSelectionView.swift */,
+				DC43CC0525CBC44E002A330E /* TideStationListView.swift */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -488,7 +564,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 1230;
+				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					DC26BAEE24BB807B00453A5F = {
 						CreatedOnToolsVersion = 12.0;
@@ -579,10 +655,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC115E3725BCBB4D00954972 /* TideAnnotation.swift in Sources */,
 				DC079F74259BAED800F1CB0E /* InteractiveChartViewModifier.swift in Sources */,
+				DCF96C0C25BE3AC900255096 /* StationDetailView.swift in Sources */,
 				DC0DE8A32595696F00FD75A0 /* SDTide.swift in Sources */,
+				DC115E3125BCB28400954972 /* SDTideStation.swift in Sources */,
+				DC115E2525B521F400954972 /* StationDataRepository.swift in Sources */,
 				DC115DE425AD56B200954972 /* FavoritesListView.swift in Sources */,
-				DC0DE8162593B87C00FD75A0 /* TideStationInteractor.swift in Sources */,
+				DCF96C1225BE492700255096 /* MapSelectionView.swift in Sources */,
+				DC115DF825B26CE800954972 /* StationMapView.swift in Sources */,
+				DC0DE8162593B87C00FD75A0 /* AppStateInteractor.swift in Sources */,
 				DC115DB825A576CA00954972 /* TideGraphView.swift in Sources */,
 				DC0DE589258C1B6C00FD75A0 /* EnvironmentValues.swift in Sources */,
 				DC079F7A259C06D200F1CB0E /* Date.swift in Sources */,
@@ -590,22 +672,27 @@
 				DC0DE7FB2593B3FD00FD75A0 /* shralptide.xcdatamodeld in Sources */,
 				DC079F80259C34BB00F1CB0E /* LabeledChartViewModifier.swift in Sources */,
 				DC15911B259A70400092E473 /* ChartView.swift in Sources */,
+				DC43CBFD25C7882C002A330E /* RegionSelectionView.swift in Sources */,
 				DC0DE7CB2593B2E400FD75A0 /* ModelMigrate2To3.swift in Sources */,
-				DC0DE7CF2593B2E400FD75A0 /* StationRepository.swift in Sources */,
+				DC43CBE525C77B00002A330E /* RegionListView.swift in Sources */,
+				DC0DE7CF2593B2E400FD75A0 /* StationData.swift in Sources */,
 				DC26BB1324BB807B00453A5F /* ContentView.swift in Sources */,
+				DC43CBF125C782BD002A330E /* TideStationInteractor.swift in Sources */,
 				DC115DD525ABD97100954972 /* SunMoonLabelsChartViewModifier.swift in Sources */,
 				DC115D9725A28D6A00954972 /* PagerView.swift in Sources */,
 				DC115DDB25ABDA7000954972 /* ChartUtils.swift in Sources */,
 				DC115DEA25AD576100954972 /* FavoriteRow.swift in Sources */,
 				DC0DE7AF259305F600FD75A0 /* AppState.swift in Sources */,
+				DC43CBF725C78697002A330E /* Region.swift in Sources */,
 				DC77459E24F31681001747AE /* TideEventsView.swift in Sources */,
-				DC0DE7CD2593B2E400FD75A0 /* NoaaStationRepository.swift in Sources */,
+				DC0DE7CD2593B2E400FD75A0 /* NoaaStationData.swift in Sources */,
 				DC160B5024CFAC9D00C62C56 /* HeaderView.swift in Sources */,
 				DC26BB1124BB807B00453A5F /* SwiftTidesApp.swift in Sources */,
+				DC43CC0625CBC44E002A330E /* TideStationListView.swift in Sources */,
 				DC0DE7E92593B3C300FD75A0 /* ModelMigrate2to3.xcmappingmodel in Sources */,
 				DC0DE7FD2593B3FD00FD75A0 /* tidedata.xcdatamodeld in Sources */,
 				DC0DE594258C1CFC00FD75A0 /* ConfigHelper.swift in Sources */,
-				DC0DE7C92593B2E400FD75A0 /* LegacyStationRepository.swift in Sources */,
+				DC0DE7C92593B2E400FD75A0 /* LegacyStationData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,10 +700,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC115E3825BCBB4D00954972 /* TideAnnotation.swift in Sources */,
 				DC079F75259BAED800F1CB0E /* InteractiveChartViewModifier.swift in Sources */,
+				DCF96C0D25BE3AC900255096 /* StationDetailView.swift in Sources */,
 				DC0DE8A42595696F00FD75A0 /* SDTide.swift in Sources */,
+				DC115E3225BCB28400954972 /* SDTideStation.swift in Sources */,
+				DC115E2625B521F400954972 /* StationDataRepository.swift in Sources */,
 				DC115DE525AD56B200954972 /* FavoritesListView.swift in Sources */,
-				DC0DE8172593B87C00FD75A0 /* TideStationInteractor.swift in Sources */,
+				DCF96C1325BE492700255096 /* MapSelectionView.swift in Sources */,
+				DC115DF925B26CE800954972 /* StationMapView.swift in Sources */,
+				DC0DE8172593B87C00FD75A0 /* AppStateInteractor.swift in Sources */,
 				DC115DAB25A5572600954972 /* TideGraphView.swift in Sources */,
 				DC0DE58A258C1B6C00FD75A0 /* EnvironmentValues.swift in Sources */,
 				DC079F7B259C06D200F1CB0E /* Date.swift in Sources */,
@@ -624,22 +717,27 @@
 				DC0DE7FC2593B3FD00FD75A0 /* shralptide.xcdatamodeld in Sources */,
 				DC079F81259C34BB00F1CB0E /* LabeledChartViewModifier.swift in Sources */,
 				DC15911C259A70400092E473 /* ChartView.swift in Sources */,
+				DC43CBFE25C7882C002A330E /* RegionSelectionView.swift in Sources */,
 				DC0DE7CC2593B2E400FD75A0 /* ModelMigrate2To3.swift in Sources */,
-				DC0DE7D02593B2E400FD75A0 /* StationRepository.swift in Sources */,
+				DC43CBE625C77B00002A330E /* RegionListView.swift in Sources */,
+				DC0DE7D02593B2E400FD75A0 /* StationData.swift in Sources */,
 				DC26BB1424BB807B00453A5F /* ContentView.swift in Sources */,
+				DC43CBF225C782BD002A330E /* TideStationInteractor.swift in Sources */,
 				DC115DD625ABD97100954972 /* SunMoonLabelsChartViewModifier.swift in Sources */,
 				DC115D9825A28D6A00954972 /* PagerView.swift in Sources */,
 				DC115DDC25ABDA7000954972 /* ChartUtils.swift in Sources */,
 				DC115DEB25AD576100954972 /* FavoriteRow.swift in Sources */,
 				DC0DE7B0259305F600FD75A0 /* AppState.swift in Sources */,
+				DC43CBF825C78697002A330E /* Region.swift in Sources */,
 				DC77459F24F31681001747AE /* TideEventsView.swift in Sources */,
-				DC0DE7CE2593B2E400FD75A0 /* NoaaStationRepository.swift in Sources */,
+				DC0DE7CE2593B2E400FD75A0 /* NoaaStationData.swift in Sources */,
 				DC160B5124CFAC9D00C62C56 /* HeaderView.swift in Sources */,
 				DC26BB1224BB807B00453A5F /* SwiftTidesApp.swift in Sources */,
+				DC43CC0725CBC44E002A330E /* TideStationListView.swift in Sources */,
 				DC0DE7EA2593B3C300FD75A0 /* ModelMigrate2to3.xcmappingmodel in Sources */,
 				DC0DE7FE2593B3FD00FD75A0 /* tidedata.xcdatamodeld in Sources */,
 				DC0DE595258C1CFC00FD75A0 /* ConfigHelper.swift in Sources */,
-				DC0DE7CA2593B2E400FD75A0 /* LegacyStationRepository.swift in Sources */,
+				DC0DE7CA2593B2E400FD75A0 /* LegacyStationData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -737,7 +835,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
