@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="20B29" minimumToolsVersion="Xcode 8.0" sourceLanguage="Swift" userDefinedModelVersionIdentifier="3.1">
+    <entity name="SDApplicationState" representedClassName="SDApplicationState" syncable="YES" codeGenerationType="class">
+        <relationship name="favoriteLocations" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="SDFavoriteLocation" inverseName="applicationState" inverseEntity="SDFavoriteLocation" indexed="YES" syncable="YES"/>
+        <relationship name="selectedLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDFavoriteLocation" indexed="YES" syncable="YES"/>
+    </entity>
+    <entity name="SDFavoriteLocation" representedClassName="SDFavoriteLocation" syncable="YES" codeGenerationType="class">
+        <attribute name="datastoreName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="locationName" attributeType="String" syncable="YES"/>
+        <relationship name="applicationState" maxCount="1" deletionRule="Nullify" destinationEntity="SDApplicationState" inverseName="favoriteLocations" inverseEntity="SDApplicationState" indexed="YES" syncable="YES"/>
+    </entity>
+    <configuration name="StateDatastore">
+        <memberEntity name="SDApplicationState"/>
+        <memberEntity name="SDFavoriteLocation"/>
+    </configuration>
+    <elements>
+        <element name="SDApplicationState" positionX="72" positionY="378" width="128" height="75"/>
+        <element name="SDFavoriteLocation" positionX="297.94921875" positionY="542.78515625" width="128" height="88"/>
+    </elements>
+</model>

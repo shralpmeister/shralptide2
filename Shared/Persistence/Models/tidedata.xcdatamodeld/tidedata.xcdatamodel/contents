@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="SDCountry" representedClassName="SDCountry" parentEntity="SDState" codeGenerationType="class">
+        <relationship name="states" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="SDStateProvince">
+            <userInfo/>
+        </relationship>
+        <relationship name="tideStations" toMany="YES" deletionRule="No Action" destinationEntity="SDTideStation">
+            <userInfo/>
+        </relationship>
+        <userInfo>
+            <entry key="com.apple.syncservices.IdentityProperties" value=""/>
+        </userInfo>
+    </entity>
+    <entity name="SDState" representedClassName="SDState" isAbstract="YES" codeGenerationType="class">
+        <attribute name="flag" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="name" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <userInfo>
+            <entry key="com.apple.syncservices.IdentityProperties" value=""/>
+        </userInfo>
+    </entity>
+    <entity name="SDStateProvince" representedClassName="SDStateProvince" parentEntity="SDState" codeGenerationType="class">
+        <relationship name="tideStations" toMany="YES" deletionRule="No Action" destinationEntity="SDTideStation">
+            <userInfo/>
+        </relationship>
+        <userInfo>
+            <entry key="com.apple.syncservices.IdentityProperties" value=""/>
+        </userInfo>
+    </entity>
+    <entity name="SDTideStation" representedClassName="SDTideStation" codeGenerationType="class">
+        <attribute name="current" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="NO">
+            <userInfo/>
+        </attribute>
+        <attribute name="distance" optional="YES" transient="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="NO">
+            <userInfo/>
+        </attribute>
+        <attribute name="latitude" attributeType="Double" defaultValueString="0" usesScalarValueType="NO">
+            <userInfo/>
+        </attribute>
+        <attribute name="longitude" attributeType="Double" defaultValueString="0" usesScalarValueType="NO">
+            <userInfo/>
+        </attribute>
+        <attribute name="name" attributeType="String" maxValueString="100">
+            <userInfo/>
+        </attribute>
+        <attribute name="primary" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="NO">
+            <userInfo/>
+        </attribute>
+        <attribute name="state" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="units" attributeType="String" minValueString="1" maxValueString="10">
+            <userInfo/>
+        </attribute>
+        <userInfo>
+            <entry key="com.apple.syncservices.IdentityProperties" value=""/>
+        </userInfo>
+    </entity>
+    <elements>
+        <element name="SDCountry" positionX="-169.49609375" positionY="119.37890625" width="128" height="75"/>
+        <element name="SDStateProvince" positionX="132.90625" positionY="139.171875" width="128" height="60"/>
+        <element name="SDState" positionX="30.2578125" positionY="9.40625" width="128" height="75"/>
+        <element name="SDTideStation" positionX="0.24609375" positionY="277.77734375" width="128" height="165"/>
+    </elements>
+</model>
