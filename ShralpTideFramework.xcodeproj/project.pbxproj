@@ -1,0 +1,1089 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DC0DE5D4258D82C200FD75A0 /* ShralpTideFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE5C6258D82C200FD75A0 /* ShralpTideFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DC0DE600258D849600FD75A0 /* harmonics-dwf-20081228-nonfree.tcd in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE5FD258D849600FD75A0 /* harmonics-dwf-20081228-nonfree.tcd */; };
+		DC0DE601258D849600FD75A0 /* harmonics-20040614-wxtide.tcd in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE5FE258D849600FD75A0 /* harmonics-20040614-wxtide.tcd */; };
+		DC0DE602258D849600FD75A0 /* harmonics-dwf-20081228-free.tcd in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE5FF258D849600FD75A0 /* harmonics-dwf-20081228-free.tcd */; };
+		DC0DE60A258D84BD00FD75A0 /* NSDate+Day.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE608258D84BD00FD75A0 /* NSDate+Day.m */; };
+		DC0DE60B258D84BD00FD75A0 /* NSDate+Day.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE609258D84BD00FD75A0 /* NSDate+Day.h */; };
+		DC0DE614258D84DD00FD75A0 /* tcd.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE60F258D84DD00FD75A0 /* tcd.h */; };
+		DC0DE615258D84DD00FD75A0 /* bit_pack.c in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE610258D84DD00FD75A0 /* bit_pack.c */; };
+		DC0DE616258D84DD00FD75A0 /* tide_db_default.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE611258D84DD00FD75A0 /* tide_db_default.h */; };
+		DC0DE617258D84DD00FD75A0 /* tide_db_header.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE612258D84DD00FD75A0 /* tide_db_header.h */; };
+		DC0DE618258D84DD00FD75A0 /* tide_db.c in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE613258D84DD00FD75A0 /* tide_db.c */; };
+		DC0DE626258D850800FD75A0 /* SDTideInterval.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE61C258D850700FD75A0 /* SDTideInterval.m */; };
+		DC0DE627258D850800FD75A0 /* SDTideEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE61D258D850700FD75A0 /* SDTideEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DC0DE628258D850800FD75A0 /* SDTideEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE61E258D850700FD75A0 /* SDTideEvent.m */; };
+		DC0DE629258D850800FD75A0 /* SDTide.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE61F258D850700FD75A0 /* SDTide.m */; };
+		DC0DE62A258D850800FD75A0 /* SDTide.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE620258D850700FD75A0 /* SDTide.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DC0DE62B258D850800FD75A0 /* SDTideInterval.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE621258D850700FD75A0 /* SDTideInterval.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DC0DE62C258D850800FD75A0 /* SDTideStationData.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE622258D850700FD75A0 /* SDTideStationData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DC0DE62D258D850800FD75A0 /* SDTideFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE623258D850800FD75A0 /* SDTideFactory.mm */; };
+		DC0DE62E258D850800FD75A0 /* SDTideStationData.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE624258D850800FD75A0 /* SDTideStationData.m */; };
+		DC0DE62F258D850800FD75A0 /* SDTideFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE625258D850800FD75A0 /* SDTideFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DC0DE683258D858600FD75A0 /* Units.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE637258D858400FD75A0 /* Units.cc */; };
+		DC0DE684258D858600FD75A0 /* Offsets.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE638258D858400FD75A0 /* Offsets.cc */; };
+		DC0DE685258D858600FD75A0 /* Configurable.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE639258D858400FD75A0 /* Configurable.hh */; };
+		DC0DE686258D858600FD75A0 /* NullablePredictionValue.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE63A258D858400FD75A0 /* NullablePredictionValue.hh */; };
+		DC0DE687258D858600FD75A0 /* Angle.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE63B258D858400FD75A0 /* Angle.hh */; };
+		DC0DE688258D858600FD75A0 /* MetaField.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE63C258D858400FD75A0 /* MetaField.hh */; };
+		DC0DE689258D858600FD75A0 /* Colors.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE63D258D858400FD75A0 /* Colors.hh */; };
+		DC0DE68A258D858600FD75A0 /* rgb.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE63E258D858400FD75A0 /* rgb.hh */; };
+		DC0DE68B258D858600FD75A0 /* StationIndex.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE63F258D858400FD75A0 /* StationIndex.cc */; };
+		DC0DE68C258D858600FD75A0 /* TideEventsOrganizer.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE640258D858400FD75A0 /* TideEventsOrganizer.cc */; };
+		DC0DE68D258D858600FD75A0 /* Speed.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE641258D858400FD75A0 /* Speed.cc */; };
+		DC0DE68E258D858600FD75A0 /* NullableInterval.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE642258D858400FD75A0 /* NullableInterval.hh */; };
+		DC0DE68F258D858600FD75A0 /* HarmonicsPath.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE643258D858400FD75A0 /* HarmonicsPath.hh */; };
+		DC0DE690258D858600FD75A0 /* Nullable.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE644258D858400FD75A0 /* Nullable.hh */; };
+		DC0DE691258D858600FD75A0 /* HarmonicsFile.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE645258D858400FD75A0 /* HarmonicsFile.hh */; };
+		DC0DE692258D858600FD75A0 /* HarmonicsPath.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE646258D858400FD75A0 /* HarmonicsPath.cc */; };
+		DC0DE693258D858600FD75A0 /* TideEvent.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE647258D858400FD75A0 /* TideEvent.cc */; };
+		DC0DE694258D858600FD75A0 /* Station.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE648258D858400FD75A0 /* Station.hh */; };
+		DC0DE695258D858600FD75A0 /* Units.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE649258D858400FD75A0 /* Units.hh */; };
+		DC0DE696258D858600FD75A0 /* Year.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE64A258D858400FD75A0 /* Year.cc */; };
+		DC0DE697258D858600FD75A0 /* Skycal.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE64B258D858400FD75A0 /* Skycal.hh */; };
+		DC0DE698258D858600FD75A0 /* Global.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE64C258D858400FD75A0 /* Global.cc */; };
+		DC0DE699258D858600FD75A0 /* Dstr.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE64D258D858400FD75A0 /* Dstr.cc */; };
+		DC0DE69A258D858600FD75A0 /* Station.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE64E258D858400FD75A0 /* Station.cc */; };
+		DC0DE69B258D858600FD75A0 /* Year.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE64F258D858400FD75A0 /* Year.hh */; };
+		DC0DE69C258D858600FD75A0 /* Amplitude.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE650258D858400FD75A0 /* Amplitude.hh */; };
+		DC0DE69D258D858600FD75A0 /* StationRef.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE651258D858400FD75A0 /* StationRef.cc */; };
+		DC0DE69E258D858600FD75A0 /* Date.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE652258D858400FD75A0 /* Date.hh */; };
+		DC0DE69F258D858600FD75A0 /* Errors.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE653258D858400FD75A0 /* Errors.hh */; };
+		DC0DE6A0258D858600FD75A0 /* GPL in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE654258D858500FD75A0 /* GPL */; };
+		DC0DE6A1258D858600FD75A0 /* PredictionValue.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE655258D858500FD75A0 /* PredictionValue.hh */; };
+		DC0DE6A2258D858600FD75A0 /* Settings.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE656258D858500FD75A0 /* Settings.hh */; };
+		DC0DE6A3258D858600FD75A0 /* Dstr.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE657258D858500FD75A0 /* Dstr.hh */; };
+		DC0DE6A4258D858600FD75A0 /* Amplitude.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE658258D858500FD75A0 /* Amplitude.cc */; };
+		DC0DE6A5258D858600FD75A0 /* README in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE659258D858500FD75A0 /* README */; };
+		DC0DE6A6258D858600FD75A0 /* CurrentBearing.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE65A258D858500FD75A0 /* CurrentBearing.hh */; };
+		DC0DE6A7258D858600FD75A0 /* CurrentBearing.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE65B258D858500FD75A0 /* CurrentBearing.cc */; };
+		DC0DE6A8258D858600FD75A0 /* Timestamp.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE65C258D858500FD75A0 /* Timestamp.cc */; };
+		DC0DE6A9258D858600FD75A0 /* TideEventsOrganizer.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE65D258D858500FD75A0 /* TideEventsOrganizer.hh */; };
+		DC0DE6AA258D858600FD75A0 /* config.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE65E258D858500FD75A0 /* config.hh */; };
+		DC0DE6AB258D858600FD75A0 /* StationRef.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE65F258D858500FD75A0 /* StationRef.hh */; };
+		DC0DE6AC258D858600FD75A0 /* Coordinates.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE660258D858500FD75A0 /* Coordinates.cc */; };
+		DC0DE6AD258D858600FD75A0 /* ConstituentSet.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE661258D858500FD75A0 /* ConstituentSet.hh */; };
+		DC0DE6AE258D858600FD75A0 /* SafeVector.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE662258D858500FD75A0 /* SafeVector.hh */; };
+		DC0DE6AF258D858600FD75A0 /* HarmonicsFile.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE663258D858500FD75A0 /* HarmonicsFile.cc */; };
+		DC0DE6B0258D858600FD75A0 /* Skycal.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE664258D858500FD75A0 /* Skycal.cc */; };
+		DC0DE6B1258D858600FD75A0 /* StationIndex.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE665258D858500FD75A0 /* StationIndex.hh */; };
+		DC0DE6B2258D858600FD75A0 /* Offsets.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE666258D858500FD75A0 /* Offsets.hh */; };
+		DC0DE6B3258D858600FD75A0 /* common.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE667258D858500FD75A0 /* common.hh */; };
+		DC0DE6B4258D858600FD75A0 /* ZoneIndex.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE668258D858500FD75A0 /* ZoneIndex.cc */; };
+		DC0DE6B5258D858600FD75A0 /* ModeFormat.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE669258D858500FD75A0 /* ModeFormat.hh */; };
+		DC0DE6B6258D858600FD75A0 /* Timestamp.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE66A258D858500FD75A0 /* Timestamp.hh */; };
+		DC0DE6B7258D858600FD75A0 /* Colors.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE66B258D858500FD75A0 /* Colors.cc */; };
+		DC0DE6B8258D858600FD75A0 /* Global.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE66C258D858500FD75A0 /* Global.hh */; };
+		DC0DE6B9258D858600FD75A0 /* SubordinateStation.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE66D258D858500FD75A0 /* SubordinateStation.hh */; };
+		DC0DE6BA258D858600FD75A0 /* ConstituentSet.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE66E258D858500FD75A0 /* ConstituentSet.cc */; };
+		DC0DE6BB258D858600FD75A0 /* Nullable.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE66F258D858500FD75A0 /* Nullable.cc */; };
+		DC0DE6BC258D858600FD75A0 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE670258D858500FD75A0 /* COPYING */; };
+		DC0DE6BD258D858600FD75A0 /* Constituent.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE671258D858500FD75A0 /* Constituent.hh */; };
+		DC0DE6BE258D858600FD75A0 /* Constituent.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE672258D858500FD75A0 /* Constituent.cc */; };
+		DC0DE6BF258D858600FD75A0 /* MetaField.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE673258D858500FD75A0 /* MetaField.cc */; };
+		DC0DE6C0258D858600FD75A0 /* PredictionValue.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE674258D858500FD75A0 /* PredictionValue.cc */; };
+		DC0DE6C1258D858600FD75A0 /* NullableInterval.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE675258D858500FD75A0 /* NullableInterval.cc */; };
+		DC0DE6C2258D858600FD75A0 /* BetterMap.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE676258D858500FD75A0 /* BetterMap.hh */; };
+		DC0DE6C3258D858600FD75A0 /* NullablePredictionValue.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE677258D858600FD75A0 /* NullablePredictionValue.cc */; };
+		DC0DE6C4258D858600FD75A0 /* Interval.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE678258D858600FD75A0 /* Interval.hh */; };
+		DC0DE6C5258D858600FD75A0 /* Speed.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE679258D858600FD75A0 /* Speed.hh */; };
+		DC0DE6C6258D858600FD75A0 /* Settings.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE67A258D858600FD75A0 /* Settings.cc */; };
+		DC0DE6C7258D858600FD75A0 /* Angle.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE67B258D858600FD75A0 /* Angle.cc */; };
+		DC0DE6C8258D858600FD75A0 /* TideEvent.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE67C258D858600FD75A0 /* TideEvent.hh */; };
+		DC0DE6C9258D858600FD75A0 /* Interval.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE67D258D858600FD75A0 /* Interval.cc */; };
+		DC0DE6CA258D858600FD75A0 /* Date.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE67E258D858600FD75A0 /* Date.cc */; };
+		DC0DE6CB258D858600FD75A0 /* ZoneIndex.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE67F258D858600FD75A0 /* ZoneIndex.hh */; };
+		DC0DE6CC258D858600FD75A0 /* Coordinates.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE680258D858600FD75A0 /* Coordinates.hh */; };
+		DC0DE6CD258D858600FD75A0 /* SubordinateStation.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE681258D858600FD75A0 /* SubordinateStation.cc */; };
+		DC0DE6CE258D858600FD75A0 /* tide.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE682258D858600FD75A0 /* tide.cc */; };
+		DC0DE6D6258D877A00FD75A0 /* ShralpTide2_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE6D5258D877A00FD75A0 /* ShralpTide2_Prefix.pch */; };
+		DC0DE7052592CF5600FD75A0 /* WatchTideFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE7032592CF5600FD75A0 /* WatchTideFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DC0DE70B2592CFC100FD75A0 /* tide_db_header.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE612258D84DD00FD75A0 /* tide_db_header.h */; };
+		DC0DE70C2592CFC100FD75A0 /* tide_db.c in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE613258D84DD00FD75A0 /* tide_db.c */; };
+		DC0DE70D2592CFC100FD75A0 /* tcd.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE60F258D84DD00FD75A0 /* tcd.h */; };
+		DC0DE70E2592CFC100FD75A0 /* bit_pack.c in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE610258D84DD00FD75A0 /* bit_pack.c */; };
+		DC0DE70F2592CFC100FD75A0 /* tide_db_default.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE611258D84DD00FD75A0 /* tide_db_default.h */; };
+		DC0DE7122592CFC800FD75A0 /* NSDate+Day.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE608258D84BD00FD75A0 /* NSDate+Day.m */; };
+		DC0DE7132592CFC800FD75A0 /* NSDate+Day.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE609258D84BD00FD75A0 /* NSDate+Day.h */; };
+		DC0DE7162592CFD100FD75A0 /* harmonics-dwf-20081228-free.tcd in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE5FF258D849600FD75A0 /* harmonics-dwf-20081228-free.tcd */; };
+		DC0DE7172592CFD100FD75A0 /* harmonics-20040614-wxtide.tcd in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE5FE258D849600FD75A0 /* harmonics-20040614-wxtide.tcd */; };
+		DC0DE7182592CFD100FD75A0 /* harmonics-dwf-20081228-nonfree.tcd in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE5FD258D849600FD75A0 /* harmonics-dwf-20081228-nonfree.tcd */; };
+		DC0DE71B2592CFD600FD75A0 /* SDTideStationData.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE624258D850800FD75A0 /* SDTideStationData.m */; };
+		DC0DE71C2592CFD600FD75A0 /* SDTideInterval.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE61C258D850700FD75A0 /* SDTideInterval.m */; };
+		DC0DE71D2592CFD600FD75A0 /* SDTideStationData.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE622258D850700FD75A0 /* SDTideStationData.h */; };
+		DC0DE71E2592CFD600FD75A0 /* SDTide.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE61F258D850700FD75A0 /* SDTide.m */; };
+		DC0DE71F2592CFD600FD75A0 /* SDTideInterval.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE621258D850700FD75A0 /* SDTideInterval.h */; };
+		DC0DE7202592CFD600FD75A0 /* SDTideFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE623258D850800FD75A0 /* SDTideFactory.mm */; };
+		DC0DE7212592CFD600FD75A0 /* SDTideFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE625258D850800FD75A0 /* SDTideFactory.h */; };
+		DC0DE7222592CFD600FD75A0 /* SDTide.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE620258D850700FD75A0 /* SDTide.h */; };
+		DC0DE7232592CFD600FD75A0 /* ShralpTide2_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE6D5258D877A00FD75A0 /* ShralpTide2_Prefix.pch */; };
+		DC0DE7242592CFD600FD75A0 /* SDTideEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE61D258D850700FD75A0 /* SDTideEvent.h */; };
+		DC0DE7252592CFD600FD75A0 /* SDTideEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE61E258D850700FD75A0 /* SDTideEvent.m */; };
+		DC0DE7282592CFE100FD75A0 /* Colors.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE66B258D858500FD75A0 /* Colors.cc */; };
+		DC0DE7292592CFE100FD75A0 /* common.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE667258D858500FD75A0 /* common.hh */; };
+		DC0DE72A2592CFE100FD75A0 /* Date.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE67E258D858600FD75A0 /* Date.cc */; };
+		DC0DE72B2592CFE100FD75A0 /* StationRef.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE65F258D858500FD75A0 /* StationRef.hh */; };
+		DC0DE72C2592CFE100FD75A0 /* Coordinates.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE680258D858600FD75A0 /* Coordinates.hh */; };
+		DC0DE72D2592CFE100FD75A0 /* Date.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE652258D858400FD75A0 /* Date.hh */; };
+		DC0DE72E2592CFE100FD75A0 /* Dstr.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE657258D858500FD75A0 /* Dstr.hh */; };
+		DC0DE72F2592CFE100FD75A0 /* Errors.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE653258D858400FD75A0 /* Errors.hh */; };
+		DC0DE7302592CFE100FD75A0 /* Angle.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE67B258D858600FD75A0 /* Angle.cc */; };
+		DC0DE7312592CFE100FD75A0 /* ZoneIndex.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE668258D858500FD75A0 /* ZoneIndex.cc */; };
+		DC0DE7322592CFE100FD75A0 /* Interval.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE67D258D858600FD75A0 /* Interval.cc */; };
+		DC0DE7332592CFE100FD75A0 /* SafeVector.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE662258D858500FD75A0 /* SafeVector.hh */; };
+		DC0DE7342592CFE100FD75A0 /* Interval.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE678258D858600FD75A0 /* Interval.hh */; };
+		DC0DE7352592CFE100FD75A0 /* MetaField.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE63C258D858400FD75A0 /* MetaField.hh */; };
+		DC0DE7362592CFE100FD75A0 /* Nullable.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE644258D858400FD75A0 /* Nullable.hh */; };
+		DC0DE7372592CFE100FD75A0 /* ZoneIndex.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE67F258D858600FD75A0 /* ZoneIndex.hh */; };
+		DC0DE7382592CFE100FD75A0 /* Amplitude.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE658258D858500FD75A0 /* Amplitude.cc */; };
+		DC0DE7392592CFE100FD75A0 /* TideEvent.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE67C258D858600FD75A0 /* TideEvent.hh */; };
+		DC0DE73A2592CFE100FD75A0 /* ConstituentSet.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE661258D858500FD75A0 /* ConstituentSet.hh */; };
+		DC0DE73B2592CFE100FD75A0 /* tide.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE682258D858600FD75A0 /* tide.cc */; };
+		DC0DE73C2592CFE100FD75A0 /* CurrentBearing.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE65B258D858500FD75A0 /* CurrentBearing.cc */; };
+		DC0DE73D2592CFE100FD75A0 /* config.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE65E258D858500FD75A0 /* config.hh */; };
+		DC0DE73E2592CFE100FD75A0 /* Configurable.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE639258D858400FD75A0 /* Configurable.hh */; };
+		DC0DE73F2592CFE100FD75A0 /* StationIndex.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE63F258D858400FD75A0 /* StationIndex.cc */; };
+		DC0DE7402592CFE100FD75A0 /* Year.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE64F258D858400FD75A0 /* Year.hh */; };
+		DC0DE7412592CFE100FD75A0 /* Settings.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE67A258D858600FD75A0 /* Settings.cc */; };
+		DC0DE7422592CFE100FD75A0 /* Settings.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE656258D858500FD75A0 /* Settings.hh */; };
+		DC0DE7432592CFE100FD75A0 /* Offsets.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE638258D858400FD75A0 /* Offsets.cc */; };
+		DC0DE7442592CFE100FD75A0 /* Nullable.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE66F258D858500FD75A0 /* Nullable.cc */; };
+		DC0DE7452592CFE100FD75A0 /* BetterMap.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE676258D858500FD75A0 /* BetterMap.hh */; };
+		DC0DE7462592CFE100FD75A0 /* Coordinates.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE660258D858500FD75A0 /* Coordinates.cc */; };
+		DC0DE7472592CFE100FD75A0 /* Dstr.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE64D258D858400FD75A0 /* Dstr.cc */; };
+		DC0DE7482592CFE100FD75A0 /* StationRef.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE651258D858400FD75A0 /* StationRef.cc */; };
+		DC0DE7492592CFE100FD75A0 /* Units.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE637258D858400FD75A0 /* Units.cc */; };
+		DC0DE74A2592CFE100FD75A0 /* Speed.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE679258D858600FD75A0 /* Speed.hh */; };
+		DC0DE74B2592CFE100FD75A0 /* MetaField.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE673258D858500FD75A0 /* MetaField.cc */; };
+		DC0DE74C2592CFE100FD75A0 /* HarmonicsFile.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE663258D858500FD75A0 /* HarmonicsFile.cc */; };
+		DC0DE74D2592CFE100FD75A0 /* Timestamp.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE65C258D858500FD75A0 /* Timestamp.cc */; };
+		DC0DE74E2592CFE100FD75A0 /* ModeFormat.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE669258D858500FD75A0 /* ModeFormat.hh */; };
+		DC0DE74F2592CFE100FD75A0 /* rgb.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE63E258D858400FD75A0 /* rgb.hh */; };
+		DC0DE7502592CFE100FD75A0 /* Speed.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE641258D858400FD75A0 /* Speed.cc */; };
+		DC0DE7512592CFE100FD75A0 /* HarmonicsPath.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE643258D858400FD75A0 /* HarmonicsPath.hh */; };
+		DC0DE7522592CFE100FD75A0 /* Station.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE648258D858400FD75A0 /* Station.hh */; };
+		DC0DE7532592CFE100FD75A0 /* GPL in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE654258D858500FD75A0 /* GPL */; };
+		DC0DE7542592CFE100FD75A0 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE670258D858500FD75A0 /* COPYING */; };
+		DC0DE7552592CFE100FD75A0 /* PredictionValue.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE655258D858500FD75A0 /* PredictionValue.hh */; };
+		DC0DE7562592CFE100FD75A0 /* Skycal.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE64B258D858400FD75A0 /* Skycal.hh */; };
+		DC0DE7572592CFE100FD75A0 /* StationIndex.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE665258D858500FD75A0 /* StationIndex.hh */; };
+		DC0DE7582592CFE100FD75A0 /* Constituent.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE672258D858500FD75A0 /* Constituent.cc */; };
+		DC0DE7592592CFE100FD75A0 /* Angle.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE63B258D858400FD75A0 /* Angle.hh */; };
+		DC0DE75A2592CFE100FD75A0 /* CurrentBearing.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE65A258D858500FD75A0 /* CurrentBearing.hh */; };
+		DC0DE75B2592CFE100FD75A0 /* NullablePredictionValue.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE677258D858600FD75A0 /* NullablePredictionValue.cc */; };
+		DC0DE75C2592CFE100FD75A0 /* PredictionValue.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE674258D858500FD75A0 /* PredictionValue.cc */; };
+		DC0DE75D2592CFE100FD75A0 /* TideEvent.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE647258D858400FD75A0 /* TideEvent.cc */; };
+		DC0DE75E2592CFE100FD75A0 /* SubordinateStation.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE66D258D858500FD75A0 /* SubordinateStation.hh */; };
+		DC0DE75F2592CFE100FD75A0 /* Amplitude.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE650258D858400FD75A0 /* Amplitude.hh */; };
+		DC0DE7602592CFE100FD75A0 /* HarmonicsFile.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE645258D858400FD75A0 /* HarmonicsFile.hh */; };
+		DC0DE7612592CFE100FD75A0 /* Offsets.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE666258D858500FD75A0 /* Offsets.hh */; };
+		DC0DE7622592CFE100FD75A0 /* TideEventsOrganizer.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE65D258D858500FD75A0 /* TideEventsOrganizer.hh */; };
+		DC0DE7632592CFE100FD75A0 /* README in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE659258D858500FD75A0 /* README */; };
+		DC0DE7642592CFE100FD75A0 /* Timestamp.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE66A258D858500FD75A0 /* Timestamp.hh */; };
+		DC0DE7652592CFE100FD75A0 /* NullableInterval.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE675258D858500FD75A0 /* NullableInterval.cc */; };
+		DC0DE7662592CFE100FD75A0 /* Colors.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE63D258D858400FD75A0 /* Colors.hh */; };
+		DC0DE7672592CFE100FD75A0 /* Global.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE66C258D858500FD75A0 /* Global.hh */; };
+		DC0DE7682592CFE100FD75A0 /* Year.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE64A258D858400FD75A0 /* Year.cc */; };
+		DC0DE7692592CFE100FD75A0 /* Station.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE64E258D858400FD75A0 /* Station.cc */; };
+		DC0DE76A2592CFE100FD75A0 /* Constituent.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE671258D858500FD75A0 /* Constituent.hh */; };
+		DC0DE76B2592CFE100FD75A0 /* SubordinateStation.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE681258D858600FD75A0 /* SubordinateStation.cc */; };
+		DC0DE76C2592CFE100FD75A0 /* TideEventsOrganizer.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE640258D858400FD75A0 /* TideEventsOrganizer.cc */; };
+		DC0DE76D2592CFE100FD75A0 /* Skycal.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE664258D858500FD75A0 /* Skycal.cc */; };
+		DC0DE76E2592CFE100FD75A0 /* NullableInterval.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE642258D858400FD75A0 /* NullableInterval.hh */; };
+		DC0DE76F2592CFE100FD75A0 /* Global.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE64C258D858400FD75A0 /* Global.cc */; };
+		DC0DE7702592CFE100FD75A0 /* HarmonicsPath.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE646258D858400FD75A0 /* HarmonicsPath.cc */; };
+		DC0DE7712592CFE100FD75A0 /* ConstituentSet.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE66E258D858500FD75A0 /* ConstituentSet.cc */; };
+		DC0DE7722592CFE100FD75A0 /* Units.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE649258D858400FD75A0 /* Units.hh */; };
+		DC0DE7732592CFE100FD75A0 /* NullablePredictionValue.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE63A258D858400FD75A0 /* NullablePredictionValue.hh */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DC0DE5C3258D82C200FD75A0 /* ShralpTideFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ShralpTideFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC0DE5C6258D82C200FD75A0 /* ShralpTideFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShralpTideFramework.h; sourceTree = "<group>"; };
+		DC0DE5C7258D82C200FD75A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC0DE5FD258D849600FD75A0 /* harmonics-dwf-20081228-nonfree.tcd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "harmonics-dwf-20081228-nonfree.tcd"; sourceTree = "<group>"; };
+		DC0DE5FE258D849600FD75A0 /* harmonics-20040614-wxtide.tcd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "harmonics-20040614-wxtide.tcd"; sourceTree = "<group>"; };
+		DC0DE5FF258D849600FD75A0 /* harmonics-dwf-20081228-free.tcd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "harmonics-dwf-20081228-free.tcd"; sourceTree = "<group>"; };
+		DC0DE608258D84BD00FD75A0 /* NSDate+Day.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Day.m"; sourceTree = "<group>"; };
+		DC0DE609258D84BD00FD75A0 /* NSDate+Day.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Day.h"; sourceTree = "<group>"; };
+		DC0DE60F258D84DD00FD75A0 /* tcd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcd.h; sourceTree = "<group>"; };
+		DC0DE610258D84DD00FD75A0 /* bit_pack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bit_pack.c; sourceTree = "<group>"; };
+		DC0DE611258D84DD00FD75A0 /* tide_db_default.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tide_db_default.h; sourceTree = "<group>"; };
+		DC0DE612258D84DD00FD75A0 /* tide_db_header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tide_db_header.h; sourceTree = "<group>"; };
+		DC0DE613258D84DD00FD75A0 /* tide_db.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tide_db.c; sourceTree = "<group>"; };
+		DC0DE61C258D850700FD75A0 /* SDTideInterval.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTideInterval.m; sourceTree = "<group>"; };
+		DC0DE61D258D850700FD75A0 /* SDTideEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTideEvent.h; sourceTree = "<group>"; };
+		DC0DE61E258D850700FD75A0 /* SDTideEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTideEvent.m; sourceTree = "<group>"; };
+		DC0DE61F258D850700FD75A0 /* SDTide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTide.m; sourceTree = "<group>"; };
+		DC0DE620258D850700FD75A0 /* SDTide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTide.h; sourceTree = "<group>"; };
+		DC0DE621258D850700FD75A0 /* SDTideInterval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTideInterval.h; sourceTree = "<group>"; };
+		DC0DE622258D850700FD75A0 /* SDTideStationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTideStationData.h; sourceTree = "<group>"; };
+		DC0DE623258D850800FD75A0 /* SDTideFactory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SDTideFactory.mm; sourceTree = "<group>"; };
+		DC0DE624258D850800FD75A0 /* SDTideStationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTideStationData.m; sourceTree = "<group>"; };
+		DC0DE625258D850800FD75A0 /* SDTideFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTideFactory.h; sourceTree = "<group>"; };
+		DC0DE637258D858400FD75A0 /* Units.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Units.cc; sourceTree = "<group>"; };
+		DC0DE638258D858400FD75A0 /* Offsets.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Offsets.cc; sourceTree = "<group>"; };
+		DC0DE639258D858400FD75A0 /* Configurable.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Configurable.hh; sourceTree = "<group>"; };
+		DC0DE63A258D858400FD75A0 /* NullablePredictionValue.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NullablePredictionValue.hh; sourceTree = "<group>"; };
+		DC0DE63B258D858400FD75A0 /* Angle.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Angle.hh; sourceTree = "<group>"; };
+		DC0DE63C258D858400FD75A0 /* MetaField.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MetaField.hh; sourceTree = "<group>"; };
+		DC0DE63D258D858400FD75A0 /* Colors.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Colors.hh; sourceTree = "<group>"; };
+		DC0DE63E258D858400FD75A0 /* rgb.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rgb.hh; sourceTree = "<group>"; };
+		DC0DE63F258D858400FD75A0 /* StationIndex.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StationIndex.cc; sourceTree = "<group>"; };
+		DC0DE640258D858400FD75A0 /* TideEventsOrganizer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TideEventsOrganizer.cc; sourceTree = "<group>"; };
+		DC0DE641258D858400FD75A0 /* Speed.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Speed.cc; sourceTree = "<group>"; };
+		DC0DE642258D858400FD75A0 /* NullableInterval.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NullableInterval.hh; sourceTree = "<group>"; };
+		DC0DE643258D858400FD75A0 /* HarmonicsPath.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HarmonicsPath.hh; sourceTree = "<group>"; };
+		DC0DE644258D858400FD75A0 /* Nullable.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Nullable.hh; sourceTree = "<group>"; };
+		DC0DE645258D858400FD75A0 /* HarmonicsFile.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HarmonicsFile.hh; sourceTree = "<group>"; };
+		DC0DE646258D858400FD75A0 /* HarmonicsPath.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HarmonicsPath.cc; sourceTree = "<group>"; };
+		DC0DE647258D858400FD75A0 /* TideEvent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TideEvent.cc; sourceTree = "<group>"; };
+		DC0DE648258D858400FD75A0 /* Station.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Station.hh; sourceTree = "<group>"; };
+		DC0DE649258D858400FD75A0 /* Units.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Units.hh; sourceTree = "<group>"; };
+		DC0DE64A258D858400FD75A0 /* Year.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Year.cc; sourceTree = "<group>"; };
+		DC0DE64B258D858400FD75A0 /* Skycal.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Skycal.hh; sourceTree = "<group>"; };
+		DC0DE64C258D858400FD75A0 /* Global.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Global.cc; sourceTree = "<group>"; };
+		DC0DE64D258D858400FD75A0 /* Dstr.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Dstr.cc; sourceTree = "<group>"; };
+		DC0DE64E258D858400FD75A0 /* Station.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Station.cc; sourceTree = "<group>"; };
+		DC0DE64F258D858400FD75A0 /* Year.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Year.hh; sourceTree = "<group>"; };
+		DC0DE650258D858400FD75A0 /* Amplitude.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Amplitude.hh; sourceTree = "<group>"; };
+		DC0DE651258D858400FD75A0 /* StationRef.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StationRef.cc; sourceTree = "<group>"; };
+		DC0DE652258D858400FD75A0 /* Date.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Date.hh; sourceTree = "<group>"; };
+		DC0DE653258D858400FD75A0 /* Errors.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Errors.hh; sourceTree = "<group>"; };
+		DC0DE654258D858500FD75A0 /* GPL */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GPL; sourceTree = "<group>"; };
+		DC0DE655258D858500FD75A0 /* PredictionValue.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PredictionValue.hh; sourceTree = "<group>"; };
+		DC0DE656258D858500FD75A0 /* Settings.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Settings.hh; sourceTree = "<group>"; };
+		DC0DE657258D858500FD75A0 /* Dstr.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Dstr.hh; sourceTree = "<group>"; };
+		DC0DE658258D858500FD75A0 /* Amplitude.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Amplitude.cc; sourceTree = "<group>"; };
+		DC0DE659258D858500FD75A0 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		DC0DE65A258D858500FD75A0 /* CurrentBearing.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CurrentBearing.hh; sourceTree = "<group>"; };
+		DC0DE65B258D858500FD75A0 /* CurrentBearing.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CurrentBearing.cc; sourceTree = "<group>"; };
+		DC0DE65C258D858500FD75A0 /* Timestamp.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timestamp.cc; sourceTree = "<group>"; };
+		DC0DE65D258D858500FD75A0 /* TideEventsOrganizer.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TideEventsOrganizer.hh; sourceTree = "<group>"; };
+		DC0DE65E258D858500FD75A0 /* config.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = config.hh; sourceTree = "<group>"; };
+		DC0DE65F258D858500FD75A0 /* StationRef.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StationRef.hh; sourceTree = "<group>"; };
+		DC0DE660258D858500FD75A0 /* Coordinates.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Coordinates.cc; sourceTree = "<group>"; };
+		DC0DE661258D858500FD75A0 /* ConstituentSet.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ConstituentSet.hh; sourceTree = "<group>"; };
+		DC0DE662258D858500FD75A0 /* SafeVector.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SafeVector.hh; sourceTree = "<group>"; };
+		DC0DE663258D858500FD75A0 /* HarmonicsFile.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HarmonicsFile.cc; sourceTree = "<group>"; };
+		DC0DE664258D858500FD75A0 /* Skycal.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Skycal.cc; sourceTree = "<group>"; };
+		DC0DE665258D858500FD75A0 /* StationIndex.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StationIndex.hh; sourceTree = "<group>"; };
+		DC0DE666258D858500FD75A0 /* Offsets.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Offsets.hh; sourceTree = "<group>"; };
+		DC0DE667258D858500FD75A0 /* common.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = common.hh; sourceTree = "<group>"; };
+		DC0DE668258D858500FD75A0 /* ZoneIndex.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZoneIndex.cc; sourceTree = "<group>"; };
+		DC0DE669258D858500FD75A0 /* ModeFormat.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ModeFormat.hh; sourceTree = "<group>"; };
+		DC0DE66A258D858500FD75A0 /* Timestamp.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Timestamp.hh; sourceTree = "<group>"; };
+		DC0DE66B258D858500FD75A0 /* Colors.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Colors.cc; sourceTree = "<group>"; };
+		DC0DE66C258D858500FD75A0 /* Global.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Global.hh; sourceTree = "<group>"; };
+		DC0DE66D258D858500FD75A0 /* SubordinateStation.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SubordinateStation.hh; sourceTree = "<group>"; };
+		DC0DE66E258D858500FD75A0 /* ConstituentSet.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConstituentSet.cc; sourceTree = "<group>"; };
+		DC0DE66F258D858500FD75A0 /* Nullable.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Nullable.cc; sourceTree = "<group>"; };
+		DC0DE670258D858500FD75A0 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
+		DC0DE671258D858500FD75A0 /* Constituent.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Constituent.hh; sourceTree = "<group>"; };
+		DC0DE672258D858500FD75A0 /* Constituent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Constituent.cc; sourceTree = "<group>"; };
+		DC0DE673258D858500FD75A0 /* MetaField.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MetaField.cc; sourceTree = "<group>"; };
+		DC0DE674258D858500FD75A0 /* PredictionValue.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PredictionValue.cc; sourceTree = "<group>"; };
+		DC0DE675258D858500FD75A0 /* NullableInterval.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NullableInterval.cc; sourceTree = "<group>"; };
+		DC0DE676258D858500FD75A0 /* BetterMap.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BetterMap.hh; sourceTree = "<group>"; };
+		DC0DE677258D858600FD75A0 /* NullablePredictionValue.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NullablePredictionValue.cc; sourceTree = "<group>"; };
+		DC0DE678258D858600FD75A0 /* Interval.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Interval.hh; sourceTree = "<group>"; };
+		DC0DE679258D858600FD75A0 /* Speed.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Speed.hh; sourceTree = "<group>"; };
+		DC0DE67A258D858600FD75A0 /* Settings.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Settings.cc; sourceTree = "<group>"; };
+		DC0DE67B258D858600FD75A0 /* Angle.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Angle.cc; sourceTree = "<group>"; };
+		DC0DE67C258D858600FD75A0 /* TideEvent.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TideEvent.hh; sourceTree = "<group>"; };
+		DC0DE67D258D858600FD75A0 /* Interval.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Interval.cc; sourceTree = "<group>"; };
+		DC0DE67E258D858600FD75A0 /* Date.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Date.cc; sourceTree = "<group>"; };
+		DC0DE67F258D858600FD75A0 /* ZoneIndex.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ZoneIndex.hh; sourceTree = "<group>"; };
+		DC0DE680258D858600FD75A0 /* Coordinates.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Coordinates.hh; sourceTree = "<group>"; };
+		DC0DE681258D858600FD75A0 /* SubordinateStation.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SubordinateStation.cc; sourceTree = "<group>"; };
+		DC0DE682258D858600FD75A0 /* tide.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tide.cc; sourceTree = "<group>"; };
+		DC0DE6D5258D877A00FD75A0 /* ShralpTide2_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShralpTide2_Prefix.pch; sourceTree = "<group>"; };
+		DC0DE7012592CF5600FD75A0 /* WatchTideFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WatchTideFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC0DE7032592CF5600FD75A0 /* WatchTideFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WatchTideFramework.h; sourceTree = "<group>"; };
+		DC0DE7042592CF5600FD75A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DC0DE5C0258D82C200FD75A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC0DE6FE2592CF5600FD75A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DC0DE5B9258D82C200FD75A0 = {
+			isa = PBXGroup;
+			children = (
+				DC0DE6D4258D874000FD75A0 /* Shared */,
+				DC0DE636258D856900FD75A0 /* XTide */,
+				DC0DE5C5258D82C200FD75A0 /* ShralpTideFramework */,
+				DC0DE7022592CF5600FD75A0 /* WatchTideFramework */,
+				DC0DE5C4258D82C200FD75A0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DC0DE5C4258D82C200FD75A0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DC0DE5C3258D82C200FD75A0 /* ShralpTideFramework.framework */,
+				DC0DE7012592CF5600FD75A0 /* WatchTideFramework.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DC0DE5C5258D82C200FD75A0 /* ShralpTideFramework */ = {
+			isa = PBXGroup;
+			children = (
+				DC0DE5C6258D82C200FD75A0 /* ShralpTideFramework.h */,
+				DC0DE5C7258D82C200FD75A0 /* Info.plist */,
+			);
+			path = ShralpTideFramework;
+			sourceTree = "<group>";
+		};
+		DC0DE5FC258D847600FD75A0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DC0DE5FE258D849600FD75A0 /* harmonics-20040614-wxtide.tcd */,
+				DC0DE5FF258D849600FD75A0 /* harmonics-dwf-20081228-free.tcd */,
+				DC0DE5FD258D849600FD75A0 /* harmonics-dwf-20081228-nonfree.tcd */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DC0DE607258D84A300FD75A0 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				DC0DE609258D84BD00FD75A0 /* NSDate+Day.h */,
+				DC0DE608258D84BD00FD75A0 /* NSDate+Day.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		DC0DE60E258D84D300FD75A0 /* libtcd */ = {
+			isa = PBXGroup;
+			children = (
+				DC0DE610258D84DD00FD75A0 /* bit_pack.c */,
+				DC0DE60F258D84DD00FD75A0 /* tcd.h */,
+				DC0DE611258D84DD00FD75A0 /* tide_db_default.h */,
+				DC0DE612258D84DD00FD75A0 /* tide_db_header.h */,
+				DC0DE613258D84DD00FD75A0 /* tide_db.c */,
+			);
+			path = libtcd;
+			sourceTree = "<group>";
+		};
+		DC0DE636258D856900FD75A0 /* XTide */ = {
+			isa = PBXGroup;
+			children = (
+				DC0DE658258D858500FD75A0 /* Amplitude.cc */,
+				DC0DE650258D858400FD75A0 /* Amplitude.hh */,
+				DC0DE67B258D858600FD75A0 /* Angle.cc */,
+				DC0DE63B258D858400FD75A0 /* Angle.hh */,
+				DC0DE676258D858500FD75A0 /* BetterMap.hh */,
+				DC0DE66B258D858500FD75A0 /* Colors.cc */,
+				DC0DE63D258D858400FD75A0 /* Colors.hh */,
+				DC0DE667258D858500FD75A0 /* common.hh */,
+				DC0DE65E258D858500FD75A0 /* config.hh */,
+				DC0DE639258D858400FD75A0 /* Configurable.hh */,
+				DC0DE672258D858500FD75A0 /* Constituent.cc */,
+				DC0DE671258D858500FD75A0 /* Constituent.hh */,
+				DC0DE66E258D858500FD75A0 /* ConstituentSet.cc */,
+				DC0DE661258D858500FD75A0 /* ConstituentSet.hh */,
+				DC0DE660258D858500FD75A0 /* Coordinates.cc */,
+				DC0DE680258D858600FD75A0 /* Coordinates.hh */,
+				DC0DE670258D858500FD75A0 /* COPYING */,
+				DC0DE65B258D858500FD75A0 /* CurrentBearing.cc */,
+				DC0DE65A258D858500FD75A0 /* CurrentBearing.hh */,
+				DC0DE67E258D858600FD75A0 /* Date.cc */,
+				DC0DE652258D858400FD75A0 /* Date.hh */,
+				DC0DE64D258D858400FD75A0 /* Dstr.cc */,
+				DC0DE657258D858500FD75A0 /* Dstr.hh */,
+				DC0DE653258D858400FD75A0 /* Errors.hh */,
+				DC0DE64C258D858400FD75A0 /* Global.cc */,
+				DC0DE66C258D858500FD75A0 /* Global.hh */,
+				DC0DE654258D858500FD75A0 /* GPL */,
+				DC0DE663258D858500FD75A0 /* HarmonicsFile.cc */,
+				DC0DE645258D858400FD75A0 /* HarmonicsFile.hh */,
+				DC0DE646258D858400FD75A0 /* HarmonicsPath.cc */,
+				DC0DE643258D858400FD75A0 /* HarmonicsPath.hh */,
+				DC0DE67D258D858600FD75A0 /* Interval.cc */,
+				DC0DE678258D858600FD75A0 /* Interval.hh */,
+				DC0DE673258D858500FD75A0 /* MetaField.cc */,
+				DC0DE63C258D858400FD75A0 /* MetaField.hh */,
+				DC0DE669258D858500FD75A0 /* ModeFormat.hh */,
+				DC0DE66F258D858500FD75A0 /* Nullable.cc */,
+				DC0DE644258D858400FD75A0 /* Nullable.hh */,
+				DC0DE675258D858500FD75A0 /* NullableInterval.cc */,
+				DC0DE642258D858400FD75A0 /* NullableInterval.hh */,
+				DC0DE677258D858600FD75A0 /* NullablePredictionValue.cc */,
+				DC0DE63A258D858400FD75A0 /* NullablePredictionValue.hh */,
+				DC0DE638258D858400FD75A0 /* Offsets.cc */,
+				DC0DE666258D858500FD75A0 /* Offsets.hh */,
+				DC0DE674258D858500FD75A0 /* PredictionValue.cc */,
+				DC0DE655258D858500FD75A0 /* PredictionValue.hh */,
+				DC0DE659258D858500FD75A0 /* README */,
+				DC0DE63E258D858400FD75A0 /* rgb.hh */,
+				DC0DE662258D858500FD75A0 /* SafeVector.hh */,
+				DC0DE67A258D858600FD75A0 /* Settings.cc */,
+				DC0DE656258D858500FD75A0 /* Settings.hh */,
+				DC0DE664258D858500FD75A0 /* Skycal.cc */,
+				DC0DE64B258D858400FD75A0 /* Skycal.hh */,
+				DC0DE641258D858400FD75A0 /* Speed.cc */,
+				DC0DE679258D858600FD75A0 /* Speed.hh */,
+				DC0DE64E258D858400FD75A0 /* Station.cc */,
+				DC0DE648258D858400FD75A0 /* Station.hh */,
+				DC0DE63F258D858400FD75A0 /* StationIndex.cc */,
+				DC0DE665258D858500FD75A0 /* StationIndex.hh */,
+				DC0DE651258D858400FD75A0 /* StationRef.cc */,
+				DC0DE65F258D858500FD75A0 /* StationRef.hh */,
+				DC0DE681258D858600FD75A0 /* SubordinateStation.cc */,
+				DC0DE66D258D858500FD75A0 /* SubordinateStation.hh */,
+				DC0DE682258D858600FD75A0 /* tide.cc */,
+				DC0DE647258D858400FD75A0 /* TideEvent.cc */,
+				DC0DE67C258D858600FD75A0 /* TideEvent.hh */,
+				DC0DE640258D858400FD75A0 /* TideEventsOrganizer.cc */,
+				DC0DE65D258D858500FD75A0 /* TideEventsOrganizer.hh */,
+				DC0DE65C258D858500FD75A0 /* Timestamp.cc */,
+				DC0DE66A258D858500FD75A0 /* Timestamp.hh */,
+				DC0DE637258D858400FD75A0 /* Units.cc */,
+				DC0DE649258D858400FD75A0 /* Units.hh */,
+				DC0DE64A258D858400FD75A0 /* Year.cc */,
+				DC0DE64F258D858400FD75A0 /* Year.hh */,
+				DC0DE668258D858500FD75A0 /* ZoneIndex.cc */,
+				DC0DE67F258D858600FD75A0 /* ZoneIndex.hh */,
+			);
+			path = XTide;
+			sourceTree = "<group>";
+		};
+		DC0DE6D4258D874000FD75A0 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				DC0DE60E258D84D300FD75A0 /* libtcd */,
+				DC0DE607258D84A300FD75A0 /* Categories */,
+				DC0DE5FC258D847600FD75A0 /* Resources */,
+				DC0DE620258D850700FD75A0 /* SDTide.h */,
+				DC0DE61F258D850700FD75A0 /* SDTide.m */,
+				DC0DE61D258D850700FD75A0 /* SDTideEvent.h */,
+				DC0DE61E258D850700FD75A0 /* SDTideEvent.m */,
+				DC0DE625258D850800FD75A0 /* SDTideFactory.h */,
+				DC0DE623258D850800FD75A0 /* SDTideFactory.mm */,
+				DC0DE621258D850700FD75A0 /* SDTideInterval.h */,
+				DC0DE61C258D850700FD75A0 /* SDTideInterval.m */,
+				DC0DE622258D850700FD75A0 /* SDTideStationData.h */,
+				DC0DE624258D850800FD75A0 /* SDTideStationData.m */,
+				DC0DE6D5258D877A00FD75A0 /* ShralpTide2_Prefix.pch */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		DC0DE7022592CF5600FD75A0 /* WatchTideFramework */ = {
+			isa = PBXGroup;
+			children = (
+				DC0DE7032592CF5600FD75A0 /* WatchTideFramework.h */,
+				DC0DE7042592CF5600FD75A0 /* Info.plist */,
+			);
+			path = WatchTideFramework;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		DC0DE5BE258D82C200FD75A0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC0DE62F258D850800FD75A0 /* SDTideFactory.h in Headers */,
+				DC0DE6AA258D858600FD75A0 /* config.hh in Headers */,
+				DC0DE62B258D850800FD75A0 /* SDTideInterval.h in Headers */,
+				DC0DE62C258D850800FD75A0 /* SDTideStationData.h in Headers */,
+				DC0DE62A258D850800FD75A0 /* SDTide.h in Headers */,
+				DC0DE627258D850800FD75A0 /* SDTideEvent.h in Headers */,
+				DC0DE6A9258D858600FD75A0 /* TideEventsOrganizer.hh in Headers */,
+				DC0DE6C8258D858600FD75A0 /* TideEvent.hh in Headers */,
+				DC0DE686258D858600FD75A0 /* NullablePredictionValue.hh in Headers */,
+				DC0DE6C4258D858600FD75A0 /* Interval.hh in Headers */,
+				DC0DE6BD258D858600FD75A0 /* Constituent.hh in Headers */,
+				DC0DE6A1258D858600FD75A0 /* PredictionValue.hh in Headers */,
+				DC0DE697258D858600FD75A0 /* Skycal.hh in Headers */,
+				DC0DE614258D84DD00FD75A0 /* tcd.h in Headers */,
+				DC0DE6B6258D858600FD75A0 /* Timestamp.hh in Headers */,
+				DC0DE6C5258D858600FD75A0 /* Speed.hh in Headers */,
+				DC0DE6C2258D858600FD75A0 /* BetterMap.hh in Headers */,
+				DC0DE69B258D858600FD75A0 /* Year.hh in Headers */,
+				DC0DE6A6258D858600FD75A0 /* CurrentBearing.hh in Headers */,
+				DC0DE695258D858600FD75A0 /* Units.hh in Headers */,
+				DC0DE617258D84DD00FD75A0 /* tide_db_header.h in Headers */,
+				DC0DE6CB258D858600FD75A0 /* ZoneIndex.hh in Headers */,
+				DC0DE691258D858600FD75A0 /* HarmonicsFile.hh in Headers */,
+				DC0DE69C258D858600FD75A0 /* Amplitude.hh in Headers */,
+				DC0DE69E258D858600FD75A0 /* Date.hh in Headers */,
+				DC0DE690258D858600FD75A0 /* Nullable.hh in Headers */,
+				DC0DE6AE258D858600FD75A0 /* SafeVector.hh in Headers */,
+				DC0DE6B1258D858600FD75A0 /* StationIndex.hh in Headers */,
+				DC0DE687258D858600FD75A0 /* Angle.hh in Headers */,
+				DC0DE6A2258D858600FD75A0 /* Settings.hh in Headers */,
+				DC0DE688258D858600FD75A0 /* MetaField.hh in Headers */,
+				DC0DE6B2258D858600FD75A0 /* Offsets.hh in Headers */,
+				DC0DE6D6258D877A00FD75A0 /* ShralpTide2_Prefix.pch in Headers */,
+				DC0DE6B5258D858600FD75A0 /* ModeFormat.hh in Headers */,
+				DC0DE689258D858600FD75A0 /* Colors.hh in Headers */,
+				DC0DE694258D858600FD75A0 /* Station.hh in Headers */,
+				DC0DE60B258D84BD00FD75A0 /* NSDate+Day.h in Headers */,
+				DC0DE616258D84DD00FD75A0 /* tide_db_default.h in Headers */,
+				DC0DE6AD258D858600FD75A0 /* ConstituentSet.hh in Headers */,
+				DC0DE69F258D858600FD75A0 /* Errors.hh in Headers */,
+				DC0DE6A3258D858600FD75A0 /* Dstr.hh in Headers */,
+				DC0DE6B8258D858600FD75A0 /* Global.hh in Headers */,
+				DC0DE6B9258D858600FD75A0 /* SubordinateStation.hh in Headers */,
+				DC0DE68F258D858600FD75A0 /* HarmonicsPath.hh in Headers */,
+				DC0DE5D4258D82C200FD75A0 /* ShralpTideFramework.h in Headers */,
+				DC0DE68E258D858600FD75A0 /* NullableInterval.hh in Headers */,
+				DC0DE685258D858600FD75A0 /* Configurable.hh in Headers */,
+				DC0DE6B3258D858600FD75A0 /* common.hh in Headers */,
+				DC0DE6CC258D858600FD75A0 /* Coordinates.hh in Headers */,
+				DC0DE6AB258D858600FD75A0 /* StationRef.hh in Headers */,
+				DC0DE68A258D858600FD75A0 /* rgb.hh in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC0DE6FC2592CF5600FD75A0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC0DE72F2592CFE100FD75A0 /* Errors.hh in Headers */,
+				DC0DE7512592CFE100FD75A0 /* HarmonicsPath.hh in Headers */,
+				DC0DE7522592CFE100FD75A0 /* Station.hh in Headers */,
+				DC0DE7592592CFE100FD75A0 /* Angle.hh in Headers */,
+				DC0DE75A2592CFE100FD75A0 /* CurrentBearing.hh in Headers */,
+				DC0DE7352592CFE100FD75A0 /* MetaField.hh in Headers */,
+				DC0DE7392592CFE100FD75A0 /* TideEvent.hh in Headers */,
+				DC0DE7292592CFE100FD75A0 /* common.hh in Headers */,
+				DC0DE7362592CFE100FD75A0 /* Nullable.hh in Headers */,
+				DC0DE7222592CFD600FD75A0 /* SDTide.h in Headers */,
+				DC0DE74E2592CFE100FD75A0 /* ModeFormat.hh in Headers */,
+				DC0DE7722592CFE100FD75A0 /* Units.hh in Headers */,
+				DC0DE7402592CFE100FD75A0 /* Year.hh in Headers */,
+				DC0DE76E2592CFE100FD75A0 /* NullableInterval.hh in Headers */,
+				DC0DE72E2592CFE100FD75A0 /* Dstr.hh in Headers */,
+				DC0DE71F2592CFD600FD75A0 /* SDTideInterval.h in Headers */,
+				DC0DE70D2592CFC100FD75A0 /* tcd.h in Headers */,
+				DC0DE7662592CFE100FD75A0 /* Colors.hh in Headers */,
+				DC0DE7212592CFD600FD75A0 /* SDTideFactory.h in Headers */,
+				DC0DE74A2592CFE100FD75A0 /* Speed.hh in Headers */,
+				DC0DE7242592CFD600FD75A0 /* SDTideEvent.h in Headers */,
+				DC0DE7552592CFE100FD75A0 /* PredictionValue.hh in Headers */,
+				DC0DE7642592CFE100FD75A0 /* Timestamp.hh in Headers */,
+				DC0DE7372592CFE100FD75A0 /* ZoneIndex.hh in Headers */,
+				DC0DE7622592CFE100FD75A0 /* TideEventsOrganizer.hh in Headers */,
+				DC0DE7612592CFE100FD75A0 /* Offsets.hh in Headers */,
+				DC0DE7572592CFE100FD75A0 /* StationIndex.hh in Headers */,
+				DC0DE75E2592CFE100FD75A0 /* SubordinateStation.hh in Headers */,
+				DC0DE72B2592CFE100FD75A0 /* StationRef.hh in Headers */,
+				DC0DE73D2592CFE100FD75A0 /* config.hh in Headers */,
+				DC0DE76A2592CFE100FD75A0 /* Constituent.hh in Headers */,
+				DC0DE7732592CFE100FD75A0 /* NullablePredictionValue.hh in Headers */,
+				DC0DE7052592CF5600FD75A0 /* WatchTideFramework.h in Headers */,
+				DC0DE7342592CFE100FD75A0 /* Interval.hh in Headers */,
+				DC0DE7132592CFC800FD75A0 /* NSDate+Day.h in Headers */,
+				DC0DE7452592CFE100FD75A0 /* BetterMap.hh in Headers */,
+				DC0DE72D2592CFE100FD75A0 /* Date.hh in Headers */,
+				DC0DE73E2592CFE100FD75A0 /* Configurable.hh in Headers */,
+				DC0DE7562592CFE100FD75A0 /* Skycal.hh in Headers */,
+				DC0DE72C2592CFE100FD75A0 /* Coordinates.hh in Headers */,
+				DC0DE70F2592CFC100FD75A0 /* tide_db_default.h in Headers */,
+				DC0DE7422592CFE100FD75A0 /* Settings.hh in Headers */,
+				DC0DE7602592CFE100FD75A0 /* HarmonicsFile.hh in Headers */,
+				DC0DE73A2592CFE100FD75A0 /* ConstituentSet.hh in Headers */,
+				DC0DE75F2592CFE100FD75A0 /* Amplitude.hh in Headers */,
+				DC0DE71D2592CFD600FD75A0 /* SDTideStationData.h in Headers */,
+				DC0DE7232592CFD600FD75A0 /* ShralpTide2_Prefix.pch in Headers */,
+				DC0DE7672592CFE100FD75A0 /* Global.hh in Headers */,
+				DC0DE70B2592CFC100FD75A0 /* tide_db_header.h in Headers */,
+				DC0DE7332592CFE100FD75A0 /* SafeVector.hh in Headers */,
+				DC0DE74F2592CFE100FD75A0 /* rgb.hh in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		DC0DE5C2258D82C200FD75A0 /* ShralpTideFramework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC0DE5D7258D82C200FD75A0 /* Build configuration list for PBXNativeTarget "ShralpTideFramework" */;
+			buildPhases = (
+				DC0DE5BE258D82C200FD75A0 /* Headers */,
+				DC0DE5BF258D82C200FD75A0 /* Sources */,
+				DC0DE5C0258D82C200FD75A0 /* Frameworks */,
+				DC0DE5C1258D82C200FD75A0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShralpTideFramework;
+			productName = ShralpTideFramework;
+			productReference = DC0DE5C3258D82C200FD75A0 /* ShralpTideFramework.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		DC0DE7002592CF5600FD75A0 /* WatchTideFramework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC0DE7062592CF5600FD75A0 /* Build configuration list for PBXNativeTarget "WatchTideFramework" */;
+			buildPhases = (
+				DC0DE6FC2592CF5600FD75A0 /* Headers */,
+				DC0DE6FD2592CF5600FD75A0 /* Sources */,
+				DC0DE6FE2592CF5600FD75A0 /* Frameworks */,
+				DC0DE6FF2592CF5600FD75A0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WatchTideFramework;
+			productName = WatchTideFramework;
+			productReference = DC0DE7012592CF5600FD75A0 /* WatchTideFramework.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DC0DE5BA258D82C200FD75A0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					DC0DE5C2258D82C200FD75A0 = {
+						CreatedOnToolsVersion = 12.3;
+					};
+					DC0DE7002592CF5600FD75A0 = {
+						CreatedOnToolsVersion = 12.3;
+					};
+				};
+			};
+			buildConfigurationList = DC0DE5BD258D82C200FD75A0 /* Build configuration list for PBXProject "ShralpTideFramework" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DC0DE5B9258D82C200FD75A0;
+			productRefGroup = DC0DE5C4258D82C200FD75A0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DC0DE5C2258D82C200FD75A0 /* ShralpTideFramework */,
+				DC0DE7002592CF5600FD75A0 /* WatchTideFramework */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DC0DE5C1258D82C200FD75A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC0DE6BC258D858600FD75A0 /* COPYING in Resources */,
+				DC0DE6A5258D858600FD75A0 /* README in Resources */,
+				DC0DE602258D849600FD75A0 /* harmonics-dwf-20081228-free.tcd in Resources */,
+				DC0DE601258D849600FD75A0 /* harmonics-20040614-wxtide.tcd in Resources */,
+				DC0DE6A0258D858600FD75A0 /* GPL in Resources */,
+				DC0DE600258D849600FD75A0 /* harmonics-dwf-20081228-nonfree.tcd in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC0DE6FF2592CF5600FD75A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC0DE7632592CFE100FD75A0 /* README in Resources */,
+				DC0DE7172592CFD100FD75A0 /* harmonics-20040614-wxtide.tcd in Resources */,
+				DC0DE7162592CFD100FD75A0 /* harmonics-dwf-20081228-free.tcd in Resources */,
+				DC0DE7532592CFE100FD75A0 /* GPL in Resources */,
+				DC0DE7542592CFE100FD75A0 /* COPYING in Resources */,
+				DC0DE7182592CFD100FD75A0 /* harmonics-dwf-20081228-nonfree.tcd in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DC0DE5BF258D82C200FD75A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC0DE615258D84DD00FD75A0 /* bit_pack.c in Sources */,
+				DC0DE626258D850800FD75A0 /* SDTideInterval.m in Sources */,
+				DC0DE684258D858600FD75A0 /* Offsets.cc in Sources */,
+				DC0DE6B7258D858600FD75A0 /* Colors.cc in Sources */,
+				DC0DE6C9258D858600FD75A0 /* Interval.cc in Sources */,
+				DC0DE6C6258D858600FD75A0 /* Settings.cc in Sources */,
+				DC0DE683258D858600FD75A0 /* Units.cc in Sources */,
+				DC0DE6BE258D858600FD75A0 /* Constituent.cc in Sources */,
+				DC0DE69D258D858600FD75A0 /* StationRef.cc in Sources */,
+				DC0DE60A258D84BD00FD75A0 /* NSDate+Day.m in Sources */,
+				DC0DE693258D858600FD75A0 /* TideEvent.cc in Sources */,
+				DC0DE6CD258D858600FD75A0 /* SubordinateStation.cc in Sources */,
+				DC0DE6C3258D858600FD75A0 /* NullablePredictionValue.cc in Sources */,
+				DC0DE68B258D858600FD75A0 /* StationIndex.cc in Sources */,
+				DC0DE6C7258D858600FD75A0 /* Angle.cc in Sources */,
+				DC0DE6BA258D858600FD75A0 /* ConstituentSet.cc in Sources */,
+				DC0DE6BF258D858600FD75A0 /* MetaField.cc in Sources */,
+				DC0DE68C258D858600FD75A0 /* TideEventsOrganizer.cc in Sources */,
+				DC0DE62D258D850800FD75A0 /* SDTideFactory.mm in Sources */,
+				DC0DE6BB258D858600FD75A0 /* Nullable.cc in Sources */,
+				DC0DE6C1258D858600FD75A0 /* NullableInterval.cc in Sources */,
+				DC0DE6A7258D858600FD75A0 /* CurrentBearing.cc in Sources */,
+				DC0DE6AF258D858600FD75A0 /* HarmonicsFile.cc in Sources */,
+				DC0DE698258D858600FD75A0 /* Global.cc in Sources */,
+				DC0DE68D258D858600FD75A0 /* Speed.cc in Sources */,
+				DC0DE6C0258D858600FD75A0 /* PredictionValue.cc in Sources */,
+				DC0DE628258D850800FD75A0 /* SDTideEvent.m in Sources */,
+				DC0DE699258D858600FD75A0 /* Dstr.cc in Sources */,
+				DC0DE6CA258D858600FD75A0 /* Date.cc in Sources */,
+				DC0DE629258D850800FD75A0 /* SDTide.m in Sources */,
+				DC0DE6A4258D858600FD75A0 /* Amplitude.cc in Sources */,
+				DC0DE6CE258D858600FD75A0 /* tide.cc in Sources */,
+				DC0DE6A8258D858600FD75A0 /* Timestamp.cc in Sources */,
+				DC0DE696258D858600FD75A0 /* Year.cc in Sources */,
+				DC0DE618258D84DD00FD75A0 /* tide_db.c in Sources */,
+				DC0DE62E258D850800FD75A0 /* SDTideStationData.m in Sources */,
+				DC0DE6AC258D858600FD75A0 /* Coordinates.cc in Sources */,
+				DC0DE69A258D858600FD75A0 /* Station.cc in Sources */,
+				DC0DE6B0258D858600FD75A0 /* Skycal.cc in Sources */,
+				DC0DE692258D858600FD75A0 /* HarmonicsPath.cc in Sources */,
+				DC0DE6B4258D858600FD75A0 /* ZoneIndex.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC0DE6FD2592CF5600FD75A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC0DE73C2592CFE100FD75A0 /* CurrentBearing.cc in Sources */,
+				DC0DE74B2592CFE100FD75A0 /* MetaField.cc in Sources */,
+				DC0DE70E2592CFC100FD75A0 /* bit_pack.c in Sources */,
+				DC0DE7472592CFE100FD75A0 /* Dstr.cc in Sources */,
+				DC0DE7682592CFE100FD75A0 /* Year.cc in Sources */,
+				DC0DE74D2592CFE100FD75A0 /* Timestamp.cc in Sources */,
+				DC0DE7502592CFE100FD75A0 /* Speed.cc in Sources */,
+				DC0DE7442592CFE100FD75A0 /* Nullable.cc in Sources */,
+				DC0DE7582592CFE100FD75A0 /* Constituent.cc in Sources */,
+				DC0DE7712592CFE100FD75A0 /* ConstituentSet.cc in Sources */,
+				DC0DE75D2592CFE100FD75A0 /* TideEvent.cc in Sources */,
+				DC0DE7382592CFE100FD75A0 /* Amplitude.cc in Sources */,
+				DC0DE7432592CFE100FD75A0 /* Offsets.cc in Sources */,
+				DC0DE7122592CFC800FD75A0 /* NSDate+Day.m in Sources */,
+				DC0DE7462592CFE100FD75A0 /* Coordinates.cc in Sources */,
+				DC0DE76D2592CFE100FD75A0 /* Skycal.cc in Sources */,
+				DC0DE7652592CFE100FD75A0 /* NullableInterval.cc in Sources */,
+				DC0DE76B2592CFE100FD75A0 /* SubordinateStation.cc in Sources */,
+				DC0DE7412592CFE100FD75A0 /* Settings.cc in Sources */,
+				DC0DE76C2592CFE100FD75A0 /* TideEventsOrganizer.cc in Sources */,
+				DC0DE70C2592CFC100FD75A0 /* tide_db.c in Sources */,
+				DC0DE75C2592CFE100FD75A0 /* PredictionValue.cc in Sources */,
+				DC0DE73F2592CFE100FD75A0 /* StationIndex.cc in Sources */,
+				DC0DE74C2592CFE100FD75A0 /* HarmonicsFile.cc in Sources */,
+				DC0DE71C2592CFD600FD75A0 /* SDTideInterval.m in Sources */,
+				DC0DE71E2592CFD600FD75A0 /* SDTide.m in Sources */,
+				DC0DE71B2592CFD600FD75A0 /* SDTideStationData.m in Sources */,
+				DC0DE75B2592CFE100FD75A0 /* NullablePredictionValue.cc in Sources */,
+				DC0DE7202592CFD600FD75A0 /* SDTideFactory.mm in Sources */,
+				DC0DE7322592CFE100FD75A0 /* Interval.cc in Sources */,
+				DC0DE7702592CFE100FD75A0 /* HarmonicsPath.cc in Sources */,
+				DC0DE7282592CFE100FD75A0 /* Colors.cc in Sources */,
+				DC0DE7312592CFE100FD75A0 /* ZoneIndex.cc in Sources */,
+				DC0DE7692592CFE100FD75A0 /* Station.cc in Sources */,
+				DC0DE7252592CFD600FD75A0 /* SDTideEvent.m in Sources */,
+				DC0DE7482592CFE100FD75A0 /* StationRef.cc in Sources */,
+				DC0DE73B2592CFE100FD75A0 /* tide.cc in Sources */,
+				DC0DE7302592CFE100FD75A0 /* Angle.cc in Sources */,
+				DC0DE72A2592CFE100FD75A0 /* Date.cc in Sources */,
+				DC0DE76F2592CFE100FD75A0 /* Global.cc in Sources */,
+				DC0DE7492592CFE100FD75A0 /* Units.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		DC0DE5D5258D82C200FD75A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		DC0DE5D6258D82C200FD75A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DC0DE5D8258D82C200FD75A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = H29T9V7X78;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Shared/ShralpTide2_Prefix.pch;
+				INFOPLIST_FILE = ShralpTideFramework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTideFramework;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DC0DE5D9258D82C200FD75A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = H29T9V7X78;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Shared/ShralpTide2_Prefix.pch;
+				INFOPLIST_FILE = ShralpTideFramework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTideFramework;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DC0DE7072592CF5600FD75A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = H29T9V7X78;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Shared/ShralpTide2_Prefix.pch;
+				INFOPLIST_FILE = WatchTideFramework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.WatchTideFramework;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Debug;
+		};
+		DC0DE7082592CF5600FD75A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = H29T9V7X78;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Shared/ShralpTide2_Prefix.pch;
+				INFOPLIST_FILE = WatchTideFramework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.WatchTideFramework;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DC0DE5BD258D82C200FD75A0 /* Build configuration list for PBXProject "ShralpTideFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC0DE5D5258D82C200FD75A0 /* Debug */,
+				DC0DE5D6258D82C200FD75A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC0DE5D7258D82C200FD75A0 /* Build configuration list for PBXNativeTarget "ShralpTideFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC0DE5D8258D82C200FD75A0 /* Debug */,
+				DC0DE5D9258D82C200FD75A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC0DE7062592CF5600FD75A0 /* Build configuration list for PBXNativeTarget "WatchTideFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC0DE7072592CF5600FD75A0 /* Debug */,
+				DC0DE7082592CF5600FD75A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DC0DE5BA258D82C200FD75A0 /* Project object */;
+}
