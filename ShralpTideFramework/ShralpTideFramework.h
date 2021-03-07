@@ -15,4 +15,8 @@ FOUNDATION_EXPORT const unsigned char ShralpTideFrameworkVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <ShralpTideFramework/PublicHeader.h>
 
-
+#import <ShralpTideFramework/SDTideFactory.h>
+#import <ShralpTideFramework/SDTide.h>
+#import <ShralpTideFramework/SDTideEvent.h>
+#import <ShralpTideFramework/SDTideInterval.h>
+#import <ShralpTideFramework/SDTideStationData.h>
