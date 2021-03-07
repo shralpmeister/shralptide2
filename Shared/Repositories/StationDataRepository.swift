@@ -4,9 +4,9 @@
 //
 //  Created by Michael Parlee on 1/17/21.
 //
-import ShralpTideFramework
-import MapKit
 import CoreData
+import MapKit
+import ShralpTideFramework
 
 enum SDStationType: Int {
   case SDStationTypeTide
@@ -15,26 +15,30 @@ enum SDStationType: Int {
 
 struct StationDataRepository {
   private var stationData: StationData
-  
+
   init(data: StationData) {
     self.stationData = data
   }
-  
+
   func tideStations(in region: MKCoordinateRegion, stationType: SDStationType) -> [SDTideStation]? {
     let context = stationData.managedObjectContext!
 
-    let minLongitude = NSExpression(forConstantValue: region.center.longitude - region.span.longitudeDelta / 2)
-    let maxLongitude = NSExpression(forConstantValue: region.center.longitude + region.span.longitudeDelta / 2)
-    let minLatitude = NSExpression(forConstantValue: region.center.latitude - region.span.latitudeDelta / 2)
-    let maxLatitude = NSExpression(forConstantValue: region.center.latitude + region.span.latitudeDelta / 2)
+    let minLongitude = NSExpression(
+      forConstantValue: region.center.longitude - region.span.longitudeDelta / 2)
+    let maxLongitude = NSExpression(
+      forConstantValue: region.center.longitude + region.span.longitudeDelta / 2)
+    let minLatitude = NSExpression(
+      forConstantValue: region.center.latitude - region.span.latitudeDelta / 2)
+    let maxLatitude = NSExpression(
+      forConstantValue: region.center.latitude + region.span.latitudeDelta / 2)
 
     let currentBoolean = NSNumber(value: stationType == .SDStationTypeTide ? false : true)
 
     let predicate = NSPredicate(
       format: "latitude BETWEEN %@ and longitude BETWEEN %@ and current == %@",
-        [minLatitude, maxLatitude],
-        [minLongitude, maxLongitude],
-        currentBoolean
+      [minLatitude, maxLatitude],
+      [minLongitude, maxLongitude],
+      currentBoolean
     )
 
     let fr: NSFetchRequest<SDTideStation> = SDTideStation.fetchRequest()
@@ -47,7 +51,7 @@ struct StationDataRepository {
       fatalError("Failed to fetch tide stations")
     }
   }
-  
+
   func countries() -> [SDCountry] {
     let context = stationData.managedObjectContext!
     let sortByName = NSSortDescriptor(key: "name", ascending: true)
@@ -62,7 +66,7 @@ struct StationDataRepository {
       fatalError("Failed to fetch country list")
     }
   }
-  
+
   func states(forCountry country: String) -> [SDStateProvince] {
     let context = stationData.managedObjectContext!
     let sortByName = NSSortDescriptor(key: "name", ascending: true)
@@ -89,7 +93,7 @@ struct StationDataRepository {
       fatalError("Failed to fetch state list")
     }
   }
-  
+
   func stations(forRegion regionName: String) -> [SDTideStation] {
     let context = stationData.managedObjectContext!
     let regionNamePredicate = NSPredicate(format: "name == %@", regionName)
@@ -98,7 +102,7 @@ struct StationDataRepository {
     stateFetch.predicate = regionNamePredicate
     do {
       let states = try context.fetch(stateFetch)
-      if states.count >  0 {
+      if states.count > 0 {
         let state: SDStateProvince = states.first!
         return state.tideStations?.sortedArray(using: [stationSort]) as! [SDTideStation]
       } else {

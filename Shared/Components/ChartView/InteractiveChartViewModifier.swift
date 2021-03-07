@@ -9,15 +9,14 @@ import ShralpTideFramework
 import SwiftUI
 
 struct InteractiveChartViewModifier: ViewModifier {
-
   @EnvironmentObject var appState: AppState
-  
+
   @Binding private var pageIndex: Int
   @Binding private var cursorLocation: CGPoint
-  
+
   private var tideData: SDTide
-  
-  private var dateFormatter: DateFormatter = DateFormatter()
+
+  private var dateFormatter = DateFormatter()
 
   init(tide: SDTide, currentIndex: Binding<Int>, cursorLocation: Binding<CGPoint>) {
     self.tideData = tide
@@ -29,7 +28,7 @@ struct InteractiveChartViewModifier: ViewModifier {
   private func timeInMinutes(x xPosition: CGFloat, xRatio: CGFloat) -> Int {
     return Int(round(xPosition / xRatio))
   }
-  
+
   private func currentTimeInMinutes() -> Int {
     // The following shows the current time on the tide chart.
     // Need to make sure that it only shows on the current day!
@@ -44,40 +43,41 @@ struct InteractiveChartViewModifier: ViewModifier {
 
   func body(content: Content) -> some View {
     return GeometryReader { proxy in
-      let screenMinutes = appState.tidesForDays[self.pageIndex].startTime.hoursInDay() * ChartConstants.minutesPerHour
+      let screenMinutes =
+        appState.tidesForDays[self.pageIndex].startTime.hoursInDay() * ChartConstants.minutesPerHour
       let xRatio = proxy.size.width / CGFloat(screenMinutes)
       let midpointX = UIScreen.main.bounds.size.width / 2.0
-      
+
       let xPosition =
         cursorLocation.x > .zero ? cursorLocation.x : CGFloat(currentTimeInMinutes()) * xRatio
-      
+
       let dataPoint = tideData.nearestDataPoint(
         forTime: timeInMinutes(x: xPosition, xRatio: xRatio))
-      
+
       content
         .overlay(
-            ZStack {
-              if pageIndex == 0 || cursorLocation.x > 0 {
-                Cursor(height: proxy.size.height)
-                  .position(x: xPosition, y: proxy.size.height / 2.0)
-                TideOverlay(
-                  dataPoint: dataPoint, unit: tideData.unitShort,
-                  startDate: appState.tidesForDays[self.pageIndex].startTime
-                )
-                .position(x: midpointX, y: 75)
-              }
-              HStack(alignment: .bottom) {
-                Text(appState.tideChartData?.shortLocationName ?? "Unknown Station")
-                Spacer()
-                Text(dateFormatter.string(from: appState.tidesForDays[self.pageIndex].startTime))
-              }
-              .font(.footnote)
-              .padding(.all)
-              .foregroundColor(.white)
-              .frame(width: proxy.size.width, height: 40)
-              .position(x: proxy.size.width / 2.0, y: 50)
+          ZStack {
+            if pageIndex == 0 || cursorLocation.x > 0 {
+              Cursor(height: proxy.size.height)
+                .position(x: xPosition, y: proxy.size.height / 2.0)
+              TideOverlay(
+                dataPoint: dataPoint, unit: tideData.unitShort,
+                startDate: appState.tidesForDays[self.pageIndex].startTime
+              )
+              .position(x: midpointX, y: 75)
             }
-            .frame(alignment: .top)
+            HStack(alignment: .bottom) {
+              Text(appState.tideChartData?.shortLocationName ?? "Unknown Station")
+              Spacer()
+              Text(dateFormatter.string(from: appState.tidesForDays[self.pageIndex].startTime))
+            }
+            .font(.footnote)
+            .padding(.all)
+            .foregroundColor(.white)
+            .frame(width: proxy.size.width, height: 40)
+            .position(x: proxy.size.width / 2.0, y: 50)
+          }
+          .frame(alignment: .top)
         )
     }
   }

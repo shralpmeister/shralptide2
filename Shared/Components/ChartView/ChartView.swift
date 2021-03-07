@@ -21,7 +21,7 @@ struct ChartView: View {
   private func pairRiseAndSetEvents(
     _ events: [SDTideEvent], riseEventType: SDTideState, setEventType: SDTideState
   ) -> [(Date, Date)] {
-    var pairs: [(Date, Date)] = [(Date, Date)]()
+    var pairs = [(Date, Date)]()
     var riseTime: Date!
     var setTime: Date!
     for event: SDTideEvent in events {
@@ -37,7 +37,7 @@ struct ChartView: View {
         }
         setTime = event.eventTime
       }
-      if riseTime != nil && setTime != nil {
+      if riseTime != nil, setTime != nil {
         pairs.append((riseTime, setTime))
         riseTime = nil
         setTime = nil
@@ -63,7 +63,7 @@ struct ChartView: View {
       from: Date(timeIntervalSince1970: baseSeconds), forHours: tideData.hoursToPlot())
     var path = Path { tidePath in
       for tidePoint: SDTideInterval in intervalsForDay {
-        let minute: Int =
+        let minute =
           Int(tidePoint.time.timeIntervalSince1970 - baseSeconds) / ChartConstants.secondsPerMinute
         let point = CGPoint(
           x: CGFloat(minute) * xratio, y: yoffset - CGFloat(tidePoint.height) * yratio)
@@ -76,7 +76,7 @@ struct ChartView: View {
     }
 
     // closes the path so it can be filled
-    let lastMinute: Int =
+    let lastMinute =
       Int(intervalsForDay.last!.time.timeIntervalSince1970 - baseSeconds)
       / ChartConstants.secondsPerMinute
     path.addLine(to: CGPoint(x: CGFloat(lastMinute) * xratio, y: height))
@@ -135,7 +135,8 @@ struct ChartView: View {
   {
     return Path { baselinePath in
       baselinePath.move(to: CGPoint(x: CGFloat(dim.xmin), y: CGFloat(dim.yoffset)))
-      baselinePath.addLine(to: CGPoint(x: CGFloat(dim.xmax) * CGFloat(dim.xratio), y: CGFloat(dim.yoffset)))
+      baselinePath.addLine(
+        to: CGPoint(x: CGFloat(dim.xmax) * CGFloat(dim.xratio), y: CGFloat(dim.yoffset)))
     }
     .stroke(Color.white, lineWidth: 2)
   }
@@ -153,7 +154,7 @@ struct ChartView: View {
     let xmin: Int = 0
     let xmax: Int = ChartConstants.minutesPerHour * tideData.hoursToPlot()
 
-    let yratio: CGFloat = CGFloat(height) / (ymax - ymin)
+    let yratio = CGFloat(height) / (ymax - ymin)
     let yoffset: CGFloat = (CGFloat(height) + ymin * yratio) + (chartBottom - CGFloat(height))
 
     let xratio = CGFloat(proxy.size.width) / CGFloat(xmax)
@@ -164,8 +165,7 @@ struct ChartView: View {
       yoffset: yoffset,
       yratio: yratio,
       xmin: xmin,
-      xmax: xmax
-    )
+      xmax: xmax)
   }
 
   var body: some View {

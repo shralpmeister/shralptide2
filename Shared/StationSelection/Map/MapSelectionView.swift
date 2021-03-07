@@ -11,15 +11,15 @@ import SwiftUI
 struct MapSelectionView: View {
   @Binding var centerCoordinate: CLLocationCoordinate2D
   @Binding var activeSheet: ActiveSheet?
-  
+
   @State private var showingStationDetail = false
-  @State private var selectedLocation: TideAnnotation = TideAnnotation()
+  @State private var selectedLocation = TideAnnotation()
   @State private var detailMapRegion = MKCoordinateRegion(
-    MKMapRect(origin: MKMapPoint(CLLocationCoordinate2D(latitude: 48.8, longitude: 123.0)),
-                size: MKMapSize(width: 1, height: 1)
-      )
-    )
-  
+    MKMapRect(
+      origin: MKMapPoint(CLLocationCoordinate2D(latitude: 48.8, longitude: 123.0)),
+      size: MKMapSize(width: 1, height: 1))
+  )
+
   var body: some View {
     NavigationView {
       ZStack {
@@ -30,13 +30,13 @@ struct MapSelectionView: View {
             selectedLocation: $selectedLocation,
             detailMapRegion: $detailMapRegion
           )
-            .navigationTitle("Select a Tide Station")
+          .navigationTitle("Select a Tide Station")
           NavigationLink(
             "",
             destination: StationDetailView(
               activeSheet: $activeSheet,
               selectedLocation: $selectedLocation
-             ),
+            ),
             isActive: $showingStationDetail
           )
         }

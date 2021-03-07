@@ -17,16 +17,16 @@ struct DateConstants {
 
   /// The number of seconds in a minute.
   static let secondsPerMinute: Int = 60
-  
+
   /// The number of minutes in a hour.
   static let minutesPerHour: Int = 60
 }
 
 extension Date {
-  
   func hoursInDay() -> Int {
     let seconds = self.endOfDay().timeIntervalSince1970 - self.startOfDay().timeIntervalSince1970
-    return Int(seconds / Double(DateConstants.secondsPerMinute) / Double(DateConstants.minutesPerHour))
+    return Int(
+      seconds / Double(DateConstants.secondsPerMinute) / Double(DateConstants.minutesPerHour))
   }
 
   func startOfDay() -> Date {
@@ -36,14 +36,15 @@ extension Date {
   func endOfDay() -> Date {
     var components = DateComponents()
     components.day = 1
-    return Calendar.current.date(byAdding: components, to: startOfDay())!
+    return Calendar.current.date(byAdding: components, to: self.startOfDay())!
   }
-  
+
   func midday() -> Date {
     var components = DateComponents()
-    let secondsPerDay = self.endOfDay().timeIntervalSince1970 - self.startOfDay().timeIntervalSince1970
+    let secondsPerDay =
+      self.endOfDay().timeIntervalSince1970 - self.startOfDay().timeIntervalSince1970
     components.second = Int(secondsPerDay / 2)
-    return Calendar.current.date(byAdding: components, to: startOfDay())!
+    return Calendar.current.date(byAdding: components, to: self.startOfDay())!
   }
 
   func isOnTheHour() -> Bool {

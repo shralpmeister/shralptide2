@@ -5,8 +5,8 @@
 //  Created by Michael Parlee on 1/10/21.
 //
 
-import SwiftUI
 import ShralpTideFramework
+import SwiftUI
 
 struct ChartConstants {
   static let minutesPerHour = 60
@@ -33,8 +33,7 @@ internal func imageForEvent(_ event: SDTideEvent) -> some View {
   }
 }
 
-internal func xCoord(forTime time: Date, baseSeconds: TimeInterval, xratio: CGFloat) -> CGFloat
-{
+internal func xCoord(forTime time: Date, baseSeconds: TimeInterval, xratio: CGFloat) -> CGFloat {
   let minute = Int(time.timeIntervalSince1970 - baseSeconds) / ChartConstants.secondsPerMinute
   return CGFloat(minute) * xratio
 }

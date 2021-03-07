@@ -5,12 +5,15 @@
 //  Created by Michael Parlee on 7/27/20.
 //
 
+import Combine
 import ShralpTideFramework
 import SwiftUI
 
 struct HeaderView: View {
   @EnvironmentObject var config: ConfigHelper
   @EnvironmentObject var appState: AppState
+
+  @Environment(\.appStateInteractor) private var interactor: AppStateInteractor
 
   var body: some View {
     VStack(spacing: 10) {
@@ -19,8 +22,8 @@ struct HeaderView: View {
         .padding(.top, 70)
         .lineLimit(1)
         .minimumScaleFactor(0.2)
-      Text(appState.tides.count > 0 ? appState.tides[appState.locationPage].currentTideString : "")
-        .font(Font.system(size: 75))
+      Text(appState.currentTideDisplay)
+        .font(Font.system(size: 96))
         .fontWeight(.medium)
         .lineLimit(1)
         .padding(.top, 0)

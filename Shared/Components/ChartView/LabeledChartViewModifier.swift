@@ -9,8 +9,7 @@ import ShralpTideFramework
 import SwiftUI
 
 struct LabeledChartViewModifier: ViewModifier {
-
-  private var hourFormatter: DateFormatter = DateFormatter()
+  private var hourFormatter = DateFormatter()
 
   private let tideData: SDTide
   private let labelInset: Int
@@ -21,11 +20,11 @@ struct LabeledChartViewModifier: ViewModifier {
     self.labelInset = labelInset
     self.chartMinutes = tide.hoursToPlot() * ChartConstants.minutesPerHour
     hourFormatter.dateFormat = DateFormatter.dateFormat(
-      fromTemplate: "j", options: 0, locale: Locale.current)
+      fromTemplate: "j", options: 0, locale: Locale.current
+    )
   }
 
-  private func xCoord(forTime time: Date, baseSeconds: TimeInterval, xratio: CGFloat) -> CGFloat
-  {
+  private func xCoord(forTime time: Date, baseSeconds: TimeInterval, xratio: CGFloat) -> CGFloat {
     let minute = Int(time.timeIntervalSince1970 - baseSeconds) / ChartConstants.secondsPerMinute
     return CGFloat(minute) * xratio
   }
@@ -34,7 +33,7 @@ struct LabeledChartViewModifier: ViewModifier {
     _ intervals: [SDTideInterval], baseSeconds: TimeInterval, xratio: CGFloat
   ) -> [TimeLabel] {
     return intervals.filter { $0.time.isOnTheHour() }
-      .reduce(into: []) { (labels, interval) in
+      .reduce(into: []) { labels, interval in
         let x = xCoord(forTime: interval.time, baseSeconds: baseSeconds, xratio: xratio)
         if x == 0 || x - labels.last!.x > 40 {
           let hour = hourFormatter.string(from: interval.time)

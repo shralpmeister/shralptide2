@@ -11,7 +11,7 @@ import SwiftUI
 struct TideEventsView: View {
   @EnvironmentObject var appState: AppState
   @EnvironmentObject var config: ConfigHelper
-  
+
   @Binding private var pageIndex: Int
 
   let formatter = DateFormatter()
@@ -33,10 +33,11 @@ struct TideEventsView: View {
               .minimumScaleFactor(0.2)
             ChartView(
               tide: tide,
-              showZero: true)
-              .animation(.none)
-              .modifier(SunMoonLabelsChartViewModifier(tide: tide))
-              .frame(width: UIScreen.main.bounds.width, height: proxy.size.height * 0.18)
+              showZero: true
+            )
+            .animation(.none)
+            .modifier(SunMoonLabelsChartViewModifier(tide: tide))
+            .frame(width: UIScreen.main.bounds.width, height: proxy.size.height * 0.18)
             ForEach(
               convertEvents(tide.startTime != nil ? tide.events(forDay: tide.startTime) : []),
               id: \.self
@@ -73,8 +74,8 @@ struct TideEventsView: View {
       .id(appState.tidesForDays.count)
     }
     .onAppear(perform: {
-       UIScrollView.appearance().bounces = false
-     })
+      UIScrollView.appearance().bounces = false
+    })
     .onDisappear(perform: {
       UIScrollView.appearance().bounces = true
     })
@@ -93,7 +94,7 @@ struct TideEventsView_Previews: PreviewProvider {
   static var previews: some View {
     ZStack {
       Color("SeaGreen")
-      //TideEventsView(pageIndex: Binding(0))
+      // TideEventsView(pageIndex: Binding(0))
     }
   }
 }

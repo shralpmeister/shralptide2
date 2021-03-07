@@ -8,8 +8,7 @@ import ShralpTideFramework
 import SwiftUI
 
 struct SunMoonLabelsChartViewModifier: ViewModifier {
-
-  private var timeFormatter: DateFormatter = DateFormatter()
+  private var timeFormatter = DateFormatter()
 
   private let tideData: SDTide
   private let chartMinutes: Int
@@ -31,9 +30,9 @@ struct SunMoonLabelsChartViewModifier: ViewModifier {
           ZStack {
             let sunEvents = tideData.sunriseSunsetEvents!
             ForEach(0..<sunEvents.count, id: \.self) { index in
-              let event:SDTideEvent = sunEvents[index]
+              let event: SDTideEvent = sunEvents[index]
               let minute = Int(event.eventTime!.timeIntervalSince1970 - baseSeconds) / 60
-              let x:CGFloat = CGFloat(minute) * xratio
+              let x = CGFloat(minute) * xratio
 
               Text(timeFormatter.string(from: event.eventTime))
                 .font(.footnote)
@@ -47,9 +46,9 @@ struct SunMoonLabelsChartViewModifier: ViewModifier {
           ZStack {
             let moonEvents = tideData.moonriseMoonsetEvents!
             ForEach(0..<moonEvents.count, id: \.self) { index in
-              let event:SDTideEvent = moonEvents[index]
+              let event: SDTideEvent = moonEvents[index]
               let minute = Int(event.eventTime!.timeIntervalSince1970 - baseSeconds) / 60
-              let x:CGFloat = CGFloat(minute) * xratio
+              let x = CGFloat(minute) * xratio
 
               Text(timeFormatter.string(from: event.eventTime))
                 .font(.footnote)

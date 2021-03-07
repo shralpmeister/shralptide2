@@ -5,17 +5,17 @@
 //  Created by Michael Parlee on 1/24/21.
 //
 
-import SwiftUI
 import MapKit
+import SwiftUI
 
 struct StationDetailView: View {
   @Environment(\.appStateInteractor) private var interactor: AppStateInteractor
   @EnvironmentObject private var config: ConfigHelper
   @EnvironmentObject private var appState: AppState
-  
+
   @Binding var activeSheet: ActiveSheet?
   @Binding var selectedLocation: TideAnnotation
-    
+
   init(activeSheet: Binding<ActiveSheet?>, selectedLocation: Binding<TideAnnotation>) {
     self._activeSheet = activeSheet
     self._selectedLocation = selectedLocation
@@ -29,10 +29,11 @@ struct StationDetailView: View {
           .minimumScaleFactor(0.6)
           .padding()
         Map(
-          coordinateRegion: .constant(MKCoordinateRegion(
-            center: selectedLocation.coordinate,
-            latitudinalMeters: 5_000, longitudinalMeters: 5_000
-          )),
+          coordinateRegion: .constant(
+            MKCoordinateRegion(
+              center: selectedLocation.coordinate,
+              latitudinalMeters: 5_000, longitudinalMeters: 5_000
+            )),
           interactionModes: MapInteractionModes(),
           showsUserLocation: false,
           annotationItems: [selectedLocation],
@@ -40,8 +41,8 @@ struct StationDetailView: View {
             MapPin(coordinate: item.coordinate, tint: item.isPrimary ? .green : .red)
           }
         )
-          .padding()
-          .frame(height: 200)
+        .padding()
+        .frame(height: 200)
         VStack(alignment: .center, spacing: 11) {
           HStack {
             Text("Type:")
@@ -70,22 +71,24 @@ struct StationDetailView: View {
         }
         .padding(.top, 20)
       }
-      .frame(width: proxy.size.width, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+      .frame(
+        width: proxy.size.width, alignment: /*@START_MENU_TOKEN@*/ .center /*@END_MENU_TOKEN@*/)
     }
   }
-  
+
   func coordinateString(_ coord: CLLocationCoordinate2D) -> String {
     let latDir = coord.latitude > 0 ? "N" : "S"
-    let lonDir = coord.longitude > 0 ? "E" : "W";
-    return String(format:"%1.3f%@, %1.3f%@",fabs(coord.latitude),latDir, fabs(coord.longitude), lonDir)
+    let lonDir = coord.longitude > 0 ? "E" : "W"
+    return String(
+      format: "%1.3f%@, %1.3f%@", fabs(coord.latitude), latDir, fabs(coord.longitude), lonDir)
   }
 }
 
-//struct StationDetailView_Preview: PreviewProvider {
+// struct StationDetailView_Preview: PreviewProvider {
 //  static var isSelectingLocation = true
 //
 //  static var selectedLocation = TideAnnotation()
-//  
+//
 //  static var coordinateRegion = MKCoordinateRegion(
 //    MKMapRect(origin: MKMapPoint(CLLocationCoordinate2D(latitude: 48.8, longitude: 123.0)),
 //                size: MKMapSize(width: 1, height: 1)
@@ -97,6 +100,4 @@ struct StationDetailView: View {
 //      .environmentObject(AppState())
 //      .environmentObject(ConfigHelper())
 //  }
-//}
-
-
+// }

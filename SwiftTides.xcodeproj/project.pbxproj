@@ -51,8 +51,6 @@
 		DC0DE7FE2593B3FD00FD75A0 /* tidedata.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7F92593B3FD00FD75A0 /* tidedata.xcdatamodeld */; };
 		DC0DE8162593B87C00FD75A0 /* AppStateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE8152593B87C00FD75A0 /* AppStateInteractor.swift */; };
 		DC0DE8172593B87C00FD75A0 /* AppStateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE8152593B87C00FD75A0 /* AppStateInteractor.swift */; };
-		DC0DE8762593D4D400FD75A0 /* ShralpTideFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0DE8752593D4D400FD75A0 /* ShralpTideFramework.framework */; };
-		DC0DE8772593D4D400FD75A0 /* ShralpTideFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC0DE8752593D4D400FD75A0 /* ShralpTideFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DC0DE8A32595696F00FD75A0 /* SDTide.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE8A22595696F00FD75A0 /* SDTide.swift */; };
 		DC0DE8A42595696F00FD75A0 /* SDTide.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE8A22595696F00FD75A0 /* SDTide.swift */; };
 		DC115D9725A28D6A00954972 /* PagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115D9625A28D6A00954972 /* PagerView.swift */; };
@@ -99,6 +97,8 @@
 		DC43CC0725CBC44E002A330E /* TideStationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CC0525CBC44E002A330E /* TideStationListView.swift */; };
 		DC77459E24F31681001747AE /* TideEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77459D24F31681001747AE /* TideEventsView.swift */; };
 		DC77459F24F31681001747AE /* TideEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77459D24F31681001747AE /* TideEventsView.swift */; };
+		DCAC203A25E8C02100204370 /* ShralpTideFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCAC203925E8C02100204370 /* ShralpTideFramework.framework */; };
+		DCAC203B25E8C02100204370 /* ShralpTideFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DCAC203925E8C02100204370 /* ShralpTideFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DCF96C0C25BE3AC900255096 /* StationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF96C0B25BE3AC900255096 /* StationDetailView.swift */; };
 		DCF96C0D25BE3AC900255096 /* StationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF96C0B25BE3AC900255096 /* StationDetailView.swift */; };
 		DCF96C1225BE492700255096 /* MapSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF96C1125BE492700255096 /* MapSelectionView.swift */; };
@@ -136,7 +136,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				DC0DE8772593D4D400FD75A0 /* ShralpTideFramework.framework in Embed Frameworks */,
+				DCAC203B25E8C02100204370 /* ShralpTideFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -170,7 +170,6 @@
 		DC0DE7F82593B3FD00FD75A0 /* shralptide2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = shralptide2.xcdatamodel; sourceTree = "<group>"; };
 		DC0DE7FA2593B3FD00FD75A0 /* tidedata.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tidedata.xcdatamodel; sourceTree = "<group>"; };
 		DC0DE8152593B87C00FD75A0 /* AppStateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateInteractor.swift; sourceTree = "<group>"; };
-		DC0DE8752593D4D400FD75A0 /* ShralpTideFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ShralpTideFramework.framework; path = ../../../Library/Frameworks/ShralpTideFramework.framework; sourceTree = "<group>"; };
 		DC0DE8A22595696F00FD75A0 /* SDTide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDTide.swift; sourceTree = "<group>"; };
 		DC115D9625A28D6A00954972 /* PagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerView.swift; sourceTree = "<group>"; };
 		DC115DA925A5572600954972 /* TideGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideGraphView.swift; sourceTree = "<group>"; };
@@ -204,6 +203,7 @@
 		DC43CBFC25C7882C002A330E /* RegionSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionSelectionView.swift; sourceTree = "<group>"; };
 		DC43CC0525CBC44E002A330E /* TideStationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideStationListView.swift; sourceTree = "<group>"; };
 		DC77459D24F31681001747AE /* TideEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideEventsView.swift; sourceTree = "<group>"; };
+		DCAC203925E8C02100204370 /* ShralpTideFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ShralpTideFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF96C0B25BE3AC900255096 /* StationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailView.swift; sourceTree = "<group>"; };
 		DCF96C1125BE492700255096 /* MapSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSelectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -213,7 +213,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC0DE8762593D4D400FD75A0 /* ShralpTideFramework.framework in Frameworks */,
+				DCAC203A25E8C02100204370 /* ShralpTideFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,14 +241,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DC0DE77A2592D19800FD75A0 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				DC0DE8752593D4D400FD75A0 /* ShralpTideFramework.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		DC0DE7BD2593B05100FD75A0 /* Interactors */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,7 +379,7 @@
 				DC26BB0224BB807B00453A5F /* Tests iOS */,
 				DC26BB0D24BB807B00453A5F /* Tests macOS */,
 				DC26BAF024BB807B00453A5F /* Products */,
-				DC0DE77A2592D19800FD75A0 /* Frameworks */,
+				DCAC203825E8C02100204370 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -480,6 +472,14 @@
 				DC43CC0525CBC44E002A330E /* TideStationListView.swift */,
 			);
 			path = List;
+			sourceTree = "<group>";
+		};
+		DCAC203825E8C02100204370 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DCAC203925E8C02100204370 /* ShralpTideFramework.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -909,6 +909,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -940,6 +941,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;

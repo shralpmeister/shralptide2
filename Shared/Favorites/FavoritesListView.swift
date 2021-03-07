@@ -5,21 +5,21 @@
 //  Created by Michael Parlee on 1/11/21.
 //
 
-import SwiftUI
-import ShralpTideFramework
 import MapKit
+import ShralpTideFramework
+import SwiftUI
 
 struct FavoritesListView: View {
   @EnvironmentObject private var appState: AppState
   @EnvironmentObject private var config: ConfigHelper
   @Environment(\.appStateInteractor) private var interactor: AppStateInteractor
-  
+
   @Binding private var isShowing: Bool
-  
+
   init(isShowing: Binding<Bool>) {
     self._isShowing = isShowing
   }
-  
+
   var body: some View {
     UITableView.appearance().backgroundColor = .clear
     UITableViewCell.appearance().backgroundColor = .clear
@@ -30,12 +30,12 @@ struct FavoritesListView: View {
       List {
         Section(footer: FavoritesListFooter()) {
           if appState.tides.count > 1 {
-            ForEach (appState.tides, id: \.stationName) { (tide: SDTide) in
+            ForEach(appState.tides, id: \.stationName) { (tide: SDTide) in
               FavoriteRow(tide: tide, isShowingFavorites: $isShowing)
             }
             .onDelete(perform: { (offsets: IndexSet) in
               let tideStation: SDTide = appState.tides[offsets.first!]
-              if (config.settings.legacyMode) {
+              if config.settings.legacyMode {
                 interactor.removeFavoriteLegacyLocation(name: tideStation.stationName)
               } else {
                 interactor.removeFavoriteStandardLocation(name: tideStation.stationName)
@@ -56,17 +56,17 @@ struct FavoritesListView: View {
 }
 
 enum ActiveSheet: Identifiable {
-    case map, list
-    
-    var id: Int {
-        hashValue
-    }
+  case map, list
+
+  var id: Int {
+    hashValue
+  }
 }
 
 struct FavoritesListFooter: View {
   @EnvironmentObject private var appState: AppState
   @EnvironmentObject private var config: ConfigHelper
-  
+
   @State private var selectingFromMap = false
   @State private var selectingFromList = false
   @State private var centerCoordinate = CLLocationCoordinate2D()
@@ -103,4 +103,3 @@ struct FavoritesListFooter: View {
     }
   }
 }
-

@@ -9,15 +9,13 @@ import CoreData
 import Foundation
 
 class NoaaStationData: StationData {
-
-  //MARK: - CoreData bits
-  lazy fileprivate var noaaTidesUrl: URL = {
+  fileprivate lazy var noaaTidesUrl: URL = {
     let directory = FileManager.default.containerURL(
       forSecurityApplicationGroupIdentifier: "group.com.shralpsoftware.shared.config")!
     return directory.appendingPathComponent("noaa-data.sqlite")
   }()
 
-  lazy fileprivate var oldNoaaTidesUrl: URL = {
+  fileprivate lazy var oldNoaaTidesUrl: URL = {
     let urls = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
     let cacheUrl = (urls[urls.count - 1] as NSURL) as URL
     return cacheUrl.appendingPathComponent("noaa-data.sqlite")
@@ -32,7 +30,7 @@ class NoaaStationData: StationData {
     let fm = FileManager()
     let bundledDataStoreUrl = Bundle.main.url(forResource: "noaa-data", withExtension: "sqlite")
 
-    let coordinator: NSPersistentStoreCoordinator = NSPersistentStoreCoordinator(
+    let coordinator = NSPersistentStoreCoordinator(
       managedObjectModel: self.managedObjectModel)
 
     do {
@@ -88,7 +86,7 @@ class NoaaStationData: StationData {
   // MARK: - Core Data Saving support
 
   func saveContext() {
-    if let moc = self.managedObjectContext {
+    if let moc = managedObjectContext {
       if moc.hasChanges {
         moc.performAndWait {
           do {

@@ -11,9 +11,8 @@ import Foundation
 import SwiftUI
 
 class AppStateRepository {
-
-  fileprivate(set) public var persistentState: SDApplicationState?
-  fileprivate(set) public var locationPage = 0
+  public fileprivate(set) var persistentState: SDApplicationState?
+  public fileprivate(set) var locationPage = 0
 
   fileprivate func datastoreName(_ isLegacy: Bool) -> String {
     isLegacy ? "legacy-data" : "noaa-data"
@@ -39,7 +38,7 @@ class AppStateRepository {
         let availableLocations = self.persistentState?.favoriteLocations?.filtered(
           using: namePredicate)
         if availableLocations?.count ?? 0 > 0 {
-          if self.persistentState?.selectedLocation?.datastoreName == datastoreName(isLegacy) {
+          if self.persistentState?.selectedLocation?.datastoreName == self.datastoreName(isLegacy) {
             self.locationPage =
               ((availableLocations?.index(of: self.persistentState?.selectedLocation as Any))!)
           } else {
@@ -68,7 +67,7 @@ class AppStateRepository {
     if locationsWithName?.count == 1 {
       let location = locationsWithName?[0] as! SDFavoriteLocation
       appState.selectedLocation = location
-      saveContext()
+      self.saveContext()
     } else {
       fatalError("Must have at least one configured location")
     }
@@ -85,13 +84,13 @@ class AppStateRepository {
     let location = SDFavoriteLocation(context: context)
 
     location.locationName = defaultLocation
-    location.datastoreName = datastoreName(isLegacy)
+    location.datastoreName = self.datastoreName(isLegacy)
     appState.addToFavoriteLocations(location)
     appState.selectedLocation = location
 
-    persistentState = appState
+    self.persistentState = appState
 
-    saveContext()
+    self.saveContext()
   }
 
   func addFavoriteLocation(locationName: String, isLegacy: Bool) throws {
@@ -103,13 +102,13 @@ class AppStateRepository {
     if results?.count == 0 {
       let location = SDFavoriteLocation(context: context)
       location.locationName = locationName
-      location.datastoreName = datastoreName(isLegacy)
+      location.datastoreName = self.datastoreName(isLegacy)
       appState.addToFavoriteLocations(location)
     } else {
       print("location already present. skipping.")
       return
     }
-    saveContext()
+    self.saveContext()
   }
 
   func removeFavoriteLocation(locationName: String, isLegacy: Bool) throws {
@@ -129,7 +128,7 @@ class AppStateRepository {
       }
       context.delete(location)
       appState.selectedLocation = appState.favoriteLocations?[0] as! SDFavoriteLocation?
-      saveContext()
+      self.saveContext()
     }
   }
 
@@ -140,12 +139,11 @@ class AppStateRepository {
     return result[0]
   }
 
-  //MARK: - CoreData
+  // MARK: - CoreData
+
   fileprivate func checkAndMigrateDatastore(
     withCoordinator coordinator: NSPersistentStoreCoordinator
-  ) {
-
-  }
+  ) {}
 
   lazy var oldUrl: URL = {
     let urls = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
@@ -165,7 +163,7 @@ class AppStateRepository {
   }()
 
   lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
-    let coordinator: NSPersistentStoreCoordinator = NSPersistentStoreCoordinator(
+    let coordinator = NSPersistentStoreCoordinator(
       managedObjectModel: self.managedObjectModel)
 
     let options: [String: Bool] = [NSMigratePersistentStoresAutomaticallyOption: true]

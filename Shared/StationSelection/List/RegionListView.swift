@@ -8,10 +8,10 @@ import SwiftUI
 
 struct RegionListView: View {
   @EnvironmentObject private var config: ConfigHelper
-  
+
   @Environment(\.stationInteractor) private var standardInteractor: TideStationInteractor
   @Environment(\.legacyStationInteractor) private var legacyInteractor: TideStationInteractor
-  
+
   @State var regions: [Region]
   @Binding var activeSheet: ActiveSheet?
 
@@ -30,19 +30,27 @@ struct RegionListView: View {
       }
     }
   }
-  
+
   private func nextView(_ region: Region) -> some View {
     if region.subRegions.count == 0 {
       if config.settings.legacyMode {
-        return AnyView(TideStationListView(stations: legacyInteractor.stations(forRegionNamed: region.name), activeSheet: $activeSheet))
+        return AnyView(
+          TideStationListView(
+            stations: legacyInteractor.stations(forRegionNamed: region.name),
+            activeSheet: $activeSheet))
       } else {
-        return AnyView(TideStationListView(stations: standardInteractor.stations(forRegionNamed: region.name), activeSheet: $activeSheet))
+        return AnyView(
+          TideStationListView(
+            stations: standardInteractor.stations(forRegionNamed: region.name),
+            activeSheet: $activeSheet))
       }
     } else {
-      return AnyView(RegionListView(regions: region.subRegions.sorted(by: { (a,b) in
-        a.name < b.name
-      }),
-      activeSheet: $activeSheet))
+      return AnyView(
+        RegionListView(
+          regions: region.subRegions.sorted(by: { a, b in
+            a.name < b.name
+          }),
+          activeSheet: $activeSheet))
     }
   }
 }

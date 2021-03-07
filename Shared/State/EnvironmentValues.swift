@@ -32,27 +32,21 @@ private struct NoaaStationRepoEnvironmentKey: EnvironmentKey {
 }
 
 extension EnvironmentValues {
-  var appStateInteractor: AppStateInteractor {
-    get { self[AppStateInteractorEnvironmentKey.self] }
-  }
-  
+  var appStateInteractor: AppStateInteractor { self[AppStateInteractorEnvironmentKey.self] }
+
   var legacyStationInteractor: TideStationInteractor {
-    get { self[LegacyStationInteractorEnvironmentKey.self] }
-  }
-  
-  var stationInteractor: TideStationInteractor {
-    get { self[StationInteractorEnvironmentKey.self] }
+    self[LegacyStationInteractorEnvironmentKey.self]
   }
 
-  var appStateRepository: AppStateRepository {
-    get { self[AppStateRepositoryEnvironmentKey.self] }
-  }
-  
+  var stationInteractor: TideStationInteractor { self[StationInteractorEnvironmentKey.self] }
+
+  var appStateRepository: AppStateRepository { self[AppStateRepositoryEnvironmentKey.self] }
+
   var standardTideStationRepository: StationDataRepository {
-    get { self[NoaaStationRepoEnvironmentKey.self] }
+    self[NoaaStationRepoEnvironmentKey.self]
   }
-  
+
   var legacyTideStationRepository: StationDataRepository {
-    get { self[LegacyStationRepoEnvironmentKey.self] }
+    self[LegacyStationRepoEnvironmentKey.self]
   }
 }

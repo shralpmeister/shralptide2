@@ -26,7 +26,7 @@ struct UserSettings: Equatable {
   }
 }
 
-struct ConfigKeys {
+enum ConfigKeys {
   fileprivate static let units = "units_preference"
   fileprivate static let days = "days_preference"
   fileprivate static let currents = "currents_preference"
@@ -37,14 +37,16 @@ class ConfigHelper: ObservableObject {
   fileprivate let suiteName = "group.com.shralpsoftware.shared.config"
 
   fileprivate let log = Logger(
-    subsystem: "com.shralpsoftware.ShralpTide2", category: "ConfigHelper")
+    subsystem: "com.shralpsoftware.ShralpTide2", category: "ConfigHelper"
+  )
 
   @Published var settings = UserSettings()
 
   init() {
     NotificationCenter.default.addObserver(
       self, selector: #selector(self.setupByPreferences), name: UserDefaults.didChangeNotification,
-      object: nil)
+      object: nil
+    )
   }
 
   deinit {
@@ -64,7 +66,7 @@ class ConfigHelper: ObservableObject {
     let groupDefaults = UserDefaults(suiteName: suiteName)!
     let groupTestValue = groupDefaults.integer(forKey: ConfigKeys.days)
     if groupTestValue == 0 {
-      log.info("Migrating existing settings...")
+      self.log.info("Migrating existing settings...")
       groupDefaults.register(defaults: UserDefaults.standard.dictionaryRepresentation())
     }
   }
@@ -74,7 +76,7 @@ class ConfigHelper: ObservableObject {
     let groupDefaults = UserDefaults(suiteName: suiteName)!
     let testValue = groupDefaults.string(forKey: ConfigKeys.units)
     if testValue == nil {
-      let settingsDict = readSettingsDictionary()!
+      let settingsDict = self.readSettingsDictionary()!
       let prefSpecifierArray = settingsDict["PreferenceSpecifiers"] as! [NSDictionary]
 
       var defaultsToRegister = [String: Any]()
@@ -98,9 +100,9 @@ class ConfigHelper: ObservableObject {
       legacyMode: groupDefaults.bool(forKey: ConfigKeys.legacy)
     )
 
-    log.info("Setting daysPref to \(self.settings.daysPref)")
-    log.info("Setting currentsPref to \(self.settings.showsCurrentsPref ? "YES" : "NO")")
-    log.info("Setting units to \(self.settings.unitsPref)")
-    log.info("Setting legacyMode to \(self.settings.legacyMode ? "YES" : "NO")")
+    self.log.info("Setting daysPref to \(self.settings.daysPref)")
+    self.log.info("Setting currentsPref to \(self.settings.showsCurrentsPref ? "YES" : "NO")")
+    self.log.info("Setting units to \(self.settings.unitsPref)")
+    self.log.info("Setting legacyMode to \(self.settings.legacyMode ? "YES" : "NO")")
   }
 }

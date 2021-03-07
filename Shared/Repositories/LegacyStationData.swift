@@ -9,17 +9,13 @@ import CoreData
 import Foundation
 
 class LegacyStationData: StationData {
-
-  //static let shared = LegacyStationData()
-
-  //MARK: - CoreData bits
-  lazy fileprivate var LegacyTideUrl: URL = {
+  fileprivate lazy var LegacyTideUrl: URL = {
     let directory = FileManager.default.containerURL(
       forSecurityApplicationGroupIdentifier: "group.com.shralpsoftware.shared.config")!
     return directory.appendingPathComponent("legacy-data.sqlite")
   }()
 
-  lazy fileprivate var OldLegacyTideUrl: URL = {
+  fileprivate lazy var OldLegacyTideUrl: URL = {
     let urls = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
     let cacheUrl = (urls[urls.count - 1] as NSURL) as URL
     return cacheUrl.appendingPathComponent("legacy-data.sqlite")
@@ -34,7 +30,7 @@ class LegacyStationData: StationData {
     let fm = FileManager()
     let bundledDataStoreUrl = Bundle.main.url(forResource: "legacy-data", withExtension: "sqlite")
 
-    let coordinator: NSPersistentStoreCoordinator = NSPersistentStoreCoordinator(
+    let coordinator = NSPersistentStoreCoordinator(
       managedObjectModel: self.managedObjectModel)
 
     do {
@@ -90,7 +86,7 @@ class LegacyStationData: StationData {
   // MARK: - Core Data Saving support
 
   func saveContext() {
-    if let moc = self.managedObjectContext {
+    if let moc = managedObjectContext {
       if moc.hasChanges {
         moc.performAndWait {
           do {

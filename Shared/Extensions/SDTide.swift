@@ -18,7 +18,8 @@ extension SDTide {
 
 extension SDTide {
   func hoursToPlot() -> Int {
-    let diffComponents = Calendar.current.dateComponents([.hour], from: self.startTime, to: self.stopTime)
+    let diffComponents = Calendar.current.dateComponents(
+      [.hour], from: self.startTime, to: self.stopTime)
     return diffComponents.hour!
   }
 }

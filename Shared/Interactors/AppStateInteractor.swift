@@ -6,9 +6,9 @@
 //
 
 import Foundation
+import MapKit
 import ShralpTideFramework
 import SwiftUI
-import MapKit
 
 protocol AppStateInteractor {
   func updateState(appState: AppState, settings: UserSettings)
@@ -21,7 +21,6 @@ protocol AppStateInteractor {
 }
 
 struct CoreDataAppStateInteractor: AppStateInteractor {
-  
   @Environment(\.appStateRepository) private var appStateRepository: AppStateRepository
 
   func updateState(appState: AppState, settings: UserSettings) {
@@ -36,6 +35,7 @@ struct CoreDataAppStateInteractor: AppStateInteractor {
     let stationName = appState.tides[appState.locationPage].stationName
     appState.tidesForDays = SDTideFactory.tides(
       forStationName: stationName, forDays: settings.daysPref, withUnits: units)
+    appState.refreshTideLevel()
   }
 
   func addFavoriteLegacyLocation(name: String) {
@@ -45,7 +45,7 @@ struct CoreDataAppStateInteractor: AppStateInteractor {
       fatalError("Failed to save favorite location \(name)")
     }
   }
-  
+
   func addFavoriteStandardLocation(name: String) {
     do {
       try appStateRepository.addFavoriteLocation(locationName: name, isLegacy: false)
@@ -53,7 +53,7 @@ struct CoreDataAppStateInteractor: AppStateInteractor {
       fatalError("Failed to save favorite location \(name)")
     }
   }
-  
+
   func removeFavoriteLegacyLocation(name: String) {
     do {
       try appStateRepository.removeFavoriteLocation(locationName: name, isLegacy: true)
@@ -61,7 +61,7 @@ struct CoreDataAppStateInteractor: AppStateInteractor {
       fatalError("Failed to remove favorite location \(name)")
     }
   }
-  
+
   func removeFavoriteStandardLocation(name: String) {
     do {
       try appStateRepository.removeFavoriteLocation(locationName: name, isLegacy: false)
@@ -77,7 +77,7 @@ struct CoreDataAppStateInteractor: AppStateInteractor {
       fatalError("Failed to set selected station \(name)")
     }
   }
-  
+
   func setSelectedStandardLocation(name: String) {
     do {
       try appStateRepository.setSelectedLocation(locationName: name, isLegacy: false)
@@ -85,7 +85,7 @@ struct CoreDataAppStateInteractor: AppStateInteractor {
       fatalError("Failed to set selected station \(name)")
     }
   }
-  
+
   private func favoriteLocations(legacyMode: Bool) -> [SDFavoriteLocation] {
     return appStateRepository.favoriteLocations(isLegacy: legacyMode).array as! [SDFavoriteLocation]
   }
