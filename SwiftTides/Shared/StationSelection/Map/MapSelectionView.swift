@@ -31,6 +31,14 @@ struct MapSelectionView: View {
             detailMapRegion: $detailMapRegion
           )
           .navigationTitle("Select a Tide Station")
+          .navigationBarItems(
+            trailing:
+              HStack {
+                Button("Done") {
+                  activeSheet = nil
+                }
+              }
+          )
           NavigationLink(
             "",
             destination: StationDetailView(

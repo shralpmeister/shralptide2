@@ -16,11 +16,13 @@ struct SwiftTidesApp: App {
   @StateObject private var appState = AppState()
 
   @State private var isFirstLaunch = true
+  
+  private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
 
   var body: some Scene {
     WindowGroup {
-      ContentView()
-        .statusBar(hidden: true)
+      contentView()
+        .statusBar(hidden: false)
         .accentColor(.white)
         .ignoresSafeArea()
         .environmentObject(config)
@@ -38,6 +40,14 @@ struct SwiftTidesApp: App {
             appStateInteractor.updateState(appState: appState, settings: config.settings)
           }
         }
+    }
+  }
+  
+  private func contentView() -> some View {
+    if idiom == .phone {
+      return PhoneContentView()
+    } else {
+      return PhoneContentView()
     }
   }
 }

@@ -21,9 +21,18 @@ struct TideStationListView: View {
             activeSheet: $activeSheet, selectedLocation: .constant(toAnnotation(station)))
         ) {
           Text(station.name ?? "None")
+            .font(.headline)
         }
       }
     }
+    .navigationBarItems(
+      trailing:
+        HStack {
+          Button("Done") {
+            activeSheet = nil
+          }
+        }
+    )
   }
 
   func toAnnotation(_ station: SDTideStation) -> TideAnnotation {

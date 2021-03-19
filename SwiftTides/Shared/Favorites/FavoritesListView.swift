@@ -95,7 +95,7 @@ struct FavoritesListFooter: View {
             .environmentObject(appState)
             .environmentObject(config)
         case .list:
-          RegionSelectionView(title: "Select station", activeSheet: $activeSheet)
+          RegionSelectionView(activeSheet: $activeSheet)
             .environmentObject(appState)
             .environmentObject(config)
         }

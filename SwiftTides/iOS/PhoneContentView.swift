@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct PhoneContentView: View {
   @EnvironmentObject var appState: AppState
   @EnvironmentObject var config: ConfigHelper
 
@@ -82,6 +82,6 @@ struct ContentView: View {
         TideGraphView(pageIndex: $pageIndex, cursorLocation: $cursorLocation)
           .gesture(exclusive)
       }
-    }
+    }.preferredColorScheme(.dark)
   }
 }

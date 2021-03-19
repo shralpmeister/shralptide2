@@ -15,10 +15,7 @@ struct RegionSelectionView: View {
 
   @Binding var activeSheet: ActiveSheet?
 
-  var title: String
-
-  init(title: String, activeSheet: Binding<ActiveSheet?>) {
-    self.title = title
+  init(activeSheet: Binding<ActiveSheet?>) {
     self._activeSheet = activeSheet
   }
 
@@ -26,15 +23,7 @@ struct RegionSelectionView: View {
     NavigationView {
       let interactor = config.settings.legacyMode ? legacyInteractor : standardInteractor
       RegionListView(regions: interactor.countries(), activeSheet: $activeSheet)
-        .navigationTitle(Text(title))
+        .navigationTitle(Text("Country"))
     }
-    .navigationBarItems(
-      trailing:
-        HStack {
-          Button("Done") {
-            activeSheet = nil
-          }
-        }
-    )
   }
 }

@@ -81,8 +81,8 @@
 		DC26BB0F24BB807B00453A5F /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC26BB0E24BB807B00453A5F /* Tests_macOS.swift */; };
 		DC26BB1124BB807B00453A5F /* SwiftTidesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC26BAE824BB807900453A5F /* SwiftTidesApp.swift */; };
 		DC26BB1224BB807B00453A5F /* SwiftTidesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC26BAE824BB807900453A5F /* SwiftTidesApp.swift */; };
-		DC26BB1324BB807B00453A5F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC26BAE924BB807900453A5F /* ContentView.swift */; };
-		DC26BB1424BB807B00453A5F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC26BAE924BB807900453A5F /* ContentView.swift */; };
+		DC26BB1324BB807B00453A5F /* PhoneContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC26BAE924BB807900453A5F /* PhoneContentView.swift */; };
+		DC26BB1424BB807B00453A5F /* PhoneContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC26BAE924BB807900453A5F /* PhoneContentView.swift */; };
 		DC26BB1524BB807B00453A5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC26BAEA24BB807B00453A5F /* Assets.xcassets */; };
 		DC26BB1624BB807B00453A5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC26BAEA24BB807B00453A5F /* Assets.xcassets */; };
 		DC43CBE525C77B00002A330E /* RegionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CBE425C77B00002A330E /* RegionListView.swift */; };
@@ -184,7 +184,7 @@
 		DC15911A259A70400092E473 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		DC160B4F24CFAC9D00C62C56 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		DC26BAE824BB807900453A5F /* SwiftTidesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftTidesApp.swift; sourceTree = "<group>"; };
-		DC26BAE924BB807900453A5F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DC26BAE924BB807900453A5F /* PhoneContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneContentView.swift; sourceTree = "<group>"; };
 		DC26BAEA24BB807B00453A5F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC26BAEF24BB807B00453A5F /* SwiftTides.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftTides.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC26BAF224BB807B00453A5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -416,7 +416,7 @@
 			isa = PBXGroup;
 			children = (
 				DC0DE59A258D577F00FD75A0 /* SwiftTides.entitlements */,
-				DC26BAE924BB807900453A5F /* ContentView.swift */,
+				DC26BAE924BB807900453A5F /* PhoneContentView.swift */,
 				DC160B4F24CFAC9D00C62C56 /* HeaderView.swift */,
 				DC77459D24F31681001747AE /* TideEventsView.swift */,
 				DC115DA925A5572600954972 /* TideGraphView.swift */,
@@ -676,7 +676,7 @@
 				DC0DE7CB2593B2E400FD75A0 /* ModelMigrate2To3.swift in Sources */,
 				DC43CBE525C77B00002A330E /* RegionListView.swift in Sources */,
 				DC0DE7CF2593B2E400FD75A0 /* StationData.swift in Sources */,
-				DC26BB1324BB807B00453A5F /* ContentView.swift in Sources */,
+				DC26BB1324BB807B00453A5F /* PhoneContentView.swift in Sources */,
 				DC43CBF125C782BD002A330E /* TideStationInteractor.swift in Sources */,
 				DC115DD525ABD97100954972 /* SunMoonLabelsChartViewModifier.swift in Sources */,
 				DC115D9725A28D6A00954972 /* PagerView.swift in Sources */,
@@ -721,7 +721,7 @@
 				DC0DE7CC2593B2E400FD75A0 /* ModelMigrate2To3.swift in Sources */,
 				DC43CBE625C77B00002A330E /* RegionListView.swift in Sources */,
 				DC0DE7D02593B2E400FD75A0 /* StationData.swift in Sources */,
-				DC26BB1424BB807B00453A5F /* ContentView.swift in Sources */,
+				DC26BB1424BB807B00453A5F /* PhoneContentView.swift in Sources */,
 				DC43CBF225C782BD002A330E /* TideStationInteractor.swift in Sources */,
 				DC115DD625ABD97100954972 /* SunMoonLabelsChartViewModifier.swift in Sources */,
 				DC115D9825A28D6A00954972 /* PagerView.swift in Sources */,

@@ -25,10 +25,20 @@ struct RegionListView: View {
               .scaledToFit()
               .frame(width: 50, height: 35)
             Text(region.name)
+              .lineLimit(1)
+              .font(.headline)
           }
         }
       }
     }
+    .navigationBarItems(
+      trailing:
+        HStack {
+          Button("Done") {
+            activeSheet = nil
+          }
+        }
+    )
   }
 
   private func nextView(_ region: Region) -> some View {
@@ -38,11 +48,13 @@ struct RegionListView: View {
           TideStationListView(
             stations: legacyInteractor.stations(forRegionNamed: region.name),
             activeSheet: $activeSheet))
+          .navigationTitle("Station")
       } else {
         return AnyView(
           TideStationListView(
             stations: standardInteractor.stations(forRegionNamed: region.name),
             activeSheet: $activeSheet))
+          .navigationTitle("Station")
       }
     } else {
       return AnyView(
@@ -51,6 +63,7 @@ struct RegionListView: View {
             a.name < b.name
           }),
           activeSheet: $activeSheet))
+        .navigationTitle("Region")
     }
   }
 }
