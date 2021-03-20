@@ -64,7 +64,7 @@ struct InteractiveChartViewModifier: ViewModifier {
                 dataPoint: dataPoint, unit: tideData.unitShort,
                 startDate: appState.tidesForDays[self.pageIndex].startTime
               )
-              .position(x: midpointX, y: 75)
+              .position(x: midpointX, y: 85)
             }
             HStack(alignment: .bottom) {
               Text(appState.tideChartData?.shortLocationName ?? "Unknown Station")

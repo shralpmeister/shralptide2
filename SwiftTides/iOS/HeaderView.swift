@@ -26,7 +26,7 @@ struct HeaderView: View {
         .font(Font.system(size: 96))
         .fontWeight(.medium)
         .lineLimit(1)
-        .padding(.top, 0)
+        .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
         .minimumScaleFactor(0.2)
     }
     .font( /*@START_MENU_TOKEN@*/.title /*@END_MENU_TOKEN@*/)

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ChartView: View {
   private let dateFormatter = DateFormatter()
+  private let maxZeroThickness: CGFloat = 2
 
   private var showZero = true
   private var tideData: SDTide
@@ -46,15 +47,7 @@ struct ChartView: View {
     let immutablePairs = pairs
     return immutablePairs
   }
-
-  private func findLowestTideValue(_ tide: SDTide) -> CGFloat {
-    return CGFloat(tide.allIntervals.sorted(by: { $0.height < $1.height }).first!.height)
-  }
-
-  private func findHighestTideValue(_ tide: SDTide) -> CGFloat {
-    return CGFloat(tide.allIntervals.sorted(by: { $0.height > $1.height }).first!.height)
-  }
-
+  
   private func drawTideLevel(
     _ baseSeconds: TimeInterval, _ xratio: CGFloat, _ yoffset: CGFloat, _ yratio: CGFloat,
     _ height: CGFloat
@@ -133,44 +126,19 @@ struct ChartView: View {
   private func drawBaseline(_ dim: ChartDimensions)
     -> some View
   {
+    let proportionalThickness = 0.015 * dim.height
+    let thickness = proportionalThickness <= maxZeroThickness ? proportionalThickness : maxZeroThickness
     return Path { baselinePath in
       baselinePath.move(to: CGPoint(x: CGFloat(dim.xmin), y: CGFloat(dim.yoffset)))
       baselinePath.addLine(
         to: CGPoint(x: CGFloat(dim.xmax) * CGFloat(dim.xratio), y: CGFloat(dim.yoffset)))
     }
-    .stroke(Color.white, lineWidth: 2)
-  }
-
-  private func calculateDimensions(_ proxy: GeometryProxy) -> ChartDimensions {
-    let height: CGFloat = proxy.size.height * 0.8  // max height for plotting y axis
-    let chartBottom: CGFloat = proxy.size.height
-
-    let min: CGFloat = findLowestTideValue(tideData)
-    let max: CGFloat = findHighestTideValue(tideData)
-
-    let ymin: CGFloat = min - 1
-    let ymax: CGFloat = max + 1
-
-    let xmin: Int = 0
-    let xmax: Int = ChartConstants.minutesPerHour * tideData.hoursToPlot()
-
-    let yratio = CGFloat(height) / (ymax - ymin)
-    let yoffset: CGFloat = (CGFloat(height) + ymin * yratio) + (chartBottom - CGFloat(height))
-
-    let xratio = CGFloat(proxy.size.width) / CGFloat(xmax)
-
-    return ChartDimensions(
-      xratio: xratio,
-      height: chartBottom,
-      yoffset: yoffset,
-      yratio: yratio,
-      xmin: xmin,
-      xmax: xmax)
+    .stroke(Color.white, lineWidth: thickness)
   }
 
   var body: some View {
     return GeometryReader { proxy in
-      let dim = calculateDimensions(proxy)
+      let dim = calculateDimensions(proxy, tideData: tideData)
 
       let day = tideData.startTime!
       let baseSeconds: TimeInterval = day.timeIntervalSince1970
@@ -185,13 +153,4 @@ struct ChartView: View {
       }
     }
   }
-}
-
-struct ChartDimensions {
-  let xratio: CGFloat
-  let height: CGFloat
-  let yoffset: CGFloat
-  let yratio: CGFloat
-  let xmin: Int
-  let xmax: Int
 }

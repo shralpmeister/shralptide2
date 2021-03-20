@@ -37,3 +37,47 @@ internal func xCoord(forTime time: Date, baseSeconds: TimeInterval, xratio: CGFl
   let minute = Int(time.timeIntervalSince1970 - baseSeconds) / ChartConstants.secondsPerMinute
   return CGFloat(minute) * xratio
 }
+
+internal func calculateDimensions(_ proxy: GeometryProxy, tideData: SDTide) -> ChartDimensions {
+  let height: CGFloat = proxy.size.height * 0.8  // max height for plotting y axis
+  let chartBottom: CGFloat = proxy.size.height
+
+  let min: CGFloat = findLowestTideValue(tideData)
+  let max: CGFloat = findHighestTideValue(tideData)
+
+  let ymin: CGFloat = min - 1
+  let ymax: CGFloat = max + 1
+
+  let xmin: Int = 0
+  let xmax: Int = ChartConstants.minutesPerHour * tideData.hoursToPlot()
+
+  let yratio = CGFloat(height) / (ymax - ymin)
+  let yoffset: CGFloat = (CGFloat(height) + ymin * yratio) + (chartBottom - CGFloat(height))
+
+  let xratio = CGFloat(proxy.size.width) / CGFloat(xmax)
+
+  return ChartDimensions(
+    xratio: xratio,
+    height: chartBottom,
+    yoffset: yoffset,
+    yratio: yratio,
+    xmin: xmin,
+    xmax: xmax)
+}
+
+internal func findLowestTideValue(_ tide: SDTide) -> CGFloat {
+  return CGFloat(tide.allIntervals.sorted(by: { $0.height < $1.height }).first!.height)
+}
+
+internal func findHighestTideValue(_ tide: SDTide) -> CGFloat {
+  return CGFloat(tide.allIntervals.sorted(by: { $0.height > $1.height }).first!.height)
+}
+
+struct ChartDimensions {
+  let xratio: CGFloat
+  let height: CGFloat
+  let yoffset: CGFloat
+  let yratio: CGFloat
+  let xmin: Int
+  let xmax: Int
+}
