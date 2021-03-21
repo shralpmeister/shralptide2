@@ -29,18 +29,6 @@ struct InteractiveChartViewModifier: ViewModifier {
     return Int(round(xPosition / xRatio))
   }
 
-  private func currentTimeInMinutes() -> Int {
-    // The following shows the current time on the tide chart.
-    // Need to make sure that it only shows on the current day!
-    let datestamp = Date()
-
-    if datestamp.startOfDay() == tideData.startTime {
-      return Date().timeInMinutesSinceMidnight()
-    } else {
-      return -1
-    }
-  }
-
   func body(content: Content) -> some View {
     return GeometryReader { proxy in
       let screenMinutes =
@@ -49,7 +37,7 @@ struct InteractiveChartViewModifier: ViewModifier {
       let midpointX = UIScreen.main.bounds.size.width / 2.0
 
       let xPosition =
-        cursorLocation.x > .zero ? cursorLocation.x : CGFloat(currentTimeInMinutes()) * xRatio
+        cursorLocation.x > .zero ? cursorLocation.x : CGFloat(currentTimeInMinutes(tideData: tideData)) * xRatio
 
       let dataPoint = tideData.nearestDataPoint(
         forTime: timeInMinutes(x: xPosition, xRatio: xRatio))

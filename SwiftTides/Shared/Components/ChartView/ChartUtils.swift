@@ -73,6 +73,18 @@ internal func findHighestTideValue(_ tide: SDTide) -> CGFloat {
   return CGFloat(tide.allIntervals.sorted(by: { $0.height > $1.height }).first!.height)
 }
 
+internal func currentTimeInMinutes(tideData: SDTide) -> Int {
+  // The following shows the current time on the tide chart.
+  // Need to make sure that it only shows on the current day!
+  let datestamp = Date()
+
+  if datestamp.startOfDay() == tideData.startTime {
+    return Date().timeInMinutesSinceMidnight()
+  } else {
+    return -1
+  }
+}
+
 struct ChartDimensions {
   let xratio: CGFloat
   let height: CGFloat
