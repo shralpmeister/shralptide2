@@ -35,7 +35,6 @@ struct PadLandscapeView: View {
             .environmentObject(self.config)
             .frame(maxWidth: proxy.size.width * 0.3)
           PadTidesView(pageIndex: $pageIndex, selectedTideDay: $selectedTideDay)
-            .border(Color.red)
         }
       }
     }

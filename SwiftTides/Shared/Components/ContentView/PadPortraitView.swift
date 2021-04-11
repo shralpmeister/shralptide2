@@ -42,7 +42,6 @@ struct PadPortraitView: View {
         }
         .frame(maxHeight: 20)
         PadTidesView(pageIndex: $pageIndex, selectedTideDay: $selectedTideDay)
-          .border(Color.red)
       }
     }
   }

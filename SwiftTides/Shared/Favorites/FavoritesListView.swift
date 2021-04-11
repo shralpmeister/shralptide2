@@ -43,7 +43,9 @@ struct FavoritesListView: View {
               interactor.updateState(appState: appState, settings: config.settings)
             })
           } else {
-            FavoriteRow(tide: appState.tides[0], isShowingFavorites: $isShowing)
+            if appState.tides.count > 0 {
+              FavoriteRow(tide: appState.tides[0], isShowingFavorites: $isShowing)
+            }
           }
         }
         .listRowBackground(Color.clear)

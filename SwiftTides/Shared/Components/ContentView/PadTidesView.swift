@@ -30,9 +30,7 @@ struct PadTidesView: View {
     let pressDrag = pressGesture.sequenced(before: dragGesture)
     
     let headerWidth: CGFloat = 0.3
-    let headerHeight: CGFloat = 1/15
     let chartWidth: CGFloat = 0.6
-    let chartHeight: CGFloat = 1/4
     
     return GeometryReader { proxy in
       VStack {
@@ -41,7 +39,7 @@ struct PadTidesView: View {
             HeaderView(showsLocation: false)
               .frame(
                 width: proxy.size.width * headerWidth,
-                height: proxy.size.height * headerHeight
+                height: 70
               )
               .padding()
             if let tideData = appState.tidesForDays[pageIndex] {
@@ -51,7 +49,7 @@ struct PadTidesView: View {
               }
             }
           }
-          .frame(height: proxy.size.height * chartHeight)
+          .frame(height: proxy.size.width * chartWidth / 1.77)
           .background(Image("background-gradient").resizable())
           .clipShape(RoundedRectangle(cornerRadius: 3.0))
           if let tideData = selectedTideDay?.tideDataToChart {
@@ -66,7 +64,7 @@ struct PadTidesView: View {
               )
               .frame(
                 width: proxy.size.width * chartWidth,
-                height: proxy.size.height * chartHeight
+                height: proxy.size.width * chartWidth / 1.77
               )
               .clipShape(RoundedRectangle(cornerRadius: 3.0))
           }
@@ -76,9 +74,3 @@ struct PadTidesView: View {
     }
   }
 }
-
-//struct PadPortraitLayout_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PadPortraitView()
-//    }
-//}

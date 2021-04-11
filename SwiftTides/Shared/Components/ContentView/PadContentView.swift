@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PadContentView: View {
+  @Environment(\.horizontalSizeClass) var horizontalSizeClass
+
   @EnvironmentObject var appState: AppState
   @EnvironmentObject var config: ConfigHelper
 
@@ -18,15 +20,16 @@ struct PadContentView: View {
   @GestureState private var translation: CGFloat = 0
   
   var body: some View {
-    
     return GeometryReader { proxy in
       let isPortrait = proxy.size.width < proxy.size.height
       
       ZStack(alignment: .top) {
         Color.black
           .ignoresSafeArea()
-        if isPortrait {
+        if isPortrait && horizontalSizeClass == .regular {
           PadPortraitView(pageIndex: $pageIndex, selectedTideDay: $selectedTideDay)
+        } else if isPortrait && horizontalSizeClass == .compact {
+          FavoritesListView(isShowing: Binding.constant(true))
         } else {
           PadLandscapeView(pageIndex: $pageIndex, selectedTideDay: $selectedTideDay)
         }
