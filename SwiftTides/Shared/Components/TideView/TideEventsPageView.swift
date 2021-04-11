@@ -8,7 +8,7 @@
 import ShralpTideFramework
 import SwiftUI
 
-struct TideEventsView: View {
+struct TideEventsPageView: View {
   @EnvironmentObject var appState: AppState
   @EnvironmentObject var config: ConfigHelper
 
@@ -38,32 +38,9 @@ struct TideEventsView: View {
             .animation(.none)
             .modifier(SunMoonLabelsChartViewModifier(tide: tide))
             .frame(width: UIScreen.main.bounds.width, height: proxy.size.height * 0.18)
-            ForEach(
-              convertEvents(tide.startTime != nil ? tide.events(forDay: tide.startTime) : []),
-              id: \.self
-            ) { (event: SDTideEvent) in
-              HStack(alignment: .center, spacing: 10) {
-                Text(event.eventTime != nil ? event.eventTimeNativeFormat : "")
-                  .frame(
-                    width: proxy.size.width * 0.3, height: proxy.size.height * 0.1,
-                    alignment: .center)
-                Text(
-                  event.eventTime != nil
-                    ? String(format: "%1.2f%@", event.eventHeight, tide.unitShort) : ""
-                )
-                .frame(
-                  width: proxy.size.width * 0.26, height: proxy.size.height * 0.1,
-                  alignment: .center)
-                Text(event.eventTime != nil ? event.eventTypeDescription : "")
-                  .frame(
-                    width: proxy.size.width * 0.22, height: proxy.size.height * 0.1,
-                    alignment: .center)
-              }
-              .font(.title2)
-              .lineLimit(1)
-              .minimumScaleFactor(0.2)
-              .frame(width: nil, height: nil, alignment: .center)
-            }
+            TideEventsView(tide: tide)
+              .padding(.top, 20)
+              .padding(.bottom, 60)
           }
           .font(.title)
           .foregroundColor(.white)
@@ -79,14 +56,6 @@ struct TideEventsView: View {
     .onDisappear(perform: {
       UIScrollView.appearance().bounces = true
     })
-  }
-
-  func convertEvents(_ events: [SDTideEvent]) -> [SDTideEvent] {
-    var result = [SDTideEvent(), SDTideEvent(), SDTideEvent(), SDTideEvent()]
-    if events.count > 0 {
-      result[0..<events.count] = events[0..<events.count]
-    }
-    return result
   }
 }
 

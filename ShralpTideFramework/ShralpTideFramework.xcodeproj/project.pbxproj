@@ -309,6 +309,10 @@
 		DC0DE7012592CF5600FD75A0 /* WatchTideFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WatchTideFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0DE7032592CF5600FD75A0 /* WatchTideFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WatchTideFramework.h; sourceTree = "<group>"; };
 		DC0DE7042592CF5600FD75A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC246B3226215A660090F38B /* ShralpTideMacFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShralpTideMacFramework.h; sourceTree = "<group>"; };
+		DC246B3326215A660090F38B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC246B3D26215A660090F38B /* ShralpTideMacFrameworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShralpTideMacFrameworkTests.m; sourceTree = "<group>"; };
+		DC246B3F26215A660090F38B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,6 +340,8 @@
 				DC0DE636258D856900FD75A0 /* XTide */,
 				DC0DE5C5258D82C200FD75A0 /* ShralpTideFramework */,
 				DC0DE7022592CF5600FD75A0 /* WatchTideFramework */,
+				DC246B3126215A660090F38B /* ShralpTideMacFramework */,
+				DC246B3C26215A660090F38B /* ShralpTideMacFrameworkTests */,
 				DC0DE5C4258D82C200FD75A0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -500,6 +506,24 @@
 				DC0DE7042592CF5600FD75A0 /* Info.plist */,
 			);
 			path = WatchTideFramework;
+			sourceTree = "<group>";
+		};
+		DC246B3126215A660090F38B /* ShralpTideMacFramework */ = {
+			isa = PBXGroup;
+			children = (
+				DC246B3226215A660090F38B /* ShralpTideMacFramework.h */,
+				DC246B3326215A660090F38B /* Info.plist */,
+			);
+			path = ShralpTideMacFramework;
+			sourceTree = "<group>";
+		};
+		DC246B3C26215A660090F38B /* ShralpTideMacFrameworkTests */ = {
+			isa = PBXGroup;
+			children = (
+				DC246B3D26215A660090F38B /* ShralpTideMacFrameworkTests.m */,
+				DC246B3F26215A660090F38B /* Info.plist */,
+			);
+			path = ShralpTideMacFrameworkTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -965,7 +989,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTideFramework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -992,7 +1016,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTideFramework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

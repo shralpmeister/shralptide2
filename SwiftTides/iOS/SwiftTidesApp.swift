@@ -22,9 +22,6 @@ struct SwiftTidesApp: App {
   var body: some Scene {
     WindowGroup {
       contentView()
-        .statusBar(hidden: false)
-        .accentColor(.white)
-        .ignoresSafeArea()
         .environmentObject(config)
         .environmentObject(appState)
         .onReceive(config.$settings) { newValue in
@@ -45,9 +42,9 @@ struct SwiftTidesApp: App {
   
   private func contentView() -> some View {
     if idiom == .phone {
-      return PhoneContentView()
+      return AnyView(PhoneContentView())
     } else {
-      return PhoneContentView()
+      return AnyView(PadContentView())
     }
   }
 }

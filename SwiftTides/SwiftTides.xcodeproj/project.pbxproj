@@ -77,6 +77,44 @@
 		DC15911C259A70400092E473 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC15911A259A70400092E473 /* ChartView.swift */; };
 		DC160B5024CFAC9D00C62C56 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC160B4F24CFAC9D00C62C56 /* HeaderView.swift */; };
 		DC160B5124CFAC9D00C62C56 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC160B4F24CFAC9D00C62C56 /* HeaderView.swift */; };
+		DC246ADC2615712D0090F38B /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246ADB2615712D0090F38B /* MonthView.swift */; };
+		DC246ADD2615712D0090F38B /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246ADB2615712D0090F38B /* MonthView.swift */; };
+		DC246ADE2615712D0090F38B /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246ADB2615712D0090F38B /* MonthView.swift */; };
+		DC246ADF2615712D0090F38B /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246ADB2615712D0090F38B /* MonthView.swift */; };
+		DC246AE7261A642D0090F38B /* CalendarAppStateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246AE6261A642D0090F38B /* CalendarAppStateInteractor.swift */; };
+		DC246AE8261A642D0090F38B /* CalendarAppStateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246AE6261A642D0090F38B /* CalendarAppStateInteractor.swift */; };
+		DC246AE9261A642D0090F38B /* CalendarAppStateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246AE6261A642D0090F38B /* CalendarAppStateInteractor.swift */; };
+		DC246AEA261A642D0090F38B /* CalendarAppStateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246AE6261A642D0090F38B /* CalendarAppStateInteractor.swift */; };
+		DC246AEF261A6A630090F38B /* SingleDayTideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246AEE261A6A630090F38B /* SingleDayTideModel.swift */; };
+		DC246AF0261A6A630090F38B /* SingleDayTideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246AEE261A6A630090F38B /* SingleDayTideModel.swift */; };
+		DC246AF1261A6A630090F38B /* SingleDayTideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246AEE261A6A630090F38B /* SingleDayTideModel.swift */; };
+		DC246AF2261A6A630090F38B /* SingleDayTideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246AEE261A6A630090F38B /* SingleDayTideModel.swift */; };
+		DC246B02261A73780090F38B /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B01261A73780090F38B /* CalendarDayView.swift */; };
+		DC246B03261A73780090F38B /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B01261A73780090F38B /* CalendarDayView.swift */; };
+		DC246B04261A73780090F38B /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B01261A73780090F38B /* CalendarDayView.swift */; };
+		DC246B05261A73780090F38B /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B01261A73780090F38B /* CalendarDayView.swift */; };
+		DC246B0A261A8E720090F38B /* TideEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B09261A8E720090F38B /* TideEventsView.swift */; };
+		DC246B0B261A8E720090F38B /* TideEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B09261A8E720090F38B /* TideEventsView.swift */; };
+		DC246B0C261A8E720090F38B /* TideEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B09261A8E720090F38B /* TideEventsView.swift */; };
+		DC246B0D261A8E720090F38B /* TideEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B09261A8E720090F38B /* TideEventsView.swift */; };
+		DC246B1826214ED20090F38B /* LocationDateViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B1726214ED20090F38B /* LocationDateViewModifier.swift */; };
+		DC246B1926214ED20090F38B /* LocationDateViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B1726214ED20090F38B /* LocationDateViewModifier.swift */; };
+		DC246B1A26214ED20090F38B /* LocationDateViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B1726214ED20090F38B /* LocationDateViewModifier.swift */; };
+		DC246B1B26214ED20090F38B /* LocationDateViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B1726214ED20090F38B /* LocationDateViewModifier.swift */; };
+		DC246B4F26215A7B0090F38B /* ShralpTideMacFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC246B4E26215A7B0090F38B /* ShralpTideMacFramework.framework */; };
+		DC246B5026215A7B0090F38B /* ShralpTideMacFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC246B4E26215A7B0090F38B /* ShralpTideMacFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DC246B5A262200A90090F38B /* PadPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B59262200A90090F38B /* PadPortraitView.swift */; };
+		DC246B5B262200A90090F38B /* PadPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B59262200A90090F38B /* PadPortraitView.swift */; };
+		DC246B5C262200A90090F38B /* PadPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B59262200A90090F38B /* PadPortraitView.swift */; };
+		DC246B5D262200A90090F38B /* PadPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B59262200A90090F38B /* PadPortraitView.swift */; };
+		DC246B63262203E70090F38B /* PadTidesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B62262203E70090F38B /* PadTidesView.swift */; };
+		DC246B64262203E70090F38B /* PadTidesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B62262203E70090F38B /* PadTidesView.swift */; };
+		DC246B65262203E70090F38B /* PadTidesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B62262203E70090F38B /* PadTidesView.swift */; };
+		DC246B66262203E70090F38B /* PadTidesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B62262203E70090F38B /* PadTidesView.swift */; };
+		DC246B6A2622064A0090F38B /* PadLandscapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B692622064A0090F38B /* PadLandscapeView.swift */; };
+		DC246B6B2622064A0090F38B /* PadLandscapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B692622064A0090F38B /* PadLandscapeView.swift */; };
+		DC246B6C2622064A0090F38B /* PadLandscapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B692622064A0090F38B /* PadLandscapeView.swift */; };
+		DC246B6D2622064A0090F38B /* PadLandscapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B692622064A0090F38B /* PadLandscapeView.swift */; };
 		DC26BB0424BB807B00453A5F /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC26BB0324BB807B00453A5F /* Tests_iOS.swift */; };
 		DC26BB0F24BB807B00453A5F /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC26BB0E24BB807B00453A5F /* Tests_macOS.swift */; };
 		DC26BB1124BB807B00453A5F /* SwiftTidesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC26BAE824BB807900453A5F /* SwiftTidesApp.swift */; };
@@ -95,10 +133,12 @@
 		DC43CBFE25C7882C002A330E /* RegionSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CBFC25C7882C002A330E /* RegionSelectionView.swift */; };
 		DC43CC0625CBC44E002A330E /* TideStationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CC0525CBC44E002A330E /* TideStationListView.swift */; };
 		DC43CC0725CBC44E002A330E /* TideStationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CC0525CBC44E002A330E /* TideStationListView.swift */; };
-		DC77459E24F31681001747AE /* TideEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77459D24F31681001747AE /* TideEventsView.swift */; };
-		DC77459F24F31681001747AE /* TideEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77459D24F31681001747AE /* TideEventsView.swift */; };
+		DC77459E24F31681001747AE /* TideEventsPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77459D24F31681001747AE /* TideEventsPageView.swift */; };
+		DC77459F24F31681001747AE /* TideEventsPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77459D24F31681001747AE /* TideEventsPageView.swift */; };
 		DCAC203A25E8C02100204370 /* ShralpTideFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCAC203925E8C02100204370 /* ShralpTideFramework.framework */; };
 		DCAC203B25E8C02100204370 /* ShralpTideFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DCAC203925E8C02100204370 /* ShralpTideFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DCD524312607F6D900EA4C68 /* PadContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD524302607F6D900EA4C68 /* PadContentView.swift */; };
+		DCD524322607F6D900EA4C68 /* PadContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD524302607F6D900EA4C68 /* PadContentView.swift */; };
 		DCF96C0C25BE3AC900255096 /* StationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF96C0B25BE3AC900255096 /* StationDetailView.swift */; };
 		DCF96C0D25BE3AC900255096 /* StationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF96C0B25BE3AC900255096 /* StationDetailView.swift */; };
 		DCF96C1225BE492700255096 /* MapSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF96C1125BE492700255096 /* MapSelectionView.swift */; };
@@ -137,6 +177,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 				DCAC203B25E8C02100204370 /* ShralpTideFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC246B5126215A7B0090F38B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DC246B5026215A7B0090F38B /* ShralpTideMacFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -183,6 +234,17 @@
 		DC115E3625BCBB4D00954972 /* TideAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideAnnotation.swift; sourceTree = "<group>"; };
 		DC15911A259A70400092E473 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		DC160B4F24CFAC9D00C62C56 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		DC246ADB2615712D0090F38B /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
+		DC246AE6261A642D0090F38B /* CalendarAppStateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAppStateInteractor.swift; sourceTree = "<group>"; };
+		DC246AEE261A6A630090F38B /* SingleDayTideModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleDayTideModel.swift; sourceTree = "<group>"; };
+		DC246B01261A73780090F38B /* CalendarDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
+		DC246B09261A8E720090F38B /* TideEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideEventsView.swift; sourceTree = "<group>"; };
+		DC246B1726214ED20090F38B /* LocationDateViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDateViewModifier.swift; sourceTree = "<group>"; };
+		DC246B25262159ED0090F38B /* ShralpTideFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ShralpTideFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC246B4E26215A7B0090F38B /* ShralpTideMacFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ShralpTideMacFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC246B59262200A90090F38B /* PadPortraitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadPortraitView.swift; sourceTree = "<group>"; };
+		DC246B62262203E70090F38B /* PadTidesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PadTidesView.swift; sourceTree = "<group>"; };
+		DC246B692622064A0090F38B /* PadLandscapeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PadLandscapeView.swift; sourceTree = "<group>"; };
 		DC26BAE824BB807900453A5F /* SwiftTidesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftTidesApp.swift; sourceTree = "<group>"; };
 		DC26BAE924BB807900453A5F /* PhoneContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneContentView.swift; sourceTree = "<group>"; };
 		DC26BAEA24BB807B00453A5F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -202,8 +264,9 @@
 		DC43CBF625C78697002A330E /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		DC43CBFC25C7882C002A330E /* RegionSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionSelectionView.swift; sourceTree = "<group>"; };
 		DC43CC0525CBC44E002A330E /* TideStationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideStationListView.swift; sourceTree = "<group>"; };
-		DC77459D24F31681001747AE /* TideEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideEventsView.swift; sourceTree = "<group>"; };
+		DC77459D24F31681001747AE /* TideEventsPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideEventsPageView.swift; sourceTree = "<group>"; };
 		DCAC203925E8C02100204370 /* ShralpTideFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ShralpTideFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCD524302607F6D900EA4C68 /* PadContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadContentView.swift; sourceTree = "<group>"; };
 		DCF96C0B25BE3AC900255096 /* StationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailView.swift; sourceTree = "<group>"; };
 		DCF96C1125BE492700255096 /* MapSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSelectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -221,6 +284,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC246B4F26215A7B0090F38B /* ShralpTideMacFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +310,7 @@
 			children = (
 				DC0DE8152593B87C00FD75A0 /* AppStateInteractor.swift */,
 				DC43CBF025C782BD002A330E /* TideStationInteractor.swift */,
+				DC246AE6261A642D0090F38B /* CalendarAppStateInteractor.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -325,6 +390,9 @@
 		DC115D9125A28D0A00954972 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				DC246ADA261571110090F38B /* MonthView */,
+				DCD524492607F71900EA4C68 /* ContentView */,
+				DCD5242F2607F6A700EA4C68 /* TideView */,
 				DC115D9525A28D5500954972 /* PagerView */,
 				DC159120259AB0230092E473 /* ChartView */,
 			);
@@ -366,8 +434,19 @@
 				DC079F73259BAED800F1CB0E /* InteractiveChartViewModifier.swift */,
 				DC079F7F259C34BB00F1CB0E /* LabeledChartViewModifier.swift */,
 				DC115DD425ABD97100954972 /* SunMoonLabelsChartViewModifier.swift */,
+				DC246B1726214ED20090F38B /* LocationDateViewModifier.swift */,
 			);
 			path = ChartView;
+			sourceTree = "<group>";
+		};
+		DC246ADA261571110090F38B /* MonthView */ = {
+			isa = PBXGroup;
+			children = (
+				DC246ADB2615712D0090F38B /* MonthView.swift */,
+				DC246AEE261A6A630090F38B /* SingleDayTideModel.swift */,
+				DC246B01261A73780090F38B /* CalendarDayView.swift */,
+			);
+			path = MonthView;
 			sourceTree = "<group>";
 		};
 		DC26BAE224BB807900453A5F = {
@@ -416,10 +495,6 @@
 			isa = PBXGroup;
 			children = (
 				DC0DE59A258D577F00FD75A0 /* SwiftTides.entitlements */,
-				DC26BAE924BB807900453A5F /* PhoneContentView.swift */,
-				DC160B4F24CFAC9D00C62C56 /* HeaderView.swift */,
-				DC77459D24F31681001747AE /* TideEventsView.swift */,
-				DC115DA925A5572600954972 /* TideGraphView.swift */,
 				DC26BAE824BB807900453A5F /* SwiftTidesApp.swift */,
 				DC26BAF224BB807B00453A5F /* Info.plist */,
 			);
@@ -477,9 +552,34 @@
 		DCAC203825E8C02100204370 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DC246B4E26215A7B0090F38B /* ShralpTideMacFramework.framework */,
+				DC246B25262159ED0090F38B /* ShralpTideFramework.framework */,
 				DCAC203925E8C02100204370 /* ShralpTideFramework.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DCD5242F2607F6A700EA4C68 /* TideView */ = {
+			isa = PBXGroup;
+			children = (
+				DC160B4F24CFAC9D00C62C56 /* HeaderView.swift */,
+				DC77459D24F31681001747AE /* TideEventsPageView.swift */,
+				DC115DA925A5572600954972 /* TideGraphView.swift */,
+				DC246B09261A8E720090F38B /* TideEventsView.swift */,
+			);
+			path = TideView;
+			sourceTree = "<group>";
+		};
+		DCD524492607F71900EA4C68 /* ContentView */ = {
+			isa = PBXGroup;
+			children = (
+				DC26BAE924BB807900453A5F /* PhoneContentView.swift */,
+				DCD524302607F6D900EA4C68 /* PadContentView.swift */,
+				DC246B59262200A90090F38B /* PadPortraitView.swift */,
+				DC246B692622064A0090F38B /* PadLandscapeView.swift */,
+				DC246B62262203E70090F38B /* PadTidesView.swift */,
+			);
+			path = ContentView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -510,6 +610,7 @@
 				DC26BAF324BB807B00453A5F /* Sources */,
 				DC26BAF424BB807B00453A5F /* Frameworks */,
 				DC26BAF524BB807B00453A5F /* Resources */,
+				DC246B5126215A7B0090F38B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -658,23 +759,32 @@
 				DC115E3725BCBB4D00954972 /* TideAnnotation.swift in Sources */,
 				DC079F74259BAED800F1CB0E /* InteractiveChartViewModifier.swift in Sources */,
 				DCF96C0C25BE3AC900255096 /* StationDetailView.swift in Sources */,
+				DC246B0A261A8E720090F38B /* TideEventsView.swift in Sources */,
 				DC0DE8A32595696F00FD75A0 /* SDTide.swift in Sources */,
+				DC246AEF261A6A630090F38B /* SingleDayTideModel.swift in Sources */,
 				DC115E3125BCB28400954972 /* SDTideStation.swift in Sources */,
 				DC115E2525B521F400954972 /* StationDataRepository.swift in Sources */,
 				DC115DE425AD56B200954972 /* FavoritesListView.swift in Sources */,
 				DCF96C1225BE492700255096 /* MapSelectionView.swift in Sources */,
 				DC115DF825B26CE800954972 /* StationMapView.swift in Sources */,
 				DC0DE8162593B87C00FD75A0 /* AppStateInteractor.swift in Sources */,
+				DC246B6A2622064A0090F38B /* PadLandscapeView.swift in Sources */,
+				DC246B5A262200A90090F38B /* PadPortraitView.swift in Sources */,
 				DC115DB825A576CA00954972 /* TideGraphView.swift in Sources */,
+				DC246AE7261A642D0090F38B /* CalendarAppStateInteractor.swift in Sources */,
+				DC246B1826214ED20090F38B /* LocationDateViewModifier.swift in Sources */,
+				DC246ADC2615712D0090F38B /* MonthView.swift in Sources */,
 				DC0DE589258C1B6C00FD75A0 /* EnvironmentValues.swift in Sources */,
 				DC079F7A259C06D200F1CB0E /* Date.swift in Sources */,
 				DC0DE7C72593B2E400FD75A0 /* AppStateRepository.swift in Sources */,
+				DC246B63262203E70090F38B /* PadTidesView.swift in Sources */,
 				DC0DE7FB2593B3FD00FD75A0 /* shralptide.xcdatamodeld in Sources */,
 				DC079F80259C34BB00F1CB0E /* LabeledChartViewModifier.swift in Sources */,
 				DC15911B259A70400092E473 /* ChartView.swift in Sources */,
 				DC43CBFD25C7882C002A330E /* RegionSelectionView.swift in Sources */,
 				DC0DE7CB2593B2E400FD75A0 /* ModelMigrate2To3.swift in Sources */,
 				DC43CBE525C77B00002A330E /* RegionListView.swift in Sources */,
+				DC246B02261A73780090F38B /* CalendarDayView.swift in Sources */,
 				DC0DE7CF2593B2E400FD75A0 /* StationData.swift in Sources */,
 				DC26BB1324BB807B00453A5F /* PhoneContentView.swift in Sources */,
 				DC43CBF125C782BD002A330E /* TideStationInteractor.swift in Sources */,
@@ -684,13 +794,14 @@
 				DC115DEA25AD576100954972 /* FavoriteRow.swift in Sources */,
 				DC0DE7AF259305F600FD75A0 /* AppState.swift in Sources */,
 				DC43CBF725C78697002A330E /* Region.swift in Sources */,
-				DC77459E24F31681001747AE /* TideEventsView.swift in Sources */,
+				DC77459E24F31681001747AE /* TideEventsPageView.swift in Sources */,
 				DC0DE7CD2593B2E400FD75A0 /* NoaaStationData.swift in Sources */,
 				DC160B5024CFAC9D00C62C56 /* HeaderView.swift in Sources */,
 				DC26BB1124BB807B00453A5F /* SwiftTidesApp.swift in Sources */,
 				DC43CC0625CBC44E002A330E /* TideStationListView.swift in Sources */,
 				DC0DE7E92593B3C300FD75A0 /* ModelMigrate2to3.xcmappingmodel in Sources */,
 				DC0DE7FD2593B3FD00FD75A0 /* tidedata.xcdatamodeld in Sources */,
+				DCD524312607F6D900EA4C68 /* PadContentView.swift in Sources */,
 				DC0DE594258C1CFC00FD75A0 /* ConfigHelper.swift in Sources */,
 				DC0DE7C92593B2E400FD75A0 /* LegacyStationData.swift in Sources */,
 			);
@@ -703,23 +814,32 @@
 				DC115E3825BCBB4D00954972 /* TideAnnotation.swift in Sources */,
 				DC079F75259BAED800F1CB0E /* InteractiveChartViewModifier.swift in Sources */,
 				DCF96C0D25BE3AC900255096 /* StationDetailView.swift in Sources */,
+				DC246B0B261A8E720090F38B /* TideEventsView.swift in Sources */,
 				DC0DE8A42595696F00FD75A0 /* SDTide.swift in Sources */,
+				DC246AF0261A6A630090F38B /* SingleDayTideModel.swift in Sources */,
 				DC115E3225BCB28400954972 /* SDTideStation.swift in Sources */,
 				DC115E2625B521F400954972 /* StationDataRepository.swift in Sources */,
 				DC115DE525AD56B200954972 /* FavoritesListView.swift in Sources */,
 				DCF96C1325BE492700255096 /* MapSelectionView.swift in Sources */,
 				DC115DF925B26CE800954972 /* StationMapView.swift in Sources */,
 				DC0DE8172593B87C00FD75A0 /* AppStateInteractor.swift in Sources */,
+				DC246B6B2622064A0090F38B /* PadLandscapeView.swift in Sources */,
+				DC246B5B262200A90090F38B /* PadPortraitView.swift in Sources */,
 				DC115DAB25A5572600954972 /* TideGraphView.swift in Sources */,
+				DC246AE8261A642D0090F38B /* CalendarAppStateInteractor.swift in Sources */,
+				DC246B1926214ED20090F38B /* LocationDateViewModifier.swift in Sources */,
+				DC246ADD2615712D0090F38B /* MonthView.swift in Sources */,
 				DC0DE58A258C1B6C00FD75A0 /* EnvironmentValues.swift in Sources */,
 				DC079F7B259C06D200F1CB0E /* Date.swift in Sources */,
 				DC0DE7C82593B2E400FD75A0 /* AppStateRepository.swift in Sources */,
+				DC246B64262203E70090F38B /* PadTidesView.swift in Sources */,
 				DC0DE7FC2593B3FD00FD75A0 /* shralptide.xcdatamodeld in Sources */,
 				DC079F81259C34BB00F1CB0E /* LabeledChartViewModifier.swift in Sources */,
 				DC15911C259A70400092E473 /* ChartView.swift in Sources */,
 				DC43CBFE25C7882C002A330E /* RegionSelectionView.swift in Sources */,
 				DC0DE7CC2593B2E400FD75A0 /* ModelMigrate2To3.swift in Sources */,
 				DC43CBE625C77B00002A330E /* RegionListView.swift in Sources */,
+				DC246B03261A73780090F38B /* CalendarDayView.swift in Sources */,
 				DC0DE7D02593B2E400FD75A0 /* StationData.swift in Sources */,
 				DC26BB1424BB807B00453A5F /* PhoneContentView.swift in Sources */,
 				DC43CBF225C782BD002A330E /* TideStationInteractor.swift in Sources */,
@@ -729,13 +849,14 @@
 				DC115DEB25AD576100954972 /* FavoriteRow.swift in Sources */,
 				DC0DE7B0259305F600FD75A0 /* AppState.swift in Sources */,
 				DC43CBF825C78697002A330E /* Region.swift in Sources */,
-				DC77459F24F31681001747AE /* TideEventsView.swift in Sources */,
+				DC77459F24F31681001747AE /* TideEventsPageView.swift in Sources */,
 				DC0DE7CE2593B2E400FD75A0 /* NoaaStationData.swift in Sources */,
 				DC160B5124CFAC9D00C62C56 /* HeaderView.swift in Sources */,
 				DC26BB1224BB807B00453A5F /* SwiftTidesApp.swift in Sources */,
 				DC43CC0725CBC44E002A330E /* TideStationListView.swift in Sources */,
 				DC0DE7EA2593B3C300FD75A0 /* ModelMigrate2to3.xcmappingmodel in Sources */,
 				DC0DE7FE2593B3FD00FD75A0 /* tidedata.xcdatamodeld in Sources */,
+				DCD524322607F6D900EA4C68 /* PadContentView.swift in Sources */,
 				DC0DE595258C1CFC00FD75A0 /* ConfigHelper.swift in Sources */,
 				DC0DE7CA2593B2E400FD75A0 /* LegacyStationData.swift in Sources */,
 			);
@@ -745,7 +866,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC246B65262203E70090F38B /* PadTidesView.swift in Sources */,
 				DC26BB0424BB807B00453A5F /* Tests_iOS.swift in Sources */,
+				DC246ADE2615712D0090F38B /* MonthView.swift in Sources */,
+				DC246B5C262200A90090F38B /* PadPortraitView.swift in Sources */,
+				DC246B6C2622064A0090F38B /* PadLandscapeView.swift in Sources */,
+				DC246B1A26214ED20090F38B /* LocationDateViewModifier.swift in Sources */,
+				DC246AF1261A6A630090F38B /* SingleDayTideModel.swift in Sources */,
+				DC246AE9261A642D0090F38B /* CalendarAppStateInteractor.swift in Sources */,
+				DC246B04261A73780090F38B /* CalendarDayView.swift in Sources */,
+				DC246B0C261A8E720090F38B /* TideEventsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,7 +883,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC246B66262203E70090F38B /* PadTidesView.swift in Sources */,
 				DC26BB0F24BB807B00453A5F /* Tests_macOS.swift in Sources */,
+				DC246ADF2615712D0090F38B /* MonthView.swift in Sources */,
+				DC246B5D262200A90090F38B /* PadPortraitView.swift in Sources */,
+				DC246B6D2622064A0090F38B /* PadLandscapeView.swift in Sources */,
+				DC246B1B26214ED20090F38B /* LocationDateViewModifier.swift in Sources */,
+				DC246AF2261A6A630090F38B /* SingleDayTideModel.swift in Sources */,
+				DC246AEA261A642D0090F38B /* CalendarAppStateInteractor.swift in Sources */,
+				DC246B05261A73780090F38B /* CalendarDayView.swift in Sources */,
+				DC246B0D261A8E720090F38B /* TideEventsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

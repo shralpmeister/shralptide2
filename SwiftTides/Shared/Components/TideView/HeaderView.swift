@@ -12,24 +12,30 @@ import SwiftUI
 struct HeaderView: View {
   @EnvironmentObject var config: ConfigHelper
   @EnvironmentObject var appState: AppState
-
-  @Environment(\.appStateInteractor) private var interactor: AppStateInteractor
+  
+  private var isLoctionShown = true
+  
+  init(showsLocation: Bool = true) {
+    self.isLoctionShown = showsLocation
+  }
 
   var body: some View {
     VStack(spacing: 10) {
-      Text(appState.tides.count > 0 ? appState.tides[appState.locationPage].shortLocationName : "")
-        .padding()
-        .padding(.top, 70)
-        .lineLimit(1)
-        .minimumScaleFactor(0.2)
+      if isLoctionShown {
+        Spacer()
+          .frame(maxHeight: 70)
+        Text(appState.tides.count > 0 ? appState.tides[appState.locationPage].shortLocationName : "")
+          .padding()
+          .lineLimit(1)
+          .minimumScaleFactor(0.2)
+      }
       Text(appState.currentTideDisplay)
         .font(Font.system(size: 96))
         .fontWeight(.medium)
         .lineLimit(1)
-        .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
         .minimumScaleFactor(0.2)
     }
-    .font( /*@START_MENU_TOKEN@*/.title /*@END_MENU_TOKEN@*/)
+    .font(.title)
     .foregroundColor(Color.white)
   }
 }

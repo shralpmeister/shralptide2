@@ -26,6 +26,8 @@ class AppState: ObservableObject {
 
   @Published var tideChartData: SDTide?
   @Published var currentTideDisplay: String = ""
+  
+  @Published var calendarTides: [SingleDayTideModel] = []
 
   init() {
     sub = timer.sink { _ in

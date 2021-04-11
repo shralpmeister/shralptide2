@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  PhoneContentView.swift
 //  Shared
 //
 //  Created by Michael Parlee on 7/12/20.
@@ -27,10 +27,12 @@ struct PhoneContentView: View {
           VStack(spacing: 0) {
             HeaderView()
               .frame(
-                width: proxy.size.width,
-                height: proxy.size.height / 2.8
+                minHeight: proxy.size.height / 3.5,
+                maxHeight: proxy.size.height / 2
               )
-            TideEventsView(pageIndex: $pageIndex)
+              .padding()
+            TideEventsPageView(pageIndex: $pageIndex)
+              .frame(minHeight: proxy.size.height / 1.8, maxHeight: proxy.size.height / 1.8)
             HStack {
               Spacer()
               Button(action: { showingFavorites = true }) {
@@ -81,7 +83,10 @@ struct PhoneContentView: View {
         let exclusive = pressDrag.exclusively(before: swipeDrag)
         TideGraphView(pageIndex: $pageIndex, cursorLocation: $cursorLocation)
           .gesture(exclusive)
+          .ignoresSafeArea()
       }
-    }.preferredColorScheme(.dark)
+    }
+    .statusBar(hidden: true)
+    .accentColor(.white)
   }
 }

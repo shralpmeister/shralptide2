@@ -20,7 +20,7 @@ protocol AppStateInteractor {
   func setSelectedStandardLocation(name: String)
 }
 
-struct CoreDataAppStateInteractor: AppStateInteractor {
+class CoreDataAppStateInteractor: AppStateInteractor {
   @Environment(\.appStateRepository) private var appStateRepository: AppStateRepository
 
   func updateState(appState: AppState, settings: UserSettings) {

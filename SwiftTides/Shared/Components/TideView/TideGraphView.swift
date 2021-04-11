@@ -30,6 +30,12 @@ struct TideGraphView: View {
       .modifier(
         InteractiveChartViewModifier(
           tide: appState.tideChartData!, currentIndex: $pageIndex, cursorLocation: $cursorLocation))
+      .modifier(
+        LocationDateViewModifier(
+          location: appState.tideChartData?.shortLocationName,
+          date: appState.tidesForDays[pageIndex].startTime
+        )
+      )
     }
   }
 }

@@ -15,14 +15,13 @@ struct InteractiveChartViewModifier: ViewModifier {
   @Binding private var cursorLocation: CGPoint
 
   private var tideData: SDTide
-
-  private var dateFormatter = DateFormatter()
+  
+  private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
 
   init(tide: SDTide, currentIndex: Binding<Int>, cursorLocation: Binding<CGPoint>) {
     self.tideData = tide
     self._pageIndex = currentIndex
     self._cursorLocation = cursorLocation
-    dateFormatter.dateStyle = .full
   }
 
   private func timeInMinutes(x xPosition: CGFloat, xRatio: CGFloat) -> Int {
@@ -34,7 +33,7 @@ struct InteractiveChartViewModifier: ViewModifier {
       let screenMinutes =
         appState.tidesForDays[self.pageIndex].startTime.hoursInDay() * ChartConstants.minutesPerHour
       let xRatio = proxy.size.width / CGFloat(screenMinutes)
-      let midpointX = UIScreen.main.bounds.size.width / 2.0
+      let midpointX = proxy.size.width / 2.0
 
       let xPosition =
         cursorLocation.x > .zero ? cursorLocation.x : CGFloat(currentTimeInMinutes(tideData: tideData)) * xRatio
@@ -45,7 +44,7 @@ struct InteractiveChartViewModifier: ViewModifier {
       content
         .overlay(
           ZStack {
-            if pageIndex == 0 || cursorLocation.x > 0 {
+            if (idiom == .phone && pageIndex == 0) || cursorLocation.x > 0 {
               Cursor(height: proxy.size.height)
                 .position(x: xPosition, y: proxy.size.height / 2.0)
               TideOverlay(
@@ -54,16 +53,6 @@ struct InteractiveChartViewModifier: ViewModifier {
               )
               .position(x: midpointX, y: 85)
             }
-            HStack(alignment: .bottom) {
-              Text(appState.tideChartData?.shortLocationName ?? "Unknown Station")
-              Spacer()
-              Text(dateFormatter.string(from: appState.tidesForDays[self.pageIndex].startTime))
-            }
-            .font(.footnote)
-            .padding(.all)
-            .foregroundColor(.white)
-            .frame(width: proxy.size.width, height: 40)
-            .position(x: proxy.size.width / 2.0, y: 50)
           }
           .frame(alignment: .top)
         )
