@@ -16,8 +16,8 @@ struct SwiftTidesApp: App {
   @StateObject private var appState = AppState()
 
   @State private var isFirstLaunch = true
-  
-  private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
+
+  private var idiom: UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
 
   var body: some Scene {
     WindowGroup {
@@ -39,7 +39,7 @@ struct SwiftTidesApp: App {
         }
     }
   }
-  
+
   private func contentView() -> some View {
     if idiom == .phone {
       return AnyView(PhoneContentView())

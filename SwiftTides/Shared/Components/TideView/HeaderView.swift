@@ -12,9 +12,9 @@ import SwiftUI
 struct HeaderView: View {
   @EnvironmentObject var config: ConfigHelper
   @EnvironmentObject var appState: AppState
-  
+
   private var isLoctionShown = true
-  
+
   init(showsLocation: Bool = true) {
     self.isLoctionShown = showsLocation
   }
@@ -24,10 +24,12 @@ struct HeaderView: View {
       if isLoctionShown {
         Spacer()
           .frame(maxHeight: 70)
-        Text(appState.tides.count > 0 ? appState.tides[appState.locationPage].shortLocationName : "")
-          .padding()
-          .lineLimit(1)
-          .minimumScaleFactor(0.2)
+        Text(
+          appState.tides.count > 0 ? appState.tides[appState.locationPage].shortLocationName : ""
+        )
+        .padding()
+        .lineLimit(1)
+        .minimumScaleFactor(0.2)
       }
       Text(appState.currentTideDisplay)
         .font(Font.system(size: 96))

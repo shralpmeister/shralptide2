@@ -11,7 +11,7 @@ struct SunMoonLabelsChartViewModifier: ViewModifier {
   @EnvironmentObject var appState: AppState
 
   private let labelHeight: CGFloat = 15
-  
+
   private var timeFormatter = DateFormatter()
 
   private let tideData: SDTide
@@ -42,7 +42,9 @@ struct SunMoonLabelsChartViewModifier: ViewModifier {
               let sunEvents = tideData.sunriseSunsetEvents!
               ForEach(0..<sunEvents.count, id: \.self) { index in
                 let event: SDTideEvent = sunEvents[index]
-                let minute = Int(event.eventTime!.timeIntervalSince1970 - baseSeconds) / ChartConstants.secondsPerMinute
+                let minute =
+                  Int(event.eventTime!.timeIntervalSince1970 - baseSeconds)
+                  / ChartConstants.secondsPerMinute
                 let x = CGFloat(minute) * dim.xratio
 
                 Text(timeFormatter.string(from: event.eventTime))
@@ -58,7 +60,9 @@ struct SunMoonLabelsChartViewModifier: ViewModifier {
               let moonEvents = tideData.moonriseMoonsetEvents!
               ForEach(0..<moonEvents.count, id: \.self) { index in
                 let event: SDTideEvent = moonEvents[index]
-                let minute = Int(event.eventTime!.timeIntervalSince1970 - baseSeconds) / ChartConstants.secondsPerMinute
+                let minute =
+                  Int(event.eventTime!.timeIntervalSince1970 - baseSeconds)
+                  / ChartConstants.secondsPerMinute
                 let x = CGFloat(minute) * dim.xratio
 
                 Text(timeFormatter.string(from: event.eventTime))

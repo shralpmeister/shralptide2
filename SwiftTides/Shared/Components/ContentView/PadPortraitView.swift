@@ -10,13 +10,13 @@ import SwiftUI
 struct PadPortraitView: View {
   @EnvironmentObject var appState: AppState
   @EnvironmentObject var config: ConfigHelper
-  
+
   @State private var isPopoverShowing = false
   @State private var showingFavorites = false
-  
+
   @Binding var pageIndex: Int
   @Binding var selectedTideDay: SingleDayTideModel?
-  
+
   var body: some View {
     return GeometryReader { proxy in
       VStack {
@@ -32,13 +32,15 @@ struct PadPortraitView: View {
               .environmentObject(self.appState)
               .environmentObject(self.config)
           }
-          Text(appState.tides.count > 0 ? appState.tides[appState.locationPage].shortLocationName : "")
-            .font(.title3)
-            .lineLimit(1)
-            .minimumScaleFactor(0.6)
-            .padding(.trailing, 100)
-            .padding(.leading, 100)
-            .frame(maxWidth: .infinity)
+          Text(
+            appState.tides.count > 0 ? appState.tides[appState.locationPage].shortLocationName : ""
+          )
+          .font(.title3)
+          .lineLimit(1)
+          .minimumScaleFactor(0.6)
+          .padding(.trailing, 100)
+          .padding(.leading, 100)
+          .frame(maxWidth: .infinity)
         }
         .frame(maxHeight: 20)
         PadTidesView(pageIndex: $pageIndex, selectedTideDay: $selectedTideDay)

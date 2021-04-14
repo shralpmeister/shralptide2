@@ -5,30 +5,30 @@
 //  Created by Michael Parlee on 3/31/21.
 //
 
-import SwiftUI
-import ShralpTideFramework
 import Combine
+import ShralpTideFramework
+import SwiftUI
 
 struct MonthView: View {
   @Environment(\.appStateInteractor) private var appStateInteractor: AppStateInteractor
 
   @EnvironmentObject var appState: AppState
   @EnvironmentObject var config: ConfigHelper
-  
+
   @Binding var selectedTideModel: SingleDayTideModel?
-  
+
   @State private var displayMonth = Calendar.current.component(.month, from: Date()) {
     didSet {
-       backgroundRefreshTides()
+      backgroundRefreshTides()
     }
   }
   @State private var displayYear = Calendar.current.component(.year, from: Date())
   @State private var calculating = false
-      
+
   fileprivate let monthDateFormatter = DateFormatter()
 
   private let gridColumns = Array(repeating: GridItem(.flexible()), count: 7)
-  
+
   var body: some View {
     VStack {
       HStack {
@@ -42,8 +42,9 @@ struct MonthView: View {
         Spacer()
         Text(monthYearString())
           .font(.title)
-        if displayMonth != Calendar.current.component(.month, from: Date()) ||
-            displayYear != Calendar.current.component(.year, from: Date()) {
+        if displayMonth != Calendar.current.component(.month, from: Date())
+          || displayYear != Calendar.current.component(.year, from: Date())
+        {
           Button(action: {
             displayMonth = Calendar.current.component(.month, from: Date())
             displayYear = Calendar.current.component(.year, from: Date())
@@ -100,12 +101,14 @@ struct MonthView: View {
         }
       }
     }
-    .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
+    .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification))
+    { _ in
       // state update to force redraw the scrollview
       appState.locationPage = appState.locationPage
     }
     .onAppear {
-      appState.calendarTides = appStateInteractor.calculateCalendarTides(appState: appState, settings: config.settings, month: displayMonth, year: displayYear)
+      appState.calendarTides = appStateInteractor.calculateCalendarTides(
+        appState: appState, settings: config.settings, month: displayMonth, year: displayYear)
       if selectedTideModel == nil {
         selectedTideModel = appState.calendarTides.first {
           $0.day == Date().startOfDay()
@@ -128,16 +131,18 @@ struct MonthView: View {
       }
     }
   }
-  
+
   fileprivate func refreshTidesFuture() -> Future<[SingleDayTideModel], Never> {
-    Future<[SingleDayTideModel], Never>() { promise in
+    Future<[SingleDayTideModel], Never> { promise in
       DispatchQueue.global(qos: .userInteractive).async {
-        let tides = appStateInteractor.calculateCalendarTides(appState: appState, settings: appState.config.settings, month: displayMonth, year: displayYear)
+        let tides = appStateInteractor.calculateCalendarTides(
+          appState: appState, settings: appState.config.settings, month: displayMonth,
+          year: displayYear)
         promise(Result.success(tides))
       }
     }
   }
-  
+
   fileprivate func backgroundRefreshTides() {
     calculating = true
     _ = refreshTidesFuture()
@@ -147,18 +152,19 @@ struct MonthView: View {
         appState.calendarTides = tides
         calculating = false
         // if we're showing the current and the selected tide is in a different month, reset it back to today
-        if displayMonth == Calendar.current.component(.month, from: Date()) &&
-            displayMonth != Calendar.current.component(.month, from: selectedTideModel!.day) {
+        if displayMonth == Calendar.current.component(.month, from: Date())
+          && displayMonth != Calendar.current.component(.month, from: selectedTideModel!.day)
+        {
           selectedTideModel = tides.first {
             $0.day == Date().startOfDay()
           }
         }
       }
   }
-  
+
   fileprivate func monthYearString() -> String {
     let date = Calendar.current.date(from: DateComponents(year: displayYear, month: displayMonth))!
-      monthDateFormatter.setLocalizedDateFormatFromTemplate("MMMM YYYY")
-      return monthDateFormatter.string(from: date)
+    monthDateFormatter.setLocalizedDateFormatFromTemplate("MMMM YYYY")
+    return monthDateFormatter.string(from: date)
   }
 }

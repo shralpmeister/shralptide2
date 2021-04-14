@@ -5,12 +5,12 @@
 //  Created by Michael Parlee on 4/4/21.
 //
 
-import SwiftUI
 import ShralpTideFramework
+import SwiftUI
 
 struct TideEventsView: View {
   var tide: SDTide
-  
+
   var body: some View {
     return GeometryReader { proxy in
       VStack(alignment: .center, spacing: 10) {
@@ -45,7 +45,7 @@ struct TideEventsView: View {
       }
     }
   }
-  
+
   func convertEvents(_ events: [SDTideEvent]) -> [SDTideEvent] {
     var result = [SDTideEvent(), SDTideEvent(), SDTideEvent(), SDTideEvent()]
     if events.count > 0 {
@@ -54,9 +54,3 @@ struct TideEventsView: View {
     return result
   }
 }
-
-//struct TideEventsPanel_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TideEventsPanel()
-//    }
-//}

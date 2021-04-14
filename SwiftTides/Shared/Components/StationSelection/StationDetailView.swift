@@ -67,7 +67,7 @@ struct StationDetailView: View {
         .padding(.top, 20)
       }
       .frame(
-        width: proxy.size.width, alignment:  .center )
+        width: proxy.size.width, alignment: .center)
     }
   }
 

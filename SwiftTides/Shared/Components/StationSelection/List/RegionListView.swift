@@ -47,14 +47,16 @@ struct RegionListView: View {
         return AnyView(
           TideStationListView(
             stations: legacyInteractor.stations(forRegionNamed: region.name),
-            activeSheet: $activeSheet))
-          .navigationTitle("Station")
+            activeSheet: $activeSheet)
+        )
+        .navigationTitle("Station")
       } else {
         return AnyView(
           TideStationListView(
             stations: standardInteractor.stations(forRegionNamed: region.name),
-            activeSheet: $activeSheet))
-          .navigationTitle("Station")
+            activeSheet: $activeSheet)
+        )
+        .navigationTitle("Station")
       }
     } else {
       return AnyView(
@@ -62,8 +64,9 @@ struct RegionListView: View {
           regions: region.subRegions.sorted(by: { a, b in
             a.name < b.name
           }),
-          activeSheet: $activeSheet))
-        .navigationTitle("Region")
+          activeSheet: $activeSheet)
+      )
+      .navigationTitle("Region")
     }
   }
 }

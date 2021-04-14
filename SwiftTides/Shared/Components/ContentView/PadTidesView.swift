@@ -10,12 +10,12 @@ import SwiftUI
 struct PadTidesView: View {
   @EnvironmentObject var appState: AppState
   @EnvironmentObject var config: ConfigHelper
-  
+
   @State private var cursorLocation: CGPoint = .zero
-  
+
   @Binding var pageIndex: Int
   @Binding var selectedTideDay: SingleDayTideModel?
-  
+
   var body: some View {
     let dragGesture = DragGesture(minimumDistance: 0)
       .onChanged {
@@ -28,10 +28,10 @@ struct PadTidesView: View {
     let pressGesture = LongPressGesture(minimumDuration: 0.2)
 
     let pressDrag = pressGesture.sequenced(before: dragGesture)
-    
+
     let headerWidth: CGFloat = 0.3
     let chartWidth: CGFloat = 0.6
-    
+
     return GeometryReader { proxy in
       VStack {
         HStack(alignment: .top) {
@@ -58,7 +58,8 @@ struct PadTidesView: View {
               .modifier(LabeledChartViewModifier(tide: tideData, labelInset: 15))
               .modifier(
                 InteractiveChartViewModifier(
-                  tide: tideData, currentIndex: $pageIndex, cursorLocation: $cursorLocation))
+                  tide: tideData, currentIndex: $pageIndex, cursorLocation: $cursorLocation)
+              )
               .modifier(
                 LocationDateViewModifier(date: selectedTideDay?.day ?? Date())
               )

@@ -70,7 +70,9 @@ struct LabeledChartViewModifier: ViewModifier {
           ZStack {
             ForEach(0..<tideData.sunAndMoonEvents.count, id: \.self) { index in
               let event = tideData.sunAndMoonEvents[index]
-              let minute = Int(event.eventTime!.timeIntervalSince1970 - baseSeconds) / ChartConstants.secondsPerMinute
+              let minute =
+                Int(event.eventTime!.timeIntervalSince1970 - baseSeconds)
+                / ChartConstants.secondsPerMinute
               let x = CGFloat(minute) * xratio
               imageForEvent(event)
                 .position(x: x)

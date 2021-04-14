@@ -15,8 +15,8 @@ struct InteractiveChartViewModifier: ViewModifier {
   @Binding private var cursorLocation: CGPoint
 
   private var tideData: SDTide
-  
-  private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
+
+  private var idiom: UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
 
   init(tide: SDTide, currentIndex: Binding<Int>, cursorLocation: Binding<CGPoint>) {
     self.tideData = tide
@@ -36,7 +36,8 @@ struct InteractiveChartViewModifier: ViewModifier {
       let midpointX = proxy.size.width / 2.0
 
       let xPosition =
-        cursorLocation.x > .zero ? cursorLocation.x : CGFloat(currentTimeInMinutes(tideData: tideData)) * xRatio
+        cursorLocation.x > .zero
+        ? cursorLocation.x : CGFloat(currentTimeInMinutes(tideData: tideData)) * xRatio
 
       let dataPoint = tideData.nearestDataPoint(
         forTime: timeInMinutes(x: xPosition, xRatio: xRatio))

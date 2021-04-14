@@ -26,7 +26,7 @@ class AppState: ObservableObject {
 
   @Published var tideChartData: SDTide?
   @Published var currentTideDisplay: String = ""
-  
+
   @Published var calendarTides: [SingleDayTideModel] = []
 
   init() {
@@ -35,7 +35,7 @@ class AppState: ObservableObject {
     }
   }
 
-func refreshTideLevel() {
+  func refreshTideLevel() {
     self.currentTideDisplay = self.tides[self.locationPage].currentTideString
   }
 }

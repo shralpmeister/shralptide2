@@ -47,7 +47,7 @@ struct ChartView: View {
     let immutablePairs = pairs
     return immutablePairs
   }
-  
+
   private func drawTideLevel(
     _ baseSeconds: TimeInterval, _ xratio: CGFloat, _ yoffset: CGFloat, _ yratio: CGFloat,
     _ height: CGFloat
@@ -127,7 +127,8 @@ struct ChartView: View {
     -> some View
   {
     let proportionalThickness = 0.015 * dim.height
-    let thickness = proportionalThickness <= maxZeroThickness ? proportionalThickness : maxZeroThickness
+    let thickness =
+      proportionalThickness <= maxZeroThickness ? proportionalThickness : maxZeroThickness
     return Path { baselinePath in
       baselinePath.move(to: CGPoint(x: CGFloat(dim.xmin), y: CGFloat(dim.yoffset)))
       baselinePath.addLine(

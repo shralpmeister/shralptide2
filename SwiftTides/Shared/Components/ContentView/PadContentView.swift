@@ -16,13 +16,13 @@ struct PadContentView: View {
   @State private var isFirstLaunch = true
   @State private var pageIndex: Int = 0
   @State private var selectedTideDay: SingleDayTideModel? = nil
-  
+
   @GestureState private var translation: CGFloat = 0
-  
+
   var body: some View {
     return GeometryReader { proxy in
       let isPortrait = proxy.size.width < proxy.size.height
-      
+
       ZStack(alignment: .top) {
         Color.black
           .ignoresSafeArea()

@@ -10,15 +10,15 @@ import SwiftUI
 struct LocationDateViewModifier: ViewModifier {
   private var location: String?
   private var date: Date
-  
+
   private var dateFormatter = DateFormatter()
-  
+
   init(location: String? = nil, date: Date) {
     self.location = location
     self.date = date
     dateFormatter.dateStyle = .full
   }
-  
+
   func body(content: Content) -> some View {
     return GeometryReader { proxy in
       content.overlay(

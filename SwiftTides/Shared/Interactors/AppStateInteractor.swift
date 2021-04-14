@@ -28,9 +28,9 @@ class CoreDataAppStateInteractor: AppStateInteractor {
     appStateRepository.loadSavedState(isLegacy: settings.legacyMode)
 
     appState.locationPage = appStateRepository.locationPage
-    
+
     let units: SDTideUnitsPref = settings.unitsPref == "US" ? .US : .METRIC
-    
+
     appState.tides = favoriteLocations(legacyMode: settings.legacyMode).map { location in
       SDTideFactory.todaysTides(forStationName: location.locationName, withUnits: units)
     }
