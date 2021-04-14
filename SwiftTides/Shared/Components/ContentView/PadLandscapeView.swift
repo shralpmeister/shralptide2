@@ -40,9 +40,3 @@ struct PadLandscapeView: View {
     }
   }
 }
-
-//struct PadPortraitLayout_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PadPortraitView()
-//    }
-//}

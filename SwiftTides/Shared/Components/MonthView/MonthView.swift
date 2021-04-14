@@ -146,6 +146,13 @@ struct MonthView: View {
       .sink { tides in
         appState.calendarTides = tides
         calculating = false
+        // if we're showing the current and the selected tide is in a different month, reset it back to today
+        if displayMonth == Calendar.current.component(.month, from: Date()) &&
+            displayMonth != Calendar.current.component(.month, from: selectedTideModel!.day) {
+          selectedTideModel = tides.first {
+            $0.day == Date().startOfDay()
+          }
+        }
       }
   }
   
@@ -155,9 +162,3 @@ struct MonthView: View {
       return monthDateFormatter.string(from: date)
   }
 }
-
-//struct MonthView_Preview: PreviewProvider {
-//  static var previews: some View {
-//    MonthView()
-//  }
-//}

@@ -35,7 +35,7 @@ class AppState: ObservableObject {
     }
   }
 
-  func refreshTideLevel() {
+func refreshTideLevel() {
     self.currentTideDisplay = self.tides[self.locationPage].currentTideString
   }
 }

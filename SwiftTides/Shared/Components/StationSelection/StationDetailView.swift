@@ -16,11 +16,6 @@ struct StationDetailView: View {
   @Binding var activeSheet: ActiveSheet?
   @Binding var selectedLocation: TideAnnotation
 
-  init(activeSheet: Binding<ActiveSheet?>, selectedLocation: Binding<TideAnnotation>) {
-    self._activeSheet = activeSheet
-    self._selectedLocation = selectedLocation
-  }
-
   var body: some View {
     return GeometryReader { proxy in
       VStack(alignment: .center) {
@@ -72,7 +67,7 @@ struct StationDetailView: View {
         .padding(.top, 20)
       }
       .frame(
-        width: proxy.size.width, alignment: /*@START_MENU_TOKEN@*/ .center /*@END_MENU_TOKEN@*/)
+        width: proxy.size.width, alignment:  .center )
     }
   }
 
@@ -83,21 +78,3 @@ struct StationDetailView: View {
       format: "%1.3f%@, %1.3f%@", fabs(coord.latitude), latDir, fabs(coord.longitude), lonDir)
   }
 }
-
-// struct StationDetailView_Preview: PreviewProvider {
-//  static var isSelectingLocation = true
-//
-//  static var selectedLocation = TideAnnotation()
-//
-//  static var coordinateRegion = MKCoordinateRegion(
-//    MKMapRect(origin: MKMapPoint(CLLocationCoordinate2D(latitude: 48.8, longitude: 123.0)),
-//                size: MKMapSize(width: 1, height: 1)
-//      )
-//    )
-//
-//  static var previews: some View {
-//    StationDetailView(isSelectingStation: isSelectingLocation, selectedLocation: selectedLocation, coordinateRegion: coordinateRegion)
-//      .environmentObject(AppState())
-//      .environmentObject(ConfigHelper())
-//  }
-// }

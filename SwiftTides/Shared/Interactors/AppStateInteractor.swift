@@ -18,6 +18,7 @@ protocol AppStateInteractor {
   func removeFavoriteStandardLocation(name: String)
   func setSelectedLegacyLocation(name: String)
   func setSelectedStandardLocation(name: String)
+  func favoriteLocations(legacyMode: Bool) -> [SDFavoriteLocation]
 }
 
 class CoreDataAppStateInteractor: AppStateInteractor {
@@ -26,9 +27,10 @@ class CoreDataAppStateInteractor: AppStateInteractor {
   func updateState(appState: AppState, settings: UserSettings) {
     appStateRepository.loadSavedState(isLegacy: settings.legacyMode)
 
-    let units: SDTideUnitsPref = settings.unitsPref == "US" ? .US : .METRIC
-
     appState.locationPage = appStateRepository.locationPage
+    
+    let units: SDTideUnitsPref = settings.unitsPref == "US" ? .US : .METRIC
+    
     appState.tides = favoriteLocations(legacyMode: settings.legacyMode).map { location in
       SDTideFactory.todaysTides(forStationName: location.locationName, withUnits: units)
     }
@@ -86,7 +88,7 @@ class CoreDataAppStateInteractor: AppStateInteractor {
     }
   }
 
-  private func favoriteLocations(legacyMode: Bool) -> [SDFavoriteLocation] {
+  func favoriteLocations(legacyMode: Bool) -> [SDFavoriteLocation] {
     return appStateRepository.favoriteLocations(isLegacy: legacyMode).array as! [SDFavoriteLocation]
   }
 }

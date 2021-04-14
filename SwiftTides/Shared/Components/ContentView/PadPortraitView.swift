@@ -46,9 +46,3 @@ struct PadPortraitView: View {
     }
   }
 }
-
-//struct PadPortraitLayout_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PadPortraitView()
-//    }
-//}

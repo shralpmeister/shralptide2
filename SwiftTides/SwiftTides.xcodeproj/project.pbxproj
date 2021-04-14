@@ -390,6 +390,8 @@
 		DC115D9125A28D0A00954972 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				DC115DF525B26C9600954972 /* Favorites */,
+				DC115DF625B26CBB00954972 /* StationSelection */,
 				DC246ADA261571110090F38B /* MonthView */,
 				DCD524492607F71900EA4C68 /* ContentView */,
 				DCD5242F2607F6A700EA4C68 /* TideView */,
@@ -465,8 +467,6 @@
 		DC26BAE724BB807900453A5F /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				DC115DF625B26CBB00954972 /* StationSelection */,
-				DC115DF525B26C9600954972 /* Favorites */,
 				DC115D9125A28D0A00954972 /* Components */,
 				DC0DE8A12595695400FD75A0 /* Extensions */,
 				DC0DE7D72593B39A00FD75A0 /* Persistence */,
