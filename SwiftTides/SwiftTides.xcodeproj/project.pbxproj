@@ -133,6 +133,18 @@
 		DC43CBFE25C7882C002A330E /* RegionSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CBFC25C7882C002A330E /* RegionSelectionView.swift */; };
 		DC43CC0625CBC44E002A330E /* TideStationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CC0525CBC44E002A330E /* TideStationListView.swift */; };
 		DC43CC0725CBC44E002A330E /* TideStationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CC0525CBC44E002A330E /* TideStationListView.swift */; };
+		DC5570D6262694AE00B81C2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC5570D5262694AE00B81C2E /* Assets.xcassets */; };
+		DC5570DD262694AF00B81C2E /* WatchTides Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DC5570DC262694AF00B81C2E /* WatchTides Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DC5570E2262694AF00B81C2E /* SwiftTidesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5570E1262694AF00B81C2E /* SwiftTidesApp.swift */; };
+		DC5570E4262694AF00B81C2E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5570E3262694AF00B81C2E /* ContentView.swift */; };
+		DC5570E6262694AF00B81C2E /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5570E5262694AF00B81C2E /* NotificationController.swift */; };
+		DC5570E8262694AF00B81C2E /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5570E7262694AF00B81C2E /* NotificationView.swift */; };
+		DC5570EA262694AF00B81C2E /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5570E9262694AF00B81C2E /* ComplicationController.swift */; };
+		DC5570EC262694AF00B81C2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC5570EB262694AF00B81C2E /* Assets.xcassets */; };
+		DC5570EF262694AF00B81C2E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC5570EE262694AF00B81C2E /* Preview Assets.xcassets */; };
+		DC5570F4262694AF00B81C2E /* WatchTides.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = DC5570D3262694AD00B81C2E /* WatchTides.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DC557102262695B100B81C2E /* WatchTideFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC557101262695B100B81C2E /* WatchTideFramework.framework */; };
+		DC557103262695B100B81C2E /* WatchTideFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC557101262695B100B81C2E /* WatchTideFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DC77459E24F31681001747AE /* TideEventsPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77459D24F31681001747AE /* TideEventsPageView.swift */; };
 		DC77459F24F31681001747AE /* TideEventsPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77459D24F31681001747AE /* TideEventsPageView.swift */; };
 		DCAC203A25E8C02100204370 /* ShralpTideFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCAC203925E8C02100204370 /* ShralpTideFramework.framework */; };
@@ -167,6 +179,20 @@
 			remoteGlobalIDString = DC26BAF624BB807B00453A5F;
 			remoteInfo = macOS;
 		};
+		DC5570DE262694AF00B81C2E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC26BAE324BB807900453A5F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC5570DB262694AF00B81C2E;
+			remoteInfo = "WatchTides Extension";
+		};
+		DC5570F2262694AF00B81C2E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC26BAE324BB807900453A5F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC5570D2262694AD00B81C2E;
+			remoteInfo = WatchTides;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -188,6 +214,39 @@
 			dstSubfolderSpec = 10;
 			files = (
 				DC246B5026215A7B0090F38B /* ShralpTideMacFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC5570F5262694AF00B81C2E /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				DC5570F4262694AF00B81C2E /* WatchTides.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC5570F8262694AF00B81C2E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				DC5570DD262694AF00B81C2E /* WatchTides Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC557104262695B100B81C2E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DC557103262695B100B81C2E /* WatchTideFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,6 +323,20 @@
 		DC43CBF625C78697002A330E /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		DC43CBFC25C7882C002A330E /* RegionSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionSelectionView.swift; sourceTree = "<group>"; };
 		DC43CC0525CBC44E002A330E /* TideStationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideStationListView.swift; sourceTree = "<group>"; };
+		DC5570D3262694AD00B81C2E /* WatchTides.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchTides.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC5570D5262694AE00B81C2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DC5570D7262694AE00B81C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC5570DC262694AF00B81C2E /* WatchTides Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WatchTides Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC5570E1262694AF00B81C2E /* SwiftTidesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftTidesApp.swift; sourceTree = "<group>"; };
+		DC5570E3262694AF00B81C2E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DC5570E5262694AF00B81C2E /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		DC5570E7262694AF00B81C2E /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		DC5570E9262694AF00B81C2E /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		DC5570EB262694AF00B81C2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DC5570EE262694AF00B81C2E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DC5570F0262694AF00B81C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC5570F1262694AF00B81C2E /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		DC557101262695B100B81C2E /* WatchTideFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WatchTideFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC77459D24F31681001747AE /* TideEventsPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideEventsPageView.swift; sourceTree = "<group>"; };
 		DCAC203925E8C02100204370 /* ShralpTideFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ShralpTideFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCD524302607F6D900EA4C68 /* PadContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadContentView.swift; sourceTree = "<group>"; };
@@ -299,6 +372,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC5570D9262694AF00B81C2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC557102262695B100B81C2E /* WatchTideFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +540,8 @@
 				DC26BAF824BB807B00453A5F /* macOS */,
 				DC26BB0224BB807B00453A5F /* Tests iOS */,
 				DC26BB0D24BB807B00453A5F /* Tests macOS */,
+				DC5570D4262694AD00B81C2E /* WatchTides */,
+				DC5570E0262694AF00B81C2E /* WatchTides Extension */,
 				DC26BAF024BB807B00453A5F /* Products */,
 				DCAC203825E8C02100204370 /* Frameworks */,
 			);
@@ -487,6 +570,8 @@
 				DC26BAF724BB807B00453A5F /* SwiftTides.app */,
 				DC26BAFF24BB807B00453A5F /* Tests iOS.xctest */,
 				DC26BB0A24BB807B00453A5F /* Tests macOS.xctest */,
+				DC5570D3262694AD00B81C2E /* WatchTides.app */,
+				DC5570DC262694AF00B81C2E /* WatchTides Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -549,9 +634,43 @@
 			path = List;
 			sourceTree = "<group>";
 		};
+		DC5570D4262694AD00B81C2E /* WatchTides */ = {
+			isa = PBXGroup;
+			children = (
+				DC5570D5262694AE00B81C2E /* Assets.xcassets */,
+				DC5570D7262694AE00B81C2E /* Info.plist */,
+			);
+			path = WatchTides;
+			sourceTree = "<group>";
+		};
+		DC5570E0262694AF00B81C2E /* WatchTides Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DC5570E1262694AF00B81C2E /* SwiftTidesApp.swift */,
+				DC5570E3262694AF00B81C2E /* ContentView.swift */,
+				DC5570E5262694AF00B81C2E /* NotificationController.swift */,
+				DC5570E7262694AF00B81C2E /* NotificationView.swift */,
+				DC5570E9262694AF00B81C2E /* ComplicationController.swift */,
+				DC5570EB262694AF00B81C2E /* Assets.xcassets */,
+				DC5570F0262694AF00B81C2E /* Info.plist */,
+				DC5570F1262694AF00B81C2E /* PushNotificationPayload.apns */,
+				DC5570ED262694AF00B81C2E /* Preview Content */,
+			);
+			path = "WatchTides Extension";
+			sourceTree = "<group>";
+		};
+		DC5570ED262694AF00B81C2E /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				DC5570EE262694AF00B81C2E /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		DCAC203825E8C02100204370 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DC557101262695B100B81C2E /* WatchTideFramework.framework */,
 				DC246B4E26215A7B0090F38B /* ShralpTideMacFramework.framework */,
 				DC246B25262159ED0090F38B /* ShralpTideFramework.framework */,
 				DCAC203925E8C02100204370 /* ShralpTideFramework.framework */,
@@ -593,10 +712,12 @@
 				DC26BAEC24BB807B00453A5F /* Frameworks */,
 				DC26BAED24BB807B00453A5F /* Resources */,
 				DC0DE77E2592D19800FD75A0 /* Embed Frameworks */,
+				DC5570F5262694AF00B81C2E /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				DC5570F3262694AF00B81C2E /* PBXTargetDependency */,
 			);
 			name = iOS;
 			productName = iOS;
@@ -658,13 +779,48 @@
 			productReference = DC26BB0A24BB807B00453A5F /* Tests macOS.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		DC5570D2262694AD00B81C2E /* WatchTides */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC5570FC262694AF00B81C2E /* Build configuration list for PBXNativeTarget "WatchTides" */;
+			buildPhases = (
+				DC5570D1262694AD00B81C2E /* Resources */,
+				DC5570F8262694AF00B81C2E /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC5570DF262694AF00B81C2E /* PBXTargetDependency */,
+			);
+			name = WatchTides;
+			productName = WatchTides;
+			productReference = DC5570D3262694AD00B81C2E /* WatchTides.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		DC5570DB262694AF00B81C2E /* WatchTides Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC5570FB262694AF00B81C2E /* Build configuration list for PBXNativeTarget "WatchTides Extension" */;
+			buildPhases = (
+				DC5570D8262694AF00B81C2E /* Sources */,
+				DC5570D9262694AF00B81C2E /* Frameworks */,
+				DC5570DA262694AF00B81C2E /* Resources */,
+				DC557104262695B100B81C2E /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "WatchTides Extension";
+			productName = "WatchTides Extension";
+			productReference = DC5570DC262694AF00B81C2E /* WatchTides Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		DC26BAE324BB807900453A5F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1200;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					DC26BAEE24BB807B00453A5F = {
@@ -680,6 +836,12 @@
 					DC26BB0924BB807B00453A5F = {
 						CreatedOnToolsVersion = 12.0;
 						TestTargetID = DC26BAEE24BB807B00453A5F;
+					};
+					DC5570D2262694AD00B81C2E = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					DC5570DB262694AF00B81C2E = {
+						CreatedOnToolsVersion = 12.4;
 					};
 				};
 			};
@@ -700,6 +862,8 @@
 				DC26BAF624BB807B00453A5F /* macOS */,
 				DC26BAFE24BB807B00453A5F /* Tests iOS */,
 				DC26BB0924BB807B00453A5F /* Tests macOS */,
+				DC5570D2262694AD00B81C2E /* WatchTides */,
+				DC5570DB262694AF00B81C2E /* WatchTides Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -746,6 +910,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC5570D1262694AD00B81C2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC5570D6262694AE00B81C2E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC5570DA262694AF00B81C2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC5570EF262694AF00B81C2E /* Preview Assets.xcassets in Resources */,
+				DC5570EC262694AF00B81C2E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -896,6 +1077,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DC5570D8262694AF00B81C2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC5570E6262694AF00B81C2E /* NotificationController.swift in Sources */,
+				DC5570E4262694AF00B81C2E /* ContentView.swift in Sources */,
+				DC5570EA262694AF00B81C2E /* ComplicationController.swift in Sources */,
+				DC5570E2262694AF00B81C2E /* SwiftTidesApp.swift in Sources */,
+				DC5570E8262694AF00B81C2E /* NotificationView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -913,6 +1106,16 @@
 			isa = PBXTargetDependency;
 			target = DC26BAF624BB807B00453A5F /* macOS */;
 			targetProxy = DC26BB0B24BB807B00453A5F /* PBXContainerItemProxy */;
+		};
+		DC5570DF262694AF00B81C2E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC5570DB262694AF00B81C2E /* WatchTides Extension */;
+			targetProxy = DC5570DE262694AF00B81C2E /* PBXContainerItemProxy */;
+		};
+		DC5570F3262694AF00B81C2E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC5570D2262694AD00B81C2E /* WatchTides */;
+			targetProxy = DC5570F2262694AF00B81C2E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1240,6 +1443,96 @@
 			};
 			name = Release;
 		};
+		DC5570F6262694AF00B81C2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H29T9V7X78;
+				IBSC_MODULE = WatchTides_Extension;
+				INFOPLIST_FILE = WatchTides/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.SwiftTides.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Debug;
+		};
+		DC5570F7262694AF00B81C2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H29T9V7X78;
+				IBSC_MODULE = WatchTides_Extension;
+				INFOPLIST_FILE = WatchTides/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.SwiftTides.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Release;
+		};
+		DC5570F9262694AF00B81C2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"WatchTides Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = H29T9V7X78;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "WatchTides Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.SwiftTides.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Debug;
+		};
+		DC5570FA262694AF00B81C2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"WatchTides Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = H29T9V7X78;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "WatchTides Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.SwiftTides.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1284,6 +1577,24 @@
 			buildConfigurations = (
 				DC26BB2324BB807B00453A5F /* Debug */,
 				DC26BB2424BB807B00453A5F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC5570FB262694AF00B81C2E /* Build configuration list for PBXNativeTarget "WatchTides Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC5570F9262694AF00B81C2E /* Debug */,
+				DC5570FA262694AF00B81C2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC5570FC262694AF00B81C2E /* Build configuration list for PBXNativeTarget "WatchTides" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC5570F6262694AF00B81C2E /* Debug */,
+				DC5570F7262694AF00B81C2E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
