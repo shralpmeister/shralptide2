@@ -5,7 +5,11 @@
 //  Created by Michael Parlee on 1/10/21.
 //
 
+#if os(watchOS)
+import WatchTideFramework
+#else
 import ShralpTideFramework
+#endif
 import SwiftUI
 
 struct ChartConstants {

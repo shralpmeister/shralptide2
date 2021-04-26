@@ -8,9 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+  @Environment(\.extDelegate) var extDelegate
     var body: some View {
-        Text("Hello, World!")
-            .padding()
+      VStack {
+        if let tides = extDelegate.tides {
+          ChartView(tide: tides)
+        } else {
+          Text("Syncing with iPhone")
+            .font(.body)
+            .foregroundColor(.white)
+            .background(Color.gray)
+        }
+      }
     }
 }
 

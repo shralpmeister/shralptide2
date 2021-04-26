@@ -118,14 +118,14 @@
 		DC0DE7182592CFD100FD75A0 /* harmonics-dwf-20081228-nonfree.tcd in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE5FD258D849600FD75A0 /* harmonics-dwf-20081228-nonfree.tcd */; };
 		DC0DE71B2592CFD600FD75A0 /* SDTideStationData.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE624258D850800FD75A0 /* SDTideStationData.m */; };
 		DC0DE71C2592CFD600FD75A0 /* SDTideInterval.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE61C258D850700FD75A0 /* SDTideInterval.m */; };
-		DC0DE71D2592CFD600FD75A0 /* SDTideStationData.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE622258D850700FD75A0 /* SDTideStationData.h */; };
+		DC0DE71D2592CFD600FD75A0 /* SDTideStationData.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE622258D850700FD75A0 /* SDTideStationData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DC0DE71E2592CFD600FD75A0 /* SDTide.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE61F258D850700FD75A0 /* SDTide.m */; };
-		DC0DE71F2592CFD600FD75A0 /* SDTideInterval.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE621258D850700FD75A0 /* SDTideInterval.h */; };
+		DC0DE71F2592CFD600FD75A0 /* SDTideInterval.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE621258D850700FD75A0 /* SDTideInterval.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DC0DE7202592CFD600FD75A0 /* SDTideFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE623258D850800FD75A0 /* SDTideFactory.mm */; };
-		DC0DE7212592CFD600FD75A0 /* SDTideFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE625258D850800FD75A0 /* SDTideFactory.h */; };
-		DC0DE7222592CFD600FD75A0 /* SDTide.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE620258D850700FD75A0 /* SDTide.h */; };
+		DC0DE7212592CFD600FD75A0 /* SDTideFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE625258D850800FD75A0 /* SDTideFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DC0DE7222592CFD600FD75A0 /* SDTide.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE620258D850700FD75A0 /* SDTide.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DC0DE7232592CFD600FD75A0 /* ShralpTide2_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE6D5258D877A00FD75A0 /* ShralpTide2_Prefix.pch */; };
-		DC0DE7242592CFD600FD75A0 /* SDTideEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE61D258D850700FD75A0 /* SDTideEvent.h */; };
+		DC0DE7242592CFD600FD75A0 /* SDTideEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE61D258D850700FD75A0 /* SDTideEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DC0DE7252592CFD600FD75A0 /* SDTideEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE61E258D850700FD75A0 /* SDTideEvent.m */; };
 		DC0DE7282592CFE100FD75A0 /* Colors.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE66B258D858500FD75A0 /* Colors.cc */; };
 		DC0DE7292592CFE100FD75A0 /* common.hh in Headers */ = {isa = PBXBuildFile; fileRef = DC0DE667258D858500FD75A0 /* common.hh */; };
@@ -568,6 +568,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC0DE72F2592CFE100FD75A0 /* Errors.hh in Headers */,
+				DC0DE7242592CFD600FD75A0 /* SDTideEvent.h in Headers */,
+				DC0DE7222592CFD600FD75A0 /* SDTide.h in Headers */,
+				DC0DE71F2592CFD600FD75A0 /* SDTideInterval.h in Headers */,
+				DC0DE7212592CFD600FD75A0 /* SDTideFactory.h in Headers */,
+				DC0DE71D2592CFD600FD75A0 /* SDTideStationData.h in Headers */,
 				DC0DE7512592CFE100FD75A0 /* HarmonicsPath.hh in Headers */,
 				DC0DE7522592CFE100FD75A0 /* Station.hh in Headers */,
 				DC0DE7592592CFE100FD75A0 /* Angle.hh in Headers */,
@@ -576,18 +581,14 @@
 				DC0DE7392592CFE100FD75A0 /* TideEvent.hh in Headers */,
 				DC0DE7292592CFE100FD75A0 /* common.hh in Headers */,
 				DC0DE7362592CFE100FD75A0 /* Nullable.hh in Headers */,
-				DC0DE7222592CFD600FD75A0 /* SDTide.h in Headers */,
 				DC0DE74E2592CFE100FD75A0 /* ModeFormat.hh in Headers */,
 				DC0DE7722592CFE100FD75A0 /* Units.hh in Headers */,
 				DC0DE7402592CFE100FD75A0 /* Year.hh in Headers */,
 				DC0DE76E2592CFE100FD75A0 /* NullableInterval.hh in Headers */,
 				DC0DE72E2592CFE100FD75A0 /* Dstr.hh in Headers */,
-				DC0DE71F2592CFD600FD75A0 /* SDTideInterval.h in Headers */,
 				DC0DE70D2592CFC100FD75A0 /* tcd.h in Headers */,
 				DC0DE7662592CFE100FD75A0 /* Colors.hh in Headers */,
-				DC0DE7212592CFD600FD75A0 /* SDTideFactory.h in Headers */,
 				DC0DE74A2592CFE100FD75A0 /* Speed.hh in Headers */,
-				DC0DE7242592CFD600FD75A0 /* SDTideEvent.h in Headers */,
 				DC0DE7552592CFE100FD75A0 /* PredictionValue.hh in Headers */,
 				DC0DE7642592CFE100FD75A0 /* Timestamp.hh in Headers */,
 				DC0DE7372592CFE100FD75A0 /* ZoneIndex.hh in Headers */,
@@ -612,7 +613,6 @@
 				DC0DE7602592CFE100FD75A0 /* HarmonicsFile.hh in Headers */,
 				DC0DE73A2592CFE100FD75A0 /* ConstituentSet.hh in Headers */,
 				DC0DE75F2592CFE100FD75A0 /* Amplitude.hh in Headers */,
-				DC0DE71D2592CFD600FD75A0 /* SDTideStationData.h in Headers */,
 				DC0DE7232592CFD600FD75A0 /* ShralpTide2_Prefix.pch in Headers */,
 				DC0DE7672592CFE100FD75A0 /* Global.hh in Headers */,
 				DC0DE70B2592CFC100FD75A0 /* tide_db_header.h in Headers */,
@@ -879,7 +879,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1001,6 +1001,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = H29T9V7X78;
@@ -1016,6 +1017,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.WatchTideFramework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = watchos;
@@ -1029,6 +1031,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = H29T9V7X78;

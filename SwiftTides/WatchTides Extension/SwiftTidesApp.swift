@@ -9,13 +9,14 @@ import SwiftUI
 
 @main
 struct SwiftTidesApp: App {
+  @WKExtensionDelegateAdaptor(ExtensionDelegate.self) var extensionDelegate
+  
     @SceneBuilder var body: some Scene {
         WindowGroup {
             NavigationView {
                 ContentView()
+                  .environment(\.extDelegate, extensionDelegate)
             }
         }
-
-        WKNotificationScene(controller: NotificationController.self, category: "myCategory")
     }
 }

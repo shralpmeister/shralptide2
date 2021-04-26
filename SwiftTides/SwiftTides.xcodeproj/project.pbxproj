@@ -137,18 +137,27 @@
 		DC5570DD262694AF00B81C2E /* WatchTides Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DC5570DC262694AF00B81C2E /* WatchTides Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DC5570E2262694AF00B81C2E /* SwiftTidesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5570E1262694AF00B81C2E /* SwiftTidesApp.swift */; };
 		DC5570E4262694AF00B81C2E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5570E3262694AF00B81C2E /* ContentView.swift */; };
-		DC5570E6262694AF00B81C2E /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5570E5262694AF00B81C2E /* NotificationController.swift */; };
-		DC5570E8262694AF00B81C2E /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5570E7262694AF00B81C2E /* NotificationView.swift */; };
 		DC5570EA262694AF00B81C2E /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5570E9262694AF00B81C2E /* ComplicationController.swift */; };
 		DC5570EC262694AF00B81C2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC5570EB262694AF00B81C2E /* Assets.xcassets */; };
 		DC5570EF262694AF00B81C2E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC5570EE262694AF00B81C2E /* Preview Assets.xcassets */; };
 		DC5570F4262694AF00B81C2E /* WatchTides.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = DC5570D3262694AD00B81C2E /* WatchTides.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DC557102262695B100B81C2E /* WatchTideFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC557101262695B100B81C2E /* WatchTideFramework.framework */; };
 		DC557103262695B100B81C2E /* WatchTideFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC557101262695B100B81C2E /* WatchTideFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DC57150A262CFD1B00A063DF /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC079F79259C06D200F1CB0E /* Date.swift */; };
+		DC57150B262CFD1B00A063DF /* SDTide.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE8A22595696F00FD75A0 /* SDTide.swift */; };
+		DC571510262CFEAD00A063DF /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57150F262CFEAD00A063DF /* String.swift */; };
 		DC77459E24F31681001747AE /* TideEventsPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77459D24F31681001747AE /* TideEventsPageView.swift */; };
 		DC77459F24F31681001747AE /* TideEventsPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77459D24F31681001747AE /* TideEventsPageView.swift */; };
 		DCAC203A25E8C02100204370 /* ShralpTideFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCAC203925E8C02100204370 /* ShralpTideFramework.framework */; };
 		DCAC203B25E8C02100204370 /* ShralpTideFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DCAC203925E8C02100204370 /* ShralpTideFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DCC600F626360A150041EEF9 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC600F526360A150041EEF9 /* ExtensionDelegate.swift */; };
+		DCC600FE26360AAC0041EEF9 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC600FD26360AAC0041EEF9 /* WatchSessionManager.swift */; };
+		DCC6010326360AD70041EEF9 /* ConfigHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC6010226360AD70041EEF9 /* ConfigHelper.swift */; };
+		DCC6010E26360FF50041EEF9 /* Double+TimeIntervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC6010D26360FF50041EEF9 /* Double+TimeIntervals.swift */; };
+		DCC60118263616070041EEF9 /* CLKTextProvider+MultiColorPatch.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC60117263616070041EEF9 /* CLKTextProvider+MultiColorPatch.m */; };
+		DCC6012126361CE70041EEF9 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC15911A259A70400092E473 /* ChartView.swift */; };
+		DCC6012526361CF90041EEF9 /* ChartUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DDA25ABDA7000954972 /* ChartUtils.swift */; };
+		DCC6014D26363ADE0041EEF9 /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC6014C26363ADE0041EEF9 /* EnvironmentValues.swift */; };
 		DCD524312607F6D900EA4C68 /* PadContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD524302607F6D900EA4C68 /* PadContentView.swift */; };
 		DCD524322607F6D900EA4C68 /* PadContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD524302607F6D900EA4C68 /* PadContentView.swift */; };
 		DCF96C0C25BE3AC900255096 /* StationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF96C0B25BE3AC900255096 /* StationDetailView.swift */; };
@@ -329,16 +338,22 @@
 		DC5570DC262694AF00B81C2E /* WatchTides Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WatchTides Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC5570E1262694AF00B81C2E /* SwiftTidesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftTidesApp.swift; sourceTree = "<group>"; };
 		DC5570E3262694AF00B81C2E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		DC5570E5262694AF00B81C2E /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
-		DC5570E7262694AF00B81C2E /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		DC5570E9262694AF00B81C2E /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		DC5570EB262694AF00B81C2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC5570EE262694AF00B81C2E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DC5570F0262694AF00B81C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DC5570F1262694AF00B81C2E /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		DC557101262695B100B81C2E /* WatchTideFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WatchTideFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC57150F262CFEAD00A063DF /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		DC77459D24F31681001747AE /* TideEventsPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideEventsPageView.swift; sourceTree = "<group>"; };
 		DCAC203925E8C02100204370 /* ShralpTideFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ShralpTideFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCC600F526360A150041EEF9 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		DCC600FD26360AAC0041EEF9 /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
+		DCC6010226360AD70041EEF9 /* ConfigHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigHelper.swift; sourceTree = "<group>"; };
+		DCC6010D26360FF50041EEF9 /* Double+TimeIntervals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+TimeIntervals.swift"; sourceTree = "<group>"; };
+		DCC60115263616060041EEF9 /* WatchTides Extension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WatchTides Extension-Bridging-Header.h"; sourceTree = "<group>"; };
+		DCC60116263616070041EEF9 /* CLKTextProvider+MultiColorPatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLKTextProvider+MultiColorPatch.h"; sourceTree = "<group>"; };
+		DCC60117263616070041EEF9 /* CLKTextProvider+MultiColorPatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLKTextProvider+MultiColorPatch.m"; sourceTree = "<group>"; };
+		DCC6014C26363ADE0041EEF9 /* EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValues.swift; sourceTree = "<group>"; };
 		DCD524302607F6D900EA4C68 /* PadContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadContentView.swift; sourceTree = "<group>"; };
 		DCF96C0B25BE3AC900255096 /* StationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailView.swift; sourceTree = "<group>"; };
 		DCF96C1125BE492700255096 /* MapSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSelectionView.swift; sourceTree = "<group>"; };
@@ -464,6 +479,7 @@
 				DC079F79259C06D200F1CB0E /* Date.swift */,
 				DC0DE8A22595696F00FD75A0 /* SDTide.swift */,
 				DC115E3025BCB28400954972 /* SDTideStation.swift */,
+				DC57150F262CFEAD00A063DF /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -647,13 +663,18 @@
 			isa = PBXGroup;
 			children = (
 				DC5570E1262694AF00B81C2E /* SwiftTidesApp.swift */,
+				DCC6010226360AD70041EEF9 /* ConfigHelper.swift */,
 				DC5570E3262694AF00B81C2E /* ContentView.swift */,
-				DC5570E5262694AF00B81C2E /* NotificationController.swift */,
-				DC5570E7262694AF00B81C2E /* NotificationView.swift */,
 				DC5570E9262694AF00B81C2E /* ComplicationController.swift */,
+				DCC6010D26360FF50041EEF9 /* Double+TimeIntervals.swift */,
+				DCC6014C26363ADE0041EEF9 /* EnvironmentValues.swift */,
+				DCC600F526360A150041EEF9 /* ExtensionDelegate.swift */,
+				DCC600FD26360AAC0041EEF9 /* WatchSessionManager.swift */,
+				DCC60115263616060041EEF9 /* WatchTides Extension-Bridging-Header.h */,
+				DCC60116263616070041EEF9 /* CLKTextProvider+MultiColorPatch.h */,
+				DCC60117263616070041EEF9 /* CLKTextProvider+MultiColorPatch.m */,
 				DC5570EB262694AF00B81C2E /* Assets.xcassets */,
 				DC5570F0262694AF00B81C2E /* Info.plist */,
-				DC5570F1262694AF00B81C2E /* PushNotificationPayload.apns */,
 				DC5570ED262694AF00B81C2E /* Preview Content */,
 			);
 			path = "WatchTides Extension";
@@ -842,6 +863,7 @@
 					};
 					DC5570DB262694AF00B81C2E = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 				};
 			};
@@ -1081,11 +1103,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC5570E6262694AF00B81C2E /* NotificationController.swift in Sources */,
+				DC571510262CFEAD00A063DF /* String.swift in Sources */,
+				DCC6012126361CE70041EEF9 /* ChartView.swift in Sources */,
+				DCC600F626360A150041EEF9 /* ExtensionDelegate.swift in Sources */,
+				DCC600FE26360AAC0041EEF9 /* WatchSessionManager.swift in Sources */,
+				DC57150A262CFD1B00A063DF /* Date.swift in Sources */,
+				DCC6010E26360FF50041EEF9 /* Double+TimeIntervals.swift in Sources */,
+				DC57150B262CFD1B00A063DF /* SDTide.swift in Sources */,
+				DCC6014D26363ADE0041EEF9 /* EnvironmentValues.swift in Sources */,
+				DCC6012526361CF90041EEF9 /* ChartUtils.swift in Sources */,
+				DCC6010326360AD70041EEF9 /* ConfigHelper.swift in Sources */,
 				DC5570E4262694AF00B81C2E /* ContentView.swift in Sources */,
+				DCC60118263616070041EEF9 /* CLKTextProvider+MultiColorPatch.m in Sources */,
 				DC5570EA262694AF00B81C2E /* ComplicationController.swift in Sources */,
 				DC5570E2262694AF00B81C2E /* SwiftTidesApp.swift in Sources */,
-				DC5570E8262694AF00B81C2E /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1487,7 +1518,9 @@
 		DC5570F9262694AF00B81C2E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"WatchTides Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = H29T9V7X78;
@@ -1498,10 +1531,13 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.SwiftTides.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "WatchTides Extension/WatchTides Extension-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 7.2;
@@ -1511,7 +1547,9 @@
 		DC5570FA262694AF00B81C2E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"WatchTides Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = H29T9V7X78;
@@ -1522,10 +1560,12 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.SwiftTides.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "WatchTides Extension/WatchTides Extension-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;

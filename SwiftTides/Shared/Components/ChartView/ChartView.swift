@@ -4,7 +4,11 @@
 //
 //  Created by Michael Parlee on 12/28/20.
 //
+#if os(watchOS)
+import WatchTideFramework
+#else
 import ShralpTideFramework
+#endif
 import SwiftUI
 
 struct ChartView: View {
