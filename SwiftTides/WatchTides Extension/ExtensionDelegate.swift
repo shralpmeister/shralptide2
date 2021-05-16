@@ -9,12 +9,12 @@
 import WatchKit
 import CoreData
 import WatchTideFramework
-import ClockKit
 
-class ExtensionDelegate: NSObject, ObservableObject, WKExtensionDelegate {
+class ExtensionDelegate: NSObject, WKExtensionDelegate, ObservableObject {
         
     let lock = NSObject()
     
+  @Published
     var tides:SDTide? {
         didSet {
             if self.tides != nil {
@@ -82,8 +82,9 @@ class ExtensionDelegate: NSObject, ObservableObject, WKExtensionDelegate {
     
     func changeTideLocation(_ location:String) {
         print("Setting tide station to \(location)")
-        config.selectedStation = location
+        config.selectedStationUserDefault = location
         refreshTides()
+      refreshComplications()
     }
     
     func provisionUserDefaults() {
@@ -140,12 +141,12 @@ class ExtensionDelegate: NSObject, ObservableObject, WKExtensionDelegate {
         
         getPhoneSettings()
         
-        guard let selectedStation = config.selectedStation else {
+        guard let selectedStation = config.selectedStationUserDefault else {
             tides = nil
             return
         }
         NSLog("Refreshing tides")
-        let tidesArray = SDTideFactory.tides(forStationName: selectedStation, withInterval: 900, forDays: 2, withUnits: .US, from: Date().addingTimeInterval(secondsInToday() / -2))
+        let tidesArray = SDTideFactory.tides(forStationName: selectedStation, withInterval: 900, forDays: 2, withUnits: .US, from: Date().startOfDay())
         tides = SDTide(byCombiningTides: tidesArray)
     }
     

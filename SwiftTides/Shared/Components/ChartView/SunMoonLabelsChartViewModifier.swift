@@ -25,7 +25,7 @@ struct SunMoonLabelsChartViewModifier: ViewModifier {
 
   func body(content: Content) -> some View {
     GeometryReader { proxy in
-      let dim = calculateDimensions(proxy, tideData: tideData)
+      let dim = calculateDimensions(proxy, tideData: tideData, percentHeight: 0.8)
       let day = tideData.startTime
       let intervalsForDay = tideData.intervals(from: day, forHours: tideData.hoursToPlot())!
       let baseSeconds = intervalsForDay[0].time.timeIntervalSince1970

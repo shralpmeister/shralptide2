@@ -41,6 +41,8 @@ class ConfigHelper: ObservableObject {
   )
 
   @Published var settings = UserSettings()
+  
+  var settingsDict = NSDictionary()
 
   init() {
     NotificationCenter.default.addObserver(
@@ -76,7 +78,7 @@ class ConfigHelper: ObservableObject {
     let groupDefaults = UserDefaults(suiteName: suiteName)!
     let testValue = groupDefaults.string(forKey: ConfigKeys.units)
     if testValue == nil {
-      let settingsDict = self.readSettingsDictionary()!
+      settingsDict = self.readSettingsDictionary()!
       let prefSpecifierArray = settingsDict["PreferenceSpecifiers"] as! [NSDictionary]
 
       var defaultsToRegister = [String: Any]()

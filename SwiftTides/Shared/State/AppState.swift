@@ -12,7 +12,7 @@ import ShralpTideFramework
 class AppState: ObservableObject {
   private let timer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
   private var sub: Cancellable?
-
+  
   @Published var config = ConfigHelper()
   @Published var tides: [SDTide] = []
   @Published var locationPage: Int = 0

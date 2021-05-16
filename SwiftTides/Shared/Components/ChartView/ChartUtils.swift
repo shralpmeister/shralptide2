@@ -42,8 +42,8 @@ internal func xCoord(forTime time: Date, baseSeconds: TimeInterval, xratio: CGFl
   return CGFloat(minute) * xratio
 }
 
-internal func calculateDimensions(_ proxy: GeometryProxy, tideData: SDTide) -> ChartDimensions {
-  let height: CGFloat = proxy.size.height * 0.8  // max height for plotting y axis
+internal func calculateDimensions(_ proxy: GeometryProxy, tideData: SDTide, percentHeight: CGFloat) -> ChartDimensions {
+  let height: CGFloat = proxy.size.height * percentHeight  // max height for plotting y axis
   let chartBottom: CGFloat = proxy.size.height
 
   let min: CGFloat = findLowestTideValue(tideData)

@@ -15,12 +15,15 @@ struct ChartView: View {
   private let dateFormatter = DateFormatter()
   private let maxZeroThickness: CGFloat = 2
 
-  private var showZero = true
+  private var showZero: Bool
   private var tideData: SDTide
+  private var percentHeight: CGFloat
 
-  init(tide: SDTide, showZero: Bool = true) {
+  init(tide: SDTide, showZero: Bool = true, percentHeight: CGFloat = 0.8) {
     self.tideData = tide
     dateFormatter.dateStyle = .full
+    self.showZero = showZero
+    self.percentHeight = percentHeight
   }
 
   private func pairRiseAndSetEvents(
@@ -143,7 +146,7 @@ struct ChartView: View {
 
   var body: some View {
     return GeometryReader { proxy in
-      let dim = calculateDimensions(proxy, tideData: tideData)
+      let dim = calculateDimensions(proxy, tideData: tideData, percentHeight: self.percentHeight)
 
       let day = tideData.startTime!
       let baseSeconds: TimeInterval = day.timeIntervalSince1970

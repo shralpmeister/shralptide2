@@ -21,8 +21,8 @@ class ConfigHelper {
     public static let sharedInstance = ConfigHelper()
     
     private let defaults = UserDefaults.standard
-    
-    public var selectedStation:String? {
+      
+    var selectedStationUserDefault:String? {
         get {
             return defaults.string(forKey: ConfigHelper.SelectedStationKey)
         }
@@ -31,7 +31,7 @@ class ConfigHelper {
         }
     }
     
-    public var selectedUnits:SDTideUnitsPref? {
+    var selectedUnitsUserDefault:SDTideUnitsPref? {
         get {
             let unitsString = defaults.string(forKey: ConfigHelper.SelectedUnitsKey)
             return unitsString == ConfigHelper.USUnitsString ? SDTideUnitsPref.US : SDTideUnitsPref.METRIC
@@ -41,9 +41,9 @@ class ConfigHelper {
         }
     }
     
-    public var favoriteLocations:[String]? {
+    var favoriteLocationsUserDefault:[String]? {
         get {
-            return defaults.array(forKey: ConfigHelper.FavoritesKey) as? [String]
+          return defaults.array(forKey: ConfigHelper.FavoritesKey) as? [String]
         }
         set {
             defaults.set(newValue, forKey:ConfigHelper.FavoritesKey)
@@ -53,15 +53,15 @@ class ConfigHelper {
     private init() {}
     
     public func provision(message:[String:Any]) {
-        if self.selectedStation == nil {
-            self.selectedStation = message["selected_station"] as? String
+        if self.selectedStationUserDefault == nil {
+            self.selectedStationUserDefault = message["selected_station"] as? String
         }
         setSelectedUnits(units: message["units_preference"] as? String)
-        self.favoriteLocations = message["favorite_locations"] as? [String]
+        self.favoriteLocationsUserDefault = message["favorite_locations"] as? [String]
     }
     
     func setSelectedUnits(units:String?) {
-        self.selectedUnits = units == "metric" ? SDTideUnitsPref.METRIC : SDTideUnitsPref.US
+        self.selectedUnitsUserDefault = units == "metric" ? SDTideUnitsPref.METRIC : SDTideUnitsPref.US
     }
     
 }

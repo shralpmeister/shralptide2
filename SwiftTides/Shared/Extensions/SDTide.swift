@@ -20,6 +20,13 @@ extension SDTide {
   }
 }
 
+#if os(watchOS)
+extension SDTide {
+  func hoursToPlot() -> Int {
+    return self.startTime.hoursInDay()
+  }
+}
+#else
 extension SDTide {
   func hoursToPlot() -> Int {
     let diffComponents = Calendar.current.dateComponents(
@@ -27,6 +34,7 @@ extension SDTide {
     return diffComponents.hour!
   }
 }
+#endif
 
 enum TideError: Error {
     case notFound

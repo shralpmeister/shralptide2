@@ -12,19 +12,20 @@ import SwiftUI
 struct SwiftTidesApp: App {
   @Environment(\.appStateInteractor) private var appStateInteractor: AppStateInteractor
 
-  @StateObject private var config = ConfigHelper()
   @StateObject private var appState = AppState()
 
   @State private var isFirstLaunch = true
+  
+  private var watchSessionMgr = WatchSessionManager()
 
   private var idiom: UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
 
   var body: some Scene {
     WindowGroup {
       contentView()
-        .environmentObject(config)
+        .environmentObject(appState.config)
         .environmentObject(appState)
-        .onReceive(config.$settings) { newValue in
+        .onReceive(appState.config.$settings) { newValue in
           appStateInteractor.updateState(appState: appState, settings: newValue)
         }
         .onReceive(
@@ -34,8 +35,12 @@ struct SwiftTidesApp: App {
         ) { _ in
           let startDate = self.appState.tides[appState.locationPage].startTime!
           if Calendar.current.isDateInYesterday(startDate) {
-            appStateInteractor.updateState(appState: appState, settings: config.settings)
+            appStateInteractor.updateState(appState: appState, settings: appState.config.settings)
           }
+        }
+        .onAppear {
+          self.watchSessionMgr.appState = appState
+          self.watchSessionMgr.startSession()
         }
     }
   }

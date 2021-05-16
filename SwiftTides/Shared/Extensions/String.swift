@@ -7,7 +7,11 @@
 //
 
 import Foundation
+#if os(iOS)
+import ShralpTideFramework
+#elseif os(watchOS)
 import WatchTideFramework
+#endif
 
 extension String {
     static let MetersPerFoot:Float = 0.3048

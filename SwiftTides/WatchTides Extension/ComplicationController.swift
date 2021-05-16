@@ -29,13 +29,12 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     static let Header = "Tide"
     
-  //let extDelegate = WKExtension.shared().delegate as! ExtensionDelegate
-  @Environment(\.extDelegate) var extDelegate: ExtensionDelegate
+    let extDelegate = WKExtension.shared().delegate as! ExtensionDelegate
   
-  var units: SDTideUnitsPref {
-    ConfigHelper.sharedInstance.selectedUnits ?? SDTideUnitsPref.US
-  }
-    
+    var units: SDTideUnitsPref {
+      ConfigHelper.sharedInstance.selectedUnitsUserDefault ?? SDTideUnitsPref.US
+    }
+  
     // MARK: - Timeline Configuration
     func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
         handler(extDelegate.tides?.stopTime)
@@ -44,12 +43,18 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     func getPrivacyBehavior(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationPrivacyBehavior) -> Void) {
         handler(.showOnLockScreen)
     }
+  
+  func getComplicationDescriptors(handler: @escaping ([CLKComplicationDescriptor]) -> Void) {
+    let supportedFamilies = CLKComplicationFamily.allCases
+    let descriptor = CLKComplicationDescriptor(identifier: "ShralpTide", displayName: "Tide", supportedFamilies: supportedFamilies)
+    handler([descriptor])
+  }
     
     fileprivate func complicationTemplate(for complication:CLKComplication, interval:SDTideInterval, tide:SDTide) -> CLKComplicationTemplate {
         let direction = tide.tideDirection(forTime: interval.time.timeInMinutesSinceMidnight())
         
       let text = String.tideFormatString(value: interval.height, units: units)
-      let shortText = String.tideFormatStringSmall(value: interval.height, units: units)
+        let shortText = String.tideFormatStringSmall(value: interval.height, units: units)
         let symbolText = direction == .falling ? String.DownSymbol : String.UpSymbol
         
         return populateTemplate(for: complication, longText: text, shortText: shortText , symbolText: symbolText, tide: tide, interval: interval)
@@ -77,16 +82,12 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     @available(watchOSApplicationExtension 5.0, *)
   fileprivate func createGraphicCircularChartTemplate(height: Float, min: Float, max: Float, shortText: String, symbol: String, tide: SDTide, interval: SDTideInterval) -> CLKComplicationTemplateGraphicCircularView<ChartView> {
-//        let chartHeight = WKInterfaceDevice.current().screenBounds.width < UIConst.SCREEN_WIDTH_44MM ? UIConst.CHART_HEIGHT_40MM : UIConst.CHART_HEIGHT_44MM
-//        let startDate = interval.time.addingTimeInterval(TimeInterval(-7.hrs))
       let chartView = ChartView(tide: tide)
           return CLKComplicationTemplateGraphicCircularView(chartView)
     }
     
     @available(watchOSApplicationExtension 5.0, *)
-  fileprivate func createGraphicRectangularChartTemplate(height: Float, min: Float, max: Float, shortText: String, longText: String, symbol: String, tide: SDTide, interval: SDTideInterval) -> CLKComplicationTemplateGraphicRectangularLargeView<ChartView> {
-//        let height = WKInterfaceDevice.current().screenBounds.width < UIConst.SCREEN_WIDTH_44MM ? UIConst.CHART_HEIGHT_40MM : UIConst.CHART_HEIGHT_44MM
-//        let width = WKInterfaceDevice.current().screenBounds.width < UIConst.SCREEN_WIDTH_44MM ? UIConst.CHART_WIDTH_40MM : UIConst.CHART_WIDTH_44MM
+  fileprivate func createGraphicRectangularChartTemplate(height: Float, min: Float, max: Float, shortText: String, longText: String, symbol: String, tide: SDTide, interval: SDTideInterval) -> CLKComplicationTemplateGraphicRectangularLargeView<WatchChartView> {
         let currentTideTextProvider = CLKSimpleTextProvider(text: longText + symbol)
       var textProvider: CLKTextProvider? = nil
         do {
@@ -100,7 +101,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             NSLog("WARN: Unable to find next tide event")
             textProvider = currentTideTextProvider
         }
-        let chartView = ChartView(tide: tide)
+    let chartView = WatchChartView(tide: tide)
       return CLKComplicationTemplateGraphicRectangularLargeView(headerTextProvider: textProvider!, content: chartView)
     }
     
@@ -244,22 +245,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         // Call the handler with the current timeline entry
         handler(entry)
     }
-    
-//    func getTimelineEntries(for complication: CLKComplication, before date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
-//        guard let tides = extDelegate.tides else {
-//            handler(nil)
-//            return
-//        }
-//        let calendar = Calendar.current
-//        let limitInHours = limit / ComplicationController.IntervalsPerHour
-//        let startDate = calendar.date(byAdding: Calendar.Component.hour, value: -1 * limitInHours, to: date)
-//        let intervals = tides.intervals(from: startDate, forHours:limitInHours)!
-//        let entries = intervals.map { interval in
-//            CLKComplicationTimelineEntry(date: interval.time.intervalStartDate(), complicationTemplate: complicationTemplate(for: complication, interval: interval, tide: tides))
-//        }
-//        // Call the handler with the timeline entries prior to the given date
-//        handler(entries)
-//    }
     
     func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
         guard let tides = extDelegate.tides else {
