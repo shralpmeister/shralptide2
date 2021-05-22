@@ -6,24 +6,37 @@
 //
 //
 
-import WatchKit
+import Combine
 import CoreData
+import WatchKit
 import WatchTideFramework
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate, ObservableObject {
-        
-    let lock = NSObject()
+
+  private let timer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
+  private var sub: Cancellable?
     
+  @Published var currentTideDisplay: String = ""
+
   @Published
     var tides:SDTide? {
         didSet {
-            if self.tides != nil {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SDTideDidUpdate"), object: nil)
-            }
+          currentTideDisplay = self.tides?.currentTideString ?? ""
         }
     }
     
     let config = ConfigHelper.sharedInstance
+  
+  override init() {
+    super.init()
+    sub = timer.sink { _ in
+      self.refreshTideLevel()
+    }
+  }
+
+  func refreshTideLevel() {
+    self.currentTideDisplay = self.tides?.currentTideString ?? ""
+  }
 
     func applicationDidFinishLaunching() {
         WatchSessionManager.sharedInstance.startSession()
@@ -40,6 +53,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, ObservableObject {
 
     func applicationDidBecomeActive() {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+      getPhoneSettings()
         checkAndRefreshTides()
     }
 
@@ -92,9 +106,6 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, ObservableObject {
         sessionManager.session.sendMessage(["request":"provision"], replyHandler: {
             (message:[String:Any]) in
             
-            objc_sync_enter(self.lock)
-            defer { objc_sync_exit(self.lock) }
-            
             self.config.provision(message:message)
             
             print("Provisioned and saved settings to user defaults")
@@ -116,15 +127,15 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, ObservableObject {
     }
     
     func checkAndRefreshTides() {
-
         if let tides = self.tides {
             if Date().timeIntervalSince(tides.startTime) >= secondsInToday() {
                 refreshTides()
+              refreshComplications()
             }
         } else {
             refreshTides()
+          refreshComplications()
         }
-        refreshComplications()
     }
     
     private func getPhoneSettings() {
@@ -136,11 +147,6 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, ObservableObject {
     }
     
     private func refreshTides() {
-        objc_sync_enter(lock)
-        defer { objc_sync_exit(lock) }
-        
-        getPhoneSettings()
-        
         guard let selectedStation = config.selectedStationUserDefault else {
             tides = nil
             return

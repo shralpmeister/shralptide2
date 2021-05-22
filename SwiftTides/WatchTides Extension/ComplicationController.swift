@@ -11,14 +11,6 @@ import WatchKit
 import WatchTideFramework
 import SwiftUI
 
-struct UIConst {
-    static let SCREEN_WIDTH_44MM: CGFloat = 325
-    static let CHART_HEIGHT_40MM: Int = 50
-    static let CHART_HEIGHT_44MM: Int = 64
-    static let CHART_WIDTH_40MM: Int = 170
-    static let CHART_WIDTH_44MM: Int = 191
-}
-
 extension UIColor {
     static let shralpGreen = UIColor(red: 0.403, green: 0.816, blue: 0.820, alpha: 1)
 }
@@ -46,7 +38,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
   
   func getComplicationDescriptors(handler: @escaping ([CLKComplicationDescriptor]) -> Void) {
     let supportedFamilies = CLKComplicationFamily.allCases
-    let descriptor = CLKComplicationDescriptor(identifier: "ShralpTide", displayName: "Tide", supportedFamilies: supportedFamilies)
+    let descriptor = CLKComplicationDescriptor(identifier: "SwiftTides", displayName: "Tide", supportedFamilies: supportedFamilies)
     handler([descriptor])
   }
     
@@ -60,7 +52,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         return populateTemplate(for: complication, longText: text, shortText: shortText , symbolText: symbolText, tide: tide, interval: interval)
     }
     
-    @available(watchOSApplicationExtension 5.0, *)
     fileprivate func createCornerRangeTemplate(fillFraction: Float, min: Float, max: Float, shortText: String, symbol: String) -> CLKComplicationTemplateGraphicCornerGaugeText {
       let gaugeProvider = CLKSimpleGaugeProvider(style: .ring, gaugeColors: [.black, .shralpGreen, .blue], gaugeColorLocations: [0, 0.3, 1], fillFraction: fillFraction)
       let leadingTextProvider = CLKSimpleTextProvider(text: String.localizedStringWithFormat("%0.1f", min))
@@ -70,7 +61,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         return cornerTemplate
     }
     
-    @available(watchOSApplicationExtension 5.0, *)
     fileprivate func createGraphicCircularTemplate(fillFraction: Float, min: Float, max: Float, shortText: String, symbol: String, interval: SDTideInterval) -> CLKComplicationTemplateGraphicCircular {
       let gaugeProvider = CLKSimpleGaugeProvider(style: .ring, gaugeColors: [.black, .shralpGreen, .blue], gaugeColorLocations: [0, 0.3, 1], fillFraction: fillFraction)
         let centerTextProvider = CLKSimpleTextProvider(text: symbol)
@@ -80,13 +70,11 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         return template
     }
     
-    @available(watchOSApplicationExtension 5.0, *)
   fileprivate func createGraphicCircularChartTemplate(height: Float, min: Float, max: Float, shortText: String, symbol: String, tide: SDTide, interval: SDTideInterval) -> CLKComplicationTemplateGraphicCircularView<ChartView> {
       let chartView = ChartView(tide: tide)
           return CLKComplicationTemplateGraphicCircularView(chartView)
     }
     
-    @available(watchOSApplicationExtension 5.0, *)
   fileprivate func createGraphicRectangularChartTemplate(height: Float, min: Float, max: Float, shortText: String, longText: String, symbol: String, tide: SDTide, interval: SDTideInterval) -> CLKComplicationTemplateGraphicRectangularLargeView<WatchChartView> {
         let currentTideTextProvider = CLKSimpleTextProvider(text: longText + symbol)
       var textProvider: CLKTextProvider? = nil
@@ -101,11 +89,10 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             NSLog("WARN: Unable to find next tide event")
             textProvider = currentTideTextProvider
         }
-    let chartView = WatchChartView(tide: tide)
+    let chartView = WatchChartView(tide: tide, time: interval.time)
       return CLKComplicationTemplateGraphicRectangularLargeView(headerTextProvider: textProvider!, content: chartView)
     }
     
-    @available(watchOSApplicationExtension 5.0, *)
     fileprivate func createGraphicRectangularTextGuageTemplate(fillFraction: Float, height: Float, min: Float, max: Float, shortText: String, longText: String, symbol: String, tide: SDTide, interval: SDTideInterval) -> CLKComplicationTemplateGraphicRectangularTextGauge {
         let color = UIColor(red:94/255, green: 205/255, blue: 117/255, alpha: 1)
         let gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: color, fillFraction: fillFraction)

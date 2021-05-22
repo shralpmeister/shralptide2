@@ -19,8 +19,8 @@ struct ContentView: View {
       if extDelegate.tides == nil {
         Text("Syncing. Make sure iPhone is nearby.")
           .lineLimit(3)
-          .background(RoundedRectangle(cornerRadius: 5).fill(Color.gray))
           .padding()
+          .background(RoundedRectangle(cornerRadius: 5).fill(Color.gray))
       } else {
         NavigationView {
           List {
@@ -30,7 +30,7 @@ struct ContentView: View {
             
             HStack {
               Spacer()
-              Text(extDelegate.tides?.currentTideString ?? "X.XX")
+              Text(extDelegate.currentTideDisplay)
                 .font(.largeTitle)
               Spacer()
             }
@@ -56,9 +56,6 @@ struct ContentView: View {
           }
         }
         .navigationBarTitle("Tides")
-        .onAppear {
-          extDelegate.provisionUserDefaults()
-        }
       }
     }
 }

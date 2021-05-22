@@ -9,19 +9,22 @@ import SwiftUI
 import WatchTideFramework
 
 struct WatchChartView: View {
-  private var tideData: SDTide
+  private var tide: SDTide
+  private var time: Date?
 
-  init(tide: SDTide) {
-    self.tideData = tide
+  init(tide: SDTide, time: Date? = nil) {
+    self.tide = tide
+    self.time = time
   }
   
     var body: some View {
       return GeometryReader { proxy in
-        let dim = calculateDimensions(proxy, tideData: tideData, percentHeight: 1)
-        let currentTimeX: CGFloat = CGFloat(currentTimeInMinutes(tideData: tideData)) * dim.xratio
+        let dim = calculateDimensions(proxy, tideData: tide, percentHeight: 1)
+        let timeInMinutes = time == nil ? currentTimeInMinutes(tideData: tide) : time!.timeInMinutesSinceMidnight()
+        let currentTimeX: CGFloat = CGFloat(timeInMinutes) * dim.xratio
         
         ZStack {
-          ChartView(tide: self.tideData, percentHeight: 1)
+          ChartView(tide: self.tide, percentHeight: 1)
           if currentTimeX > 0 {
             CursorView(position: currentTimeX, height: dim.height)
           }

@@ -154,6 +154,8 @@
 		DC43CBFE25C7882C002A330E /* RegionSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CBFC25C7882C002A330E /* RegionSelectionView.swift */; };
 		DC43CC0625CBC44E002A330E /* TideStationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CC0525CBC44E002A330E /* TideStationListView.swift */; };
 		DC43CC0725CBC44E002A330E /* TideStationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CC0525CBC44E002A330E /* TideStationListView.swift */; };
+		DC4FE478265214E00066B475 /* WatchTideFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4FE477265214E00066B475 /* WatchTideFramework.framework */; };
+		DC4FE479265214E00066B475 /* WatchTideFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC4FE477265214E00066B475 /* WatchTideFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DC77459E24F31681001747AE /* TideEventsPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77459D24F31681001747AE /* TideEventsPageView.swift */; };
 		DC77459F24F31681001747AE /* TideEventsPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77459D24F31681001747AE /* TideEventsPageView.swift */; };
 		DC86D9F1264847CC000C9CE4 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86D9F0264847CC000C9CE4 /* WatchSessionManager.swift */; };
@@ -240,6 +242,17 @@
 				DC25E6C92636870900D214D0 /* WatchTides Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC4FE47A265214E00066B475 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DC4FE479265214E00066B475 /* WatchTideFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DC5570F5262694AF00B81C2E /* Embed Watch Content */ = {
@@ -344,6 +357,8 @@
 		DC43CBF625C78697002A330E /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		DC43CBFC25C7882C002A330E /* RegionSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionSelectionView.swift; sourceTree = "<group>"; };
 		DC43CC0525CBC44E002A330E /* TideStationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideStationListView.swift; sourceTree = "<group>"; };
+		DC4FE477265214E00066B475 /* WatchTideFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WatchTideFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC4FE47B2652150A0066B475 /* WatchTideFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WatchTideFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC557101262695B100B81C2E /* WatchTideFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WatchTideFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC77459D24F31681001747AE /* TideEventsPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideEventsPageView.swift; sourceTree = "<group>"; };
 		DC86D9F0264847CC000C9CE4 /* WatchSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
@@ -361,6 +376,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC4FE478265214E00066B475 /* WatchTideFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +404,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DC26BB0724BB807B00453A5F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC4FE47E2652150A0066B475 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -691,6 +714,8 @@
 		DCAC203825E8C02100204370 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DC4FE47B2652150A0066B475 /* WatchTideFramework.framework */,
+				DC4FE477265214E00066B475 /* WatchTideFramework.framework */,
 				DC557101262695B100B81C2E /* WatchTideFramework.framework */,
 				DC246B4E26215A7B0090F38B /* ShralpTideMacFramework.framework */,
 				DC246B25262159ED0090F38B /* ShralpTideFramework.framework */,
@@ -731,6 +756,7 @@
 			buildPhases = (
 				DC25E6BA2636870800D214D0 /* Resources */,
 				DC25E6E62636870900D214D0 /* Embed App Extensions */,
+				DC4FE47E2652150A0066B475 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -749,6 +775,7 @@
 				DC25E6C42636870900D214D0 /* Sources */,
 				DC25E6C52636870900D214D0 /* Frameworks */,
 				DC25E6C62636870900D214D0 /* Resources */,
+				DC4FE47A265214E00066B475 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1190,7 +1217,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
 			};
 			name = Debug;
 		};
@@ -1217,7 +1244,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
 			};
 			name = Release;
 		};
@@ -1231,13 +1258,17 @@
 				DEVELOPMENT_TEAM = H29T9V7X78;
 				IBSC_MODULE = WatchTides_Extension;
 				INFOPLIST_FILE = WatchTides/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.SwiftTides.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
 			};
 			name = Debug;
 		};
@@ -1251,6 +1282,10 @@
 				DEVELOPMENT_TEAM = H29T9V7X78;
 				IBSC_MODULE = WatchTides_Extension;
 				INFOPLIST_FILE = WatchTides/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.SwiftTides.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1258,7 +1293,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
 			};
 			name = Release;
 		};
