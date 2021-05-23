@@ -9,11 +9,11 @@ import CoreData
 import Foundation
 
 protocol StationData {
-  var managedObjectModel: NSManagedObjectModel { get }
+    var managedObjectModel: NSManagedObjectModel { get }
 
-  var persistentStoreCoordinator: NSPersistentStoreCoordinator? { get }
+    var persistentStoreCoordinator: NSPersistentStoreCoordinator? { get }
 
-  var managedObjectContext: NSManagedObjectContext? { get }
+    var managedObjectContext: NSManagedObjectContext? { get }
 
-  func saveContext()
+    func saveContext()
 }

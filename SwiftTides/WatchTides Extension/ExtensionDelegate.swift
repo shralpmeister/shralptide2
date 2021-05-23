@@ -12,38 +12,39 @@ import WatchKit
 import WatchTideFramework
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate, ObservableObject {
+    private let timer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
+    private var sub: Cancellable?
 
-  private let timer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
-  private var sub: Cancellable?
-    
-  @Published var currentTideDisplay: String = ""
+    @Published var currentTideDisplay: String = ""
+    @Published var currentTime = Date()
 
-  @Published
-    var tides:SDTide? {
+    @Published
+    var tides: SDTide? {
         didSet {
-          currentTideDisplay = self.tides?.currentTideString ?? ""
+            currentTideDisplay = tides?.currentTideString ?? ""
         }
     }
-    
-    let config = ConfigHelper.sharedInstance
-  
-  override init() {
-    super.init()
-    sub = timer.sink { _ in
-      self.refreshTideLevel()
-    }
-  }
 
-  func refreshTideLevel() {
-    self.currentTideDisplay = self.tides?.currentTideString ?? ""
-  }
+    let config = ConfigHelper.sharedInstance
+
+    override init() {
+        super.init()
+        sub = timer.sink { _ in
+            self.refreshTideLevel()
+        }
+    }
+
+    func refreshTideLevel() {
+        currentTideDisplay = tides?.currentTideString ?? ""
+        currentTime = Date()
+    }
 
     func applicationDidFinishLaunching() {
         WatchSessionManager.sharedInstance.startSession()
 
         let hfilePath = Bundle(for: SDTideFactory.self).path(forResource: "harmonics-20040614-wxtide", ofType: "tcd")! + ":" + Bundle(for: SDTideFactory.self).path(forResource: "harmonics-dwf-20081228-free", ofType: "tcd")! + ":" + Bundle(for: SDTideFactory.self).path(forResource: "harmonics-dwf-20081228-nonfree", ofType: "tcd")!
         setenv("HFILE_PATH", hfilePath, 1)
-        
+
         WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: Date(timeIntervalSinceNow: 4 * 60 * 60), userInfo: nil) { (error: Error?) in
             if let error = error {
                 print("Error occurred refreshing app state: \(error)")
@@ -53,7 +54,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, ObservableObject {
 
     func applicationDidBecomeActive() {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-      getPhoneSettings()
+        getPhoneSettings()
         checkAndRefreshTides()
     }
 
@@ -71,7 +72,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, ObservableObject {
                 // Be sure to complete the background task once you’re done.
                 checkAndRefreshTides()
                 backgroundTask.setTaskCompletedWithSnapshot(false)
-                
+
                 // Schedule the next background refresh
                 WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: Date(timeIntervalSinceNow: 4 * 60 * 60), userInfo: nil) { error in
                     if let error = error {
@@ -93,59 +94,58 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, ObservableObject {
             }
         }
     }
-    
-    func changeTideLocation(_ location:String) {
+
+    func changeTideLocation(_ location: String) {
         print("Setting tide station to \(location)")
         config.selectedStationUserDefault = location
         refreshTides()
-      refreshComplications()
+        refreshComplications()
     }
-    
+
     func provisionUserDefaults() {
         let sessionManager = WatchSessionManager.sharedInstance
-        sessionManager.session.sendMessage(["request":"provision"], replyHandler: {
-            (message:[String:Any]) in
-            
-            self.config.provision(message:message)
-            
+        sessionManager.session.sendMessage(["request": "provision"], replyHandler: {
+            (message: [String: Any]) in
+
+            self.config.provision(message: message)
+
             print("Provisioned and saved settings to user defaults")
             if self.tides == nil {
                 self.refreshTides()
             }
         }, errorHandler: {
-            (error:Error) in
+            (error: Error) in
             print("Provisioning response failed to process with error \(error)")
-        }
-        )
+        })
     }
-    
+
     private func secondsInToday() -> Double {
         let cal = Calendar.current
         let now = Date()
         let tomorrow = cal.date(byAdding: .day, value: 1, to: now)!
         return Double(cal.dateComponents([.second], from: now.startOfDay(), to: tomorrow.startOfDay()).second!)
     }
-    
+
     func checkAndRefreshTides() {
         if let tides = self.tides {
             if Date().timeIntervalSince(tides.startTime) >= secondsInToday() {
                 refreshTides()
-              refreshComplications()
+                refreshComplications()
             }
         } else {
             refreshTides()
-          refreshComplications()
+            refreshComplications()
         }
     }
-    
+
     private func getPhoneSettings() {
         let sessionManager = WatchSessionManager.sharedInstance
-        if (sessionManager.session.isReachable) {
+        if sessionManager.session.isReachable {
             print("iPhone is reachable. Provisioning")
             provisionUserDefaults()
         }
     }
-    
+
     private func refreshTides() {
         guard let selectedStation = config.selectedStationUserDefault else {
             tides = nil
@@ -155,7 +155,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, ObservableObject {
         let tidesArray = SDTideFactory.tides(forStationName: selectedStation, withInterval: 900, forDays: 2, withUnits: .US, from: Date().startOfDay())
         tides = SDTide(byCombiningTides: tidesArray)
     }
-    
+
     func refreshComplications() {
         NSLog("Refreshing complications")
         guard let activeComplications = CLKComplicationServer.sharedInstance().activeComplications else {

@@ -6,5 +6,5 @@
 //
 
 extension TimeInterval {
-  var hrs: Double { self * 60 * 60 }
+    var hrs: Double { self * 60 * 60 }
 }

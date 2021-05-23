@@ -8,22 +8,22 @@
 import SwiftUI
 
 struct RegionSelectionView: View {
-  @EnvironmentObject private var config: ConfigHelper
+    @EnvironmentObject private var config: ConfigHelper
 
-  @Environment(\.stationInteractor) private var standardInteractor: TideStationInteractor
-  @Environment(\.legacyStationInteractor) private var legacyInteractor: TideStationInteractor
+    @Environment(\.stationInteractor) private var standardInteractor: TideStationInteractor
+    @Environment(\.legacyStationInteractor) private var legacyInteractor: TideStationInteractor
 
-  @Binding var activeSheet: ActiveSheet?
+    @Binding var activeSheet: ActiveSheet?
 
-  init(activeSheet: Binding<ActiveSheet?>) {
-    self._activeSheet = activeSheet
-  }
-
-  var body: some View {
-    NavigationView {
-      let interactor = config.settings.legacyMode ? legacyInteractor : standardInteractor
-      RegionListView(regions: interactor.countries(), activeSheet: $activeSheet)
-        .navigationTitle(Text("Country"))
+    init(activeSheet: Binding<ActiveSheet?>) {
+        _activeSheet = activeSheet
     }
-  }
+
+    var body: some View {
+        NavigationView {
+            let interactor = config.settings.legacyMode ? legacyInteractor : standardInteractor
+            RegionListView(regions: interactor.countries(), activeSheet: $activeSheet)
+                .navigationTitle(Text("Country"))
+        }
+    }
 }

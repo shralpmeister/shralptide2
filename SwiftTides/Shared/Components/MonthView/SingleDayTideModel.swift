@@ -7,6 +7,6 @@
 import ShralpTideFramework
 
 struct SingleDayTideModel: Hashable {
-  var tideDataToChart: SDTide
-  var day: Date
+    var tideDataToChart: SDTide
+    var day: Date
 }

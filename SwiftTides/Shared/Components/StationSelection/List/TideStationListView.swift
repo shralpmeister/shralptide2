@@ -10,36 +10,37 @@ import ShralpTideFramework
 import SwiftUI
 
 struct TideStationListView: View {
-  @State var stations: [SDTideStation]
-  @Binding var activeSheet: ActiveSheet?
+    @State var stations: [SDTideStation]
+    @Binding var activeSheet: ActiveSheet?
 
-  var body: some View {
-    List {
-      ForEach(stations, id: \.name) { (station: SDTideStation) in
-        NavigationLink(
-          destination: StationDetailView(
-            activeSheet: $activeSheet, selectedLocation: .constant(toAnnotation(station)))
-        ) {
-          Text(station.name ?? "None")
-            .font(.headline)
+    var body: some View {
+        List {
+            ForEach(stations, id: \.name) { (station: SDTideStation) in
+                NavigationLink(
+                    destination: StationDetailView(
+                        activeSheet: $activeSheet, selectedLocation: .constant(toAnnotation(station))
+                    )
+                ) {
+                    Text(station.name ?? "None")
+                        .font(.headline)
+                }
+            }
         }
-      }
+        .navigationBarItems(
+            trailing:
+            HStack {
+                Button("Done") {
+                    activeSheet = nil
+                }
+            }
+        )
     }
-    .navigationBarItems(
-      trailing:
-        HStack {
-          Button("Done") {
-            activeSheet = nil
-          }
-        }
-    )
-  }
 
-  func toAnnotation(_ station: SDTideStation) -> TideAnnotation {
-    let location = TideAnnotation()
-    location.title = station.name
-    location.coordinate.latitude = station.latitude as! CLLocationDegrees
-    location.coordinate.longitude = station.longitude as! CLLocationDegrees
-    return location
-  }
+    func toAnnotation(_ station: SDTideStation) -> TideAnnotation {
+        let location = TideAnnotation()
+        location.title = station.name
+        location.coordinate.latitude = station.latitude as! CLLocationDegrees
+        location.coordinate.longitude = station.longitude as! CLLocationDegrees
+        return location
+    }
 }

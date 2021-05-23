@@ -9,7 +9,7 @@ import CoreData
 import Foundation
 
 class ModelMigrate2To3: NSEntityMigrationPolicy {
-  func populateDatastoreField(name: NSString) -> NSString {
-    return "noaa-data"
-  }
+    func populateDatastoreField(name _: NSString) -> NSString {
+        return "noaa-data"
+    }
 }

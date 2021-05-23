@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Region: Hashable {
-  let flagName: String
-  let name: String
-  let subRegions: [Region]
+    let flagName: String
+    let name: String
+    let subRegions: [Region]
 }

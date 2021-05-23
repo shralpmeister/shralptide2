@@ -7,33 +7,35 @@
 
 import Foundation
 #if os(iOS)
-import ShralpTideFramework
+    import ShralpTideFramework
 #elseif os(watchOS)
-import WatchTideFramework
+    import WatchTideFramework
 #endif
 
 extension SDTide {
-  var currentTideString: String {
-    String(
-      format: "%.2f%@%@", Float(self.nearestDataPointToCurrentTime.y),
-      self.unitShort, self.tideDirection == .rising ? "▲" : "▼")
-  }
+    var currentTideString: String {
+        String(
+            format: "%.2f%@%@", Float(nearestDataPointToCurrentTime.y),
+            unitShort, tideDirection == .rising ? "▲" : "▼"
+        )
+    }
 }
 
 #if os(watchOS)
-extension SDTide {
-  func hoursToPlot() -> Int {
-    return self.startTime.hoursInDay()
-  }
-}
+    extension SDTide {
+        func hoursToPlot() -> Int {
+            return startTime.hoursInDay()
+        }
+    }
 #else
-extension SDTide {
-  func hoursToPlot() -> Int {
-    let diffComponents = Calendar.current.dateComponents(
-      [.hour], from: self.startTime, to: self.stopTime)
-    return diffComponents.hour!
-  }
-}
+    extension SDTide {
+        func hoursToPlot() -> Int {
+            let diffComponents = Calendar.current.dateComponents(
+                [.hour], from: startTime, to: stopTime
+            )
+            return diffComponents.hour!
+        }
+    }
 #endif
 
 enum TideError: Error {
@@ -41,9 +43,8 @@ enum TideError: Error {
 }
 
 extension SDTide {
-    func nextTide(from date: Date) throws -> SDTideEvent
-    {
-        guard let nextEvent = (self.events.filter { date.timeIntervalSince1970 < $0.eventTime.timeIntervalSince1970 }.first) else { throw TideError.notFound }
+    func nextTide(from date: Date) throws -> SDTideEvent {
+        guard let nextEvent = (events.filter { date.timeIntervalSince1970 < $0.eventTime.timeIntervalSince1970 }.first) else { throw TideError.notFound }
         return nextEvent
     }
 }

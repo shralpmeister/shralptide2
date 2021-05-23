@@ -10,46 +10,46 @@ import SwiftUI
 
 @main
 struct SwiftTidesApp: App {
-  @Environment(\.appStateInteractor) private var appStateInteractor: AppStateInteractor
+    @Environment(\.appStateInteractor) private var appStateInteractor: AppStateInteractor
 
-  @StateObject private var appState = AppState()
+    @StateObject private var appState = AppState()
 
-  @State private var isFirstLaunch = true
-  
-  private var watchSessionMgr = WatchSessionManager()
+    @State private var isFirstLaunch = true
 
-  private var idiom: UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
+    private var watchSessionMgr = WatchSessionManager()
 
-  var body: some Scene {
-    WindowGroup {
-      contentView()
-        .environmentObject(appState.config)
-        .environmentObject(appState)
-        .onReceive(appState.config.$settings) { newValue in
-          appStateInteractor.updateState(appState: appState, settings: newValue)
-        }
-        .onReceive(
-          NotificationCenter.default.publisher(
-            for: UIApplication.willEnterForegroundNotification
-          )
-        ) { _ in
-          let startDate = self.appState.tides[appState.locationPage].startTime!
-          if Calendar.current.isDateInYesterday(startDate) {
-            appStateInteractor.updateState(appState: appState, settings: appState.config.settings)
-          }
-        }
-        .onAppear {
-          self.watchSessionMgr.appState = appState
-          self.watchSessionMgr.startSession()
+    private var idiom: UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
+
+    var body: some Scene {
+        WindowGroup {
+            contentView()
+                .environmentObject(appState.config)
+                .environmentObject(appState)
+                .onReceive(appState.config.$settings) { newValue in
+                    appStateInteractor.updateState(appState: appState, settings: newValue)
+                }
+                .onReceive(
+                    NotificationCenter.default.publisher(
+                        for: UIApplication.willEnterForegroundNotification
+                    )
+                ) { _ in
+                    let startDate = self.appState.tides[appState.locationPage].startTime!
+                    if Calendar.current.isDateInYesterday(startDate) {
+                        appStateInteractor.updateState(appState: appState, settings: appState.config.settings)
+                    }
+                }
+                .onAppear {
+                    self.watchSessionMgr.appState = appState
+                    self.watchSessionMgr.startSession()
+                }
         }
     }
-  }
 
-  private func contentView() -> some View {
-    if idiom == .phone {
-      return AnyView(PhoneContentView())
-    } else {
-      return AnyView(PadContentView())
+    private func contentView() -> some View {
+        if idiom == .phone {
+            return AnyView(PhoneContentView())
+        } else {
+            return AnyView(PadContentView())
+        }
     }
-  }
 }
