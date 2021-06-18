@@ -97,18 +97,10 @@
 		DC246B1B26214ED20090F38B /* LocationDateViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B1726214ED20090F38B /* LocationDateViewModifier.swift */; };
 		DC246B4F26215A7B0090F38B /* ShralpTideMacFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC246B4E26215A7B0090F38B /* ShralpTideMacFramework.framework */; };
 		DC246B5026215A7B0090F38B /* ShralpTideMacFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC246B4E26215A7B0090F38B /* ShralpTideMacFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		DC246B5A262200A90090F38B /* PadPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B59262200A90090F38B /* PadPortraitView.swift */; };
-		DC246B5B262200A90090F38B /* PadPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B59262200A90090F38B /* PadPortraitView.swift */; };
-		DC246B5C262200A90090F38B /* PadPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B59262200A90090F38B /* PadPortraitView.swift */; };
-		DC246B5D262200A90090F38B /* PadPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B59262200A90090F38B /* PadPortraitView.swift */; };
 		DC246B63262203E70090F38B /* PadTidesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B62262203E70090F38B /* PadTidesView.swift */; };
 		DC246B64262203E70090F38B /* PadTidesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B62262203E70090F38B /* PadTidesView.swift */; };
 		DC246B65262203E70090F38B /* PadTidesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B62262203E70090F38B /* PadTidesView.swift */; };
 		DC246B66262203E70090F38B /* PadTidesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B62262203E70090F38B /* PadTidesView.swift */; };
-		DC246B6A2622064A0090F38B /* PadLandscapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B692622064A0090F38B /* PadLandscapeView.swift */; };
-		DC246B6B2622064A0090F38B /* PadLandscapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B692622064A0090F38B /* PadLandscapeView.swift */; };
-		DC246B6C2622064A0090F38B /* PadLandscapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B692622064A0090F38B /* PadLandscapeView.swift */; };
-		DC246B6D2622064A0090F38B /* PadLandscapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B692622064A0090F38B /* PadLandscapeView.swift */; };
 		DC25E6C02636870800D214D0 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC25E6BE2636870800D214D0 /* Interface.storyboard */; };
 		DC25E6C22636870900D214D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC25E6C12636870900D214D0 /* Assets.xcassets */; };
 		DC25E6C92636870900D214D0 /* WatchTides Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DC25E6C82636870900D214D0 /* WatchTides Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -313,9 +305,7 @@
 		DC246B1726214ED20090F38B /* LocationDateViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDateViewModifier.swift; sourceTree = "<group>"; };
 		DC246B25262159ED0090F38B /* ShralpTideFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ShralpTideFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC246B4E26215A7B0090F38B /* ShralpTideMacFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ShralpTideMacFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC246B59262200A90090F38B /* PadPortraitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadPortraitView.swift; sourceTree = "<group>"; };
 		DC246B62262203E70090F38B /* PadTidesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PadTidesView.swift; sourceTree = "<group>"; };
-		DC246B692622064A0090F38B /* PadLandscapeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PadLandscapeView.swift; sourceTree = "<group>"; };
 		DC25E6BC2636870800D214D0 /* WatchTides.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchTides.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC25E6BF2636870800D214D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		DC25E6C12636870900D214D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -740,8 +730,6 @@
 			children = (
 				DC26BAE924BB807900453A5F /* PhoneContentView.swift */,
 				DCD524302607F6D900EA4C68 /* PadContentView.swift */,
-				DC246B59262200A90090F38B /* PadPortraitView.swift */,
-				DC246B692622064A0090F38B /* PadLandscapeView.swift */,
 				DC246B62262203E70090F38B /* PadTidesView.swift */,
 			);
 			path = ContentView;
@@ -1020,8 +1008,6 @@
 				DCF96C1225BE492700255096 /* MapSelectionView.swift in Sources */,
 				DC115DF825B26CE800954972 /* StationMapView.swift in Sources */,
 				DC0DE8162593B87C00FD75A0 /* AppStateInteractor.swift in Sources */,
-				DC246B6A2622064A0090F38B /* PadLandscapeView.swift in Sources */,
-				DC246B5A262200A90090F38B /* PadPortraitView.swift in Sources */,
 				DC115DB825A576CA00954972 /* TideGraphView.swift in Sources */,
 				DC86D9F1264847CC000C9CE4 /* WatchSessionManager.swift in Sources */,
 				DC246AE7261A642D0090F38B /* CalendarAppStateInteractor.swift in Sources */,
@@ -1077,8 +1063,6 @@
 				DCF96C1325BE492700255096 /* MapSelectionView.swift in Sources */,
 				DC115DF925B26CE800954972 /* StationMapView.swift in Sources */,
 				DC0DE8172593B87C00FD75A0 /* AppStateInteractor.swift in Sources */,
-				DC246B6B2622064A0090F38B /* PadLandscapeView.swift in Sources */,
-				DC246B5B262200A90090F38B /* PadPortraitView.swift in Sources */,
 				DC115DAB25A5572600954972 /* TideGraphView.swift in Sources */,
 				DC246AE8261A642D0090F38B /* CalendarAppStateInteractor.swift in Sources */,
 				DC246B1926214ED20090F38B /* LocationDateViewModifier.swift in Sources */,
@@ -1125,8 +1109,6 @@
 				DC246B65262203E70090F38B /* PadTidesView.swift in Sources */,
 				DC26BB0424BB807B00453A5F /* Tests_iOS.swift in Sources */,
 				DC246ADE2615712D0090F38B /* MonthView.swift in Sources */,
-				DC246B5C262200A90090F38B /* PadPortraitView.swift in Sources */,
-				DC246B6C2622064A0090F38B /* PadLandscapeView.swift in Sources */,
 				DC246B1A26214ED20090F38B /* LocationDateViewModifier.swift in Sources */,
 				DC246AF1261A6A630090F38B /* SingleDayTideModel.swift in Sources */,
 				DC246AE9261A642D0090F38B /* CalendarAppStateInteractor.swift in Sources */,
@@ -1142,8 +1124,6 @@
 				DC246B66262203E70090F38B /* PadTidesView.swift in Sources */,
 				DC26BB0F24BB807B00453A5F /* Tests_macOS.swift in Sources */,
 				DC246ADF2615712D0090F38B /* MonthView.swift in Sources */,
-				DC246B5D262200A90090F38B /* PadPortraitView.swift in Sources */,
-				DC246B6D2622064A0090F38B /* PadLandscapeView.swift in Sources */,
 				DC246B1B26214ED20090F38B /* LocationDateViewModifier.swift in Sources */,
 				DC246AF2261A6A630090F38B /* SingleDayTideModel.swift in Sources */,
 				DC246AEA261A642D0090F38B /* CalendarAppStateInteractor.swift in Sources */,

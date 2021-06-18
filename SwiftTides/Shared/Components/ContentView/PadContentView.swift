@@ -12,6 +12,9 @@ struct PadContentView: View {
 
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var config: ConfigHelper
+    
+    @State private var isPopoverShowing = false
+    @State private var showingFavorites = false
 
     @State private var isFirstLaunch = true
     @State private var pageIndex: Int = 0
@@ -20,24 +23,35 @@ struct PadContentView: View {
     @GestureState private var translation: CGFloat = 0
 
     var body: some View {
-        return GeometryReader { proxy in
-            let isPortrait = proxy.size.width < proxy.size.height
-
-            ZStack(alignment: .top) {
-                Color.black
-                    .ignoresSafeArea()
-                if isPortrait && horizontalSizeClass == .regular {
-                    PadPortraitView(pageIndex: $pageIndex, selectedTideDay: $selectedTideDay)
-                } else if isPortrait && horizontalSizeClass == .compact {
-                    FavoritesListView(isShowing: Binding.constant(true))
-                } else {
-                    PadLandscapeView(pageIndex: $pageIndex, selectedTideDay: $selectedTideDay)
+        VStack {
+            ZStack(alignment: .trailing) {
+                Button(action: {
+                    isPopoverShowing = true
+                }) {
+                    Text("Location")
+                        .padding()
                 }
+                .popover(isPresented: $isPopoverShowing) {
+                    FavoritesListView(isShowing: $isPopoverShowing)
+                        .environmentObject(self.appState)
+                        .environmentObject(self.config)
+                }
+                Text(
+                    appState.tides.count > 0 ? appState.tides[appState.locationPage].shortLocationName : ""
+                )
+                .font(.title3)
+                .lineLimit(1)
+                .minimumScaleFactor(0.6)
+                .padding(.trailing, 100)
+                .padding(.leading, 100)
+                .frame(maxWidth: .infinity)
             }
-            .onAppear {
-                isFirstLaunch = false
-            }
-            .preferredColorScheme(.dark)
+            .frame(maxHeight: 20)
+            PadTidesView(pageIndex: $pageIndex, selectedTideDay: $selectedTideDay)
         }
+        .onAppear {
+            isFirstLaunch = false
+        }
+        .preferredColorScheme(.dark)
     }
 }

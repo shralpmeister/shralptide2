@@ -15,6 +15,17 @@ struct PadTidesView: View {
 
     @Binding var pageIndex: Int
     @Binding var selectedTideDay: SingleDayTideModel?
+  
+    lazy var formatter: DateFormatter = {
+        let f = DateFormatter()
+        f.dateStyle = .full
+        return f
+    }()
+    
+    private func nonMutatingFormatter() -> DateFormatter {
+        var mutableSelf = self
+        return mutableSelf.formatter
+    }
 
     var body: some View {
         let dragGesture = DragGesture(minimumDistance: 0)
@@ -29,27 +40,32 @@ struct PadTidesView: View {
 
         let pressDrag = pressGesture.sequenced(before: dragGesture)
 
-        let headerWidth: CGFloat = 0.3
-        let chartWidth: CGFloat = 0.6
+        let chartWidth: CGFloat = 0.65
 
         return GeometryReader { proxy in
+            let isPortrait = proxy.size.width < proxy.size.height
             VStack {
                 HStack(alignment: .top) {
                     VStack {
-                        HeaderView(showsLocation: false)
-                            .frame(
-                                width: proxy.size.width * headerWidth,
-                                height: 70
-                            )
-                            .padding()
+                        Spacer()
+                        Text(appState.currentTideDisplay)
+                            .font(Font.system(size: 72))
+                            .fontWeight(.medium)
+                            .minimumScaleFactor(0.5)
+                            .padding(.bottom, 0)
                         if let tideData = appState.tidesForDays[pageIndex] {
+                          Text(tideData.startTime != nil ? nonMutatingFormatter().string(from: tideData.startTime) : "")
+                            .font(.title)
+                            .lineLimit(1)
+                            .padding()
+                            .minimumScaleFactor(0.2)
                             if tideData.events != nil {
                                 TideEventsView(tide: tideData)
                                     .padding(.bottom, 40)
                             }
                         }
                     }
-                    .frame(height: proxy.size.width * chartWidth / 1.77)
+                    .frame(height: proxy.size.height * (isPortrait ? 0.3 : 0.45))
                     .background(Image("background-gradient").resizable())
                     .clipShape(RoundedRectangle(cornerRadius: 3.0))
                     if let tideData = selectedTideDay?.tideDataToChart {
@@ -66,7 +82,7 @@ struct PadTidesView: View {
                             )
                             .frame(
                                 width: proxy.size.width * chartWidth,
-                                height: proxy.size.width * chartWidth / 1.77
+                                height: proxy.size.height * (isPortrait ? 0.3 : 0.45)
                             )
                             .clipShape(RoundedRectangle(cornerRadius: 3.0))
                     }

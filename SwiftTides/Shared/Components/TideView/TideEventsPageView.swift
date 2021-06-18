@@ -14,7 +14,7 @@ struct TideEventsPageView: View {
 
     @Binding private var pageIndex: Int
 
-    let formatter = DateFormatter()
+    private let formatter = DateFormatter()
 
     init(pageIndex: Binding<Int>) {
         _pageIndex = pageIndex
