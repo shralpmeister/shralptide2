@@ -52,7 +52,7 @@ struct InteractiveChartViewModifier: ViewModifier {
                                 dataPoint: dataPoint, unit: tideData.unitShort,
                                 startDate: appState.tidesForDays[self.pageIndex].startTime
                             )
-                            .position(x: midpointX, y: 85)
+                            .position(x: midpointX, y: 90)
                         }
                     }
                     .frame(alignment: .top)
@@ -93,10 +93,12 @@ struct TideOverlay: View {
                 .fill(Color.black.opacity(0.6))
             Text(String(format: "%0.2f %@ @ %@", dataPoint.y, unit, timeFormatter.string(from: xDate)))
                 .font(.title)
+                .frame(maxWidth: 300)
+                .minimumScaleFactor(0.2)
                 .foregroundColor(Color.white)
         }
         .transition(.opacity)
-        .frame(width: 300, height: 50)
+        .frame(maxWidth: 360, maxHeight: 50)
     }
 
     private func dateTime(fromMinutesSinceMidnight minutes: Int) -> Date {

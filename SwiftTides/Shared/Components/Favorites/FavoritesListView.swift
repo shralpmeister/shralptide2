@@ -27,30 +27,42 @@ struct FavoritesListView: View {
         return ZStack {
             Image("background-gradient")
                 .resizable()
-            List {
-                Section(footer: FavoritesListFooter()) {
-                    if appState.tides.count > 1 {
-                        ForEach(appState.tides, id: \.stationName) { (tide: SDTide) in
-                            FavoriteRow(tide: tide, isShowingFavorites: $isShowing)
-                        }
-                        .onDelete(perform: { (offsets: IndexSet) in
-                            let tideStation: SDTide = appState.tides[offsets.first!]
-                            if config.settings.legacyMode {
-                                interactor.removeFavoriteLegacyLocation(name: tideStation.stationName)
-                            } else {
-                                interactor.removeFavoriteStandardLocation(name: tideStation.stationName)
+            VStack(spacing: 0) {
+                Button(action: {
+                    isShowing = false
+                }) {
+                    Text("Done")
+                        .font(.title3)
+                        .fontWeight(.medium)
+                }
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .padding(.top)
+                .padding(.trailing)
+                List {
+                    Section(header: VStack {}, footer: FavoritesListFooter()) {
+                        if appState.tides.count > 1 {
+                            ForEach(appState.tides, id: \.stationName) { (tide: SDTide) in
+                                FavoriteRow(tide: tide, isShowingFavorites: $isShowing)
                             }
-                            interactor.updateState(appState: appState, settings: config.settings)
-                        })
-                    } else {
-                        if appState.tides.count > 0 {
-                            FavoriteRow(tide: appState.tides[0], isShowingFavorites: $isShowing)
+                            .onDelete(perform: { (offsets: IndexSet) in
+                                let tideStation: SDTide = appState.tides[offsets.first!]
+                                if config.settings.legacyMode {
+                                    interactor.removeFavoriteLegacyLocation(name: tideStation.stationName)
+                                } else {
+                                    interactor.removeFavoriteStandardLocation(name: tideStation.stationName)
+                                }
+                                interactor.updateState(appState: appState, settings: config.settings)
+                            })
+                        } else {
+                            if appState.tides.count > 0 {
+                                FavoriteRow(tide: appState.tides[0], isShowingFavorites: $isShowing)
+                            }
                         }
                     }
+                    .listRowBackground(Color.clear)
                 }
-                .listRowBackground(Color.clear)
+                .listStyle(GroupedListStyle())
             }
-            .listStyle(GroupedListStyle())
         }
         .accentColor(.white)
         .ignoresSafeArea()

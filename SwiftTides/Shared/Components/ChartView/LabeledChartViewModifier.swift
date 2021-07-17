@@ -62,6 +62,8 @@ struct LabeledChartViewModifier: ViewModifier {
                             let label = labels[index]
                             Text(label.text)
                                 .font(.footnote)
+                                .frame(maxWidth: 100)
+                                .minimumScaleFactor(0.2)
                                 .foregroundColor(.white)
                                 .position(x: label.x, y: CGFloat(labelInset))
                         }

@@ -29,10 +29,12 @@ struct LocationDateViewModifier: ViewModifier {
                     Spacer()
                     Text(dateFormatter.string(from: date))
                 }
-                .font(.footnote)
-                .padding(.all)
+                .font(.body)
+                .minimumScaleFactor(0.2)
+                .padding(.leading)
+                .padding(.trailing)
                 .foregroundColor(.white)
-                .frame(width: proxy.size.width, height: 40)
+                .frame(maxHeight: 30)
                 .position(x: proxy.size.width / 2.0, y: 50)
             )
         }
