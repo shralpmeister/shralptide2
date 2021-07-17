@@ -28,6 +28,7 @@ struct SwiftTidesApp: App {
                 .onReceive(appState.config.$settings) { newValue in
                     appStateInteractor.updateState(appState: appState, settings: newValue)
                 }
+                .onOpenURL { self.setLocation($0) }
                 .onReceive(
                     NotificationCenter.default.publisher(
                         for: UIApplication.willEnterForegroundNotification
@@ -50,6 +51,31 @@ struct SwiftTidesApp: App {
             return AnyView(PhoneContentView())
         } else {
             return AnyView(PadContentView())
+        }
+    }
+    
+    private func setLocation(_ url: URL) {
+        if url.scheme != "shralp" {
+            return
+        }
+        let parts = url.absoluteString.split { char in char == ":" || char == "?" }
+        if parts[1] != "location" {
+            return
+        }
+        let query = parts.last?.components(separatedBy: "=") ?? ["empty"]
+        if query.count == 2 && query[0] == "name" && query[1] != "empty" {
+            let locationName = query[1].removingPercentEncoding!
+            let locations = appStateInteractor.favoriteLocations(legacyMode: appState.config.settings.legacyMode)
+            let locationNames = locations.map { $0.locationName }
+            let selectedIndex = locationNames.firstIndex(of: locationName)
+            if appState.locationPage != selectedIndex {
+                if appState.config.settings.legacyMode {
+                    appStateInteractor.setSelectedLegacyLocation(name: locationName)
+                } else {
+                    appStateInteractor.setSelectedStandardLocation(name: locationName)
+                }
+                appStateInteractor.updateState(appState: appState, settings: appState.config.settings)
+            }
         }
     }
 }

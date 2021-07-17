@@ -1,30 +1,6 @@
 import Foundation
 import os
-
-struct UserSettings: Equatable {
-    let unitsPref: String
-    let daysPref: Int
-    let showsCurrentsPref: Bool
-    let legacyMode: Bool
-
-    init(
-        unitsPref: String = "US",
-        daysPref: Int = 5,
-        showsCurrentsPref: Bool = false,
-        legacyMode: Bool = false
-    ) {
-        self.unitsPref = unitsPref
-        self.daysPref = daysPref
-        self.showsCurrentsPref = showsCurrentsPref
-        self.legacyMode = legacyMode
-    }
-
-    static func == (lhs: UserSettings, rhs: UserSettings) -> Bool {
-        return
-            lhs.unitsPref == rhs.unitsPref && lhs.daysPref == rhs.daysPref
-                && lhs.showsCurrentsPref == rhs.showsCurrentsPref && lhs.legacyMode == rhs.legacyMode
-    }
-}
+import WidgetKit
 
 enum ConfigKeys {
     fileprivate static let units = "units_preference"
@@ -108,5 +84,7 @@ class ConfigHelper: ObservableObject {
             self.log.info("Setting units to \(self.settings.unitsPref)")
             self.log.info("Setting legacyMode to \(self.settings.legacyMode ? "YES" : "NO")")
         }
+        // and refresh widgets
+        WidgetCenter.shared.reloadAllTimelines()
     }
 }

@@ -70,7 +70,7 @@ class AppStateRepository {
             appState.selectedLocation = location
             saveContext()
         } else {
-            fatalError("Must have at least one configured location")
+            print("Must have at least one configured location")
         }
         loadSavedState(isLegacy: isLegacy)
     }

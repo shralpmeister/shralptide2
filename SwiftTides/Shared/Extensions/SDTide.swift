@@ -21,7 +21,7 @@ extension SDTide {
     }
 }
 
-#if os(watchOS)
+#if os(watchOS) || WIDGET_EXTENSION
     extension SDTide {
         func hoursToPlot() -> Int {
             return startTime.hoursInDay()

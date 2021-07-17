@@ -34,6 +34,13 @@ struct PhoneContentView: View {
                         TideEventsPageView(pageIndex: $pageIndex)
                             .frame(minHeight: proxy.size.height / 1.8, maxHeight: proxy.size.height / 1.8)
                         HStack {
+                            Button(action: {
+                                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                            }) {
+                                Image(systemName: "gearshape")
+                                    .font(.system(size: 24))
+                            }
+                            .padding(.leading)
                             Spacer()
                             Button(action: { showingFavorites = true }) {
                                 Image(systemName: "list.bullet")

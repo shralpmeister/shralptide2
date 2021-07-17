@@ -40,6 +40,7 @@
         self.eventTime = time;
         self.eventType = state;
         self.eventHeight = height;
+        self.units = @"US";
     }
     return self;    
 }
