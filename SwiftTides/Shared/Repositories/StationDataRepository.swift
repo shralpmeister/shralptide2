@@ -94,7 +94,7 @@ struct StationDataRepository {
         }
     }
 
-    func stations(forRegion regionName: String) -> [SDTideStation] {
+    func stations(forRegion regionName: String, includeCurrents: Bool = false) -> [SDTideStation] {
         let context = stationData.managedObjectContext!
         let regionNamePredicate = NSPredicate(format: "name == %@", regionName)
         let stationSort = NSSortDescriptor(key: "name", ascending: true)

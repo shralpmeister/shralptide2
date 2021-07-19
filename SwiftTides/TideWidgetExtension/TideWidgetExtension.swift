@@ -193,7 +193,7 @@ struct TideWidgetEntryView : View {
                                     .frame(maxWidth: 70, alignment: .center)
                                 Spacer()
                                 Text(String.tideFormatString(value: event.eventHeight, units: entry.units))
-                                    .frame(width: 60, alignment: .trailing)
+                                    .frame(width: 80, alignment: .trailing)
                             }
                             .frame(maxWidth: .infinity)
                             .padding(.trailing, 30)

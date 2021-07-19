@@ -13,13 +13,18 @@ private let annotationViewReuseIdentifier = "TideStationMarkerView"
 
 struct StationMapView: UIViewRepresentable {
     @EnvironmentObject private var config: ConfigHelper
+    
+    @Environment(\.legacyStationInteractor) private var legacyInteractor: TideStationInteractor
+    @Environment(\.stationInteractor) private var interactor: TideStationInteractor
 
+    @Binding var stationType: StationType
     @Binding var centerCoordinate: CLLocationCoordinate2D
     @Binding var showingDetail: Bool
     @Binding var selectedLocation: TideAnnotation
     @Binding var detailMapRegion: MKCoordinateRegion
 
-    @State var annotations: [TideAnnotation] = []
+    @State var tideStations: [TideAnnotation] = []
+    @State var currentStations: [TideAnnotation] = []
 
     private var locationManager = CLLocationManager()
 
@@ -27,12 +32,14 @@ struct StationMapView: UIViewRepresentable {
         centerCoordinate: Binding<CLLocationCoordinate2D>,
         showingDetail: Binding<Bool>,
         selectedLocation: Binding<TideAnnotation>,
-        detailMapRegion: Binding<MKCoordinateRegion>
+        detailMapRegion: Binding<MKCoordinateRegion>,
+        stationType: Binding<StationType>
     ) {
         _centerCoordinate = centerCoordinate
         _showingDetail = showingDetail
         _selectedLocation = selectedLocation
         _detailMapRegion = detailMapRegion
+        _stationType = stationType
     }
 
     func makeUIView(context: Context) -> MKMapView {
@@ -43,14 +50,15 @@ struct StationMapView: UIViewRepresentable {
         return mapView
     }
 
-    func updateUIView(_ view: MKMapView, context _: Context) {
+    func updateUIView(_ view: MKMapView, context: Context) {
         // Need to filter to remove other annotation types in the view (MKUserLocation)
         let oldRegionSet = view.annotations.reduce(into: Set<TideAnnotation>()) { set, annot in
             if let pointAnnotation = annot as? TideAnnotation {
                 set.insert(pointAnnotation)
             }
         }
-        let newRegionSet = Set(annotations)
+        
+        let newRegionSet = Set(stationType == .tides ? tideStations : currentStations)
 
         let keeperAnnotations = oldRegionSet.intersection(newRegionSet)
         let loserAnnotations = oldRegionSet.subtracting(keeperAnnotations)
@@ -65,10 +73,49 @@ struct StationMapView: UIViewRepresentable {
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
-
+    
+    private func getStations(in region: MKCoordinateRegion) -> [SDTideStation] {
+        if config.settings.legacyMode {
+            return legacyInteractor.tideStations(in: region)
+        } else {
+            return interactor.tideStations(in: region)
+        }
+    }
+    
+    private func getCurrentStations(in region: MKCoordinateRegion) -> [SDTideStation] {
+        if config.settings.legacyMode {
+            return legacyInteractor.currentStations(in: region)
+        } else {
+            return interactor.currentStations(in: region)
+        }
+    }
+    
+    func getStationAnnotations(for region: MKCoordinateRegion) -> [TideAnnotation] {
+        return getStations(in: region).map { (station: SDTideStation) in
+            let annotation = TideAnnotation()
+            annotation.title = station.name
+            annotation.coordinate = CLLocationCoordinate2D(
+                latitude: Double(truncating: station.latitude!),
+                longitude: Double(truncating: station.longitude!)
+            )
+            annotation.isPrimary = station.primary?.boolValue ?? false
+            return annotation
+        }
+    }
+    
+    func getCurrentAnnotations(for region: MKCoordinateRegion) -> [TideAnnotation] {
+        return getCurrentStations(in: region).map { (station: SDTideStation) in
+            let annotation = TideAnnotation()
+            annotation.title = station.name
+            annotation.coordinate = CLLocationCoordinate2D(
+                latitude: Double(truncating: station.latitude!),
+                longitude: Double(truncating: station.longitude!)
+            )
+            annotation.isPrimary = station.primary?.boolValue ?? false
+            return annotation
+        }
+    }
     class Coordinator: NSObject, MKMapViewDelegate {
-        @Environment(\.legacyStationInteractor) private var legacyInteractor: TideStationInteractor
-        @Environment(\.stationInteractor) private var interactor: TideStationInteractor
 
         var region: MKCoordinateRegion?
 
@@ -78,28 +125,13 @@ struct StationMapView: UIViewRepresentable {
             self.parent = parent
         }
 
-        private func getStations(in region: MKCoordinateRegion) -> [SDTideStation] {
-            if parent.config.settings.legacyMode {
-                return legacyInteractor.tideStations(in: region)
-            } else {
-                return interactor.tideStations(in: region)
-            }
-        }
-
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated _: Bool) {
             parent.centerCoordinate = mapView.centerCoordinate
-
-            parent.annotations = getStations(in: mapView.region).map { (station: SDTideStation) in
-                let annotation = TideAnnotation()
-                annotation.title = station.name
-                annotation.coordinate = CLLocationCoordinate2D(
-                    latitude: Double(truncating: station.latitude!),
-                    longitude: Double(truncating: station.longitude!)
-                )
-                annotation.isPrimary = station.primary?.boolValue ?? false
-                return annotation
+            parent.tideStations = parent.getStationAnnotations(for: mapView.region)
+            if parent.config.settings.showsCurrentsPref {
+                parent.currentStations = parent.getCurrentAnnotations(for: mapView.region)
             }
-            print("Visible region update: \(parent.annotations.count)")
+            print("Visible region update: \(parent.tideStations.count)")
         }
 
         func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {

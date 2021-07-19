@@ -37,6 +37,8 @@ struct TideEventsView: View {
         }
     }
 
+    // Ensures there are always 4 events in the array. For layout. Otheriwse the layout
+    // spaces the rows to use available space.
     func convertEvents(_ events: [SDTideEvent]) -> [SDTideEvent] {
         var result = [SDTideEvent(), SDTideEvent(), SDTideEvent(), SDTideEvent()]
         if events.count > 0 {

@@ -8,10 +8,18 @@
 import MapKit
 import SwiftUI
 
+enum StationType {
+    case tides
+    case currents
+}
+
 struct MapSelectionView: View {
+    @EnvironmentObject private var config: ConfigHelper
+
     @Binding var centerCoordinate: CLLocationCoordinate2D
     @Binding var activeSheet: ActiveSheet?
 
+    @State private var currentPickerSelection: StationType = .tides
     @State private var showingStationDetail = false
     @State private var selectedLocation = TideAnnotation()
     @State private var detailMapRegion = MKCoordinateRegion(
@@ -29,7 +37,8 @@ struct MapSelectionView: View {
                         centerCoordinate: $centerCoordinate,
                         showingDetail: $showingStationDetail,
                         selectedLocation: $selectedLocation,
-                        detailMapRegion: $detailMapRegion
+                        detailMapRegion: $detailMapRegion,
+                        stationType: $currentPickerSelection
                     )
                     .navigationTitle("Select a Tide Station")
                     .navigationBarItems(
@@ -40,6 +49,14 @@ struct MapSelectionView: View {
                             }
                         }
                     )
+                    .toolbar {
+                        ToolbarItemGroup(placement: config.settings.showsCurrentsPref ? .bottomBar : .automatic) {
+                            Picker("", selection: $currentPickerSelection) {
+                                Text("Tides").tag(StationType.tides)
+                                Text("Currents").tag(StationType.currents)
+                            }
+                        }
+                    }
                     NavigationLink(
                         "",
                         destination: StationDetailView(

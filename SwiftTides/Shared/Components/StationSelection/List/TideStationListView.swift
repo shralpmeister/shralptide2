@@ -10,12 +10,14 @@ import ShralpTideFramework
 import SwiftUI
 
 struct TideStationListView: View {
+    @EnvironmentObject private var config: ConfigHelper
+
     @State var stations: [SDTideStation]
     @Binding var activeSheet: ActiveSheet?
 
     var body: some View {
         List {
-            ForEach(stations, id: \.name) { (station: SDTideStation) in
+            ForEach(stations.filter { config.settings.showsCurrentsPref ? true : $0.current == false }, id: \.name) { (station: SDTideStation) in
                 NavigationLink(
                     destination: StationDetailView(
                         activeSheet: $activeSheet, selectedLocation: .constant(toAnnotation(station))
@@ -23,6 +25,7 @@ struct TideStationListView: View {
                 ) {
                     Text(station.name ?? "None")
                         .font(.headline)
+                        .foregroundColor(station.current?.boolValue ?? false ? .red : .black)
                 }
             }
         }
