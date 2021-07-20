@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DC25E6BB2636870800D214D0"
+               BuildableName = "WatchTides.app"
+               BlueprintName = "WatchTides"
+               ReferencedContainer = "container:ShralpTide.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "DC26BAEE24BB807B00453A5F"
-               BuildableName = "SwiftTides.app"
+               BuildableName = "ShralpTide.app"
                BlueprintName = "iOS"
-               ReferencedContainer = "container:SwiftTides.xcodeproj">
+               ReferencedContainer = "container:ShralpTide.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,26 +42,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DC26BAFE24BB807B00453A5F"
-               BuildableName = "Tests iOS.xctest"
-               BlueprintName = "Tests iOS"
-               ReferencedContainer = "container:SwiftTides.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DC26BB0924BB807B00453A5F"
-               BuildableName = "Tests macOS.xctest"
-               BlueprintName = "Tests macOS"
-               ReferencedContainer = "container:SwiftTides.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -64,22 +58,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DC26BAEE24BB807B00453A5F"
-            BuildableName = "SwiftTides.app"
-            BlueprintName = "iOS"
-            ReferencedContainer = "container:SwiftTides.xcodeproj">
+            BlueprintIdentifier = "DC25E6BB2636870800D214D0"
+            BuildableName = "WatchTides.app"
+            BlueprintName = "WatchTides"
+            ReferencedContainer = "container:ShralpTide.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-com.apple.CoreData.Logging.stderr 1"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-com.apple.CoreData.SQLDebug 3"
-            isEnabled = "NO">
-         </CommandLineArgument>
-      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -91,10 +75,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DC26BAEE24BB807B00453A5F"
-            BuildableName = "SwiftTides.app"
-            BlueprintName = "iOS"
-            ReferencedContainer = "container:SwiftTides.xcodeproj">
+            BlueprintIdentifier = "DC25E6BB2636870800D214D0"
+            BuildableName = "WatchTides.app"
+            BlueprintName = "WatchTides"
+            ReferencedContainer = "container:ShralpTide.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -406,9 +406,9 @@
 		DC26BAE824BB807900453A5F /* SwiftTidesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftTidesApp.swift; sourceTree = "<group>"; };
 		DC26BAE924BB807900453A5F /* PhoneContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneContentView.swift; sourceTree = "<group>"; };
 		DC26BAEA24BB807B00453A5F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		DC26BAEF24BB807B00453A5F /* SwiftTides.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftTides.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC26BAEF24BB807B00453A5F /* ShralpTide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShralpTide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC26BAF224BB807B00453A5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DC26BAF724BB807B00453A5F /* SwiftTides.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftTides.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC26BAF724BB807B00453A5F /* ShralpTide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShralpTide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC26BAF924BB807B00453A5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC26BAFA24BB807B00453A5F /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		DC26BAFF24BB807B00453A5F /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -457,6 +457,7 @@
 		DCEA8FFE2693B5BE00B8A6C7 /* ShralpTideFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ShralpTideFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCEA90312693EBA000B8A6C7 /* TideWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TideWidgetExtension.entitlements; sourceTree = "<group>"; };
 		DCEA90322693EBAF00B8A6C7 /* LocationIntentsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LocationIntentsExtension.entitlements; sourceTree = "<group>"; };
+		DCF68DBF26A7708C00E30EAC /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Interface.strings"; sourceTree = "<group>"; };
 		DCF96C0B25BE3AC900255096 /* StationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailView.swift; sourceTree = "<group>"; };
 		DCF96C1125BE492700255096 /* MapSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSelectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -742,8 +743,8 @@
 		DC26BAF024BB807B00453A5F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DC26BAEF24BB807B00453A5F /* SwiftTides.app */,
-				DC26BAF724BB807B00453A5F /* SwiftTides.app */,
+				DC26BAEF24BB807B00453A5F /* ShralpTide.app */,
+				DC26BAF724BB807B00453A5F /* ShralpTide.app */,
 				DC26BAFF24BB807B00453A5F /* Tests iOS.xctest */,
 				DC26BB0A24BB807B00453A5F /* Tests macOS.xctest */,
 				DC25E6BC2636870800D214D0 /* WatchTides.app */,
@@ -945,7 +946,7 @@
 			);
 			name = iOS;
 			productName = iOS;
-			productReference = DC26BAEF24BB807B00453A5F /* SwiftTides.app */;
+			productReference = DC26BAEF24BB807B00453A5F /* ShralpTide.app */;
 			productType = "com.apple.product-type.application";
 		};
 		DC26BAF624BB807B00453A5F /* macOS */ = {
@@ -963,7 +964,7 @@
 			);
 			name = macOS;
 			productName = macOS;
-			productReference = DC26BAF724BB807B00453A5F /* SwiftTides.app */;
+			productReference = DC26BAF724BB807B00453A5F /* ShralpTide.app */;
 			productType = "com.apple.product-type.application";
 		};
 		DC26BAFE24BB807B00453A5F /* Tests iOS */ = {
@@ -1075,13 +1076,14 @@
 					};
 				};
 			};
-			buildConfigurationList = DC26BAE624BB807900453A5F /* Build configuration list for PBXProject "SwiftTides" */;
+			buildConfigurationList = DC26BAE624BB807900453A5F /* Build configuration list for PBXProject "ShralpTide" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				"fr-CA",
 			);
 			mainGroup = DC26BAE224BB807900453A5F;
 			productRefGroup = DC26BAF024BB807B00453A5F /* Products */;
@@ -1452,6 +1454,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				DC25E6BF2636870800D214D0 /* Base */,
+				DCF68DBF26A7708C00E30EAC /* fr-CA */,
 			);
 			name = Interface.storyboard;
 			sourceTree = "<group>";
@@ -1474,7 +1477,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.SwiftTides.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1501,7 +1504,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.SwiftTides.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1527,7 +1530,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.SwiftTides.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1551,7 +1554,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.SwiftTides.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1566,6 +1569,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1629,6 +1633,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1707,8 +1712,8 @@
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.SwiftTides;
-				PRODUCT_NAME = SwiftTides;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2;
+				PRODUCT_NAME = ShralpTide;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1741,8 +1746,8 @@
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.SwiftTides;
-				PRODUCT_NAME = SwiftTides;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2;
+				PRODUCT_NAME = ShralpTide;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1768,8 +1773,8 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.16;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.SwiftTides;
-				PRODUCT_NAME = SwiftTides;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2;
+				PRODUCT_NAME = ShralpTide;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1793,8 +1798,8 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.16;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.SwiftTides;
-				PRODUCT_NAME = SwiftTides;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2;
+				PRODUCT_NAME = ShralpTide;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1906,7 +1911,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				OTHER_SWIFT_FLAGS = "-DWIDGET_EXTENSION";
-				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.SwiftTides.TideWidgetExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2.TideWidgetExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1931,7 +1936,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				OTHER_SWIFT_FLAGS = "-DWIDGET_EXTENSION";
-				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.SwiftTides.TideWidgetExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2.TideWidgetExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1955,7 +1960,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.SwiftTides.LocationIntentsExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2.LocationIntentsExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1977,7 +1982,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.SwiftTides.LocationIntentsExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2.LocationIntentsExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2008,7 +2013,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DC26BAE624BB807900453A5F /* Build configuration list for PBXProject "SwiftTides" */ = {
+		DC26BAE624BB807900453A5F /* Build configuration list for PBXProject "ShralpTide" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DC26BB1724BB807B00453A5F /* Debug */,

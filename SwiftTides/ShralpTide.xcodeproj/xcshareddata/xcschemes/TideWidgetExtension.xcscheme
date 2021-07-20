@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1250"
-   version = "1.3">
+   wasCreatedForAppExtension = "YES"
+   version = "2.0">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -14,10 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DC25E6BB2636870800D214D0"
-               BuildableName = "WatchTides.app"
-               BlueprintName = "WatchTides"
-               ReferencedContainer = "container:SwiftTides.xcodeproj">
+               BlueprintIdentifier = "DCC85C68267C2915007E0C0B"
+               BuildableName = "TideWidgetExtension.appex"
+               BlueprintName = "TideWidgetExtension"
+               ReferencedContainer = "container:ShralpTide.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +30,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DC26BAEE24BB807B00453A5F"
-               BuildableName = "SwiftTides.app"
+               BuildableName = "ShralpTide.app"
                BlueprintName = "iOS"
-               ReferencedContainer = "container:SwiftTides.xcodeproj">
+               ReferencedContainer = "container:ShralpTide.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,54 +47,72 @@
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      selectedDebuggerIdentifier = ""
+      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       launchStyle = "0"
+      askForAppToLaunch = "Yes"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES">
+      allowLocationSimulation = "YES"
+      launchAutomaticallySubstyle = "2">
       <RemoteRunnable
          runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/SwiftTides">
+         BundleIdentifier = "com.apple.springboard">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DC25E6BB2636870800D214D0"
-            BuildableName = "WatchTides.app"
-            BlueprintName = "WatchTides"
-            ReferencedContainer = "container:SwiftTides.xcodeproj">
+            BlueprintIdentifier = "DCC85C68267C2915007E0C0B"
+            BuildableName = "TideWidgetExtension.appex"
+            BlueprintName = "TideWidgetExtension"
+            ReferencedContainer = "container:ShralpTide.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "DC26BAEE24BB807B00453A5F"
+            BuildableName = "ShralpTide.app"
+            BlueprintName = "iOS"
+            ReferencedContainer = "container:ShralpTide.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "_XCWidgetKind"
+            value = ""
+            isEnabled = "NO">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "_XCWidgetDefaultView"
+            value = "timeline"
+            isEnabled = "NO">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "_XCWidgetFamily"
+            value = "medium"
+            isEnabled = "NO">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      debugDocumentVersioning = "YES">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/SwiftTides">
+      debugDocumentVersioning = "YES"
+      askForAppToLaunch = "Yes"
+      launchAutomaticallySubstyle = "2">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DC25E6BB2636870800D214D0"
-            BuildableName = "WatchTides.app"
-            BlueprintName = "WatchTides"
-            ReferencedContainer = "container:SwiftTides.xcodeproj">
+            BlueprintIdentifier = "DC26BAEE24BB807B00453A5F"
+            BuildableName = "ShralpTide.app"
+            BlueprintName = "iOS"
+            ReferencedContainer = "container:ShralpTide.xcodeproj">
          </BuildableReference>
-      </RemoteRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DC25E6BB2636870800D214D0"
-            BuildableName = "WatchTides.app"
-            BlueprintName = "WatchTides"
-            ReferencedContainer = "container:SwiftTides.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
