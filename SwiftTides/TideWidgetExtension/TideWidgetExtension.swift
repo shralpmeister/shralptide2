@@ -219,8 +219,8 @@ struct TideWidget: Widget {
         IntentConfiguration(kind: kind, intent: SelectLocationIntent.self, provider: Provider()) { entry in
             TideWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("Current Tide Info")
-        .description("Edit the widget to set a tide station location from your ShralpTide favorites list and see current tide on your Home Screen or Today View")
+        .configurationDisplayName("widget-title")
+        .description("widget-desc")
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])}
 }
 

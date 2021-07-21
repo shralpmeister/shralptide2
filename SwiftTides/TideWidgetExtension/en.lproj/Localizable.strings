@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  ShralpTide
+
+  Created by Michael Parlee on 7/20/21.
+  
+*/
+"widget-title" = "Current Tide Widget";
+"widget-desc" = "Edit the widget to set a tide station location from your ShralpTide favorites list and see current tide on your Home Screen or Today View";

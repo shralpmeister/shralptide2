@@ -54,8 +54,10 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/ShralpTide2">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DC25E6BB2636870800D214D0"
@@ -63,7 +65,7 @@
             BlueprintName = "WatchTides"
             ReferencedContainer = "container:ShralpTide.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -71,8 +73,10 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/ShralpTide2">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DC25E6BB2636870800D214D0"
@@ -80,7 +84,16 @@
             BlueprintName = "WatchTides"
             ReferencedContainer = "container:ShralpTide.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "DC25E6BB2636870800D214D0"
+            BuildableName = "WatchTides.app"
+            BlueprintName = "WatchTides"
+            ReferencedContainer = "container:ShralpTide.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

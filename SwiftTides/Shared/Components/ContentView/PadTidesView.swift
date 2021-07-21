@@ -45,23 +45,25 @@ struct PadTidesView: View {
         return GeometryReader { proxy in
             let isPortrait = proxy.size.width < proxy.size.height
             VStack {
-                HStack(alignment: .top) {
+                HStack {
                     VStack {
-                        Spacer()
                         Text(appState.currentTideDisplay)
                             .font(Font.system(size: 72))
                             .fontWeight(.medium)
                             .minimumScaleFactor(0.5)
-                            .padding(.bottom, 0)
+                            .padding(.top)
+                            .padding(.leading)
+                            .padding(.trailing)
                         if let tideData = appState.tidesForDays[pageIndex] {
                           Text(tideData.startTime != nil ? nonMutatingFormatter().string(from: tideData.startTime) : "")
                             .font(.title)
                             .lineLimit(1)
-                            .padding()
+                            .padding(.leading)
+                            .padding(.trailing)
                             .minimumScaleFactor(0.2)
                             if tideData.events != nil {
                                 TideEventsView(tide: tideData)
-                                    .padding(.bottom, 40)
+                                    .padding()
                             }
                         }
                     }

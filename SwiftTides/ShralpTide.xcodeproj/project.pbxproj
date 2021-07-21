@@ -215,6 +215,7 @@
 		DCEA90262693BB1300B8A6C7 /* SDTide.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B36B9263BB87800DA83E1 /* SDTide.swift */; };
 		DCEA902E2693BE1E00B8A6C7 /* StationDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115E2425B521F400954972 /* StationDataRepository.swift */; };
 		DCEA90302693C9B000B8A6C7 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B36BB263BB87800DA83E1 /* String.swift */; };
+		DCF68DC226A774E800E30EAC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCF68DC426A774E800E30EAC /* Localizable.strings */; };
 		DCF96C0C25BE3AC900255096 /* StationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF96C0B25BE3AC900255096 /* StationDetailView.swift */; };
 		DCF96C0D25BE3AC900255096 /* StationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF96C0B25BE3AC900255096 /* StationDetailView.swift */; };
 		DCF96C1225BE492700255096 /* MapSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF96C1125BE492700255096 /* MapSelectionView.swift */; };
@@ -458,6 +459,8 @@
 		DCEA90312693EBA000B8A6C7 /* TideWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TideWidgetExtension.entitlements; sourceTree = "<group>"; };
 		DCEA90322693EBAF00B8A6C7 /* LocationIntentsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LocationIntentsExtension.entitlements; sourceTree = "<group>"; };
 		DCF68DBF26A7708C00E30EAC /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Interface.strings"; sourceTree = "<group>"; };
+		DCF68DC326A774E800E30EAC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DCF68DC526A7750100E30EAC /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		DCF96C0B25BE3AC900255096 /* StationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailView.swift; sourceTree = "<group>"; };
 		DCF96C1125BE492700255096 /* MapSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSelectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -852,6 +855,7 @@
 				DC1FE87C269BC0720015F6AA /* WidgetChartView.swift */,
 				DCC85C72267C2916007E0C0B /* Assets.xcassets */,
 				DCC85C74267C2916007E0C0B /* Info.plist */,
+				DCF68DC426A774E800E30EAC /* Localizable.strings */,
 			);
 			path = TideWidgetExtension;
 			sourceTree = "<group>";
@@ -1174,6 +1178,7 @@
 				DCEA90182693B9EF00B8A6C7 /* legacy-data.sqlite-shm in Resources */,
 				DCC85C73267C2916007E0C0B /* Assets.xcassets in Resources */,
 				DCEA90142693B9EF00B8A6C7 /* noaa-data.sqlite-shm in Resources */,
+				DCF68DC226A774E800E30EAC /* Localizable.strings in Resources */,
 				DCEA90162693B9EF00B8A6C7 /* noaa-data.sqlite-wal in Resources */,
 				DCEA90172693B9EF00B8A6C7 /* legacy-data.sqlite-wal in Resources */,
 			);
@@ -1457,6 +1462,15 @@
 				DCF68DBF26A7708C00E30EAC /* fr-CA */,
 			);
 			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+		DCF68DC426A774E800E30EAC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DCF68DC326A774E800E30EAC /* en */,
+				DCF68DC526A7750100E30EAC /* fr-CA */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

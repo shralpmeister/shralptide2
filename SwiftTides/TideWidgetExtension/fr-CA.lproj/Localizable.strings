@@ -1,0 +1,9 @@
+/*
+  Localizable.strings
+  ShralpTide
+
+  Created by Michael Parlee on 7/20/21.
+  
+*/
+"widget-title" = "Widget de marée actuelle";
+"widget-desc" = "Modifiez le widget pour définir un emplacement de station de marée à partir de votre liste de favoris ShralpTide et voir la marée actuelle sur votre écran d'accueil ou la vue d'aujourd'hui";
