@@ -34,6 +34,8 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1787</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<false/>
 	<key>NSLocationWhenInUseUsageDescription</key>
