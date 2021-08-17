@@ -70,20 +70,18 @@ class ConfigHelper: ObservableObject {
         }
 
         // we're ready to go, so lastly set the key preference values
-        DispatchQueue.main.async {
-            self.settings = UserSettings(
-                unitsPref: (groupDefaults.string(forKey: ConfigKeys.units))!,
-                daysPref: groupDefaults.value(forKey: ConfigKeys.days) == nil
-                    ? 5 : groupDefaults.integer(forKey: ConfigKeys.days),
-                showsCurrentsPref: groupDefaults.bool(forKey: ConfigKeys.currents),
-                legacyMode: groupDefaults.bool(forKey: ConfigKeys.legacy)
-            )
+        self.settings = UserSettings(
+            unitsPref: (groupDefaults.string(forKey: ConfigKeys.units))!,
+            daysPref: groupDefaults.value(forKey: ConfigKeys.days) == nil
+                ? 5 : groupDefaults.integer(forKey: ConfigKeys.days),
+            showsCurrentsPref: groupDefaults.bool(forKey: ConfigKeys.currents),
+            legacyMode: groupDefaults.bool(forKey: ConfigKeys.legacy)
+        )
 
-            self.log.info("Setting daysPref to \(self.settings.daysPref)")
-            self.log.info("Setting currentsPref to \(self.settings.showsCurrentsPref ? "YES" : "NO")")
-            self.log.info("Setting units to \(self.settings.unitsPref)")
-            self.log.info("Setting legacyMode to \(self.settings.legacyMode ? "YES" : "NO")")
-        }
+        self.log.info("Setting daysPref to \(self.settings.daysPref)")
+        self.log.info("Setting currentsPref to \(self.settings.showsCurrentsPref ? "YES" : "NO")")
+        self.log.info("Setting units to \(self.settings.unitsPref)")
+        self.log.info("Setting legacyMode to \(self.settings.legacyMode ? "YES" : "NO")")
         // and refresh widgets
         WidgetCenter.shared.reloadAllTimelines()
     }

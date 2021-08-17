@@ -101,6 +101,14 @@ struct MonthView: View {
                 }
             }
         }
+        .onReceive(appState.config.$settings) { newValue in
+            let oldValue = appState.config.settings
+            if oldValue.legacyMode == newValue.legacyMode &&
+                oldValue.unitsPref == newValue.unitsPref {
+                return // no change we care about
+            }
+            backgroundRefreshTides()
+        }
         .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification))
         { _ in
             // state update to force redraw the scrollview
@@ -118,50 +126,47 @@ struct MonthView: View {
             _ = appState.$locationPage.subscribe(on: DispatchQueue.main).sink { page in
                 if appState.locationPage != page {
                     calculating = true
-                    _ = refreshTidesFuture()
-                        .subscribe(on: DispatchQueue.main)
-                        .receive(on: DispatchQueue.main)
-                        .sink { tides in
-                            appState.calendarTides = tides
-                            calculating = false
-                            selectedTideModel = appState.calendarTides.first {
-                                $0.day == Date().startOfDay()
-                            }
-                        }
+                    backgroundRefreshTides()
                 }
             }
         }
     }
 
-    fileprivate func refreshTidesFuture() -> Future<[SingleDayTideModel], Never> {
-        Future<[SingleDayTideModel], Never> { promise in
-            DispatchQueue.global(qos: .userInteractive).async {
-                let tides = appStateInteractor.calculateCalendarTides(
-                    appState: appState, settings: appState.config.settings, month: displayMonth,
-                    year: displayYear
-                )
-                promise(Result.success(tides))
+    fileprivate func refreshTides() {
+        DispatchQueue.global(qos: .userInteractive).async {
+            let tides = appStateInteractor.calculateCalendarTides(
+                appState: appState, settings: appState.config.settings, month: displayMonth,
+                year: displayYear
+            )
+            DispatchQueue.main.sync {
+                appState.calendarTides = tides
+                calculating = false
+                if selectedTideModel == nil {
+                    selectedTideModel = tides.first {
+                        $0.day == Date().startOfDay()
+                    }
+                } else if displayMonth == Calendar.current.component(.month, from: Date()) {
+                    if displayMonth != Calendar.current.component(.month, from: selectedTideModel!.day) {
+                        selectedTideModel = tides.first {
+                            $0.day == Date().startOfDay()
+                        }
+                    } else if displayMonth == Calendar.current.component(.month, from: selectedTideModel!.day) {
+                         selectedTideModel = tides.first {
+                             $0.tideDataToChart.startTime == selectedTideModel?.tideDataToChart.startTime
+                         }
+                    }
+                } else if displayMonth == Calendar.current.component(.month, from: selectedTideModel!.day) {
+                    selectedTideModel = tides.first {
+                        $0.tideDataToChart.startTime == selectedTideModel?.tideDataToChart.startTime
+                    }
+                }
             }
         }
     }
 
     fileprivate func backgroundRefreshTides() {
         calculating = true
-        _ = refreshTidesFuture()
-            .subscribe(on: DispatchQueue.main)
-            .receive(on: DispatchQueue.main)
-            .sink { tides in
-                appState.calendarTides = tides
-                calculating = false
-                // if we're showing the current and the selected tide is in a different month, reset it back to today
-                if displayMonth == Calendar.current.component(.month, from: Date()),
-                   displayMonth != Calendar.current.component(.month, from: selectedTideModel!.day)
-                {
-                    selectedTideModel = tides.first {
-                        $0.day == Date().startOfDay()
-                    }
-                }
-            }
+        refreshTides()
     }
 
     fileprivate func monthYearString() -> String {

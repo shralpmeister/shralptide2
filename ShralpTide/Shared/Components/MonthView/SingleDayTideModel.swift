@@ -10,3 +10,5 @@ struct SingleDayTideModel: Hashable {
     var tideDataToChart: SDTide
     var day: Date
 }
+
+
