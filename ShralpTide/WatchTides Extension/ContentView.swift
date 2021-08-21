@@ -51,6 +51,8 @@ struct ContentView: View {
                             Spacer()
                             Text(String.tideFormatString(value: event.eventHeight, units: configHelper.selectedUnitsUserDefault ?? .US))
                         }
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.1)
                     }
                 }
             }

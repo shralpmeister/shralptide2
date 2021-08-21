@@ -21,7 +21,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, ObservableObject {
     @Published
     var tides: SDTide? {
         didSet {
-            currentTideDisplay = tides?.currentTideString ?? ""
+            DispatchQueue.main.async {
+                self.currentTideDisplay = self.tides?.currentTideString ?? ""
+            }
         }
     }
 
@@ -153,7 +155,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, ObservableObject {
         }
         NSLog("Refreshing tides")
         let tidesArray = SDTideFactory.tides(forStationName: selectedStation, withInterval: 900, forDays: 2, withUnits: .US, from: Date().startOfDay())
-        tides = SDTide(byCombiningTides: tidesArray)
+        DispatchQueue.main.async {
+            self.tides = SDTide(byCombiningTides: tidesArray)
+        }
     }
 
     func refreshComplications() {
