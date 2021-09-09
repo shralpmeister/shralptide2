@@ -7,13 +7,14 @@
 
 import ShralpTideFramework
 import SwiftUI
+import Combine
 
 struct InteractiveChartViewModifier: ViewModifier {
     @EnvironmentObject var appState: AppState
 
     @Binding private var pageIndex: Int
     @Binding private var cursorLocation: CGPoint
-
+    
     private var tideData: SDTide
 
     private var idiom: UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
@@ -39,15 +40,14 @@ struct InteractiveChartViewModifier: ViewModifier {
                 cursorLocation.x > .zero
                     ? cursorLocation.x : CGFloat(currentTimeInMinutes(tideData: tideData)) * xRatio
 
-            let dataPoint = tideData.nearestDataPoint(
-                forTime: timeInMinutes(x: xPosition, xRatio: xRatio))
-
             content
                 .overlay(
                     ZStack {
                         if idiom == .phone && (pageIndex == 0 || cursorLocation.x > 0) {
                             Cursor(height: proxy.size.height)
                                 .position(x: xPosition, y: proxy.size.height / 2.0)
+                            let dataPoint = appState.tidesForDays[self.pageIndex].nearestDataPoint(
+                                forTime: timeInMinutes(x: xPosition, xRatio: xRatio))
                             TideOverlay(
                                 dataPoint: dataPoint, unit: tideData.unitShort,
                                 startDate: appState.tidesForDays[self.pageIndex].startTime
@@ -59,6 +59,8 @@ struct InteractiveChartViewModifier: ViewModifier {
                                 .position(x: xPosition, y: proxy.size.height / 2.0)
                             }
                             if cursorLocation.x > 0 {
+                                let dataPoint = tideData.nearestDataPoint(
+                                    forTime: timeInMinutes(x: xPosition, xRatio: xRatio))
                                 TideOverlay(
                                     dataPoint: dataPoint, unit: tideData.unitShort,
                                     startDate: appState.tidesForDays[self.pageIndex].startTime

@@ -122,16 +122,22 @@ class AppStateRepository {
         let locationsWithName = appState.favoriteLocations?.filtered(using: namePredicate)
 
         if locationsWithName?.count == 1 {
-            let location: SDFavoriteLocation = locationsWithName?[0] as! SDFavoriteLocation
-            let currentSelection: SDFavoriteLocation = appState.selectedLocation!
-            if location == currentSelection {
-                if appState.favoriteLocations?.count == 1 {
+            if let location = locationsWithName?[0] as? SDFavoriteLocation {
+                let currentSelection: SDFavoriteLocation? = appState.selectedLocation
+                if location == currentSelection {
+                    if appState.favoriteLocations?.count == 1 {
+                        try setDefaultLocation(isLegacy: isLegacy)
+                    }
+                }
+                context.delete(location)
+                if let newSelection = appState.favoriteLocations?[0] as! SDFavoriteLocation? {
+                    appState.selectedLocation = newSelection
+                } else {
                     try setDefaultLocation(isLegacy: isLegacy)
                 }
+                
+                saveContext()
             }
-            context.delete(location)
-            appState.selectedLocation = appState.favoriteLocations?[0] as! SDFavoriteLocation?
-            saveContext()
         }
     }
 
