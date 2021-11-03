@@ -206,6 +206,50 @@ struct TideWidgetEntryView : View {
             }
             .widgetURL(URL(string:"shralp:location?name=\(entry.fullLocationName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "none")"))
             .background(darkGreen)
+        case .systemExtraLarge:
+            ZStack(alignment: .top) {
+                Rectangle()
+                    .fill(LinearGradient(gradient: Gradient(colors: [lightGreen, darkGreen]), startPoint: .top, endPoint: .bottom))
+                VStack(alignment: .leading) {
+                    VStack(alignment: .leading) {
+                        Text(entry.shortLocationName).multilineTextAlignment(.center)
+                            .font(.title2)
+                        if entry.nextEvent != nil {
+                            Text(String.tideFormatString(value: entry.height, units: entry.units) + String.directionIndicator(entry.direction))
+                                .fontWeight(.bold)
+                                .font(.system(size: 50))
+                                .minimumScaleFactor(0.5)
+                            Text("\(String.tideFormatString(value: entry.nextEvent!.eventHeight, units: entry.units)) \(entry.nextEvent!.eventTimeNativeFormat)")
+                                .font(.title3)
+                        }
+                    }
+                    .padding(.top)
+                    .padding(.leading)
+                    WidgetChartView(tide: entry.tide, time: entry.date)
+                        .frame(height: 70)
+                    VStack(alignment: .leading) {
+                        ForEach(entry.tide.events(forDay: entry.date), id: \.eventTime) { event in
+                            HStack {
+                                Text(event.eventTime, style: .time)
+                                    .frame(maxWidth: 90, alignment: .trailing)
+                                Spacer()
+                                Text(event.eventTypeDescription)
+                                    .frame(maxWidth: 70, alignment: .center)
+                                Spacer()
+                                Text(String.tideFormatString(value: event.eventHeight, units: entry.units))
+                                    .frame(width: 80, alignment: .trailing)
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding(.trailing, 30)
+                            .padding(.bottom, 1)
+                        }
+                    }
+                    .padding(.leading)
+                }
+                .foregroundColor(.white)
+            }
+            .widgetURL(URL(string:"shralp:location?name=\(entry.fullLocationName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "none")"))
+            .background(darkGreen)
         @unknown default:
             fatalError("Unhandled widget family")
         }
