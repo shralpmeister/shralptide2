@@ -51,9 +51,12 @@ struct MapSelectionView: View {
                     )
                     .toolbar {
                         ToolbarItemGroup(placement: config.settings.showsCurrentsPref ? .bottomBar : .automatic) {
-                            Picker("", selection: $currentPickerSelection) {
-                                Text("Tides").tag(StationType.tides)
-                                Text("Currents").tag(StationType.currents)
+                            if config.settings.showsCurrentsPref {
+                                Picker("", selection: $currentPickerSelection) {
+                                    Text("Tides").tag(StationType.tides)
+                                    Text("Currents").tag(StationType.currents)
+                                }
+                                .pickerStyle(.segmented)
                             }
                         }
                     }

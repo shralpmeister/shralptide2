@@ -99,8 +99,6 @@
 		DC246B1926214ED20090F38B /* LocationDateViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B1726214ED20090F38B /* LocationDateViewModifier.swift */; };
 		DC246B1A26214ED20090F38B /* LocationDateViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B1726214ED20090F38B /* LocationDateViewModifier.swift */; };
 		DC246B1B26214ED20090F38B /* LocationDateViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B1726214ED20090F38B /* LocationDateViewModifier.swift */; };
-		DC246B4F26215A7B0090F38B /* ShralpTideMacFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC246B4E26215A7B0090F38B /* ShralpTideMacFramework.framework */; };
-		DC246B5026215A7B0090F38B /* ShralpTideMacFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC246B4E26215A7B0090F38B /* ShralpTideMacFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DC246B63262203E70090F38B /* PadTidesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B62262203E70090F38B /* PadTidesView.swift */; };
 		DC246B64262203E70090F38B /* PadTidesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B62262203E70090F38B /* PadTidesView.swift */; };
 		DC246B65262203E70090F38B /* PadTidesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B62262203E70090F38B /* PadTidesView.swift */; };
@@ -113,7 +111,7 @@
 		DC25E6D22636870900D214D0 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25E6D12636870900D214D0 /* ExtensionDelegate.swift */; };
 		DC25E6DA2636870900D214D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC25E6D92636870900D214D0 /* Assets.xcassets */; };
 		DC25E6DD2636870900D214D0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC25E6DC2636870900D214D0 /* Preview Assets.xcassets */; };
-		DC25E6E22636870900D214D0 /* WatchTides.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = DC25E6BC2636870800D214D0 /* WatchTides.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DC25E6E22636870900D214D0 /* WatchTides.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = DC25E6BC2636870800D214D0 /* WatchTides.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DC25E6FB26373D0E00D214D0 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25E6FA26373D0E00D214D0 /* WatchSessionManager.swift */; };
 		DC26BB0424BB807B00453A5F /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC26BB0324BB807B00453A5F /* Tests_iOS.swift */; };
 		DC26BB0F24BB807B00453A5F /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC26BB0E24BB807B00453A5F /* Tests_macOS.swift */; };
@@ -165,7 +163,7 @@
 		DCC85C73267C2916007E0C0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCC85C72267C2916007E0C0B /* Assets.xcassets */; };
 		DCC85C75267C2916007E0C0B /* TideWidgetExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = DCC85C71267C2915007E0C0B /* TideWidgetExtension.intentdefinition */; };
 		DCC85C76267C2916007E0C0B /* TideWidgetExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = DCC85C71267C2915007E0C0B /* TideWidgetExtension.intentdefinition */; };
-		DCC85C79267C2916007E0C0B /* TideWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DCC85C69267C2915007E0C0B /* TideWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DCC85C79267C2916007E0C0B /* TideWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DCC85C69267C2915007E0C0B /* TideWidgetExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DCD524312607F6D900EA4C68 /* PadContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD524302607F6D900EA4C68 /* PadContentView.swift */; };
 		DCD524322607F6D900EA4C68 /* PadContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD524302607F6D900EA4C68 /* PadContentView.swift */; };
 		DCD7C96826507C09006327D2 /* Array+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7C96726507C09006327D2 /* Array+RawRepresentable.swift */; };
@@ -175,7 +173,7 @@
 		DCE3306326A1F6BA007A6E9E /* ConfigHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25E70626373D7D00D214D0 /* ConfigHelper.swift */; };
 		DCEA8FEC2693AF9800B8A6C7 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCEA8FEB2693AF9800B8A6C7 /* Intents.framework */; };
 		DCEA8FEF2693AF9800B8A6C7 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEA8FEE2693AF9800B8A6C7 /* IntentHandler.swift */; };
-		DCEA8FF32693AF9800B8A6C7 /* LocationIntentsExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DCEA8FEA2693AF9800B8A6C7 /* LocationIntentsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DCEA8FF32693AF9800B8A6C7 /* LocationIntentsExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DCEA8FEA2693AF9800B8A6C7 /* LocationIntentsExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DCEA8FF72693B1AC00B8A6C7 /* TideWidgetExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = DCC85C71267C2915007E0C0B /* TideWidgetExtension.intentdefinition */; };
 		DCEA8FF82693B57100B8A6C7 /* AppStateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C22593B2E400FD75A0 /* AppStateRepository.swift */; };
 		DCEA8FF92693B57C00B8A6C7 /* LegacyStationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C32593B2E400FD75A0 /* LegacyStationData.swift */; };
@@ -215,6 +213,7 @@
 		DCEA90262693BB1300B8A6C7 /* SDTide.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B36B9263BB87800DA83E1 /* SDTide.swift */; };
 		DCEA902E2693BE1E00B8A6C7 /* StationDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115E2425B521F400954972 /* StationDataRepository.swift */; };
 		DCEA90302693C9B000B8A6C7 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B36BB263BB87800DA83E1 /* String.swift */; };
+		DCED546827F100E900234DA6 /* ShralpTideFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCED546727F100E900234DA6 /* ShralpTideFramework.framework */; };
 		DCF68DC226A774E800E30EAC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCF68DC426A774E800E30EAC /* Localizable.strings */; };
 		DCF96C0C25BE3AC900255096 /* StationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF96C0B25BE3AC900255096 /* StationDetailView.swift */; };
 		DCF96C0D25BE3AC900255096 /* StationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF96C0B25BE3AC900255096 /* StationDetailView.swift */; };
@@ -282,17 +281,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				DCAC203B25E8C02100204370 /* ShralpTideFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DC246B5126215A7B0090F38B /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				DC246B5026215A7B0090F38B /* ShralpTideMacFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,6 +446,7 @@
 		DCEA8FFE2693B5BE00B8A6C7 /* ShralpTideFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ShralpTideFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCEA90312693EBA000B8A6C7 /* TideWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TideWidgetExtension.entitlements; sourceTree = "<group>"; };
 		DCEA90322693EBAF00B8A6C7 /* LocationIntentsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LocationIntentsExtension.entitlements; sourceTree = "<group>"; };
+		DCED546727F100E900234DA6 /* ShralpTideFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ShralpTideFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF68DBF26A7708C00E30EAC /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Interface.strings"; sourceTree = "<group>"; };
 		DCF68DC326A774E800E30EAC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DCF68DC526A7750100E30EAC /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -486,7 +475,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC246B4F26215A7B0090F38B /* ShralpTideMacFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,6 +514,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCEA8FEC2693AF9800B8A6C7 /* Intents.framework in Frameworks */,
+				DCED546827F100E900234DA6 /* ShralpTideFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -831,6 +820,7 @@
 		DCAC203825E8C02100204370 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DCED546727F100E900234DA6 /* ShralpTideFramework.framework */,
 				DCEA8FFE2693B5BE00B8A6C7 /* ShralpTideFramework.framework */,
 				DCAEB5D6269121DA00CA7003 /* ShralpTideFramework.framework */,
 				DC4FE47B2652150A0066B475 /* WatchTideFramework.framework */,
@@ -940,8 +930,7 @@
 				DC0DE77E2592D19800FD75A0 /* Embed Frameworks */,
 				DC5570F5262694AF00B81C2E /* Embed Watch Content */,
 				DCC85C7D267C2916007E0C0B /* Embed App Extensions */,
-				DCF68DD426A9E35000E30EAC /* Run Script - Increment Build and Version */,
-				DCF68DD526A9E38200E30EAC /* Run Script - Add Release Version-Build to Settings Bundle */,
+				DCC5FF49282047850085F926 /* Update Version */,
 			);
 			buildRules = (
 			);
@@ -962,7 +951,6 @@
 				DC26BAF324BB807B00453A5F /* Sources */,
 				DC26BAF424BB807B00453A5F /* Frameworks */,
 				DC26BAF524BB807B00453A5F /* Resources */,
-				DC246B5126215A7B0090F38B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1051,7 +1039,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1330;
 				TargetAttributes = {
 					DC25E6BB2636870800D214D0 = {
 						CreatedOnToolsVersion = 12.4;
@@ -1202,7 +1190,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		DCF68DD426A9E35000E30EAC /* Run Script - Increment Build and Version */ = {
+		DCC5FF49282047850085F926 /* Update Version */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1211,32 +1199,14 @@
 			);
 			inputPaths = (
 			);
-			name = "Run Script - Increment Build and Version";
+			name = "Update Version";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "agvtool next-version -all\n";
-		};
-		DCF68DD526A9E38200E30EAC /* Run Script - Add Release Version-Build to Settings Bundle */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script - Add Release Version-Build to Settings Bundle";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ \"$CONFIGURATION\" = \"Release\" ] ; then\necho \"Updating $CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist with version and build number for 'Release' build\"\n\nBUILDVERSION=\"`/usr/libexec/PlistBuddy -c \\\"Print :CFBundleVersion\\\" \\\"$CODESIGNING_FOLDER_PATH/Info.plist\\\"`\"\nMKTVERSION=\"`/usr/libexec/PlistBuddy -c \\\"Print :CFBundleShortVersionString\\\" \\\"$CODESIGNING_FOLDER_PATH/Info.plist\\\"`\"\nSETTINGSBUNDLEPATH=\"$CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist\"\n\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:Title 'Version $MKTVERSION ($BUILDVERSION)'\" \"$SETTINGSBUNDLEPATH\"\nfi\n";
+			shellScript = "sh update-version.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1470,6 +1440,7 @@
 		};
 		DC25E6E12636870900D214D0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = DC25E6BB2636870800D214D0 /* WatchTides */;
 			targetProxy = DC25E6E02636870900D214D0 /* PBXContainerItemProxy */;
 		};
@@ -1485,11 +1456,13 @@
 		};
 		DCC85C78267C2916007E0C0B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = DCC85C68267C2915007E0C0B /* TideWidgetExtension */;
 			targetProxy = DCC85C77267C2916007E0C0B /* PBXContainerItemProxy */;
 		};
 		DCEA8FF22693AF9800B8A6C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = DCEA8FE92693AF9800B8A6C7 /* LocationIntentsExtension */;
 			targetProxy = DCEA8FF12693AF9800B8A6C7 /* PBXContainerItemProxy */;
 		};
@@ -1659,12 +1632,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1914;
+				CURRENT_PROJECT_VERSION = 1968;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				EXCLUDED_ARCHS = "";
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1680,8 +1652,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 4.0.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1726,7 +1697,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1914;
+				CURRENT_PROJECT_VERSION = 1968;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1740,8 +1711,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 4.0.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1781,6 +1751,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2;
 				PRODUCT_NAME = ShralpTide;
 				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1816,6 +1787,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2;
 				PRODUCT_NAME = ShralpTide;
 				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1985,6 +1957,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2011,6 +1984,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -2036,6 +2010,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2059,6 +2034,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
