@@ -20,7 +20,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 
     static let Header = "Tide"
 
-    let extDelegate = WKExtension.shared().delegate as! ExtensionDelegate
+    let extDelegate = WKApplication.shared().delegate as! ExtensionDelegate
 
     var units: SDTideUnitsPref {
         ConfigHelper.sharedInstance.selectedUnitsUserDefault ?? SDTideUnitsPref.US
@@ -83,8 +83,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             let nextTideTextProvider = CLKSimpleTextProvider(text: String.tideFormatStringSmall(value: nextTide.eventHeight, units: units))
             nextTideTextProvider.tintColor = .green
             let timeToNextTideTextProvider = CLKRelativeDateTextProvider(date: nextTide.eventTime, style: .naturalAbbreviated, units: NSCalendar.Unit([.hour, .minute]))
-            textProvider = CLKTextProvider(byJoining: [currentTideTextProvider, nextTideTextProvider], separator: "→")
-            textProvider = CLKTextProvider(byJoining: [textProvider!, timeToNextTideTextProvider], separator: " ")
+            textProvider = CLKTextProvider(format: "%s → %s", [currentTideTextProvider, nextTideTextProvider])
+            textProvider = CLKTextProvider(format: "%s %s", [textProvider!, timeToNextTideTextProvider])
         } catch {
             NSLog("WARN: Unable to find next tide event")
             textProvider = currentTideTextProvider
@@ -105,8 +105,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             let nextTideTextProvider = CLKSimpleTextProvider(text: String.tideFormatStringSmall(value: nextTide.eventHeight, units: units))
             nextTideTextProvider.tintColor = .green
             let timeToNextTideTextProvider = CLKRelativeDateTextProvider(date: nextTide.eventTime, style: .naturalAbbreviated, units: NSCalendar.Unit([.hour, .minute]))
-            body1TextProvider = CLKTextProvider(byJoining: [currentTideTextProvider, nextTideTextProvider], separator: "→")
-            body1TextProvider = CLKTextProvider(byJoining: [body1TextProvider!, timeToNextTideTextProvider], separator: " ")
+            body1TextProvider = CLKTextProvider(format: "%s → %s", [currentTideTextProvider, nextTideTextProvider])
+            body1TextProvider = CLKTextProvider(format: "%s %s", [body1TextProvider!, timeToNextTideTextProvider])
         } catch {
             NSLog("WARN: Unable to find next tide event")
             body1TextProvider = CLKSimpleTextProvider(text: "\(longText) and \(tide.tideDirection == .falling ? "falling" : "rising")")

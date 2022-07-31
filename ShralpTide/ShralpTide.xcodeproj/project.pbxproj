@@ -105,7 +105,6 @@
 		DC246B66262203E70090F38B /* PadTidesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B62262203E70090F38B /* PadTidesView.swift */; };
 		DC25E6C02636870800D214D0 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC25E6BE2636870800D214D0 /* Interface.storyboard */; };
 		DC25E6C22636870900D214D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC25E6C12636870900D214D0 /* Assets.xcassets */; };
-		DC25E6C92636870900D214D0 /* WatchTides Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DC25E6C82636870900D214D0 /* WatchTides Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DC25E6CE2636870900D214D0 /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25E6CD2636870900D214D0 /* HostingController.swift */; };
 		DC25E6D02636870900D214D0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25E6CF2636870900D214D0 /* ContentView.swift */; };
 		DC25E6D22636870900D214D0 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25E6D12636870900D214D0 /* ExtensionDelegate.swift */; };
@@ -163,7 +162,7 @@
 		DCC85C73267C2916007E0C0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCC85C72267C2916007E0C0B /* Assets.xcassets */; };
 		DCC85C75267C2916007E0C0B /* TideWidgetExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = DCC85C71267C2915007E0C0B /* TideWidgetExtension.intentdefinition */; };
 		DCC85C76267C2916007E0C0B /* TideWidgetExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = DCC85C71267C2915007E0C0B /* TideWidgetExtension.intentdefinition */; };
-		DCC85C79267C2916007E0C0B /* TideWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DCC85C69267C2915007E0C0B /* TideWidgetExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DCC85C79267C2916007E0C0B /* TideWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DCC85C69267C2915007E0C0B /* TideWidgetExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DCD524312607F6D900EA4C68 /* PadContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD524302607F6D900EA4C68 /* PadContentView.swift */; };
 		DCD524322607F6D900EA4C68 /* PadContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD524302607F6D900EA4C68 /* PadContentView.swift */; };
 		DCD7C96826507C09006327D2 /* Array+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7C96726507C09006327D2 /* Array+RawRepresentable.swift */; };
@@ -173,7 +172,7 @@
 		DCE3306326A1F6BA007A6E9E /* ConfigHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25E70626373D7D00D214D0 /* ConfigHelper.swift */; };
 		DCEA8FEC2693AF9800B8A6C7 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCEA8FEB2693AF9800B8A6C7 /* Intents.framework */; };
 		DCEA8FEF2693AF9800B8A6C7 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEA8FEE2693AF9800B8A6C7 /* IntentHandler.swift */; };
-		DCEA8FF32693AF9800B8A6C7 /* LocationIntentsExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DCEA8FEA2693AF9800B8A6C7 /* LocationIntentsExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DCEA8FF32693AF9800B8A6C7 /* LocationIntentsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DCEA8FEA2693AF9800B8A6C7 /* LocationIntentsExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DCEA8FF72693B1AC00B8A6C7 /* TideWidgetExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = DCC85C71267C2915007E0C0B /* TideWidgetExtension.intentdefinition */; };
 		DCEA8FF82693B57100B8A6C7 /* AppStateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C22593B2E400FD75A0 /* AppStateRepository.swift */; };
 		DCEA8FF92693B57C00B8A6C7 /* LegacyStationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C32593B2E400FD75A0 /* LegacyStationData.swift */; };
@@ -229,13 +228,6 @@
 			remoteGlobalIDString = DC26BAEE24BB807B00453A5F;
 			remoteInfo = iOS;
 		};
-		DC25E6CA2636870900D214D0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DC26BAE324BB807900453A5F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DC25E6C72636870900D214D0;
-			remoteInfo = "WatchTides Extension";
-		};
 		DC25E6E02636870900D214D0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DC26BAE324BB807900453A5F /* Project object */;
@@ -285,17 +277,6 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DC25E6E62636870900D214D0 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				DC25E6C92636870900D214D0 /* WatchTides Extension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		DC4FE47A265214E00066B475 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -318,16 +299,16 @@
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DCC85C7D267C2916007E0C0B /* Embed App Extensions */ = {
+		DCC85C7D267C2916007E0C0B /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				DCC85C79267C2916007E0C0B /* TideWidgetExtension.appex in Embed App Extensions */,
-				DCEA8FF32693AF9800B8A6C7 /* LocationIntentsExtension.appex in Embed App Extensions */,
+				DCC85C79267C2916007E0C0B /* TideWidgetExtension.appex in Embed Foundation Extensions */,
+				DCEA8FF32693AF9800B8A6C7 /* LocationIntentsExtension.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -383,7 +364,6 @@
 		DC25E6BF2636870800D214D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		DC25E6C12636870900D214D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC25E6C32636870900D214D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DC25E6C82636870900D214D0 /* WatchTides Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WatchTides Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC25E6CD2636870900D214D0 /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
 		DC25E6CF2636870900D214D0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DC25E6D12636870900D214D0 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
@@ -455,14 +435,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		DC25E6C52636870900D214D0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DC4FE478265214E00066B475 /* WatchTideFramework.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		DC26BAEC24BB807B00453A5F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -496,6 +468,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC4FE478265214E00066B475 /* WatchTideFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -740,7 +713,6 @@
 				DC26BAFF24BB807B00453A5F /* Tests iOS.xctest */,
 				DC26BB0A24BB807B00453A5F /* Tests macOS.xctest */,
 				DC25E6BC2636870800D214D0 /* WatchTides.app */,
-				DC25E6C82636870900D214D0 /* WatchTides Extension.appex */,
 				DCC85C69267C2915007E0C0B /* TideWidgetExtension.appex */,
 				DCEA8FEA2693AF9800B8A6C7 /* LocationIntentsExtension.appex */,
 			);
@@ -889,36 +861,18 @@
 			buildConfigurationList = DC25E6E72636870900D214D0 /* Build configuration list for PBXNativeTarget "WatchTides" */;
 			buildPhases = (
 				DC25E6BA2636870800D214D0 /* Resources */,
-				DC25E6E62636870900D214D0 /* Embed App Extensions */,
 				DC4FE47E2652150A0066B475 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DC25E6CB2636870900D214D0 /* PBXTargetDependency */,
-			);
-			name = WatchTides;
-			productName = WatchTides;
-			productReference = DC25E6BC2636870800D214D0 /* WatchTides.app */;
-			productType = "com.apple.product-type.application.watchapp2";
-		};
-		DC25E6C72636870900D214D0 /* WatchTides Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DC25E6E32636870900D214D0 /* Build configuration list for PBXNativeTarget "WatchTides Extension" */;
-			buildPhases = (
 				DC25E6C42636870900D214D0 /* Sources */,
-				DC25E6C52636870900D214D0 /* Frameworks */,
-				DC25E6C62636870900D214D0 /* Resources */,
 				DC4FE47A265214E00066B475 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "WatchTides Extension";
-			productName = "WatchTides Extension";
-			productReference = DC25E6C82636870900D214D0 /* WatchTides Extension.appex */;
-			productType = "com.apple.product-type.watchkit2-extension";
+			name = WatchTides;
+			productName = WatchTides;
+			productReference = DC25E6BC2636870800D214D0 /* WatchTides.app */;
+			productType = "com.apple.product-type.application";
 		};
 		DC26BAEE24BB807B00453A5F /* ShralpTide2 */ = {
 			isa = PBXNativeTarget;
@@ -929,7 +883,7 @@
 				DC26BAED24BB807B00453A5F /* Resources */,
 				DC0DE77E2592D19800FD75A0 /* Embed Frameworks */,
 				DC5570F5262694AF00B81C2E /* Embed Watch Content */,
-				DCC85C7D267C2916007E0C0B /* Embed App Extensions */,
+				DCC85C7D267C2916007E0C0B /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -1038,14 +992,10 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1330;
+				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					DC25E6BB2636870800D214D0 = {
 						CreatedOnToolsVersion = 12.4;
-					};
-					DC25E6C72636870900D214D0 = {
-						CreatedOnToolsVersion = 12.4;
-						LastSwiftMigration = 1250;
 					};
 					DC26BAEE24BB807B00453A5F = {
 						CreatedOnToolsVersion = 12.0;
@@ -1088,7 +1038,6 @@
 				DC26BAFE24BB807B00453A5F /* Tests iOS */,
 				DC26BB0924BB807B00453A5F /* Tests macOS */,
 				DC25E6BB2636870800D214D0 /* WatchTides */,
-				DC25E6C72636870900D214D0 /* WatchTides Extension */,
 				DCC85C68267C2915007E0C0B /* TideWidgetExtension */,
 				DCEA8FE92693AF9800B8A6C7 /* LocationIntentsExtension */,
 			);
@@ -1101,16 +1050,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC25E6C22636870900D214D0 /* Assets.xcassets in Resources */,
-				DC25E6C02636870800D214D0 /* Interface.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DC25E6C62636870900D214D0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 				DC25E6DD2636870900D214D0 /* Preview Assets.xcassets in Resources */,
 				DC25E6DA2636870900D214D0 /* Assets.xcassets in Resources */,
+				DC25E6C02636870800D214D0 /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1411,11 +1353,6 @@
 			target = DC26BAEE24BB807B00453A5F /* ShralpTide2 */;
 			targetProxy = DC0DE5B3258D7BCA00FD75A0 /* PBXContainerItemProxy */;
 		};
-		DC25E6CB2636870900D214D0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DC25E6C72636870900D214D0 /* WatchTides Extension */;
-			targetProxy = DC25E6CA2636870900D214D0 /* PBXContainerItemProxy */;
-		};
 		DC25E6E12636870900D214D0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
@@ -1468,75 +1405,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		DC25E6E42636870900D214D0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"WatchTides Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = H29T9V7X78;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "WatchTides Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 4.0.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "WatchTides Extension/WatchTides Extension-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
-			};
-			name = Debug;
-		};
-		DC25E6E52636870900D214D0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"WatchTides Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = H29T9V7X78;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "WatchTides Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 4.0.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "WatchTides Extension/WatchTides Extension-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
-			};
-			name = Release;
-		};
 		DC25E6E82636870900D214D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1968;
 				DEVELOPMENT_TEAM = H29T9V7X78;
-				IBSC_MODULE = WatchTides_Extension;
 				INFOPLIST_FILE = WatchTides/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
 					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 4.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2.watchkitapp;
@@ -1554,14 +1436,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1968;
 				DEVELOPMENT_TEAM = H29T9V7X78;
-				IBSC_MODULE = WatchTides_Extension;
 				INFOPLIST_FILE = WatchTides/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
 					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 4.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2.watchkitapp;
@@ -1611,6 +1494,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1968;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1676,6 +1560,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1968;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1706,6 +1591,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ShralpTide2/ShralpTide.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1968;
 				DEVELOPMENT_TEAM = H29T9V7X78;
 				ENABLE_PREVIEWS = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
@@ -1743,6 +1629,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ShralpTide2/ShralpTide.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1968;
 				DEVELOPMENT_TEAM = H29T9V7X78;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1781,6 +1668,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = H29T9V7X78;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1807,6 +1695,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = H29T9V7X78;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1875,6 +1764,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = H29T9V7X78;
 				INFOPLIST_FILE = "Tests macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1897,6 +1787,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = H29T9V7X78;
 				INFOPLIST_FILE = "Tests macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2022,15 +1913,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DC25E6E32636870900D214D0 /* Build configuration list for PBXNativeTarget "WatchTides Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DC25E6E42636870900D214D0 /* Debug */,
-				DC25E6E52636870900D214D0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		DC25E6E72636870900D214D0 /* Build configuration list for PBXNativeTarget "WatchTides" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject
-    var extDelegate = WKExtension.shared().delegate as! ExtensionDelegate
+    var extDelegate = WKApplication.shared().delegate as! ExtensionDelegate
 
     let configHelper = ConfigHelper.sharedInstance
 

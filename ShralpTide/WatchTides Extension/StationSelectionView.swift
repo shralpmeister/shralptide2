@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StationSelectionView: View {
-    let extDelegate = WKExtension.shared().delegate as! ExtensionDelegate
+    let extDelegate = WKApplication.shared().delegate as! ExtensionDelegate
 
     let configHelper = ConfigHelper.sharedInstance
 

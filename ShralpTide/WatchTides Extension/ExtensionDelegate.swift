@@ -5,13 +5,14 @@
 //  Created by Michael Parlee on 10/3/16.
 //
 //
-
+import ClockKit
 import Combine
 import CoreData
 import WatchKit
 import WatchTideFramework
 
-class ExtensionDelegate: NSObject, WKExtensionDelegate, ObservableObject {
+@main
+class ExtensionDelegate: NSObject, WKApplicationDelegate, ObservableObject {
     private let timer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
     private var sub: Cancellable?
 
@@ -47,7 +48,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, ObservableObject {
         let hfilePath = Bundle(for: SDTideFactory.self).path(forResource: "harmonics-20040614-wxtide", ofType: "tcd")! + ":" + Bundle(for: SDTideFactory.self).path(forResource: "harmonics-dwf-20081228-free", ofType: "tcd")! + ":" + Bundle(for: SDTideFactory.self).path(forResource: "harmonics-dwf-20081228-nonfree", ofType: "tcd")!
         setenv("HFILE_PATH", hfilePath, 1)
 
-        WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: Date(timeIntervalSinceNow: 4 * 60 * 60), userInfo: nil) { (error: Error?) in
+        WKApplication.shared().scheduleBackgroundRefresh(withPreferredDate: Date(timeIntervalSinceNow: 4 * 60 * 60), userInfo: nil) { (error: Error?) in
             if let error = error {
                 print("Error occurred refreshing app state: \(error)")
             }
@@ -76,7 +77,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, ObservableObject {
                 backgroundTask.setTaskCompletedWithSnapshot(false)
 
                 // Schedule the next background refresh
-                WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: Date(timeIntervalSinceNow: 4 * 60 * 60), userInfo: nil) { error in
+                WKApplication.shared().scheduleBackgroundRefresh(withPreferredDate: Date(timeIntervalSinceNow: 4 * 60 * 60), userInfo: nil) { error in
                     if let error = error {
                         NSLog("Error occurred refreshing app state: \(error)")
                     }

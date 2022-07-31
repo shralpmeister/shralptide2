@@ -28,14 +28,17 @@ extension SDTide {
         }
     }
 #else
-    extension SDTide {
-        func hoursToPlot() -> Int {
+extension SDTide {
+    func hoursToPlot() -> Int {
+        guard startTime == nil else {
             let diffComponents = Calendar.current.dateComponents(
                 [.hour], from: startTime, to: stopTime
             )
             return diffComponents.hour!
         }
+        return 0
     }
+}
 #endif
 
 enum TideError: Error {
