@@ -28,18 +28,17 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 
     // MARK: - Timeline Configuration
 
-    func getTimelineEndDate(for _: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
-        handler(extDelegate.tides?.stopTime)
+    func timelineEndDate(for complication: CLKComplication) async -> Date? {
+        extDelegate.tides?.stopTime
+    }
+    
+    func privacyBehavior(for complication: CLKComplication) async -> CLKComplicationPrivacyBehavior {
+        return .showOnLockScreen
     }
 
-    func getPrivacyBehavior(for _: CLKComplication, withHandler handler: @escaping (CLKComplicationPrivacyBehavior) -> Void) {
-        handler(.showOnLockScreen)
-    }
-
-    func getComplicationDescriptors(handler: @escaping ([CLKComplicationDescriptor]) -> Void) {
+    func complicationDescriptors() async -> [CLKComplicationDescriptor] {
         let supportedFamilies = CLKComplicationFamily.allCases
-        let descriptor = CLKComplicationDescriptor(identifier: "SwiftTides", displayName: "Tide", supportedFamilies: supportedFamilies)
-        handler([descriptor])
+        return [CLKComplicationDescriptor(identifier: "SwiftTides", displayName: "Tide", supportedFamilies: supportedFamilies)]
     }
 
     fileprivate func complicationTemplate(for complication: CLKComplication, interval: SDTideInterval, tide: SDTide) -> CLKComplicationTemplate {
@@ -83,8 +82,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             let nextTideTextProvider = CLKSimpleTextProvider(text: String.tideFormatStringSmall(value: nextTide.eventHeight, units: units))
             nextTideTextProvider.tintColor = .green
             let timeToNextTideTextProvider = CLKRelativeDateTextProvider(date: nextTide.eventTime, style: .naturalAbbreviated, units: NSCalendar.Unit([.hour, .minute]))
-            textProvider = CLKTextProvider(format: "%s → %s", [currentTideTextProvider, nextTideTextProvider])
-            textProvider = CLKTextProvider(format: "%s %s", [textProvider!, timeToNextTideTextProvider])
+            textProvider = CLKSimpleTextProvider(format: "%s → %s", [currentTideTextProvider, nextTideTextProvider])
+            textProvider = CLKSimpleTextProvider(format: "%s %s", [textProvider!, timeToNextTideTextProvider])
         } catch {
             NSLog("WARN: Unable to find next tide event")
             textProvider = currentTideTextProvider
@@ -220,39 +219,30 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 
     // MARK: - Timeline Population
 
-    func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
+    func currentTimelineEntry(for complication: CLKComplication) async -> CLKComplicationTimelineEntry? {
         guard let tides = extDelegate.tides else {
-            handler(nil)
-            return
+            return nil
         }
         let date = Date()
         let interval = tides.findInterval(forTime: date.timeInMinutesSinceMidnight())!
-        let entry = CLKComplicationTimelineEntry(date: date.intervalStartDate(), complicationTemplate: complicationTemplate(for: complication, interval: interval, tide: tides))
-
-        // Call the handler with the current timeline entry
-        handler(entry)
+        return CLKComplicationTimelineEntry(date: date.intervalStartDate(), complicationTemplate: complicationTemplate(for: complication, interval: interval, tide: tides))
     }
 
-    func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
+    func timelineEntries(for complication: CLKComplication, after date: Date, limit: Int) async -> [CLKComplicationTimelineEntry]? {
         guard let tides = extDelegate.tides else {
-            handler(nil)
-            return
+            return nil
         }
-        // Call the handler with the timeline entries after to the given date
         let limitInHours = limit / ComplicationController.IntervalsPerHour
         let intervals = tides.intervals(from: date, forHours: limitInHours)!
-        let entries = intervals.map { interval in
+        return intervals.map { interval in
             CLKComplicationTimelineEntry(date: interval.time.intervalStartDate(), complicationTemplate: complicationTemplate(for: complication, interval: interval, tide: tides))
         }
-        // Call the handler with the timeline entries prior to the given date
-        handler(entries)
     }
 
     // MARK: - Placeholder Templates
 
-    func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
-        // This method will be called once per supported complication, and the results will be cached
-        let template = populateTemplate(
+    func localizableSampleTemplate(for complication: CLKComplication) async -> CLKComplicationTemplate? {
+        return populateTemplate(
             for: complication,
             longText: "-.--m",
             shortText: "-.-m",
@@ -271,6 +261,5 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             ),
             interval: SDTideInterval(time: Date(), height: 4.4, andUnits: "m")
         )
-        handler(template)
     }
 }

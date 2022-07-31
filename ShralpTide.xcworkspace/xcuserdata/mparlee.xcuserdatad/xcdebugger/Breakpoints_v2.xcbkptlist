@@ -20,5 +20,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "39A05AF9-75A6-4FCC-A6D4-B454F3FDDF93"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShralpTide/WatchTides Extension/ComplicationController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "createGraphicRectangularChartTemplate(height:min:max:shortText:longText:symbol:tide:interval:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "39A05AF9-75A6-4FCC-A6D4-B454F3FDDF93 - 99eef3bc9d63191e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WatchTides.ComplicationController.createGraphicRectangularChartTemplate(height: Swift.Float, min: Swift.Float, max: Swift.Float, shortText: Swift.String, longText: Swift.String, symbol: Swift.String, tide: __C.SDTide, interval: __C.SDTideInterval) -&gt; _ClockKit_SwiftUI.CLKComplicationTemplateGraphicRectangularLargeView&lt;WatchTides.WatchChartView&gt;"
+                  moduleName = "WatchTides"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mparlee/Development/swift/ShralpTideWorkspace/ShralpTide/WatchTides%20Extension/ComplicationController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "1228">
+               </Location>
+               <Location
+                  uuid = "39A05AF9-75A6-4FCC-A6D4-B454F3FDDF93 - 99eef3bc9d63191e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WatchTides.ComplicationController.createGraphicRectangularChartTemplate(height: Swift.Float, min: Swift.Float, max: Swift.Float, shortText: Swift.String, longText: Swift.String, symbol: Swift.String, tide: __C.SDTide, interval: __C.SDTideInterval) -&gt; _ClockKit_SwiftUI.CLKComplicationTemplateGraphicRectangularLargeView&lt;WatchTides.WatchChartView&gt;"
+                  moduleName = "WatchTides"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mparlee/Development/swift/ShralpTideWorkspace/ShralpTide/WatchTides%20Extension/ComplicationController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "1348">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
