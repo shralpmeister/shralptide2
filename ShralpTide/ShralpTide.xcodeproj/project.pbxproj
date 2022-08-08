@@ -122,7 +122,6 @@
 		DC26BB1624BB807B00453A5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC26BAEA24BB807B00453A5F /* Assets.xcassets */; };
 		DC3B36AE263B740200DA83E1 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B36AD263B740200DA83E1 /* ComplicationController.swift */; };
 		DC3B36B1263B75D800DA83E1 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC15911A259A70400092E473 /* ChartView.swift */; };
-		DC3B36B5263B764B00DA83E1 /* CLKTextProvider+MultiColorPatch.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3B36B4263B764A00DA83E1 /* CLKTextProvider+MultiColorPatch.m */; };
 		DC3B36B6263BAFA400DA83E1 /* ChartUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DDA25ABDA7000954972 /* ChartUtils.swift */; };
 		DC3B36BC263BB89B00DA83E1 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B36BB263BB87800DA83E1 /* String.swift */; };
 		DC3B36BD263BB89B00DA83E1 /* SDTide.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B36B9263BB87800DA83E1 /* SDTide.swift */; };
@@ -387,9 +386,6 @@
 		DC26BB0E24BB807B00453A5F /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		DC26BB1024BB807B00453A5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC3B36AD263B740200DA83E1 /* ComplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
-		DC3B36B2263B764A00DA83E1 /* WatchTides Extension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WatchTides Extension-Bridging-Header.h"; sourceTree = "<group>"; };
-		DC3B36B3263B764A00DA83E1 /* CLKTextProvider+MultiColorPatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLKTextProvider+MultiColorPatch.h"; sourceTree = "<group>"; };
-		DC3B36B4263B764A00DA83E1 /* CLKTextProvider+MultiColorPatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLKTextProvider+MultiColorPatch.m"; sourceTree = "<group>"; };
 		DC3B36B8263BB87800DA83E1 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		DC3B36B9263BB87800DA83E1 /* SDTide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDTide.swift; sourceTree = "<group>"; };
 		DC3B36BA263BB87800DA83E1 /* SDTideStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDTideStation.swift; sourceTree = "<group>"; };
@@ -655,9 +651,6 @@
 				DC25E6D92636870900D214D0 /* Assets.xcassets */,
 				DC25E6DE2636870900D214D0 /* Info.plist */,
 				DC25E6DB2636870900D214D0 /* Preview Content */,
-				DC3B36B2263B764A00DA83E1 /* WatchTides Extension-Bridging-Header.h */,
-				DC3B36B3263B764A00DA83E1 /* CLKTextProvider+MultiColorPatch.h */,
-				DC3B36B4263B764A00DA83E1 /* CLKTextProvider+MultiColorPatch.m */,
 				DC3B36D0263BBC6F00DA83E1 /* TimeInterval+Units.swift */,
 				DCD7C96726507C09006327D2 /* Array+RawRepresentable.swift */,
 			);
@@ -1148,7 +1141,6 @@
 				DC3B36AE263B740200DA83E1 /* ComplicationController.swift in Sources */,
 				DC3B36CE263BB8A200DA83E1 /* Date.swift in Sources */,
 				DC3B36B1263B75D800DA83E1 /* ChartView.swift in Sources */,
-				DC3B36B5263B764B00DA83E1 /* CLKTextProvider+MultiColorPatch.m in Sources */,
 				DC3B36B6263BAFA400DA83E1 /* ChartUtils.swift in Sources */,
 				DC25E6FB26373D0E00D214D0 /* WatchSessionManager.swift in Sources */,
 			);
@@ -1427,7 +1419,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -1454,7 +1446,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
@@ -1513,8 +1505,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1573,8 +1565,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1601,7 +1593,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = ShralpTide2/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1638,7 +1630,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = ShralpTide2/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1677,7 +1669,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 4.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2;
 				PRODUCT_NAME = ShralpTide;
@@ -1704,7 +1696,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 4.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2;
 				PRODUCT_NAME = ShralpTide;
@@ -1814,7 +1806,7 @@
 				DEVELOPMENT_TEAM = H29T9V7X78;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				INFOPLIST_FILE = TideWidgetExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1841,7 +1833,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H29T9V7X78;
 				INFOPLIST_FILE = TideWidgetExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1868,7 +1860,7 @@
 				DEVELOPMENT_TEAM = H29T9V7X78;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				INFOPLIST_FILE = LocationIntentsExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1892,7 +1884,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H29T9V7X78;
 				INFOPLIST_FILE = LocationIntentsExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

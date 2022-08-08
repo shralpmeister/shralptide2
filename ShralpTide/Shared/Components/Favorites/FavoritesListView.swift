@@ -61,6 +61,7 @@ struct FavoritesListView: View {
                     }
                     .listRowBackground(Color.clear)
                 }
+                .scrollContentBackground(Visibility.hidden)
                 .listStyle(GroupedListStyle())
             }
         }

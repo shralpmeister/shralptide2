@@ -82,8 +82,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             let nextTideTextProvider = CLKSimpleTextProvider(text: String.tideFormatStringSmall(value: nextTide.eventHeight, units: units))
             nextTideTextProvider.tintColor = .green
             let timeToNextTideTextProvider = CLKRelativeDateTextProvider(date: nextTide.eventTime, style: .naturalAbbreviated, units: NSCalendar.Unit([.hour, .minute]))
-            textProvider = CLKSimpleTextProvider(format: "%s → %s", [currentTideTextProvider, nextTideTextProvider])
-            textProvider = CLKSimpleTextProvider(format: "%s %s", [textProvider!, timeToNextTideTextProvider])
+            textProvider = CLKTextProvider(format: "%@ → %@", currentTideTextProvider, nextTideTextProvider)
+            textProvider = CLKTextProvider(format: "%@ %@", textProvider!, timeToNextTideTextProvider)
         } catch {
             NSLog("WARN: Unable to find next tide event")
             textProvider = currentTideTextProvider
