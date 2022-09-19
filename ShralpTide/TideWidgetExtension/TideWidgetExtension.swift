@@ -108,12 +108,15 @@ struct TideEntry: TimelineEntry {
 }
 
 struct TideWidgetEntryView : View {
-    @Environment(\.widgetFamily) var family: WidgetFamily
+    @Environment(\.widgetFamily)
+    var family: WidgetFamily
+    
     var entry: Provider.Entry
     
     let darkGreen = Color(Color.RGBColorSpace.displayP3, red: 0.2, green: 0.38, blue: 0.42, opacity: 1.0)
     let lightGreen = Color(Color.RGBColorSpace.displayP3, red: 0.2, green: 0.6, blue: 0.48, opacity: 1.0)
     
+    @ViewBuilder
     var body: some View {
         switch (family) {
         case .systemSmall:
@@ -250,6 +253,34 @@ struct TideWidgetEntryView : View {
             }
             .widgetURL(URL(string:"shralp:location?name=\(entry.fullLocationName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "none")"))
             .background(darkGreen)
+        case .accessoryCircular:
+            Gauge(value: entry.height, in: entry.tide.lowestTide.floatValue...entry.tide.highestTide.floatValue ) {
+                Text(entry.tide.shortLocationName)
+            } currentValueLabel: {
+                Text(String(format: "%0.1f%@", entry.height, String.directionIndicator(entry.direction)))
+            } minimumValueLabel: {
+                Text("\(String(format: "%0.1f", entry.tide.lowestTide.floatValue))")
+            } maximumValueLabel: {
+                Text("\(String(format: "%0.1f", entry.tide.highestTide.floatValue))")
+            }
+            .gaugeStyle(.accessoryCircular)
+            .widgetURL(URL(string:"shralp:location?name=\(entry.fullLocationName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "none")"))
+        case .accessoryRectangular:
+            VStack {
+                if (entry.nextEvent != nil) {
+                    Text(String(format: "%0.1f%@ → %0.1f%@",
+                                    entry.height,
+                                    entry.tide.unitShort,
+                                    entry.nextEvent!.eventHeight,
+                                    entry.tide.unitShort
+                               ))
+                    HStack {
+                        Text(entry.nextEvent!.eventTypeDescription)
+                        Text(entry.nextEvent!.eventTime, style: .time)
+                    }
+                }
+            }
+            .widgetURL(URL(string:"shralp:location?name=\(entry.fullLocationName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "none")"))
         @unknown default:
             fatalError("Unhandled widget family")
         }
@@ -265,7 +296,12 @@ struct TideWidget: Widget {
         }
         .configurationDisplayName("widget-title")
         .description("widget-desc")
-        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])}
+        #if os(watchOS)
+        .supportedFamilies([])
+        #else
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .accessoryCircular, .accessoryRectangular])
+        #endif
+    }
 }
 
 struct TideWidget_Previews: PreviewProvider {
@@ -280,5 +316,11 @@ struct TideWidget_Previews: PreviewProvider {
         TideWidgetEntryView(entry: TideEntry(date: Date(), units: .US, height: 3.76, direction: .rising, nextEvent: SDTideEvent(time: Date().addingTimeInterval(TimeInterval(25 * 60)), event: .max, andHeight: 4.6), shortLocationName: "Pearl Harbor Entrance", fullLocationName: "La Jolla (Scripps Institution Wharf), California", tide: previewTide))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .previewContext(WidgetPreviewContext(family: .systemLarge))
+        TideWidgetEntryView(entry: TideEntry(date: Date(), units: .US, height: 3.76, direction: .rising, nextEvent: SDTideEvent(time: Date().addingTimeInterval(TimeInterval(25 * 60)), event: .max, andHeight: 4.6), shortLocationName: "Pearl Harbor Entrance", fullLocationName: "La Jolla (Scripps Institution Wharf), California", tide: previewTide))
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .previewContext(WidgetPreviewContext(family: .accessoryCircular))
+        TideWidgetEntryView(entry: TideEntry(date: Date(), units: .US, height: 3.76, direction: .rising, nextEvent: SDTideEvent(time: Date().addingTimeInterval(TimeInterval(25 * 60)), event: .max, andHeight: 4.6), shortLocationName: "Pearl Harbor Entrance", fullLocationName: "La Jolla (Scripps Institution Wharf), California", tide: previewTide))
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
     }
 }

@@ -8,99 +8,60 @@
 
 /* Begin PBXBuildFile section */
 		DC079F74259BAED800F1CB0E /* InteractiveChartViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC079F73259BAED800F1CB0E /* InteractiveChartViewModifier.swift */; };
-		DC079F75259BAED800F1CB0E /* InteractiveChartViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC079F73259BAED800F1CB0E /* InteractiveChartViewModifier.swift */; };
 		DC079F80259C34BB00F1CB0E /* LabeledChartViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC079F7F259C34BB00F1CB0E /* LabeledChartViewModifier.swift */; };
-		DC079F81259C34BB00F1CB0E /* LabeledChartViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC079F7F259C34BB00F1CB0E /* LabeledChartViewModifier.swift */; };
 		DC0DE589258C1B6C00FD75A0 /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE588258C1B6C00FD75A0 /* EnvironmentValues.swift */; };
-		DC0DE58A258C1B6C00FD75A0 /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE588258C1B6C00FD75A0 /* EnvironmentValues.swift */; };
 		DC0DE594258C1CFC00FD75A0 /* ConfigHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE593258C1CFC00FD75A0 /* ConfigHelper.swift */; };
-		DC0DE595258C1CFC00FD75A0 /* ConfigHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE593258C1CFC00FD75A0 /* ConfigHelper.swift */; };
 		DC0DE5A1258D580E00FD75A0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE5A0258D580E00FD75A0 /* Settings.bundle */; };
-		DC0DE5A2258D580E00FD75A0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE5A0258D580E00FD75A0 /* Settings.bundle */; };
 		DC0DE7AF259305F600FD75A0 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7AE259305F600FD75A0 /* AppState.swift */; };
-		DC0DE7B0259305F600FD75A0 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7AE259305F600FD75A0 /* AppState.swift */; };
 		DC0DE7C72593B2E400FD75A0 /* AppStateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C22593B2E400FD75A0 /* AppStateRepository.swift */; };
-		DC0DE7C82593B2E400FD75A0 /* AppStateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C22593B2E400FD75A0 /* AppStateRepository.swift */; };
 		DC0DE7C92593B2E400FD75A0 /* LegacyStationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C32593B2E400FD75A0 /* LegacyStationData.swift */; };
-		DC0DE7CA2593B2E400FD75A0 /* LegacyStationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C32593B2E400FD75A0 /* LegacyStationData.swift */; };
 		DC0DE7CB2593B2E400FD75A0 /* ModelMigrate2To3.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C42593B2E400FD75A0 /* ModelMigrate2To3.swift */; };
-		DC0DE7CC2593B2E400FD75A0 /* ModelMigrate2To3.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C42593B2E400FD75A0 /* ModelMigrate2To3.swift */; };
 		DC0DE7CD2593B2E400FD75A0 /* NoaaStationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C52593B2E400FD75A0 /* NoaaStationData.swift */; };
-		DC0DE7CE2593B2E400FD75A0 /* NoaaStationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C52593B2E400FD75A0 /* NoaaStationData.swift */; };
 		DC0DE7CF2593B2E400FD75A0 /* StationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C62593B2E400FD75A0 /* StationData.swift */; };
-		DC0DE7D02593B2E400FD75A0 /* StationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7C62593B2E400FD75A0 /* StationData.swift */; };
 		DC0DE7DF2593B3C200FD75A0 /* noaa-data.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE7D82593B3C200FD75A0 /* noaa-data.sqlite */; };
-		DC0DE7E02593B3C200FD75A0 /* noaa-data.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE7D82593B3C200FD75A0 /* noaa-data.sqlite */; };
 		DC0DE7E12593B3C300FD75A0 /* legacy-data.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE7D92593B3C200FD75A0 /* legacy-data.sqlite */; };
-		DC0DE7E22593B3C300FD75A0 /* legacy-data.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE7D92593B3C200FD75A0 /* legacy-data.sqlite */; };
 		DC0DE7E32593B3C300FD75A0 /* noaa-data.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE7DA2593B3C200FD75A0 /* noaa-data.sqlite-wal */; };
-		DC0DE7E42593B3C300FD75A0 /* noaa-data.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE7DA2593B3C200FD75A0 /* noaa-data.sqlite-wal */; };
 		DC0DE7E52593B3C300FD75A0 /* legacy-data.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE7DB2593B3C200FD75A0 /* legacy-data.sqlite-wal */; };
-		DC0DE7E62593B3C300FD75A0 /* legacy-data.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE7DB2593B3C200FD75A0 /* legacy-data.sqlite-wal */; };
 		DC0DE7E72593B3C300FD75A0 /* noaa-data.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE7DC2593B3C200FD75A0 /* noaa-data.sqlite-shm */; };
-		DC0DE7E82593B3C300FD75A0 /* noaa-data.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE7DC2593B3C200FD75A0 /* noaa-data.sqlite-shm */; };
 		DC0DE7E92593B3C300FD75A0 /* ModelMigrate2to3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7DD2593B3C200FD75A0 /* ModelMigrate2to3.xcmappingmodel */; };
-		DC0DE7EA2593B3C300FD75A0 /* ModelMigrate2to3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7DD2593B3C200FD75A0 /* ModelMigrate2to3.xcmappingmodel */; };
 		DC0DE7EB2593B3C300FD75A0 /* legacy-data.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE7DE2593B3C200FD75A0 /* legacy-data.sqlite-shm */; };
-		DC0DE7EC2593B3C300FD75A0 /* legacy-data.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = DC0DE7DE2593B3C200FD75A0 /* legacy-data.sqlite-shm */; };
 		DC0DE7FB2593B3FD00FD75A0 /* shralptide.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7F42593B3FD00FD75A0 /* shralptide.xcdatamodeld */; };
-		DC0DE7FC2593B3FD00FD75A0 /* shralptide.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7F42593B3FD00FD75A0 /* shralptide.xcdatamodeld */; };
 		DC0DE7FD2593B3FD00FD75A0 /* tidedata.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7F92593B3FD00FD75A0 /* tidedata.xcdatamodeld */; };
-		DC0DE7FE2593B3FD00FD75A0 /* tidedata.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE7F92593B3FD00FD75A0 /* tidedata.xcdatamodeld */; };
 		DC0DE8162593B87C00FD75A0 /* AppStateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE8152593B87C00FD75A0 /* AppStateInteractor.swift */; };
-		DC0DE8172593B87C00FD75A0 /* AppStateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE8152593B87C00FD75A0 /* AppStateInteractor.swift */; };
 		DC115D9725A28D6A00954972 /* PagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115D9625A28D6A00954972 /* PagerView.swift */; };
-		DC115D9825A28D6A00954972 /* PagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115D9625A28D6A00954972 /* PagerView.swift */; };
-		DC115DAB25A5572600954972 /* TideGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DA925A5572600954972 /* TideGraphView.swift */; };
 		DC115DB825A576CA00954972 /* TideGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DA925A5572600954972 /* TideGraphView.swift */; };
 		DC115DD525ABD97100954972 /* SunMoonLabelsChartViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DD425ABD97100954972 /* SunMoonLabelsChartViewModifier.swift */; };
-		DC115DD625ABD97100954972 /* SunMoonLabelsChartViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DD425ABD97100954972 /* SunMoonLabelsChartViewModifier.swift */; };
 		DC115DDB25ABDA7000954972 /* ChartUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DDA25ABDA7000954972 /* ChartUtils.swift */; };
-		DC115DDC25ABDA7000954972 /* ChartUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DDA25ABDA7000954972 /* ChartUtils.swift */; };
 		DC115DE425AD56B200954972 /* FavoritesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DE325AD56B200954972 /* FavoritesListView.swift */; };
-		DC115DE525AD56B200954972 /* FavoritesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DE325AD56B200954972 /* FavoritesListView.swift */; };
 		DC115DEA25AD576100954972 /* FavoriteRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DE925AD576100954972 /* FavoriteRow.swift */; };
-		DC115DEB25AD576100954972 /* FavoriteRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DE925AD576100954972 /* FavoriteRow.swift */; };
 		DC115DF825B26CE800954972 /* StationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DF725B26CE800954972 /* StationMapView.swift */; };
-		DC115DF925B26CE800954972 /* StationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DF725B26CE800954972 /* StationMapView.swift */; };
 		DC115E2525B521F400954972 /* StationDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115E2425B521F400954972 /* StationDataRepository.swift */; };
-		DC115E2625B521F400954972 /* StationDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115E2425B521F400954972 /* StationDataRepository.swift */; };
 		DC115E3725BCBB4D00954972 /* TideAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115E3625BCBB4D00954972 /* TideAnnotation.swift */; };
-		DC115E3825BCBB4D00954972 /* TideAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115E3625BCBB4D00954972 /* TideAnnotation.swift */; };
 		DC15911B259A70400092E473 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC15911A259A70400092E473 /* ChartView.swift */; };
-		DC15911C259A70400092E473 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC15911A259A70400092E473 /* ChartView.swift */; };
 		DC160B5024CFAC9D00C62C56 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC160B4F24CFAC9D00C62C56 /* HeaderView.swift */; };
-		DC160B5124CFAC9D00C62C56 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC160B4F24CFAC9D00C62C56 /* HeaderView.swift */; };
 		DC1FE8742698FE5D0015F6AA /* ShralpTideFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCAEB5D6269121DA00CA7003 /* ShralpTideFramework.framework */; };
 		DC1FE87A269BB7480015F6AA /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC15911A259A70400092E473 /* ChartView.swift */; };
 		DC1FE87B269BB7860015F6AA /* ChartUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DDA25ABDA7000954972 /* ChartUtils.swift */; };
 		DC1FE87D269BC0720015F6AA /* WidgetChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1FE87C269BC0720015F6AA /* WidgetChartView.swift */; };
 		DC246ADC2615712D0090F38B /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246ADB2615712D0090F38B /* MonthView.swift */; };
-		DC246ADD2615712D0090F38B /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246ADB2615712D0090F38B /* MonthView.swift */; };
 		DC246ADE2615712D0090F38B /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246ADB2615712D0090F38B /* MonthView.swift */; };
 		DC246ADF2615712D0090F38B /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246ADB2615712D0090F38B /* MonthView.swift */; };
 		DC246AE7261A642D0090F38B /* CalendarAppStateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246AE6261A642D0090F38B /* CalendarAppStateInteractor.swift */; };
-		DC246AE8261A642D0090F38B /* CalendarAppStateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246AE6261A642D0090F38B /* CalendarAppStateInteractor.swift */; };
 		DC246AE9261A642D0090F38B /* CalendarAppStateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246AE6261A642D0090F38B /* CalendarAppStateInteractor.swift */; };
 		DC246AEA261A642D0090F38B /* CalendarAppStateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246AE6261A642D0090F38B /* CalendarAppStateInteractor.swift */; };
 		DC246AEF261A6A630090F38B /* SingleDayTideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246AEE261A6A630090F38B /* SingleDayTideModel.swift */; };
-		DC246AF0261A6A630090F38B /* SingleDayTideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246AEE261A6A630090F38B /* SingleDayTideModel.swift */; };
 		DC246AF1261A6A630090F38B /* SingleDayTideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246AEE261A6A630090F38B /* SingleDayTideModel.swift */; };
 		DC246AF2261A6A630090F38B /* SingleDayTideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246AEE261A6A630090F38B /* SingleDayTideModel.swift */; };
 		DC246B02261A73780090F38B /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B01261A73780090F38B /* CalendarDayView.swift */; };
-		DC246B03261A73780090F38B /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B01261A73780090F38B /* CalendarDayView.swift */; };
 		DC246B04261A73780090F38B /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B01261A73780090F38B /* CalendarDayView.swift */; };
 		DC246B05261A73780090F38B /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B01261A73780090F38B /* CalendarDayView.swift */; };
 		DC246B0A261A8E720090F38B /* TideEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B09261A8E720090F38B /* TideEventsView.swift */; };
-		DC246B0B261A8E720090F38B /* TideEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B09261A8E720090F38B /* TideEventsView.swift */; };
 		DC246B0C261A8E720090F38B /* TideEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B09261A8E720090F38B /* TideEventsView.swift */; };
 		DC246B0D261A8E720090F38B /* TideEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B09261A8E720090F38B /* TideEventsView.swift */; };
 		DC246B1826214ED20090F38B /* LocationDateViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B1726214ED20090F38B /* LocationDateViewModifier.swift */; };
-		DC246B1926214ED20090F38B /* LocationDateViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B1726214ED20090F38B /* LocationDateViewModifier.swift */; };
 		DC246B1A26214ED20090F38B /* LocationDateViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B1726214ED20090F38B /* LocationDateViewModifier.swift */; };
 		DC246B1B26214ED20090F38B /* LocationDateViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B1726214ED20090F38B /* LocationDateViewModifier.swift */; };
 		DC246B63262203E70090F38B /* PadTidesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B62262203E70090F38B /* PadTidesView.swift */; };
-		DC246B64262203E70090F38B /* PadTidesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B62262203E70090F38B /* PadTidesView.swift */; };
 		DC246B65262203E70090F38B /* PadTidesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B62262203E70090F38B /* PadTidesView.swift */; };
 		DC246B66262203E70090F38B /* PadTidesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC246B62262203E70090F38B /* PadTidesView.swift */; };
 		DC25E6C02636870800D214D0 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC25E6BE2636870800D214D0 /* Interface.storyboard */; };
@@ -115,11 +76,8 @@
 		DC26BB0424BB807B00453A5F /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC26BB0324BB807B00453A5F /* Tests_iOS.swift */; };
 		DC26BB0F24BB807B00453A5F /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC26BB0E24BB807B00453A5F /* Tests_macOS.swift */; };
 		DC26BB1124BB807B00453A5F /* ShralpTideApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC26BAE824BB807900453A5F /* ShralpTideApp.swift */; };
-		DC26BB1224BB807B00453A5F /* ShralpTideApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC26BAE824BB807900453A5F /* ShralpTideApp.swift */; };
 		DC26BB1324BB807B00453A5F /* PhoneContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC26BAE924BB807900453A5F /* PhoneContentView.swift */; };
-		DC26BB1424BB807B00453A5F /* PhoneContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC26BAE924BB807900453A5F /* PhoneContentView.swift */; };
 		DC26BB1524BB807B00453A5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC26BAEA24BB807B00453A5F /* Assets.xcassets */; };
-		DC26BB1624BB807B00453A5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC26BAEA24BB807B00453A5F /* Assets.xcassets */; };
 		DC3B36AE263B740200DA83E1 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B36AD263B740200DA83E1 /* ComplicationController.swift */; };
 		DC3B36B1263B75D800DA83E1 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC15911A259A70400092E473 /* ChartView.swift */; };
 		DC3B36B6263BAFA400DA83E1 /* ChartUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC115DDA25ABDA7000954972 /* ChartUtils.swift */; };
@@ -127,29 +85,19 @@
 		DC3B36BD263BB89B00DA83E1 /* SDTide.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B36B9263BB87800DA83E1 /* SDTide.swift */; };
 		DC3B36BE263BB89B00DA83E1 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B36B8263BB87800DA83E1 /* Date.swift */; };
 		DC3B36BF263BB89B00DA83E1 /* SDTideStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B36BA263BB87800DA83E1 /* SDTideStation.swift */; };
-		DC3B36C0263BB89C00DA83E1 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B36BB263BB87800DA83E1 /* String.swift */; };
-		DC3B36C1263BB89C00DA83E1 /* SDTide.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B36B9263BB87800DA83E1 /* SDTide.swift */; };
-		DC3B36C2263BB89C00DA83E1 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B36B8263BB87800DA83E1 /* Date.swift */; };
-		DC3B36C3263BB89C00DA83E1 /* SDTideStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B36BA263BB87800DA83E1 /* SDTideStation.swift */; };
 		DC3B36CC263BB8A200DA83E1 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B36BB263BB87800DA83E1 /* String.swift */; };
 		DC3B36CD263BB8A200DA83E1 /* SDTide.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B36B9263BB87800DA83E1 /* SDTide.swift */; };
 		DC3B36CE263BB8A200DA83E1 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B36B8263BB87800DA83E1 /* Date.swift */; };
 		DC3B36D1263BBC6F00DA83E1 /* TimeInterval+Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B36D0263BBC6F00DA83E1 /* TimeInterval+Units.swift */; };
 		DC4101F126A24483007967BA /* ConfigHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE593258C1CFC00FD75A0 /* ConfigHelper.swift */; };
 		DC43CBE525C77B00002A330E /* RegionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CBE425C77B00002A330E /* RegionListView.swift */; };
-		DC43CBE625C77B00002A330E /* RegionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CBE425C77B00002A330E /* RegionListView.swift */; };
 		DC43CBF125C782BD002A330E /* TideStationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CBF025C782BD002A330E /* TideStationInteractor.swift */; };
-		DC43CBF225C782BD002A330E /* TideStationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CBF025C782BD002A330E /* TideStationInteractor.swift */; };
 		DC43CBF725C78697002A330E /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CBF625C78697002A330E /* Region.swift */; };
-		DC43CBF825C78697002A330E /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CBF625C78697002A330E /* Region.swift */; };
 		DC43CBFD25C7882C002A330E /* RegionSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CBFC25C7882C002A330E /* RegionSelectionView.swift */; };
-		DC43CBFE25C7882C002A330E /* RegionSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CBFC25C7882C002A330E /* RegionSelectionView.swift */; };
 		DC43CC0625CBC44E002A330E /* TideStationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CC0525CBC44E002A330E /* TideStationListView.swift */; };
-		DC43CC0725CBC44E002A330E /* TideStationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43CC0525CBC44E002A330E /* TideStationListView.swift */; };
 		DC4FE478265214E00066B475 /* WatchTideFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4FE477265214E00066B475 /* WatchTideFramework.framework */; };
 		DC4FE479265214E00066B475 /* WatchTideFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC4FE477265214E00066B475 /* WatchTideFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DC77459E24F31681001747AE /* TideEventsPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77459D24F31681001747AE /* TideEventsPageView.swift */; };
-		DC77459F24F31681001747AE /* TideEventsPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77459D24F31681001747AE /* TideEventsPageView.swift */; };
 		DC86D9F1264847CC000C9CE4 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86D9F0264847CC000C9CE4 /* WatchSessionManager.swift */; };
 		DC86D9F326489A40000C9CE4 /* WatchChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86D9F226489A40000C9CE4 /* WatchChartView.swift */; };
 		DC86D9F52649F2B9000C9CE4 /* StationSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86D9F42649F2B9000C9CE4 /* StationSelectionView.swift */; };
@@ -163,10 +111,8 @@
 		DCC85C76267C2916007E0C0B /* TideWidgetExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = DCC85C71267C2915007E0C0B /* TideWidgetExtension.intentdefinition */; };
 		DCC85C79267C2916007E0C0B /* TideWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DCC85C69267C2915007E0C0B /* TideWidgetExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DCD524312607F6D900EA4C68 /* PadContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD524302607F6D900EA4C68 /* PadContentView.swift */; };
-		DCD524322607F6D900EA4C68 /* PadContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD524302607F6D900EA4C68 /* PadContentView.swift */; };
 		DCD7C96826507C09006327D2 /* Array+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7C96726507C09006327D2 /* Array+RawRepresentable.swift */; };
 		DCE3305F26A0DCBE007A6E9E /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE3305E26A0DCBE007A6E9E /* UserSettings.swift */; };
-		DCE3306026A0DCBE007A6E9E /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE3305E26A0DCBE007A6E9E /* UserSettings.swift */; };
 		DCE3306226A0DCBE007A6E9E /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE3305E26A0DCBE007A6E9E /* UserSettings.swift */; };
 		DCE3306326A1F6BA007A6E9E /* ConfigHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25E70626373D7D00D214D0 /* ConfigHelper.swift */; };
 		DCEA8FEC2693AF9800B8A6C7 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCEA8FEB2693AF9800B8A6C7 /* Intents.framework */; };
@@ -214,9 +160,7 @@
 		DCED546827F100E900234DA6 /* ShralpTideFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCED546727F100E900234DA6 /* ShralpTideFramework.framework */; };
 		DCF68DC226A774E800E30EAC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCF68DC426A774E800E30EAC /* Localizable.strings */; };
 		DCF96C0C25BE3AC900255096 /* StationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF96C0B25BE3AC900255096 /* StationDetailView.swift */; };
-		DCF96C0D25BE3AC900255096 /* StationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF96C0B25BE3AC900255096 /* StationDetailView.swift */; };
 		DCF96C1225BE492700255096 /* MapSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF96C1125BE492700255096 /* MapSelectionView.swift */; };
-		DCF96C1325BE492700255096 /* MapSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF96C1125BE492700255096 /* MapSelectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -240,13 +184,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = DC26BAEE24BB807B00453A5F;
 			remoteInfo = iOS;
-		};
-		DC26BB0B24BB807B00453A5F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DC26BAE324BB807900453A5F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DC26BAF624BB807B00453A5F;
-			remoteInfo = macOS;
 		};
 		DCC85C77267C2916007E0C0B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -376,7 +313,6 @@
 		DC26BAEA24BB807B00453A5F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC26BAEF24BB807B00453A5F /* ShralpTide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShralpTide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC26BAF224BB807B00453A5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DC26BAF724BB807B00453A5F /* ShralpTide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShralpTide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC26BAF924BB807B00453A5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC26BAFA24BB807B00453A5F /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		DC26BAFF24BB807B00453A5F /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -436,13 +372,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCAC203A25E8C02100204370 /* ShralpTideFramework.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DC26BAF424BB807B00453A5F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -702,7 +631,6 @@
 			isa = PBXGroup;
 			children = (
 				DC26BAEF24BB807B00453A5F /* ShralpTide.app */,
-				DC26BAF724BB807B00453A5F /* ShralpTide.app */,
 				DC26BAFF24BB807B00453A5F /* Tests iOS.xctest */,
 				DC26BB0A24BB807B00453A5F /* Tests macOS.xctest */,
 				DC25E6BC2636870800D214D0 /* WatchTides.app */,
@@ -890,23 +818,6 @@
 			productReference = DC26BAEF24BB807B00453A5F /* ShralpTide.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DC26BAF624BB807B00453A5F /* macOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DC26BB1C24BB807B00453A5F /* Build configuration list for PBXNativeTarget "macOS" */;
-			buildPhases = (
-				DC26BAF324BB807B00453A5F /* Sources */,
-				DC26BAF424BB807B00453A5F /* Frameworks */,
-				DC26BAF524BB807B00453A5F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = macOS;
-			productName = macOS;
-			productReference = DC26BAF724BB807B00453A5F /* ShralpTide.app */;
-			productType = "com.apple.product-type.application";
-		};
 		DC26BAFE24BB807B00453A5F /* Tests iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC26BB1F24BB807B00453A5F /* Build configuration list for PBXNativeTarget "Tests iOS" */;
@@ -936,7 +847,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				DC26BB0C24BB807B00453A5F /* PBXTargetDependency */,
 				DC0DE5B4258D7BCA00FD75A0 /* PBXTargetDependency */,
 			);
 			name = "Tests macOS";
@@ -993,9 +903,6 @@
 					DC26BAEE24BB807B00453A5F = {
 						CreatedOnToolsVersion = 12.0;
 					};
-					DC26BAF624BB807B00453A5F = {
-						CreatedOnToolsVersion = 12.0;
-					};
 					DC26BAFE24BB807B00453A5F = {
 						CreatedOnToolsVersion = 12.0;
 						TestTargetID = DC26BAEE24BB807B00453A5F;
@@ -1027,7 +934,6 @@
 			projectRoot = "";
 			targets = (
 				DC26BAEE24BB807B00453A5F /* ShralpTide2 */,
-				DC26BAF624BB807B00453A5F /* macOS */,
 				DC26BAFE24BB807B00453A5F /* Tests iOS */,
 				DC26BB0924BB807B00453A5F /* Tests macOS */,
 				DC25E6BB2636870800D214D0 /* WatchTides */,
@@ -1061,21 +967,6 @@
 				DC0DE7E12593B3C300FD75A0 /* legacy-data.sqlite in Resources */,
 				DC26BB1524BB807B00453A5F /* Assets.xcassets in Resources */,
 				DC0DE7EB2593B3C300FD75A0 /* legacy-data.sqlite-shm in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DC26BAF524BB807B00453A5F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DC0DE7E02593B3C200FD75A0 /* noaa-data.sqlite in Resources */,
-				DC0DE7E42593B3C300FD75A0 /* noaa-data.sqlite-wal in Resources */,
-				DC0DE7E82593B3C300FD75A0 /* noaa-data.sqlite-shm in Resources */,
-				DC0DE5A2258D580E00FD75A0 /* Settings.bundle in Resources */,
-				DC0DE7E62593B3C300FD75A0 /* legacy-data.sqlite-wal in Resources */,
-				DC0DE7E22593B3C300FD75A0 /* legacy-data.sqlite in Resources */,
-				DC26BB1624BB807B00453A5F /* Assets.xcassets in Resources */,
-				DC0DE7EC2593B3C300FD75A0 /* legacy-data.sqlite-shm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1203,61 +1094,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DC26BAF324BB807B00453A5F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DC115E3825BCBB4D00954972 /* TideAnnotation.swift in Sources */,
-				DC079F75259BAED800F1CB0E /* InteractiveChartViewModifier.swift in Sources */,
-				DC3B36C0263BB89C00DA83E1 /* String.swift in Sources */,
-				DCF96C0D25BE3AC900255096 /* StationDetailView.swift in Sources */,
-				DC246B0B261A8E720090F38B /* TideEventsView.swift in Sources */,
-				DC246AF0261A6A630090F38B /* SingleDayTideModel.swift in Sources */,
-				DC115E2625B521F400954972 /* StationDataRepository.swift in Sources */,
-				DC115DE525AD56B200954972 /* FavoritesListView.swift in Sources */,
-				DCF96C1325BE492700255096 /* MapSelectionView.swift in Sources */,
-				DC115DF925B26CE800954972 /* StationMapView.swift in Sources */,
-				DC0DE8172593B87C00FD75A0 /* AppStateInteractor.swift in Sources */,
-				DC115DAB25A5572600954972 /* TideGraphView.swift in Sources */,
-				DC246AE8261A642D0090F38B /* CalendarAppStateInteractor.swift in Sources */,
-				DCE3306026A0DCBE007A6E9E /* UserSettings.swift in Sources */,
-				DC246B1926214ED20090F38B /* LocationDateViewModifier.swift in Sources */,
-				DC246ADD2615712D0090F38B /* MonthView.swift in Sources */,
-				DC0DE58A258C1B6C00FD75A0 /* EnvironmentValues.swift in Sources */,
-				DC0DE7C82593B2E400FD75A0 /* AppStateRepository.swift in Sources */,
-				DC3B36C2263BB89C00DA83E1 /* Date.swift in Sources */,
-				DC3B36C3263BB89C00DA83E1 /* SDTideStation.swift in Sources */,
-				DC246B64262203E70090F38B /* PadTidesView.swift in Sources */,
-				DC0DE7FC2593B3FD00FD75A0 /* shralptide.xcdatamodeld in Sources */,
-				DC079F81259C34BB00F1CB0E /* LabeledChartViewModifier.swift in Sources */,
-				DC15911C259A70400092E473 /* ChartView.swift in Sources */,
-				DC43CBFE25C7882C002A330E /* RegionSelectionView.swift in Sources */,
-				DC0DE7CC2593B2E400FD75A0 /* ModelMigrate2To3.swift in Sources */,
-				DC43CBE625C77B00002A330E /* RegionListView.swift in Sources */,
-				DC246B03261A73780090F38B /* CalendarDayView.swift in Sources */,
-				DC0DE7D02593B2E400FD75A0 /* StationData.swift in Sources */,
-				DC26BB1424BB807B00453A5F /* PhoneContentView.swift in Sources */,
-				DC43CBF225C782BD002A330E /* TideStationInteractor.swift in Sources */,
-				DC115DD625ABD97100954972 /* SunMoonLabelsChartViewModifier.swift in Sources */,
-				DC115D9825A28D6A00954972 /* PagerView.swift in Sources */,
-				DC115DDC25ABDA7000954972 /* ChartUtils.swift in Sources */,
-				DC115DEB25AD576100954972 /* FavoriteRow.swift in Sources */,
-				DC0DE7B0259305F600FD75A0 /* AppState.swift in Sources */,
-				DC43CBF825C78697002A330E /* Region.swift in Sources */,
-				DC77459F24F31681001747AE /* TideEventsPageView.swift in Sources */,
-				DC3B36C1263BB89C00DA83E1 /* SDTide.swift in Sources */,
-				DC0DE7CE2593B2E400FD75A0 /* NoaaStationData.swift in Sources */,
-				DC160B5124CFAC9D00C62C56 /* HeaderView.swift in Sources */,
-				DC26BB1224BB807B00453A5F /* ShralpTideApp.swift in Sources */,
-				DC43CC0725CBC44E002A330E /* TideStationListView.swift in Sources */,
-				DC0DE7EA2593B3C300FD75A0 /* ModelMigrate2to3.xcmappingmodel in Sources */,
-				DC0DE7FE2593B3FD00FD75A0 /* tidedata.xcdatamodeld in Sources */,
-				DCD524322607F6D900EA4C68 /* PadContentView.swift in Sources */,
-				DC0DE595258C1CFC00FD75A0 /* ConfigHelper.swift in Sources */,
-				DC0DE7CA2593B2E400FD75A0 /* LegacyStationData.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		DC26BAFB24BB807B00453A5F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1356,11 +1192,6 @@
 			target = DC26BAEE24BB807B00453A5F /* ShralpTide2 */;
 			targetProxy = DC26BB0024BB807B00453A5F /* PBXContainerItemProxy */;
 		};
-		DC26BB0C24BB807B00453A5F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DC26BAF624BB807B00453A5F /* macOS */;
-			targetProxy = DC26BB0B24BB807B00453A5F /* PBXContainerItemProxy */;
-		};
 		DCC85C78267C2916007E0C0B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
@@ -1405,14 +1236,14 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1968;
+				CURRENT_PROJECT_VERSION = 1980;
 				DEVELOPMENT_TEAM = H29T9V7X78;
 				INFOPLIST_FILE = WatchTides/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.0.4;
+				MARKETING_VERSION = 4.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1431,14 +1262,14 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1968;
+				CURRENT_PROJECT_VERSION = 1980;
 				DEVELOPMENT_TEAM = H29T9V7X78;
 				INFOPLIST_FILE = WatchTides/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.0.4;
+				MARKETING_VERSION = 4.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1513,6 +1344,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -1572,6 +1404,7 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VERSIONING_SYSTEM = "apple-generic";
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
@@ -1583,7 +1416,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ShralpTide2/ShralpTide.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1968;
+				CURRENT_PROJECT_VERSION = 1980;
 				DEVELOPMENT_TEAM = H29T9V7X78;
 				ENABLE_PREVIEWS = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
@@ -1599,7 +1432,7 @@
 					"@executable_path/Frameworks",
 				);
 				MAPC_NO_WARNINGS = NO;
-				MARKETING_VERSION = 4.0.4;
+				MARKETING_VERSION = 4.1.1;
 				MOMC_NO_DELETE_RULE_WARNINGS = YES;
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1607,7 +1440,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2;
 				PRODUCT_NAME = ShralpTide;
 				SDKROOT = iphoneos;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1621,7 +1456,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ShralpTide2/ShralpTide.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1968;
+				CURRENT_PROJECT_VERSION = 1980;
 				DEVELOPMENT_TEAM = H29T9V7X78;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1636,7 +1471,7 @@
 					"@executable_path/Frameworks",
 				);
 				MAPC_NO_WARNINGS = NO;
-				MARKETING_VERSION = 4.0.4;
+				MARKETING_VERSION = 4.1.1;
 				MOMC_NO_DELETE_RULE_WARNINGS = YES;
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1644,64 +1479,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2;
 				PRODUCT_NAME = ShralpTide;
 				SDKROOT = iphoneos;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		DC26BB1D24BB807B00453A5F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = H29T9V7X78;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = macOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 4.0.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2;
-				PRODUCT_NAME = ShralpTide;
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		DC26BB1E24BB807B00453A5F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = H29T9V7X78;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = macOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 4.0.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2;
-				PRODUCT_NAME = ShralpTide;
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1803,6 +1586,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = TideWidgetExtension/TideWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1980;
 				DEVELOPMENT_TEAM = H29T9V7X78;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				INFOPLIST_FILE = TideWidgetExtension/Info.plist;
@@ -1812,13 +1596,13 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.0.4;
+				MARKETING_VERSION = 4.1.1;
 				OTHER_SWIFT_FLAGS = "-DWIDGET_EXTENSION";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2.TideWidgetExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1831,6 +1615,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = TideWidgetExtension/TideWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1980;
 				DEVELOPMENT_TEAM = H29T9V7X78;
 				INFOPLIST_FILE = TideWidgetExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -1839,13 +1624,13 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.0.4;
+				MARKETING_VERSION = 4.1.1;
 				OTHER_SWIFT_FLAGS = "-DWIDGET_EXTENSION";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2.TideWidgetExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1857,6 +1642,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = LocationIntentsExtension/LocationIntentsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1980;
 				DEVELOPMENT_TEAM = H29T9V7X78;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				INFOPLIST_FILE = LocationIntentsExtension/Info.plist;
@@ -1866,12 +1652,12 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.0.4;
+				MARKETING_VERSION = 4.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2.LocationIntentsExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1882,6 +1668,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = LocationIntentsExtension/LocationIntentsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1980;
 				DEVELOPMENT_TEAM = H29T9V7X78;
 				INFOPLIST_FILE = LocationIntentsExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -1890,12 +1677,12 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.0.4;
+				MARKETING_VERSION = 4.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shralpsoftware.ShralpTide2.LocationIntentsExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1928,15 +1715,6 @@
 			buildConfigurations = (
 				DC26BB1A24BB807B00453A5F /* Debug */,
 				DC26BB1B24BB807B00453A5F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DC26BB1C24BB807B00453A5F /* Build configuration list for PBXNativeTarget "macOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DC26BB1D24BB807B00453A5F /* Debug */,
-				DC26BB1E24BB807B00453A5F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
