@@ -24,7 +24,7 @@ protocol AppStateInteractor {
 class CoreDataAppStateInteractor: AppStateInteractor {
     @Environment(\.appStateRepository) private var appStateRepository: AppStateRepository
 
-    func updateState(appState: AppState, settings: UserSettings) {
+    func updateState(appState: AppState, settings: UserSettings) {        
         appStateRepository.loadSavedState(isLegacy: settings.legacyMode)
 
         appState.locationPage = appStateRepository.locationPage

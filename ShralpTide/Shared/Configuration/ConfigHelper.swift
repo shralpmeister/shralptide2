@@ -21,6 +21,7 @@ class ConfigHelper: ObservableObject {
     var settingsDict = NSDictionary()
 
     init() {
+        setupByPreferences()
         NotificationCenter.default.addObserver(
             self, selector: #selector(setupByPreferences), name: UserDefaults.didChangeNotification,
             object: nil
@@ -83,6 +84,7 @@ class ConfigHelper: ObservableObject {
         self.log.info("Setting units to \(self.settings.unitsPref)")
         self.log.info("Setting legacyMode to \(self.settings.legacyMode ? "YES" : "NO")")
         // and refresh widgets
-        WidgetCenter.shared.reloadAllTimelines()
+        // TODO: disabling forced reload since it doesn't seem to be working as expected
+        //WidgetCenter.shared.reloadAllTimelines()
     }
 }

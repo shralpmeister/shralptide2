@@ -68,6 +68,7 @@ class Provider: IntentTimelineProvider {
     }
 
     func getTimeline(for configuration: SelectLocationIntent, in context: Context, completion: @escaping (Timeline<TideEntry>) -> ()) {
+        print("Calculating timeline")
         let location = configuration.location ?? defaultLocation
         let units: SDTideUnitsPref  = unitsPref(for: self.units)
         let tide = refreshTides(forLocation: location, units: units)
@@ -76,10 +77,8 @@ class Provider: IntentTimelineProvider {
             let nextTide: SDTideEvent?
             do {
                 nextTide = try tide.nextTide(from: interval.time)
-                print("Next tide event at \(String(describing: nextTide?.eventTime))")
             } catch {
                 nextTide = nil
-                print("Unable to find next tide event")
             }
             return TideEntry(date: interval.time.intervalStartDate(),
                              units: units,
@@ -91,8 +90,10 @@ class Provider: IntentTimelineProvider {
                              tide: tide)
         }
         
-        let timeline = Timeline(entries: entries, policy: .after(Date().endOfDay()))
+        let refreshDate = Date.now.endOfDay()
+        let timeline = Timeline(entries: entries, policy: .after(refreshDate))
         completion(timeline)
+        print("Timeline calculated with \(timeline.entries.count) entries. Policy is .after(\(refreshDate))")
     }
 }
 
