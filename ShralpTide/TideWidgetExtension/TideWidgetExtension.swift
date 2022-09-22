@@ -254,36 +254,37 @@ struct TideWidgetEntryView : View {
             }
             .widgetURL(URL(string:"shralp:location?name=\(entry.fullLocationName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "none")"))
             .background(darkGreen)
-        case .accessoryCircular:
-            Gauge(value: entry.height, in: entry.tide.lowestTide.floatValue...entry.tide.highestTide.floatValue ) {
-                Text(entry.tide.shortLocationName)
-            } currentValueLabel: {
-                Text(String(format: "%0.1f%@", entry.height, String.directionIndicator(entry.direction)))
-            } minimumValueLabel: {
-                Text("\(String(format: "%0.1f", entry.tide.lowestTide.floatValue))")
-            } maximumValueLabel: {
-                Text("\(String(format: "%0.1f", entry.tide.highestTide.floatValue))")
-            }
-            .gaugeStyle(.accessoryCircular)
-            .widgetURL(URL(string:"shralp:location?name=\(entry.fullLocationName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "none")"))
-        case .accessoryRectangular:
-            VStack {
-                if (entry.nextEvent != nil) {
-                    Text(String(format: "%0.1f%@ → %0.1f%@",
-                                    entry.height,
-                                    entry.tide.unitShort,
-                                    entry.nextEvent!.eventHeight,
-                                    entry.tide.unitShort
-                               ))
-                    HStack {
-                        Text(entry.nextEvent!.eventTypeDescription)
-                        Text(entry.nextEvent!.eventTime, style: .time)
-                    }
-                }
-            }
-            .widgetURL(URL(string:"shralp:location?name=\(entry.fullLocationName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "none")"))
+// TODO: Revisit lock screen widgets in the future. Currently suffering from strange behavior with number of calls to getTimeline
+//        case .accessoryCircular:
+//            Gauge(value: entry.height, in: entry.tide.lowestTide.floatValue...entry.tide.highestTide.floatValue ) {
+//                Text(entry.tide.shortLocationName)
+//            } currentValueLabel: {
+//                Text(String(format: "%0.1f%@", entry.height, String.directionIndicator(entry.direction)))
+//            } minimumValueLabel: {
+//                Text("\(String(format: "%0.1f", entry.tide.lowestTide.floatValue))")
+//            } maximumValueLabel: {
+//                Text("\(String(format: "%0.1f", entry.tide.highestTide.floatValue))")
+//            }
+//            .gaugeStyle(.accessoryCircular)
+//            .widgetURL(URL(string:"shralp:location?name=\(entry.fullLocationName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "none")"))
+//        case .accessoryRectangular:
+//            VStack {
+//                if (entry.nextEvent != nil) {
+//                    Text(String(format: "%0.1f%@ → %0.1f%@",
+//                                    entry.height,
+//                                    entry.tide.unitShort,
+//                                    entry.nextEvent!.eventHeight,
+//                                    entry.tide.unitShort
+//                               ))
+//                    HStack {
+//                        Text(entry.nextEvent!.eventTypeDescription)
+//                        Text(entry.nextEvent!.eventTime, style: .time)
+//                    }
+//                }
+//            }
+//            .widgetURL(URL(string:"shralp:location?name=\(entry.fullLocationName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "none")"))
         @unknown default:
-            fatalError("Unhandled widget family")
+            fatalError("Unhandled widget family \(family)")
         }
     }
 }
@@ -300,7 +301,7 @@ struct TideWidget: Widget {
         #if os(watchOS)
         .supportedFamilies([])
         #else
-        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .accessoryCircular, .accessoryRectangular])
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
         #endif
     }
 }

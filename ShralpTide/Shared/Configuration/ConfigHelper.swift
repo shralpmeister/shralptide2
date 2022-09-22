@@ -21,7 +21,11 @@ class ConfigHelper: ObservableObject {
     var settingsDict = NSDictionary()
 
     init() {
-        setupByPreferences()
+        do {
+            try setupByPreferences()
+        } catch {
+            fatalError("Unable to read preferences \(error)")
+        }
         NotificationCenter.default.addObserver(
             self, selector: #selector(setupByPreferences), name: UserDefaults.didChangeNotification,
             object: nil
@@ -32,10 +36,22 @@ class ConfigHelper: ObservableObject {
         NotificationCenter.default.removeObserver(self)
     }
 
-    fileprivate func readSettingsDictionary() -> NSDictionary? {
-        let plistUrl = Bundle.main.bundleURL.appendingPathComponent("Settings.bundle")
-            .appendingPathComponent("Root.plist")
-        return NSDictionary(contentsOf: plistUrl)
+    fileprivate func readSettingsDictionary() throws -> NSDictionary {
+        var bundle = Bundle.main
+        if bundle.bundleURL.pathExtension == "appex" {
+            // Peel off two directory levels - MY_APP.app/PlugIns/MY_APP_EXTENSION.appex
+            let url = bundle.bundleURL.deletingLastPathComponent().deletingLastPathComponent()
+            if let otherBundle = Bundle(url: url) {
+                bundle = otherBundle
+            }
+        }
+        let settingsBundleURL = bundle.url(forResource: "Settings", withExtension: "bundle")!
+        let settingsData = try Data(contentsOf: settingsBundleURL.appendingPathComponent("Root.plist"))
+        let settingsPlist = try PropertyListSerialization.propertyList(
+            from: settingsData,
+            options: [],
+            format: nil) as! NSDictionary
+        return settingsPlist
     }
 
     fileprivate func migrateUserDefaults() {
@@ -50,12 +66,12 @@ class ConfigHelper: ObservableObject {
         }
     }
 
-    @objc func setupByPreferences() {
+    @objc func setupByPreferences() throws {
         migrateUserDefaults()
         let groupDefaults = UserDefaults(suiteName: suiteName)!
         let testValue = groupDefaults.string(forKey: ConfigKeys.units)
         if testValue == nil {
-            settingsDict = readSettingsDictionary()!
+            settingsDict = try readSettingsDictionary()
             let prefSpecifierArray = settingsDict["PreferenceSpecifiers"] as! [NSDictionary]
 
             var defaultsToRegister = [String: Any]()
@@ -84,7 +100,6 @@ class ConfigHelper: ObservableObject {
         self.log.info("Setting units to \(self.settings.unitsPref)")
         self.log.info("Setting legacyMode to \(self.settings.legacyMode ? "YES" : "NO")")
         // and refresh widgets
-        // TODO: disabling forced reload since it doesn't seem to be working as expected
-        //WidgetCenter.shared.reloadAllTimelines()
+        WidgetCenter.shared.reloadAllTimelines()
     }
 }

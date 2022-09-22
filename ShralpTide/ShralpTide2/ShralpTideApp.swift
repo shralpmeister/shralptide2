@@ -36,7 +36,6 @@ struct ShralpTideApp: App {
                         for: UIApplication.willEnterForegroundNotification
                     )
                 ) { _ in
-                    WidgetCenter.shared.reloadAllTimelines() // TODO: verify this behavior, not sure I want this
                     let startDate = self.appState.tides[appState.locationPage].startTime!
                     if Calendar.current.isDateInYesterday(startDate) {
                         appStateInteractor.updateState(appState: appState, settings: appState.config.settings)
