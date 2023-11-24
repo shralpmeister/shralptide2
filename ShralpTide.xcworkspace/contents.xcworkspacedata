@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/mparlee/Development/swift/ShralpTideWorkspace/ShralpTide/ShralpTide.xcodeproj">
+      location = "group:ShralpTide/ShralpTide.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:ShralpTideFramework/ShralpTideFramework.xcodeproj">
