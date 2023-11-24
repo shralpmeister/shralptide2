@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C1E8CCCE2B10309800393AA8 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8CCCD2B10309800393AA8 /* Collection.swift */; };
 		DC079F74259BAED800F1CB0E /* InteractiveChartViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC079F73259BAED800F1CB0E /* InteractiveChartViewModifier.swift */; };
 		DC079F80259C34BB00F1CB0E /* LabeledChartViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC079F7F259C34BB00F1CB0E /* LabeledChartViewModifier.swift */; };
 		DC0DE589258C1B6C00FD75A0 /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DE588258C1B6C00FD75A0 /* EnvironmentValues.swift */; };
@@ -250,6 +251,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C1E8CCCD2B10309800393AA8 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		DC079F73259BAED800F1CB0E /* InteractiveChartViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveChartViewModifier.swift; sourceTree = "<group>"; };
 		DC079F7F259C34BB00F1CB0E /* LabeledChartViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledChartViewModifier.swift; sourceTree = "<group>"; };
 		DC0DE588258C1B6C00FD75A0 /* EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValues.swift; sourceTree = "<group>"; };
@@ -681,6 +683,7 @@
 		DC3B36B7263BB87800DA83E1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				C1E8CCCD2B10309800393AA8 /* Collection.swift */,
 				DC3B36B8263BB87800DA83E1 /* Date.swift */,
 				DC3B36B9263BB87800DA83E1 /* SDTide.swift */,
 				DC3B36BA263BB87800DA83E1 /* SDTideStation.swift */,
@@ -1078,6 +1081,7 @@
 				DC115D9725A28D6A00954972 /* PagerView.swift in Sources */,
 				DC115DDB25ABDA7000954972 /* ChartUtils.swift in Sources */,
 				DC115DEA25AD576100954972 /* FavoriteRow.swift in Sources */,
+				C1E8CCCE2B10309800393AA8 /* Collection.swift in Sources */,
 				DC0DE7AF259305F600FD75A0 /* AppState.swift in Sources */,
 				DC43CBF725C78697002A330E /* Region.swift in Sources */,
 				DC77459E24F31681001747AE /* TideEventsPageView.swift in Sources */,

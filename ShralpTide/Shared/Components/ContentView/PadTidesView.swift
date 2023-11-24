@@ -57,7 +57,7 @@ struct PadTidesView: View {
                             .padding(.top)
                             .padding(.leading)
                             .padding(.trailing)
-                        if let tideData = appState.tidesForDays[pageIndex] {
+                        if let tideData = appState.tidesForDays[safe: pageIndex] {
                           Text(tideData.startTime != nil ? nonMutatingFormatter().string(from: tideData.startTime) : "")
                             .font(.title)
                             .lineLimit(1)
